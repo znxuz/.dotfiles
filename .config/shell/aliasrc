@@ -1,0 +1,33 @@
+alias \
+    diff="diff --color=auto" \
+    grep="grep --color=auto" \
+    egrep="egrep --color=auto" \
+    fgrep="fgrep --color=auto" \
+    ls="ls --color=auto --group-directories-first" \
+    ll="ls -lhN --color=auto --group-directories-first" \
+    la="ls -AhN --color=auto --group-directories-first" \
+    lal="ll -AhN --color=auto --group-directories-first"
+
+alias \
+    cp="cp -iv" \
+    mv="mv -iv" \
+    rm="rm -vI" \
+    mkdir="mkdir -pv" \
+    rmdir="rmdir -pv" \
+    kall="killall -v" \ 
+    sudo="sudo -E"
+
+alias \
+    e="$EDITOR" \
+    vi="$EDITOR" \
+    db="dropbox > /dev/null 2>&1 &" \
+    z="zathura" \
+    fd="fd -H" \
+    ga="git add" \
+    gc="git commit" \
+    gs="git status" \
+    nv="nordvpn"
+
+alias \
+    homesync="rsync -azvhP --delete-excluded --exclude-from '/home/zijian/.scripts/.rsyncexclude' /home/zijian/" \
+    df="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"

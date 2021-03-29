@@ -1,0 +1,5 @@
+super + o ; {b, c}
+    {brave,code}
+
+super + s ; {s, l, p, r}
+    {systemctl suspend,xset dpms force off,shutdown now,reboot}
