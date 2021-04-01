@@ -3,4 +3,3 @@ xset r rate 180 50
 
 # set compose key
 setxkbmap -option compose:ralt
-
