@@ -1,0 +1,9 @@
+[user]
+	name = zijian
+	email = zijian.xu@outlook.com
+[core]
+	autocrlf = input
+[init]
+	defaultBranch = main
+[alias]
+	nccommit = commit -a --allow-empty-message -m \"\"
