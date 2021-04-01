@@ -1,6 +1,5 @@
 source $HOME/.config/shell/aliasrc
-# source $HOME/.config/shell/profile
-eval `dircolors $XDG_CONFIG_HOME/shell/dir_colors_gruv`
+# eval `dircolors $XDG_CONFIG_HOME/shell/dir_colors_gruv`
 
 # start tmux at every session
 # if command -v tmux >/dev/null 2>&1; then
