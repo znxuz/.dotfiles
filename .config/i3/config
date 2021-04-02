@@ -213,7 +213,7 @@ bar {
         focused_workspace    $aqua $aqua $darkgray
         inactive_workspace   $darkgray $darkgray $white
         active_workspace     $darkgray $darkgray $white
-        urgent_workspace     $red $red $bg
+        urgent_workspace     $aqua $bg $white
         ## status_command i3status
     }
 }
