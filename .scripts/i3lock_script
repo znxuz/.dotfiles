@@ -2,13 +2,15 @@
 
 B='#00000000'  # blank
 C='#ffffff22'  # clear ish
-D='#ff00ffcc'  # default
-T='#ee00eeee'  # text
+D='#928374cc'  # default
+T='#928374cc'  # default
+# D='#ff00ffcc'  # default
+# T='#ee00eeee'  # text
 W='#880000bb'  # wrong
-V='#bb00bbbb'  # verifying
+# V='#bb00bbbb'  # verifying
+V='#928374cc'  # default
 
 xset dpms force off
-
 i3lock \
 --insidevercolor=$C   \
 --ringvercolor=$V     \
@@ -35,4 +37,4 @@ i3lock \
 --indicator           \
 --timestr="%H:%M:%S"  \
 --datestr="%A, %m %Y" \
---keylayout 1         \
+# --keylayout 1         \

@@ -6,10 +6,9 @@
 set $mod Mod4
 
 default_border pixel 1
-for_window [class=".*"] border pixel 1
+# for_window [class=".*"] border pixel 1
 # hide borders
 # hide_edge_borders none
-
 gaps inner 10
 # smart_gaps on
 # smart_gaps inverse_outer
@@ -29,8 +28,7 @@ font pango:DejaVu Sans Mono 10
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
+# NetworkManager-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
 # adjust volume in PulseAudio.
@@ -48,10 +46,10 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+# bindsym $mod+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -69,6 +67,9 @@ bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
+
+# switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
 
 # split in vertical orientation
 bindsym $mod+minus split v
@@ -88,6 +89,10 @@ bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
+
+# floating window sizes
+floating_minimum_size 640 x 480
+floating_maximum_size 1280 x 960
 
 # switch to workspace
 set $ws1 "1"
@@ -112,22 +117,20 @@ bindsym $mod+Shift+3 move container to workspace number $ws3
 bindsym $mod+Shift+4 move container to workspace number $ws4
 bindsym $mod+Shift+5 move container to workspace number $ws5
 
-# switch to workspace with urgent window automatically
-for_window [urgent=latest] focus
-
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
 # Set shutdown restart and locking features
-bindsym $mod+0 mode "$mode_system"
+bindsym $mod+Escape mode "$mode_system"
 set $mode_system (l)ock, screen (o)ff, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
     bindsym o exec xset dpms force off, mode "default"
-    bindsym l exec $XDG_CONFIG_HOME/i3/scripts/lock, mode "default"
-    bindsym s exec systemctl suspend, mode "default"
+    bindsym l exec i3lock_script, mode "default"
     bindsym e exec i3-msg exit, mode "default"
+    bindsym u exec i3_logout, mode "default"
+    bindsym s exec systemctl suspend, mode "default"
     bindsym h exec systemctl hibernate, mode "default"
     bindsym r exec reboot, mode "default"
     bindsym Shift+s exec systemctl poweroff, mode "default"
@@ -135,7 +138,7 @@ mode "$mode_system" {
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
-    bindsym $mod+0 mode "default"
+    bindsym $mod+Escape mode "default"
 }
 
 # resize window (you can also use the mouse for that)
@@ -163,7 +166,50 @@ mode "open" {
         bindsym $mod+o mode "default"
 }
 
-# Start i3bar to display a workspace bar (plus the system information i3status
+ # set primary gruvbox colorscheme colors
+ set $bg #282828
+ set $red #cc241d
+ set $green #98971a
+ set $yellow #d79921
+ set $blue #458588
+ set $purple #b16286
+ set $aqua #689d68
+ set $white #ebdbb2
+ set $gray #a89984
+ set $darkgray #1d2021
+
+#start of window title bars & borders section
+# green gruvbox
+# class                 border|backgr|text|indicator|child_border
+#client.focused          $green $green $darkgray $purple $darkgray
+#client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
+#client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+#client.urgent           $red $red $white $red $red
+
+# blue gruvbox
+# class                 border|backgr|text|indicator|child_border
+# client.focused          $blue $blue $darkgray $purple $darkgray
+client.focused          $blue $blue $aqua $purple $aqua
+client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
+client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+client.urgent           $red $red $white $red $red
+#end of window title bars & borders section
+
+#start of i3-bar section
 bar {
-        # status_command i3status
+    position bottom
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    colors {
+        # bar background color
+        background $bg
+        # text color used for blocks that do not have a color specified.
+        statusline $white
+        # workspaces section            
+        # border  backgr. text
+        focused_workspace    $aqua $aqua $darkgray
+        inactive_workspace   $darkgray $darkgray $white
+        active_workspace     $darkgray $darkgray $white
+        urgent_workspace     $red $red $bg
+        ## status_command i3status
+    }
 }
