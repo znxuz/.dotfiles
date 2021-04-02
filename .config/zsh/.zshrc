@@ -1,6 +1,7 @@
 # prompt
 fpath+=$XDG_CONFIG_HOME/zsh/pure
 autoload -U promptinit; promptinit
+# zstyle :prompt:pure:prompt:success color '#ebdbb2'
 zstyle :prompt:pure:path color yellow
 prompt pure
 prompt_newline='%666v'

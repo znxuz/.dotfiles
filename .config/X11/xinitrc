@@ -44,6 +44,8 @@ fi
 # xrandr --output DP1 --mode 1600x900 --rate 60 --left-of eDP1
 
 dunst &
+redshift &
 unclutter &
 $HOME/.config/feh/.fehbg &
+
 exec i3
