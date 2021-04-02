@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --no-fehbg --bg-fill '/home/zijian/Dropbox/Pictures/Wallpapers/gruvbox/3840x2160-dark-archlinux2.png' 
