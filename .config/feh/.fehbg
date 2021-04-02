@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --no-fehbg --bg-fill '/home/zijian/Dropbox/Pictures/Wallpapers/gruvbox_coffee.png' 
