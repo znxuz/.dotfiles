@@ -39,9 +39,9 @@ fi
 # external monitor display settings below...)
 # sleep 2
 # Set laptop monitor as primary
-# xrandr --output LVDS1 --mode 1366x768 --rate 60 --primary
+# xrandr --output eDP1 --rate 60 --primary
 # Look for external monitor, if found, set it to the left...
-# xrandr --output VGA1 --mode 1600x900 --rate 60 --left-of LVDS1
+# xrandr --output DP1 --mode 1600x900 --rate 60 --left-of eDP1
 
 dunst &
 unclutter &
