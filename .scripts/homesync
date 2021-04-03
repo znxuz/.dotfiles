@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-rsync -azvhP --delete-excluded --exclude-from './.rsyncexclude' /home/zijian/ /mnt/external/backup/
+rsync -azvhP --delete-excluded --exclude-from './.rsyncexclude' /home/zijian/ /mnt/external/.backup/

@@ -43,6 +43,11 @@ fi
 # Look for external monitor, if found, set it to the left...
 # xrandr --output DP1 --mode 1600x900 --rate 60 --left-of eDP1
 
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+
+fcitx &
 dunst &
 redshift &
 unclutter &
