@@ -1,0 +1,17 @@
+*.vdi
+*.iso
+.cache
+main
+treasures
+Desktop
+Documents
+Pictures
+Videos
+Public
+Templates
+Music
+Downloads
+Dropbox
+.dropbox*
+Pictures
+BraveSoftware
