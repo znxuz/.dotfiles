@@ -15,7 +15,9 @@ alias \
     mkdir="mkdir -pv" \
     rmdir="rmdir -pv" \
     kall="killall -v" \ 
+    free="free -h" \
     sudo="sudo -E"
+
 
 alias \
     e="$EDITOR" \
@@ -29,5 +31,4 @@ alias \
     nv="nordvpn"
 
 alias \
-    homesync="rsync -azvhP --delete-excluded --exclude-from '/home/zijian/.scripts/.rsyncexclude' /home/zijian/" \
     df="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
