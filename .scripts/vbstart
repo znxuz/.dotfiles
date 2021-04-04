@@ -5,4 +5,4 @@ sudo modprobe vboxdrv
 # modprobe vboxnetadp
 # modprobe vboxnetflt
 
-virtualbox
+virtualbox &
