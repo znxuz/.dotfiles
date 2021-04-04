@@ -1,2 +1,4 @@
 Xft.dpi: 168
+*.dpi: 168
 # Xft.dpi: 120
+# *.dpi: 120

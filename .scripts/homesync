@@ -1,2 +1,10 @@
 #!/usr/bin/env bash
-rsync -azvhP --delete-excluded --exclude-from './.rsyncexclude' /home/zijian/ /mnt/external/.backup/
+rsync -azvhP --delete-excluded --exclude-from './.rsyncexclude' /home/zijian/ /mnt/main/.backup/
+
+pacman -Qqen > Qqen
+mv Qqen /mnt/main/.backup
+echo 'created a list of explicitly installed packages'
+
+pacman -Qqem > Qqem
+mv Qqem /mnt/main/.backup
+echo 'created a list of foreign packages (installed from AUR)'
