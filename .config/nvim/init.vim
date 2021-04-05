@@ -1,5 +1,5 @@
 set guicursor=n-v-c-a:hor1-blinkwait300-blinkon200-blinkoff150,i-ci-c:ver1-blinkwait300-blinkon200-blinkoff150
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 
 " line numbers
 set number rnu

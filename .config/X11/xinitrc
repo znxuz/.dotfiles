@@ -40,7 +40,7 @@ export XMODIFIERS=@im=fcitx
 
 fcitx &
 dunst &
-redshift &
+redshift -l 51.5:7.4 &
 unclutter &
 $HOME/.config/feh/.fehbg &
 
