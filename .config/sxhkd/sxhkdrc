@@ -1,0 +1,11 @@
+alt + F10
+    i3-volume down 5 -np -N dunstify
+alt + F11
+    i3-volume up 5 -np -N dunstify
+alt + F12
+    i3-volume mute -np -N dunstify
+# brightness control
+alt + F1
+    xbacklight -dec 20 && dunstify -r 1 -u low "Brightness down"
+alt + F2
+    xbacklight -inc 20 && dunstify -r 1 -u low "Brightness up"
