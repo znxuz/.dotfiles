@@ -32,3 +32,5 @@ alias \
 
 alias \
     df="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+
+alias keys="z $HOME/Downloads/HHKB_Layout.pdf"
