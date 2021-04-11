@@ -1,7 +1,7 @@
 configuration {
-	modi: "drun,run";
-/*	width: 50;*/
-/*	lines: 15;*/
+	modi: "run";
+	width: 30;
+	lines: 10;
 /*	columns: 1;*/
 	font: "Source Code Pro 11";
 /*	bw: 1;*/
@@ -27,7 +27,7 @@ configuration {
 /*	drun-url-launcher: "xdg-open";*/
 /*	disable-history: false;*/
 /*	ignored-prefixes: "";*/
-/*	sort: false;*/
+	sort: false;
 /*	sorting-method: "normal";*/
 /*	case-sensitive: false;*/
 /*	cycle: true;*/

@@ -737,12 +737,12 @@ key_bindings:
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }
   #- { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
-  - { key: U,    mods: Alt,   mode: ~Alt,        action: ScrollPageUp,  }
-  - { key: D,  mods: Alt,   mode: ~Alt,        action: ScrollPageDown }
-  - { key: K,    mods: Alt,   mode: ~Alt,        action: ScrollLineUp,  }
-  - { key: J,  mods: Alt,   mode: ~Alt,        action: ScrollLineDown }
-  - { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop,   }
-  - { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
+  - { key: U,    mods: Control,   mode: ~Alt,        action: ScrollPageUp,  }
+  - { key: D,  mods: Control,   mode: ~Alt,        action: ScrollPageDown }
+  - { key: K,    mods: Control,   mode: ~Alt,        action: ScrollLineUp,  }
+  - { key: J,  mods: Control,   mode: ~Alt,        action: ScrollLineDown }
+  - { key: Home,      mods: Control,   mode: ~Alt,        action: ScrollToTop,   }
+  - { key: End,       mods: Control,   mode: ~Alt,        action: ScrollToBottom }
 
   # Vi Mode
   #- { key: Space,  mods: Shift|Alt, mode: Vi|~Search, action: ScrollToBottom          }

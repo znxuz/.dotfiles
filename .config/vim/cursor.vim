@@ -1,5 +1,5 @@
-let &t_EI .= "\<Esc>[3 q"
-let &t_SI .= "\<Esc>[5 q"
+let &t_EI .= "\<Esc>[4 q"
+let &t_SI .= "\<Esc>[6 q"
 
 " if &term =~ '^xterm'
     " " enter vim

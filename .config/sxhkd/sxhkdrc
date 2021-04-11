@@ -5,18 +5,18 @@ super + g
     alacritty -e ranger
 
 # screenshot
-shift + super + s
+super + s
     scrot '%Y-%m-%d_$wx$h.png' -e 'mv $f ~/Pictures/Screenshots; cropgui ~/Pictures/Screenshots/$f'
-shift + alt + s
+super + alt + s
     scrot '%Y-%m-%d_$wx$h.png' -u -e 'mv $f ~/Pictures/Screenshots; cropgui ~/Pictures/Screenshots/$f'
 
 # volume control
-shift + alt + {F10, F11}
+super + {F10, F11}
     i3-volume {down, up} 5 -np -N dunstify
-shift + alt + F12
+super + F12
     i3-volume mute -np -N dunstify
 # brightness control
-shift + alt + {F1, F2}
+super + {F1, F2}
     xbacklight {-dec, -inc} 20 && dunstify -r 1 -u low {"Brightness down", "Brightness up"}
 
 # browser
