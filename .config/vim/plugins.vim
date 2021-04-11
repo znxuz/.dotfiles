@@ -2,7 +2,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
 Plug 'francoiscabrol/ranger.vim'
+Plug 'junegunn/goyo.vim'
 call plug#end()
+
+nnoremap <leader>c :Goyo<CR>
 
 set laststatus=2
 set noshowmode

@@ -3,6 +3,8 @@ syntax on
 " line numbers
 set number rnu
 
+set noesckeys
+
 set backspace=indent,eol,start
 set tabstop=4
 set softtabstop=4

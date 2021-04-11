@@ -1,0 +1,3 @@
+set sandbox none
+set default-bg #282828
+set selection-clipboard clipboard

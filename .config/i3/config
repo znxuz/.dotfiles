@@ -1,9 +1,11 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 
-set $mod Mod4
+set $super Mod4
+set $alt Mod1
 
 default_border pixel 1
+default_floating_border pixel 1
 # for_window [class=".*"] border pixel 1
 # hide borders
 # hide_edge_borders none
@@ -13,10 +15,6 @@ gaps inner 10
 
 # font pango:DejaVu Sans Mono 10
 font pango:Yosemite San Francisco 10
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # Volume control
  # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
@@ -31,54 +29,50 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 20 && dunstify -r 1 -u low "Brightness up"
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 && dunstify -r 1 -u low "Brightness down"
 
-# start a terminal
-bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
-# ranger
-bindsym $mod+g exec --no-startup-id alacritty -e ranger
 # kill focused window
-bindsym $mod+shift+q kill
+bindsym $super+shift+q kill
 # start dmenu (a program launcher)
-# bindsym $mod+d exec --no-startup-id dmenu_run
+# bindsym $super+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
-# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-bindsym $mod+d exec "rofi -show drun"
+# bindcode $super+40 exec "rofi -modi drun,run -show drun"
+bindsym $super+d exec "rofi -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+# bindcode $super+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $super+h focus left
+bindsym $super+j focus down
+bindsym $super+k focus up
+bindsym $super+l focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $super+Shift+h move left
+bindsym $super+Shift+j move down
+bindsym $super+Shift+k move up
+bindsym $super+Shift+l move right
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
 
 # split in vertical orientation
-bindsym $mod+minus split v
+bindsym $super+minus split v
 
 # split in horizontal orientation
-bindsym $mod+v split h
+bindsym $super+v split h
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $super+f fullscreen toggle
 
 # change container layout (tabbed, toggle split)
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $super+w layout tabbed
+bindsym $super+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $super+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $super+space focus mode_toggle
 
 # floating window sizes
 floating_minimum_size -1 x -1
@@ -90,70 +84,75 @@ set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
-bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4
-bindsym $mod+5 workspace number $ws5
+bindsym $super+1 workspace number $ws1
+bindsym $super+2 workspace number $ws2
+bindsym $super+3 workspace number $ws3
+bindsym $super+4 workspace number $ws4
+bindsym $super+5 workspace number $ws5
 workspace_auto_back_and_forth yes
-bindsym $mod+bracketleft workspace next
-bindsym $mod+bracketright workspace prev
-bindsym $mod+Tab workspace back_and_forth
+bindsym $super+bracketleft workspace next
+bindsym $super+bracketright workspace prev
+bindsym $super+Tab workspace back_and_forth
+bindsym $alt+Tab fullscreen disable, focus left, fullscreen enable
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $super+Shift+1 move container to workspace number $ws1
+bindsym $super+Shift+2 move container to workspace number $ws2
+bindsym $super+Shift+3 move container to workspace number $ws3
+bindsym $super+Shift+4 move container to workspace number $ws4
+bindsym $super+Shift+5 move container to workspace number $ws5
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $super+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $super+Shift+r restart
 
 # Set shutdown restart and locking features
-bindsym $mod+Escape mode "$mode_system"
-set $mode_system (l)ock, screen_(o)ff, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+bindsym $super+Escape mode "$mode_system"
+set $mode_system (l)ock, screen_(o)ff, (e)xit, switch_(u)ser, (s)uspend, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
     bindsym o exec xset dpms force off, mode "default"
     bindsym l exec i3lock_script, mode "default"
     bindsym e exec i3-msg exit, mode "default"
     bindsym u exec i3_logout, mode "default"
     bindsym s exec systemctl suspend, mode "default"
-    bindsym h exec systemctl hibernate, mode "default"
     bindsym r exec reboot, mode "default"
     bindsym Shift+s exec systemctl poweroff, mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
-    bindsym $mod+Escape mode "default"
+    bindsym $super+Escape mode "default"
+    bindsym BackSpace mode "default"
 }
 
 # resize window (you can also use the mouse for that)
-bindsym $mod+r mode "resize"
+bindsym $super+r mode "resize"
 mode "resize" {
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym j resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym j resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
 
-        # back to normal
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+    # back to normal
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $super+r mode "default"
+    bindsym BackSpace mode "default"
 }
 
-bindsym $mod+o mode "open"
-mode "open" {
+bindsym $super+o mode "$mode_open"
+set $mode_open (B)rave, (C)ode, (D)iscord
+mode "$mode_open" {
     bindsym b exec --no-startup-id $BROWSER, mode "default"
     bindsym c exec --no-startup-id code, mode "default"
+    bindsym d exec --no-startup-id discord, mode "default"
 
-        # back to normal
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+o mode "default"
+    # back to normal
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $super+o mode "default"
+    bindsym BackSpace mode "default"
 }
 
  # set primary gruvbox colorscheme colors
@@ -189,6 +188,7 @@ client.urgent           $red $red $white $red $red
 bar {
     position bottom
     status_command i3blocks -c ~/.config/i3/i3blocks.conf
+
     colors {
         # bar background color
         background $bg

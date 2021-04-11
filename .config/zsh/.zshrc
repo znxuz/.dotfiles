@@ -27,7 +27,6 @@ setopt globdots
 setopt noclobber
 # _comp_options+=(globdots)       # Include hidden files.
 
-
 # vi mode
 bindkey -v
 export KEYTIMEOUT=20
@@ -52,7 +51,7 @@ function zle-keymap-select {
     fi
 }
 zle -N zle-keymap-select
-bindkey -M viins ',q' vi-cmd-mode
+# bindkey -M viins ',q' vi-cmd-mode
 
 zle-line-init() {
     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)

@@ -3,13 +3,11 @@ let mapleader=","
 nnoremap <leader>rn :set rnu!<CR>
 inoremap <leader>x <C-x><C-f>
 
-" remap exit key to leader q
-imap <leader>q <ESC>
-nnoremap <leader>q <ESC>
-vnoremap <leader>q <ESC>
-cnoremap <leader>q <C-c>
-onoremap <leader>q <C-c>
-" map Q to record
+" imap <leader>q <ESC>
+" nnoremap <leader>q <ESC>
+" vnoremap <leader>q <ESC>
+" cnoremap <leader>q <C-c>
+" onoremap <leader>q <C-c>
 nnoremap Q :q!<CR>
 nnoremap qq :wq<CR>
 nnoremap q <Nop>

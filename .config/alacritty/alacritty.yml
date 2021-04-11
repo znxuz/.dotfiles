@@ -746,7 +746,7 @@ key_bindings:
 
   # Vi Mode
   #- { key: Space,  mods: Shift|Alt, mode: Vi|~Search, action: ScrollToBottom          }
-  - { key: V,  mods: Shift|Alt, mode: ~Search,    action: ToggleViMode            }
+  - { key: V,  mods: Alt, mode: ~Search,    action: ToggleViMode            }
   - { key: Q, mods: Shift, mode: Vi|~Search, action: ClearSelection          }
   #- { key: I,                           mode: Vi|~Search, action: ScrollToBottom          }
   #- { key: I,                           mode: Vi|~Search, action: ToggleViMode            }

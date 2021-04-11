@@ -1,8 +1,36 @@
+super + Return
+    alacritty --working-directory $HOME
+
+super + g
+    alacritty -e ranger
+
+# screenshot
+shift + super + s
+    scrot '%Y-%m-%d_$wx$h.png' -e 'mv $f ~/Pictures/Screenshots; cropgui ~/Pictures/Screenshots/$f'
+shift + alt + s
+    scrot '%Y-%m-%d_$wx$h.png' -u -e 'mv $f ~/Pictures/Screenshots; cropgui ~/Pictures/Screenshots/$f'
+
 # volume control
 shift + alt + {F10, F11}
     i3-volume {down, up} 5 -np -N dunstify
+shift + alt + F12
+    i3-volume mute -np -N dunstify
 # brightness control
 shift + alt + {F1, F2}
-    xbacklight {-dec 20 && dunstify -r 1 -u low {"Brightness down", "Brightness up"}
-# alt + F2
-    # xbacklight -inc 20 && dunstify -r 1 -u low "Brightness up"
+    xbacklight {-dec, -inc} 20 && dunstify -r 1 -u low {"Brightness down", "Brightness up"}
+
+# browser
+super + b ; {p, b, y, r}
+    brave \
+    { 'https://profile.intra.42.fr/'\
+    , 'https://basecamp.42wolfsburg.de/'\
+    , 'https://www.youtube.com/'\
+    , 'https://www.reddit.com/'\
+    }
+
+# terminal
+super + t ; {k, s, c}
+    { keys\
+    , schedule\
+    , dunstify "$(date)" "$(cal)"\
+    }

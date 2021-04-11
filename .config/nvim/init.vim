@@ -2,8 +2,8 @@ set guicursor=n-v-c-a:hor1-blinkwait300-blinkon200-blinkoff150,i-ci-c:ver1-blink
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 
 " line numbers
-set number rnu
-nnoremap <leader>rn :set rnu!<CR>
+set number
+set relativenumber
 
 set backspace=indent,eol,start
 set tabstop=4
@@ -16,14 +16,6 @@ set scrolloff=0
 
 " autocompletion within vim
 set wildmode=longest,list,full
-
-" custom statusline
-set statusline=
-set statusline+=\ %F
-set statusline+=%= " right side 
-set statusline+=\ %p%%
-set statusline+=\ %c:%l/%L
-set statusline+=\ [%n]
 
 " vim file management
 set noswapfile
@@ -49,5 +41,6 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
 nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 
-source $HOME/.config/vim/leaders.vim
-source $HOME/.config/vim/cursor.vim
+nnoremap Q <Nop>
+nnoremap q <Nop>
+nnoremap qq q
