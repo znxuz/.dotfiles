@@ -9,7 +9,7 @@ default_floating_border pixel 1
 # for_window [class=".*"] border pixel 1
 # hide borders
 # hide_edge_borders none
-gaps inner 10
+gaps inner 15
 # smart_gaps on
 # smart_gaps inverse_outer
 
@@ -65,10 +65,10 @@ bindsym $super+w layout tabbed
 bindsym $super+e layout toggle split
 
 # toggle tiling / floating
-bindsym $super+Shift+space floating toggle
+bindsym $super+Shift+slash floating toggle
 
 # change focus between floating windows
-bindsym shift+space focus mode_toggle
+bindsym $super+slash focus mode_toggle
 
 # floating window sizes
 floating_minimum_size -1 x -1

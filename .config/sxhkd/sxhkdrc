@@ -19,16 +19,6 @@ super + F12
 super + {F1, F2}
     xbacklight {-dec, -inc} 20 && dunstify -r 1 -u low {"Brightness down", "Brightness up"}
 
-# browser
-super + b ; {p, b, y, r}
-    brave \
-    { 'https://profile.intra.42.fr/'\
-    , 'https://basecamp.42wolfsburg.de/'\
-    , 'https://www.youtube.com/'\
-    , 'https://www.reddit.com/'\
-    }
-
-# terminal
 super + t ; {k, s, c}
     { keys\
     , schedule\

@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
-rsync -azvhP --delete-excluded --exclude-from './.rsyncexclude' /home/zijian/ /mnt/main/.backup/
+rsync -azvhP --delete-excluded --exclude-from '/home/zijian/.scripts/.rsyncexclude' /home/zijian/ /mnt/main/.backup/
+
+if [[ -f Qqen ]]
+then
+    rm Qqen
+    echo 'removed old Qqen'
+fi
+
+if [[ -f Qqem ]]
+then
+    rm Qqem
+    ehco 'removed old Qqem'
+fi
 
 pacman -Qqen > Qqen
 mv Qqen /mnt/main/.backup

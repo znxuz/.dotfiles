@@ -3,3 +3,4 @@ inode/directory=ranger.desktop
 image/jpeg=feh.desktop
 image/png=feh.desktop
 application/x-directory=ranger.desktop
+x-scheme-handler/msteams=teams.desktop

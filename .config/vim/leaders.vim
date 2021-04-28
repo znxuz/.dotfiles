@@ -8,8 +8,9 @@ inoremap <leader>x <C-x><C-f>
 " vnoremap <leader>q <ESC>
 " cnoremap <leader>q <C-c>
 " onoremap <leader>q <C-c>
-nnoremap Q :q!<CR>
-nnoremap qq :wq<CR>
+
+nnoremap Q :qa!<CR>
+nnoremap qq :wqa<CR>
 nnoremap q <Nop>
 nnoremap qr q
 
@@ -19,12 +20,8 @@ nnoremap <leader>t :bel term<CR>
 " exact word search syntax
 nnoremap <leader>/ /\<\><left><left>
 
-" navigate splits
-nnoremap <C-h> :wincmd h<CR>
-nnoremap <C-j> :wincmd j<CR>
-nnoremap <C-k> :wincmd k<CR>
-nnoremap <C-l> :wincmd l<CR>
-nnoremap <leader>b :vertical resize +10<CR>
+" resize splits
+noremap <leader>b :vertical resize +10<CR>
 nnoremap <leader>s :vertical resize -10<CR>
 " nnoremap <leader>pv :Lex <bar> :vertical resize 30<CR>
 

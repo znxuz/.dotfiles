@@ -23,7 +23,7 @@ alias \
     e="$EDITOR" \
     vi="$EDITOR" \
     h="history" \
-    db="dropbox > /dev/null 2>&1 &" \
+    db="dropbox > /dev/null 2>&1 &!" \
     z="zathura" \
     fd="fd -H" \
     ga="git add" \
@@ -39,3 +39,7 @@ alias \
     schedule="z $HOME/Downloads/Piscine_Schedule.pdf"
 
 alias skip="BATS_RUN_SKIPPED=true"
+
+alias \
+    c="gcc" \
+    bt="bluetoothctl"

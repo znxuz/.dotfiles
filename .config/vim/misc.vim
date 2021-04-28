@@ -5,6 +5,7 @@ set number rnu
 
 set noesckeys
 
+set hidden
 set backspace=indent,eol,start
 set tabstop=4
 set softtabstop=4
@@ -49,3 +50,9 @@ nnoremap <silent> // :let @/ = ""<CR>
 " move around selection
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+
+" navigate splits
+nnoremap <C-h> :wincmd h<CR>
+nnoremap <C-j> :wincmd j<CR>
+nnoremap <C-k> :wincmd k<CR>
+nnoremap <C-l> :wincmd l<CR>
