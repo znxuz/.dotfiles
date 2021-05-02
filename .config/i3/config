@@ -138,10 +138,10 @@ mode "resize" {
 }
 
 bindsym $super+o mode "$mode_open"
-set $mode_open (B)rave, (C)ode, (D)iscord
+set $mode_open (B)rave, (C)odium, (D)iscord
 mode "$mode_open" {
     bindsym b exec --no-startup-id $BROWSER, mode "default"
-    bindsym c exec --no-startup-id code, mode "default"
+    bindsym c exec --no-startup-id vscodium, mode "default"
     bindsym d exec --no-startup-id discord, mode "default"
 
     # back to normal

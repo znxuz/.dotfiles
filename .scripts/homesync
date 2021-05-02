@@ -10,7 +10,7 @@ fi
 if [[ -f Qqem ]]
 then
     rm Qqem
-    ehco 'removed old Qqem'
+    echo 'removed old Qqem'
 fi
 
 pacman -Qqen > Qqen
