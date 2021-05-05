@@ -13,7 +13,7 @@ gaps inner 15
 # smart_gaps on
 # smart_gaps inverse_outer
 
-# font pango:DejaVu Sans Mono 10
+# font pango:DejaVu Sans 10
 font pango:Yosemite San Francisco 10
 
 # Volume control
@@ -35,7 +35,7 @@ bindsym $super+shift+q kill
 # bindsym $super+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
 # bindcode $super+40 exec "rofi -modi drun,run -show drun"
-bindsym $super+d exec "rofi -show"
+bindsym $super+$alt+o exec "rofi -show"
 
 # change focus
 bindsym $super+h focus left
@@ -125,10 +125,10 @@ mode "$mode_system" {
 # resize window (you can also use the mouse for that)
 bindsym $super+r mode "resize"
 mode "resize" {
-    bindsym h resize shrink width 10 px or 10 ppt
-    bindsym k resize grow height 10 px or 10 ppt
-    bindsym j resize shrink height 10 px or 10 ppt
-    bindsym l resize grow width 10 px or 10 ppt
+    bindsym h resize shrink width 5 px or 5 ppt
+    bindsym k resize grow height 5 px or 5 ppt
+    bindsym j resize shrink height 5 px or 5 ppt
+    bindsym l resize grow width 5 px or 5 ppt
 
     # back to normal
     bindsym Return mode "default"
@@ -141,7 +141,7 @@ bindsym $super+o mode "$mode_open"
 set $mode_open (B)rave, (C)odium, (D)iscord
 mode "$mode_open" {
     bindsym b exec --no-startup-id $BROWSER, mode "default"
-    bindsym c exec --no-startup-id vscodium, mode "default"
+    bindsym c exec --no-startup-id codium, mode "default"
     bindsym d exec --no-startup-id discord, mode "default"
 
     # back to normal

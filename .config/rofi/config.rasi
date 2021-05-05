@@ -3,10 +3,10 @@ configuration {
 	width: 30;
 	lines: 10;
 /*	columns: 1;*/
-	font: "Source Code Pro 11";
+	font: "Source Code Pro 10";
 /*	bw: 1;*/
 /*	location: 0;*/
-/*	padding: 5;*/
+    padding: 10;
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
 /*	fixed-num-lines: true;*/

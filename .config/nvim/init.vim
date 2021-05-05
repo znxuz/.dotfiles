@@ -2,10 +2,9 @@
 set guicursor=n-v-c-a:hor1,i-ci-c:ver1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 
-" line numbers
-set number
-set relativenumber
-
+set clipboard=unnamedplus
+set number rnu
+set hidden
 set backspace=indent,eol,start
 set tabstop=4
 set softtabstop=4
@@ -44,4 +43,4 @@ nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 
 nnoremap Q <Nop>
 nnoremap q <Nop>
-nnoremap qq q
+nnoremap qr q

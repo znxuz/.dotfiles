@@ -19,8 +19,7 @@ super + F12
 super + {F1, F2}
     xbacklight {-dec, -inc} 20 && dunstify -r 1 -u low {"Brightness down", "Brightness up"}
 
-super + t ; {k, s, c}
+super + t ; {k, c}
     { keys\
-    , schedule\
     , dunstify "$(date)" "$(cal)"\
     }

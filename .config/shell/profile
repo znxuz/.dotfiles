@@ -11,7 +11,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
-# export KDEHOME="${XDG_CONFIG_HOME:-$HOME/.config}/kde4"
+# export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
 export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
@@ -21,4 +21,8 @@ export FZF_DEFAULT_OPTS="--layout=reverse --height=50%"
 export FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude .git'
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
 
+# customls dir colors
 eval "$(dircolors $HOME/.config/shell/dir_colors_gruv)"
+
+# calibre dark theme
+export CALIBRE_USE_DARK_PALETTE=1

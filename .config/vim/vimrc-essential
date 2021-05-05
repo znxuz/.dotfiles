@@ -10,29 +10,9 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 set smartindent
-set scroll=10
-set scrolloff=0
-set cursorline
-set cursorcolumn
-set clipboard=unnamedplus
 
 " autocompletion within vim
 set wildmode=longest,list,full
-
-" add numbered jk to jumplist
-nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
-nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
-
-" basic cp paste
-inoremap <C-v> <C-r>+
-vnoremap <C-c> "+y
-
-" vim file management
-set noswapfile
-set nobackup
-set undodir=~/.vim/undodir
-set undofile
-set viminfo+=n~/.vim/viminfo
 
 " no error bell sound
 set visualbell
@@ -46,12 +26,32 @@ set ignorecase
 set smartcase
 nnoremap <silent> // :let @/ = ""<CR>
 
-" move around selection
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-
 " navigate splits
 nnoremap <C-h> :wincmd h<CR>
 nnoremap <C-j> :wincmd j<CR>
 nnoremap <C-k> :wincmd k<CR>
 nnoremap <C-l> :wincmd l<CR>
+
+let mapleader=","
+
+nnoremap Q :qa!<CR>
+nnoremap qq :wqa<CR>
+nnoremap q <Nop>
+nnoremap qr q
+
+" add terminal from below
+nnoremap <leader>t :bel term<CR>
+
+" resize splits
+noremap <leader>b :vertical resize +10<CR>
+nnoremap <leader>s :vertical resize -10<CR>
+" nnoremap <leader>pv :Lex <bar> :vertical resize 30<CR>
+
+" control buffers
+nnoremap <leader>h :bprev<CR>
+nnoremap <leader>l :bnext<CR>
+nnoremap <leader>w :bw<CR>
+
+" cursors
+let &t_EI .= "\<Esc>[4 q"
+let &t_SI .= "\<Esc>[6 q"

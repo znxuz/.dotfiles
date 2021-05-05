@@ -29,14 +29,14 @@ alias \
     ga="git add" \
     gc="git commit" \
     gs="git status" \
-    nv="nordvpn"
+    nv="nordvpn" \
+    qb="qbittorrent"
 
 alias \
     df="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
 alias \
     keys="z $HOME/Downloads/HHKB_Layout.pdf" \
-    schedule="z $HOME/Downloads/Piscine_Schedule.pdf"
 
 alias skip="BATS_RUN_SKIPPED=true"
 

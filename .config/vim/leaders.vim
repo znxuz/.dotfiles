@@ -3,12 +3,6 @@ let mapleader=","
 nnoremap <leader>rn :set rnu!<CR>
 inoremap <leader>x <C-x><C-f>
 
-" imap <leader>q <ESC>
-" nnoremap <leader>q <ESC>
-" vnoremap <leader>q <ESC>
-" cnoremap <leader>q <C-c>
-" onoremap <leader>q <C-c>
-
 nnoremap Q :qa!<CR>
 nnoremap qq :wqa<CR>
 nnoremap q <Nop>
