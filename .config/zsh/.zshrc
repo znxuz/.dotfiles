@@ -65,5 +65,9 @@ preexec() { echo -ne '\e[4 q' ;} # Use underline shape cursor for starting new p
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
+# useless
+echo "\n"
+pfetch
+
 # must be the end of file
 source $XDG_CONFIG_HOME/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

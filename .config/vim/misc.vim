@@ -1,6 +1,5 @@
 syntax on
 
-" line numbers
 set number rnu
 set noesckeys
 set hidden
@@ -55,3 +54,8 @@ nnoremap <C-h> :wincmd h<CR>
 nnoremap <C-j> :wincmd j<CR>
 nnoremap <C-k> :wincmd k<CR>
 nnoremap <C-l> :wincmd l<CR>
+
+nnoremap q <Nop>
+nnoremap qr q
+nmap Q ZQ
+nmap qq ZZ

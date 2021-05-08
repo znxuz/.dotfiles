@@ -60,8 +60,7 @@ bindsym $super+v split h
 # fullscreen mode
 bindsym $super+f fullscreen toggle
 
-# change container layout
-bindsym $super+w layout tabbed
+# toggle split orientation
 bindsym $super+e layout toggle split
 
 # toggle tiling / floating

@@ -5,6 +5,7 @@ main
 treasures
 Desktop
 Documents
+Pictures
 Videos
 Public
 Templates
@@ -12,6 +13,13 @@ Music
 Downloads
 Dropbox
 .dropbox*
+libreoffice
 discord
 BraveSoftware
 VirtualBox
+VSCodium
+Electron
+GIMP
+calibre
+obs-studio
+.zoom

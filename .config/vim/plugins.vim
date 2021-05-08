@@ -21,3 +21,5 @@ set background=dark
 " highlight ColorColumn ctermbg=4
 
 let g:ranger_replace_netrw = 1
+let g:ranger_map_keys = 0
+nnoremap <leader>g :Ranger<CR>

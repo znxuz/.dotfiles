@@ -1,6 +1,5 @@
 " set guicursor=n-v-c-a:hor1-blinkwait300-blinkon200-blinkoff150,i-ci-c:ver1-blinkwait300-blinkon200-blinkoff150
 set guicursor=n-v-c-a:hor1,i-ci-c:ver1
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 
 set clipboard=unnamedplus
 set number rnu
@@ -41,6 +40,7 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
 nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 
-nnoremap Q <Nop>
 nnoremap q <Nop>
 nnoremap qr q
+nmap Q ZQ
+nmap qq ZZ

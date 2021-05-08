@@ -26,20 +26,14 @@ alias \
     db="dropbox > /dev/null 2>&1 &!" \
     z="zathura" \
     fd="fd -H" \
-    ga="git add" \
-    gc="git commit" \
-    gs="git status" \
+    xclip="xclip -sel clip" \
     nv="nordvpn" \
-    qb="qbittorrent"
+    c="gcc -Wall -Werror -Wextra" \
+    qb="qbittorrent" \
+    bt="bluetoothctl" \
+    code="codium"
 
 alias \
-    df="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-
-alias \
-    keys="z $HOME/Downloads/HHKB_Layout.pdf" \
+    dfs="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
 alias skip="BATS_RUN_SKIPPED=true"
-
-alias \
-    c="gcc" \
-    bt="bluetoothctl"

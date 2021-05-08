@@ -3,11 +3,6 @@ let mapleader=","
 nnoremap <leader>rn :set rnu!<CR>
 inoremap <leader>x <C-x><C-f>
 
-nnoremap Q :qa!<CR>
-nnoremap qq :wqa<CR>
-nnoremap q <Nop>
-nnoremap qr q
-
 " add terminal from below
 nnoremap <leader>t :bel term<CR>
 

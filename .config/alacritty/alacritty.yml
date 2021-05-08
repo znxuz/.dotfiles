@@ -737,8 +737,8 @@ key_bindings:
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }
   #- { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
-  - { key: U,    mods: Control,   mode: ~Alt,        action: ScrollPageUp,  }
-  - { key: D,  mods: Control,   mode: ~Alt,        action: ScrollPageDown }
+  - { key: K,    mods: Control|Alt,   mode: ~Alt,        action: ScrollPageUp,  }
+  - { key: J,  mods: Control|Alt,   mode: ~Alt,        action: ScrollPageDown }
   - { key: K,    mods: Control,   mode: ~Alt,        action: ScrollLineUp,  }
   - { key: J,  mods: Control,   mode: ~Alt,        action: ScrollLineDown }
   - { key: Home,      mods: Control,   mode: ~Alt,        action: ScrollToTop,   }
