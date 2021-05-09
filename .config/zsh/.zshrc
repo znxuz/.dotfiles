@@ -27,7 +27,8 @@ setopt globdots
 setopt noclobber
 # _comp_options+=(globdots)       # Include hidden files.
 
-# vi mode
+
+# vi mode =================
 bindkey -v
 export KEYTIMEOUT=20
 
@@ -64,6 +65,15 @@ preexec() { echo -ne '\e[4 q' ;} # Use underline shape cursor for starting new p
 # edit in vim with ctrl-e
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
+# vi mode =================
+
+
+cd_fzf() {
+    cd "$HOME/$(fd -td --base-directory $HOME | fzf --preview="tree -L 1 {}" --bind="tab:toggle-preview" --preview-window=:hidden)"
+    zle reset-prompt
+}
+zle -N cd_fzf
+bindkey '^f' cd_fzf
 
 # useless
 echo "\n"

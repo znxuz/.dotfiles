@@ -6,9 +6,9 @@ super + g
 
 # screenshot
 super + s
-    scrot '%Y-%m-%d_$wx$h.png' -e 'mv $f ~/Pictures/Screenshots; cropgui ~/Pictures/Screenshots/$f'
+    flameshot full -c -p ~/Pictures/Screenshots && sleep 30 && wait $(pgrep sleep) && pkill flameshot
 super + alt + s
-    scrot '%Y-%m-%d_$wx$h.png' -u -e 'mv $f ~/Pictures/Screenshots; cropgui ~/Pictures/Screenshots/$f'
+    flameshot gui -p ~/Pictures/Screenshots && sleep 30 && wait $(pgrep sleep) && pkill flameshot
 
 # volume control
 super + {F10, F11}
