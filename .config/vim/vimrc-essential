@@ -34,11 +34,6 @@ nnoremap <C-l> :wincmd l<CR>
 
 let mapleader=","
 
-nnoremap Q :qa!<CR>
-nnoremap qq :wqa<CR>
-nnoremap q <Nop>
-nnoremap qr q
-
 " add terminal from below
 nnoremap <leader>t :bel term<CR>
 
@@ -51,6 +46,11 @@ nnoremap <leader>s :vertical resize -10<CR>
 nnoremap <leader>h :bprev<CR>
 nnoremap <leader>l :bnext<CR>
 nnoremap <leader>w :bw<CR>
+
+nnoremap q <Nop>
+nnoremap qr q
+nmap Q ZQ
+nmap qq ZZ
 
 " cursors
 let &t_EI .= "\<Esc>[4 q"

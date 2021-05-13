@@ -16,6 +16,7 @@ alias \
     rmdir="rmdir -pv" \
     kall="killall -v" \ 
     free="free -h" \
+    df="df -h" \
     sudo="sudo -E"
 
 

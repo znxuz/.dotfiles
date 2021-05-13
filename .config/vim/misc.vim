@@ -14,6 +14,8 @@ set scrolloff=0
 set cursorline
 set cursorcolumn
 set clipboard=unnamedplus
+set timeoutlen=150 ttimeoutlen=0
+
 
 " autocompletion within vim
 set wildmode=longest,list,full
@@ -59,3 +61,5 @@ nnoremap q <Nop>
 nnoremap qr q
 nmap Q ZQ
 nmap qq ZZ
+
+noremap <F3> :Stdheader<CR>
