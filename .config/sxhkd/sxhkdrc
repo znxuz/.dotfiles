@@ -8,7 +8,7 @@ super + g
 super + s
     flameshot full -c -p ~/Pictures/Screenshots && sleep 30 && wait $(pgrep sleep) && pkill flameshot
 super + alt + s
-    flameshot gui -p ~/Pictures/Screenshots && sleep 30 && wait $(pgrep sleep) && pkill flameshot
+    flameshot gui -p ~/Pictures/Screenshots && sleep 240 && wait $(pgrep sleep) && pkill flameshot
 
 # volume control
 super + {F10, F11}
@@ -19,7 +19,8 @@ super + F12
 super + {F1, F2}
     xbacklight {-dec, -inc} 20 && dunstify -r 1 -u low {"Brightness down", "Brightness up"}
 
-super + t ; {k, c}
+super + t ; {k, c, t}
     { keys\
     , dunstify "$(date)" "$(cal)"\
+    , alacritty -e bpytop\
     }

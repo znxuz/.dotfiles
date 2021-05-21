@@ -9,7 +9,7 @@ default_floating_border pixel 1
 # for_window [class=".*"] border pixel 1
 # hide borders
 # hide_edge_borders none
-gaps inner 15
+gaps inner 20
 # smart_gaps on
 # smart_gaps inverse_outer
 
@@ -18,7 +18,7 @@ font pango:Yosemite San Francisco 10
 
 # Volume control
  # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
- # bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% 
+ # bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
  # bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
  # bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym XF86AudioRaiseVolume exec --no-startup-id i3-volume up 5 -np -N dunstify
@@ -174,8 +174,8 @@ mode "$mode_open" {
 # class                 border|backgr|text|indicator|child_border
 # client.focused          $blue $blue $darkgray $purple $darkgray
 client.focused          $blue $blue $aqua $purple $yellow
-client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
-client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+client.focused_inactive $darkgray $darkgray $yellow $darkgray $darkgray
+client.unfocused        $darkgray $darkgray $yellow $darkgray $darkgray
 client.urgent           $red $red $white $red $red
 #end of window title bars & borders section
 
@@ -189,7 +189,8 @@ bar {
         background $bg
         # text color used for blocks that do not have a color specified.
         statusline $white
-        # workspaces section            
+
+        # workspaces section
         # border  backgr. text
         focused_workspace    $yellow $yellow $darkgray
         inactive_workspace   $bg $bg $white

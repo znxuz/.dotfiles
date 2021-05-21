@@ -47,10 +47,10 @@ nnoremap <leader>h :bprev<CR>
 nnoremap <leader>l :bnext<CR>
 nnoremap <leader>w :bw<CR>
 
-nnoremap q <Nop>
+nmap q <Nop>
 nnoremap qr q
-nmap Q ZQ
-nmap qq ZZ
+nmap Q :bw!<CR>
+nmap qq :execute 'w' \| :bw<CR>
 
 " cursors
 let &t_EI .= "\<Esc>[4 q"

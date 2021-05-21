@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+sudo systemctl start nordvpnd
+nv connect France

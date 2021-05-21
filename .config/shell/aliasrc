@@ -14,7 +14,7 @@ alias \
     rm="rm -vI" \
     mkdir="mkdir -pv" \
     rmdir="rmdir -pv" \
-    kall="killall -v" \ 
+    kall="killall -v" \
     free="free -h" \
     df="df -h" \
     sudo="sudo -E"
@@ -24,15 +24,17 @@ alias \
     e="$EDITOR" \
     vi="$EDITOR" \
     h="history" \
-    db="dropbox > /dev/null 2>&1 &!" \
     z="zathura" \
     fd="fd -H" \
-    xclip="xclip -sel clip" \
     nv="nordvpn" \
-    c="gcc -Wall -Werror -Wextra" \
+    code="codium" \
+    n="norminette" \
+    rename="perl-rename" \
     qb="qbittorrent" \
     bt="bluetoothctl" \
-    code="codium"
+    xclip="xclip -sel clip" \
+    c="gcc -Wall -Werror -Wextra" \
+    db="dropbox > /dev/null 2>&1 &!"
 
 alias \
     dfs="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"

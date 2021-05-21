@@ -2,8 +2,8 @@ PATH=$PATH:$HOME/.local/bin
 PATH=$PATH:$HOME/.scripts
 
 export SHELL="/usr/bin/zsh"
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 export TERMINAL="alacritty"
 export BROWSER="brave"
 
