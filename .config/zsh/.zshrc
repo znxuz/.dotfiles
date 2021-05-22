@@ -69,12 +69,16 @@ bindkey '^e' edit-command-line
 # vi mode =================
 
 
+# fzfs
+source /usr/share/fzf/key-bindings.zsh
 cd_fzf() {
     cd "$HOME/$(fd -td --base-directory $HOME | fzf --preview="tree -L 1 {}" --bind="tab:toggle-preview" --preview-window=:hidden)"
     zle reset-prompt
 }
 zle -N cd_fzf
-bindkey '^f' cd_fzf
+bindkey '^rf' cd_fzf
+bindkey -r '\ec'
+bindkey '^f' fzf-cd-widget
 
 # useless
 echo "\n"

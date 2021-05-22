@@ -53,7 +53,7 @@ bindsym $super+Shift+l move right
 for_window [urgent=latest] focus
 
 # split in vertical
-bindsym $super+minus split v
+bindsym $super+s split v
 # split in horizontal
 bindsym $super+v split h
 
@@ -137,11 +137,12 @@ mode "resize" {
 }
 
 bindsym $super+o mode "$mode_open"
-set $mode_open (B)rave, (C)odium, (D)iscord
+set $mode_open (B)rave, (C)odium, (D)iscord, (N)eovim
 mode "$mode_open" {
     bindsym b exec --no-startup-id $BROWSER, mode "default"
     bindsym c exec --no-startup-id codium, mode "default"
     bindsym d exec --no-startup-id discord, mode "default"
+	bindsym n exec --no-startup-id $TERMINAL -e nvim, mode "default"
 
     # back to normal
     bindsym Return mode "default"
@@ -150,17 +151,19 @@ mode "$mode_open" {
     bindsym BackSpace mode "default"
 }
 
- # set primary gruvbox colorscheme colors
- set $bg #282828
- set $red #cc241d
- set $green #98971a
- set $yellow #d79921
- set $blue #458588
- set $purple #b16286
- set $aqua #689d68
- set $white #ebdbb2
- set $gray #a89984
- set $darkgray #1d2021
+# set primary gruvbox colorscheme colors
+	# black #282828
+	# black_hard #1d2021
+	set $bg #1d2021
+	set $red #cc241d
+	set $green #98971a
+	set $yellow #d79921
+	set $blue #458588
+	set $purple #b16286
+	set $aqua #689d68
+	set $white #ebdbb2
+	set $gray #a89984
+	set $darkgray #1d2021
 
 # # start of window title bars & borders section
 # green gruvbox

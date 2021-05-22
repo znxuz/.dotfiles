@@ -2,4 +2,4 @@ set sandbox none
 set selection-clipboard clipboard
 
 set recolor true
-#set default-bg #282828
+include gruvbox-theme/gruvbox-dark-hard

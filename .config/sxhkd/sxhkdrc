@@ -5,7 +5,7 @@ super + g
     alacritty -e ranger
 
 # screenshot
-super + s
+super + shift + s
     flameshot full -c -p ~/Pictures/Screenshots && sleep 30 && wait $(pgrep sleep) && pkill flameshot
 super + alt + s
     flameshot gui -p ~/Pictures/Screenshots && sleep 240 && wait $(pgrep sleep) && pkill flameshot
