@@ -28,7 +28,7 @@ require('telescope').setup{
 		  },
 		},
 		file_sorter =  require'telescope.sorters'.get_fuzzy_file,
-		file_ignore_patterns = {},
+		file_ignore_patterns = {".git/*"},
 		generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
 		shorten_path = true,
 		winblend = 0,
@@ -51,7 +51,8 @@ require('telescope').setup{
 	}
 }
 EOF
-nnoremap <leader>ff <cmd>Telescope find_files<CR>
+
+nnoremap <leader>ff <cmd>Telescope find_files hidden=true<CR>
 nnoremap <leader>fg <cmd>Telescope live_grep<CR>
 nnoremap <leader>fb <cmd>Telescope buffers<CR>
 nnoremap <leader>fh <cmd>Telescope help_tags<CR>

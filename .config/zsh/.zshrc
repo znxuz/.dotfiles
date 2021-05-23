@@ -5,6 +5,7 @@ autoload -U promptinit; promptinit
 zstyle :prompt:pure:path color yellow
 prompt pure
 prompt_newline='%666v'
+PROMPT='%F{magenta}%(1j.[%j] .)%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f '
 PROMPT=" $PROMPT"
 
 # color zsh
