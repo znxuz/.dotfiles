@@ -1,12 +1,10 @@
 nnoremap <leader>e :NvimTreeToggle<CR>
-nnoremap <leader>ne :NvimTreeFindFile<CR>
 " nnoremap <leader>re :NvimTreeRefresh<CR> " refresh with R
 " NvimTreeOpen and NvimTreeClose are also available if you need them
 
-
 let g:nvim_tree_side = 'left'
 let g:nvim_tree_width = 25
-" let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ] "empty by default
+let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ] "empty by default
 let g:nvim_tree_gitignore = 0
 let g:nvim_tree_auto_open = 0 "0 by default, opens the tree when typing `vim $DIR` or `vim`
 let g:nvim_tree_auto_close = 0

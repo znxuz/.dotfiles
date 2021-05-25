@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-[[ -f "/tmp/snip.png" ]] && rm /tmp/snip*.png
-
-scrot '/tmp/snip.png' -e 'cropgui $f && xclip -sel clip -t image/png -i /tmp/snip-crop.png'

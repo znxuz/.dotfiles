@@ -1,7 +1,5 @@
 " basics
-
 let mapleader=","
-
 set termguicolors
 set guicursor=n-v-c-a:hor1,i-ci-c:ver1
 set clipboard=unnamedplus
@@ -26,7 +24,7 @@ set noerrorbells
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set smartindent
+set autoindent
 set cindent
 
 " search
@@ -64,7 +62,6 @@ nnoremap <leader>/ /\<\><left><left>
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " splits constrol
-nnoremap <leader>q <C-W>q<CR>
 " focus
 nnoremap <C-h> :wincmd h<CR>
 nnoremap <C-j> :wincmd j<CR>
@@ -79,13 +76,12 @@ nnoremap <C-A-l> :wincmd L<CR>
 nnoremap <C-A-]> :vertical resize +5<CR>
 nnoremap <C-A-[> :vertical resize -5<CR>
 
-" control buffers
+" buffers control
 nnoremap q <Nop>
 nnoremap qr q
 nnoremap Q ZQ<CR>
-" nnoremap qq :execute 'w' \| :bw<CR>
 nnoremap qq ZZ<CR>
-nnoremap <A-q> :bw<CR>
-nnoremap <A-S-q> :bw!<CR>
+nnoremap <A-q> :Bclose<CR>
+nnoremap <A-S-q> :Bclose!<CR>
 nnoremap <A-h> :bprev<CR>
 nnoremap <A-l> :bnext<CR>

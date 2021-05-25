@@ -77,7 +77,7 @@ cd_fzf() {
     zle reset-prompt
 }
 zle -N cd_fzf
-bindkey '^rf' cd_fzf
+bindkey '^hf' cd_fzf
 bindkey -r '\ec'
 bindkey '^f' fzf-cd-widget
 

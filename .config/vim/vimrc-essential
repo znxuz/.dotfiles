@@ -1,6 +1,6 @@
-syntax on
+let mapleader=","
 
-" line numbers
+syntax on
 set number rnu
 set noesckeys
 set hidden
@@ -21,37 +21,39 @@ set noerrorbells
 
 " search 
 set incsearch
-set hlsearch
+set nohlsearch
 set ignorecase
 set smartcase
 nnoremap <silent> // :let @/ = ""<CR>
 
-" navigate splits
+" change working dir
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+
+" splits constrol
+" focus
 nnoremap <C-h> :wincmd h<CR>
 nnoremap <C-j> :wincmd j<CR>
 nnoremap <C-k> :wincmd k<CR>
 nnoremap <C-l> :wincmd l<CR>
+" move
+nnoremap <C-A-h> :wincmd H<CR>
+nnoremap <C-A-j> :wincmd J<CR>
+nnoremap <C-A-k> :wincmd K<CR>
+nnoremap <C-A-l> :wincmd L<CR>
+" resize
+nnoremap <C-A-]> :vertical resize +5<CR>
+nnoremap <C-A-[> :vertical resize -5<CR>
 
-let mapleader=","
-
-" add terminal from below
-nnoremap <leader>t :bel term<CR>
-
-" resize splits
-noremap <leader>b :vertical resize +10<CR>
-nnoremap <leader>s :vertical resize -10<CR>
-" nnoremap <leader>pv :Lex <bar> :vertical resize 30<CR>
-
-" control buffers
-nnoremap <leader>h :bprev<CR>
-nnoremap <leader>l :bnext<CR>
-nnoremap <leader>w :bw<CR>
-
-nmap q <Nop>
+" buffers control
+nnoremap q <Nop>
 nnoremap qr q
-nmap Q :bw!<CR>
-nmap qq :execute 'w' \| :bw<CR>
+nnoremap Q ZQ<CR>
+nnoremap qq ZZ<CR>
+nnoremap <A-q> :bw<CR>
+nnoremap <A-S-q> :bw!<CR>
+nnoremap <A-h> :bprev<CR>
+nnoremap <A-l> :bnext<CR>
 
 " cursors
-let &t_EI .= "\<Esc>[4 q"
-let &t_SI .= "\<Esc>[6 q"
+" let &t_EI .= "\<Esc>[4 q"
+" let &t_SI .= "\<Esc>[6 q"

@@ -30,6 +30,7 @@ alias \
     nv="nordvpn" \
     code="codium" \
     n="norminette" \
+	news="newsboat" \
     rename="perl-rename" \
     qb="qbittorrent" \
     bt="bluetoothctl" \
