@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # https://wiki.archlinux.org/index.php/VirtualBox
 
-sudo modprobe vboxdrv
-# modprobe vboxnetadp
+sudo vboxreload
+sudo modprobe vboxdrv vboxnetadp
 # modprobe vboxnetflt
 
 virtualbox &

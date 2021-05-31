@@ -11,8 +11,7 @@ expect <<- DONE
 DONE
 
 systemctl status nordvpnd | grep inactive > /dev/null 2>&1
-status=$?
-[ $status -eq 1 ] && echo "nordvpn daemon started successfully" || \
+[ $? -eq 1 ] && echo "nordvpn daemon started successfully" || \
 	(echo "starting nordvpnd failed" && exit 1)
 
 nordvpn connect France

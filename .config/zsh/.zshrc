@@ -55,6 +55,7 @@ function zle-keymap-select {
 }
 zle -N zle-keymap-select
 # bindkey -M viins ',q' vi-cmd-mode
+bindkey -M viins '^o' vi-cmd-mode
 
 zle-line-init() {
     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
@@ -73,7 +74,7 @@ bindkey '^e' edit-command-line
 # fzfs
 source /usr/share/fzf/key-bindings.zsh
 cd_fzf() {
-    cd "$HOME/$(fd -td --base-directory $HOME | fzf --preview="tree -L 1 {}" --bind="tab:toggle-preview" --preview-window=:hidden)"
+    cd "$HOME/$(fd -td -E ".git/" -E ".cache/" --base-directory $HOME | fzf --preview="tree -L 1 {}" --bind="tab:toggle-preview" --preview-window=:hidden)"
     zle reset-prompt
 }
 zle -N cd_fzf
@@ -81,7 +82,7 @@ bindkey '^hf' cd_fzf
 bindkey -r '\ec'
 bindkey '^f' fzf-cd-widget
 
-# useless
+# eye candy
 echo "\n"
 pfetch
 

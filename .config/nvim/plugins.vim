@@ -34,7 +34,7 @@ nnoremap <F2> :Stdheader<CR>
 " autopairs
 lua require('nvim-autopairs').setup()
 " undotree
-nnoremap <A-u> :UndotreeToggle<CR>
+nnoremap <leader>u :UndotreeToggle<CR>
 " maximizer
 let g:maximizer_set_default_mapping = 0
 nnoremap <silent> <A-f> :MaximizerToggle<CR>

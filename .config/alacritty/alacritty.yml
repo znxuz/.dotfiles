@@ -738,8 +738,8 @@ key_bindings:
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }
   #- { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
-  - { key: U,    mods: Alt,   mode: ~Alt,        action: ScrollPageUp,  }
-  - { key: D,  mods: Alt,   mode: ~Alt,        action: ScrollPageDown }
+  - { key: U,    mods: Alt,   mode: ~Alt,        action: ScrollHalfPageUp,  }
+  - { key: D,  mods: Alt,   mode: ~Alt,        action: ScrollHalfPageDown }
   - { key: K,    mods: Alt,   mode: ~Alt,        action: ScrollLineUp,  }
   - { key: J,  mods: Alt,   mode: ~Alt,        action: ScrollLineDown }
   - { key: Home,      mods: Control,   mode: ~Alt,        action: ScrollToTop,   }

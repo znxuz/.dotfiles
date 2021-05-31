@@ -52,8 +52,9 @@ set undofile
 nnoremap <leader>rn :set rnu!<CR>
 
 " autocompletion
+set wildignorecase
 set wildmode=longest,list,full
-inoremap <leader>x <C-x><C-f>
+inoremap <leader><Tab> <C-x><C-f>
 
 " exact word search syntax
 nnoremap <leader>/ /\<\><left><left>
@@ -79,8 +80,9 @@ nnoremap <C-A-[> :vertical resize -5<CR>
 " buffers control
 nnoremap q <Nop>
 nnoremap qr q
-nnoremap Q ZQ<CR>
-nnoremap qq ZZ<CR>
+nnoremap Q :q!<CR>
+nnoremap qq :wq<CR>
+nnoremap <leader>q :cclose<CR>
 nnoremap <A-q> :Bclose<CR>
 nnoremap <A-S-q> :Bclose!<CR>
 nnoremap <A-h> :bprev<CR>

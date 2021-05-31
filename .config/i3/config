@@ -44,10 +44,10 @@ bindsym $super+k focus up
 bindsym $super+l focus right
 
 # move focused window
-bindsym $super+Shift+h move left
-bindsym $super+Shift+j move down
-bindsym $super+Shift+k move up
-bindsym $super+Shift+l move right
+bindsym $super+$alt+h move left
+bindsym $super+$alt+j move down
+bindsym $super+$alt+k move up
+bindsym $super+$alt+l move right
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus

@@ -34,6 +34,7 @@ alias \
     rename="perl-rename" \
     qb="qbittorrent" \
     bt="bluetoothctl" \
+	detach="function detach() { bg && disown %\$(jobs | wc -l) } && detach" \
     xclip="xclip -sel clip" \
     c="gcc -Wall -Werror -Wextra" \
     db="dropbox > /dev/null 2>&1 &!"
