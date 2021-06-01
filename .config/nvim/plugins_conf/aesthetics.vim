@@ -20,14 +20,14 @@ set showtabline=2
 let g:lightline#bufferline#show_number = 0
 let g:lightline#bufferline#number_separator = ' | '
 let g:lightline#bufferline#shorten_path = 0
-let g:lightline#bufferline#smart_path = 1
+let g:lightline#bufferline#smart_path = 0
 let g:lightline#bufferline#reverse_buffers = 0
 let g:lightline#bufferline#unnamed = '[No Name]'
 let g:lightline = {
 	\ 'colorscheme': 'gruvbox_material',
 	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
-	\			[ 'readonly', 'relativepath', 'modified' ] ]
+	\			[ 'readonly', 'root_directory', 'modified' ] ]
 	\ },
 	\ 'tabline': {
 	\   'left': [ ['buffers'] ],
@@ -38,6 +38,9 @@ let g:lightline = {
 	\ },
 	\ 'component_type': {
 	\   'buffers': 'tabsel'
+	\ },
+	\ 'component_function': {
+	\	'root_directory': 'getcwd'
 	\ },
 \ }
 
