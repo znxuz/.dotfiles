@@ -1,8 +1,14 @@
 " basics
 let mapleader=","
+
+" neovim specific
 set termguicolors
 set guicursor=n-v-c-a:hor1,i-ci-c:ver1
+
 set clipboard=unnamedplus
+set novisualbell
+set t_vb = 
+set noerrorbells
 set number rnu
 set hidden
 set backspace=indent,eol,start
@@ -14,11 +20,6 @@ set signcolumn=yes
 set cursorline
 set colorcolumn=80
 " highlight ColorColumn ctermbg=1d2021
-
-" no error bell sound
-set visualbell
-set t_vb = 
-set noerrorbells
 
 " set expandtab
 set tabstop=4
@@ -34,10 +35,6 @@ set smartcase
 set nohlsearch
 " nnoremap <silent> // :let @/ = ""<CR>
 
-" move around selection
-" vnoremap J :m '>+1<CR>gv=gv
-" vnoremap K :m '<-2<CR>gv=gv
-
 " add numbered jk to jumplist
 " nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
 " nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
@@ -48,7 +45,7 @@ set nobackup
 set undodir=$HOME/.local/share/undodir
 set undofile
 
-" toggle relative line nb"
+" toggle relative line nb
 nnoremap <leader>rn :set rnu!<CR>
 
 " autocompletion
@@ -61,6 +58,9 @@ nnoremap <leader>/ /\<\><left><left>
 
 " change working dir
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+
+" session
+nnoremap <C-S> :wa<CR> <BAR> :mks<CR> <BAR> :qa<CR>
 
 " splits constrol
 " focus
@@ -78,12 +78,12 @@ nnoremap <C-A-]> :vertical resize +5<CR>
 nnoremap <C-A-[> :vertical resize -5<CR>
 
 " buffers control
-nnoremap q <Nop>
-nnoremap qr q
-nnoremap Q :q!<CR>
-nnoremap qq :wq<CR>
-nnoremap <leader>q :cclose<CR>
 nnoremap <A-q> :Bclose<CR>
 nnoremap <A-S-q> :Bclose!<CR>
 nnoremap <A-h> :bprev<CR>
 nnoremap <A-l> :bnext<CR>
+
+" quitting nvim
+nnoremap q :close<CR>
+nnoremap Q :q!<CR>
+nnoremap <leader>r q

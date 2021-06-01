@@ -10,8 +10,8 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
-Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'windwp/nvim-autopairs'
+Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'puremourning/vimspector'
 Plug 'mbbill/undotree'
 Plug 'airblade/vim-gitgutter'
@@ -37,5 +37,6 @@ lua require('nvim-autopairs').setup()
 nnoremap <leader>u :UndotreeToggle<CR>
 " maximizer
 let g:maximizer_set_default_mapping = 0
-nnoremap <silent> <A-f> :MaximizerToggle<CR>
-vnoremap <silent> <A-f> :MaximizerToggle<CR>gv
+nnoremap <silent> <leader>m :MaximizerToggle<CR>
+" git-gutter unmap
+let g:gitgutter_map_keys = 0

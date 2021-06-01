@@ -61,9 +61,10 @@ defaults = {
 }
 EOF
 
-nnoremap <leader>ff <cmd>Telescope find_files find_command=fd,-tf,-uu<CR>
-nnoremap <leader>fd <cmd>Telescope find_files find_command=fd,-td,-uu<CR>
+nnoremap <leader>ff <CMD>Telescope find_files find_command=fd,-tf,-uu<CR>
+nnoremap <leader>fd <CMD>Telescope find_files find_command=fd,-td,-uu<CR>
 nnoremap <leader>fif :lua require('telescope.builtin').find_files({hidden=true,search_dirs={"$HOME/"}})<Left><Left><Left><Left>
-nnoremap <leader>fg <cmd>Telescope live_grep<CR>
-nnoremap <leader>fb <cmd>Telescope buffers<CR>
-nnoremap <leader>fh <cmd>Telescope help_tags<CR>
+nnoremap <leader>fg <CMD>Telescope live_grep<CR>
+nnoremap <leader>fb <CMD>Telescope buffers<CR>
+nnoremap <leader>fh <CMD>Telescope help_tags<CR>
+nnoremap <leader>ft <CMD>Telescope builtin<CR>
