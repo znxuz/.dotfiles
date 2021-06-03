@@ -1,6 +1,13 @@
 lua << EOF
+local actions = require('telescope.actions')
 require('telescope').setup{
 	defaults = {
+		mappings = {
+			i = {
+				["<esc>"] = actions.close,
+				["<C-s>"] = actions.select_horizontal,
+			},
+		},
 		vimgrep_arguments = {
 			'rg',
 			'-u',
@@ -47,16 +54,6 @@ require('telescope').setup{
 
 	-- Developer configurations: Not meant for general override
 	buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
-	}
-}
-local actions = require('telescope.actions')
-require('telescope').setup{
-defaults = {
-	mappings = {
-		i = {
-			["<esc>"] = actions.close
-			},
-		},
 	}
 }
 EOF

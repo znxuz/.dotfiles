@@ -22,7 +22,7 @@ nnoremap <silent> gp <CMD>Telescope lsp_implementations<CR>
 nnoremap <silent> gr <CMD>Telescope lsp_references<CR>
 nnoremap <silent> gD <CMD>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gh <CMD>lua vim.lsp.buf.hover()<CR>
-inoremap <silent> <leader><SPACE> <CMD>lua vim.lsp.buf.signature_help()<CR>
+inoremap <silent> <leader>gh <CMD>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <leader>re <CMD>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <leader>gfa <CMD>Telescope lsp_workspace_symbols<CR>
 nnoremap <silent> <leader>gfc <CMD> Telescope lsp_document_symbols<CR>

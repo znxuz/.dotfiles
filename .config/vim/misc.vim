@@ -25,10 +25,6 @@ set wildmode=longest,list,full
 nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
 nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 
-" basic cp paste
-inoremap <C-v> <C-r>+
-vnoremap <C-c> "+y
-
 " move inside a line
 nnoremap <C-j> gj
 nnoremap <C-k> gk

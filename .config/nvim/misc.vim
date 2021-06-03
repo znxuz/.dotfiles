@@ -1,6 +1,13 @@
 " basics
 let mapleader=","
 
+" vim specific
+" let &t_EI .= "\<Esc>[4 q"
+" let &t_SI .= "\<Esc>[6 q"
+" set noesckeys
+" set timeoutlen=350 ttimeoutlen=0
+" set viminfo+=n~/.vim/viminfo
+
 " neovim specific
 set termguicolors
 set guicursor=n-v-c-a:hor1,i-ci-c:ver1
@@ -51,7 +58,7 @@ nnoremap <leader>rn :set rnu!<CR>
 " autocompletion
 set wildignorecase
 set wildmode=longest,list,full
-inoremap <leader><Tab> <C-x><C-f>
+inoremap <leader><TAB> <C-x><C-f>
 
 " exact word search syntax
 nnoremap <leader>/ /\<\><left><left>
@@ -74,16 +81,18 @@ nnoremap <C-A-j> :wincmd J<CR>
 nnoremap <C-A-k> :wincmd K<CR>
 nnoremap <C-A-l> :wincmd L<CR>
 " resize
-nnoremap <C-A-]> :vertical resize +5<CR>
-nnoremap <C-A-[> :vertical resize -5<CR>
+nnoremap <C-LEFT> :vertical resize +5<CR>
+nnoremap <C-RIGHT> :vertical resize -5<CR>
+nnoremap <C-UP> :resize +5<CR>
+nnoremap <C-DOWN> :resize -5<CR>
 
 " buffers control
-nnoremap <A-q> :Bclose<CR>
-nnoremap <A-S-q> :Bclose!<CR>
-nnoremap <A-h> :bprev<CR>
-nnoremap <A-l> :bnext<CR>
+nnoremap <leader>q :Bclose<CR>
+nnoremap <leader>Q :Bclose!<CR>
+nnoremap <leader>h :bprev<CR>
+nnoremap <leader>l :bnext<CR>
 
 " quitting nvim
 nnoremap q :close<CR>
 nnoremap Q :q!<CR>
-nnoremap <leader>r q
+nnoremap <leader>rc q

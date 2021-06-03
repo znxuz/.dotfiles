@@ -1,2 +1,6 @@
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 Plug 'liuchengxu/vim-which-key'
+
+Plug 'airblade/vim-gitgutter'
+	" git-gutter unmap
+	" let g:gitgutter_map_keys = 0

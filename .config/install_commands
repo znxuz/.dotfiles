@@ -40,7 +40,7 @@ pacstrap /mnt base base-devel linux linux-firmware man-db man-pages \
 	texinfo vim
 
 genfstab -U /mnt >> /mnt/etc/fstab
-# cat /mnt/etc/fstab
+	# cat /mnt/etc/fstab
 
 arch-chroot /mnt
 
@@ -84,11 +84,15 @@ ip addr
 
 # wlan
 nmtui
-nmcli device wifi list
-nmcli device wifi connect SSID password password
+	# nmcli device wifi list
+	# nmcli device wifi connect SSID password password
 
 sudo pacman -S xorg xorg-xinit
-sudo pacman -S i3-gaps i3blocks alacritty zsh
+sudo pacman -S sxhkd i3-gaps i3blocks alacritty zsh
 
 chsh -s /bin/zsh
 # git clone https://aur.archlinux.org/dropbox.git
+
+# clone dotfiles repo
+git clone --separate-git-dir=~/.dotfiles \
+	https://github.com/Zyanite7/.dotfiles.git ~/dotfiles.tmp

@@ -85,6 +85,7 @@ bindkey '^f' fzf-cd-widget
 # eye candy
 echo "\n"
 pfetch
+eval$(thefuck --alias)
 
 # must be the end of file
 source $XDG_CONFIG_HOME/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh

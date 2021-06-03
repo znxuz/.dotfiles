@@ -14,7 +14,6 @@ Plug 'windwp/nvim-autopairs'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'puremourning/vimspector'
 Plug 'mbbill/undotree'
-Plug 'airblade/vim-gitgutter'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -38,5 +37,3 @@ nnoremap <leader>u :UndotreeToggle<CR>
 " maximizer
 let g:maximizer_set_default_mapping = 0
 nnoremap <silent> <leader>m :MaximizerToggle<CR>
-" git-gutter unmap
-let g:gitgutter_map_keys = 0
