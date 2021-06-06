@@ -11,7 +11,7 @@ alias \
 alias \
     cp="cp -iv" \
     mv="mv -iv" \
-    rm="rm -vI" \
+    rm="rm -v" \
     mkdir="mkdir -pv" \
     rmdir="rmdir -pv" \
     kall="killall -v" \

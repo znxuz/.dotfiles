@@ -23,9 +23,9 @@ nnoremap <silent> gr <CMD>Telescope lsp_references<CR>
 nnoremap <silent> gD <CMD>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gh <CMD>lua vim.lsp.buf.hover()<CR>
 inoremap <silent> <leader>gh <CMD>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <leader>re <CMD>lua vim.lsp.buf.rename()<CR>
-nnoremap <silent> <leader>gfa <CMD>Telescope lsp_workspace_symbols<CR>
-nnoremap <silent> <leader>gfc <CMD> Telescope lsp_document_symbols<CR>
+nnoremap <silent> <leader>gre <CMD>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> <leader>fsd <CMD>Telescope lsp_dynamic_workspace_symbols<CR>
+nnoremap <silent> <leader>fsc <CMD> Telescope lsp_document_symbols<CR>
 nnoremap <silent> <leader>gea <CMD>Telescope lsp_workspace_diagnostics<CR>
 nnoremap <silent> <leader>gec <CMD>Telescope lsp_document_diagnostics<CR>
 nnoremap <silent> <leader>gen <CMD>lua vim.lsp.diagnostic.goto_prev()<CR>

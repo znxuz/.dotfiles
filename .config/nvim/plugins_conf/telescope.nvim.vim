@@ -58,10 +58,9 @@ require('telescope').setup{
 }
 EOF
 
-nnoremap <leader>ff <CMD>Telescope find_files find_command=fd,-tf,-uu<CR>
-nnoremap <leader>fd <CMD>Telescope find_files find_command=fd,-td,-uu<CR>
-nnoremap <leader>fif :lua require('telescope.builtin').find_files({hidden=true,search_dirs={"$HOME/"}})<Left><Left><Left><Left>
-nnoremap <leader>fg <CMD>Telescope live_grep<CR>
-nnoremap <leader>fb <CMD>Telescope buffers<CR>
-nnoremap <leader>fh <CMD>Telescope help_tags<CR>
-nnoremap <leader>ft <CMD>Telescope builtin<CR>
+nnoremap <leader>ff <CMD>Telescope find_files find_command=fd,-tf,-uu theme=get_dropdown<CR>
+nnoremap <leader>fd <CMD>Telescope find_files find_command=fd,-td,-uu theme=get_dropdown<CR>
+nnoremap <leader>fg <CMD>Telescope live_grep theme=get_dropdown<CR>
+nnoremap <leader>fb <CMD>Telescope buffers theme=get_dropdown<CR>
+nnoremap <leader>fh <CMD>Telescope help_tags theme=get_dropdown<CR>
+nnoremap <leader>ft <CMD>Telescope builtin theme=get_dropdown<CR>

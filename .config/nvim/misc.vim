@@ -12,9 +12,10 @@ let mapleader=","
 set termguicolors
 set guicursor=n-v-c-a:hor1,i-ci-c:ver1
 
+set path+=$HOME/.scripts,$HOME/.local/bin
 set clipboard=unnamedplus
 set novisualbell
-set t_vb = 
+set t_vb =
 set noerrorbells
 set number rnu
 set hidden
@@ -67,7 +68,7 @@ nnoremap <leader>/ /\<\><left><left>
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " session
-nnoremap <C-S> :wa<CR> <BAR> :mks<CR> <BAR> :qa<CR>
+nnoremap <C-S> :wa<CR> <BAR> :mks!<CR> <BAR> :qa<CR>
 
 " splits constrol
 " focus

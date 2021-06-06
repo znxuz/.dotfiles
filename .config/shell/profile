@@ -23,6 +23,7 @@ export FZF_CTRL_T_COMMAND='fd -H -L -E ".git" -E ".cache"'
 export FZF_ALT_C_COMMAND='fd -td -H -L -E ".git" -E ".cache"'
 
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
+export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}"/gnupg
 
 # customls dir colors
 eval "$(dircolors $HOME/.config/shell/dir_colors_gruv)"
