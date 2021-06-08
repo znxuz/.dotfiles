@@ -1,5 +1,3 @@
-" lsp
-
 set shortmess+=c
 set completeopt=menuone,noinsert
 let g:completion_enable_auto_paren = 1

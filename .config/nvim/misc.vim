@@ -12,7 +12,7 @@ let mapleader=","
 set termguicolors
 set guicursor=n-v-c-a:hor1,i-ci-c:ver1
 
-set path+=$HOME/.scripts,$HOME/.local/bin
+" set path+=$HOME/.scripts,$HOME/.local/bin
 set clipboard=unnamedplus
 set novisualbell
 set t_vb =
@@ -38,9 +38,9 @@ set cindent
 
 " search
 set incsearch
+set nohlsearch
 set ignorecase
 set smartcase
-set nohlsearch
 " nnoremap <silent> // :let @/ = ""<CR>
 
 " add numbered jk to jumplist
@@ -88,6 +88,8 @@ nnoremap <C-UP> :resize +5<CR>
 nnoremap <C-DOWN> :resize -5<CR>
 
 " buffers control
+" nnoremap <leader>q ;bd<CR>
+" nnoremap <leader>Q :bd!<CR>
 nnoremap <leader>q :Bclose<CR>
 nnoremap <leader>Q :Bclose!<CR>
 nnoremap <leader>h :bprev<CR>
