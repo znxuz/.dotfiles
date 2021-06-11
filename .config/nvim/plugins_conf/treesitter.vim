@@ -4,11 +4,11 @@ require('nvim-autopairs').setup {
 }
 
 require'nvim-treesitter.configs'.setup {
-	autopairs = {
-		enable = true
-	},
 	highlight = {
 		enable = true	-- false will disable the whole extension
+	},
+	autopairs = {
+		enable = true
 	},
 	indent = {
 		enable = false

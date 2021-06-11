@@ -1,10 +1,20 @@
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
-Plug 'liuchengxu/vim-which-key'
 
 Plug 'airblade/vim-gitgutter'
 	" git-gutter unmap
 	" let g:gitgutter_map_keys = 0
 
+Plug 'itchyny/lightline.vim'
+	let g:lightline = {
+		\ 'colorscheme': 'gruvbox_material',
+		\ 'active': {
+		\   'left': [ [ 'mode', 'paste' ],
+		\			[ 'readonly', 'root_directory', 'relativepath', 'modified' ] ]
+		\ },
+		\ 'component_function': {
+		\	'root_directory': 'getcwd'
+		\ },
+	\ }
 
 Plug 'mengelbrecht/lightline-bufferline'
 	" buffer-line
