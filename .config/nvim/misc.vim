@@ -1,4 +1,5 @@
 " vim specific
+	" set nocompatible
 	" let &t_EI .= "\<Esc>[4 q"
 	" let &t_SI .= "\<Esc>[6 q"
 	" set noesckeys
@@ -10,6 +11,7 @@
 
 " basics
 	let mapleader=","
+	set path+=**
 	set clipboard=unnamedplus
 	set novisualbell
 	set t_vb =
@@ -21,6 +23,7 @@
 	set splitbelow
 	set cursorline
 	set colorcolumn=80
+	filetype plugin on
 
 " set expandtab
 	set tabstop=4
@@ -34,7 +37,9 @@
 	set nohlsearch
 	set ignorecase
 	set smartcase
+	nnoremap <leader>/ /\<\><left><left>
 	" nnoremap <silent> // :let @/ = ""<CR>
+
 
 " jk motion to jumplist
 	" nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
@@ -54,28 +59,17 @@
 	set wildmode=longest,list,full
 	inoremap <leader><TAB> <C-x><C-f>
 
-" exact word search syntax
-	nnoremap <leader>/ /\<\><left><left>
-
 " change working dir
 	nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " save session
 	nnoremap <C-S> :wa<CR> <BAR> :mks!<CR> <BAR> :qa<CR>
 
-" buffers control
-	nnoremap <leader>q :bd<CR>
-	nnoremap <leader>Q :bd!<CR>
-	nnoremap <leader>h :bprev<CR>
-	nnoremap <leader>l :bnext<CR>
-
-" quitting nvim
-	nnoremap q :close<CR>
-	nnoremap Q :q!<CR>
-	nnoremap <leader>rc q
+	nnoremap q <NOP>
+	nnoremap Q <NOP>
+	nnoremap qq q
 
 " stautus line
-	set noshowmode
 	function! GetMode()
 		let l:mode = toupper(mode())
 		return '  '.l:mode.' '
@@ -83,6 +77,8 @@
 	function! GetSep()
 		return ' | '
 	endfunction
+	set noshowmode
+	set statusline=
 	set statusline+=%#Pmenu#%{GetMode()}%#LineNr#
 	set statusline+=%#Pmenu#%{&paste?GetSep().'[P]\ ':''}%#LineNr#
 	set statusline+=%{'\ \ '.getcwd()}%{'\ '.GetSep()}
@@ -93,3 +89,10 @@
 	set statusline+=%l:%c%{GetSep()}
 	set statusline+=%p%%
 	set statusline+=\ %#Pmenu#\ %y%{'\ '}
+
+" netrw
+	let g:loaded_netrw       = 1
+	let g:loaded_netrwPlugin = 1
+	let g:netrw_banner=0
+	let g:netrw_altv=1
+	let g:netrw_liststyle=3

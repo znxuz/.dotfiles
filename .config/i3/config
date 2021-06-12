@@ -202,4 +202,4 @@ bar {
     }
 }
 
-exec --no-startup-id /home/zijian/.scripts/i3_alternating_layouts.py
+exec --no-startup-id ~/.scripts/i3_alternating_layouts.py

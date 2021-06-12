@@ -23,7 +23,6 @@ alias \
 alias \
     e="$EDITOR" \
     vi="$EDITOR" \
-	vim="nvim" \
     h="history" \
     z="zathura" \
     fd="fd -H" \

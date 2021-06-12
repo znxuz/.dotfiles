@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+notify-send -t 300000 -u critical "mirrorlist update" "in 5 minutes"
+sleep 5m
+touch $HOME/reflector.log
+log=$_
+sudo reflector --country Germany --sort score -f 10 -l 100 --save /etc/pacman.d/mirrorlist >> $log 2>&1 \
+	&& echo "\n== mirrorlist updated ==\n" >> $log \
+	&& cat /etc/pacman.d/mirrorlist >> $log
