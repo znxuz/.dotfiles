@@ -65,18 +65,12 @@
 	nnoremap <C-S> :wa<CR> <BAR> :mks!<CR> <BAR> :qa<CR>
 
 " delete buffer without losing split
-	cnoremap bd<CR> bp \| bd #<CR>
+	nnoremap <leader>bd <CMD>b# \| bd #<CR>
 
 " temp
 	nnoremap q <NOP>
 	nnoremap Q <NOP>
 	nnoremap qq q
-
-" grep
-	if executable("rg")
-		set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
-		set grepformat=%f:%l:%c:%m
-	endif
 
 " stautus line
 	function! GetMode()
