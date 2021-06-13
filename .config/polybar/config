@@ -74,7 +74,7 @@ font-4 = Font Awesome 5 Free Solid:pixelsize=10;2
 
 modules-left = bspwm
 modules-center = mpd
-modules-right = pulseaudio memory wlan eth date
+modules-right = eth memory pulseaudio date
 
 tray-position = right
 tray-padding = 2
