@@ -16,6 +16,13 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 	Plug 'pbondoer/vim-42header'
 call plug#end()
 
+" gotta source
+	source $XDG_CONFIG_HOME/nvim/plugins/aesthetics.vim
+	source $XDG_CONFIG_HOME/nvim/plugins/telescope.vim
+	source $XDG_CONFIG_HOME/nvim/plugins/lsp.vim
+	source $XDG_CONFIG_HOME/nvim/plugins/treesitter.vim
+	source $XDG_CONFIG_HOME/nvim/plugins/vimspector.vim
+
 " miscellaneous
 	nnoremap <F5> :w<CR> <bar> :source $XDG_CONFIG_HOME/nvim/init.vim<CR>
 	nnoremap <F2> :Stdheader<CR>

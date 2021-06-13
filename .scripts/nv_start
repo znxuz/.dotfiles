@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 
-echo "starting nordvpn daemon"
 expect <<- DONE
 	set timeout -1
 	spawn systemctl start nordvpnd
 	expect "*?assword:*"
-	send -- "zyaniteX7997\r"
+	send -- "1590\r"
 	send -- "\r"
 	expect eof
 DONE
 
 systemctl status nordvpnd | grep inactive > /dev/null 2>&1
-[ $? -eq 1 ] && echo "nordvpn daemon started successfully" || \
-	(echo "starting nordvpnd failed" && exit 1)
+[ $? -eq 1 ] && notify-send -u low "nordvpn daemon started successfully" || \
+	(notify-send -u low "starting nordvpnd failed" && exit 1)
 
 nordvpn connect France
+exit 0

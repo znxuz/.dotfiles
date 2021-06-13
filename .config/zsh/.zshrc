@@ -45,7 +45,7 @@ bindkey -v '^R' history-incremental-pattern-search-backward
 function zle-keymap-select {
     if [[ ${KEYMAP} == vicmd ]] ||
         [[ $1 = 'underline' ]]; then
-        echo -ne '\e[4 q'
+        echo -ne '\e[2 q'
     elif [[ ${KEYMAP} == main ]] ||
         [[ ${KEYMAP} == viins ]] ||
         [[ ${KEYMAP} = '' ]] ||
@@ -54,7 +54,6 @@ function zle-keymap-select {
     fi
 }
 zle -N zle-keymap-select
-# bindkey -M viins ',q' vi-cmd-mode
 bindkey -M viins '^o' vi-cmd-mode
 
 zle-line-init() {
@@ -63,7 +62,7 @@ zle-line-init() {
 }
 zle -N zle-line-init
 echo -ne '\e[6 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[4 q' ;} # Use underline shape cursor for starting new program.
+preexec() { echo -ne '\e[2 q' ;} # Use underline shape cursor for starting new program.
 
 # edit in vim with ctrl-e
 autoload edit-command-line; zle -N edit-command-line

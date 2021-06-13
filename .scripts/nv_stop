@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
 
-echo "disconnecting..."
+notify-send -u low "disconnecting..."
 nordvpn disconnect
 
 expect <<- DONE
 	set timeout -1
 	spawn systemctl stop nordvpnd
 	expect "*?assword:*"
-	send -- "zyaniteX7997\r"
+	send -- "1590\r"
 	send -- "\r"
 	expect eof
 DONE
 
 systemctl status nordvpnd | grep -E "(inactive|dead)"
 status=$?
-[ $status -eq 0 ] && echo "daemon killed" || \
-	(echo "failed killing daemon" && exit 1)
+[ $status -eq 0 ] && notify-send -u low "daemon killed" || \
+	(notify-send -u low "failed killing daemon" && exit 1)
+exit 0

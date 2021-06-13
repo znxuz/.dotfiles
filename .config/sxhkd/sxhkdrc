@@ -1,14 +1,32 @@
 super + Return
     alacritty --working-directory $HOME
 
+super + alt + o
+	rofi -show
+
 super + g
-    alacritty -e ranger
+    alacritty -e vifm
 
 # screenshot
 super + shift + s
     flameshot full -c -p ~/Pictures/Screenshots && sleep 30 && wait $(pgrep sleep) && pkill flameshot
 super + alt + s
     flameshot gui -p ~/Pictures/Screenshots && sleep 240 && wait $(pgrep sleep) && pkill flameshot
+
+# TODO
+# volume control
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+# bindsym XF86AudioRaiseVolume exec --no-startup-id i3-volume up 5 -np -N dunstify
+# bindsym XF86AudioLowerVolume exec --no-startup-id i3-volume down 5 -np -N dunstify
+# bindsym XF86AudioMute exec --no-startup-id i3-volume mute -np -N dunstify
+# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+# brightness control
+# bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 20 && dunstify -r 1 -u low "Brightness up"
+# bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 && dunstify -r 1 -u low "Brightness down"
+# TODO
 
 # volume control
 super + {F10, F11}
@@ -23,3 +41,112 @@ super + t ; {c, t}
     { dunstify "$(date)" "$(cal)"\
     , alacritty -e bpytop\
     }
+
+super + o ; {b, c, d, n}
+	{ $BROWSER\
+	, codium\
+	, discord\
+	, alacritty -e nvim\
+	}
+
+super + Escape ; {apostrophe, s, S, o, u, r, x}
+	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded"\
+	, systemctl suspend\
+	, notify-send -u low "shutting down" && sleep 1 && systemctl poweroff\
+	, xset dpms force off\
+	, user_logout\
+	, reboot\
+	, bspc quit\
+	}
+
+# bspwm
+
+#
+# bspwm hotkeys
+#
+
+# move a floating window
+super + alt + {h,j,k,l}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# restart bspwm
+super + alt + r
+	bspc wm -r
+
+# close and kill
+super + shift + {c, q}
+	bspc node -{c,k}
+
+# send the newest marked node to the newest preselected node
+super + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+# swap the current node and the biggest window
+super + g
+	bspc node -s biggest.window
+
+#
+# state/flags
+#
+
+# set the window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the node for the given path jump
+super + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous window in the current desktop
+super + {_,shift + }c
+	bspc node -f {next,prev}.local.!hidden.window
+
+# focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# focus the older or newer node in the focus history
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+#
+# preselect
+#
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel

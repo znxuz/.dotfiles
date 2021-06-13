@@ -6,6 +6,7 @@ let g:completion_trigger_keyword_length = 2
 let g:completion_matching_strategy_list = ['exact']
 let g:completion_confirm_key = "\<C-y>"
 imap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
+imap <silent> <c-p> <Plug>(completion_trigger)
 
 " keybinds
 	nnoremap <silent> gD <CMD>lua vim.lsp.buf.declaration()<CR>

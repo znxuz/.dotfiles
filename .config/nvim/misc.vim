@@ -1,27 +1,26 @@
 " vim specific
 	" set nocompatible
-	" let &t_EI .= "\<Esc>[4 q"
+	" let &t_EI .= "\<Esc>[2 q"
 	" let &t_SI .= "\<Esc>[6 q"
 	" set noesckeys
 	" set timeoutlen=350 ttimeoutlen=0
 	" set viminfo+=n~/.vim/viminfo
 
 " neovim specific
-	set guicursor=n-v-c-a:hor1,i-ci-c:ver1
+	set guicursor=n-v-c-a:block,i-ci-c:ver1
 
 " basics
 	let mapleader=","
 	set path+=**
 	set clipboard=unnamedplus
-	set novisualbell
-	set t_vb =
-	set noerrorbells
 	set number rnu
 	set hidden
 	set backspace=indent,eol,start
 	set splitright
 	set splitbelow
-	set cursorline
+	set novisualbell
+	set t_vb =
+	set noerrorbells
 	set colorcolumn=80
 	filetype plugin on
 
@@ -39,7 +38,6 @@
 	set smartcase
 	nnoremap <leader>/ /\<\><left><left>
 	" nnoremap <silent> // :let @/ = ""<CR>
-
 
 " jk motion to jumplist
 	" nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
@@ -61,13 +59,24 @@
 
 " change working dir
 	nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+	autocmd BufEnter * if isdirectory(expand('%:p')) | :cd %:p:h | :bd
 
 " save session
 	nnoremap <C-S> :wa<CR> <BAR> :mks!<CR> <BAR> :qa<CR>
 
+" delete buffer without losing split
+	cnoremap bd<CR> bp \| bd #<CR>
+
+" temp
 	nnoremap q <NOP>
 	nnoremap Q <NOP>
 	nnoremap qq q
+
+" grep
+	if executable("rg")
+		set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
+		set grepformat=%f:%l:%c:%m
+	endif
 
 " stautus line
 	function! GetMode()
