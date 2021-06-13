@@ -47,7 +47,7 @@ super + Escape ; {apostrophe, s, S, o, u, r, x}
 	, systemctl suspend\
 	, notify-send -u low "shutting down" && sleep 1 && systemctl poweroff\
 	, xset dpms force off\
-	, user_logout\
+	, sc_logout\
 	, reboot\
 	, bspc quit\
 	}
