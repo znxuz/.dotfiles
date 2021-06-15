@@ -1,4 +1,4 @@
-lua <<EOF
+lua << EOF
 require('nvim-autopairs').setup {
     check_ts = true
 }
@@ -14,3 +14,4 @@ require'nvim-treesitter.configs'.setup {
 		enable = false
 	}
 }
+EOF

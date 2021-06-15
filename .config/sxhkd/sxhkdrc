@@ -98,6 +98,10 @@ super + g
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
 # move a floating window
 super + alt + {h,j,k,l}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
@@ -107,8 +111,8 @@ super + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous window in the current desktop
-super + {_,shift + }c
-	bspc node -f {next,prev}.local.!hidden.window
+# super + {n,p}
+# bspc node -f {next,prev}.local.!hidden.window
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
@@ -123,10 +127,6 @@ super + {grave,Tab}
 # bspc wm -h off; \
 # bspc node {older,newer} -f; \
 # bspc wm -h on
-
-# focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
 
 #
 # preselect

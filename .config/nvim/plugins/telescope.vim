@@ -21,3 +21,7 @@ nnoremap <leader>fg <CMD>Telescope live_grep<CR>
 nnoremap <leader>fb <CMD>Telescope buffers<CR>
 nnoremap <leader>fh <CMD>Telescope help_tags<CR>
 nnoremap <leader>ft <CMD>Telescope builtin<CR>
+nnoremap <leader>fj <CMD>Telescope jumplist<CR>
+nnoremap <leader>fo <CMD>Telescope oldfiles<CR>
+nnoremap <leader>fm <CMD>Telescope keymaps<CR>
+nnoremap <leader>fq <CMD>Telescope quickfix<CR>

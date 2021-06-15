@@ -36,17 +36,13 @@
 	set nohlsearch
 	set ignorecase
 	set smartcase
-	nnoremap <leader>/ /\<\><left><left>
-	" nnoremap <silent> // :let @/ = ""<CR>
-
-" jk motion to jumplist
-	" nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
-	" nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
+	nnoremap // /\<\><left><left>
+	nnoremap <silent> <leader>/ :let @/ = ""<CR>
 
 " file management
 	set noswapfile
 	set nobackup
-	set undodir=$HOME/.local/share/undodir
+	set undodir=$HOME/.local/share/nvim/undodir
 	set undofile
 
 " toggle relative line nb
@@ -58,14 +54,14 @@
 	inoremap <leader><TAB> <C-x><C-f>
 
 " change working dir
-	nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+	nnoremap <leader>cd :cd %:p:h \| pwd<CR>
 	autocmd BufEnter * if isdirectory(expand('%:p')) | :cd %:p:h | :bd
 
 " save session
-	nnoremap <C-S> :wa<CR> <BAR> :mks!<CR> <BAR> :qa<CR>
+	nnoremap <C-S> :wa \| mks! \| qa<CR>
 
-" delete buffer without losing split
-	nnoremap <leader>bd <CMD>b# \| bd #<CR>
+" delete buffer while keeping split
+	command! BD b# | bd #
 
 " temp
 	nnoremap q <NOP>
@@ -92,10 +88,3 @@
 	set statusline+=%l:%c%{GetSep()}
 	set statusline+=%p%%
 	set statusline+=\ %#Pmenu#\ %y%{'\ '}
-
-" netrw
-	let g:loaded_netrw       = 1
-	let g:loaded_netrwPlugin = 1
-	let g:netrw_banner=0
-	let g:netrw_altv=1
-	let g:netrw_liststyle=3
