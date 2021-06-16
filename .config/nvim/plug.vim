@@ -3,6 +3,8 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 	Plug 'sainnhe/gruvbox-material'
 	Plug 'junegunn/goyo.vim'
 	Plug 'szw/vim-maximizer'
+	Plug 'nvim-treesitter/nvim-treesitter'
+	Plug 'pbondoer/vim-42header'
 " ====== essentials
 	Plug 'nvim-lua/popup.nvim'
 	Plug 'nvim-lua/plenary.nvim'
@@ -10,9 +12,7 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 	Plug 'windwp/nvim-autopairs'
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'nvim-lua/completion-nvim'
-	Plug 'nvim-treesitter/nvim-treesitter'
 	Plug 'puremourning/vimspector'
-	Plug 'pbondoer/vim-42header'
 	Plug 'mbbill/undotree'
 call plug#end()
 
@@ -24,5 +24,5 @@ call plug#end()
 	source $XDG_CONFIG_HOME/nvim/plugins/vimspector.vim
 
 " miscellaneous
-	nnoremap <F5> :w \| source $XDG_CONFIG_HOME/nvim/init.vim<CR>
-	nnoremap <F2> :Stdheader<CR>
+	nnoremap <F5> <CMD>w \| source $XDG_CONFIG_HOME/nvim/init.vim<CR>
+	nnoremap <F2> <CMD>Stdheader<CR>

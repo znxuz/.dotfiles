@@ -37,7 +37,7 @@
 	set ignorecase
 	set smartcase
 	nnoremap // /\<\><left><left>
-	nnoremap <silent> <leader>/ :let @/ = ""<CR>
+	nnoremap <leader>/ <CMD>let @/ = ""<CR>
 
 " file management
 	set noswapfile
@@ -46,7 +46,7 @@
 	set undofile
 
 " toggle relative line nb
-	nnoremap <leader>rn :set rnu!<CR>
+	nnoremap <leader>rn <CMD>set rnu!<CR>
 
 " autocompletion
 	set wildignorecase
@@ -58,7 +58,7 @@
 	autocmd BufEnter * if isdirectory(expand('%:p')) | :cd %:p:h | :bd
 
 " save session
-	nnoremap <C-S> :wa \| mks! \| qa<CR>
+	nnoremap <C-S> <CMD>wa \| mks! \| qa<CR>
 
 " delete buffer while keeping split
 	command! BD b# | bd #

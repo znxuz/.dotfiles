@@ -18,6 +18,8 @@ function get_indicator() {
 	fi
 }
 
+[[ $(acpi -b 2>&1 | grep -o 'No support') == 'No support' ]] && exit 1
+
 BAT_0=$(acpi -b | head -n1 | grep -E -o '[1]?[0-9][0-9]?%' | tr -d '%')
 [[ $(acpi -b | wc -l) -gt 1 ]] && \
 	BAT_1=$(acpi -b | tail -n1 | grep -E -o '[1]?[0-9][0-9]?%' | tr -d '%')
@@ -25,7 +27,7 @@ BAT_0=$(acpi -b | head -n1 | grep -E -o '[1]?[0-9][0-9]?%' | tr -d '%')
 
 [[ ! "$BAT_0" -eq 0 ]] && BAT_ICON_0=$(get_indicator $BAT_0)
 [[ ! -z "$BAT_1" ]] && BAT_ICON_1=$(get_indicator $BAT_1)
-STATUS=$(acpi -b | grep -Eo 'Discharging')
+STATUS=$(acpi -b | grep -o 'Discharging')
 
 [[ ! "$BAT_0" -eq 0 ]] && echo -n "$BAT_ICON_0 $BAT_0%"
 [[ ! -z "$BAT_1" ]] && echo -n "  $BAT_ICON_1 $BAT_1%"

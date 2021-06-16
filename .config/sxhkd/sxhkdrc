@@ -35,11 +35,13 @@ super + F12
 super + {F1, F2}
     xbacklight {-dec, -inc} 10
 
-super + o ; {b, c, d, n}
+# opening programs
+super + o ; {b, c, d, n, m}
 	{ $BROWSER\
 	, codium\
 	, discord\
 	, alacritty -e nvim\
+	, mailspring\
 	}
 
 super + Escape ; {apostrophe, s, S, o, u, r, x}
@@ -92,7 +94,7 @@ super + ctrl + {m,x,y,z}
 
 # swap the current node and the biggest window
 super + g
-	bspc node -s biggest.window
+	bspc node -s biggestwindow
 
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}

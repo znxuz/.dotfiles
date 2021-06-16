@@ -13,11 +13,11 @@
 " goyo
 	let g:goyo_width = 82
 	let g:goyo_linenr = 1
-	nnoremap <leader>z :Goyo<CR>
+	nnoremap <leader>z <CMD>Goyo<CR>
 
 " maximizer
 	let g:maximizer_set_default_mapping = 0
-	nnoremap <silent> <C-f> :MaximizerToggle<CR>
+	nnoremap <C-f> <CMD>MaximizerToggle<CR>
 
 " undo tree
-	nnoremap <leader>u :UndotreeToggle<CR>
+	nnoremap <leader>u <CMD>UndotreeToggle<CR>
