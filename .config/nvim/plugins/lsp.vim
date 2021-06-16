@@ -1,5 +1,7 @@
 set shortmess+=c
 set signcolumn=yes
+
+" completion
 set completeopt=menuone,noinsert
 let g:completion_enable_auto_paren = 1
 let g:completion_trigger_keyword_length = 2

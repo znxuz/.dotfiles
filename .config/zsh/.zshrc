@@ -2,11 +2,22 @@
 fpath+=$XDG_CONFIG_HOME/zsh/pure
 autoload -U promptinit; promptinit
 # zstyle :prompt:pure:prompt:success color '#ebdbb2'
-zstyle :prompt:pure:path color yellow
+# zstyle :prompt:pure:path color yellow
 prompt pure
+
+# one line prompt
 prompt_newline='%666v'
-PROMPT='%F{magenta}%(1j.[%j] .)%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f '
-PROMPT=" $PROMPT"
+
+# show jobs count
+PROMPT=' %F{magenta}%(1j.[%j] .)%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f '
+
+# clear screen with extra new line
+custom_prompt_pure_clear_screen() {
+zle -I # Enable output to terminal.
+print -n '\e[2J\e[3;0H' # Clear screen and move cursor to (4, 0).
+zle .redisplay # Redraw prompt.
+}
+zle -N clear-screen custom_prompt_pure_clear_screen
 
 # color zsh
 autoload -U colors && colors
