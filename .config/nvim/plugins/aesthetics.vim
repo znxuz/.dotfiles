@@ -11,6 +11,7 @@
 	set background=dark
 
 " goyo
+	let g:goyo_height = 100
 	let g:goyo_width = 82
 	let g:goyo_linenr = 1
 	nnoremap <leader>z <CMD>Goyo<CR>

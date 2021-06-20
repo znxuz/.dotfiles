@@ -25,9 +25,6 @@
 	filetype plugin on
 
 " set expandtab
-	set tabstop=4
-	set softtabstop=4
-	set shiftwidth=4
 	set autoindent
 	set cindent
 
@@ -79,7 +76,7 @@
 	set noshowmode
 	set statusline=
 	set statusline+=%#Pmenu#%{GetMode()}%#LineNr#
-	set statusline+=%#Pmenu#%{&paste?GetSep().'[P]\ ':''}%#LineNr#
+	set statusline+=%#Pmenu#%{&paste?GetSep().'P\ ':''}%#LineNr#
 	set statusline+=%{'\ \ '.getcwd()}%{'\ '.GetSep()}
 	set statusline+=%f%{&modified?GetSep().'[+]':''}
 	set statusline+=%=
@@ -87,4 +84,4 @@
 	set statusline+=%{&fileencoding?&fileencoding:&encoding}%{'\ '.GetSep()}
 	set statusline+=%l:%c%{GetSep()}
 	set statusline+=%p%%
-	set statusline+=\ %#Pmenu#\ %y%{'\ '}
+	set statusline+=\ %#Pmenu#\ %Y%{'\ '}

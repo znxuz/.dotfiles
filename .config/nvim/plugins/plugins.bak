@@ -1,3 +1,5 @@
+Plug 'windwp/nvim-autopairs'
+
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 
 Plug 'airblade/vim-gitgutter'
@@ -80,5 +82,3 @@ Plug 'mengelbrecht/lightline-bufferline'
 		\ 'files': 0,
 		\ }
 	highlight NvimTreeFolderIcon guibg=blue
-
-
