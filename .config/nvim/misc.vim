@@ -11,16 +11,14 @@
 
 " basics
 	let mapleader=","
-	set path+=**
-	set clipboard=unnamedplus
-	set number rnu
 	set hidden
+	set path+=**
+	set exrc secure
+	set number rnu
+	set splitright splitbelow
+	set novisualbell noerrorbells t_vb =
 	set backspace=indent,eol,start
-	set splitright
-	set splitbelow
-	set novisualbell
-	set t_vb =
-	set noerrorbells
+	set clipboard=unnamedplus
 	set colorcolumn=80
 	filetype plugin on
 
