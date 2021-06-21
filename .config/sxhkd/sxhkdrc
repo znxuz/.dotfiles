@@ -35,7 +35,7 @@ super + apostrophe ; {b, c, d, n, m, q}
 	, qbittorrent\
 	}
 
-super + alt + space
+super + alt + apostrophe
 	rofi -show
 
 super + Escape ; {apostrophe, s, S, o, u, r, x}

@@ -60,6 +60,16 @@
 " delete buffer while keeping split
 	command! BD b# | bd #
 
+" netrw
+	nnoremap <leader>e <CMD>Vex<CR>
+	" let g:loaded_netrw       = 1
+	" let g:loaded_netrwPlugin = 1
+	let g:netrw_banner=0
+	let g:netrw_altv=1
+	let g:netrw_liststyle=3
+	let g:netrw_browse_split=4
+	let g:netrw_winsize = 25
+
 " temp
 	nnoremap q <NOP>
 	nnoremap Q <NOP>
@@ -76,6 +86,7 @@
 	set noshowmode
 	set statusline=
 	set statusline+=%#Pmenu#%{GetMode()}%#LineNr#
+	set statusline+=%#Pmenu#%{&readonly?GetSep().'R\ ':''}%#LineNr#
 	set statusline+=%#Pmenu#%{&paste?GetSep().'P\ ':''}%#LineNr#
 	set statusline+=%{'\ \ '.getcwd()}%{'\ '.GetSep()}
 	set statusline+=%f%{&modified?GetSep().'[+]':''}

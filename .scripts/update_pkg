@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+count=$((expect <<- EOF
+	set timeout -1
+	spawn sudo pacman -Syu
+	expect "*Y/n*"
+	send -- "n\r"
+	send -- "\r"
+	expect eof
+EOF
+) 2>&1 | grep -Eo "Packages \([0-9]+\)" | sed 's/[^0-9]//g')
+
+[[ "$count" -gt 5 ]] && echo "$count"

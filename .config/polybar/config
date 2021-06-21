@@ -74,8 +74,8 @@ font-3 = Font Awesome 5 Free:pixelsize=10;2
 font-4 = Font Awesome 5 Free Solid:pixelsize=10;2
 
 modules-left = bspwm
-modules-center = mpd
-modules-right = eth memory pulseaudio battery date
+;modules-center = mpd
+modules-right = pkg eth memory pulseaudio battery date
 
 tray-position = right
 tray-padding = 2
@@ -159,6 +159,13 @@ label-volume-underline = #98971a
 
 label-muted =  muted
 label-muted-foreground = ${colors.foreground-alt}
+
+[module/pkg]
+type = custom/script
+exec = update_pkg
+interval = 7200
+format-prefix = "  "
+format-underline = #d79921
 
 [module/memory]
 type = internal/memory

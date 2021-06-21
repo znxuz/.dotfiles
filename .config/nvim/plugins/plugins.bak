@@ -1,3 +1,5 @@
+Plug 'jmckiern/vim-venter'
+
 Plug 'windwp/nvim-autopairs'
 
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
