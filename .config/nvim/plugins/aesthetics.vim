@@ -10,15 +10,39 @@
 	colorscheme gruvbox-material
 	set background=dark
 
-" goyo
-	let g:goyo_height = 100
-	let g:goyo_width = 82
-	let g:goyo_linenr = 1
-	nnoremap <leader>z <CMD>Goyo<CR>
-
 " maximizer
 	let g:maximizer_set_default_mapping = 0
 	nnoremap <C-f> <CMD>MaximizerToggle<CR>
 
-" undo tree
-	nnoremap <leader>u <CMD>UndotreeToggle<CR>
+" treesitter
+lua << EOF
+	require'nvim-treesitter.configs'.setup {
+		highlight = {
+			enable = true
+		},
+		autopairs = {
+			enable = false
+		},
+		indent = {
+			enable = false
+		}
+	}
+EOF
+
+" zen mode
+lua << EOF
+	require("zen-mode").setup {
+		window = {
+			backdrop = 1,
+			width = 86,
+			height = 1,
+			options = {
+				signcolumn = "yes",
+				number = true,
+				relativenumber = true,
+			},
+		},
+
+	}
+EOF
+nnoremap <leader>z <CMD>ZenMode<CR>

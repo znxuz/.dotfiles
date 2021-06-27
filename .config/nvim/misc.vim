@@ -1,13 +1,13 @@
-" vim specific
-	" set nocompatible
-	" let &t_EI .= "\<Esc>[2 q"
-	" let &t_SI .= "\<Esc>[6 q"
-	" set noesckeys
-	" set timeoutlen=350 ttimeoutlen=0
-	" set viminfo+=n~/.vim/viminfo
-
-" neovim specific
+if has('nvim')
 	set guicursor=n-v-c-a:block,i-ci-c:ver1
+else
+	let &t_EI .= "\<Esc>[2 q"
+	let &t_SI .= "\<Esc>[6 q"
+	set noesckeys
+	set nocompatible
+	set timeoutlen=350 ttimeoutlen=0
+	set viminfo+=n~/.vim/viminfo
+endif
 
 " basics
 	let mapleader=","
@@ -20,11 +20,7 @@
 	set backspace=indent,eol,start
 	set clipboard=unnamedplus
 	set colorcolumn=80
-	filetype plugin on
-
-" set expandtab
-	set autoindent
-	set cindent
+	filetype plugin indent on
 
 " search
 	set incsearch
@@ -40,9 +36,6 @@
 	set undodir=$HOME/.local/share/nvim/undodir
 	set undofile
 
-" toggle relative line nb
-	nnoremap <leader>rn <CMD>set rnu!<CR>
-
 " autocompletion
 	set wildignorecase
 	set wildmode=longest,list,full
@@ -55,23 +48,19 @@
 " save session
 	nnoremap <C-S> <CMD>wa \| mks! \| qa<CR>
 
+" invoke terminal
+	nnoremap <leader>t <CMD>sp \| resize 15 \| term<CR>
+
 " delete buffer while keeping split
 	command! BD b# | bd #
 
 " netrw
-	nnoremap <leader>e <CMD>Vex<CR>
-	" let g:loaded_netrw       = 1
-	" let g:loaded_netrwPlugin = 1
+	nnoremap <leader>e <CMD>Vex \| vertical resize 30<CR>
 	let g:netrw_banner=0
 	let g:netrw_altv=1
 	let g:netrw_liststyle=3
 	let g:netrw_browse_split=4
 	let g:netrw_winsize = 25
-
-" temp
-	nnoremap q <NOP>
-	nnoremap Q <NOP>
-	nnoremap qq q
 
 " stautus line
 	function! GetMode()
@@ -82,6 +71,7 @@
 		return ' | '
 	endfunction
 	set noshowmode
+	set laststatus=2
 	set statusline=
 	set statusline+=%#Pmenu#%{GetMode()}%#LineNr#
 	set statusline+=%#Pmenu#%{&readonly?GetSep().'R\ ':''}%#LineNr#

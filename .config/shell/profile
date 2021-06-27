@@ -3,7 +3,8 @@ PATH=$PATH:$HOME/.scripts
 
 export SHELL="/usr/bin/zsh"
 export EDITOR="nvim"
-export VISUAL="nvim"
+export VISUAL="$EDITOR"
+export SUDO_EDITOR="$EDITOR"
 export TERMINAL="alacritty"
 export BROWSER="brave"
 

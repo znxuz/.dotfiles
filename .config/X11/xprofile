@@ -1,5 +1,5 @@
 # key repeat
-xset r rate 180 60
+xset r rate 200 60
 
 # set compose key
 setxkbmap -option compose:ralt

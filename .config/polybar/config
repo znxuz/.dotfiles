@@ -163,7 +163,7 @@ label-muted-foreground = ${colors.foreground-alt}
 [module/pkg]
 type = custom/script
 exec = update_pkg
-interval = 7200
+interval = 10800
 format-prefix = "  "
 format-underline = #d79921
 
