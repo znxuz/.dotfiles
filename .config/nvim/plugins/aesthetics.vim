@@ -16,33 +16,33 @@
 
 " treesitter
 lua << EOF
-	require'nvim-treesitter.configs'.setup {
-		highlight = {
-			enable = true
-		},
-		autopairs = {
-			enable = false
-		},
-		indent = {
-			enable = false
-		}
+require'nvim-treesitter.configs'.setup {
+	ensure_installed = { "c", "cpp", "bash", "comment" },
+	highlight = {
+		enable = true
+	},
+	autopairs = {
+		enable = false
+	},
+	indent = {
+		enable = false
 	}
+}
 EOF
 
 " zen mode
 lua << EOF
-	require("zen-mode").setup {
-		window = {
-			backdrop = 1,
-			width = 86,
-			height = 1,
-			options = {
-				signcolumn = "yes",
-				number = true,
-				relativenumber = true,
-			},
+require("zen-mode").setup {
+	window = {
+		backdrop = 1,
+		width = 86,
+		height = 1,
+		options = {
+			signcolumn = "yes",
+			number = true,
+			relativenumber = true,
 		},
-
-	}
+	},
+}
 EOF
 nnoremap <leader>z <CMD>ZenMode<CR>

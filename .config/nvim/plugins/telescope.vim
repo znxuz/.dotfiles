@@ -15,7 +15,6 @@ require('telescope').setup{
 	pickers = {
 		buffers = {
 			theme = "dropdown",
-			sort_lastused = true,
 			mappings = { i = { ["<M-d>"] = actions.delete_buffer, }, }
 		},
 		find_files = { theme = "dropdown" },
@@ -26,6 +25,14 @@ require('telescope').setup{
 		oldfiles = { theme = "dropdown" },
 		keymaps = { theme = "dropdown" },
 		quickfix = { theme = "dropdown" },
+		lsp_definitions = { theme = "dropdown" },
+		lsp_implementations = { theme = "dropdown" },
+		lsp_references = { theme = "dropdown" },
+		lsp_dynamic_workspace_symbols = { theme = "dropdown" },
+		lsp_document_symbols = { theme = "dropdown" },
+		lsp_workspace_diagnostics = { theme = "dropdown" },
+		lsp_document_diagnostics = { theme = "dropdown" },
+
 	},
 	extensions = {
 		fzy_native = {

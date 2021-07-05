@@ -40,63 +40,17 @@ setopt globdots
 setopt noclobber
 # _comp_options+=(globdots)       # Include hidden files.
 
-
-# vi mode =================
-bindkey -v
-export KEYTIMEOUT=20
-
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
-bindkey -v '^R' history-incremental-pattern-search-backward
-
-# Change cursor shape for different vi modes.
-function zle-keymap-select {
-    if [[ ${KEYMAP} == vicmd ]] ||
-        [[ $1 = 'underline' ]]; then
-        echo -ne '\e[2 q'
-    elif [[ ${KEYMAP} == main ]] ||
-        [[ ${KEYMAP} == viins ]] ||
-        [[ ${KEYMAP} = '' ]] ||
-        [[ $1 = 'beam' ]]; then
-        echo -ne '\e[6 q'
-    fi
-}
-zle -N zle-keymap-select
-bindkey -M viins '^o' vi-cmd-mode
-
-zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[6 q"
-}
-zle -N zle-line-init
-echo -ne '\e[6 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[2 q' ;} # Use underline shape cursor for starting new program.
-
-# edit in vim with ctrl-e
-autoload edit-command-line; zle -N edit-command-line
-bindkey '^e' edit-command-line
-# vi mode =================
-
+# vi mode
+source $ZDOTDIR/zsh_vi_mode
 
 # fzfs
-source /usr/share/fzf/key-bindings.zsh
-cd_fzf() {
-    cd "$HOME/$(fd -td -E ".git/" -E ".cache/" --base-directory $HOME | fzf --preview="tree -L 1 {}" --bind="tab:toggle-preview" --preview-window=:hidden)"
-    zle reset-prompt
-}
-zle -N cd_fzf
-bindkey '^hf' cd_fzf
-bindkey -r '\ec'
-bindkey '^f' fzf-cd-widget
+source $ZDOTDIR/zsh_fzf
 
 # eye candy
 echo "\n"
 pfetch
 eval$(thefuck --alias)
 
-# must be the end of file
+# must be at the end
 source $XDG_CONFIG_HOME/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $XDG_CONFIG_HOME/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

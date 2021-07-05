@@ -24,7 +24,6 @@ endif
 
 " search
 	set incsearch
-	set nohlsearch
 	set ignorecase
 	set smartcase
 	nnoremap // /\<\><left><left>
@@ -52,7 +51,7 @@ endif
 	nnoremap <leader>t <CMD>sp \| resize 15 \| term<CR>
 
 " delete buffer while keeping split
-	command! BD b# | bd #
+	command! Bd b# | bd #
 
 " netrw
 	nnoremap <leader>e <CMD>Vex \| vertical resize 30<CR>

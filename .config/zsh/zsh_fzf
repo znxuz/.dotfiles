@@ -1,0 +1,30 @@
+source /usr/share/fzf/key-bindings.zsh
+
+cd_fzf()
+{
+	cd "$HOME/$(fd -td -uu -E ".git/" -E ".cache/" --base-directory $HOME \
+		| fzf --preview="tree -L 1 {}" --bind="tab:toggle-preview" \
+		--preview-window=:hidden)"
+	zle reset-prompt
+}
+zle -N cd_fzf
+bindkey '^hf' cd_fzf
+bindkey -r '\ec'
+bindkey '^f' fzf-cd-widget
+
+pac_search_remote()
+{
+	pacman -Sql | fzf --preview 'pacman -Si {}'
+	zle reset-prompt
+}
+
+pac_search_local()
+{
+	pacman -Qq | fzf --preview 'pacman -Qi {}'
+	zle reset-prompt
+}
+
+zle -N pac_search_remote
+zle -N pac_search_local
+bindkey '^ps' pac_search_remote
+bindkey '^pq' pac_search_local
