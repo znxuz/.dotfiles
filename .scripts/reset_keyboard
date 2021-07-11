@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+setxkbmap && source $HOME/.xprofile
