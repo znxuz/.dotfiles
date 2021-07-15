@@ -3,10 +3,12 @@ if has('nvim')
 else
 	let &t_EI .= "\<Esc>[2 q"
 	let &t_SI .= "\<Esc>[6 q"
+	set syntax on
 	set noesckeys
 	set nocompatible
-	set timeoutlen=350 ttimeoutlen=0
+	set backspace=indent,eol,start
 	set viminfo+=n~/.vim/viminfo
+	filetype plugin indent on
 endif
 
 " basics
@@ -17,10 +19,9 @@ endif
 	set number rnu
 	set splitright splitbelow
 	set novisualbell noerrorbells t_vb =
-	set backspace=indent,eol,start
 	set clipboard=unnamedplus
 	set colorcolumn=80
-	filetype plugin indent on
+	set ttimeoutlen=0
 
 " search
 	set incsearch
@@ -51,7 +52,7 @@ endif
 	nnoremap <leader>t <CMD>sp \| resize 15 \| term<CR>
 
 " delete buffer while keeping split
-	command! Bd b# | bd #
+	command! Bd b# | bd#
 
 " netrw
 	nnoremap <leader>e <CMD>Vex \| vertical resize 30<CR>

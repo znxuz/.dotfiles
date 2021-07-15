@@ -26,13 +26,14 @@ XF86MonBrightnessDown
 	xbacklight -dec 10
 
 # opening programs
-super + apostrophe ; {b, c, d, n, m, q}
+super + apostrophe ; {b, c, d, n, m, q, r}
 	{ $BROWSER\
 	, codium\
 	, discord\
 	, alacritty -e nvim\
 	, mailspring\
 	, qbittorrent\
+	, alacritty -e ranger\
 	}
 
 super + alt + apostrophe
@@ -40,7 +41,7 @@ super + alt + apostrophe
 
 super + Escape ; {apostrophe, s, S, o, u, r, x}
 	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded"\
-	, systemctl suspend\
+	, notify-send -u low "zzz..." && sleep 1 && systemctl suspend\
 	, notify-send -u low "shutting down" && sleep 1 && systemctl poweroff\
 	, xset dpms force off\
 	, sc_logout\

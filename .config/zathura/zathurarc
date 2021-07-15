@@ -4,7 +4,9 @@ set selection-clipboard clipboard
 set recolor true
 include gruvbox-theme/gruvbox-dark-hard
 
+map <C-[> abort
 map u scroll half-up
 map d scroll half-down
 map D toggle_page_mode
-map _ zoom out
+map <C-=> zoom in
+map <C--> zoom out
