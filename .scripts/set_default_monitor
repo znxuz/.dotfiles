@@ -5,4 +5,6 @@ if [[ $DP_STATUS -gt 1 ]]
 then
 	xrandr --output DP1 --primary --mode 3840x2160 --scale 1 \
 		--output eDP1 --mode 1920x1080 --scale 2 --same-as DP1
+		else
+			# TODO
 fi

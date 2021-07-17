@@ -44,5 +44,6 @@ sxhkd &
 unclutter &
 redshift -l 51.5:7.4 &
 $HOME/.config/feh/.fehbg &
+$HOME/.scripts/set_keyboard_layout &
 
 exec bspwm
