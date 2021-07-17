@@ -15,9 +15,8 @@ bindkey '^hf' cd_root
 
 fzf_get()
 {
-	local ret="$(fd -uu -E ".git/" -E ".cache/" --base-directory \
-		$HOME | fzf --preview="tree -L 1 {}" \
-		--bind="tab:toggle-preview" --preview-window=:hidden)"
+	local ret="$(fd -uu -E ".git/" -E ".cache/" --base-directory $HOME \
+		| fzf -m | tr '\n' ' ')"
 	[[ ! -z "$ret" ]] && LBUFFER="$LBUFFER$HOME/$ret "
 	zle reset-prompt
 }
@@ -26,7 +25,8 @@ bindkey '^ht' fzf_get
 
 pac_search_remote()
 {
-	local ret=$(pacman -Sql | fzf --preview='pacman -Si {}')
+	local ret="$(pacman -Sql | fzf -m --preview='pacman -Si {}' \
+		| tr '\n' ' ')"
 	LBUFFER=${LBUFFER}${ret}
 	zle reset-prompt
 }
@@ -35,7 +35,8 @@ bindkey '^ps' pac_search_remote
 
 pac_search_local()
 {
-	local ret=$(pacman -Qq | fzf --preview='pacman -Qi {}')
+	local ret="$(pacman -Qq | fzf -m --preview='pacman -Qi {}' \
+		| tr '\n' ' ')"
 	LBUFFER=${LBUFFER}${ret}
 	zle reset-prompt
 }

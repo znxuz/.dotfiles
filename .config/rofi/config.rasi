@@ -6,7 +6,7 @@ configuration {
 	font: "Source Code Pro 10";
 /*	bw: 1;*/
 /*	location: 0;*/
-    padding: 10;
+	padding: 10;
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
 /*	fixed-num-lines: true;*/
@@ -37,7 +37,7 @@ configuration {
 /*	parse-hosts: false;*/
 /*	parse-known-hosts: true;*/
 /*	combi-modi: "window,run";*/
-/*	matching: "normal";*/
+	matching: "fuzzy";
 /*	tokenize: true;*/
 /*	m: "-5";*/
 /*	line-margin: 2;*/

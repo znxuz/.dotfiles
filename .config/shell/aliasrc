@@ -30,7 +30,7 @@ alias \
 	rename='perl-rename' \
 	qb='qbittorrent' \
 	bt='bluetoothctl' \
-	detach='function detach() { bg && disown %\$(jobs | wc -l) } && detach' \
+	detach="function detach() { bg && disown %\$(jobs | wc -l) } && detach" \
 	xclip='xclip -sel clip' \
 	m='make' \
 	c='gcc -Wall -Werror -Wextra' \

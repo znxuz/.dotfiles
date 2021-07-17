@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+pgrep -x nordvpnd > /dev/null 2>&1
+[[ "$?" -eq 1 ]] && notify-send -u low "no nordvpnd instance running" && exit 1
+
 notify-send -u low "disconnecting..."
 nordvpn disconnect
 
@@ -7,7 +10,7 @@ expect <<- DONE
 	set timeout -1
 	spawn systemctl stop nordvpnd
 	expect "*?assword:*"
-	send -- "1590\r"
+	send -- "$(pass user-zijian)"
 	send -- "\r"
 	expect eof
 DONE

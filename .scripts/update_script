@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-cd $HOME/aur && ./submodule_build neovim*
-sudo pacman -Syu --noconfirm && bspc wm -r
