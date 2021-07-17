@@ -4,7 +4,7 @@ xsetroot -cursor_name left_ptr
 $HOME/.config/polybar/launch.sh
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-bspc monitor $(xrandr | grep primary | cut -d' ' -f1) -d I II III IV V
+bspc monitor -d $(xrandr | grep primary | cut -d' ' -f1) I II III IV V
 
 bspc config split_ratio			0.50
 bspc config border_width		1
