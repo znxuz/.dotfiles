@@ -33,7 +33,6 @@ STATUS=$(acpi -b | grep -o 'Discharging')
 
 [[ ! "$BAT_0" -eq 0 ]] && echo -n "$BAT_ICON_0 $BAT_0%"
 [[ ! -z "$BAT_1" ]] && echo -n "  $BAT_ICON_1 $BAT_1%"
-[[ ! "$BAT_0" -eq 0 && ! -z "$STATUS" ]] && echo -n "  "
-[[ ! -z "$STATUS" ]] && echo "" || echo ""
+[[ ! -z "$STATUS" ]] && echo "" || echo "  "
 
 exit 0

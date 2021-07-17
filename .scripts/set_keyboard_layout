@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+lsusb | grep -i "HHKB" > /dev/null && exit 0
+
+KB_STATUS="$(bluetoothctl info E4:82:08:82:14:68 | grep "Connected" | sed 's/.* //g')"
+[[ -z $KB_STATUS || $KB_STATUS = "no" ]] && xmodmap ${XDG_CONFIG_HOME:-$HOME/.config}/X11/Xmodmap
