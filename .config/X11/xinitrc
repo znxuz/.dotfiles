@@ -45,5 +45,6 @@ unclutter &
 redshift -l 51.5:7.4 &
 $HOME/.config/feh/.fehbg &
 $HOME/.scripts/set_keyboard_layout &
+$HOME/.scripts/xrandr_setup &
 
 exec bspwm
