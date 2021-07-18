@@ -1,6 +1,18 @@
 #!/bin/sh
 
-# tp single monitor
-xrandr --output eDP1 --primary --mode 1920x1080 --scale 1.25
+DP_STATUS=$(xrandr | grep -o '\bconnected`b' | wc -l)
+if [[ $DP_STATUS -gt 1 ]]
+then
+	# tp single monitor
+	xrandr --output DP1 --primary --mode 3840x2160 --scale 1 \
+		--output eDP1 --mode 1920x1080 --scale 2 --same-as DP1
 
-# tp duo monitor TODO
+	# tp duo monitor extend TODO
+else
+	DISPL=$(xrandr | grep primary | cut -d' ' -f1 | tr -d '\n')
+	MODE=$(xrandr | grep -A1 '\bconnected\b' | tail -n1 \
+		| grep -Eo '[[:digit:]]{4}x[[:digit:]]{4}')
+	[[ $MODE = '3840x2160' ]] && SCALE=1 || SCALE=1.5
+	xrandr --output "$DISPL" --primary --mode "$MODE" --scale "$SCALE"
+	echo "$DISPL $MODE $SCALE"
+fi

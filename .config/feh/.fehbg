@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-fill "$HOME/Dropbox/Pictures/wallpapers/arch_yellow_hard_btw.png" 
+feh --no-fehbg --bg-scale "$HOME/Dropbox/Pictures/wallpapers/arch_yellow_hard_btw.png" 
