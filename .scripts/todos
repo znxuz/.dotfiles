@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+[[ ! -z "$1" ]] && todoist l -f "#$1" -p || todoist l -f '#Todos' -p

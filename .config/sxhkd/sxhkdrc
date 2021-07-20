@@ -25,6 +25,9 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
 	xbacklight -dec 10
 
+super + shift + F1
+	$HOME/.scripts/xrandr_setup
+
 # opening programs
 super + apostrophe ; {b, c, d, n, m, q, r}
 	{ $BROWSER\

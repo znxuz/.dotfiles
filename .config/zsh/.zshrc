@@ -3,13 +3,12 @@ source $ZDOTDIR/zsh_prompt
 
 # color zsh
 autoload -U colors && colors
-setopt autocd
 
 # misc
 HISTSIZE=100000
 SAVEHIST=100000
 setopt hist_ignore_all_dups
-setopt autocd extendedglob
+setopt extendedglob
 unsetopt beep
 
 # completion
@@ -32,8 +31,8 @@ source $ZDOTDIR/zsh_vi_mode
 echo "\n" && pfetch
 eval$(thefuck --alias)
 
-source /home/zijian/.config/zsh/todoist_functions_fzf.sh
+source $ZDOTDIR/todoist_functions_fzf.sh
 
 # must be at the end
-source $XDG_CONFIG_HOME/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $XDG_CONFIG_HOME/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZDOTDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

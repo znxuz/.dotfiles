@@ -19,15 +19,17 @@ function get_indicator() {
 data="$(sudo tlp-stat -s -b)"
 [[ -z "$data" ]] && exit 1
 
-bats=$(echo "$data" | grep '^Charge\b.*%')
+bats=$(echo "$data" | grep '^Charge\b.*%' | grep -v 'total')
 
-# get percents
+# BAT0
 bat_0="$(echo "$bats" | head -n1 | grep -Eo '[[:digit:]]+\.' | tr -d '.')"
-bat_1="$(echo "$bats" | tail -n1 | grep -Eo '[[:digit:]]+\.' | tr -d '.')"
-
-# get icons
 bat_0_icon="$(get_indicator $bat_0)"
-bat_1_icon="$(get_indicator $bat_1)"
+
+# BAT1
+if [[ $(echo "$bats" | wc -l) -gt 1 ]]; then
+	bat_1="$(echo "$bats" | tail -n1 | grep -Eo '[[:digit:]]+\.' | tr -d '.')"
+	bat_1_icon="$(get_indicator $bat_1)"
+fi
 
 echo -n "$bat_0_icon $bat_0%"
 [[ ! -z "$bat_1" ]] && echo -n "  $bat_1_icon $bat_1%"

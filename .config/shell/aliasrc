@@ -36,6 +36,5 @@ alias \
 
 alias \
 	dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
-	todos='todoist l -f "#Todos" -p'
 
 alias skip='BATS_RUN_SKIPPED=true'

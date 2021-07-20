@@ -3,6 +3,7 @@
 xsetroot -cursor_name left_ptr
 $HOME/.config/polybar/launch.sh
 pgrep -x sxhkd > /dev/null || sxhkd &
+pgrep -x dockd > /dev/null || dockd --daemon &
 
 bspc monitor \
 	$(xrandr | grep '\bconnected\b' | grep -v 'primary' | cut -d' ' -f1) \
