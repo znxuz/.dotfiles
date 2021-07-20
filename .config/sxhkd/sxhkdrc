@@ -1,16 +1,16 @@
 super + Return
     alacritty --working-directory $HOME
 
-# volume control
+# controls 
 super + {F10, F11}
 	pactl set-sink-volume @DEFAULT_SINK@ {-5%,+5%}
 super + F12
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
-# brightness control
+# brightness
 super + {F1, F2}
     xbacklight {-dec, -inc} 10
 
-# volume control (tp)
+# controls (tp)
 XF86AudioRaiseVolume
 	pactl set-sink-volume @DEFAULT_SINK@ +5%
 XF86AudioLowerVolume
@@ -19,7 +19,7 @@ XF86AudioMute
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
 XF86AudioMicMute
 	pactl set-source-mute @DEFAULT_SOURCE@ toggle
-# brightness control
+# brightness
 XF86MonBrightnessUp
 	xbacklight -inc 10
 XF86MonBrightnessDown
@@ -44,7 +44,7 @@ super + Escape ; {apostrophe, s, S, o, u, r, x}
 	, notify-send -u low "zzz..." && sleep 1 && systemctl suspend\
 	, notify-send -u low "shutting down" && sleep 1 && systemctl poweroff\
 	, xset dpms force off\
-	, sc_logout\
+	, user_logout\
 	, reboot\
 	, bspc quit\
 	}

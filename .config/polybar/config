@@ -145,7 +145,7 @@ card = intel_backlight
 
 [module/eth]
 type = custom/script
-exec = sc_bandwidth
+exec = poly_bandwidth
 interval = 2
 format-underline = #689d68
 
@@ -162,7 +162,7 @@ label-muted-foreground = ${colors.foreground-alt}
 
 [module/pkg]
 type = custom/script
-exec = update_pkg
+exec = poly_pkg_update
 interval = 10800
 format-prefix = "  "
 format-underline = #d79921
@@ -177,7 +177,7 @@ label = %percentage_used%%
 
 [module/battery]
 type =custom/script
-exec = sc_battery
+exec = poly_battery
 interval = 60
 format-underline = #d65d0e
 

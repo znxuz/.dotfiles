@@ -78,9 +78,9 @@ exit
 umount -a
 reboot
 
+### post-install
 
 systemctl start sshd
-ip addr
 
 # wlan
 nmtui
@@ -92,6 +92,7 @@ sudo pacman -S sxhkd i3-gaps i3blocks alacritty zsh
 
 chsh -s /bin/zsh
 # git clone https://aur.archlinux.org/dropbox.git
+	# gpg --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
 
 # clone dotfiles repo
 git clone --separate-git-dir=~/.dotfiles \

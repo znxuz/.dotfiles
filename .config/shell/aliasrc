@@ -19,12 +19,10 @@ alias \
 	df='df -h' \
 	sudo='sudo -E'
 
-
 alias \
 	e='$EDITOR' \
 	vim='$EDITOR' \
 	nv='nordvpn' \
-	code='codium' \
 	n='norminette' \
 	news='newsboat' \
 	rename='perl-rename' \
@@ -38,6 +36,6 @@ alias \
 
 alias \
 	dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
-	todos='todoist l -f "#Todos"'
+	todos='todoist l -f "#Todos" -p'
 
 alias skip='BATS_RUN_SKIPPED=true'

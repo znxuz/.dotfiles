@@ -1,25 +1,10 @@
 #!/usr/bin/env bash
 
+DEST=${1:-"/mnt/main/.home_backup"}
+
 log=$HOME/homesync.log
+rsync -azvhP --delete-excluded --exclude-from "$HOME/.scripts/.rsyncexclude" $HOME $DEST >> $log 2>&1
 
-rsync -azvhP --delete-excluded --exclude-from '/home/zijian/.scripts/.rsyncexclude' /home/zijian/ /mnt/main/.backup/ >> $log 2>&1
-
-if [[ -f Qqen ]]
-then
-    rm Qqen
-    echo 'removed old Qqen' >> $log
-fi
-
-if [[ -f Qqem ]]
-then
-    rm Qqem
-    echo 'removed old Qqem' >> $log
-fi
-
-pacman -Qqen > Qqen
-mv Qqen /mnt/main/.backup
-echo 'created a list of explicitly installed packages' >> $log
-
-pacman -Qqem > Qqem
-mv Qqem /mnt/main/.backup
-echo 'created a list of foreign packages (installed from AUR)' >> $log
+pacman -Qqen > $DEST/Qqen && echo 'created a list of explicitly installed packages' >> $log
+pacman -Qqem > $DEST/Qqem && echo 'created a list of aur packages' >> $log
+systemctl list-unit-files --state=enabled > $DEST/systemd-unit-files
