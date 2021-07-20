@@ -43,7 +43,7 @@ dunst &
 sxhkd &
 unclutter &
 redshift -l 51.5:7.4 &
-$HOME/.scripts/set_keyboard_layout
-$HOME/.scripts/xrandr_setup && $HOME/.config/feh/.fehbg
+$HOME/.scripts/set_keyboard_layout &
+$HOME/.scripts/xrandr_setup && $HOME/.config/feh/.fehbg &
 
 exec bspwm

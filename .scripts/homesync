@@ -5,6 +5,7 @@ DEST=${1:-"/mnt/main/.home_backup"}
 log=$HOME/homesync.log
 rsync -azvhP --delete-excluded --exclude-from "$HOME/.scripts/.rsyncexclude" $HOME $DEST >> $log 2>&1
 
-pacman -Qqen > $DEST/Qqen && echo 'created a list of explicitly installed packages' >> $log
-pacman -Qqem > $DEST/Qqem && echo 'created a list of aur packages' >> $log
-systemctl list-unit-files --state=enabled > $DEST/systemd-unit-files
+pacman -Qqen > $HOME/.config/Qqen && cp -f $HOME/.config/Qqen $DEST
+pacman -Qqem > $HOME/.config/Qqem && cp -f $HOME/.config/Qqem $DEST
+systemctl list-unit-files --state=enabled > $HOME/.config/systemd-unit-files \
+	&& cp -f $HOME/.config/system-unit-files $DEST

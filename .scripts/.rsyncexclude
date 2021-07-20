@@ -1,3 +1,4 @@
+*.vbox
 *.vdi
 *.iso
 .cache
@@ -16,6 +17,7 @@ Dropbox
 discord
 BraveSoftware
 VirtualBox
+Virtualbox\ VMs
 VSCodium
 Electron
 GIMP
@@ -24,3 +26,4 @@ obs-studio
 .zoom
 Trash
 Slack
+Mailspring

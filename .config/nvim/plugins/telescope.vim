@@ -2,7 +2,10 @@ lua << EOF
 local actions = require('telescope.actions')
 require('telescope').setup{
 	defaults = {
-		file_sorter =require('telescope.sorters').get_fzy_sorter,
+		prompt_prefix = " ❯ ",
+		sorting_strategy = "ascending",
+		layout_config = { prompt_position = "top", },
+		file_sorter = require('telescope.sorters').get_fzy_sorter,
 		mappings = {
 			i = {
 				["<esc>"] = actions.close,
@@ -13,26 +16,8 @@ require('telescope').setup{
 		shorten_path = false,
 	},
 	pickers = {
-		buffers = {
-			theme = "dropdown",
-			mappings = { i = { ["<M-d>"] = actions.delete_buffer, }, }
-		},
-		find_files = { theme = "dropdown" },
-		live_grep = { theme = "dropdown" },
-		help_tags = { theme = "dropdown" },
-		builtin = { theme = "dropdown" },
-		jumplist = { theme = "dropdown" },
-		oldfiles = { theme = "dropdown" },
-		keymaps = { theme = "dropdown" },
-		quickfix = { theme = "dropdown" },
-		lsp_definitions = { theme = "dropdown" },
-		lsp_implementations = { theme = "dropdown" },
-		lsp_references = { theme = "dropdown" },
-		lsp_dynamic_workspace_symbols = { theme = "dropdown" },
-		lsp_document_symbols = { theme = "dropdown" },
-		lsp_workspace_diagnostics = { theme = "dropdown" },
-		lsp_document_diagnostics = { theme = "dropdown" },
-
+		buffers = { mappings = { i = { ["<M-d>"] = actions.delete_buffer, }, } },
+		-- find_files = { theme = "dropdown" },
 	},
 	extensions = {
 		fzy_native = {
