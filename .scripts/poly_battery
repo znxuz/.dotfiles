@@ -35,5 +35,5 @@ echo -n "$bat_0_icon $bat_0%"
 [[ ! -z "$bat_1" ]] && echo -n "  $bat_1_icon $bat_1%"
 
 [[ "$(echo "$data" | grep "^Power source" | sed 's/.* //g')" == "AC" ]] \
-	&& echo "  "
+	&& echo " "
 exit 0

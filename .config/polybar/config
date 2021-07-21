@@ -45,8 +45,6 @@ bottom = true
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 40
-;offset-x = 1%
-;offset-y = 1%
 radius = 0.0
 fixed-center = false
 dpi = ${xrdb:Xft.dpi:-1}
@@ -56,7 +54,6 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 line-size = 2
-line-color = #f00
 
 border-size = 0
 border-color = ${colors.foreground}
@@ -64,10 +61,11 @@ border-color = ${colors.foreground}
 padding-left = 0
 padding-right = 2
 
-module-margin-left = 3
-module-margin-right = 3
+module-margin-left = 2
+module-margin-right = 2
 
-font-0 = Noto Sans:pixelsize=10;1
+font-0 = Hermit:pixelsize=10;4
+;font-0 = Noto Sans:pixelsize=10;1
 font-1 = Font Awesome 5 Free Solid:pixelsize=10;2
 ;font-x = Noto Sans:fontformat=truetype:size=8:antialias=false;0
 ;font-x = Font Awesome 5 Free:pixelsize=10;2
@@ -77,15 +75,13 @@ modules-left = bspwm
 modules-right = pkg eth memory pulseaudio battery date
 
 tray-position = right
-tray-padding = 2
-;tray-background = #0063ff
-
-;wm-restack = bspwm
-
-;override-redirect = true
+tray-padding = 4
+tray-background =${colors.background}
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+wm-restack = bspwm
 
 [module/xwindow]
 type = internal/xwindow
@@ -100,47 +96,25 @@ label-unmounted-foreground = ${colors.foreground-alt}
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = %index%
+label-focused = %name%
 label-focused-background = ${colors.background-alt}
 label-focused-underline= ${colors.primary}
-label-focused-padding = 2
+label-focused-padding = 3
 
-label-occupied = %index%
+label-occupied = %name%
 label-occupied-padding = 2
 
-label-urgent = %index%!
+label-urgent = %name%!
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
-label-empty = %index%
+label-empty = %name%
 label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
+label-empty-padding = 1
 
 ; Separator in between workspaces
 label-separator = " "
 label-separator-padding = 0
-
-[module/xbacklight]
-type = internal/xbacklight
-
-format = <label> <bar>
-label = BL
-
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = #fff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
 
 [module/eth]
 type = custom/script
@@ -152,7 +126,7 @@ format-underline = #689d68
 type = internal/pulseaudio
 
 format-volume = <label-volume>
-label-volume =   %percentage%%
+label-volume =  %percentage%%
 label-volume-foreground = ${colors.foreground}
 label-volume-underline = #98971a
 
@@ -163,13 +137,13 @@ label-muted-foreground = ${colors.foreground-alt}
 type = custom/script
 exec = poly_pkg_update
 interval = 10800
-format-prefix = "  "
+format-prefix = " "
 format-underline = #d79921
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "  "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 format-underline = #458588
 label = %percentage_used%%
@@ -189,7 +163,7 @@ date = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = " "
+format-prefix = ""
 format-prefix-foreground = ${colors.foreground}
 format-underline = #b16286
 
@@ -197,11 +171,6 @@ label = %date% %time%
 
 [settings]
 screenchange-reload = true
-;compositing-background = xor
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-border = over
-;pseudo-transparency = false
 
 [global/wm]
 margin-top = 0

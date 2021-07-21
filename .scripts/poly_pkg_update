@@ -1,12 +1,18 @@
 #!/usr/bin/env bash
 
-count=$((expect <<- EOF
+data="$(2>&1 expect <<- EOF
 	set timeout -1
 	spawn sudo pacman -Syu
 	expect "*Y/n*"
 	send -- "n\n"
 	expect eof
 EOF
-) 2>&1 | grep -Eo "Packages \([0-9]+\)" | sed 's/[^0-9]//g')
+)"
 
-[[ "$count" -gt 10 ]] && echo "$count"
+count=$(echo "$data" | grep -Eo "Packages \([0-9]+\)" | sed 's/[^0-9]//g')
+
+if [[ $(echo "$data" | grep -o "linux-") ]]; then
+	echo " $count"
+elif [[ "$count" -gt 10 ]]; then
+	echo "$count"
+fi

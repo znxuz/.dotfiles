@@ -1,0 +1,22 @@
+UNIT FILE                          STATE   VENDOR PRESET
+cups.path                          enabled disabled
+acpid.service                      enabled disabled
+auto-cpufreq.service               enabled disabled
+bluetooth-autoconnect.service      enabled disabled
+bluetooth.service                  enabled disabled
+cronie.service                     enabled disabled
+cups.service                       enabled disabled
+getty@.service                     enabled enabled
+lm_sensors.service                 enabled disabled
+NetworkManager-dispatcher.service  enabled disabled
+NetworkManager-wait-online.service enabled disabled
+NetworkManager.service             enabled disabled
+sshd.service                       enabled disabled
+systemd-timesyncd.service          enabled enabled
+tlp.service                        enabled disabled
+vnstat.service                     enabled disabled
+cups.socket                        enabled disabled
+remote-fs.target                   enabled enabled
+fstrim.timer                       enabled disabled
+
+19 unit files listed.

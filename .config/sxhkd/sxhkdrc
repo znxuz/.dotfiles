@@ -42,6 +42,9 @@ super + apostrophe ; {b, c, d, n, m, q, r}
 super + alt + apostrophe
 	rofi -show
 
+super + alt + d
+	process_kill
+
 super + Escape ; {apostrophe, s, S, o, u, r, x}
 	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded"\
 	, notify-send -u low "zzz..." && sleep 1 && systemctl suspend\
@@ -54,9 +57,9 @@ super + Escape ; {apostrophe, s, S, o, u, r, x}
 
 # screenshot
 super + shift + s
-    flameshot full -c -p ~/Pictures/Screenshots && sleep 30 && wait $(pgrep sleep) && pkill flameshot
+    flameshot full -c -p ~/Pictures/screenshots && sleep 30 && wait $(pgrep sleep) && pkill flameshot
 super + alt + s
-    flameshot gui -p ~/Pictures/Screenshots && sleep 240 && wait $(pgrep sleep) && pkill flameshot
+    flameshot gui -p ~/Pictures/screenshots && sleep 240 && wait $(pgrep sleep) && pkill flameshot
 
 # bspwm
 
@@ -82,7 +85,7 @@ super + y
 
 # set the window state
 super + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+	bspc node -t {tiled,\~pseudo_tiled,\~floating,\~fullscreen}
 
 # alternate between the tiled and monocle layout
 super + m
