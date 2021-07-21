@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+xrandr_setup \
+	&& fehbg \
+	&& bspc wm -r \
+	&& notify-send -u low "xrandr & bspwm reloaded"

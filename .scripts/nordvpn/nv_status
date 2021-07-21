@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+dunstify -u low "$(nordvpn status | sed 's/^M//g' \
+	| sed -E '0,/.*([A-Z]+)/s/.*([A-Z]+)/\1/')"

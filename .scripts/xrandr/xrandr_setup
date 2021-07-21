@@ -13,7 +13,7 @@ function get_scale()
 DP_STATUS=$(xrandr | grep -o '\bconnected\b' | wc -l)
 if [[ $DP_STATUS -gt 1 ]]
 then
-	# tp single monitor
+	# 4k single monitor
 	XRANDR="$(xrandr | grep -v 'eDP1')"
 	DISPL=$(echo "$XRANDR" | grep '\bconnected\b' | cut -d' ' -f1)
 	MODE=$(echo "$XRANDR" | grep '\bconnected\b' -A1 | tail -n1 \
@@ -21,18 +21,11 @@ then
 
 	xrandr --output "$DISPL" --primary --mode "$MODE" --scale 1 \
 		--output eDP1 --off
-	$HOME/.config/feh/.fehbg
-	notify-send -u normal "xrandr_config loaded"
-	# if duplicate
-		# --output eDP1 --mode 1920x1080 --scale 2 --same-as DP1
-	# TODO tp duo monitor extend
 else
-	DISPL=$(xrandr | grep primary | cut -d' ' -f1 | tr -d '\n')
+	DISPL=$(xrandr | grep 'primary' | cut -d' ' -f1)
 	MODE=$(xrandr | grep -A1 '\bconnected\b' | tail -n1 \
 		| grep -Eo '[[:digit:]]{4}x[[:digit:]]{4}')
 
 	xrandr --output "$DISPL" --primary --mode "$MODE" \
 		--scale "$(get_scale $MODE)"
-	$HOME/.config/feh/.fehbg
-	notify-send -u normal "xrandr_config loaded"
 fi

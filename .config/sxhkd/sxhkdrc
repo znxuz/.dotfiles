@@ -26,7 +26,7 @@ XF86MonBrightnessDown
 	xbacklight -dec 10
 
 super + shift + F1
-	$HOME/.scripts/xrandr_setup
+	xrandr_refresh
 
 # opening programs
 super + apostrophe ; {b, c, d, n, m, q, r}

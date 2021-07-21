@@ -43,7 +43,8 @@ dunst &
 sxhkd &
 unclutter &
 redshift -l 51.5:7.4 &
-$HOME/.scripts/set_keyboard_layout &
-$HOME/.scripts/xrandr_setup && $HOME/.config/feh/.fehbg &
+pgrep -x dockd > /dev/null || dockd --daemon &
+(set_keyboard_layout && pgrep -x sxhkd > /dev/null || sxhkd) &
+xrandr_refresh && fehbg
 
 exec bspwm

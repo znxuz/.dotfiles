@@ -1,5 +1,5 @@
 PATH=$PATH:$HOME/.local/bin
-PATH=$PATH:$HOME/.scripts
+PATH=${PATH}:$(find $HOME/.scripts -type d | tr '\n' ':' | sed 's/:$//')
 
 export SHELL="/usr/bin/zsh"
 export EDITOR="nvim"

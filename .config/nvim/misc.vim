@@ -22,9 +22,11 @@ endif
 	set clipboard=unnamedplus
 	set colorcolumn=80
 	set ttimeoutlen=0
+	set nosc
 
 " search
 	set incsearch
+	set nohls
 	set ignorecase
 	set smartcase
 	nnoremap // /\<\><left><left>
@@ -46,7 +48,7 @@ endif
 	autocmd BufEnter * if isdirectory(expand('%:p')) | :cd %:p:h | :bd
 
 " save session
-	nnoremap <C-S> <CMD>wa \| mks! \| qa<CR>
+	nnoremap <A-s> <CMD>wa \| mks! \| qa<CR>
 
 " invoke terminal
 	nnoremap <leader>t <CMD>sp \| resize 15 \| term<CR>

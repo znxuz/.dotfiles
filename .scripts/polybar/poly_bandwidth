@@ -1,27 +1,10 @@
 #!/usr/bin/env bash
 
-while [[ $# -gt 1 ]]; do
-    key="$1"
-    case "$key" in 
-        -i|--inlabel)
-            INLABEL="$2"
-            shift;;
-        -o|--outlabel)
-            OUTLABEL="$2"
-            shift;;
-    esac
-    shift
-done
-
-[[ -z "$INLABEL" ]] && INLABEL=""
-[[ -z "$OUTLABEL" ]] && OUTLABEL=""
+INLABEL=""
+OUTLABEL=""
 
 # Use the provided interface, otherwise the device used for the default route.
-if [[ -z $INTERFACE ]] && [[ -n $BLOCK_INSTANCE ]]; then
-  INTERFACE=$BLOCK_INSTANCE
-elif [[ -z $INTERFACE ]]; then
-  INTERFACE=$(ip route | awk '/^default/ { print $5 ; exit }')
-fi
+INTERFACE=$(ip route | awk '/^default/ { print $5 ; exit }')
 
 # Exit if there is no default route
 [[ -z "$INTERFACE" ]] && exit

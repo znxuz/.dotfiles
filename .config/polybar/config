@@ -59,7 +59,7 @@ border-size = 0
 border-color = ${colors.foreground}
 
 padding-left = 0
-padding-right = 2
+padding-right = 0
 
 module-margin-left = 2
 module-margin-right = 2
@@ -72,7 +72,7 @@ font-1 = Font Awesome 5 Free Solid:pixelsize=10;2
 
 modules-left = bspwm
 ;modules-center = mpd
-modules-right = pkg eth memory pulseaudio battery date
+modules-right = pkg eth memory pulseaudio battery date tray
 
 tray-position = right
 tray-padding = 4
@@ -95,23 +95,18 @@ label-unmounted-foreground = ${colors.foreground-alt}
 
 [module/bspwm]
 type = internal/bspwm
-
 label-focused = %name%
 label-focused-background = ${colors.background-alt}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 3
-
 label-occupied = %name%
 label-occupied-padding = 2
-
 label-urgent = %name%!
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
-
 label-empty = %name%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 1
-
 ; Separator in between workspaces
 label-separator = " "
 label-separator-padding = 0
@@ -124,12 +119,10 @@ format-underline = #689d68
 
 [module/pulseaudio]
 type = internal/pulseaudio
-
 format-volume = <label-volume>
 label-volume =  %percentage%%
 label-volume-foreground = ${colors.foreground}
 label-volume-underline = #98971a
-
 label-muted =  muted
 label-muted-foreground = ${colors.foreground-alt}
 
@@ -157,17 +150,17 @@ format-underline = #d65d0e
 [module/date]
 type = internal/date
 interval = 1
-
 date = " %Y-%m-%d"
-
 time = %H:%M
 time-alt = %H:%M:%S
-
 format-prefix = ""
 format-prefix-foreground = ${colors.foreground}
 format-underline = #b16286
-
 label = %date% %time%
+
+[module/tray]
+type = custom/script
+exec = echo ""
 
 [settings]
 screenchange-reload = true
