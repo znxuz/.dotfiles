@@ -1,4 +1,4 @@
-fpath+=$XDG_CONFIG_HOME/zsh/pure
+fpath+=$ZDOTDIR/pure
 autoload -U promptinit; promptinit
 # zstyle :prompt:pure:prompt:success color '#ebdbb2'
 # zstyle :prompt:pure:path color yellow

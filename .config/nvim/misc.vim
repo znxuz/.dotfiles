@@ -56,6 +56,9 @@ endif
 " delete buffer while keeping split
 	command! Bd b# | bd#
 
+" snippets
+	nnoremap ]bash i#!/usr/bin/env bash<CR><ESC>
+
 " netrw
 	nnoremap <leader>e <CMD>Vex \| vertical resize 30<CR>
 	let g:netrw_banner=0

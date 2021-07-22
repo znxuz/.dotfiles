@@ -25,6 +25,8 @@ imap <silent> <c-p> <Plug>(completion_trigger)
 	nnoremap <silent> <leader>gea <CMD>Telescope lsp_workspace_diagnostics<CR>
 	nnoremap <silent> <leader>gec <CMD>Telescope lsp_document_diagnostics<CR>
 
+" language servers
+	" https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
 " C language server
 	lua require('lspconfig').clangd.setup{ on_attach=require'completion'.on_attach }
 	nnoremap <silent> <leader>s :ClangdSwitchSourceHeader<CR>
