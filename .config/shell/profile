@@ -25,10 +25,5 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND -td"
 export PASSWORD_STORE_DIR=$XDG_DATA_HOME/password-store
 export GNUPGHOME=$XDG_DATA_HOME/gnupg
 
-# custom ls dir colors
-# eval "$(dircolors $XDG_CONFIG_HOME/shell/dir_colors_gruv)"
-
 # calibre dark theme
 export CALIBRE_USE_DARK_PALETTE=1
-
-source $ZDOTDIR/.zshenv

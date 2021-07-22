@@ -5,6 +5,7 @@ source $HOME/.config/shell/aliasrc
 source $ZDOTDIR/zsh_prompt
 
 # color zsh
+eval $(dircolors $XDG_CONFIG_HOME/shell/gruvbox_dircolors)
 autoload -U colors && colors
 
 # misc
