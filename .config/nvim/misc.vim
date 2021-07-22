@@ -44,7 +44,7 @@ endif
 	inoremap <leader><TAB> <C-x><C-f>
 
 " change working dir
-	nnoremap <leader>cd :cd %:p:h \| pwd<CR>
+	nnoremap <leader>cd <CMD>cd %:p:h<CR>
 	autocmd BufEnter * if isdirectory(expand('%:p')) | :cd %:p:h | :bd
 
 " save session

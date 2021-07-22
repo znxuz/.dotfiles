@@ -10,22 +10,23 @@ function get_scale()
 	fi
 }
 
-DP_STATUS=$(xrandr | grep -o '\bconnected\b' | wc -l)
-if [[ $DP_STATUS -gt 1 ]]
+displ_status=$(xrandr | grep -o '\bconnected\b' | wc -l)
+if [[ $displ_status -gt 1 ]]
 then
-	# 4k single monitor
-	XRANDR="$(xrandr | grep -v 'eDP1')"
-	DISPL=$(echo "$XRANDR" | grep '\bconnected\b' | cut -d' ' -f1)
-	MODE=$(echo "$XRANDR" | grep '\bconnected\b' -A1 | tail -n1 \
+	# 4k single external monitor
+	xrandr_output="$(xrandr | grep -v 'eDP1')"
+	display=$(echo "$xrandr_output" | grep '\bconnected\b' | cut -d' ' -f1)
+	mode=$(echo "$xrandr_output" | grep '\bconnected\b' -A1 | tail -n1 \
 		| grep -Eo '[[:digit:]]{4}x[[:digit:]]{4}')
 
-	xrandr --output "$DISPL" --primary --mode "$MODE" --scale 1 \
+	xrandr --output "$display" --primary --mode "$mode" --scale 1 \
 		--output eDP1 --off
 else
-	DISPL=$(xrandr | grep 'primary' | cut -d' ' -f1)
-	MODE=$(xrandr | grep -A1 '\bconnected\b' | tail -n1 \
+	# integrated display
+	display=$(xrandr | grep 'primary' | cut -d' ' -f1)
+	mode=$(xrandr | grep -A1 '\bconnected\b' | tail -n1 \
 		| grep -Eo '[[:digit:]]{4}x[[:digit:]]{4}')
 
-	xrandr --output "$DISPL" --primary --mode "$MODE" \
-		--scale "$(get_scale $MODE)"
+	xrandr --output "$display" --primary --mode "$mode" \
+		--scale "$(get_scale $mode)"
 fi

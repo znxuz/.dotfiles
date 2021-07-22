@@ -17,7 +17,7 @@
 " treesitter
 lua << EOF
 require'nvim-treesitter.configs'.setup {
-	ensure_installed = { "c", "cpp", "bash", "comment" },
+	ensure_installed = { "c", "cpp", "bash", "lua", "comment" },
 	highlight = {
 		enable = true
 	},

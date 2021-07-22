@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-DEST=${1:-"/mnt/main/.home_backup"}
+dest=${1:-"/mnt/main/.home_backup"}
 
 log=$HOME/homesync.log
-rsync -azvhP --delete-excluded --exclude-from "$HOME/.scripts/.rsyncexclude" $HOME $DEST >> $log 2>&1
+rsync -azvhP --delete-excluded --exclude-from "$HOME/.scripts/.rsyncexclude" $HOME $dest >> $log 2>&1
 
-pacman -Qqen > $HOME/.config/Qqen && cp -f $HOME/.config/Qqen $DEST
-pacman -Qqem > $HOME/.config/Qqem && cp -f $HOME/.config/Qqem $DEST
+pacman -Qqen > $HOME/.config/Qqen && cp -f $HOME/.config/Qqen $dest
+pacman -Qqem > $HOME/.config/Qqem && cp -f $HOME/.config/Qqem $dest
 systemctl list-unit-files --state=enabled > $HOME/.config/systemd-unit-files \
-	&& cp -f $HOME/.config/system-unit-files $DEST
+	&& cp -f $HOME/.config/system-unit-files $dest
