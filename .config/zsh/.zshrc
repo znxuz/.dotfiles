@@ -1,3 +1,6 @@
+# aliases
+source $HOME/.config/shell/aliasrc
+
 # prompt
 source $ZDOTDIR/zsh_prompt
 
@@ -29,7 +32,7 @@ source $ZDOTDIR/zsh_vi_mode
 
 # eye candy
 echo "\n" && pfetch
-eval$(thefuck --alias)
+eval $(thefuck --alias)
 
 source $ZDOTDIR/todoist_functions_fzf.sh
 
