@@ -31,10 +31,6 @@ source $ZDOTDIR/zsh_fzf
 # vi mode
 source $ZDOTDIR/zsh_vi_mode
 
-# eye candy
-echo "\n" && pfetch
-eval $(thefuck --alias)
-
 source $ZDOTDIR/todoist_functions_fzf.sh
 
 # nnn
@@ -44,3 +40,6 @@ export NNN_OPTS="eEHR"
 # must be at the end
 source $ZDOTDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# eye candy
+echo "\n" && pfetch

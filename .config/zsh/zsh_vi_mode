@@ -33,3 +33,13 @@ preexec() { echo -ne '\e[2 q' ;} # Use underline shape cursor for starting new p
 # edit in vim with ctrl-e
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
+
+# better yankin'
+function vi-yank-xclip
+{
+	zle vi-yank
+	echo "$CUTBUFFER" | xclip
+}
+
+zle -N vi-yank-xclip
+bindkey -M vicmd 'y' vi-yank-xclip
