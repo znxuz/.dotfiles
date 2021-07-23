@@ -1,9 +1,9 @@
 #!/bin/sh
 
-function get_scale()
+get_scale()
 {
 	resolution="$1"
-	if [[ "$resolution" = '1920x1080' ]]; then
+	if [ "$resolution" = '1920x1080' ]; then
 		echo 1.25
 	else
 		echo 1
@@ -11,7 +11,7 @@ function get_scale()
 }
 
 displ_status=$(xrandr | grep -o '\bconnected\b' | wc -l)
-if [[ $displ_status -gt 1 ]]
+if [ $displ_status -gt 1 ]
 then
 	# 4k single external monitor
 	xrandr_output="$(xrandr | grep -v 'eDP1')"

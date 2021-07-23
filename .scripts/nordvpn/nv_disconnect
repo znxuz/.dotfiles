@@ -17,6 +17,6 @@ DONE
 
 systemctl status nordvpnd | grep -E "(inactive|dead)"
 status=$?
-[ $status -eq 0 ] && notify-send -u low "daemon killed" || \
+([ $status -eq 0 ] && notify-send -u low "daemon killed") || \
 	(notify-send -u low "failed killing daemon" && exit 1)
 exit 0

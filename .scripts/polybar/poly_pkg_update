@@ -11,7 +11,7 @@ EOF
 
 count=$(echo "$data" | grep -Eo "Packages \([0-9]+\)" | sed 's/[^0-9]//g')
 
-if [[ $(echo "$data" | grep -o "linux-") ]]; then
+if echo "$data" | grep -q "linux-" ; then
 	echo " $count"
 elif [[ "$count" -gt 10 ]]; then
 	echo "$count"

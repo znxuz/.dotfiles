@@ -33,10 +33,6 @@ source $ZDOTDIR/zsh_vi_mode
 
 source $ZDOTDIR/todoist_functions_fzf.sh
 
-# nnn
-export NNN_FCOLORS="000004020005050009060B00"
-export NNN_OPTS="eEHR"
-
 # must be at the end
 source $ZDOTDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

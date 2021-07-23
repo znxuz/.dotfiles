@@ -3,8 +3,8 @@ local actions = require('telescope.actions')
 require('telescope').setup{
 	defaults = {
 		prompt_prefix = " ❯ ",
-		sorting_strategy = "ascending",
 		layout_config = { prompt_position = "top", },
+		sorting_strategy = "ascending",
 		file_sorter = require('telescope.sorters').get_fzy_sorter,
 		mappings = {
 			i = {
@@ -16,7 +16,10 @@ require('telescope').setup{
 		shorten_path = false,
 	},
 	pickers = {
-		buffers = { mappings = { i = { ["<M-d>"] = actions.delete_buffer, }, } },
+		buffers = { 
+			mappings = { i = { ["<M-d>"] = actions.delete_buffer, } },
+			-- sort_lastused = true,
+		},
 		-- find_files = { theme = "dropdown" },
 	},
 	extensions = {

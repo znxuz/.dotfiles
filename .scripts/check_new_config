@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-cd ${XDG_CONFIG_HOME-:$HOME/.config}
-shopt -s expand_aliases && source $XDG_CONFIG_HOME/shell/aliasrc || exit 1
+cd ${XDG_CONFIG_HOME-:$HOME/.config} && shopt -s expand_aliases \
+	&& source ${XDG_CONFIG_HOME-:$HOME/.config}/shell/aliasrc || exit 1
 
 all_entries=$(ls | sort)
 cached=$(dfs ls-files -c | cut -d'/' -f1 | sort | uniq)
-new_entries=$(comm -23 <(comm -23 <(echo "$all_entries") <(echo "$cached")) <(cat .gitignore | sort))
+new_entries=$(comm -23 <(comm -23 <(echo "$all_entries") <(echo "$cached")) <(sort .gitignore))
 
-if [[ ! -z "$new_entries" ]]; then 
+if [[ -n "$new_entries" ]]; then 
 	for entry in $new_entries
 	do
-		printf "cache this directory [$entry] (y|n)?\n"
+		printf 'cache this directory [%s] (y|n)?\n' "$entry"
 		read ret && [[ "$ret" =~ [N|n] ]] \
 			&& echo "add $entry to .gitignore" \
 			&& echo "$entry" >> .gitignore

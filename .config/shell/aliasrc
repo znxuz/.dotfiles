@@ -32,6 +32,7 @@ alias \
 	xclip='xclip -sel clip' \
 	m='make' \
 	c='gcc -Wall -Werror -Wextra' \
+	sc='shellcheck' \
 	db='dropbox > /dev/null 2>&1 &!'
 
 alias \

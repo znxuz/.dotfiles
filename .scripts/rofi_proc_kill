@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 process=$(ps -e | awk '{print $NF}' | sort | uniq | rofi -dmenu -sep'\n' -p 'term')
-[[ ! -z "$process" ]] && killall "$process" > /dev/null 2>&1
+[[ -n "$process" ]] && killall "$process" > /dev/null 2>&1

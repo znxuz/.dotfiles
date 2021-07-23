@@ -33,7 +33,7 @@ super + apostrophe ; {b, c, d, n, m, q, r}
 	{ $BROWSER\
 	, codium\
 	, discord\
-	, alacritty -e nvim\
+	, alacritty -e nnn\
 	, mailspring\
 	, qbittorrent\
 	, alacritty -e ranger\
@@ -43,7 +43,7 @@ super + alt + apostrophe
 	rofi -show
 
 super + alt + d
-	process_kill
+	rofi_proc_kill
 
 super + Escape ; {apostrophe, s, S, o, u, r, x}
 	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded"\
