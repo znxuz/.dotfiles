@@ -29,6 +29,7 @@ alias \
 	qb='qbittorrent' \
 	bt='bluetoothctl' \
 	detach="function detach() { bg && disown %\$(jobs | wc -l) } && detach" \
+	eject='udisksctl power-off -b' \
 	xclip='xclip -sel clip' \
 	m='make' \
 	c='gcc -Wall -Werror -Wextra' \

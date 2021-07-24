@@ -29,7 +29,7 @@ super + shift + F1
 	xrandr_refresh
 
 # opening programs
-super + apostrophe ; {b, c, d, n, m, q, r}
+super + apostrophe ; {b, c, d, n, m, q, r, s}
 	{ $BROWSER\
 	, codium\
 	, discord\
@@ -37,6 +37,7 @@ super + apostrophe ; {b, c, d, n, m, q, r}
 	, mailspring\
 	, qbittorrent\
 	, alacritty -e ranger\
+	, slack\
 	}
 
 super + alt + apostrophe
