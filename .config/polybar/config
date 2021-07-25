@@ -72,7 +72,7 @@ font-2 = Font Awesome 5 Free Solid:pixelsize=10;2
 
 modules-left = bspwm
 ;modules-center = mpd
-modules-right = pkg cputemp eth memory pulseaudio battery date tray
+modules-right = pkg eth cputemp memory pulseaudio battery date tray
 
 tray-position = right
 tray-padding = 4
@@ -106,10 +106,23 @@ label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 label-empty = %name%
 label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 1
+label-empty-padding = 2
 ; Separator in between workspaces
-label-separator = " "
+label-separator = ""
 label-separator-padding = 0
+
+[module/pkg]
+type = custom/script
+exec = poly-pkg-update
+interval = 10800
+format-prefix = " "
+format-underline = #d79921
+
+[module/eth]
+type = custom/script
+exec = poly-bandwidth
+interval = 2
+format-underline = #689d68
 
 [module/cputemp]
 type = custom/script
@@ -117,12 +130,6 @@ exec = poly-cputemp
 interval = 2
 format-prefix = " "
 format-underline = #928374
-
-[module/eth]
-type = custom/script
-exec = poly-bandwidth
-interval = 2
-format-underline = #689d68
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -132,13 +139,6 @@ label-volume-foreground = ${colors.foreground}
 label-volume-underline = #98971a
 label-muted =  muted
 label-muted-foreground = ${colors.foreground-alt}
-
-[module/pkg]
-type = custom/script
-exec = poly-pkg-update
-interval = 10800
-format-prefix = " "
-format-underline = #d79921
 
 [module/memory]
 type = internal/memory

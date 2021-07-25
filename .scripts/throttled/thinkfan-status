@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+tpf_status=$(systemctl status thinkfan | grep -Eo '(inactive|failed)' || echo 'active')
+notify-send -u low "thinkfan.service $tpf_status"

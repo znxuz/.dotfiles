@@ -29,7 +29,7 @@ super + shift + F1
 	xrandr-refresh
 
 # opening programs
-super + apostrophe ; {b, c, d, n, m, q, r, s}
+super + apostrophe ; {b, c, d, n, m, q, r, s, x}
 	{ $BROWSER\
 	, codium\
 	, discord\
@@ -38,6 +38,7 @@ super + apostrophe ; {b, c, d, n, m, q, r, s}
 	, qbittorrent\
 	, alacritty -e ranger\
 	, slack\
+	, source $XDG_CONFIG_HOME/X11/xprofile\
 	}
 
 super + alt + apostrophe
@@ -46,27 +47,22 @@ super + alt + apostrophe
 super + alt + d
 	rofi-proc-kill
 
-super + Escape ; {apostrophe, s, S, u, r, o, x}
+super + Escape ; {apostrophe, s, S, u, r, o}
 	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded"\
-	, notify-send -u low "zzz..." && sleep 0.5 && systemctl suspend\
-	, notify-send -u low "  " && sleep 0.5 && systemctl poweroff\
-	, notify-send -u low "  " && sleep 0.5 && user_logout\
-	, notify-send -u low "  " && sleep 0.5 && reboot\
+	, notify-send -u low "zzz..." && sleep 1 && systemctl suspend\
+	, notify-send -u low "  " && sleep 1 && systemctl poweroff\
+	, notify-send -u low "  " && sleep 1 && user-logout\
+	, notify-send -u low "  " && sleep 1 && reboot\
 	, xset dpms force off\
-	, bspc quit\
 	}
 
 # screenshot
 super + shift + s
-    flameshot full -c -p ~/Pictures/screenshots && sleep 30 && wait $(pgrep sleep) && pkill flameshot
+    flameshot full -c -p ~/Pictures/screenshots && sleep 30 && pkill flameshot
 super + alt + s
-    flameshot gui -p ~/Pictures/screenshots && sleep 240 && wait $(pgrep sleep) && pkill flameshot
+    flameshot gui -p ~/Pictures/screenshots && sleep 240 && pkill flameshot
 
-# bspwm
-
-#
-# bspwm hotkeys
-#
+## bspwm
 
 # restart bspwm
 super + shift + r
