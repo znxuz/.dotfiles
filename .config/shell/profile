@@ -31,7 +31,3 @@ export NNN_OPTS="eEHR"
 
 # calibre dark theme
 export CALIBRE_USE_DARK_PALETTE=1
-
-# TODO for statistics
-find /sys/devices -type f -name "temp*_input" \
-	> $HOME/hwmon/test$(($(ls $HOME/hwmon | wc -l) + 1))

@@ -65,14 +65,14 @@ module-margin-left = 2
 module-margin-right = 2
 
 font-0 = Hermit:pixelsize=10;4
-;font-0 = Noto Sans:pixelsize=10;1
-font-1 = Font Awesome 5 Free Solid:pixelsize=10;2
+font-1 = Noto Sans:pixelsize=10;2
+font-2 = Font Awesome 5 Free Solid:pixelsize=10;2
 ;font-x = Noto Sans:fontformat=truetype:size=8:antialias=false;0
 ;font-x = Font Awesome 5 Free:pixelsize=10;2
 
 modules-left = bspwm
 ;modules-center = mpd
-modules-right = pkg eth memory pulseaudio battery date tray
+modules-right = pkg cputemp eth memory pulseaudio battery date tray
 
 tray-position = right
 tray-padding = 4
@@ -111,9 +111,16 @@ label-empty-padding = 1
 label-separator = " "
 label-separator-padding = 0
 
+[module/cputemp]
+type = custom/script
+exec = poly-cputemp
+interval = 2
+format-prefix = " "
+format-underline = #928374
+
 [module/eth]
 type = custom/script
-exec = poly_bandwidth
+exec = poly-bandwidth
 interval = 2
 format-underline = #689d68
 
@@ -128,7 +135,7 @@ label-muted-foreground = ${colors.foreground-alt}
 
 [module/pkg]
 type = custom/script
-exec = poly_pkg_update
+exec = poly-pkg-update
 interval = 10800
 format-prefix = " "
 format-underline = #d79921
@@ -143,7 +150,7 @@ label = %percentage_used%%
 
 [module/battery]
 type =custom/script
-exec = poly_battery
+exec = poly-battery
 interval = 60
 format-underline = #d65d0e
 

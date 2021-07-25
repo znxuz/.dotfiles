@@ -12,9 +12,6 @@ alias \
 	cp='cp -iv' \
 	mv='mv -iv' \
 	rm='rm -v' \
-	mkdir='mkdir -pv' \
-	rmdir='rmdir -pv' \
-	kall='killall -v' \
 	free='free -h' \
 	df='df -h' \
 	sudo='sudo -E'

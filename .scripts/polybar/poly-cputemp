@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+cores_temp=$(find /sys/devices -type f -name "temp*_input" | grep 'coretemp')
+counts=$(echo "$cores_temp" | wc -l)
+
+avg_temp=$(($(echo "$cores_temp" | xargs cat | cut -c 1-2 \
+	| sed -z 's/\n/+/g;s/+$/\n/' | bc) / "$counts"))
+printf "$avg_temp°\n"

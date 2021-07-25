@@ -26,7 +26,7 @@ XF86MonBrightnessDown
 	xbacklight -dec 10
 
 super + shift + F1
-	xrandr_refresh
+	xrandr-refresh
 
 # opening programs
 super + apostrophe ; {b, c, d, n, m, q, r, s}
@@ -44,15 +44,15 @@ super + alt + apostrophe
 	rofi -show
 
 super + alt + d
-	rofi_proc_kill
+	rofi-proc-kill
 
-super + Escape ; {apostrophe, s, S, o, u, r, x}
+super + Escape ; {apostrophe, s, S, u, r, o, x}
 	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded"\
-	, notify-send -u low "zzz..." && sleep 1 && systemctl suspend\
-	, notify-send -u low "shutting down" && sleep 1 && systemctl poweroff\
+	, notify-send -u low "zzz..." && sleep 0.5 && systemctl suspend\
+	, notify-send -u low "  " && sleep 0.5 && systemctl poweroff\
+	, notify-send -u low "  " && sleep 0.5 && user_logout\
+	, notify-send -u low "  " && sleep 0.5 && reboot\
 	, xset dpms force off\
-	, user_logout\
-	, reboot\
 	, bspc quit\
 	}
 
