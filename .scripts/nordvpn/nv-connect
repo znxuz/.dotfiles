@@ -11,9 +11,9 @@ expect <<- DONE
 	expect eof
 DONE
 
-(systemctl status nordvpnd | grep inactive > /dev/null 2>&1
-[ $? -eq 1 ] && notify-send -u low "nordvpnd started successfully") \
+(systemctl status nordvpnd | grep -q '\bactive' \
+	&& notify-send -u low "nordvpnd started successfully") \
 	|| (notify-send -u low "starting nordvpnd failed" && exit 1)
 
 (nordvpn connect France && exit 0) \
-	|| notify-send -u low "connection failed" && exit 1
+	|| (notify-send -u low "connection failed" && exit 1)

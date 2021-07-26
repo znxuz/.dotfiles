@@ -31,9 +31,8 @@ if [[ $(echo "$bats" | wc -l) -gt 1 ]]; then
 	bat_1_icon="$(get_indicator $bat_1)"
 fi
 
-echo -n "$bat_0_icon $bat_0%"
-[[ -n "$bat_1" ]] && echo -n "  $bat_1_icon $bat_1%"
-
 [[ "$(echo "$data" | grep "^Power source" | sed 's/.* //g')" == "AC" ]] \
-	&& echo " "
-exit 0
+	&& printf " "
+
+echo -n "$bat_0_icon $bat_0%"
+[[ -n "$bat_1" ]] && echo "  $bat_1_icon $bat_1%"

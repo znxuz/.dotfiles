@@ -1,12 +1,25 @@
+Plug 'folke/zen-mode.nvim'
+lua << EOF
+require("zen-mode").setup {
+	window = {
+		backdrop = 1,
+		width = 86,
+		height = 1,
+		options = {
+			signcolumn = "yes",
+			number = true,
+			relativenumber = true,
+		},
+	},
+}
+EOF
+nnoremap <leader>z <CMD>ZenMode<CR>
+
 Plug 'junegunn/goyo.vim'
 	let g:goyo_height = 100
 	let g:goyo_width = 82
 	let g:goyo_linenr = 1
 	nnoremap <leader>z <CMD>Goyo<CR>
-
-Plug 'jmckiern/vim-venter'
-
-Plug 'windwp/nvim-autopairs'
 
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 
@@ -69,7 +82,6 @@ Plug 'mengelbrecht/lightline-bufferline'
 
 " Plug 'kyazdani42/nvim-tree.lua'
 	nnoremap <leader>e :NvimTreeToggle<CR>
-
 	let g:nvim_tree_side = 'left'
 	let g:nvim_tree_width = 25
 	let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ] "empty by default

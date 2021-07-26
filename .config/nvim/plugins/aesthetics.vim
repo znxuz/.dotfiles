@@ -30,19 +30,4 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
-" zen mode
-lua << EOF
-require("zen-mode").setup {
-	window = {
-		backdrop = 1,
-		width = 86,
-		height = 1,
-		options = {
-			signcolumn = "yes",
-			number = true,
-			relativenumber = true,
-		},
-	},
-}
-EOF
-nnoremap <leader>z <CMD>ZenMode<CR>
+nnoremap <leader>z <CMD>VenterToggle<CR>

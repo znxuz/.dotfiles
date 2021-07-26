@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-pgrep -x nordvpnd > /dev/null 2>&1
-[[ "$?" -eq 1 ]] && notify-send -u low "no nordvpnd instance running" && exit 1
+pgrep -x nordvpnd > /dev/null \
+	|| (notify-send -u low "no nordvpnd instance running" && exit 1)
 
-notify-send -u low "disconnecting..."
 nordvpn disconnect
 
 expect <<- DONE
@@ -15,8 +14,6 @@ expect <<- DONE
 	expect eof
 DONE
 
-systemctl status nordvpnd | grep -E "(inactive|dead)"
-status=$?
-([ $status -eq 0 ] && notify-send -u low "daemon killed") || \
-	(notify-send -u low "failed killing daemon" && exit 1)
-exit 0
+(systemctl status nordvpnd | grep -E "(inactive|dead)" \
+	&& notify-send -u low "daemon killed") \
+	|| notify-send -u low "failed killing daemon" && exit 1
