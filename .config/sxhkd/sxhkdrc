@@ -25,8 +25,14 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
 	xbacklight -dec 10
 
-super + shift + F1
-	xrandr-refresh
+super + Escape ; {apostrophe, s, S, u, r, o}
+	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded"\
+	, notify-send -u low "zzz..." && sleep 1 && systemctl suspend\
+	, notify-send -u low "  " && sleep 1 && systemctl poweroff\
+	, notify-send -u low "  " && sleep 1 && user-logout\
+	, notify-send -u low "  " && sleep 1 && reboot\
+	, xset dpms force off\
+	}
 
 # opening programs
 super + apostrophe ; {b, c, d, n, m, q, r, s, x}
@@ -44,17 +50,8 @@ super + apostrophe ; {b, c, d, n, m, q, r, s, x}
 super + alt + apostrophe
 	rofi -show
 
-super + alt + d
+super + alt + k
 	rofi-proc-kill
-
-super + Escape ; {apostrophe, s, S, u, r, o}
-	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded"\
-	, notify-send -u low "zzz..." && sleep 1 && systemctl suspend\
-	, notify-send -u low "  " && sleep 1 && systemctl poweroff\
-	, notify-send -u low "  " && sleep 1 && user-logout\
-	, notify-send -u low "  " && sleep 1 && reboot\
-	, xset dpms force off\
-	}
 
 # screenshot
 super + shift + s
@@ -67,6 +64,10 @@ super + alt + s
 # restart bspwm
 super + shift + r
 	bspc wm -r
+
+# reload xrandr
+super + alt + r
+	xrandr-refresh
 
 # close and kill
 super + shift + {q, c}

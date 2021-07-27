@@ -30,3 +30,4 @@ imap <silent> <c-p> <Plug>(completion_trigger)
 " C language server
 	lua require('lspconfig').clangd.setup{ on_attach=require'completion'.on_attach }
 	nnoremap <silent> <leader>s :ClangdSwitchSourceHeader<CR>
+	let g:c_syntax_for_h = 1

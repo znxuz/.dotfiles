@@ -13,6 +13,9 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 	Plug 'nvim-lua/completion-nvim'
 	Plug 'puremourning/vimspector'
 	Plug 'mbbill/undotree'
+	Plug 'voldikss/vim-floaterm'
+" ====== useless garbage
+	Plug 'pbondoer/vim-42header'
 call plug#end()
 
 " gotta source
@@ -21,6 +24,11 @@ call plug#end()
 	source $XDG_CONFIG_HOME/nvim/plugins/lsp.vim
 	source $XDG_CONFIG_HOME/nvim/plugins/vimspector.vim
 
+" Floaterm
+	nnoremap <leader>t <CMD>FloatermToggle<CR>
+	tnoremap <leader>t <C-\><C-n><CMD>FloatermToggle<CR>
+
 " miscellaneous
 	nnoremap <F5> <CMD>w \| source $XDG_CONFIG_HOME/nvim/init.vim<CR>
+	nnoremap <F2> <CMD>Stdheader<CR>
 	nnoremap <leader>u <CMD>UndotreeToggle<CR>

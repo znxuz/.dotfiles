@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 cd $HOME/aur && git -C neovim* pull && ./submodule_build neovim*
-nvim -c PlugUpgrade -c PlugUpdate -c :qa
+nvim -c PlugUpgrade -c PlugClean -c PlugInstall -c PlugUpdate

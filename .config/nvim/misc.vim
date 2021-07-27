@@ -14,7 +14,7 @@ endif
 " basics
 	let mapleader=","
 	set hidden
-	set path+=**
+	set path+=$HOME/.scripts/**,**
 	set exrc secure
 	set number rnu
 	set splitright splitbelow
@@ -51,7 +51,7 @@ endif
 	nnoremap <A-s> <CMD>wa \| mks! \| qa<CR>
 
 " invoke terminal
-	nnoremap <leader>t <CMD>sp \| resize 15 \| term<CR>
+	" nnoremap <leader>t <CMD>sp \| resize 15 \| term<CR>
 
 " delete buffer while keeping split
 	command! Bd b# | bd#

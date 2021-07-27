@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-function get_indicator() {
+function get_bat_icon()
+{
 	[[ -z "$1" ]] && return 1
 	if [[ "$1" -gt 90 ]]; then
 		echo ""
@@ -15,24 +16,21 @@ function get_indicator() {
 	fi
 }
 
-# get data
-data="$(sudo tlp-stat -s -b)"
-[[ -z "$data" ]] && exit 1
+function get_bat_status()
+{
+	bat_full=$(cat "$1/energy_full")
+	bat_current=$(cat "$1/energy_now")
+	echo "$(( $bat_current * 100 / $bat_full ))"
+}
 
-bats=$(echo "$data" | grep '^Charge\b.*%' | grep -v 'total')
+bat0_path="/sys/class/power_supply/BAT0"
+bat1_path="/sys/class/power_supply/BAT1"
+[[ -e "$bat0_path" ]] && bat0="$(get_bat_status $bat0_path)"
+[[ -e "$bat1_path" ]] && bat1="$(get_bat_status $bat1_path)"
 
-# BAT0
-bat_0="$(echo "$bats" | head -n1 | grep -Eo '[[:digit:]]+\.' | tr -d '.')"
-bat_0_icon="$(get_indicator $bat_0)"
+# check AC status
+[[ $(cat /sys/class/power_supply/AC/online) -eq 1 ]] && echo -n " "
 
-# BAT1
-if [[ $(echo "$bats" | wc -l) -gt 1 ]]; then
-	bat_1="$(echo "$bats" | tail -n1 | grep -Eo '[[:digit:]]+\.' | tr -d '.')"
-	bat_1_icon="$(get_indicator $bat_1)"
-fi
-
-[[ "$(echo "$data" | grep "^Power source" | sed 's/.* //g')" == "AC" ]] \
-	&& printf " "
-
-echo -n "$bat_0_icon $bat_0%"
-[[ -n "$bat_1" ]] && echo "  $bat_1_icon $bat_1%"
+# print bat
+[[ -n "$bat0" ]] && echo -n "$(get_bat_icon $bat0) $bat0"
+[[ -n "$bat1" ]] && echo "  $(get_bat_icon $bat1) $bat1"

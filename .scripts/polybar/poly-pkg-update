@@ -1,18 +1,20 @@
 #!/usr/bin/env bash
 
-data="$(2>&1 expect <<- EOF
-	set timeout -1
-	spawn sudo pacman -Syu
-	expect "*Y/n*"
-	send -- "n\n"
-	expect eof
-EOF
-)"
+# data="$(2>&1 expect <<- EOF
+	# set timeout -1
+	# spawn sudo pacman -Syu
+	# expect "*Y/n*"
+	# send -- "n\n"
+	# expect eof
+# EOF
+# )"
+# count=$(echo "$data" | grep -Eo "Packages \([0-9]+\)" | sed 's/[^0-9]//g')
 
-count=$(echo "$data" | grep -Eo "Packages \([0-9]+\)" | sed 's/[^0-9]//g')
+data="$(sudo pacman -Syup | grep '^https')"
+count="$(echo $data | wc -l)"
 
 if echo "$data" | grep -q "linux-.*arch" ; then
 	echo " $count"
-elif [[ "$count" -gt 10 ]]; then
+elif [[ "$count" -gt 9 ]]; then
 	echo "$count"
 fi
