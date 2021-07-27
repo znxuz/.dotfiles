@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-cores_temp=$(cat /sys/devices/virtual/thermal/thermal_zone0/hwmon1/temp1_input \
-	| cut -c1,2)
+core_temp_path=$(find /sys/devices -type f -name "temp*_input" \
+	| grep virtual | head -n1)
+[[ -n "$core_temp_path" ]] && cores_temp=$(cat "$core_temp_path" | cut -c1,2)
 
 printf "$cores_temp°\n"
