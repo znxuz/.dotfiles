@@ -17,7 +17,7 @@ require('telescope').setup{
 	},
 	pickers = {
 		buffers = { 
-			mappings = { i = { ["<M-d>"] = actions.delete_buffer, } },
+			mappings = { i = { ["<leader>d"] = actions.delete_buffer, } },
 			-- sort_lastused = true,
 		},
 		-- find_files = { theme = "dropdown" },
