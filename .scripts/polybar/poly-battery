@@ -36,4 +36,5 @@ bat1_path="/sys/class/power_supply/BAT1"
 
 # print bat
 [[ -n "$bat0" ]] && echo -n "$(get_bat_icon $bat0) $bat0"
-[[ -n "$bat1" ]] && echo "  $(get_bat_icon $bat1) $bat1"
+[[ -n "$bat0" && -n "$bat1" ]] && echo -n '  '
+[[ -n "$bat1" ]] && echo "$(get_bat_icon $bat1) $bat1"
