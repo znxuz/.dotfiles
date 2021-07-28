@@ -20,7 +20,7 @@ require('telescope').setup{
 			mappings = { i = { ["<leader>d"] = actions.delete_buffer, } },
 			-- sort_lastused = true,
 		},
-		-- find_files = { theme = "dropdown" },
+		-- find_files = { theme = "dropdown" }, ...
 	},
 	extensions = {
 		fzy_native = {

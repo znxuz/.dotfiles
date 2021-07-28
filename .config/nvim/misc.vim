@@ -57,7 +57,8 @@ endif
 	command! Bd b# | bd#
 
 " snippets
-	nnoremap ]bash i#!/usr/bin/env bash<CR><ESC>
+	nnoremap ]bash <CMD>-1read $HOME/.config/nvim/templates/bash.sh<CR><CR>
+	nnoremap ]vimsp <CMD>:-1read $HOME/.config/nvim/templates/vimspector.json<CR><CR>
 
 " netrw
 	nnoremap <leader>e <CMD>Vex \| vertical resize 30<CR>

@@ -1,3 +1,7 @@
+Plug 'voldikss/vim-floaterm'
+	nnoremap <leader>t <CMD>FloatermToggle<CR>
+	tnoremap <leader>t <C-\><C-n><CMD>FloatermToggle<CR>
+
 Plug 'folke/zen-mode.nvim'
 lua << EOF
 require("zen-mode").setup {
