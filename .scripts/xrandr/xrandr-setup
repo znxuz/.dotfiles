@@ -23,7 +23,7 @@ then
 		--output eDP1 --off
 else
 	# integrated display
-	display=$(xrandr | grep 'primary' | cut -d' ' -f1)
+	display=$(xrandr | grep '\bconnected\b' | cut -d' ' -f1)
 	mode=$(xrandr | grep -A1 '\bconnected\b' | tail -n1 \
 		| grep -Eo '[[:digit:]]{4}x[[:digit:]]{4}')
 

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+[[ -z $@ ]] && printf "no arguments given\ntip: \$(ls -I)\n" && exit 1
+
+for pkg in "$@"
+do
+	git -C "$pkg" pull && \
+	sh -c "cd "$pkg" && makepkg -sirc --noconfirm -- && git clean -xfd && git reset --hard HEAD"
+done

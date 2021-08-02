@@ -2,13 +2,13 @@ set shortmess+=c
 set signcolumn=yes
 
 " completion
-set completeopt=menuone,noinsert
-let g:completion_enable_auto_paren = 0
-let g:completion_trigger_keyword_length = 2
-let g:completion_matching_strategy_list = ['exact']
-let g:completion_confirm_key = "\<C-y>"
-imap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
-imap <silent> <c-p> <Plug>(completion_trigger)
+	set completeopt=menuone,noinsert
+	let g:completion_enable_auto_paren = 0
+	let g:completion_trigger_keyword_length = 2
+	let g:completion_matching_strategy_list = ['exact']
+	let g:completion_confirm_key = "\<C-y>"
+	imap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
+	imap <silent> <c-p> <Plug>(completion_trigger)
 
 " keybinds
 	nnoremap <silent> gD <CMD>lua vim.lsp.buf.declaration()<CR>
@@ -27,7 +27,38 @@ imap <silent> <c-p> <Plug>(completion_trigger)
 
 " language servers
 	" https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
-" C language server
+" C
+	let g:c_syntax_for_h = 1
 	lua require('lspconfig').clangd.setup{ on_attach=require'completion'.on_attach }
 	nnoremap <silent> <leader>s :ClangdSwitchSourceHeader<CR>
-	let g:c_syntax_for_h = 1
+" lua
+lua << EOF
+USER = vim.fn.expand('$USER')
+local sumneko_root_path = ""
+local sumneko_binary = ""
+if vim.fn.has("unix") == 1 then
+	sumneko_root_path = "/usr/share/lua-language-server"
+	sumneko_binary = "/usr/bin/lua-language-server"
+else
+	print("Unsupported system for sumneko")
+end
+require'lspconfig'.sumneko_lua.setup {
+	cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+	settings = {
+		Lua = {
+			runtime = {
+				version = 'LuaJIT',
+				path = vim.split(package.path, ';')
+			},
+			diagnostics = { globals = {'vim'} },
+				-- Get the language server to recognize the `vim` global
+			workspace = {
+				-- Make the server aware of Neovim runtime files
+				library = vim.api.nvim_get_runtime_file("", true),
+			},
+			telemetry = { enable = false },
+		},
+	},
+	on_attach = require'completion'.on_attach
+}
+EOF

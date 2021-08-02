@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+function remove_submodule() {
+	git submodule deinit -f "$1"
+	rm -rf .git/modules/"$1"
+	git rm -f "$1"
+}
+
+for pkg in "$@"
+do
+	remove_submodule "$pkg"
+done

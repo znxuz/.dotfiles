@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 
-# data="$(2>&1 expect <<- EOF
-	# set timeout -1
-	# spawn sudo pacman -Syu
-	# expect "*Y/n*"
-	# send -- "n\n"
-	# expect eof
-# EOF
-# )"
-# count=$(echo "$data" | grep -Eo "Packages \([0-9]+\)" | sed 's/[^0-9]//g')
+interface=$(ip route | awk '/^default/ { print $5 ; exit }')
+[[ -z "$interface" ]] && exit 1
+
+if ! [[ -e "/sys/class/net/${interface}/operstate" ]] || \
+    (! [[ "$TREAT_UNKNOWN_AS_UP" = "1" ]] &&
+    ! [[ "$(cat /sys/class/net/${interface}/operstate)" = "up" ]])
+then
+    exit 1
+fi
 
 data="$(sudo pacman -Syup | grep '^https')"
-count="$(echo $data | wc -l)"
+count="$(echo "$data" | wc -l)"
 
 if echo "$data" | grep -q "linux-.*arch" ; then
 	echo " $count"

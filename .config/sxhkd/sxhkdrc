@@ -97,6 +97,10 @@ super + ctrl + {m,x,y,z}
 # focus/swap
 #
 
+# switch focus back and forth
+super + 6
+	bspc node older -f
+
 # swap the current node and the biggest window
 super + g
 	bspc node -s biggest.window.local
