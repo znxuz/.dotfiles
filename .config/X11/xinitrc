@@ -40,7 +40,6 @@ export XMODIFIERS=@im=fcitx
 
 fcitx &
 dunst &
-sxhkd &
 unclutter &
 redshift -l 51.5:7.4 &
 pgrep -x dockd > /dev/null || dockd --daemon &
