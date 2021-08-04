@@ -3,7 +3,7 @@
 interface=$(ip route | awk '/^default/ { print $5 ; exit }')
 [[ -z "$interface" ]] && exit 1
 
-if ! [[ -e "/sys/class/net/${interface}/operstate" ]] || \
+if ! [[ -e "/sys/class/net/${interface}/operstate" ]] ||
     (! [[ "$TREAT_UNKNOWN_AS_UP" = "1" ]] &&
     ! [[ "$(cat /sys/class/net/${interface}/operstate)" = "up" ]])
 then

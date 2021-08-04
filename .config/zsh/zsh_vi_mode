@@ -1,42 +1,49 @@
 bindkey -v
-
 bindkey -rpM viins '\e'
-
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
 # Change cursor shape for different vi modes.
-function zle-keymap-select {
-    if [[ ${KEYMAP} == vicmd ]] ||
-        [[ $1 = 'underline' ]]; then
-        echo -ne '\e[2 q'
-    elif [[ ${KEYMAP} == main ]] ||
-        [[ ${KEYMAP} == viins ]] ||
-        [[ ${KEYMAP} = '' ]] ||
-        [[ $1 = 'beam' ]]; then
-        echo -ne '\e[6 q'
-    fi
+cmd_cursor='\e[2 q'
+ins_cursor='\e[6 q'
+zle-keymap-select()
+{
+	if [[ ${KEYMAP} == vicmd ]]; then
+		echo -ne "$cmd_cursor"
+	elif [[ ${KEYMAP} == main ]] ||
+		[[ ${KEYMAP} == viins ]] ||
+		[[ ${KEYMAP} = '' ]]; then
+		echo -ne "$ins_cursor"
+	fi
 }
 zle -N zle-keymap-select
-bindkey -M viins '^o' vi-cmd-mode
-
-zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[6 q"
+# preexec() { echo -ne "$ins_cursor" ;} # cursor shape for starting new program.
+zle-line-init() # reset cursor after returning to shell
+{
+	zle -K viins
+	echo -ne "$ins_cursor"
 }
 zle -N zle-line-init
-echo -ne '\e[6 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[2 q' ;} # Use underline shape cursor for starting new program.
+echo -ne "$ins_cursor" # cursor shape on startup.
+
+# ctrl-o
+vi-ctrl-o()
+{
+	zle vi-cmd-mode && zle forward-char
+}
+zle -N vi-ctrl-o
+bindkey -M viins '^o' vi-ctrl-o
 
 # edit in vim with ctrl-e
-autoload edit-command-line; zle -N edit-command-line
+autoload edit-command-line
+zle -N edit-command-line
 bindkey -M viins '^e' edit-command-line
 bindkey -M vicmd '^e' edit-command-line
 
 # better yankin'
-function vi-yank-xclip
+vi-yank-xclip()
 {
 	zle vi-yank
 	echo "$CUTBUFFER" | xclip

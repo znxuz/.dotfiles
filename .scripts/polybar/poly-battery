@@ -29,10 +29,10 @@ bat1_path="/sys/class/power_supply/BAT1"
 [[ -e "$bat1_path" ]] && bat1="$(get_bat_status $bat1_path)"
 
 # check AC status
-[[ -e /sys/class/power_supply/AC/online \
-	&& $(cat /sys/class/power_supply/AC/online) -eq 1 ]] && echo -n " "
-[[ -e /sys/class/power_supply/ADP1/online \
-	&& $(cat /sys/class/power_supply/ADP1/online) -eq 1 ]] && echo -n " "
+[[ -e /sys/class/power_supply/AC/online &&
+	$(cat /sys/class/power_supply/AC/online) -eq 1 ]] && echo -n " "
+[[ -e /sys/class/power_supply/ADP1/online &&
+	$(cat /sys/class/power_supply/ADP1/online) -eq 1 ]] && echo -n " "
 
 # print bat
 [[ -n "$bat0" ]] && echo -n "$(get_bat_icon $bat0) $bat0"

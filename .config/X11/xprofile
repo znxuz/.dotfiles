@@ -3,3 +3,6 @@ xset r rate 200 60
 
 # set compose key
 setxkbmap -option compose:ralt
+
+# set screen timeouts
+xset dpms 60 180 300
