@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 lsusb | grep -qi "HHKB" && exit 0
 
