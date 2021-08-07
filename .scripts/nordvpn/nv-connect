@@ -12,7 +12,7 @@ expect <<- DONE
 DONE
 
 if systemctl status nordvpnd | grep -q '\bactive'; then
-	notify-send -u low "nordvpnd started successfully")
+	notify-send -u low "nordvpnd started successfully"
 else
 	notify-send -u low "starting nordvpnd failed" && exit 1
 fi

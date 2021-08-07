@@ -16,7 +16,7 @@ expect <<- DONE
 DONE
 
 if systemctl status nordvpnd | grep -Eq "(inactive|dead)"; then
-	notify-send -u low "daemon killed")
+	notify-send -u low "daemon killed"
 else
 	notify-send -u low "failed killing daemon" && exit 1
 fi

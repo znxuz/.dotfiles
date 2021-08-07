@@ -3,4 +3,7 @@
 lsusb | grep -qi "HHKB" && exit 0
 
 kb_status="$(bluetoothctl info E4:82:08:83:14:68 | grep "Connected" | sed 's/.* //g')"
-[[ -z $kb_status || $kb_status = "no" ]] && xmodmap ${XDG_CONFIG_HOME:-$HOME/.config}/X11/Xmodmap
+if [[ -z "$kb_status" || "$kb_status" = "no" ]]; then
+	xmodmap ${XDG_CONFIG_HOME:-$HOME/.config}/X11/Xmodmap &&
+		notify-send -u low "xmodmap sourced"
+fi
