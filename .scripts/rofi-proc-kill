@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
 process=$(ps -U $(whoami) | awk '{print $NF}' | sort | uniq | rofi -dmenu -sep'\n' -p 'kill')
-[[ -n "$process" ]] && killall "$process" > /dev/null 2>&1
+[[ -n "$process" ]] && killall "$process" > /dev/null 2>&1 &&
+	notify-send -u low "$process killed"

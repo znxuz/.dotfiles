@@ -64,5 +64,5 @@ zle -N vi-yank-xclip
 zle -N vi-paste-right
 zle -N vi-paste-left
 bindkey -M vicmd 'y' vi-yank-xclip
-bindkey -M vicmd 'p' vi-paste-right
-bindkey -M vicmd 'P' vi-paste-left
+bindkey -M vicmd ',p' vi-paste-right
+bindkey -M vicmd ',P' vi-paste-left

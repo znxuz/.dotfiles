@@ -31,7 +31,7 @@ super + Escape ; {apostrophe, s, S, u, r, o}
 	, notify-send -u low "  " && sleep 1 && systemctl poweroff\
 	, notify-send -u low "  " && sleep 1 && user-logout\
 	, notify-send -u low "  " && sleep 1 && reboot\
-	, xset dpms force off\
+	, notify-send -u low "  " && sleep 1 && xset dpms force off\
 	}
 
 # opening programs
