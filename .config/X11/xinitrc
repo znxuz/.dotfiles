@@ -45,6 +45,6 @@ redshift -l 51.5:7.4 &
 pgrep -x dockd > /dev/null || dockd --daemon &
 set-keyboard-layout &
 pgrep -x sxhkd > /dev/null || sxhkd &
-xrandr-refresh && fehbg
+xrandr-setup && fehbg
 
 exec bspwm
