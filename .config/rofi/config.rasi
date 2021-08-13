@@ -1,7 +1,7 @@
 configuration {
 	modi: "run";
-	width: 10;
-	lines: 10;
+	width: 15;
+	lines: 5;
 	columns: 1;
 	font: "Hermit 11";
 /*	bw: 1;*/

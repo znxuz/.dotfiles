@@ -1,2 +1,3 @@
 #!/bin/sh
-feh --no-fehbg --bg-scale "$HOME/Dropbox/Pictures/wallpapers/arch_yellow_hard_btw.png" 
+wallpaper="${1:-$HOME/Dropbox/Pictures/wallpapers/alena-aenami-8x5qz1_3840x2160.png}"
+feh --no-fehbg --bg-scale "$wallpaper"

@@ -3,7 +3,7 @@ if has('nvim')
 else
 	let &t_EI .= "\<Esc>[2 q"
 	let &t_SI .= "\<Esc>[6 q"
-	set syntax on
+	set syntax=on
 	set noesckeys
 	set nocompatible
 	set backspace=indent,eol,start
@@ -57,8 +57,8 @@ endif
 	command! Bd b# | bd#
 
 " snippets
-	nnoremap ]bash <CMD>-1read $HOME/.config/nvim/templates/bash.sh<CR><CR>
-	nnoremap ]vimsp <CMD>:-1read $HOME/.config/nvim/templates/vimspector.json<CR><CR>
+	nnoremap ]bash <CMD>-1read $HOME/.config/nvim/templates/bash.sh \| w \| e<CR><CR>
+	nnoremap ]vimsp <CMD>:-1read $HOME/.config/nvim/templates/vimspector.json \|w \| e<CR><CR>
 
 " netrw
 	nnoremap <leader>e <CMD>Vex \| vertical resize 30<CR>

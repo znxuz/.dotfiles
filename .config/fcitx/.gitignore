@@ -1,8 +1,4 @@
-clipboard
-data
-dbus
-log
-pinyin
-cached_layout
-profile
-profile_qDbNMO
+**/*
+
+!conf
+!config

@@ -42,9 +42,7 @@ fcitx &
 dunst &
 unclutter &
 redshift -l 51.5:7.4 &
-pgrep -x dockd > /dev/null || dockd --daemon &
-set-keyboard-layout &
 pgrep -x sxhkd > /dev/null || sxhkd &
-xrandr-setup && fehbg
+pgrep -x dockd > /dev/null || dockd --daemon &
 
 exec bspwm

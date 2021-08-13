@@ -20,7 +20,7 @@ function get_bat_status()
 {
 	bat_full=$(cat "$1/energy_full")
 	bat_current=$(cat "$1/energy_now")
-	echo "$(( $bat_current * 100 / $bat_full ))"
+	echo "$(( bat_current * 100 / bat_full ))"
 }
 
 bat0_path="/sys/class/power_supply/BAT0"

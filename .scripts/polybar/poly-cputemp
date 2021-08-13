@@ -2,6 +2,6 @@
 
 core_temp_path=$(find /sys/devices -type f -name "temp*_input" \
 	| grep virtual | head -n1)
-[[ -n "$core_temp_path" ]] && cores_temp=$(cat "$core_temp_path" | cut -c1,2)
+[[ -n "$core_temp_path" ]] && cores_temp=$(cut -c1,2 "$core_temp_path")
 
-printf "$cores_temp°\n"
+printf "%s°\n" "$cores_temp"

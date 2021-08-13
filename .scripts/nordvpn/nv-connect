@@ -17,4 +17,4 @@ else
 	notify-send -u low "starting nordvpnd failed" && exit 1
 fi
 
-nordvpn connect France || notify-send -u low "connection failed"
+nordvpn connect "${1:-France}" || notify-send -u low "connection failed"
