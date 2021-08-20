@@ -50,14 +50,12 @@ vi-yank-xclip()
 }
 vi-paste-right()
 {
-	local paste="$(xclip -o clip)"
-	LBUFFER="${LBUFFER}${paste}"
+	LBUFFER="${BUFFER}$(xclip -o -p)"
 	zle reset-prompt
 }
 vi-paste-left()
 {
-	local paste="$(xclip -o clip)"
-	RBUFFER="${paste}${RBUFFER}"
+	RBUFFER="$(xclip -o -p)${RBUFFER}"
 	zle reset-prompt
 }
 zle -N vi-yank-xclip

@@ -14,6 +14,7 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 	Plug 'puremourning/vimspector'
 	Plug 'mbbill/undotree'
 	Plug 'voldikss/vim-floaterm'
+	Plug 'vimwiki/vimwiki', { 'on': 'VimwikiUISelect' }
 " ====== useless garbage
 	Plug 'pbondoer/vim-42header'
 call plug#end()
@@ -23,6 +24,7 @@ call plug#end()
 	source $XDG_CONFIG_HOME/nvim/plugins/telescope.vim
 	source $XDG_CONFIG_HOME/nvim/plugins/lsp.vim
 	source $XDG_CONFIG_HOME/nvim/plugins/vimspector.vim
+	source $XDG_CONFIG_HOME/nvim/plugins/vimwiki.vim
 
 " Floaterm
 	nnoremap <leader>t <CMD>FloatermToggle<CR>
