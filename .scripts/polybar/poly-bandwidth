@@ -12,7 +12,7 @@ INTERFACE=$(ip route | awk '/^default/ { print $5 ; exit }')
 # Issue #36 compliant.
 if ! [ -e "/sys/class/net/${INTERFACE}/operstate" ] ||
     (! [ "$TREAT_UNKNOWN_AS_UP" = "1" ] &&
-    ! [ "`cat /sys/class/net/${INTERFACE}/operstate`" = "up" ])
+	! [ "$(cat /sys/class/net/${INTERFACE}/operstate)" = "up" ])
 then
     echo "$INTERFACE down"
     echo "$INTERFACE down"
@@ -62,9 +62,9 @@ tx_rate=$(( $tx_diff / $time_diff ))
 echo -n "$INLABEL "
 rx_kib=$(( $rx_rate >> 10 ))
 if hash bc 2>/dev/null && [[ "$rx_rate" -gt 1048576 ]]; then
-  printf '%sM' "`echo "scale=1; $rx_kib / 1024" | bc`"
+	printf '%sM' "$(echo "scale=1; $rx_kib / 1024" | bc)"
 else
-  echo -n "${rx_kib}K"
+	echo -n "${rx_kib}K"
 fi
 
 echo -n "  "
@@ -73,7 +73,7 @@ echo -n "  "
 echo -n "$OUTLABEL "
 tx_kib=$(( $tx_rate >> 10 ))
 if hash bc 2>/dev/null && [[ "$tx_rate" -gt 1048576 ]]; then
-  printf '%sM\n' "`echo "scale=1; $tx_kib / 1024" | bc`"
+	printf '%sM\n' "$(echo "scale=1; $tx_kib / 1024" | bc)"
 else
-  echo "${tx_kib}K"
+	echo "${tx_kib}K"
 fi

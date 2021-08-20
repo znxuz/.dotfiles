@@ -2,13 +2,13 @@ set shortmess+=c
 set signcolumn=yes
 
 " completion
-	set completeopt=menuone,noinsert
-	let g:completion_enable_auto_paren = 0
+	set completeopt=menuone,noinsert,noselect
 	let g:completion_trigger_keyword_length = 2
 	let g:completion_matching_strategy_list = ['exact']
-	let g:completion_confirm_key = "\<C-y>"
-	imap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
-	imap <silent> <c-p> <Plug>(completion_trigger)
+	let g:completion_confirm_key = ""
+	imap <expr> <CR>  pumvisible() ? complete_info()["selected"] != "-1" ?
+			\ "\<CR>"  : "\<CR>\<CR>" : "\<CR>"
+	imap <silent> <C-n> <Plug>(completion_trigger)
 
 " keybinds
 	nnoremap <silent> gD <CMD>lua vim.lsp.buf.declaration()<CR>
@@ -25,12 +25,13 @@ set signcolumn=yes
 	nnoremap <silent> <leader>gea <CMD>Telescope lsp_workspace_diagnostics<CR>
 	nnoremap <silent> <leader>gec <CMD>Telescope lsp_document_diagnostics<CR>
 
-" language servers
-	" https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
+" language servers https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
+
 " C
 	let g:c_syntax_for_h = 1
 	lua require('lspconfig').clangd.setup{ on_attach=require'completion'.on_attach }
 	nnoremap <silent> <leader>s :ClangdSwitchSourceHeader<CR>
+
 " lua
 lua << EOF
 USER = vim.fn.expand('$USER')

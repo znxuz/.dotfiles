@@ -10,7 +10,7 @@ then
     exit 1
 fi
 
-data="$(sudo pacman -Syup | grep '^https')"
+data="$(checkupdates)"
 count="$(echo "$data" | wc -l)"
 
 if echo "$data" | grep -q "linux-.*arch" ; then
