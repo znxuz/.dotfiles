@@ -12,7 +12,7 @@ if [[ -n "$new_entries" ]]; then
 	do
 		printf "cache this directory [%s] (y|n)?: " "$entry"
 		read ret && if [[ "$ret" =~ [N|n] ]]; then
-			printf "remove [%s] ?: " "$entry"
+			printf "remove [%s] (y|n)?: " "$entry"
 			read ret && if [[ "$ret" =~ [Y|y] ]]; then
 				rm -rf "$entry" && printf -- "-> %s removed\n\n" "$entry"
 			else

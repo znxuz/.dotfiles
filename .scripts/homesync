@@ -7,5 +7,7 @@ rsync -azvhP --delete-excluded --exclude-from "$HOME/.scripts/.rsyncexclude" $HO
 
 pacman -Qqen > $HOME/.config/Qqen && cp -f $HOME/.config/Qqen $dest
 pacman -Qqem > $HOME/.config/Qqem && cp -f $HOME/.config/Qqem $dest
+systemctl list-unit-files --state=enabled --user > $HOME/.config/systemd-unit-files-user \
+	&& cp -f $HOME/.config/systemd-unit-files-user $dest
 systemctl list-unit-files --state=enabled > $HOME/.config/systemd-unit-files \
-	&& cp -f $HOME/.config/system-unit-files $dest
+	&& cp -f $HOME/.config/systemd-unit-files $dest

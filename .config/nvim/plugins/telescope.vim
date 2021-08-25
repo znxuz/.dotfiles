@@ -20,8 +20,8 @@ require('telescope').setup{
 			mappings = { i = { ["<leader>d"] = actions.delete_buffer, } },
 			-- sort_lastused = true,
 		},
-		find_files = { hidden = true, },
-		file_browser = { hidden = true, },
+		find_files = { hidden = true, no_ignore = true, },
+		file_browser = { hidden = true, no_ignore = true, },
 		-- find_files = { theme = "dropdown" }, ...
 	},
 	extensions = {
