@@ -1,0 +1,21 @@
+UNIT FILE                          STATE   VENDOR PRESET
+acpid.service                      enabled disabled
+auto-cpufreq.service               enabled disabled
+bluetooth-autoconnect.service      enabled disabled
+bluetooth.service                  enabled disabled
+cronie.service                     enabled disabled
+getty@.service                     enabled enabled
+lenovo_fix.service                 enabled disabled
+lm_sensors.service                 enabled disabled
+NetworkManager-dispatcher.service  enabled disabled
+NetworkManager-wait-online.service enabled disabled
+NetworkManager.service             enabled disabled
+sshd.service                       enabled disabled
+systemd-timesyncd.service          enabled enabled
+thinkfan-sleep.service             enabled disabled
+thinkfan-wakeup.service            enabled disabled
+thinkfan.service                   enabled disabled
+tlp.service                        enabled disabled
+remote-fs.target                   enabled enabled
+
+18 unit files listed.

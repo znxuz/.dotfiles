@@ -10,11 +10,16 @@ then
     exit 1
 fi
 
-data="$(checkupdates)"
-count="$(echo "$data" | wc -l)"
-
-if echo "$data" | grep -q "linux-.*arch" ; then
-	echo " $count"
+pacman_upd="$(checkupdates)"
+count="$(echo $pacman_upd | wc -l)"
+if echo "$pacman_upd" | grep -q "linux-.*arch" ; then
+	echo -n " $count"
 elif [[ "$count" -gt 9 ]]; then
-	echo "$count"
+	echo -n "$count"
+fi
+
+aur_upd="$(auracle outdated | wc -l)"
+if [[ -n "$aur_upd" ]]; then
+	[[ "$count" -gt 9 ]] && echo -n " "
+	echo " $aur_upd"
 fi

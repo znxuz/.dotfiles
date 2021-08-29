@@ -7,6 +7,7 @@ image/jpeg=feh.desktop
 image/png=feh.desktop
 application/pdf=org.pwmt.zathura.desktop
 video/mp4=mpv.desktop
+video/mpeg=mpv.desktop
 x-scheme-handler/magnet=org.qbittorrent.qBittorrent.desktop
 application/x-bittorrent=org.qbittorrent.qBittorrent.desktop
 x-scheme-handler/mailspring=Mailspring.desktop

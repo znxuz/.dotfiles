@@ -22,7 +22,6 @@ require('telescope').setup{
 		},
 		find_files = { hidden = true, no_ignore = true, },
 		file_browser = { hidden = true, no_ignore = true, },
-		-- find_files = { theme = "dropdown" }, ...
 	},
 	extensions = {
 		fzy_native = {
@@ -35,7 +34,8 @@ require('telescope').load_extension('fzy_native')
 EOF
 
 nnoremap <leader>ff <CMD>Telescope find_files<CR>
-nnoremap <leader>fc <CMD>lua require('telescope.builtin').find_files({search_dirs={"$HOME/.config/nvim"}})<CR>
+nnoremap <leader>fa <CMD>Telescope find_files search_dirs=~<CR>
+nnoremap <leader>fc <CMD>Telescope find_files search_dirs=%:p:h<CR>
 nnoremap <leader>fb <CMD>Telescope buffers<CR>
 nnoremap <leader>fd <CMD>Telescope file_browser<CR>
 nnoremap <leader>fg <CMD>Telescope live_grep<CR>
