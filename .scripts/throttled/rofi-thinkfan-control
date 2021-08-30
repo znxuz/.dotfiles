@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+var="$(echo -e "0\n1\n2\n3\n4\n5\n6\n7\nauto\ndisengaged\nfull-speed" | rofi -dmenu -sep',' -p 'level')"
+[[ -n "$var" ]] && sudo sh -c "echo level $var > /proc/acpi/ibm/fan" && notify-send -u low " [$var]"

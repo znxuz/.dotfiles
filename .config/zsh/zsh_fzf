@@ -42,3 +42,12 @@ pac_search_local()
 }
 zle -N pac_search_local
 bindkey '^pq' pac_search_local
+
+pac_search_aur()
+{
+	local ret="$(aur-search)"
+	LBUFFER=${LBUFFER}${ret}
+	zle reset-prompt
+}
+zle -N pac_search_aur
+bindkey '^pa' pac_search_aur

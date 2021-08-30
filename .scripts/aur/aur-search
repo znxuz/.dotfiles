@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+aur_list="/tmp/packages.gz"
+curl -s "https://aur.archlinux.org/packages.gz" > "$aur_list"
+[[ -f "$aur_list" ]] && zcat "$aur_list" \
+	| fzf -m --preview="auracle info {}" | tr '\n' ' '

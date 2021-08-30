@@ -19,7 +19,7 @@ elif [[ "$count" -gt 9 ]]; then
 fi
 
 aur_upd="$(auracle outdated | wc -l)"
-if [[ -n "$aur_upd" ]]; then
-	[[ "$count" -gt 9 ]] && echo -n " "
+if [[ "$aur_upd" -ne 0 ]]; then
+	[[ "$aur_upd" -gt 9 ]] && echo -n " "
 	echo " $aur_upd"
 fi
