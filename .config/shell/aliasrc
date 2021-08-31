@@ -9,21 +9,11 @@ alias \
 	lal='ll -AhN --color=auto --group-directories-first'
 
 alias \
-	cp='cp -iv' \
-	mv='mv -iv' \
-	rm='rm -v' \
-	free='free -h' \
-	df='df -h' \
-	sudo='sudo -E'
-
-alias \
 	e='$EDITOR' \
 	vim='$EDITOR' \
 	nv='nordvpn' \
 	n='norminette' \
 	news='newsboat' \
-	rename='perl-rename' \
-	qb='qbittorrent' \
 	bt='bluetoothctl' \
 	detach="function detach() { bg && disown %\$(jobs | wc -l) } && detach" \
 	zathura='function zathura() { /usr/bin/zathura "$1" &! } && zathura' \

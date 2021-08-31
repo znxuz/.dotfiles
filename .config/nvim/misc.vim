@@ -80,12 +80,13 @@ endif
 	set laststatus=2
 	set statusline=
 	set statusline+=%#Pmenu#%{GetMode()}%#LineNr#
-	set statusline+=%#Pmenu#%{&readonly?GetSep().'R\ ':''}%#LineNr#
+	set statusline+=%#Pmenu#%{&readonly?GetSep().'RO\ ':''}%#LineNr#
 	set statusline+=%#Pmenu#%{&paste?GetSep().'P\ ':''}%#LineNr#
-	set statusline+=%{'\ \ '.getcwd()}%{'\ '.GetSep()}
-	set statusline+=%f%{&modified?GetSep().'[+]':''}
+	set statusline+=%<%{'\ \ '.getcwd()}%{'\ '}
+	set statusline+=%{fnamemodify(expand('%:p'),\ ':.')==''?'':GetSep()}
+	set statusline+=%{fnamemodify(expand('%:p'),\ ':.')}%{&modified?GetSep().'[+]':''}
 	set statusline+=%=
-	set statusline+=%{&fileformat}%{'\ '.GetSep()}
+	set statusline+=%{'\ \ '.&fileformat}%{'\ '.GetSep()}
 	set statusline+=%{&fileencoding?&fileencoding:&encoding}%{'\ '.GetSep()}
 	set statusline+=%l:%c%{GetSep()}
 	set statusline+=%p%%
