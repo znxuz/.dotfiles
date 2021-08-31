@@ -84,7 +84,8 @@ endif
 	set statusline+=%#Pmenu#%{&paste?GetSep().'P\ ':''}%#LineNr#
 	set statusline+=%<%{'\ \ '.getcwd()}%{'\ '}
 	set statusline+=%{fnamemodify(expand('%:p'),\ ':.')==''?'':GetSep()}
-	set statusline+=%{fnamemodify(expand('%:p'),\ ':.')}%{&modified?GetSep().'[+]':''}
+	set statusline+=%{fnamemodify(expand('%:p'),\ ':.')}
+	set statusline+=%{&modified?'\ '.GetSep().'[+]':''}
 	set statusline+=%=
 	set statusline+=%{'\ \ '.&fileformat}%{'\ '.GetSep()}
 	set statusline+=%{&fileencoding?&fileencoding:&encoding}%{'\ '.GetSep()}
