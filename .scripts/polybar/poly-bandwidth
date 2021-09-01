@@ -14,10 +14,7 @@ if ! [ -e "/sys/class/net/${INTERFACE}/operstate" ] ||
     (! [ "$TREAT_UNKNOWN_AS_UP" = "1" ] &&
 	! [ "$(cat /sys/class/net/${INTERFACE}/operstate)" = "up" ])
 then
-    echo "$INTERFACE down"
-    echo "$INTERFACE down"
-    echo "cc241d"
-    exit 0
+    echo "$INTERFACE down"; exit 0
 fi
 
 # path to store the old results in

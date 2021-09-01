@@ -26,3 +26,5 @@ bspc config single_monocle			true
 bspc config borderless_monocle		true
 
 bspc rule -a Zathura state=tiled
+bspc rule -a Mailspring desktop=III
+bspc rule -a discord desktop=III

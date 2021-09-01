@@ -16,7 +16,7 @@ alias \
 	news='newsboat' \
 	bt='bluetoothctl' \
 	detach="function detach() { bg && disown %\$(jobs | wc -l) } && detach" \
-	zathura='function zathura() { /usr/bin/zathura "$1" &! } && zathura' \
+	zathura='function zathura() { /usr/bin/zathura "$@" &! } && zathura' \
 	eject='udisksctl power-off -b' \
 	xclip='xclip -sel clip' \
 	m='make' \
