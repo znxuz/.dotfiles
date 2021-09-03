@@ -32,6 +32,7 @@ findutils
 firejail
 flameshot
 flex
+fwupd
 fzf
 gawk
 gcc

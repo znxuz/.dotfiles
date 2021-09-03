@@ -17,5 +17,6 @@ thinkfan-wakeup.service            enabled disabled
 thinkfan.service                   enabled disabled
 tlp.service                        enabled disabled
 remote-fs.target                   enabled enabled
+fstrim.timer                       enabled disabled
 
-18 unit files listed.
+19 unit files listed.

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-dest=${1:-"/mnt/external/.home_backup"}
+dest=${1:-"/mnt/external/home_backup"}
 
 log=$HOME/homesync.log
 rsync -azvhP --delete-excluded --exclude-from "$HOME/.scripts/.rsyncexclude" $HOME $dest | tee $log 2>&1
