@@ -19,6 +19,8 @@ if [[ -n "$new_entries" ]]; then
 				printf -- "-> added %s to .gitignore\n\n" "$entry" &&
 					echo "$entry" >> .gitignore
 			fi
+		else
+			dfs add "$entry" && printf -- "-> %s added to dfs repo\n\n" "$entry"
 		fi
 	done
 	exit 0
