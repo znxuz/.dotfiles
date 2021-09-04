@@ -20,8 +20,8 @@ fi
 
 aur_upd="$(auracle outdated | wc -l)"
 if [[ "$aur_upd" -ne 0 ]]; then
-	if [[ "$count" -gt 9 ]]; then
-		total="$total  "
+	if [[ -n "$total" ]]; then
+		total="$total "
 	fi
 	total="$total $aur_upd"
 fi

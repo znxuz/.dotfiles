@@ -29,7 +29,7 @@ LVM: change type of partition to 'Linux LVM'
 cryptsetup luksFormat /dev/sda2
 cryptsetup open /dev/sda2 cryptlvm
 pvcreate /dev/mapper/cryptlvm
-lvcreate volgrp /dev/mapper/cryptlvm
+vgcreate volgrp /dev/mapper/cryptlvm
 lvcreate -L 40G volgrp -n root
 lvcreate -l 75%FREE volgrp -n home
 ```
@@ -52,7 +52,7 @@ mount /dev/sda1 /mnt/boot
 
 ## pacstrap
 ```sh
-pacstrap /mnt base base-devel linux linux-firmware man-db man-pages texinfo \
+pacstrap /mnt base base-devel linux linux-firmware man-db man-pages
 	#[intel/amd]-ucode lvm2 vim
 ```
 
@@ -85,7 +85,8 @@ vim /etc/hosts
 
 passwd # root password
 
-pacman -S grub efibootmgr networkmanager wireless_tools \
+# pacman parallel download
+pacman -S grub efibootmgr networkmanager wireless_tools texinfo \
 	dialog os-prober linux-headers reflector git bluez bluez-utils cups \
 	xdg-utils xdg-user-dirs openssh wpa_supplicant
 ```
@@ -105,6 +106,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 uuid=$(blkid --match-tag UUID -o value /dev/nvme0n1p2)
 vim /etc/default/grub
 GRUB_CMDLINE_LINUX="cryptdevice=UUID=${uuid}:cryptlvm root=/dev/volgrp/root"
+GRUB_DISABLE_OS_PROBER=false
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
@@ -132,8 +134,7 @@ nmtui
 	# nmcli device wifi list
 	# nmcli device wifi connect SSID password password
 
-sudo pacman -S xorg xorg-xinit
-sudo pacman -S sxhkd bspwm alacritty zsh
+sudo pacman -S xorg xorg-xinit sxhkd bspwm alacritty zsh archlinux-keyring
 
 chsh -s /bin/zsh
 # git clone https://aur.archlinux.org/dropbox.git
@@ -141,5 +142,5 @@ chsh -s /bin/zsh
 
 # clone dotfiles repo
 git clone --separate-git-dir=~/.dotfiles \
-	https://github.com/zijian-x/.dotfiles.git ~/dotfiles.tmp
+	<ssh-link of repo> ~/dotfiles.tmp
 ```
