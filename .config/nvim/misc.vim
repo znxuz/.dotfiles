@@ -51,7 +51,7 @@ endif
 	nnoremap <A-s> <CMD>wa \| mks! \| qa<CR>
 
 " invoke terminal
-	" nnoremap <leader>t <CMD>sp \| resize 15 \| term<CR>
+	nnoremap <leader>t <CMD>sp \| resize 15 \| term<CR>
 
 " delete buffer while keeping split
 	command! Bd b# | bd#

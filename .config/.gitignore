@@ -1,7 +1,6 @@
 systemd
 neofetch
 autostart
-bpytop
 BraveSoftware
 calibre
 dconf
@@ -17,6 +16,8 @@ obs-studio
 procps
 pulse
 QtProject.conf
+qBittorrent/**/*
+!qBittorrent/mumble-dark.qbtheme
 Slack
 s-tui
 user-dirs.locale

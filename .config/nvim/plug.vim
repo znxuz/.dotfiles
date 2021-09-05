@@ -3,7 +3,7 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 	Plug 'sainnhe/gruvbox-material'
 	Plug 'szw/vim-maximizer'
 	Plug 'nvim-treesitter/nvim-treesitter'
-	Plug 'jmckiern/vim-venter'
+	Plug 'folke/zen-mode.nvim'
 " ====== essentials
 	Plug 'nvim-lua/popup.nvim'
 	Plug 'nvim-lua/plenary.nvim'

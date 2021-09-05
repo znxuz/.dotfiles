@@ -29,4 +29,23 @@ require 'nvim-treesitter.configs'.setup {
 }
 EOF
 
-nnoremap <leader>z <CMD>VenterToggle<CR>
+lua << EOF
+	require("zen-mode").setup {
+		window = {
+			backdrop = 1,
+			width = 120,
+			height = 1,
+			signcolumn = "yes",
+			number = true,
+			relativenumber = true,
+		},
+		on_open = function()
+			vim.wo.colorcolumn = ""
+		end,
+		on_close = function()
+			vim.wo.colorcolumn = "80"
+		end,
+	}
+EOF
+
+nnoremap <leader>z <CMD>ZenMode<CR>
