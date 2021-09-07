@@ -35,7 +35,7 @@ super + Escape ; {apostrophe, s, S, u, r, o}
 	}
 
 # opening programs
-super + apostrophe ; {b, c, d, n, q, r, s, x, k, m}
+super + apostrophe ; {b, c, d, n, q, r, s, x, k}
 	{ $BROWSER\
 	, codium\
 	, discord\
@@ -45,7 +45,6 @@ super + apostrophe ; {b, c, d, n, q, r, s, x, k, m}
 	, slack\
 	, source $XDG_CONFIG_HOME/X11/xprofile\
 	, set-keyboard-layout\
-	, mailspring\
 	}
 
 super + alt + apostrophe

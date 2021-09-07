@@ -37,7 +37,8 @@ nnoremap <leader>ff <CMD>Telescope find_files<CR>
 nnoremap <leader>fa <CMD>Telescope find_files search_dirs=~<CR>
 nnoremap <leader>fc <CMD>Telescope find_files search_dirs=%:p:h<CR>
 nnoremap <leader>fb <CMD>Telescope buffers<CR>
-nnoremap <leader>fd <CMD>Telescope file_browser<CR>
+nnoremap <leader>fdd <CMD>Telescope file_browser<CR>
+nnoremap <leader>fdc <CMD>Telescope file_browser cwd=%:p:h<CR>
 nnoremap <leader>fg <CMD>Telescope live_grep<CR>
 nnoremap <leader>fh <CMD>Telescope help_tags<CR>
 nnoremap <leader>ft <CMD>Telescope builtin<CR>

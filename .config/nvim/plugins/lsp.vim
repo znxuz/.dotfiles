@@ -1,17 +1,23 @@
 set shortmess+=c
 set signcolumn=yes
+set completeopt=menuone,noinsert,noselect
 
-" completion
-	set completeopt=menuone,noinsert,noselect
-	let g:completion_trigger_keyword_length = 2
-	let g:completion_matching_strategy_list = ['exact', 'substring']
-	let g:completion_matching_ignore_case = 0
-	let g:completion_matching_smart_case = 0
-	let g:completion_confirm_key = ""
-
-	imap <expr> <CR>  pumvisible() ? complete_info()["selected"] != "-1" ?
-			\ "\<CR>"  : "\<CR>\<CR>" : "\<CR>"
-	imap <silent> <C-n> <Plug>(completion_trigger)
+" nvim-cmp
+lua <<EOF
+local cmp = require 'cmp'
+cmp.setup {
+  mapping = {
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<C-y>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
+  },
+  sources = { { name = 'nvim_lsp' }, },
+}
+EOF
 
 " keybinds
 	nnoremap <silent> gD <CMD>lua vim.lsp.buf.declaration()<CR>
@@ -23,7 +29,7 @@ set signcolumn=yes
 	nnoremap <silent> <leader>gre <CMD>lua vim.lsp.buf.rename()<CR>
 	nnoremap <silent> <leader>gen <CMD>lua vim.lsp.diagnostic.goto_prev()<CR>
 	nnoremap <silent> <leader>gep <CMD>lua vim.lsp.diagnostic.goto_next()<CR>
-	nnoremap <silent> <leader>fsd <CMD>Telescope lsp_dynamic_workspace_symbols<CR>
+	nnoremap <silent> <leader>fss <CMD>Telescope lsp_dynamic_workspace_symbols<CR>
 	nnoremap <silent> <leader>fsc <CMD>Telescope lsp_document_symbols<CR>
 	nnoremap <silent> <leader>gea <CMD>Telescope lsp_workspace_diagnostics<CR>
 	nnoremap <silent> <leader>gec <CMD>Telescope lsp_document_diagnostics<CR>
@@ -32,7 +38,7 @@ set signcolumn=yes
 
 " C
 	let g:c_syntax_for_h = 1
-	lua require('lspconfig').clangd.setup{ on_attach=require'completion'.on_attach }
+	lua require('lspconfig').clangd.setup{}
 	nnoremap <silent> <leader>s :ClangdSwitchSourceHeader<CR>
 
 " lua
@@ -63,6 +69,5 @@ require'lspconfig'.sumneko_lua.setup {
 			telemetry = { enable = false },
 		},
 	},
-	on_attach = require'completion'.on_attach
 }
 EOF

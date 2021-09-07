@@ -19,7 +19,6 @@ alias \
 	zathura='function zathura() { /usr/bin/zathura "$@" &! } && zathura' \
 	eject='udisksctl power-off -b' \
 	xclip='xclip -sel clip' \
-	m='make' \
 	c='gcc -Wall -Werror -Wextra' \
 	sc='shellcheck' \
 	db='dropbox > /dev/null 2>&1 &!'

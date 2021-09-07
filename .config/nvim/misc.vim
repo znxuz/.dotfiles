@@ -8,6 +8,7 @@ else
 	set nocompatible
 	set backspace=indent,eol,start
 	set viminfo+=n~/.vim/viminfo
+	set t_vb =
 	filetype plugin indent on
 endif
 
@@ -18,7 +19,7 @@ endif
 	set exrc secure
 	set number rnu
 	set splitright splitbelow
-	set novisualbell noerrorbells t_vb =
+	set novisualbell noerrorbells
 	set clipboard=unnamedplus
 	set colorcolumn=80
 	set ttimeoutlen=0
@@ -54,7 +55,7 @@ endif
 	nnoremap <leader>t <CMD>sp \| resize 15 \| term<CR>
 
 " delete buffer while keeping split
-	command! Bd b# | bd#
+	nnoremap <leader>bd <CMD>b# \| bd#<CR>
 
 " snippets
 	nnoremap ]bash <CMD>-1read $HOME/.config/nvim/templates/bash.sh \| w \| e<CR><CR>
