@@ -20,7 +20,7 @@ alias \
 	xclip='xclip -sel clip' \
 	c='gcc -Wall -Werror -Wextra' \
 	sc='shellcheck' \
-	db='dropbox > /dev/null 2>&1 &!'
+	dropbox='dropbox > /dev/null 2>&1 &!'
 
 alias \
 	dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \

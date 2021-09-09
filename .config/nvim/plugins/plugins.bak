@@ -1,3 +1,20 @@
+Plug 'puremourning/vimspector'
+	" Debugger remaps
+	nnoremap <leader>dd <CMD>call vimspector#Launch()<CR>
+	nnoremap <leader>de <CMD>call vimspector#Reset()<CR>
+	nnoremap <leader>dtcb :call vimspector#CleanLineBreakpoint()<CR>
+	nnoremap <leader>d<space> :call vimspector#Continue()<CR>
+	nmap <leader>dl <Plug>VimspectorStepInto
+	nmap <leader>dj <Plug>VimspectorStepOver
+	nmap <leader>dk <Plug>VimspectorStepOut
+	nmap <leader>d^ <Plug>VimspectorRestart
+	nmap <leader>drc <Plug>VimspectorRunToCursor
+	nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
+	nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
+		" <Plug>VimspectorStop
+		" <Plug>VimspectorPause
+		" <Plug>VimspectorAddFunctionBreakpoint
+
 Plug 'jmckiern/vim-venter'
 
 Plug 'junegunn/goyo.vim'
@@ -74,7 +91,7 @@ Plug 'mengelbrecht/lightline-bufferline'
 	" nmap <A-9> <Plug>lightline#bufferline#go(9)
 	" nmap <A-0> <Plug>lightline#bufferline#go(10)
 
-" Plug 'kyazdani42/nvim-tree.lua'
+Plug 'kyazdani42/nvim-tree.lua'
 	nnoremap <leader>e :NvimTreeToggle<CR>
 	let g:nvim_tree_side = 'left'
 	let g:nvim_tree_width = 25
@@ -96,3 +113,4 @@ Plug 'mengelbrecht/lightline-bufferline'
 		\ 'files': 0,
 		\ }
 	highlight NvimTreeFolderIcon guibg=blue
+let g:python3_host_prog = '/usr/bin/python3'

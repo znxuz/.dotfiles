@@ -14,8 +14,9 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 	Plug 'hrsh7th/nvim-cmp'
 	Plug 'hrsh7th/cmp-buffer'
 	Plug 'hrsh7th/cmp-nvim-lsp'
+	Plug 'mfussenegger/nvim-dap'
+	Plug 'rcarriga/nvim-dap-ui'
 	Plug 'mbbill/undotree'
-	Plug 'puremourning/vimspector'
 	Plug 'vimwiki/vimwiki', { 'on': 'VimwikiUISelect' }
 " ====== useless garbage
 	Plug 'pbondoer/vim-42header'
@@ -25,7 +26,7 @@ call plug#end()
 	source $XDG_CONFIG_HOME/nvim/plugins/aesthetics.vim
 	source $XDG_CONFIG_HOME/nvim/plugins/telescope.vim
 	source $XDG_CONFIG_HOME/nvim/plugins/lsp.vim
-	source $XDG_CONFIG_HOME/nvim/plugins/vimspector.vim
+	source $XDG_CONFIG_HOME/nvim/plugins/nvim_dap.vim
 	source $XDG_CONFIG_HOME/nvim/plugins/vimwiki.vim
 
 " miscellaneous
