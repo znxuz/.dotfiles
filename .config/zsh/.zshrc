@@ -14,6 +14,7 @@ SAVEHIST=100000
 setopt hist_ignore_all_dups
 setopt extendedglob
 unsetopt beep
+setopt rmstarsilent
 
 # completion
 autoload -Uz compinit

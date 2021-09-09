@@ -6,7 +6,6 @@ alias \
 	ls='ls --color=auto --group-directories-first' \
 	ll='ls -lhN --color=auto --group-directories-first' \
 	la='ls -AhN --color=auto --group-directories-first' \
-	lal='ll -AhN --color=auto --group-directories-first'
 
 alias \
 	e='$EDITOR' \
@@ -25,5 +24,3 @@ alias \
 
 alias \
 	dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
-
-alias skip='BATS_RUN_SKIPPED=true'

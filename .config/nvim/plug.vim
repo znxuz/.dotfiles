@@ -2,7 +2,8 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 " ====== a e s t h e t i c s
 	Plug 'sainnhe/gruvbox-material'
 	Plug 'szw/vim-maximizer'
-	Plug 'jmckiern/vim-venter'
+	Plug 'folke/zen-mode.nvim'
+	Plug 'rbgrouleff/bclose.vim'
 	Plug 'nvim-treesitter/nvim-treesitter'
 " ====== essentials
 	Plug 'nvim-lua/popup.nvim'
@@ -31,3 +32,4 @@ call plug#end()
 	nnoremap <F5> <CMD>w \| source $XDG_CONFIG_HOME/nvim/init.vim<CR>
 	nnoremap <F2> <CMD>Stdheader<CR>
 	nnoremap <leader>u <CMD>UndotreeToggle<CR>
+	nnoremap <leader>bd <CMD>Bclose<CR>

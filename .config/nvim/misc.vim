@@ -54,9 +54,6 @@ endif
 " invoke terminal
 	nnoremap <leader>t <CMD>sp \| resize 15 \| term<CR>
 
-" delete buffer while keeping split
-	nnoremap <leader>bd <CMD>b# \| bd#<CR>
-
 " snippets
 	nnoremap ]bash <CMD>-1read $HOME/.config/nvim/templates/bash.sh \| w \| e<CR><CR>
 	nnoremap ]vimsp <CMD>:-1read $HOME/.config/nvim/templates/vimspector.json \|w \| e<CR><CR>
@@ -83,7 +80,7 @@ endif
 	set statusline+=%#Pmenu#%{GetMode()}%#LineNr#
 	set statusline+=%#Pmenu#%{&readonly?GetSep().'RO\ ':''}%#LineNr#
 	set statusline+=%#Pmenu#%{&paste?GetSep().'P\ ':''}%#LineNr#
-	set statusline+=%<%{'\ \ '.getcwd()}%{'\ '}
+	set statusline+=%<%{'\ \ '.substitute(getcwd(),\ '/home/zijian',\ '~',\ '')}%{'\ '}
 	set statusline+=%{fnamemodify(expand('%:p'),\ ':.')==''?'':GetSep()}
 	set statusline+=%{fnamemodify(expand('%:p'),\ ':.')}
 	set statusline+=%{&modified?'\ '.GetSep().'[+]':''}
