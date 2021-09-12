@@ -71,3 +71,5 @@ require'lspconfig'.sumneko_lua.setup {
 	},
 }
 EOF
+
+lua require'lspconfig'.jdtls.setup{}
