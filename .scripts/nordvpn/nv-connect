@@ -18,4 +18,5 @@ else
 	fi
 fi
 
-nordvpn connect "${1:-France}" || notify-send -u low "connection failed"
+server="$(curl --silent "https://api.nordvpn.com/v1/servers/recommendations?filters\[country_id\]=74&limit=1" | jq --raw-output '.[].hostname' | cut -d'.' -f1)"
+nordvpn connect "${1:-$server}" || notify-send -u low "connection failed"

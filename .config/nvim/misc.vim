@@ -38,6 +38,7 @@ endif
 	set nobackup
 	set undodir=$HOME/.local/share/nvim/undodir
 	set undofile
+	nnoremap <leader>ec :e <C-R>=expand("%:p:h:t")<CR>/
 
 " autocompletion
 	set wildignorecase
@@ -56,10 +57,8 @@ endif
 
 " snippets
 	nnoremap ]bash <CMD>-1read $HOME/.config/nvim/templates/bash.sh \| w \| e<CR><CR>
-	nnoremap ]vimsp <CMD>:-1read $HOME/.config/nvim/templates/vimspector.json \|w \| e<CR><CR>
 
 " netrw
-	nnoremap <leader>e <CMD>Vex \| vertical resize 30<CR>
 	let g:netrw_banner=0
 	let g:netrw_altv=1
 	let g:netrw_liststyle=3
