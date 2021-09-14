@@ -3,9 +3,16 @@ set signcolumn=yes
 set completeopt=menuone,noinsert,noselect
 
 " nvim-cmp
-lua <<EOF
+lua << EOF
+local luasnip = require 'luasnip'
 local cmp = require 'cmp'
+
 cmp.setup {
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
   mapping = {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -15,7 +22,10 @@ cmp.setup {
       select = true,
     },
   },
-  sources = { { name = 'nvim_lsp' }, },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  },
 }
 EOF
 
@@ -71,3 +81,10 @@ require'lspconfig'.sumneko_lua.setup {
 	},
 }
 EOF
+
+if has('nvim-0.5')
+  augroup lsp
+    au!
+    au FileType java lua require('jdtls').start_or_attach({cmd = {'java-lsp'}})
+  augroup end
+endif

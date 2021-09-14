@@ -14,8 +14,11 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 	Plug 'hrsh7th/nvim-cmp'
 	Plug 'hrsh7th/cmp-buffer'
 	Plug 'hrsh7th/cmp-nvim-lsp'
+	Plug 'saadparwaiz1/cmp_luasnip'
+	Plug 'L3MON4D3/LuaSnip'
 	Plug 'mfussenegger/nvim-dap'
 	Plug 'rcarriga/nvim-dap-ui'
+	Plug 'mfussenegger/nvim-jdtls'
 	Plug 'mbbill/undotree'
 	Plug 'vimwiki/vimwiki', { 'on': 'VimwikiUISelect' }
 " ====== useless garbage

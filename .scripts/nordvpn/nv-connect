@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+server="$(curl --silent "https://api.nordvpn.com/v1/servers/recommendations?filters\[country_id\]=74&limit=1" | jq --raw-output '.[].hostname' | cut -d'.' -f1)"
+
 if pgrep -x nordvpnd; then
-	notify-send -u low "nordvpnd already exists, proceeding to connect to ${1:-France}"
+	notify-send -u low "nordvpnd already exists, proceeding to connect to ${1:-$server}"
 else
 	expect <<- DONE
 		set timeout -1
@@ -18,5 +20,4 @@ else
 	fi
 fi
 
-server="$(curl --silent "https://api.nordvpn.com/v1/servers/recommendations?filters\[country_id\]=74&limit=1" | jq --raw-output '.[].hostname' | cut -d'.' -f1)"
 nordvpn connect "${1:-$server}" || notify-send -u low "connection failed"
