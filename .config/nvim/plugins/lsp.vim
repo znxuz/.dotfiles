@@ -4,15 +4,15 @@ set completeopt=menuone,noinsert,noselect
 
 " nvim-cmp
 lua << EOF
-local luasnip = require 'luasnip'
 local cmp = require 'cmp'
+-- local luasnip = require 'luasnip'
 
 cmp.setup {
-  snippet = {
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body)
-    end,
-  },
+  -- snippet = {
+    -- expand = function(args)
+      -- require('luasnip').lsp_expand(args.body)
+    -- end,
+  -- },
   mapping = {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -24,7 +24,7 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'luasnip' },
+    -- { name = 'luasnip' },
   },
 }
 EOF
@@ -63,7 +63,7 @@ else
 	print("Unsupported system for sumneko")
 end
 require'lspconfig'.sumneko_lua.setup {
-	cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
 	settings = {
 		Lua = {
 			runtime = {
@@ -71,11 +71,7 @@ require'lspconfig'.sumneko_lua.setup {
 				path = vim.split(package.path, ';')
 			},
 			diagnostics = { globals = {'vim'} },
-				-- Get the language server to recognize the `vim` global
-			workspace = {
-				-- Make the server aware of Neovim runtime files
-				library = vim.api.nvim_get_runtime_file("", true),
-			},
+			workspace = { library = vim.api.nvim_get_runtime_file("", true), },
 			telemetry = { enable = false },
 		},
 	},
