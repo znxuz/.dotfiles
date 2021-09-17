@@ -31,3 +31,6 @@ export NNN_OPTS="eEHR"
 
 # calibre dark theme
 export CALIBRE_USE_DARK_PALETTE=1
+
+# jdtls
+export JDTLS_DIR="$XDG_DATA_HOME/jdtls"

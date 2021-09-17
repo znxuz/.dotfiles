@@ -39,6 +39,7 @@ endif
 	set undodir=$HOME/.local/share/nvim/undodir
 	set undofile
 	nnoremap <leader>ec :e <C-R>=substitute(expand("%:p:h"), getcwd().'/', '', '')<CR>/
+	nnoremap <leader>tw <CMD>%s/\s\+$//e<CR>
 
 " autocompletion
 	set wildignorecase
