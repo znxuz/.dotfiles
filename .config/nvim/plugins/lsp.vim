@@ -5,14 +5,9 @@ set completeopt=menuone,noinsert,noselect
 " nvim-cmp
 lua << EOF
 local cmp = require 'cmp'
--- local luasnip = require 'luasnip'
 
 cmp.setup {
-  -- snippet = {
-    -- expand = function(args)
-      -- require('luasnip').lsp_expand(args.body)
-    -- end,
-  -- },
+  completion = { keyword_length = 2 },
   mapping = {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -22,10 +17,7 @@ cmp.setup {
       select = true,
     },
   },
-  sources = {
-    { name = 'nvim_lsp' },
-    -- { name = 'luasnip' },
-  },
+  sources = { { name = 'nvim_lsp' }, },
 }
 EOF
 

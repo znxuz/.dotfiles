@@ -11,9 +11,9 @@ autoload -U colors && colors
 # misc
 HISTSIZE=100000
 SAVEHIST=100000
+unsetopt beep
 setopt hist_ignore_all_dups
 setopt extendedglob
-unsetopt beep
 setopt rmstarsilent
 
 # completion
@@ -26,17 +26,18 @@ setopt globdots
 setopt noclobber
 # _comp_options+=(globdots)       # Include hidden files.
 
-# fzfs
+# fzf
 source $ZDOTDIR/zsh_fzf
 
 # vi mode
 source $ZDOTDIR/zsh_vi_mode
 
+# todos
 source $ZDOTDIR/todoist_functions_fzf.sh
 
 # must be at the end
-source $ZDOTDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # eye candy
 echo "\n" && pfetch

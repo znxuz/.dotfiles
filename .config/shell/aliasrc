@@ -1,11 +1,7 @@
 alias \
 	diff='diff --color=auto' \
 	grep='grep --color=auto' \
-	egrep='egrep --color=auto' \
-	fgrep='fgrep --color=auto' \
 	ls='ls --color=auto --group-directories-first' \
-	ll='ls -lhN --color=auto --group-directories-first' \
-	la='ls -AhN --color=auto --group-directories-first' \
 
 alias \
 	e='$EDITOR' \

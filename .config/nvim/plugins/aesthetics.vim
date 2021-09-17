@@ -1,11 +1,12 @@
 " gruvbox-material config
+	set termguicolors
 	let g:gruvbox_material_background = 'hard'
 	let g:gruvbox_material_enable_bold = 0
 	let g:gruvbox_material_enable_italic = 0
 	let g:gruvbox_material_disable_italic_comment = 0
 	let g:gruvbox_material_sign_column_background = 'none'
 	let g:gruvbox_material_lightline_disable_bold = 1
-	set termguicolors
+    let g:gruvbox_material_diagnostic_virtual_text = 'grey'
 	colorscheme gruvbox-material
 	set background=dark
 

@@ -12,7 +12,6 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 	Plug 'nvim-telescope/telescope-fzy-native.nvim'
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'hrsh7th/nvim-cmp'
-	Plug 'hrsh7th/cmp-buffer'
 	Plug 'hrsh7th/cmp-nvim-lsp'
 	Plug 'mfussenegger/nvim-dap'
 	Plug 'rcarriga/nvim-dap-ui'
