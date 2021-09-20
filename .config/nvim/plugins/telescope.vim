@@ -12,7 +12,7 @@ require('telescope').setup{
 				["<C-s>"] = actions.select_horizontal,
 			},
 		},
-		file_ignore_patterns = {".git/",".cache/", "%.out","%.pdf"},
+		file_ignore_patterns = {".git/", ".cache", "%.o", "%.out", "%.pdf"},
 		shorten_path = false,
 	},
 	pickers = {

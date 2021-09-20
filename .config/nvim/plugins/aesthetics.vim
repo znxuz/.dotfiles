@@ -6,7 +6,6 @@
 	let g:gruvbox_material_disable_italic_comment = 0
 	let g:gruvbox_material_sign_column_background = 'none'
 	let g:gruvbox_material_lightline_disable_bold = 1
-    let g:gruvbox_material_diagnostic_virtual_text = 'grey'
 	colorscheme gruvbox-material
 	set background=dark
 
@@ -17,7 +16,7 @@
 " treesitter
 lua << EOF
 require 'nvim-treesitter.configs'.setup {
-	ensure_installed = { "c", "cpp", "bash", "lua", "comment" },
+	ensure_installed = { "c", "cpp", "bash", "lua", "java", "comment" },
 	highlight = {
 		enable = true
 	},

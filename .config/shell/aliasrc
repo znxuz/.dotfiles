@@ -20,3 +20,4 @@ alias \
 
 alias \
 	dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
+	wtr='curl wttr.in/dortmund_oespel'

@@ -7,7 +7,6 @@ lua << EOF
 local cmp = require 'cmp'
 
 cmp.setup {
-  completion = { keyword_length = 2 },
   mapping = {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -43,7 +42,7 @@ EOF
 	lua require('lspconfig').clangd.setup{}
 	nnoremap <silent> <leader>s :ClangdSwitchSourceHeader<CR>
 
-" lua
+" Lua
 lua << EOF
 USER = vim.fn.expand('$USER')
 local sumneko_root_path = ""
@@ -70,9 +69,21 @@ require'lspconfig'.sumneko_lua.setup {
 }
 EOF
 
-if has('nvim-0.5')
-  augroup lsp
-    au!
-    au FileType java lua require('jdtls').start_or_attach({cmd = {'java-lsp'}})
-  augroup end
-endif
+" Java
+	if has('nvim-0.5')
+	  augroup lsp
+		au!
+		au FileType java lua require('jdtls').start_or_attach({cmd = {'java-lsp'}})
+	  augroup end
+	endif
+
+	nnoremap <M-CR> <CMD>lua require('jdtls').code_action()<CR>
+	vnoremap <M-CR> <ESC><CMD>lua require('jdtls').code_action(true)<CR>
+	nnoremap <leader>r <CMD>lua require('jdtls').code_action(false, 'refactor')<CR>
+
+	" nnoremap <M-O> <CkD>lua require('jdtls').organize_imports()<CR>
+	" nnoremap crv <CMD>lua require('jdtls').extract_variable()<CR>
+	" vnoremap crv <ESC><CMD>lua require('jdtls').extract_variable(true)<CR>
+	" nnoremap crc <CMD>lua require('jdtls').extract_constant()<CR>
+	" vnoremap crc <ESC><CMD>lua require('jdtls').extract_constant(true)<CR>
+	" vnoremap crm <ESC><CMD>lua require('jdtls').extract_method(true)<CR>
