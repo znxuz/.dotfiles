@@ -28,12 +28,12 @@ EOF
 	nnoremap <silent> gr <CMD>Telescope lsp_references<CR>
 	inoremap <silent> <leader>gh <CMD>lua vim.lsp.buf.signature_help()<CR>
 	nnoremap <silent> <leader>gre <CMD>lua vim.lsp.buf.rename()<CR>
-	nnoremap <silent> <leader>gen <CMD>lua vim.lsp.diagnostic.goto_prev()<CR>
-	nnoremap <silent> <leader>gep <CMD>lua vim.lsp.diagnostic.goto_next()<CR>
 	nnoremap <silent> <leader>fss <CMD>Telescope lsp_dynamic_workspace_symbols<CR>
 	nnoremap <silent> <leader>fsc <CMD>Telescope lsp_document_symbols<CR>
-	nnoremap <silent> <leader>gea <CMD>Telescope lsp_workspace_diagnostics<CR>
+	nnoremap <silent> <leader>gee <CMD>Telescope lsp_workspace_diagnostics<CR>
 	nnoremap <silent> <leader>gec <CMD>Telescope lsp_document_diagnostics<CR>
+	nnoremap <silent> <leader>gen <CMD>lua vim.lsp.diagnostic.goto_prev()<CR>
+	nnoremap <silent> <leader>gep <CMD>lua vim.lsp.diagnostic.goto_next()<CR>
 
 " language servers https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
 
@@ -73,17 +73,51 @@ EOF
 	if has('nvim-0.5')
 	  augroup lsp
 		au!
-		au FileType java lua require('jdtls').start_or_attach({cmd = {'java-lsp'}})
+		au FileType java lua require('jdtls').start_or_attach({cmd = {'java-lsp'}, root_dir = require('jdtls.setup').find_root({'.git', 'gradle.build', 'pom.xml', 'Makefile', 'makefile'})})
 	  augroup end
 	endif
 
-	nnoremap <M-CR> <CMD>lua require('jdtls').code_action()<CR>
-	vnoremap <M-CR> <ESC><CMD>lua require('jdtls').code_action(true)<CR>
-	nnoremap <leader>r <CMD>lua require('jdtls').code_action(false, 'refactor')<CR>
+	nnoremap <leader>ca <CMD>lua require('jdtls').code_action()<CR>
+	vnoremap <leader>ca <ESC><CMD>lua require('jdtls').code_action(true)<CR>
+	nnoremap <leader>cr <CMD>lua require('jdtls').code_action(false, 'refactor')<CR>
 
-	" nnoremap <M-O> <CkD>lua require('jdtls').organize_imports()<CR>
-	" nnoremap crv <CMD>lua require('jdtls').extract_variable()<CR>
-	" vnoremap crv <ESC><CMD>lua require('jdtls').extract_variable(true)<CR>
-	" nnoremap crc <CMD>lua require('jdtls').extract_constant()<CR>
-	" vnoremap crc <ESC><CMD>lua require('jdtls').extract_constant(true)<CR>
-	" vnoremap crm <ESC><CMD>lua require('jdtls').extract_method(true)<CR>
+	nnoremap <leader>co <CMD>lua require('jdtls').organize_imports()<CR>
+	" <CMD>lua require('jdtls').extract_variable()<CR>
+	" <ESC><CMD>lua require('jdtls').extract_variable(true)<CR>
+	" <CMD>lua require('jdtls').extract_constant()<CR>
+	" <ESC><CMD>lua require('jdtls').extract_constant(true)<CR>
+	" <ESC><CMD>lua require('jdtls').extract_method(true)<CR>
+
+lua << EOF
+local finders = require'telescope.finders'
+local sorters = require'telescope.sorters'
+local actions = require'telescope.actions'
+local pickers = require'telescope.pickers'
+require('jdtls.ui').pick_one_async = function(items, prompt, label_fn, cb)
+  local opts = {}
+  pickers.new(opts, {
+    prompt_title = prompt,
+    finder    = finders.new_table {
+      results = items,
+      entry_maker = function(entry)
+        return {
+          value = entry,
+          display = label_fn(entry),
+          ordinal = label_fn(entry),
+        }
+      end,
+    },
+    sorter = sorters.get_generic_fuzzy_sorter(),
+    attach_mappings = function(prompt_bufnr)
+      actions.select_default:replace(function()
+        local selection = actions.get_selected_entry(prompt_bufnr)
+        actions.close(prompt_bufnr)
+
+        cb(selection.value)
+      end)
+
+      return true
+    end,
+  }):find()
+end
+EOF

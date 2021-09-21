@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# JAR="$JDTLS_DIR/plugins/org.eclipse.equinox.launcher_1.6.300.v20210813-1054.jar"
-JAR="$(find $JDTLS_DIR/plugins -regex ".*equinox\.launcher_1\..+")"
+JAR="$JDTLS_DIR/plugins/org.eclipse.equinox.launcher_1.6.300.v20210813-1054.jar"
 GRADLE_HOME=/usr/share/java/gradle /usr/lib/jvm/default-runtime/bin/java \
   -Declipse.application=org.eclipse.jdt.ls.core.id1 \
   -Dosgi.bundles.defaultStartLevel=4 \
