@@ -9,10 +9,6 @@
 	colorscheme gruvbox-material
 	set background=dark
 
-" maximizer
-	let g:maximizer_set_default_mapping = 0
-	nnoremap <C-f> <CMD>MaximizerToggle<CR>
-
 " treesitter
 lua << EOF
 require 'nvim-treesitter.configs'.setup {
@@ -38,19 +34,16 @@ lua << EOF
     options = {
       signcolumn = "yes",
       number = true,
-      relativenumber = true,
     },
   },
   on_open = function()
 	vim.wo.colorcolumn = ""
 	vim.api.nvim_set_keymap('c', 'bd', 'Bclose', {noremap = true})
-	vim.api.nvim_set_keymap('c', 'q', 'qa', {noremap = true})
   end,
   on_close = function()
 	vim.wo.colorcolumn = "80"
 	vim.api.nvim_command('cunmap bd')
-	vim.api.nvim_command('cunmap q')
   end,
   }
 EOF
-nnoremap <leader>z <CMD>ZenMode<CR>
+nnoremap <C-f> <CMD>ZenMode<CR>

@@ -16,10 +16,7 @@ require('telescope').setup{
 		shorten_path = false,
 	},
 	pickers = {
-		buffers = { 
-			mappings = { i = { ["<leader>d"] = actions.delete_buffer, } },
-			-- sort_lastused = true,
-		},
+		buffers = { mappings = { i = { ["<leader>d"] = actions.delete_buffer, } }, },
 		find_files = { hidden = true, no_ignore = true, },
 		file_browser = { hidden = true, no_ignore = true, },
 	},

@@ -17,15 +17,14 @@ endif
 " basics
 	let mapleader=","
 	set path+=**
-	set exrc secure
+	set number
+	set nosc
 	set tabstop=4
 	set shiftwidth=4
-	set number rnu
-	set splitright splitbelow
-	set clipboard=unnamedplus
 	set colorcolumn=80
 	set ttimeoutlen=0
-	set nosc
+	set exrc secure
+	set clipboard=unnamedplus
 
 " search
 	set incsearch
