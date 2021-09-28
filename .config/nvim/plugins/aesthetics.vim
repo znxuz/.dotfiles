@@ -46,4 +46,4 @@ lua << EOF
   end,
   }
 EOF
-nnoremap <C-f> <CMD>ZenMode<CR>
+nnoremap <leader>z <CMD>ZenMode<CR>

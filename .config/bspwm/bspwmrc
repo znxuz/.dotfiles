@@ -11,7 +11,7 @@ bspc monitor \
 	| head -n1 | cut -d' ' -f1 | tr -d '\n') \
 	-d I II III IV V
 
-bspc config split_ratio				0.55
+bspc config split_ratio				0.5
 bspc config border_width			3
 bspc config window_gap				30
 bspc config normal_border_color		\#1d2021
