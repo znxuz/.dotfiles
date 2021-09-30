@@ -8,7 +8,7 @@ cached=$(dfs ls-files -c | cut -d'/' -f1 | sort | uniq)
 new_entries=$(comm -23 <(comm -23 <(echo "$all_entries") <(echo "$cached")) <(sort .gitignore))
 
 if [[ -n "$new_entries" ]]; then 
-	for entry in $new_entries
+	for entry in "$new_entries"
 	do
 		printf "cache this directory [%s] (y|n)?: " "$entry"
 		read ret && if [[ "$ret" =~ [N|n] ]]; then

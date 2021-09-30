@@ -3,6 +3,7 @@
 *.iso
 .cache
 main
+courses
 treasures
 Desktop
 Documents
@@ -18,7 +19,6 @@ discord
 BraveSoftware
 VirtualBox
 Virtualbox\ VMs
-VSCodium
 Electron
 GIMP
 calibre

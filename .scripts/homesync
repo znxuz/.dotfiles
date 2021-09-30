@@ -3,7 +3,7 @@
 dest=${1:-"/mnt/external/home_backup"}
 
 log=$HOME/homesync.log
-rsync -azvhP --delete-excluded --exclude-from "$HOME/.scripts/.rsyncexclude" $HOME $dest | tee $log 2>&1
+rsync -azvhP --del --delete-excluded --exclude-from "$HOME/.scripts/.rsyncexclude" $HOME $dest | tee $log 2>&1
 
 pacman -Qqen | tee $HOME/.config/Qqen && cp -f $HOME/.config/Qqen $dest
 pacman -Qqem | tee $HOME/.config/Qqem && cp -f $HOME/.config/Qqem $dest

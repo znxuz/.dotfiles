@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+download=($(< links))
+for link in "${download[@]}"; do
+	wget "$link"
+done

@@ -32,8 +32,8 @@ EOF
 	nnoremap <silent> <leader>fsc <CMD>Telescope lsp_document_symbols<CR>
 	nnoremap <silent> <leader>gee <CMD>Telescope lsp_workspace_diagnostics<CR>
 	nnoremap <silent> <leader>gec <CMD>Telescope lsp_document_diagnostics<CR>
-	nnoremap <silent> <leader>gen <CMD>lua vim.lsp.diagnostic.goto_prev()<CR>
-	nnoremap <silent> <leader>gep <CMD>lua vim.lsp.diagnostic.goto_next()<CR>
+	nnoremap <silent> <leader>gep <CMD>lua vim.lsp.diagnostic.goto_prev()<CR>
+	nnoremap <silent> <leader>gen <CMD>lua vim.lsp.diagnostic.goto_next()<CR>
 
 " language servers https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
 
@@ -70,12 +70,13 @@ require'lspconfig'.sumneko_lua.setup {
 EOF
 
 " Java
-	if has('nvim-0.5')
-	  augroup lsp
+
+if has('nvim-0.5')
+	augroup lsp
 		au!
-		au FileType java lua require('jdtls').start_or_attach({cmd = {'java-lsp'}, root_dir = require('jdtls.setup').find_root({'.git', 'gradle.build', 'pom.xml', 'Makefile', 'makefile'})})
-	  augroup end
-	endif
+		au FileType java lua require('jdtls').start_or_attach({cmd = {'java-lsp', '/home/zijian/.local/share/workspace/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')}, root_dir = require('jdtls.setup').find_root({'gradle.build', 'pom.xml', 'makefile', 'Makefile'})})
+	augroup end
+endif
 
 	nnoremap <leader>ca <CMD>lua require('jdtls').code_action()<CR>
 	vnoremap <leader>ca <ESC><CMD>lua require('jdtls').code_action(true)<CR>
