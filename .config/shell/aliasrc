@@ -12,6 +12,7 @@ alias \
 	bt='bluetoothctl' \
 	detach="function detach() { bg && disown %\$(jobs | wc -l) } && detach" \
 	zathura='function zathura() { /usr/bin/zathura "$@" &! } && zathura' \
+	brave='function brave() { /usr/bin/brave "$@" > /dev/null 2>&1 &! } && brave' \
 	eject='udisksctl power-off -b' \
 	xclip='xclip -sel clip' \
 	c='gcc -Wall -Werror -Wextra' \

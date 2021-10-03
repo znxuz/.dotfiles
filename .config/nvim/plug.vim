@@ -13,7 +13,10 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'hrsh7th/nvim-cmp'
 	Plug 'hrsh7th/cmp-nvim-lsp'
+	Plug 'saadparwaiz1/cmp_luasnip'
+	Plug 'L3MON4D3/LuaSnip'
 	Plug 'mfussenegger/nvim-jdtls'
+	Plug 'mattn/emmet-vim'
 " ====== Debugger
 	Plug 'mfussenegger/nvim-dap'
 	Plug 'rcarriga/nvim-dap-ui'
@@ -34,3 +37,5 @@ call plug#end()
 " miscellaneous
 	nnoremap <F2> <CMD>Stdheader<CR>
 	nnoremap <leader>u <CMD>UndotreeToggle<CR>
+	nnoremap <leader>t :Emmet
+	inoremap <leader>t <ESC>:Emmet

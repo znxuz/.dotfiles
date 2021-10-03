@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+JDTLS_DIR="$XDG_DATA_HOME/jdtls"
+
 JAR="$JDTLS_DIR/plugins/org.eclipse.equinox.launcher_1.6.300.v20210813-1054.jar"
 GRADLE_HOME=/usr/share/java/gradle /usr/lib/jvm/default-runtime/bin/java \
   -Declipse.application=org.eclipse.jdt.ls.core.id1 \

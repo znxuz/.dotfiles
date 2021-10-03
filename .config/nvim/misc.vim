@@ -40,7 +40,7 @@ endif
 	set undodir=$HOME/.local/share/nvim/undodir
 	set undofile
 	nnoremap <leader>ec :e <C-R>=substitute(expand("%:p:h"), getcwd().'/', '', '')<CR>/
-	nnoremap <leader>tw <CMD>%s/\s\+$//e<CR>
+	nnoremap <leader>o <CMD>!$BROWSER %&<CR><CR>
 
 " autocompletion
 	set wildignorecase
@@ -69,10 +69,9 @@ endif
 	set statusline+=%#Pmenu#%{GetMode()}%#LineNr#
 	set statusline+=%#Pmenu#%{&readonly?GetSep().'RO\ ':''}%#LineNr#
 	set statusline+=%#Pmenu#%{&paste?GetSep().'P\ ':''}%#LineNr#
-	set statusline+=%<%{'\ \ '.substitute(getcwd(),\ '/home/zijian',\ '~',\ '')}%{'\ '}
-	set statusline+=%{fnamemodify(expand('%:p'),\ ':.')==''?'':GetSep()}
-	set statusline+=%{fnamemodify(expand('%:p'),\ ':.')}
-	set statusline+=%{&modified?'\ '.GetSep().'[+]':''}
+	set statusline+=%<%{'\ \ '.substitute(getcwd(),\ $HOME,\ '~',\ '')}%{'\ '}
+	set statusline+=%{fnamemodify(expand('%:p'),\ ':.')==''?'':GetSep().fnamemodify(expand('%:p'),\ ':.').'\ '}
+	set statusline+=%{&modified?GetSep().'[+]':''}
 	set statusline+=%=
 	set statusline+=%{'\ \ '.&fileformat}%{'\ '.GetSep()}
 	set statusline+=%{&fileencoding?&fileencoding:&encoding}%{'\ '.GetSep()}

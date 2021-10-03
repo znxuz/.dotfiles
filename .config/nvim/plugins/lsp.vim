@@ -7,16 +7,24 @@ lua << EOF
 local cmp = require 'cmp'
 
 cmp.setup {
-  mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<C-y>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-  },
-  sources = { { name = 'nvim_lsp' }, },
+	snippet = {
+		expand = function(args)
+		require('luasnip').lsp_expand(args.body)
+	end,
+	},
+mapping = {
+	['<C-p>'] = cmp.mapping.select_prev_item(),
+	['<C-n>'] = cmp.mapping.select_next_item(),
+	['<C-e>'] = cmp.mapping.close(),
+	['<C-y>'] = cmp.mapping.confirm {
+		behavior = cmp.ConfirmBehavior.Replace,
+		select = true,
+		},
+	},
+sources = {
+	{ name = 'nvim_lsp' },
+	{ name = 'luasnip' },
+	},
 }
 EOF
 
@@ -82,9 +90,20 @@ endif
 	vnoremap <leader>ca <ESC><CMD>lua require('jdtls').code_action(true)<CR>
 	nnoremap <leader>cr <CMD>lua require('jdtls').code_action(false, 'refactor')<CR>
 
-	nnoremap <leader>co <CMD>lua require('jdtls').organize_imports()<CR>
+	nnoremap <leader>ci <CMD>lua require('jdtls').organize_imports()<CR>
 	" <CMD>lua require('jdtls').extract_variable()<CR>
 	" <ESC><CMD>lua require('jdtls').extract_variable(true)<CR>
 	" <CMD>lua require('jdtls').extract_constant()<CR>
 	" <ESC><CMD>lua require('jdtls').extract_constant(true)<CR>
 	" <ESC><CMD>lua require('jdtls').extract_method(true)<CR>
+
+" HTML
+lua << EOF
+--Enable (broadcasting) snippet capability for completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+require'lspconfig'.html.setup {
+	capabilities = capabilities,
+	}
+EOF

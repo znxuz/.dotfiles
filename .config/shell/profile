@@ -32,8 +32,9 @@ export NNN_OPTS="eER"
 # calibre dark theme
 export CALIBRE_USE_DARK_PALETTE=1
 
-# jdtls
-export JDTLS_DIR="$XDG_DATA_HOME/jdtls"
-
 # maven
 export MAVEN_OPTS="-Dmaven.repo.local=$XDG_DATA_HOME/m2"
+
+# npm
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/config
+export NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
