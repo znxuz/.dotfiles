@@ -6,17 +6,16 @@ require('telescope').setup{
 		layout_config = { prompt_position = "top", },
 		sorting_strategy = "ascending",
 		file_sorter = require('telescope.sorters').get_fzy_sorter,
+		file_ignore_patterns = {".git/", ".cache", "%.o", "%.out", "%.class", "%.pdf"},
+		shorten_path = false,
 		mappings = {
 			i = {
 				["<esc>"] = actions.close,
 				["<C-s>"] = actions.select_horizontal,
 			},
 		},
-		file_ignore_patterns = {".git/", ".cache", "%.o", "%.out", "%.class", "%.pdf"},
-		shorten_path = false,
 	},
 	pickers = {
-		buffers = { mappings = { i = { ["<leader>d"] = actions.delete_buffer, } }, },
 		find_files = { hidden = true, no_ignore = true, },
 		file_browser = { hidden = true, no_ignore = true, },
 	},

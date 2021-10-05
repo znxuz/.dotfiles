@@ -37,5 +37,3 @@ call plug#end()
 " miscellaneous
 	nnoremap <F2> <CMD>Stdheader<CR>
 	nnoremap <leader>u <CMD>UndotreeToggle<CR>
-	nnoremap <leader>t :Emmet
-	inoremap <leader>t <ESC>:Emmet

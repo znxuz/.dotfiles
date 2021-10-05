@@ -8,7 +8,6 @@ alias \
 	vim='$EDITOR' \
 	nv='nordvpn' \
 	n='norminette' \
-	news='newsboat' \
 	bt='bluetoothctl' \
 	detach="function detach() { bg && disown %\$(jobs | wc -l) } && detach" \
 	zathura='function zathura() { /usr/bin/zathura "$@" &! } && zathura' \
