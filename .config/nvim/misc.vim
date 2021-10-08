@@ -19,8 +19,6 @@ endif
 	set path+=**
 	set number
 	set nosc
-	set tabstop=4
-	set shiftwidth=4
 	set colorcolumn=80
 	set exrc secure
 	set clipboard=unnamedplus
@@ -44,15 +42,6 @@ endif
 " autocompletion
 	set wildignorecase
 	set wildmode=longest,list,full
-
-" netrw (enabled)
-	" let g:loaded_netrw       = 1
-	" let g:loaded_netrwPlugin = 1
-	let g:netrw_banner = 0
-	let g:netrw_winsize = 30
-	" let g:netrw_altv = 1
-	" let g:netrw_liststyle = 3
-	" let g:netrw_browse_split = 4
 
 " stautus line
 	function! GetMode()

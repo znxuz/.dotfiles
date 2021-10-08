@@ -21,6 +21,7 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 	Plug 'mfussenegger/nvim-dap'
 	Plug 'rcarriga/nvim-dap-ui'
 " ====== Misc
+	Plug 'mcchrish/nnn.vim'
 	Plug 'mbbill/undotree'
 	Plug 'vimwiki/vimwiki', { 'on': 'VimwikiUISelect' }
 " ====== useless garbage
@@ -37,3 +38,12 @@ call plug#end()
 " miscellaneous
 	nnoremap <F2> <CMD>Stdheader<CR>
 	nnoremap <leader>u <CMD>UndotreeToggle<CR>
+
+" nnn
+	let g:nnn#set_default_mappings = 0
+	nnoremap <leader>nn <CMD>NnnPicker<CR>
+	nnoremap <leader>nc <CMD>NnnPicker %:p:h<CR>
+	let g:nnn#layout = { 'window': { 'width': 0.6, 'height': 0.6 } }
+	let g:nnn#action = {
+				\ '<c-s>': 'split',
+				\ '<c-v>': 'vsplit' }

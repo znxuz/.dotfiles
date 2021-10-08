@@ -91,6 +91,7 @@ endif
 	nnoremap <leader>cr <CMD>lua require('jdtls').code_action(false, 'refactor')<CR>
 
 	nnoremap <leader>ci <CMD>lua require('jdtls').organize_imports()<CR>
+	inoremap <leader>ci <CMD>lua require('jdtls').organize_imports()<CR>
 	" <CMD>lua require('jdtls').extract_variable()<CR>
 	" <ESC><CMD>lua require('jdtls').extract_variable(true)<CR>
 	" <CMD>lua require('jdtls').extract_constant()<CR>
