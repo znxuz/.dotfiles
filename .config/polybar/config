@@ -36,9 +36,22 @@ background = #1d2021
 background-alt = #282828
 foreground = #ebdbb2
 foreground-alt = #928374
-primary = #b16286
+primary = ${colors.purple}
 secondary = #e60053
 alert = #d79921
+black = #282828
+black_hard = #1d2021
+bg = #1d2021
+red = #cc241d
+green = #98971a
+yellow = #d79921
+orange = #d65d0e
+blue = #458588
+purple = #b16286
+aqua = #689d68
+white = #ebdbb2
+gray = #a89984
+darkgray = #1d2021
 
 [bar/statusbar]
 bottom = true
@@ -116,33 +129,32 @@ type = custom/script
 exec = poly-pkg-update
 interval = 10800
 format-prefix = " "
-format-underline = #d79921
 
 [module/wmnode]
 type = custom/script
 exec = monocle-indicator
 tail = true
-format-prefix = " "
+format-foreground = ${colors.purple}
 
 [module/eth]
 type = custom/script
 exec = poly-bandwidth
 interval = 2
-format-underline = #689d68
+format-underline = ${colors.aqua}
 
 [module/cputemp]
 type = custom/script
 exec = poly-cputemp
 interval = 2
 format-prefix = " "
-format-underline = #928374
+format-underline = ${colors.yellow}
 
 [module/pulseaudio]
 type = internal/pulseaudio
 format-volume = <label-volume>
 label-volume =  %percentage%%
 label-volume-foreground = ${colors.foreground}
-label-volume-underline = #98971a
+label-volume-underline = ${colors.green}
 label-muted =  muted
 label-muted-foreground = ${colors.foreground-alt}
 
@@ -151,14 +163,14 @@ type = internal/memory
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
-format-underline = #458588
+format-underline = ${colors.blue}
 label = %percentage_used%%
 
 [module/battery]
 type =custom/script
 exec = poly-battery
 interval = 60
-format-underline = #d65d0e
+format-underline = ${colors.orange}
 
 [module/date]
 type = internal/date
@@ -168,7 +180,7 @@ time = %H:%M
 time-alt = %H:%M:%S
 format-prefix = ""
 format-prefix-foreground = ${colors.foreground}
-format-underline = #b16286
+format-underline = ${colors.purple}
 label = %date% %time%
 
 [module/tray]

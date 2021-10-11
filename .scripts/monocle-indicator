@@ -4,7 +4,7 @@ function print_count() {
 	[[ $1 -lt 2 ]] && echo '' && return 1
 	bar=""
 	for count in $(seq 1 $1); do
-		bar="$bar/"
+		bar="$bar "
 	done
 	echo $bar
 }

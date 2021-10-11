@@ -28,7 +28,6 @@ endif
 	set nohls
 	set ignorecase
 	set smartcase
-	nnoremap // /\<\><left><left>
 	nnoremap <leader>/ <CMD>let @/ = ""<CR>
 
 " file management

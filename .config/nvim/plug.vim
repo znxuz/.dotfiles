@@ -16,7 +16,6 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 	Plug 'saadparwaiz1/cmp_luasnip'
 	Plug 'L3MON4D3/LuaSnip'
 	Plug 'mfussenegger/nvim-jdtls'
-	Plug 'mattn/emmet-vim'
 " ====== Debugger
 	Plug 'mfussenegger/nvim-dap'
 	Plug 'rcarriga/nvim-dap-ui'

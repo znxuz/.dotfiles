@@ -20,4 +20,8 @@ else
 	fi
 fi
 
-nordvpn connect "${1:-$server}" || notify-send -u low "connection failed"
+nordvpn connect "${1:-$server}" && exit 0
+
+notify-send -u low "connection to $server failed"
+notify-send -u low "connecting to France..."
+nordvpn connect France
