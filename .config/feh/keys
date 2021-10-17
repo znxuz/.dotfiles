@@ -36,7 +36,7 @@ zoom_default 0
 zoom_fit s
 
 # remove now conflicts with toggle_filenames, so change that
-toggle_filenames f
+toggle_filenames d
 
 # I only hit these accidentaly
 save_image

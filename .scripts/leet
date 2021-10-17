@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+[[ -z "$*" || $# -lt 2 ]] && exit 1
+
+case "$1" in
+	"-j"|"--java")
+		mkdir "$2" && nvim "$2"/Solution.java
+		;;
+	"-c")
+		echo "waiting for implementation"
+		exit 1
+		;;
+esac

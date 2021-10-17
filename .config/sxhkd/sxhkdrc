@@ -97,10 +97,6 @@ super + ctrl + {m,x,y,z}
 # focus/swap
 #
 
-# switch focus back and forth
-super + 6
-	bspc node older -f
-
 # swap the current node and the biggest window
 super + g
 	bspc node -s biggest.window.local
@@ -110,23 +106,23 @@ super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+super + {_,shift + }{1-5}
+	bspc {desktop -f,node -d} '^{1-5}'
 
-# move a floating window
-super + ctrl + {h,j,k,l}
-	bspc node -v {-40 0,0 40,0 -40,40 0}
-
-focus the next/previous window in the current desktop
-super + {n,p}
-	bspc node -f {next,prev}.local.!hidden.window
+# move window to next or previous desktop
+super + shift + bracket{left,right}
+	bspc node -d {prev,next}.local
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
+# focus the next/previous window in the current desktop
+super + {n,p}
+	bspc node -f {next,prev}.local.!hidden.window
+
 # focus the last node/desktop
-super + {grave,Tab}
+super + {6,Tab}
 	bspc {node,desktop} -f last
 
 # focus the older or newer node in the focus history
@@ -134,3 +130,7 @@ super + {o,i}
 	bspc wm -h off; \
 	bspc node {older,newer} -f; \
 	bspc wm -h on
+
+# move a floating window
+super + ctrl + {h,j,k,l}
+	bspc node -v {-40 0,0 40,0 -40,40 0}

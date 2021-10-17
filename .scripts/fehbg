@@ -1,3 +1,5 @@
 #!/bin/sh
-wallpaper="${1:-$HOME/Dropbox/Pictures/wallpapers/alena-aenami-8x5qz1_3840x2160.png}"
-feh --no-fehbg --bg-scale "$wallpaper"
+
+selection=$HOME/.config/feh/selection
+[ -n "$1" ] && echo "$HOME/Pictures/wallpapers/$1" > "$selection"
+feh --no-fehbg --bg-scale "${1:-$(cat $selection)}"
