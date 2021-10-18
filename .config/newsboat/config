@@ -34,8 +34,8 @@ bind-key U show-urls
 color background default default
 color listnormal white default
 color listnormal_unread default default
-color listfocus color16 yellow
-color listfocus_unread color16 yellow
+color listfocus color16 white
+color listfocus_unread color16 white
 color info default black
 color article default default
 

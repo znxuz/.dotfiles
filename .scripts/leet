@@ -4,7 +4,11 @@
 
 case "$1" in
 	"-j"|"--java")
-		mkdir "$2" && nvim "$2"/Solution.java
+		mkdir "$2" &&
+			printf "%s\n\n%s\n\n\t%s\n\t%s\n%s\n" "package $2;" "class Main {" \
+			"public static void main(String[] args) {" "}" "}" > "$2/Main.java" &&
+			nvim "$2/Solution.java"
+
 		;;
 	"-c")
 		echo "waiting for implementation"
