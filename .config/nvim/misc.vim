@@ -28,15 +28,16 @@ endif
 	set nohls
 	set ignorecase
 	set smartcase
-	nnoremap <leader>/ <CMD>let @/ = ""<CR>
+	nnoremap <leader>/ <cmd>let @/ = ""<cr>
 
 " file management
 	set noswapfile
 	set nobackup
 	set undodir=$HOME/.local/share/nvim/undodir
 	set undofile
-	nnoremap <leader>ec :e <C-R>=substitute(expand("%:p:h"), getcwd().'/', '', '')<CR>/
-	nnoremap <leader>o <CMD>!$BROWSER %&<CR><CR>
+	nnoremap <leader>ec :e <c-r>=substitute(expand("%:p:h"), getcwd().'/', '', '')<cr>/
+	nnoremap <leader>o <cmd>!$BROWSER %&<cr><cr>
+	nnoremap <leader>cd <cmd>cd %:p:h<cr>
 
 " autocompletion
 	set wildignorecase

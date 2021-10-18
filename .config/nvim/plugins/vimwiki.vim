@@ -18,4 +18,4 @@ let g:vimwiki_list = [
 			\ },
 			\ ]
 
-nnoremap <leader>ww <CMD>VimwikiUISelect<CR>
+nnoremap <leader>ww <cmd>VimwikiUISelect<cr>

@@ -29,16 +29,16 @@ require('telescope').setup{
 require('telescope').load_extension('fzy_native')
 EOF
 
-nnoremap <leader>ff <CMD>Telescope find_files<CR>
-nnoremap <leader>fa <CMD>Telescope find_files search_dirs=~<CR>
-nnoremap <leader>fc <CMD>Telescope find_files search_dirs=%:p:h<CR>
-nnoremap <leader>fb <CMD>Telescope buffers<CR>
-nnoremap <leader>fdd <CMD>Telescope file_browser<CR>
-nnoremap <leader>fdc <CMD>Telescope file_browser cwd=%:p:h<CR>
-nnoremap <leader>fg <CMD>Telescope live_grep<CR>
-nnoremap <leader>fh <CMD>Telescope help_tags<CR>
-nnoremap <leader>ft <CMD>Telescope builtin<CR>
-nnoremap <leader>fj <CMD>Telescope jumplist<CR>
-nnoremap <leader>fo <CMD>Telescope oldfiles<CR>
-nnoremap <leader>fm <CMD>Telescope keymaps<CR>
-nnoremap <leader>fq <CMD>Telescope quickfix<CR>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fa <cmd>Telescope find_files search_dirs=~<cr>
+nnoremap <leader>fc <cmd>Telescope find_files search_dirs=%:p:h<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fdd <cmd>Telescope file_browser<cr>
+nnoremap <leader>fdc <cmd>Telescope file_browser cwd=%:p:h<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>ft <cmd>Telescope builtin<cr>
+nnoremap <leader>fj <cmd>Telescope jumplist<cr>
+nnoremap <leader>fo <cmd>Telescope oldfiles<cr>
+nnoremap <leader>fm <cmd>Telescope keymaps<cr>
+nnoremap <leader>fq <cmd>Telescope quickfix<cr>

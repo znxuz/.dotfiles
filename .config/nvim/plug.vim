@@ -35,13 +35,13 @@ call plug#end()
 	source $XDG_CONFIG_HOME/nvim/plugins/vimwiki.vim
 
 " miscellaneous
-	nnoremap <F2> <CMD>Stdheader<CR>
-	nnoremap <leader>u <CMD>UndotreeToggle<CR>
+	nnoremap <f2> <cmd>Stdheader<cr>
+	nnoremap <leader>u <cmd>UndotreeToggle<cr>
 
 " nnn
 	let g:nnn#set_default_mappings = 0
-	nnoremap <leader>nn <CMD>NnnPicker<CR>
-	nnoremap <leader>nc <CMD>NnnPicker %:p:h<CR>
+	nnoremap <leader>nn <cmd>NnnPicker<cr>
+	nnoremap <leader>nc <cmd>NnnPicker %:p:h<cr>
 	let g:nnn#layout = { 'window': { 'width': 0.6, 'height': 0.6 } }
 	let g:nnn#action = {
 				\ '<c-s>': 'split',

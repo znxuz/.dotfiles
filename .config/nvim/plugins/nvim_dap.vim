@@ -73,11 +73,11 @@ dapui.setup({
 })
 EOF
 
-nnoremap <leader>dd <CMD>lua require'dap'.continue()<CR>
-nnoremap <leader>dj <CMD>lua require'dap'.step_over()<CR>
-nnoremap <leader>dl <CMD>lua require'dap'.step_into()<CR>
-nnoremap <leader>dk <CMD>lua require'dap'.step_out()<CR>
-nnoremap <leader>de <CMD>lua require'dap'.disconnect() require'dap'.close()<CR>
-nnoremap <leader>d^ <CMD>lua require'dap'.run_last()<CR>
-nnoremap <leader>drc <Plug>lua require'dap'.run_to_cursor()<CR>
-nnoremap <leader>dbp <CMD>lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <leader>dd <cmd>lua require'dap'.continue()<cr>
+nnoremap <leader>dj <cmd>lua require'dap'.step_over()<cr>
+nnoremap <leader>dl <cmd>lua require'dap'.step_into()<cr>
+nnoremap <leader>dk <cmd>lua require'dap'.step_out()<cr>
+nnoremap <leader>de <cmd>lua require'dap'.disconnect() require'dap'.close()<cr>
+nnoremap <leader>d^ <cmd>lua require'dap'.run_last()<cr>
+nnoremap <leader>drc <plug>lua require'dap'.run_to_cursor()<cr>
+nnoremap <leader>dbp <cmd>lua require'dap'.toggle_breakpoint()<cr>
