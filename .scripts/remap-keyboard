@@ -1,0 +1,12 @@
+#!/bin/sh
+
+lsusb | grep -qi "HHKB" && setxkbmap && exit 1
+
+if systemctl status bluetooth > /dev/null; then
+	kb_status="$(bluetoothctl info E4:82:08:83:14:68 | grep "Connected" | sed 's/.* //g')"
+	if [ -n "$kb_status" ] || [ "$kb_status" = "yes" ]; then
+		setxkbmap && exit 1
+	fi
+fi
+
+xmodmap ${XDG_CONFIG_HOME:-$HOME/.config}/X11/Xmodmap

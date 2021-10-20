@@ -57,7 +57,7 @@ super + alt + k
 super + shift + s
     flameshot full -c -p ~/Pictures/screenshots && sleep 30 && pkill flameshot
 super + alt + s
-    flameshot gui -p ~/Pictures/screenshots && sleep 240 && pkill flameshot
+    flameshot gui && sleep 240 && pkill flameshot
 
 ## bspwm
 
