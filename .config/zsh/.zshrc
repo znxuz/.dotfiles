@@ -2,7 +2,20 @@
 source $HOME/.config/shell/aliasrc
 
 # prompt
-source $ZDOTDIR/zsh_prompt
+PURE_PROMPT_SYMBOL='❯'
+PROMPT="%F{blue}%~"
+# job count & last exit status
+PROMPT="${PROMPT} %F{magenta}%(1j.[%j] .)%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f "
+precmd() {
+	print ""
+}
+# clear screen with extra new line
+custom_clear_screen() {
+	zle -I # Enable output to terminal.
+	print -n '\e[2J\e[3;0H' # Clear screen and move cursor to (4, 0).
+	zle .redisplay # Redraw prompt.
+}
+zle -N clear-screen custom_clear_screen
 
 # color zsh
 eval $(dircolors $XDG_CONFIG_HOME/shell/gruvbox_dircolors)
@@ -30,10 +43,10 @@ setopt noclobber
 source $ZDOTDIR/zsh_fzf
 
 # vi mode
-source $ZDOTDIR/zsh_vi_mode
+source $ZDOTDIR/zsh_vi
 
 # todos
-source $ZDOTDIR/todoist_functions_fzf.sh
+source $ZDOTDIR/zsh_todoist
 
 # must be at the end
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
