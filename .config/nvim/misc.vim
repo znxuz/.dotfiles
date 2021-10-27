@@ -26,8 +26,6 @@ endif
 " search
 	set incsearch
 	set nohls
-	set ignorecase
-	set smartcase
 	nnoremap <leader>/ <cmd>let @/ = ""<cr>
 
 " file management
