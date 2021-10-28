@@ -5,6 +5,7 @@ else
 	let &t_SI .= "\<Esc>[6 q"
 	set syntax=on
 	set hidden
+	set incsearch
 	set noesckeys
 	set nocompatible
 	set backspace=indent,eol,start
@@ -24,7 +25,6 @@ endif
 	set clipboard=unnamedplus
 
 " search
-	set incsearch
 	set nohls
 	nnoremap <leader>/ <cmd>let @/ = ""<cr>
 

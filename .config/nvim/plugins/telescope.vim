@@ -6,7 +6,8 @@ require('telescope').setup{
 		layout_config = { prompt_position = "top", },
 		sorting_strategy = "ascending",
 		file_sorter = require('telescope.sorters').get_fzy_sorter,
-		file_ignore_patterns = {".git/", ".cache", "%.o", "%.out", "%.class", "%.pdf"},
+		file_ignore_patterns = {".git/", ".cache", "%.o", "%.out", "%.class",
+		"%.pdf", "%.mkv", "%.mp4"},
 		shorten_path = false,
 		mappings = {
 			i = {

@@ -115,6 +115,9 @@ super + {_,shift + }{h,j,k,l}
 super + {_,shift + }{1-5}
 	bspc {desktop -f,node -d} '^{1-5}'
 
+super + 0
+	bspc desktop -f Desktop
+
 # move window to next or previous desktop
 super + shift + bracket{left,right}
 	bspc node -d {prev,next}.local
