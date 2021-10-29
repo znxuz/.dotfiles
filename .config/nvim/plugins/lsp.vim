@@ -110,3 +110,6 @@ require'lspconfig'.cssls.setup {
   capabilities = capabilities,
 }
 EOF
+
+" LaTex
+lua require'lspconfig'.texlab.setup{}
