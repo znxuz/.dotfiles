@@ -4,7 +4,7 @@ get_scale()
 {
 	resolution="$1"
 	if [ "$resolution" = '1920x1080' ]; then
-		echo 1.5
+		echo 1.25
 	else
 		echo 1
 	fi
