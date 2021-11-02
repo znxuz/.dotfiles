@@ -32,8 +32,9 @@ export NNN_OPTS="eER"
 # calibre dark theme
 export CALIBRE_USE_DARK_PALETTE=1
 
-# maven
+# java
 export MAVEN_OPTS="-Dmaven.repo.local=$XDG_DATA_HOME/m2"
+export PATH_TO_FX="/usr/lib/jvm/java-11-openjfx/lib"
 
 # npm
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/config

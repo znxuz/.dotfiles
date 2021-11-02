@@ -16,6 +16,7 @@ alias \
 	xclip='xclip -sel clip' \
 	c='gcc -Wall -Werror -Wextra' \
 	sc='shellcheck' \
+	gcalcli='gcalcli --config-folder $HOME/.config/gcalcli'
 	dropbox='dropbox > /dev/null 2>&1 &!'
 
 alias \

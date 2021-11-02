@@ -6,3 +6,6 @@ setxkbmap -option compose:ralt
 
 # set screen timeouts
 xset dpms 300 300 600
+
+# set track point sensitivity
+xinput set-prop 15 345 0.5
