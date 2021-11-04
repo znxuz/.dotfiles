@@ -7,6 +7,6 @@ if [[ -n "$status" ]]; then
 		bspc desktop V --to-monitor DP2-2 &&
 		bspc monitor "$external" --remove
 else
-	xrandr --output eDP1 --mode 1920x1080 --right-of DP2-2 --scale 1 &&
+	xrandr --output eDP1 --mode 1920x1080 --right-of DP2-2 --scale 1.5 &&
 		bspc desktop V --to-monitor eDP1
 fi
