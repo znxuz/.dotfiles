@@ -77,25 +77,16 @@ require'lspconfig'.sumneko_lua.setup {
 EOF
 
 " Java
-
-if has('nvim-0.5')
-	augroup lsp
-		au!
-		au FileType java lua require('jdtls').start_or_attach({cmd = {'java-lsp', '/home/zijian/.local/share/workspace/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')}, root_dir = require('jdtls.setup').find_root({'gradle.build', 'pom.xml', 'makefile', 'Makefile'})})
-	augroup end
-endif
-
-	nnoremap <leader>ca <cmd>lua require('jdtls').code_action()<cr>
-	vnoremap <leader>ca <esc><cmd>lua require('jdtls').code_action(true)<cr>
-	nnoremap <leader>cr <cmd>lua require('jdtls').code_action(false, 'refactor')<cr>
-
-	nnoremap <leader>ci <cmd>lua require('jdtls').organize_imports()<cr>
-	inoremap <leader>ci <cmd>lua require('jdtls').organize_imports()<cr>
-	" <cmd>lua require('jdtls').extract_variable()<cr>
-	" <esc><cmd>lua require('jdtls').extract_variable(true)<cr>
-	" <cmd>lua require('jdtls').extract_constant()<cr>
-	" <esc><cmd>lua require('jdtls').extract_constant(true)<cr>
-	" <esc><cmd>lua require('jdtls').extract_method(true)<cr>
+nnoremap <leader>ca <cmd>lua require('jdtls').code_action()<cr>
+vnoremap <leader>ca <esc><cmd>lua require('jdtls').code_action(true)<cr>
+nnoremap <leader>cr <cmd>lua require('jdtls').code_action(false, 'refactor')<cr>
+nnoremap <leader>ci <cmd>lua require('jdtls').organize_imports()<cr>
+inoremap <leader>ci <cmd>lua require('jdtls').organize_imports()<cr>
+" <cmd>lua require('jdtls').extract_variable()<cr>
+" <esc><cmd>lua require('jdtls').extract_variable(true)<cr>
+" <cmd>lua require('jdtls').extract_constant()<cr>
+" <esc><cmd>lua require('jdtls').extract_constant(true)<cr>
+" <esc><cmd>lua require('jdtls').extract_method(true)<cr>
 
 " HTML
 lua << EOF
@@ -110,6 +101,3 @@ require'lspconfig'.cssls.setup {
   capabilities = capabilities,
 }
 EOF
-
-" LaTex
-lua require'lspconfig'.texlab.setup{}
