@@ -35,7 +35,7 @@ endif
 	set undofile
 	nnoremap <leader>ec :e <c-r>=substitute(expand("%:p:h"), getcwd().'/', '', '')<cr>/
 	nnoremap <leader>o <cmd>!$BROWSER %&<cr><cr>
-	nnoremap <leader>cd <cmd>cd %:p:h<cr>
+	cnoremap <leader>cd <c-r>=expand("%:p:h")<cr>
 
 " autocompletion
 	set wildignorecase

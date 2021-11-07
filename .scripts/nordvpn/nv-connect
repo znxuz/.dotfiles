@@ -20,8 +20,8 @@ else
 	fi
 fi
 
-nordvpn connect "${1:-$server}" && exit 0
+nordvpn connect --group P2P "${1:-$server}" && exit 0
 
 notify-send -u low "connection to $server failed"
 notify-send -u low "connecting to France..."
-nordvpn connect France
+nordvpn connect --group P2P France

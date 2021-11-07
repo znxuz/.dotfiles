@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-([[ -n "$1" ]] && todoist l -f "##$1" -p) || todoist l -f '##Todos|##Uni' -p
+([[ -n "$1" ]] && todoist l -f "##$1" -p) || todoist l -f '##Todos' -p
