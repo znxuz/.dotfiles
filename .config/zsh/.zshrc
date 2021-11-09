@@ -28,6 +28,7 @@ unsetopt beep
 setopt hist_ignore_all_dups
 setopt extendedglob
 setopt rmstarsilent
+unsetopt prompt_cr prompt_sp
 
 # completion
 autoload -Uz compinit

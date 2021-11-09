@@ -4,11 +4,14 @@
 
 case "$1" in
 	"-j"|"--java")
-		mkdir "$2" &&
-			printf "%s\n\n%s\n\n\t%s\n\t%s\n%s\n" "package $2;" "class Main {" \
+		sed -E -i "0,/src_dir/{s/(src_dir = ).*/\1$2/}" Makefile &&
+			mkdir "$2" &&
+			printf "%s\n\n%s\n\n\t%s\n\n\t%s\n\t%s\n%s\n" \
+			"package $2;" \
+			"class Main {" \
+			"private static final Solution sol = new Solution();" \
 			"public static void main(String[] args) {" "}" "}" > "$2/Main.java" &&
 			nvim "$2/Solution.java"
-
 		;;
 	"-c")
 		echo "waiting for implementation"
