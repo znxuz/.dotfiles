@@ -25,8 +25,9 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
 	xbacklight -dec 10
 
-super + Escape ; {apostrophe, s, S, u, r, o}
+super + Escape ; {apostrophe, b, s, S, u, r, o}
 	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded"\
+	, $XDG_CONFIG_HOME/polybar/launch.sh > /dev/null 2>&1 \
 	, notify-send -u low "zzz..." && sleep 1 && systemctl suspend\
 	, notify-send -u low "  " && sleep 1 && systemctl poweroff\
 	, notify-send -u low "  " && sleep 1 && user-logout\

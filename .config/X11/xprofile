@@ -8,4 +8,4 @@ setxkbmap -option compose:ralt
 xset dpms 300 300 600
 
 # set track point sensitivity
-xinput set-prop 15 345 1
+xinput set-prop 15 346 1

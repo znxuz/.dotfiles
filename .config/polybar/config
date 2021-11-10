@@ -128,7 +128,6 @@ label-separator-padding = 0
 type = custom/script
 exec = poly-pkg-update
 interval = 10800
-tail = true
 format-prefix = " "
 
 [module/wmnode]
