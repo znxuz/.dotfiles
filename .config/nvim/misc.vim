@@ -25,6 +25,8 @@ endif
 	set clipboard=unnamedplus
 
 " search
+	set ignorecase
+	set smartcase
 	set nohls
 	nnoremap <leader>/ <cmd>let @/ = ""<cr>
 

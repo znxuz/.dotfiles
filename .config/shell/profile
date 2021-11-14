@@ -35,6 +35,7 @@ export CALIBRE_USE_DARK_PALETTE=1
 # java
 export MAVEN_OPTS="-Dmaven.repo.local=$XDG_DATA_HOME/m2"
 export PATH_TO_FX="/usr/lib/jvm/java-11-openjfx/lib"
+export JAVA_OPTS="-Dsun.java2d.uiScale=1.5 -Dglass.gtk.uiScale=168dpi"
 
 # npm
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/config
