@@ -10,7 +10,7 @@ then
     exit 1
 fi
 
-pac_upd="$(checkupdates)"
+pac_upd="$(checkupdates 2&> /dev/null)"
 count=$(echo "$pac_upd" | wc -l)
 if echo "$pac_upd" | grep -q "linux-.*arch" ; then
 	total=" $count"
@@ -18,7 +18,7 @@ elif [[ "$count" -gt 9 ]]; then
 	total="$count"
 fi
 
-aur_upd="$(auracle outdated | wc -l)"
+aur_upd="$(auracle outdated 2&> /dev/null | wc -l)"
 if [[ "$aur_upd" -ne 0 ]]; then
 	if [[ -n "$total" ]]; then
 		total="$total "

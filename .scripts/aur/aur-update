@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+updates=$(auracle outdated -q)
+
+cd /tmp
+for pkg in $updates; do
+	auracle clone $pkg && cd $pkg && makepkg -sirc --noconfirm && cd ../ && rm -rf $pkg
+done

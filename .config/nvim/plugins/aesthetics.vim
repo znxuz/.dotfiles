@@ -37,11 +37,9 @@ lua << EOF
     },
   },
   on_open = function()
-	vim.wo.colorcolumn = ""
 	vim.api.nvim_set_keymap('c', 'bd', 'Bclose', {noremap = true})
   end,
   on_close = function()
-	vim.wo.colorcolumn = "80"
 	vim.api.nvim_command('cunmap bd')
   end,
   }

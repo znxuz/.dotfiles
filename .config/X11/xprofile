@@ -9,3 +9,5 @@ xset dpms 300 300 600
 
 # set track point sensitivity
 xinput set-prop 15 346 1
+# disable touchpad
+xinput set-prop 14 186 0

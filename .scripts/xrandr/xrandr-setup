@@ -19,7 +19,7 @@ then
 	mode=$(echo "$xrandr_output" | grep '\bconnected\b' -A1 | tail -n1 \
 		| grep -Eo '[[:digit:]]{4}x[[:digit:]]{4}')
 
-	xrandr --output "$display" --primary --mode "$mode" --scale 1 \
+	xrandr --output "$display" --primary --mode "$mode" --scale 1 --dpi 168 \
 		--output eDP1 --off
 else
 	# integrated display
@@ -28,5 +28,5 @@ else
 		| grep -Eo '[[:digit:]]{4}x[[:digit:]]{4}')
 
 	xrandr --output "$display" --primary --mode "$mode" \
-		--scale "$(get_scale $mode)"
+		--scale "$(get_scale $mode)" --dpi 168
 fi
