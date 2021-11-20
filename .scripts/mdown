@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 
-download=($(< links))
-for link in "${download[@]}"; do
-	wget "$link"
+dirs=(vorlesung uebung)
+
+download() {
+	download=($(< links))
+	for link in "${download[@]}"; do
+		wget "$link"
+	done
+}
+
+for dir in "${dirs[@]}"; do
+	cd $dir
+	download
+	cd ../
 done
