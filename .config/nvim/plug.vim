@@ -1,9 +1,9 @@
 call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 " ====== a e s t h e t i c s
 	Plug 'sainnhe/gruvbox-material'
-	Plug 'folke/zen-mode.nvim'
 	Plug 'rbgrouleff/bclose.vim'
 	Plug 'nvim-treesitter/nvim-treesitter'
+	Plug 'Pocco81/TrueZen.nvim'
 " ====== Telescoping
 	Plug 'nvim-lua/popup.nvim'
 	Plug 'nvim-lua/plenary.nvim'

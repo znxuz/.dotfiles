@@ -37,6 +37,7 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fdd <cmd>Telescope file_browser<cr>
 nnoremap <leader>fdc <cmd>Telescope file_browser cwd=%:p:h<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fr <cmd>Telescope resume<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>ft <cmd>Telescope builtin<cr>
 nnoremap <leader>fj <cmd>Telescope jumplist<cr>

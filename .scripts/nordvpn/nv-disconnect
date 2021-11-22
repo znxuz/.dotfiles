@@ -15,7 +15,7 @@ expect <<- DONE
 	expect eof
 DONE
 
-if systemctl status nordvpnd > /dev/null 2&>1 ; then
+if systemctl status nordvpnd > /dev/null; then
 	notify-send -u low "failed killing daemon"
 else
 	notify-send -u low "daemon killed" && exit 0

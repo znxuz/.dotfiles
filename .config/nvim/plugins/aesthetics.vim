@@ -26,22 +26,23 @@ require 'nvim-treesitter.configs'.setup {
 EOF
 
 lua << EOF
-  require("zen-mode").setup {
-  window = {
-    backdrop = 1,
-    width = 100,
-    height = 0.9,
-    options = {
-      signcolumn = "yes",
-      number = true,
-    },
-  },
-  on_open = function()
+local true_zen = require("true-zen")
+true_zen.setup({
+	modes = {
+		ataraxis = {
+			left_padding = 100,
+			right_padding = 10,
+			auto_padding = false,
+			quit = "close",
+			ignore_floating_windows = true,
+		},
+	},
+})
+true_zen.after_mode_ataraxis_on = function ()
 	vim.api.nvim_set_keymap('c', 'bd', 'Bclose', {noremap = true})
-  end,
-  on_close = function()
+end
+true_zen.after_mode_ataraxis_off = function ()
 	vim.api.nvim_command('cunmap bd')
-  end,
-  }
+end
 EOF
-nnoremap <leader>z <cmd>ZenMode<cr>
+nnoremap <leader>z <cmd>TZAtaraxis<cr>q:<c-w>c

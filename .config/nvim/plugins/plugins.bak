@@ -1,3 +1,24 @@
+Plug 'folke/zen-mode.nvim'
+	lua << EOF
+	  require("zen-mode").setup {
+	  window = {
+		backdrop = 1,
+		width = 100,
+		height = 0.9,
+		options = {
+		  signcolumn = "yes",
+		  number = false,
+		},
+	  },
+	  on_open = function()
+		vim.api.nvim_set_keymap('c', 'bd', 'Bclose', {noremap = true})
+	  end,
+	  on_close = function()
+		vim.api.nvim_command('cunmap bd')
+	  end,
+	  }
+	EOF
+
 Plug 'puremourning/vimspector'
 	" Debugger remaps
 	nnoremap <leader>dd <CMD>call vimspector#Launch()<CR>
@@ -15,8 +36,6 @@ Plug 'puremourning/vimspector'
 		" <Plug>VimspectorPause
 		" <Plug>VimspectorAddFunctionBreakpoint
 
-Plug 'jmckiern/vim-venter'
-
 Plug 'junegunn/goyo.vim'
 	function! s:goyo_enter()
 		nnoremap :bd<CR> <CMD>Bclose<CR>
@@ -33,84 +52,3 @@ Plug 'junegunn/goyo.vim'
 	nnoremap <leader>z <CMD>Goyo<CR>
 
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
-
-Plug 'airblade/vim-gitgutter'
-	" git-gutter unmap
-	" let g:gitgutter_map_keys = 0
-
-Plug 'itchyny/lightline.vim'
-	let g:lightline = {
-		\ 'colorscheme': 'gruvbox_material',
-		\ 'active': {
-		\   'left': [ [ 'mode', 'paste' ],
-		\			[ 'readonly', 'root_directory', 'relativepath', 'modified' ] ]
-		\ },
-		\ 'component_function': {
-		\	'root_directory': 'getcwd'
-		\ },
-	\ }
-
-Plug 'mengelbrecht/lightline-bufferline'
-	" buffer-line
-	" set showtabline=2
-	" let g:lightline#bufferline#show_number = 0
-	" let g:lightline#bufferline#number_separator = ' | '
-	" let g:lightline#bufferline#shorten_path = 0
-	" let g:lightline#bufferline#smart_path = 0
-	" let g:lightline#bufferline#reverse_buffers = 0
-	" let g:lightline#bufferline#unnamed = '[No Name]'
-	" let g:lightline = {
-		" "\ 'colorscheme': 'gruvbox_material',
-		" "\ 'active': {
-		" "\   'left': [ [ 'mode', 'paste' ],
-		" "\			[ 'readonly', 'root_directory', 'modified' ] ]
-		" "\ },
-		" "\ 'component_function': {
-		" "\	'root_directory': 'getcwd'
-		" "\ },
-		" "\ 'tabline': {
-		" "\   'left': [ ['buffers'] ],
-		" "\	'right': [ [] ],
-		" "\ },
-		" "\ 'component_expand': {
-		" "\   'buffers': 'lightline#bufferline#buffers'
-		" "\ },
-		" "\ 'component_type': {
-		" "\   'buffers': 'tabsel'
-		" "\ },
-	" "\ }
-	" "
-	" nmap <A-1> <Plug>lightline#bufferline#go(1)
-	" nmap <A-2> <Plug>lightline#bufferline#go(2)
-	" nmap <A-3> <Plug>lightline#bufferline#go(3)
-	" nmap <A-4> <Plug>lightline#bufferline#go(4)
-	" nmap <A-5> <Plug>lightline#bufferline#go(5)
-	" nmap <A-6> <Plug>lightline#bufferline#go(6)
-	" nmap <A-7> <Plug>lightline#bufferline#go(7)
-	" nmap <A-8> <Plug>lightline#bufferline#go(8)
-	" nmap <A-9> <Plug>lightline#bufferline#go(9)
-	" nmap <A-0> <Plug>lightline#bufferline#go(10)
-
-Plug 'kyazdani42/nvim-tree.lua'
-	nnoremap <leader>e :NvimTreeToggle<CR>
-	let g:nvim_tree_side = 'left'
-	let g:nvim_tree_width = 25
-	let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ] "empty by default
-	let g:nvim_tree_gitignore = 0
-	let g:nvim_tree_auto_close = 0
-	let g:nvim_tree_follow = 1
-	let g:nvim_tree_indent_markers = 1
-	let g:nvim_tree_hide_dotfiles = 0
-	let g:nvim_tree_git_hl = 1
-	let g:nvim_tree_highlight_opened_files = 1
-	let g:nvim_tree_width_allow_resize  = 1
-	let g:nvim_tree_add_trailing = 1
-	let g:nvim_tree_group_empty = 1
-	let g:nvim_tree_special_files = [ 'README.md', 'Makefile', 'MAKEFILE' ]
-	let g:nvim_tree_show_icons = {
-		\ 'git': 0,
-		\ 'folders': 0,
-		\ 'files': 0,
-		\ }
-	highlight NvimTreeFolderIcon guibg=blue
-let g:python3_host_prog = '/usr/bin/python3'

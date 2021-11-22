@@ -18,7 +18,6 @@ endif
 " basics
 	let mapleader=","
 	set path+=**
-	set number
 	set nosc
 	set colorcolumn=80
 	set exrc secure
