@@ -14,7 +14,8 @@ lua << EOF
 require 'nvim-treesitter.configs'.setup {
 	ensure_installed = { "c", "cpp", "bash", "lua", "java", "comment" },
 	highlight = {
-		enable = true
+		enable = true,
+		additional_vim_regex_highlighting = false
 	},
 	autopairs = {
 		enable = false
@@ -28,10 +29,13 @@ EOF
 lua << EOF
 local true_zen = require("true-zen")
 true_zen.setup({
+	ui = {
+		left = { signcolumn = "yes", },
+	},
 	modes = {
 		ataraxis = {
-			left_padding = 100,
-			right_padding = 10,
+			left_padding = 50,
+			right_padding = 1,
 			auto_padding = false,
 			quit = "close",
 			ignore_floating_windows = true,
