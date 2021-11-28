@@ -44,6 +44,9 @@ EOF
 
 " language servers https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
 
+" Tex
+lua require'lspconfig'.texlab.setup{}
+
 " C
 	let g:c_syntax_for_h = 1
 	lua require('lspconfig').clangd.setup{}
