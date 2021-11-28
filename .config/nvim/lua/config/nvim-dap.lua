@@ -1,5 +1,5 @@
-lua << EOF
 local dap, dapui = require('dap'), require('dapui')
+
 dap.listeners.after.event_initialized['dapui_config'] = function() dapui.open() end
 dap.listeners.before.event_terminated['dapui_config'] = function() dapui.close() end
 dap.listeners.before.event_exited['dapui_config'] = function() dapui.close() end
@@ -32,7 +32,7 @@ dap.configurations.c = {
   },
 }
 
-dapui.setup({
+require('dapui').setup({
   icons = { expanded = "▾", collapsed = "▸" },
   mappings = {
     -- Use a table to apply multiple mappings
@@ -71,13 +71,13 @@ dapui.setup({
   },
   windows = { indent = 1 },
 })
-EOF
 
-nnoremap <leader>dd <cmd>lua require'dap'.continue()<cr>
-nnoremap <leader>dj <cmd>lua require'dap'.step_over()<cr>
-nnoremap <leader>dl <cmd>lua require'dap'.step_into()<cr>
-nnoremap <leader>dk <cmd>lua require'dap'.step_out()<cr>
-nnoremap <leader>de <cmd>lua require'dap'.disconnect() require'dap'.close()<cr>
-nnoremap <leader>d^ <cmd>lua require'dap'.run_last()<cr>
-nnoremap <leader>drc <plug>lua require'dap'.run_to_cursor()<cr>
-nnoremap <leader>dbp <cmd>lua require'dap'.toggle_breakpoint()<cr>
+local map = require('config.utils').map
+map("n", "<leader>dd", "<cmd>lua require'dap'.continue()<cr>")
+map("n", "<leader>dj", "<cmd>lua require'dap'.step_over()<cr>")
+map("n", "<leader>dl", "<cmd>lua require'dap'.step_into()<cr>")
+map("n", "<leader>dk", "<cmd>lua require'dap'.step_out()<cr>")
+map("n", "<leader>de", "<cmd>lua require'dap'.disconnect() require'dap'.close()<cr>")
+map("n", "<leader>d^", "<cmd>lua require'dap'.run_last()<cr>")
+map("n", "<leader>drc", "<plug>lua require'dap'.run_to_cursor()<cr>")
+map("n", "<leader>dbp", "<cmd>lua require'dap'.toggle_breakpoint()<cr>")
