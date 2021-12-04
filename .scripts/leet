@@ -4,7 +4,7 @@
 
 case "$1" in
 	"-j"|"--java")
-		sed -E -i "0,/src_dir/{s/(src_dir = ).*/\1$2/}" Makefile &&
+		sed -E -i "0,/SRC_DIR/{s/(SRC_DIR := ).*/\1$2/}" Makefile &&
 			mkdir "$2" &&
 			printf "%s\n\n%s\n\n\t%s\n\n\t%s\n\t%s\n%s\n" \
 			"package $2;" \
