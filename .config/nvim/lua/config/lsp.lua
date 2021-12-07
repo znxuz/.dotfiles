@@ -19,6 +19,7 @@ map("n", "<leader>gee", "<cmd>Telescope lsp_workspace_diagnostics<cr>")
 map("n", "<leader>gec", "<cmd>Telescope lsp_document_diagnostics<cr>")
 map("n", "<leader>gep", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
 map("n", "<leader>gen", "<cmd>lua vim.diagnostic.goto_next()<cr>")
+map("n", "<leader>ges", "<cmd>lua vim.diagnostic.open_float()<cr>")
 
 -- Tex
 lsp.texlab.setup{}
