@@ -55,9 +55,8 @@ lsp.sumneko_lua.setup {
 }
 
 -- Java
-map("n", "<leader>ca", "<cmd>lua require('jdtls').code_action()<cr>")
-map("v", "<leader>ca", "<esc><cmd>lua require('jdtls').code_action(true)<cr>")
-map("n", "<leader>cr", "<cmd>lua require('jdtls').code_action(false, 'refactor')<cr>")
+map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>")
+map("v", "<leader>ca", "<esc><cmd>lua vim.lsp.buf.range_code_action()<cr>")
 map("n", "<leader>ci", "<cmd>lua require('jdtls').organize_imports()<cr>")
 map("i", "<leader>ci", "<cmd>lua require('jdtls').organize_imports()<cr>")
 -- <cmd>lua require('jdtls').extract_variable()<cr>
