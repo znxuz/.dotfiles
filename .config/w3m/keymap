@@ -1,3 +1,4 @@
+keymap b NULL
 keymap H NULL
 keymap d NULL
 keymap u NULL
@@ -19,6 +20,7 @@ keymap M NULL
 keymap L NULL
 
 keymap :h HELP
+keymap b PREV_WORD
 keymap d NEXT_PAGE
 keymap u PREV_PAGE
 keymap K NEXT

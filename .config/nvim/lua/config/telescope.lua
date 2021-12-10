@@ -13,6 +13,7 @@ telescope.setup {
 			i = {
 				["<esc>"] = actions.close,
 				["<C-s>"] = actions.select_horizontal,
+        ["<C-w>"] = function() vim.cmd [[norm! bcw]] end,
 			},
 		},
 	},
@@ -35,8 +36,6 @@ map("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
 map("n", "<leader>fa", "<cmd>Telescope find_files search_dirs=~<cr>")
 map("n", "<leader>fc", "<cmd>Telescope find_files search_dirs=%:p:h<cr>")
 map("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
-map("n", "<leader>fdd", "<cmd>Telescope file_browser<cr>")
-map("n", "<leader>fdc", "<cmd>Telescope file_browser cwd=%:p:h<cr>")
 map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
 map("n", "<leader>fr", "<cmd>Telescope resume<cr>")
 map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
