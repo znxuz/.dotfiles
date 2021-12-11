@@ -1,4 +1,7 @@
--- language servers https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
+-- [[
+--language servers https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+--]]
+
 local map = require("config.utils").map
 local lsp = require("lspconfig")
 
@@ -9,14 +12,17 @@ vim.cmd "set completeopt=menuone,noinsert,noselect"
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>")
 map("n", "gh", "<cmd>lua vim.lsp.buf.hover()<cr>")
 map("n", "gd", "<cmd>Telescope lsp_definitions<cr>")
+map("n", "gD", "<cmd>Telescope lsp_type_definitions<cr>")
 map("n", "gp", "<cmd>Telescope lsp_implementations<cr>")
 map("n", "gr", "<cmd>Telescope lsp_references<cr>")
 map("i", "<leader>gh", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
 map("n", "<leader>gre", "<cmd>lua vim.lsp.buf.rename()<cr>")
+map("n", "<leader>gca", "<cmd>Telescope lsp_code_actions<cr>")
+map("v", "<leader>gca", "<cmd>Telescope lsp_range_code_actions<cr>")
 map("n", "<leader>fss", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>")
 map("n", "<leader>fsc", "<cmd>Telescope lsp_document_symbols<cr>")
-map("n", "<leader>gee", "<cmd>Telescope lsp_workspace_diagnostics<cr>")
-map("n", "<leader>gec", "<cmd>Telescope lsp_document_diagnostics<cr>")
+map("n", "<leader>gee", "<cmd>Telescope diagnostics<cr>")
+map("n", "<leader>gec", "<cmd>Telescope diagnostics bufnr=0<cr>")
 map("n", "<leader>gep", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
 map("n", "<leader>gen", "<cmd>lua vim.diagnostic.goto_next()<cr>")
 map("n", "<leader>ges", "<cmd>lua vim.diagnostic.open_float()<cr>")
@@ -25,7 +31,7 @@ map("n", "<leader>ges", "<cmd>lua vim.diagnostic.open_float()<cr>")
 lsp.texlab.setup{}
 
 -- C
-vim.g["c_syntax_for_h"] = 1
+-- vim.g["c_syntax_for_h"] = 1
 require "lspconfig".clangd.setup{}
 map("n", "<leader>s", "<cmd>ClangdSwitchSourceHeader<cr>")
 
@@ -55,23 +61,12 @@ lsp.sumneko_lua.setup {
 }
 
 -- Java
-map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>")
-map("v", "<leader>ca", "<esc><cmd>lua vim.lsp.buf.range_code_action()<cr>")
 map("n", "<leader>ci", "<cmd>lua require('jdtls').organize_imports()<cr>")
 map("i", "<leader>ci", "<cmd>lua require('jdtls').organize_imports()<cr>")
--- <cmd>lua require('jdtls').extract_variable()<cr>
--- <esc><cmd>lua require('jdtls').extract_variable(true)<cr>
--- <cmd>lua require('jdtls').extract_constant()<cr>
--- <esc><cmd>lua require('jdtls').extract_constant(true)<cr>
--- <esc><cmd>lua require('jdtls').extract_method(true)<cr>
 
 -- HTML
 --Enable (broadcasting) snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-lsp.html.setup {
-	capabilities = capabilities,
-}
-lsp.cssls.setup {
-  capabilities = capabilities,
-}
+lsp.html.setup { capabilities = capabilities }
+lsp.cssls.setup { capabilities = capabilities }
