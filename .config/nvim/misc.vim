@@ -17,7 +17,7 @@ endif
 
 " basics
 	let mapleader=","
-	set path+=**
+	set path+=**,/usr/include/c++/**1
 	set nosc
 	set colorcolumn=80
 	set exrc secure

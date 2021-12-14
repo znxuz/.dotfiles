@@ -30,9 +30,11 @@ map("n", "<leader>ges", "<cmd>lua vim.diagnostic.open_float()<cr>")
 -- Tex
 lsp.texlab.setup{}
 
--- C
+-- C/CPP
 -- vim.g["c_syntax_for_h"] = 1
-require "lspconfig".clangd.setup{}
+require "lspconfig".clangd.setup{
+	cmd = { "clangd", "--background-index", "--log=error" }
+}
 map("n", "<leader>s", "<cmd>ClangdSwitchSourceHeader<cr>")
 
 -- Lua
