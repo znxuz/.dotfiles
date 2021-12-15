@@ -3,7 +3,7 @@ set shiftwidth=4
 
 " Java lsp
 lua << EOF
-local workspace_dir = '/home/zijian/.local/share/workspace/'
+local workspace_dir = vim.env.HOME .. '/.local/share/workspace/'
 local config = {
 	cmd = {'java-lsp',
 		workspace_dir .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')

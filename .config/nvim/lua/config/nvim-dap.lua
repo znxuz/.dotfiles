@@ -3,9 +3,11 @@ local dap, dapui = require('dap'), require('dapui')
 dap.listeners.after.event_initialized['dapui_config'] = function() dapui.open() end
 dap.listeners.before.event_terminated['dapui_config'] = function() dapui.close() end
 dap.listeners.before.event_exited['dapui_config'] = function() dapui.close() end
+
+-- C/C++
 dap.adapters.cppdbg = {
   type = 'executable',
-  command = '/home/zijian/.local/share/nvim/site/plugged/nvim-dap/vscode-cpptools/extension/debugAdapters/bin/OpenDebugAD7',
+  command = vim.env.HOME .. '/.local/share/vscode-cpptools/extension/debugAdapters/bin/OpenDebugAD7',
 }
 dap.configurations.c = {
   {
@@ -31,6 +33,7 @@ dap.configurations.c = {
     end,
   },
 }
+dap.configurations.cpp = dap.configurations.c
 
 require('dapui').setup({
   icons = { expanded = "▾", collapsed = "▸" },
