@@ -1,5 +1,6 @@
 acpi_call
 alacritty
+alsa-utils
 arandr
 arch-wiki-docs
 arch-wiki-lite
@@ -7,6 +8,7 @@ at
 autoconf
 automake
 base
+bc
 binutils
 bison
 bluez
@@ -17,6 +19,7 @@ calibre
 clang
 cronie
 dialog
+discord
 dunst
 efibootmgr
 ethtool
@@ -40,6 +43,7 @@ gettext
 ghostscript
 gimp
 git
+github-cli
 gnome-keyring
 grep
 groff
@@ -50,9 +54,15 @@ htop
 imagemagick
 intel-ucode
 java-environment-common
+java11-openjfx
+java11-openjfx-doc
+java11-openjfx-src
+jdk-openjdk
 jq
+jre-openjdk
 jre11-openjdk
 libbsd
+libreoffice-still
 libtool
 linux
 linux-firmware
@@ -64,10 +74,12 @@ m4
 make
 man-db
 man-pages
+marked
 maven
 mpv
 ncdu
 nethogs
+network-manager-applet
 networkmanager
 newsboat
 ninja
@@ -75,9 +87,12 @@ nnn
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
+npm
 ntfs-3g
 nvme-cli
 obs-studio
+openjdk-doc
+openjdk-src
 openjdk11-doc
 openjdk11-src
 openssh
@@ -90,6 +105,8 @@ pacman-contrib
 pass
 patch
 pavucontrol
+pdfcrack
+pdftk
 perl-rename
 picom
 pkgconf
@@ -97,6 +114,8 @@ pkgstats
 powertop
 pulseaudio
 pulseaudio-bluetooth
+python-pyjwt
+python-pyopenssl
 qbittorrent
 reflector
 ripgrep
@@ -110,7 +129,9 @@ smartmontools
 speedtest-cli
 sudo
 sxhkd
+syncthing
 texinfo
+texlab
 throttled
 tldr
 tlp
@@ -122,10 +143,12 @@ ttf-roboto
 unclutter
 unrar
 unzip
+upower
 valgrind
 virtualbox
 vnstat
 vpnc
+weechat
 wget
 which
 wireless_tools

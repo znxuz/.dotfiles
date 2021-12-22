@@ -2,15 +2,12 @@
 *.vdi
 *.iso
 .cache
-main
+.local/share
 courses
-treasures
 Desktop
 Documents
 Pictures
 Videos
-Public
-Templates
 Music
 Downloads
 Dropbox
@@ -27,3 +24,5 @@ obs-studio
 Trash
 Slack
 Mailspring
+Microsoft
+dasht
