@@ -26,7 +26,7 @@ XF86MonBrightnessDown
 	xbacklight -dec 10
 
 # systems
-super + Escape ; {apostrophe, b, s, S, u, r, o}
+super + shift + Escape ; {apostrophe, b, s, S, u, r, o}
 	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded"\
 	, $XDG_CONFIG_HOME/polybar/launch.sh > /dev/null 2>&1 \
 	, notify-send -u low "zzz..." && sleep 1 && systemctl suspend\
@@ -37,12 +37,6 @@ super + Escape ; {apostrophe, b, s, S, u, r, o}
 	}
 
 # screen orientation
-# super + shift ; {up, down, left, right}
-	# { set-display-orientation inverted \
-	# , set-display-orientation normal \
-	# , set-display-orientation left \
-	# , set-display-orientation right \
-	# }
 super + shift + {Up, Down, Left, Right}
 	{ set-orientation "inverted" \
 	, set-orientation "normal" \
