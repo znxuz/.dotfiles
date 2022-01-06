@@ -13,7 +13,6 @@ telescope.setup {
 			i = {
 				["<esc>"] = actions.close,
 				["<C-s>"] = actions.select_horizontal,
-        ["<C-w>"] = function() vim.cmd [[norm! bcw]] end,
 			},
 		},
 	},

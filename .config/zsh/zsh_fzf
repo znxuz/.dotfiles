@@ -2,26 +2,31 @@ source /usr/share/fzf/key-bindings.zsh
 bindkey -r '\ec'
 bindkey '^f' fzf-cd-widget
 
-cd_root()
+cd_fzf()
 {
 	local ret="$(fd -td -uu -L -E ".git/" -E ".cache/" \
-		--base-directory $HOME | fzf --preview="tree -L 1 {}" \
+		--base-directory $1 | fzf --preview="tree -L 1 {}" \
 		--bind="tab:toggle-preview" --preview-window=:hidden)"
-	[[ ! -z "$ret" ]] && cd "$HOME/$ret"
+	[[ ! -z "$ret" ]] && cd "$1/$ret"
 	zle reset-prompt
 }
+cd_root() { cd_fzf $HOME }
 zle -N cd_root
 bindkey '^hf' cd_root
 
-fzf_get()
+find_fzf()
 {
-	local ret="$(fd -uu -E ".git/" -E ".cache/" --base-directory $HOME \
-		| fzf -m | sed -E "s;(.*);$HOME/\1;" | sed 's/ /\\ /g' | tr '\n' ' ')"
+	local ret="$(fd -uu -E ".git/" -E ".cache/" --base-directory $1 \
+		| fzf -m | sed -E -e "s|./|$1/|" | sed 's/ /\\ /g' | tr '\n' ' ')"
 	[[ ! -z "$ret" ]] && LBUFFER="$LBUFFER$ret"
 	zle reset-prompt
 }
-zle -N fzf_get
-bindkey '^ht' fzf_get
+fzf_root()
+{
+	find_fzf $HOME
+}
+zle -N fzf_root
+bindkey '^ht' fzf_root
 
 pac_search_remote()
 {
