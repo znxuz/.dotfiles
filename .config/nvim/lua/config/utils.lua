@@ -1,4 +1,4 @@
-local map_key = vim.api.nvim_set_keymap
+local map_key = vim.keymap.set
 
 local function map(modes, lhs, rhs, opts)
   opts = opts or {}

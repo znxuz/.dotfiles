@@ -13,8 +13,9 @@ true_zen.setup {
 		},
 	},
 }
+local map = require("config.utils").map
 true_zen.after_mode_ataraxis_on = function ()
-	vim.api.nvim_set_keymap("c", "bd", "Bclose", {noremap = true})
+	map("c", "bd", "Bclose", {noremap = true})
 	-- tmp workaround
 	vim.cmd('set nospr')
 	vim.cmd('set nosb')
@@ -25,4 +26,4 @@ true_zen.after_mode_ataraxis_off = function ()
 	vim.cmd('set nospr')
 	vim.cmd('set nosb')
 end
-vim.api.nvim_set_keymap("n", "<leader>z", "<cmd>TZAtaraxis<cr>q:<c-w>c", {noremap = true})
+map("n", "<leader>z", "<cmd>TZAtaraxis<cr>q:<c-w>c", {noremap = true})
