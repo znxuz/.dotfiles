@@ -1,6 +1,9 @@
 source /usr/share/fzf/key-bindings.zsh
+# reset default keybinds
 bindkey -r '\ec'
-bindkey '^f' fzf-cd-widget
+bindkey '^tt' fzf-cd-widget
+bindkey -r '^T'
+bindkey '^ff' fzf-file-widget
 
 cd_fzf()
 {
@@ -10,9 +13,10 @@ cd_fzf()
 	[[ ! -z "$ret" ]] && cd "$1/$ret"
 	zle reset-prompt
 }
-cd_root() { cd_fzf $HOME }
-zle -N cd_root
-bindkey '^hf' cd_root
+cd_fzf_root() { cd_fzf $HOME }
+zle -N cd_fzf_root && bindkey '^th' cd_fzf_root
+cd_fzf_mount() { cd_fzf /mnt }
+zle -N cd_fzf_mount && bindkey '^tm' cd_fzf_mount
 
 find_fzf()
 {
@@ -21,12 +25,10 @@ find_fzf()
 	[[ ! -z "$ret" ]] && LBUFFER="$LBUFFER$ret"
 	zle reset-prompt
 }
-fzf_root()
-{
-	find_fzf $HOME
-}
-zle -N fzf_root
-bindkey '^ht' fzf_root
+fzf_root() { find_fzf $HOME }
+zle -N fzf_root && bindkey '^fh' fzf_root
+fzf_mount() { find_fzf /mnt }
+zle -N fzf_mount && bindkey '^fm' fzf_mount
 
 pac_search_remote()
 {
@@ -35,8 +37,7 @@ pac_search_remote()
 	LBUFFER=${LBUFFER}${ret}
 	zle reset-prompt
 }
-zle -N pac_search_remote
-bindkey '^ps' pac_search_remote
+zle -N pac_search_remote && bindkey '^ps' pac_search_remote
 
 pac_search_local()
 {
@@ -45,8 +46,7 @@ pac_search_local()
 	LBUFFER=${LBUFFER}${ret}
 	zle reset-prompt
 }
-zle -N pac_search_local
-bindkey '^pq' pac_search_local
+zle -N pac_search_local && bindkey '^pq' pac_search_local
 
 pac_search_aur()
 {
@@ -54,5 +54,4 @@ pac_search_aur()
 	LBUFFER=${LBUFFER}${ret}
 	zle reset-prompt
 }
-zle -N pac_search_aur
-bindkey '^pa' pac_search_aur
+zle -N pac_search_aur && bindkey '^pa' pac_search_aur

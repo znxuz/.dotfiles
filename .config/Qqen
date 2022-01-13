@@ -43,7 +43,6 @@ gettext
 ghostscript
 gimp
 git
-github-cli
 gnome-keyring
 grep
 groff
@@ -74,7 +73,6 @@ m4
 make
 man-db
 man-pages
-marked
 maven
 mpv
 ncdu
