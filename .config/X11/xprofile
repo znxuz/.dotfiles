@@ -7,7 +7,11 @@ setxkbmap -option compose:ralt
 # set screen timeouts
 xset dpms 300 300 600
 
-# set track point sensitivity
-xinput set-prop 15 346 0.5
+# track point accel
+xinput set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" 0.5
+	# xinput set-prop 15 347 0.5
 # disable touchpad
-xinput set-prop 14 186 0
+xinput set-prop "Synaptics TM3276-022" "Device Enabled" 0
+	# xinput set-prop 14 187 0
+
+remap-keyboard

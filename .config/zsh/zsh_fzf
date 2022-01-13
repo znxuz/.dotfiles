@@ -17,7 +17,7 @@ bindkey '^hf' cd_root
 find_fzf()
 {
 	local ret="$(fd -uu -E ".git/" -E ".cache/" --base-directory $1 \
-		| fzf -m | sed -E -e "s|./|$1/|" | sed 's/ /\\ /g' | tr '\n' ' ')"
+		| fzf -m | sed -E -e "s|./|$1/|" -e 's/ /\\ /g' | tr '\n' ' ')"
 	[[ ! -z "$ret" ]] && LBUFFER="$LBUFFER$ret"
 	zle reset-prompt
 }

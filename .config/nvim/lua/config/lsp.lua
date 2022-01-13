@@ -11,21 +11,20 @@ vim.cmd "set completeopt=menuone,noinsert,noselect"
 
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>")
 map("n", "gh", "<cmd>lua vim.lsp.buf.hover()<cr>")
-map("n", "gd", "<cmd>Telescope lsp_definitions<cr>")
-map("n", "gD", "<cmd>Telescope lsp_type_definitions<cr>")
-map("n", "gp", "<cmd>Telescope lsp_implementations<cr>")
-map("n", "gr", "<cmd>Telescope lsp_references<cr>")
+map("n", "gd", "<cmd>FzfLua lsp_definitions<cr>")
+map("n", "gD", "<cmd>FzfLua lsp_typedefs<cr>")
+map("n", "gp", "<cmd>FzfLua lsp_implementations<cr>")
+map("n", "gr", "<cmd>FzfLua lsp_references<cr>")
 map("i", "<leader>gh", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
-map("n", "<leader>gre", "<cmd>lua vim.lsp.buf.rename()<cr>")
-map("n", "<leader>gca", "<cmd>Telescope lsp_code_actions<cr>")
-map("v", "<leader>gca", "<cmd>Telescope lsp_range_code_actions<cr>")
-map("n", "<leader>fss", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>")
-map("n", "<leader>fsc", "<cmd>Telescope lsp_document_symbols<cr>")
-map("n", "<leader>gee", "<cmd>Telescope diagnostics<cr>")
-map("n", "<leader>gec", "<cmd>Telescope diagnostics bufnr=0<cr>")
-map("n", "<leader>gep", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
-map("n", "<leader>gen", "<cmd>lua vim.diagnostic.goto_next()<cr>")
-map("n", "<leader>ges", "<cmd>lua vim.diagnostic.open_float()<cr>")
+map("n", "<leader>re", "<cmd>lua vim.lsp.buf.rename()<cr>")
+map("n", "<leader>ca", "<cmd>FzfLua lsp_code_actions<cr>")
+map("n", "<leader>ss", "<cmd>FzfLua lsp_live_workspace_symbols<cr>")
+map("n", "<leader>sc", "<cmd>FzfLua lsp_document_symbols<cr>")
+map("n", "<leader>ee", "<cmd>FzfLua lsp_document_diagnostics<cr>")
+map("n", "<leader>ec", "<cmd>FzfLua lsp_workspace_diagnostics<cr>")
+map("n", "<leader>ep", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
+map("n", "<leader>en", "<cmd>lua vim.diagnostic.goto_next()<cr>")
+map("n", "<leader>es", "<cmd>lua vim.diagnostic.open_float()<cr>")
 
 -- Tex
 lsp.texlab.setup{}
@@ -35,7 +34,7 @@ lsp.texlab.setup{}
 require "lspconfig".clangd.setup{
 	cmd = { "clangd", "--background-index", "--log=error" }
 }
-map("n", "<leader>s", "<cmd>ClangdSwitchSourceHeader<cr>")
+map("n", "<leader>%", "<cmd>ClangdSwitchSourceHeader<cr>")
 
 -- Lua
 USER = vim.fn.expand("$USER")

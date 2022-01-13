@@ -5,7 +5,6 @@ packer.init {
 }
 
 packer.startup(function(use)
-	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
 
 	-- aesthetics
@@ -23,18 +22,23 @@ packer.startup(function(use)
 	}
 	use 'rbgrouleff/bclose.vim'
 
-	-- telescope
+	-- almighty picker
 	use {
-		'nvim-telescope/telescope.nvim',
-		requires = {
-			'nvim-lua/plenary.nvim',
-			{
-				'nvim-telescope/telescope-fzf-native.nvim',
-				run = 'make'
-			}
-		},
-		config = 'require("config.telescope")',
+		'ibhagwan/fzf-lua',
+		requires = { 'kyazdani42/nvim-web-devicons' },
+		config = 'require("config.fzflua")'
 	}
+	-- use {
+		-- 'nvim-telescope/telescope.nvim',
+		-- requires = {
+			-- 'nvim-lua/plenary.nvim',
+			-- {
+				-- 'nvim-telescope/telescope-fzf-native.nvim',
+				-- run = 'make'
+			-- }
+		-- },
+		-- config = 'require("config.telescope")',
+	-- }
 
 	-- lsp
 	use {

@@ -11,6 +11,7 @@ case "$1" in
 			"class Main {" \
 			"private static final Solution sol = new Solution();" \
 			"public static void main(String[] args) {" "}" "}" > "$2/Main.java" &&
+			printf "%s\n\n" "package $2;" > "$2/Solution.java" &&
 			nvim "$2/Solution.java"
 		;;
 	"-c")
