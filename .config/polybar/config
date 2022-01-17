@@ -32,12 +32,6 @@
 ;darkgray	#1d2021
 
 [colors]
-background = #1d2021
-background-alt = #282828
-foreground = #ebdbb2
-foreground-alt = #928374
-primary = ${colors.purple}
-secondary = #e60053
 alert = #d79921
 black = #282828
 black_hard = #1d2021
@@ -52,6 +46,12 @@ aqua = #689d68
 white = #ebdbb2
 gray = #a89984
 darkgray = #1d2021
+background = #1d2021
+background-alt = #282828
+foreground = #ebdbb2
+foreground-alt = #928374
+primary = ${colors.purple}
+secondary = #e60053
 
 [bar/statusbar]
 bottom = true

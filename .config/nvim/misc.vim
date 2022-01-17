@@ -1,5 +1,5 @@
 if has('nvim')
-	set guicursor=n-v-c-a:block,i-ci-c:ver1
+	set guicursor=a:block,i-ci-c:ver1
 else
 	let &t_EI .= "\<Esc>[2 q"
 	let &t_SI .= "\<Esc>[6 q"
@@ -54,21 +54,18 @@ endif
 		let l:mode = toupper(mode())
 		return '  '.l:mode.' '
 	endfunction
-	function! GetSep()
-		return ' | '
-	endfunction
 	set noshowmode
 	set laststatus=2
 	set statusline=
-	set statusline+=%#Pmenu#%{GetMode()}%#LineNr#
-	set statusline+=%#Pmenu#%{&readonly?GetSep().'RO\ ':''}%#LineNr#
-	set statusline+=%#Pmenu#%{&paste?GetSep().'P\ ':''}%#LineNr#
+	set statusline+=%#Visual#%{GetMode()}%#StatusLineNC#
+	set statusline+=%#Visual#%{&readonly?'\ \|\ '.'RO\ ':''}%#StatusLineNC#
+	set statusline+=%#Visual#%{&paste?'\ \|\ '.'P\ ':''}%#StatusLineNC#
 	set statusline+=%<%{'\ \ '.substitute(getcwd(),\ $HOME,\ '~',\ '')}%{'\ '}
-	set statusline+=%{fnamemodify(expand('%:p'),\ ':.')==''?'':GetSep().fnamemodify(expand('%:p'),\ ':.').'\ '}
-	set statusline+=%{&modified?GetSep().'[+]':''}
+	set statusline+=%{fnamemodify(expand('%:p'),\ ':.')==''?'':'\ \|\ '.fnamemodify(expand('%:p'),\ ':.').'\ '}
+	set statusline+=%{&modified?'\ \|\ '.'[+]':''}
 	set statusline+=%=
-	set statusline+=%{'\ \ '.&fileformat}%{'\ '.GetSep()}
-	set statusline+=%{&fileencoding?&fileencoding:&encoding}%{'\ '.GetSep()}
-	set statusline+=%l:%c%{GetSep()}
+	set statusline+=%{'\ \ '.&fileformat}%{'\ '.'\ \|\ '}
+	set statusline+=%{&fileencoding?&fileencoding:&encoding}%{'\ '.'\ \|\ '}
+	set statusline+=%l:%c%{'\ \|\ '}
 	set statusline+=%p%%
-	set statusline+=\ %#Pmenu#\ %Y%{'\ '}
+	set statusline+=\ %#Visual#\ %Y%{'\ '}

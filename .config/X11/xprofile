@@ -8,7 +8,7 @@ setxkbmap -option compose:ralt
 xset dpms 300 300 600
 
 # track point accel
-xinput set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" 0.5
+xinput set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" 0.3
 	# xinput set-prop 15 347 0.5
 # disable touchpad
 xinput set-prop "Synaptics TM3276-022" "Device Enabled" 0

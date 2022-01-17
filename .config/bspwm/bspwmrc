@@ -11,6 +11,8 @@ bspc monitor \
 	| head -n1 | cut -d' ' -f1 | tr -d '\n') \
 	-d I II III IV V
 
+bspc query -D | xargs -I{} bspc desktop {} -l monocle
+
 bspc config split_ratio				0.5
 bspc config border_width			3
 bspc config window_gap				30
@@ -24,8 +26,7 @@ bspc config left_padding			0
 bspc config pointer_modifier mod4
 bspc config pointer_action1 move
 bspc config pointer_action2 resize_side
-bspc config click_to_focus none
-bspc config focus_follows_pointer true
+# bspc config focus_follows_pointer true
 
 bspc config single_monocle			true
 bspc config borderless_monocle		true

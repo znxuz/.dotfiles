@@ -26,7 +26,7 @@ XF86MonBrightnessDown
 	xbacklight -dec 10
 
 # systems
-super + shift + Escape ; {apostrophe, b, s, S, u, r, o}
+super + shift + Escape ; {apostrophe, b, s, S, u, r, o, x}
 	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded"\
 	, $XDG_CONFIG_HOME/polybar/launch.sh > /dev/null 2>&1 \
 	, notify-send -u low "zzz..." && sleep 1 && systemctl suspend\
@@ -34,6 +34,7 @@ super + shift + Escape ; {apostrophe, b, s, S, u, r, o}
 	, notify-send -u low "  " && sleep 1 && user-logout\
 	, notify-send -u low "  " && sleep 1 && reboot\
 	, notify-send -u low "  " && sleep 1 && xset dpms force off\
+	, xrandr-refresh\
 	}
 
 # screen orientation
@@ -45,23 +46,23 @@ super + shift + {Up, Down, Left, Right}
 	}
 
 # opening programs
-super + apostrophe ; {b, c, d, f, q, r, x, k, m}
+super + apostrophe ; {b, d, q, x, k, m}
 	{ $BROWSER\
-	, codium\
 	, discord\
-	, alacritty -e nnn\
 	, qbittorrent\
-	, alacritty -e ranger\
 	, source $XDG_CONFIG_HOME/X11/xprofile\
 	, set-keyboard-layout\
 	, mailspring\
 	}
 
-super + alt + apostrophe
+super + ctrl + apostrophe
 	rofi -show
 
-super + alt + k
+super + ctrl + k
 	rofi-proc-kill
+
+super + ctrl + j
+	rofi-window-jump
 
 # dunst
 ctrl + space
@@ -74,9 +75,9 @@ ctrl + grave
 	dunstctl history-pop
 
 # screenshot
-super + shift + s
-    flameshot full -c -p ~/Pictures/screenshots && sleep 30 && pkill flameshot
 super + alt + s
+    flameshot full -c -p ~/Pictures/screenshots && sleep 30 && pkill flameshot
+super + ctrl + s
     flameshot gui && sleep 240 && pkill flameshot
 
 ## bspwm
@@ -84,10 +85,6 @@ super + alt + s
 # restart bspwm
 super + shift + r
 	bspc wm -r
-
-# reload xrandr
-super + alt + r
-	xrandr-refresh
 
 # close
 super + shift + c
@@ -106,7 +103,7 @@ super + m
 	bspc desktop -l next
 
 # set the node flags
-super + ctrl + {m,x,y,z}
+super + alt + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
 
 #
@@ -151,5 +148,5 @@ super + {o,i}
 	bspc wm -h on
 
 # move a floating window
-super + ctrl + {h,j,k,l}
+super + alt + {h,j,k,l}
 	bspc node -v {-40 0,0 40,0 -40,40 0}

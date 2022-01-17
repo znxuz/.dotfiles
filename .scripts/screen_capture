@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-ffmpeg -video_size 3840x2160 -framerate 25 -f x11grab -i :0.0 $HOME/Videos/capture.mp4
+screen_size=$(xrandr | grep "connected primary" | grep -Eo "[0-9]{4}x[0-9]{4}")
+ffmpeg -video_size $screen_size -framerate 25 -f x11grab -i :0.0 $HOME/Videos/capture.mp4

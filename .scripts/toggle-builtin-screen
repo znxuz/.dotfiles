@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+external="DP2-2"
+internal="eDP1"
+
+xrandr | grep "$external" || exit 1
+
+status=$(xrandr | grep "$internal" | grep -E "[0-9]{4}x[0-9]{4}")
+if [[ -n "$status" ]]; then
+	xrandr --output "$internal" --off &&
+		bspc desktop V --to-monitor "$external" &&
+		bspc monitor "$internal" --remove
+else
+	xrandr --output "$internal" --mode 1920x1080 --right-of "$external" --scale 1.5 &&
+		bspc desktop V --to-monitor "$internal" && fehbg
+fi
