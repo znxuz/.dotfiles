@@ -2,6 +2,8 @@ local packer = require('packer')
 packer.reset()
 packer.init {
 	ensure_dependencies = true,
+	auto_clean = true,
+	compile_on_sync = true
 }
 
 packer.startup(function(use)
@@ -18,6 +20,7 @@ packer.startup(function(use)
 	}
 	use {
 		'nvim-treesitter/nvim-treesitter',
+		run = 'TSUpdate',
 		config = 'require("config.treesitter")'
 	}
 	use 'rbgrouleff/bclose.vim'
@@ -25,7 +28,6 @@ packer.startup(function(use)
 	-- almighty picker
 	use {
 		'ibhagwan/fzf-lua',
-		requires = { 'kyazdani42/nvim-web-devicons' },
 		config = 'require("config.fzflua")'
 	}
 	-- use {
