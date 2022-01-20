@@ -91,8 +91,8 @@ require('fzf-lua').setup {
       -- or sends multiple selection to quickfix
       -- replace the default action with the below
       -- to open all files whether single or multiple
-      -- ["default"]     = actions.file_edit,
-      ["default"]     = actions.file_edit_or_qf,
+      ["default"]     = actions.file_edit,
+      -- ["default"]     = actions.file_edit_or_qf,
       ["ctrl-s"]      = actions.file_split,
       ["ctrl-v"]      = actions.file_vsplit,
       ["ctrl-t"]      = actions.file_tabedit,
@@ -117,7 +117,8 @@ require('fzf-lua').setup {
       git_icons       = false,
       color_icons     = false,
       actions = {
-        ["default"]   = actions.file_edit_or_qf,
+        ["default"]   = actions.file_edit,
+        -- ["default"]   = actions.file_edit_or_qf,
         ["ctrl-s"]    = actions.file_split,
         ["ctrl-v"]    = actions.file_vsplit,
         ["ctrl-t"]    = actions.file_tabedit,

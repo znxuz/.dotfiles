@@ -30,11 +30,10 @@ map("n", "<leader>es", "<cmd>lua vim.diagnostic.open_float()<cr>")
 lsp.texlab.setup{}
 
 -- C/CPP
--- vim.g["c_syntax_for_h"] = 1
 require "lspconfig".clangd.setup{
 	cmd = { "clangd", "--background-index", "--log=error" }
 }
-map("n", "<leader>%", "<cmd>ClangdSwitchSourceHeader<cr>")
+map("n", "<leader><C-^>", "<cmd>ClangdSwitchSourceHeader<cr>")
 
 -- Lua
 USER = vim.fn.expand("$USER")
