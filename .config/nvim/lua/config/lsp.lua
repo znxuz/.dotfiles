@@ -15,13 +15,13 @@ map("n", "gd", "<cmd>FzfLua lsp_definitions<cr>")
 map("n", "gD", "<cmd>FzfLua lsp_typedefs<cr>")
 map("n", "gp", "<cmd>FzfLua lsp_implementations<cr>")
 map("n", "gr", "<cmd>FzfLua lsp_references<cr>")
-map("i", "<leader>gh", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
+map("i", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
 map("n", "<leader>re", "<cmd>lua vim.lsp.buf.rename()<cr>")
 map("n", "<leader>ca", "<cmd>FzfLua lsp_code_actions<cr>")
 map("n", "<leader>ss", "<cmd>FzfLua lsp_live_workspace_symbols<cr>")
 map("n", "<leader>sc", "<cmd>FzfLua lsp_document_symbols<cr>")
-map("n", "<leader>ee", "<cmd>FzfLua lsp_document_diagnostics<cr>")
-map("n", "<leader>ec", "<cmd>FzfLua lsp_workspace_diagnostics<cr>")
+map("n", "<leader>ee", "<cmd>FzfLua lsp_workspace_diagnostics<cr>")
+map("n", "<leader>ec", "<cmd>FzfLua lsp_document_diagnostics<cr>")
 map("n", "<leader>ep", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
 map("n", "<leader>en", "<cmd>lua vim.diagnostic.goto_next()<cr>")
 map("n", "<leader>es", "<cmd>lua vim.diagnostic.open_float()<cr>")
@@ -33,7 +33,7 @@ lsp.texlab.setup{}
 require "lspconfig".clangd.setup{
 	cmd = { "clangd", "--background-index", "--log=error" }
 }
-map("n", "<leader><C-^>", "<cmd>ClangdSwitchSourceHeader<cr>")
+map("n", "<leader><c-^>", "<cmd>ClangdSwitchSourceHeader<cr>")
 
 -- Lua
 USER = vim.fn.expand("$USER")

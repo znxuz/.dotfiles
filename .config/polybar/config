@@ -85,7 +85,7 @@ font-2 = Font Awesome 5 Free Solid:pixelsize=10;2
 
 modules-left = bspwm
 ;modules-center = mpd
-modules-right = wmnode pkg eth cputemp memory pulseaudio battery date tray
+modules-right = wmnode pkg eth cputemp memory pulseaudio bat date tray
 
 tray-position = right
 tray-padding = 4
@@ -166,10 +166,10 @@ format-prefix-foreground = ${colors.foreground}
 format-underline = ${colors.blue}
 label = %percentage_used%%
 
-[module/battery]
+[module/bat]
 type =custom/script
-exec = poly-battery
-interval = 60
+exec = poly-bat
+tail = true
 format-underline = ${colors.orange}
 
 [module/date]

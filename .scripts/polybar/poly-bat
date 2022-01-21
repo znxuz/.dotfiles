@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+# symlink 95-battery.rules to /etc/udev/rules.d/95-battery.rules.
+# Make sure that the paths(home, script name etc.) in the file have been modified properly.
+
+function get_bat_icon()
+{
+	[[ -z "$1" ]] && return 1
+	if [[ "$1" -gt 90 ]]; then
+		echo ""
+	elif [[ "$1" -gt 55 ]]; then
+		echo ""
+	elif [[ "$1" -gt 45 ]]; then
+		echo ""
+	elif [[ "$1" -gt 15 ]]; then
+		echo ""
+	else
+		echo ""
+	fi
+}
+
+function get_bat_status()
+{
+	bat_full=$(cat "$1/energy_full")
+	bat_current=$(cat "$1/energy_now")
+	echo "$(( bat_current * 100 / bat_full ))"
+}
+
+bat_print()
+{
+	bat0_path="/sys/class/power_supply/BAT0"
+	bat1_path="/sys/class/power_supply/BAT1"
+	[[ -e "$bat0_path" ]] && bat0="$(get_bat_status $bat0_path)"
+	[[ -e "$bat1_path" ]] && bat1="$(get_bat_status $bat1_path)"
+
+	# check AC status
+	[[ -e /sys/class/power_supply/AC/online &&
+		$(cat /sys/class/power_supply/AC/online) -eq 1 ]] && echo -n " "
+	[[ -e /sys/class/power_supply/ADP1/online &&
+		$(cat /sys/class/power_supply/ADP1/online) -eq 1 ]] && echo -n " "
+
+	# print bat
+	[[ -n "$bat0" ]] && echo -n "$(get_bat_icon $bat0) $bat0"
+	[[ -n "$bat0" && -n "$bat1" ]] && echo -n '  '
+	[[ -n "$bat1" ]] && echo "$(get_bat_icon $bat1) $bat1"
+}
+
+path_pid="/tmp/polybar-bat-udev.pid"
+
+case "$1" in
+    --update)
+        pid=$(cat $path_pid)
+
+        if [ "$pid" != "" ]; then
+            kill -10 "$pid"
+        fi
+        ;;
+    *)
+        echo $$ > $path_pid
+
+        trap exit INT
+        trap "echo" USR1
+
+        while true; do
+            bat_print
+
+            sleep 30 &
+            wait
+        done
+        ;;
+esac

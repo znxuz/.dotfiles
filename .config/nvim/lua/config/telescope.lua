@@ -12,7 +12,7 @@ telescope.setup {
 		mappings = {
 			i = {
 				["<esc>"] = actions.close,
-				["<C-s>"] = actions.select_horizontal,
+				["<c-s>"] = actions.select_horizontal,
 			},
 		},
 	},
