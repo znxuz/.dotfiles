@@ -36,14 +36,10 @@ endif
 	set undofile
 	set autowrite
 	nnoremap <leader>o <cmd>!$BROWSER %&<cr><cr>
-	function! GetFileCwd()
-		let l:cwd = substitute(substitute(expand("%:p:h"), getcwd(), '', ''), '/\(.*\)', '\1', '')
-		if empty(cwd)
-			return ''
-		endif
-		return substitute(cwd, '\(home\)', '/\1', '').'/'
-	endfunction
-	cnoremap <leader>cd <c-r>=GetFileCwd()<cr>
+	cnoremap <leader>cd <c-r>=substitute(expand("%:p:h"), getcwd(), '.', '').'/'<cr>
+
+" last argument of the last command
+	cnoremap !$ <c-r>=substitute(@:, '.* ', '', '')<cr>
 
 " autocompletion
 	set wildignorecase

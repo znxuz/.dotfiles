@@ -7,7 +7,7 @@ require('fzf-lua').setup {
 		-- 'none', 'single', 'double' or 'rounded' (default)
 		border           = 'single',
 		preview = {
-			hidden         = 'nohidden',      -- hidden|nohidden
+			hidden         = 'hidden',      -- hidden|nohidden
 			vertical       = 'down:45%',      -- up|down:size
 			horizontal     = 'right:60%',     -- right|left:size
 			layout         = 'flex',          -- horizontal|vertical|flex
@@ -41,19 +41,14 @@ require('fzf-lua').setup {
       -- neovim `:tmap` mappings for the fzf win
       ["<F2>"]        = "toggle-fullscreen",
       -- Only valid with the 'builtin' previewer
-      ["<F3>"]        = "toggle-preview-wrap",
-      ["<F4>"]        = "toggle-preview",
+      ["<c-space>"]        = "toggle-preview",
       -- Rotate preview clockwise/counter-clockwise
-      ["<F5>"]        = "toggle-preview-ccw",
-      ["<F6>"]        = "toggle-preview-cw",
-      ["<S-down>"]    = "preview-page-down",
-      ["<S-up>"]      = "preview-page-up",
-      ["<S-left>"]    = "preview-page-reset",
+      ["<c-d>"]    = "preview-page-down",
+      ["<c-u>"]      = "preview-page-up",
     },
     fzf = {
       -- fzf '--bind=' options
       ["ctrl-z"]      = "abort",
-      ["ctrl-u"]      = "unix-line-discard",
       ["ctrl-f"]      = "half-page-down",
       ["ctrl-b"]      = "half-page-up",
       ["ctrl-a"]      = "beginning-of-line",
@@ -91,7 +86,6 @@ require('fzf-lua').setup {
       -- or sends multiple selection to quickfix
       -- replace the default action with the below
       -- to open all files whether single or multiple
-      ["default"]     = actions.file_edit,
       -- ["default"]     = actions.file_edit_or_qf,
       ["ctrl-s"]      = actions.file_split,
       ["ctrl-v"]      = actions.file_vsplit,

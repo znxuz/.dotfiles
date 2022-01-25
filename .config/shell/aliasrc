@@ -21,6 +21,6 @@ alias \
 
 alias \
 	dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
-	update='sudo pacman -Syu && nvim-update && aur-update && $XDG_CONFIG_HOME/polybar/launch.sh > /dev/null 2>&1' \
+	update="sudo pacman -Syu && nvim-update && aur-update && $XDG_CONFIG_HOME/polybar/launch.sh > /dev/null 2>&1" \
 	restream="restream -p -s $(cat $HOME/.ssh/config | grep -A1 remarkable | grep -Eo '([0-9]+.){3}[0-9]+')" \
 	wtr='curl wttr.in/dortmund_oespel'

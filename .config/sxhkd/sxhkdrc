@@ -46,13 +46,14 @@ super + shift + {Up, Down, Left, Right}
 	}
 
 # opening programs
-super + apostrophe ; {b, d, q, x, k, m}
+super + apostrophe ; {b, d, q, x, k, m, v}
 	{ $BROWSER\
 	, discord\
 	, qbittorrent\
 	, source $XDG_CONFIG_HOME/X11/xprofile\
 	, set-keyboard-layout\
 	, mailspring\
+	, vb-start\
 	}
 
 super + ctrl + apostrophe
@@ -65,13 +66,13 @@ super + ctrl + j
 	rofi-window-jump
 
 # dunst
-ctrl + space
+super + space
 	dunstctl close
 
-ctrl + shift + space
+super + shift + space
 	dunstctl close-all
 
-ctrl + grave
+super + grave
 	dunstctl history-pop
 
 # screenshot
