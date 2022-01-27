@@ -62,9 +62,6 @@ super + ctrl + apostrophe
 super + ctrl + k
 	rofi-proc-kill
 
-super + ctrl + j
-	rofi-window-jump
-
 # dunst
 super + space
 	dunstctl close

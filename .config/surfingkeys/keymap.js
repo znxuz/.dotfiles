@@ -22,6 +22,7 @@ const {
 map("<Ctrl-[>", "<Esc>");
 imap("<Ctrl-[>", "<Esc>");
 Hints.characters = 'asdfgqwertzxcvbyuiophjklnm';
+Hints.style('font-family: Arial; font-size: 11px;');
 settings.focusFirstCandidate = true;
 settings.hintAlign = "left";
 

@@ -50,6 +50,13 @@ source $ZDOTDIR/zsh_vi
 # todos
 source $ZDOTDIR/zsh_todoist
 
+# csharp autocompletion
+_dotnet_zsh_complete() {
+  local completions=("$(dotnet complete "$words")")
+  reply=( "${(ps:\n:)completions}" )
+}
+compctl -K _dotnet_zsh_complete dotnet
+
 # must be at the end
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

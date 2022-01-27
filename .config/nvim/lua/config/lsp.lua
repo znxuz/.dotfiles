@@ -64,6 +64,13 @@ lsp.sumneko_lua.setup {
 map("n", "<leader>ci", "<cmd>lua require('jdtls').organize_imports()<cr>")
 map("i", "<leader>ci", "<cmd>lua require('jdtls').organize_imports()<cr>")
 
+-- Csharp
+local pid = vim.fn.getpid()
+local omnisharp_bin = "/usr/bin/omnisharp"
+require'lspconfig'.omnisharp.setup{
+    cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) }
+}
+
 -- HTML
 --Enable (broadcasting) snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()

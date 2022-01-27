@@ -1,6 +1,3 @@
-set tabstop=4
-set shiftwidth=4
-
 " Java lsp
 lua << EOF
 local workspace_dir = vim.env.HOME .. '/.local/share/workspace/'

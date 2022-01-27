@@ -19,6 +19,8 @@ endif
 	let mapleader=","
 	set path+=**,/usr/include/c++/**1
 	set nosc
+	set tabstop=4
+	set shiftwidth=4
 	set colorcolumn=
 	set exrc secure
 	set clipboard=unnamedplus

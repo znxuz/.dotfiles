@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# symlink 95-battery.rules to /etc/udev/rules.d/95-battery.rules.
+# sudo copy(symlink won't work) 95-battery.rules to /etc/udev/rules.d/95-battery.rules.
 # Make sure that the paths(home, script name etc.) in the file have been modified properly.
 
 function get_bat_icon()
