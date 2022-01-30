@@ -1,8 +1,8 @@
 if has('nvim')
-	set guicursor=a:block,i-ci-c:ver1
+	set guicursor=a:block
 else
-	let &t_EI .= "\<Esc>[2 q"
-	let &t_SI .= "\<Esc>[6 q"
+	" let &t_EI .= "\e[2 q"
+	" let &t_SI .= "\e[6 q"
 	set syntax=on
 	set hidden
 	set incsearch
@@ -29,7 +29,6 @@ endif
 	set ignorecase
 	set smartcase
 	set nohls
-	nnoremap <leader>/ <cmd>let @/ = ""<cr>
 
 " file management
 	set noswapfile
@@ -48,22 +47,22 @@ endif
 	set wildmode=longest,list,full
 
 " stautus line
-	function! GetMode()
-		let l:mode = toupper(mode())
-		return '  '.l:mode.' '
-	endfunction
 	set noshowmode
 	set laststatus=2
-	set statusline=
-	set statusline+=%#Visual#%{GetMode()}%#StatusLineNC#
-	set statusline+=%#Visual#%{&readonly?'\ \|\ '.'RO\ ':''}%#StatusLineNC#
-	set statusline+=%#Visual#%{&paste?'\ \|\ '.'P\ ':''}%#StatusLineNC#
-	set statusline+=%<%{'\ \ '.substitute(getcwd(),\ $HOME,\ '~',\ '')}%{'\ '}
-	set statusline+=%{fnamemodify(expand('%:p'),\ ':.')==''?'':'\ \|\ '.fnamemodify(expand('%:p'),\ ':.').'\ '}
-	set statusline+=%{&modified?'\ \|\ '.'[+]':''}
-	set statusline+=%=
-	set statusline+=%{'\ \ '.&fileformat}%{'\ '.'\ \|\ '}
-	set statusline+=%{&fileencoding?&fileencoding:&encoding}%{'\ '.'\ \|\ '}
-	set statusline+=%l:%c%{'\ \|\ '}
-	set statusline+=%p%%
-	set statusline+=\ %#Visual#\ %Y%{'\ '}
+	au VimEnter * hi link SLMode Visual
+	au InsertEnter * hi link SLMode DiffText
+	au InsertLeave * hi link SLMode Visual
+	set stl=
+	set stl+=%#SLMode#%{'\ \ '.toupper(mode()).'\ '}%#StatusLineNC#
+	set stl+=%#SLMode#%{&readonly?'\ \|\ '.'RO\ ':''}%#StatusLineNC#
+	set stl+=%#SLMode#%{&paste?'\ \|\ '.'P\ ':''}%#StatusLineNC#
+	set stl+=%<%{'\ \ '.fnamemodify(getcwd(),':~')}
+	" set stl+=%{(expand('#')==expand('%'))\|\|(expand('#')=='')?'':'\ \ \|\ '.fnamemodify(expand('#:p'),\ ':~:.').'\ <-'}
+	set stl+=%{expand('%')==''?'':'\ \ \|\ '.fnamemodify(expand('%:p'),\ ':~:.')}
+	set stl+=%{&modified?'\ \ '.'[+]':''}
+	set stl+=%=
+	set stl+=%{'\ \ '.&fileformat}%{'\ \ \|\ '}
+	set stl+=%{&fileencoding?&fileencoding:&encoding}%{'\ '.'\ \|\ '}
+	set stl+=%l:%c%{'\ \|\ '}
+	set stl+=%p%%
+	set stl+=%{&filetype==''?'\ ':'\ \|\ '.toupper(&filetype).'\ '}

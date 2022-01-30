@@ -59,7 +59,7 @@ super + apostrophe ; {b, d, q, x, k, m, v}
 super + ctrl + apostrophe
 	rofi -show
 
-super + ctrl + k
+super + ctrl + bracketleft
 	rofi-proc-kill
 
 # dunst

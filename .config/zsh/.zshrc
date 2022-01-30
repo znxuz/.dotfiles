@@ -1,14 +1,6 @@
 # aliases
 source $HOME/.config/shell/aliasrc
 
-# prompt
-PURE_PROMPT_SYMBOL='❯'
-PROMPT="%F{blue}%~"
-# job count & last exit status
-PROMPT="${PROMPT} %F{magenta}%(1j.[%j] .)%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f "
-precmd() {
-	print ""
-}
 # clear screen with extra new line
 custom_clear_screen() {
 	zle -I # Enable output to terminal.

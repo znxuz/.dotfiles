@@ -2,7 +2,6 @@ local packer = require('packer')
 packer.reset()
 packer.init {
 	ensure_dependencies = true,
-	auto_clean = true,
 	compile_on_sync = true
 }
 
@@ -30,17 +29,19 @@ packer.startup(function(use)
 		'ibhagwan/fzf-lua',
 		config = 'require("config.fzflua")'
 	}
-	-- use {
-		-- 'nvim-telescope/telescope.nvim',
-		-- requires = {
-			-- 'nvim-lua/plenary.nvim',
-			-- {
-				-- 'nvim-telescope/telescope-fzf-native.nvim',
-				-- run = 'make'
-			-- }
-		-- },
-		-- config = 'require("config.telescope")',
-	-- }
+--[[
+	use {
+		'nvim-telescope/telescope.nvim',
+		requires = {
+			'nvim-lua/plenary.nvim',
+			{
+				'nvim-telescope/telescope-fzf-native.nvim',
+				run = 'make'
+			}
+		},
+		config = 'require("config.telescope")',
+	}
+--]]
 
 	-- lsp
 	use {
@@ -75,6 +76,10 @@ packer.startup(function(use)
 
 	-- misc
 	use 'mcchrish/nnn.vim'
+	use {
+		'voldikss/vim-floaterm',
+		config = 'require("config.floaterm")'
+	}
 	use {
 		'vimwiki/vimwiki',
 		opt = true,
