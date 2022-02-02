@@ -2,7 +2,7 @@
 
 selection=$HOME/.config/feh/selection
 if [ -n "$1" ]; then
-	[ -f "$HOME/Pictures/wallpapers/$1" ] || cp "$1" $HOME/Pictures/wallpapers
+	[ -f "$HOME/Pictures/wallpapers/$1" ] || mv "$1" $HOME/Pictures/wallpapers
 	echo "$HOME/Pictures/wallpapers/$1" > "$selection"
 fi
-feh --no-fehbg --bg-fill "$(cat $selection)"
+feh --no-fehbg --bg-scale "$(< $selection)"

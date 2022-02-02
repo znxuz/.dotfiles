@@ -2,6 +2,7 @@ local true_zen = require("true-zen")
 true_zen.setup {
 	ui = {
 		left = { signcolumn = "yes", },
+		bottom = { showmode = true },
 	},
 	modes = {
 		ataraxis = {

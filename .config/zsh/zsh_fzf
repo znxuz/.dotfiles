@@ -9,7 +9,7 @@ cd_fzf()
 {
 	local ret="$(fd -td -uu -L -E ".git/" -E ".cache/" \
 		--base-directory $1 | fzf --preview="tree -L 1 {}" \
-		--bind="tab:toggle-preview" --preview-window=:hidden)"
+		--bind="ctrl-space:toggle-preview" --preview-window=:hidden)"
 	[[ ! -z "$ret" ]] && cd "$1/$ret"
 	zle reset-prompt
 }

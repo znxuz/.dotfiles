@@ -44,20 +44,18 @@ endif
 
 " autocompletion
 	set wildignorecase
-	set wildmode=longest,list,full
+	set wildmode=longest,full
 
 " stautus line
-	set noshowmode
 	set laststatus=2
-	au VimEnter * hi link SLMode Visual
-	au InsertEnter * hi link SLMode DiffText
-	au InsertLeave * hi link SLMode Visual
+	au VimEnter * hi link STLMode Visual
+	au InsertEnter * hi link STLMode DiffText
+	au InsertLeave * hi link STLMode Visual
 	set stl=
-	set stl+=%#SLMode#%{'\ \ '.toupper(mode()).'\ '}%#StatusLineNC#
-	set stl+=%#SLMode#%{&readonly?'\ \|\ '.'RO\ ':''}%#StatusLineNC#
-	set stl+=%#SLMode#%{&paste?'\ \|\ '.'P\ ':''}%#StatusLineNC#
+	set stl+=%#STLMode#%{'\ \ '.toupper(mode()).'\ '}%#StatusLineNC#
+	set stl+=%#STLMode#%{&readonly?'\ \|\ '.'RO\ ':''}%#StatusLineNC#
+	set stl+=%#STLMode#%{&paste?'\ \|\ '.'P\ ':''}%#StatusLineNC#
 	set stl+=%<%{'\ \ '.fnamemodify(getcwd(),':~')}
-	" set stl+=%{(expand('#')==expand('%'))\|\|(expand('#')=='')?'':'\ \ \|\ '.fnamemodify(expand('#:p'),\ ':~:.').'\ <-'}
 	set stl+=%{expand('%')==''?'':'\ \ \|\ '.fnamemodify(expand('%:p'),\ ':~:.')}
 	set stl+=%{&modified?'\ \ '.'[+]':''}
 	set stl+=%=

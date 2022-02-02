@@ -26,7 +26,7 @@ XF86MonBrightnessDown
 	xbacklight -dec 10
 
 # systems
-super + shift + Escape ; {apostrophe, b, s, S, u, r, o, x}
+super + shift + Escape ; {apostrophe, b, s, S, u, r, o, x, k}
 	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded"\
 	, $XDG_CONFIG_HOME/polybar/launch.sh > /dev/null 2>&1 \
 	, notify-send -u low "zzz..." && sleep 1 && systemctl suspend\
@@ -35,6 +35,7 @@ super + shift + Escape ; {apostrophe, b, s, S, u, r, o, x}
 	, notify-send -u low "  " && sleep 1 && reboot\
 	, notify-send -u low "  " && sleep 1 && xset dpms force off\
 	, xrandr-refresh\
+	, remap-keyboard\
 	}
 
 # screen orientation
@@ -46,12 +47,11 @@ super + shift + {Up, Down, Left, Right}
 	}
 
 # opening programs
-super + apostrophe ; {b, d, q, x, k, m, v}
+super + apostrophe ; {b, d, q, x, m, v}
 	{ $BROWSER\
 	, discord\
 	, qbittorrent\
 	, source $XDG_CONFIG_HOME/X11/xprofile\
-	, set-keyboard-layout\
 	, mailspring\
 	, vb-start\
 	}
