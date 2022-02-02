@@ -20,6 +20,7 @@ clang
 cronie
 dialog
 discord
+dotnet-sdk
 dunst
 efibootmgr
 ethtool
@@ -43,6 +44,7 @@ gettext
 ghostscript
 gimp
 git
+github-cli
 gnome-keyring
 grep
 groff
@@ -120,6 +122,7 @@ ripgrep
 rofi
 rsync
 s-tui
+screenkey
 scrot
 sed
 shellcheck
@@ -141,7 +144,6 @@ ttf-roboto
 unclutter
 unrar
 unzip
-upower
 valgrind
 virtualbox
 vnstat
@@ -150,6 +152,7 @@ weechat
 wget
 which
 wireless_tools
+wmctrl
 xclip
 xdg-user-dirs
 xdg-utils

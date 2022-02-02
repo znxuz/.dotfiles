@@ -26,3 +26,6 @@ Slack
 Mailspring
 Microsoft
 dasht
+.nuget
+.omnisharp
+.templateengine

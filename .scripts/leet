@@ -14,8 +14,19 @@ case "$1" in
 			printf "%s\n\n" "package $2;" > "$2/Solution.java" &&
 			nvim "$2/Solution.java"
 		;;
-	"-c")
-		echo "waiting for implementation"
+	"-C")
+		sed -E -i "0,/SRC_DIR/{s/(SRC_DIR := ).*/\1$2/}" makefile &&
+			mkdir "$2" &&
+			printf "%s\n\n%s\n{\n}" \
+			"#include \"solution.h\"" \
+			"int main(int argc, char** argv)" > "$2/main.cpp" &&
+			printf "%s\n\n%s\n" \
+			"#pragma once" \
+			"#include <iostream>" >> "$2/solution.h" &&
+			nvim "$2/solution.cpp"
+		;;
+	*)
+		echo "not available"
 		exit 1
 		;;
 esac

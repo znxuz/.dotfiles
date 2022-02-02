@@ -36,6 +36,7 @@ alert = #d79921
 black = #282828
 black_hard = #1d2021
 bg = #1d2021
+fg = #fbf1c7
 red = #cc241d
 green = #98971a
 yellow = #d79921
@@ -43,14 +44,14 @@ orange = #d65d0e
 blue = #458588
 purple = #b16286
 aqua = #689d68
-white = #ebdbb2
 gray = #a89984
+white = #ebdbb2
 darkgray = #1d2021
 background = #1d2021
 background-alt = #282828
-foreground = #ebdbb2
+foreground = ${colors.fg}
 foreground-alt = #928374
-primary = ${colors.purple}
+primary = ${colors.blue}
 secondary = #e60053
 
 [bar/statusbar]
@@ -140,7 +141,8 @@ format-foreground = ${colors.purple}
 type = custom/script
 exec = poly-bandwidth
 interval = 2
-format-underline = ${colors.aqua}
+format-foreground = ${colors.gray}
+; format-underline = ${colors.aqua}
 
 [module/cputemp]
 type = custom/script
@@ -154,7 +156,7 @@ type = internal/pulseaudio
 format-volume = <label-volume>
 label-volume =  %percentage%%
 label-volume-foreground = ${colors.foreground}
-label-volume-underline = ${colors.green}
+label-volume-underline = ${colors.aqua}
 label-muted =  muted
 label-muted-foreground = ${colors.foreground-alt}
 
@@ -163,7 +165,7 @@ type = internal/memory
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
-format-underline = ${colors.blue}
+format-underline = ${colors.purple}
 label = %percentage_used%%
 
 [module/bat]
@@ -180,7 +182,7 @@ time = %H:%M
 time-alt = %H:%M:%S
 format-prefix = ""
 format-prefix-foreground = ${colors.foreground}
-format-underline = ${colors.purple}
+format-underline = ${colors.blue}
 label = %date% %time%
 
 [module/tray]

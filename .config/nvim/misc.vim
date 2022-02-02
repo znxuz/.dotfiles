@@ -24,6 +24,7 @@ endif
 	set colorcolumn=
 	set exrc secure
 	set clipboard=unnamedplus
+	set ttimeoutlen=0
 
 " search
 	set ignorecase
