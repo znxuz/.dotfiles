@@ -1,19 +1,19 @@
 " let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [
 			\ {
-				\ 'path': '~/Dropbox/Documents/vimwiki/vimwiki',
+				\ 'path': '~/Dropbox/notes/misc',
 				\ 'syntax': 'markdown', 'ext': '.md'
 			\ },
 			\ {
-				\ 'path': '~/Dropbox/FH_Dortmund/notes',
+				\ 'path': '~/Dropbox/notes/fh',
 				\ 'syntax': 'markdown', 'ext': '.md'
 			\ },
 			\ {
-				\ 'path': '~/Dropbox/Documents/vimwiki/programming',
+				\ 'path': '~/Dropbox/notes/programming',
 				\ 'syntax': 'markdown', 'ext': '.md'
 			\ },
 			\ {
-				\ 'path': '~/Dropbox/Documents/vimwiki/42',
+				\ 'path': '~/Dropbox/notes/42',
 				\ 'syntax': 'markdown', 'ext': '.md'
 			\ },
 			\ ]

@@ -36,7 +36,7 @@ alert = #d79921
 black = #282828
 black_hard = #1d2021
 bg = #1d2021
-fg = #fbf1c7
+fg = #ebdbb2
 red = #cc241d
 green = #98971a
 yellow = #d79921
@@ -63,6 +63,7 @@ radius = 0.0
 fixed-center = false
 dpi = ${xrdb:Xft.dpi:-1}
 separator = |
+separator-foreground = ${colors.gray}
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -129,6 +130,7 @@ label-separator-padding = 0
 type = custom/script
 exec = poly-pkg-update
 interval = 10800
+format-foreground = ${colors.gray}
 format-prefix = " "
 
 [module/wmnode]

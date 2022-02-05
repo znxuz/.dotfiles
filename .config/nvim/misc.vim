@@ -45,7 +45,7 @@ endif
 
 " autocompletion
 	set wildignorecase
-	set wildmode=longest,full
+	set wildmode=list,longest,full
 
 " stautus line
 	set laststatus=2

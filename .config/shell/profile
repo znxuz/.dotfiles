@@ -24,6 +24,7 @@ export FZF_DEFAULT_OPTS='--layout=reverse --height=50%'
 export FZF_DEFAULT_COMMAND='fd -uu -L -E ".git" -E ".cache" -E ".backup"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND -td"
+export ESCDELAY="1"
 
 # nnn
 export NNN_FCOLORS="000004020005050009060B00"
