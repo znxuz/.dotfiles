@@ -14,10 +14,6 @@ packer.startup(function(use)
 		config = 'require("config.gruvbox")'
 	}
 	use {
-		'Pocco81/TrueZen.nvim',
-		config = 'require("config.tru-zen")'
-	}
-	use {
 		'nvim-treesitter/nvim-treesitter',
 		run = 'TSUpdate',
 		config = 'require("config.treesitter")'
@@ -29,19 +25,6 @@ packer.startup(function(use)
 		'ibhagwan/fzf-lua',
 		config = 'require("config.fzflua")'
 	}
---[[
-	use {
-		'nvim-telescope/telescope.nvim',
-		requires = {
-			'nvim-lua/plenary.nvim',
-			{
-				'nvim-telescope/telescope-fzf-native.nvim',
-				run = 'make'
-			}
-		},
-		config = 'require("config.telescope")',
-	}
---]]
 
 	-- lsp
 	use {

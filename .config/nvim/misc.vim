@@ -4,10 +4,10 @@ else
 	" let &t_EI .= "\e[2 q"
 	" let &t_SI .= "\e[6 q"
 	set syntax=on
-	set hidden
-	set incsearch
+	set hid
+	set is
 	set noesckeys
-	set nocompatible
+	set nocp
 	set backspace=indent,eol,start
 	set viminfo+=n~/.vim/viminfo
 	set novisualbell noerrorbells
@@ -21,22 +21,22 @@ endif
 	set nosc
 	set tabstop=4
 	set shiftwidth=4
-	set colorcolumn=
+	set cc=
 	set exrc secure
 	set clipboard=unnamedplus
-	set ttimeoutlen=0
+	set ttm=0
 
 " search
 	set ignorecase
-	set smartcase
+	set scs
 	set nohls
 
 " file management
 	set noswapfile
-	set nobackup
+	set nobk
 	set undodir=$HOME/.local/share/nvim/undodir
 	set undofile
-	set autowrite
+	set aw
 	nnoremap <leader>o <cmd>!$BROWSER %&<cr><cr>
 	cnoremap <leader>cd <c-r>=substitute(expand("%:p:h"), getcwd(), '.', '').'/'<cr>
 
@@ -44,23 +44,29 @@ endif
 	cnoremap !$ <c-r>=substitute(@:, '.* ', '', '')<cr>
 
 " autocompletion
-	set wildignorecase
-	set wildmode=list,longest,full
+	set wic
+	set wim=list,longest,full
 
 " stautus line
-	set laststatus=2
-	au VimEnter * hi link STLMode Visual
-	au InsertEnter * hi link STLMode DiffText
-	au InsertLeave * hi link STLMode Visual
+	set ls=2
+	set nosmd
+	aug stl
+		au!
+		au VimEnter * hi default link STLMode WildMenu | hi default link STL StatusLineNC
+		au InsertEnter * hi link STLMode DiffText | redraws!
+		au CmdlineEnter * hi link STLMode Search | redraws!
+		au TermEnter * hi link STLMode IncSearch | redraws!
+		au InsertLeave,CmdlineLeave,TermLeave * hi clear STLMode | redraws!
+	aug END
 	set stl=
-	set stl+=%#STLMode#%{'\ \ '.toupper(mode()).'\ '}%#StatusLineNC#
-	set stl+=%#STLMode#%{&readonly?'\ \|\ '.'RO\ ':''}%#StatusLineNC#
-	set stl+=%#STLMode#%{&paste?'\ \|\ '.'P\ ':''}%#StatusLineNC#
+	set stl+=%#STLMode#%{'\ \ '.toupper(mode()).'\ '}%#STL#
+	set stl+=%#STLMode#%{&readonly?'\ \|\ '.'RO\ ':''}%#STL#
+	set stl+=%#STLMode#%{&paste?'\ \|\ '.'P\ ':''}%#STL#
 	set stl+=%<%{'\ \ '.fnamemodify(getcwd(),':~')}
 	set stl+=%{expand('%')==''?'':'\ \ \|\ '.fnamemodify(expand('%:p'),\ ':~:.')}
 	set stl+=%{&modified?'\ \ '.'[+]':''}
 	set stl+=%=
-	set stl+=%{'\ \ '.&fileformat}%{'\ \ \|\ '}
+	set stl+=%{'\ \ \ \ '.&fileformat}%{'\ \ \|\ '}
 	set stl+=%{&fileencoding?&fileencoding:&encoding}%{'\ '.'\ \|\ '}
 	set stl+=%l:%c%{'\ \|\ '}
 	set stl+=%p%%

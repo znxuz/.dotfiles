@@ -73,10 +73,10 @@ super + grave
 	dunstctl history-pop
 
 # screenshot
-super + alt + s
-    flameshot full -c -p ~/Pictures/screenshots && sleep 30 && pkill flameshot
 super + ctrl + s
     flameshot gui && sleep 240 && pkill flameshot
+super + shift + s
+    flameshot full -c -p ~/Pictures/screenshots && sleep 30 && pkill flameshot
 
 ## bspwm
 
