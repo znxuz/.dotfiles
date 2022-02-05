@@ -1,5 +1,4 @@
 local cmp = require "cmp"
-
 cmp.setup {
 	snippet = {
 		expand = function(args)
@@ -16,8 +15,8 @@ cmp.setup {
 		["<c-y>"] = cmp.mapping.confirm { select = true, },
 	},
 	sources = cmp.config.sources({
-		{ name = "nvim_lsp" },
+		{ name = "nvim_lsp" , },
+		{ name = "luasnip" , },
 		{ name = "buffer", keyword_length = 3 },
-		{ name = "luasnip" },
 	})
 }

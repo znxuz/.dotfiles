@@ -17,15 +17,13 @@ case "$1" in
 	"-C")
 		sed -E -i "0,/SRC_DIR/{s/(SRC_DIR := ).*/\1$2/}" makefile &&
 			mkdir "$2" &&
-			printf "%s\n\n%s\n{\n}" \
-			"#include \"solution.h\"" \
-			"int main(int argc, char** argv)" > "$2/main.cpp" &&
-			printf "%s\n\n%s\n%s\n" \
-			"#pragma once" \
+			printf "%s\n\n%s\n\n%s\n\n%s\n{\n}" \
 			"#include <iostream>" \
-			"#include <vector>" > "$2/solution.h" &&
+			"#include \"solution.cpp\"" \
+			"using namespace std;" \
+			"int main(int argc, char** argv)" > "$2/main.cpp" &&
 			printf "%s\n\n%s\n\n" \
-			"#include \"solution.h\"" \
+			"#include <iostream>" \
 			"using namespace std;" > "$2/solution.cpp" &&
 			nvim "$2/solution.cpp"
 		;;

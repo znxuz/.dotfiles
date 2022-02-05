@@ -49,10 +49,8 @@ endif
 
 " stautus line
 	set ls=2
-	set nosmd
 	aug stl
 		au!
-		au VimEnter * hi default link STLMode WildMenu | hi default link STL StatusLineNC
 		au InsertEnter * hi link STLMode DiffText | redraws!
 		au CmdlineEnter * hi link STLMode Search | redraws!
 		au TermEnter * hi link STLMode IncSearch | redraws!
