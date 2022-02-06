@@ -100,10 +100,6 @@ super + {t,shift + t,s,f}
 super + m
 	bspc desktop -l next
 
-# set the node flags
-super + alt + {m,x,y,z}
-	bspc node -g {marked,locked,sticky,private}
-
 #
 # focus/swap
 #

@@ -51,6 +51,8 @@ endif
 	set ls=2
 	aug stl
 		au!
+		au VimEnter * hi default link STL StatusLineNC
+		au VimEnter * hi default link STLMode WildMenu
 		au InsertEnter * hi link STLMode DiffText | redraws!
 		au CmdlineEnter * hi link STLMode Search | redraws!
 		au TermEnter * hi link STLMode IncSearch | redraws!

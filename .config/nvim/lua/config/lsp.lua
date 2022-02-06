@@ -31,7 +31,7 @@ map("n", "<leader>es", "<cmd>lua vim.diagnostic.open_float()<cr>")
 lsp.texlab.setup{}
 
 -- C/CPP
-require "lspconfig".clangd.setup{
+lsp.clangd.setup {
 	cmd = { "clangd", "--background-index", "--log=error" }
 }
 map("n", "<leader><c-^>", "<cmd>ClangdSwitchSourceHeader<cr>")
@@ -68,7 +68,7 @@ map("i", "<leader>ci", "<cmd>lua require('jdtls').organize_imports()<cr>")
 -- Csharp
 local pid = vim.fn.getpid()
 local omnisharp_bin = "/usr/bin/omnisharp"
-require'lspconfig'.omnisharp.setup{
+lsp.omnisharp.setup{
     cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) }
 }
 
