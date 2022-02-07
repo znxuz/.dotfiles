@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+config=${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/alacritty.yml
+old_padding=$(awk '/x:/{print $2}' $config)
+new_padding=$([[ $old_padding == 20 ]] && echo "255" || echo "20")
+sed -i "0,/x: $old_padding/s/x: $old_padding/x: $new_padding/" $config
