@@ -1,4 +1,3 @@
-" Java lsp
 lua << EOF
 local workspace_dir = vim.env.HOME .. '/.local/share/workspace/'
 local config = {

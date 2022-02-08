@@ -12,10 +12,6 @@ let g:vimwiki_list = [
 				\ 'path': '~/Dropbox/notes/programming',
 				\ 'syntax': 'markdown', 'ext': '.md'
 			\ },
-			\ {
-				\ 'path': '~/Dropbox/notes/42',
-				\ 'syntax': 'markdown', 'ext': '.md'
-			\ },
 			\ ]
 
 nnoremap <leader>ww <cmd>VimwikiUISelect<cr>

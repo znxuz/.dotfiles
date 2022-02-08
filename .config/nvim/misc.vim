@@ -45,18 +45,19 @@ endif
 
 " autocompletion
 	set wic
-	set wim=list,longest,full
+	set wim=longest:list:lastused,full
 
 " stautus line
 	set ls=2
 	aug stl
 		au!
+		au ModeChanged * redraws!
 		au VimEnter * hi default link STL StatusLineNC
 		au VimEnter * hi default link STLMode WildMenu
 		au InsertEnter * hi link STLMode DiffText | redraws!
 		au CmdlineEnter * hi link STLMode Search | redraws!
 		au TermEnter * hi link STLMode IncSearch | redraws!
-		au InsertLeave,CmdlineLeave,TermLeave * hi clear STLMode | redraws!
+		au InsertLeave,CmdlineLeave,CmdwinEnter,TermLeave * hi clear STLMode | redraws!
 	aug END
 	set stl=
 	set stl+=%#STLMode#%{'\ \ '.toupper(mode()).'\ '}%#STL#
