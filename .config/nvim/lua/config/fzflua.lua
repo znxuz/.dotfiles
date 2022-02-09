@@ -1,34 +1,34 @@
 local actions = require('fzf-lua.actions')
 require('fzf-lua').setup {
-	winopts = {
-		border           = 'single',        -- 'none', 'single', 'double' or 'rounded' (default)
-		preview = {
-			hidden         = 'hidden',        -- hidden|nohidden
-			vertical       = 'down:45%',      -- up|down:size
-			horizontal     = 'right:60%',     -- right|left:size
-			layout         = 'flex',          -- horizontal|vertical|flex
-			flip_columns   = 120,             -- #cols to switch to horizontal on flex
-			scrollbar      = 'float',         -- `false` or string:'float|border'
-																				-- float:  in-window floating border
-																				-- border: in-border chars (see below)
-			scrolloff      = '-2',            -- float scrollbar offset from right
-																				-- applies only when scrollbar = 'float'
-			scrollchars    = {'█', '' },      -- scrollbar chars ({ <full>, <empty> }
-																				-- applies only when scrollbar = 'border'
-			delay          = 0,
-			winopts = {
-				number            = false,
-				relativenumber    = false,
-				cursorline        = true,
-				cursorlineopt     = 'both',
-				cursorcolumn      = false,
-				signcolumn        = 'no',
-				list              = false,
-				foldenable        = false,
-				foldmethod        = 'manual',
-			}
-		}
-	},
+  winopts = {
+    border           = 'single',        -- 'none', 'single', 'double' or 'rounded' (default)
+    preview = {
+      hidden         = 'hidden',        -- hidden|nohidden
+      vertical       = 'down:45%',      -- up|down:size
+      horizontal     = 'right:60%',     -- right|left:size
+      layout         = 'flex',          -- horizontal|vertical|flex
+      flip_columns   = 120,             -- #cols to switch to horizontal on flex
+      scrollbar      = 'float',         -- `false` or string:'float|border'
+                                        -- float:  in-window floating border
+                                        -- border: in-border chars (see below)
+      scrolloff      = '-2',            -- float scrollbar offset from right
+                                        -- applies only when scrollbar = 'float'
+      scrollchars    = {'█', '' },      -- scrollbar chars ({ <full>, <empty> }
+                                        -- applies only when scrollbar = 'border'
+      delay          = 0,
+      winopts = {
+        number            = false,
+        relativenumber    = false,
+        cursorline        = true,
+        cursorlineopt     = 'both',
+        cursorcolumn      = false,
+        signcolumn        = 'no',
+        list              = false,
+        foldenable        = false,
+        foldmethod        = 'manual',
+      }
+    }
+  },
   keymap = {
     -- These override the default tables completely
     -- no need to set to `false` to disable a bind
@@ -37,10 +37,10 @@ require('fzf-lua').setup {
       -- neovim `:tmap` mappings for the fzf win
       ["<F2>"]        = "toggle-fullscreen",
       -- Only valid with the 'builtin' previewer
-      ["<c-space>"]        = "toggle-preview",
+      ["<c-space>"]   = "toggle-preview",
       -- Rotate preview clockwise/counter-clockwise
-      ["<c-d>"]    = "preview-page-down",
-      ["<c-u>"]      = "preview-page-up",
+      ["<c-d>"]       = "preview-page-down",
+      ["<c-u>"]       = "preview-page-up",
     },
     fzf = {
       -- fzf '--bind=' options
@@ -51,6 +51,22 @@ require('fzf-lua').setup {
       ["ctrl-e"]      = "end-of-line",
       ["alt-a"]       = "toggle-all",
     },
+  },
+  fzf_colors = {
+    -- fzf '--color=' options (optional)
+    ["fg"]          = { "fg", "CursorLine" },
+    ["bg"]          = { "bg", "Normal" },
+    ["hl"]          = { "fg", "Comment" },
+    ["fg+"]         = { "fg", "Normal" },
+    ["bg+"]         = { "bg", "CursorLine" },
+    ["hl+"]         = { "fg", "Statement" },
+    ["info"]        = { "fg", "PreProc" },
+    ["prompt"]      = { "fg", "Conditional" },
+    ["pointer"]     = { "fg", "Exception" },
+    ["marker"]      = { "fg", "Keyword" },
+    ["spinner"]     = { "fg", "Label" },
+    ["header"]      = { "fg", "Comment" },
+    ["gutter"]      = { "bg", "Normal" },
   },
   -- provider setup
   files = {
@@ -102,8 +118,8 @@ require('fzf-lua').setup {
     git_icons         = false,
   },
   lsp = {
-		jump_to_single_result = true,
-		sync = true,
+    jump_to_single_result = true,
+    sync = true,
     async_or_timeout  = 5000,
     cwd_only          = false,
     file_icons        = false,

@@ -2,10 +2,11 @@
 source $HOME/.config/shell/aliasrc
 
 # clear screen with extra new line
-custom_clear_screen() {
-	zle -I # Enable output to terminal.
-	print -n '\e[2J\e[3;0H' # Clear screen and move cursor to (4, 0).
-	zle .redisplay # Redraw prompt.
+custom_clear_screen()
+{
+    zle -I # Enable output to terminal.
+    print -n '\e[2J\e[3;0H' # Clear screen and move cursor to (4, 0).
+    zle .redisplay # Redraw prompt.
 }
 zle -N clear-screen custom_clear_screen
 
@@ -43,7 +44,8 @@ source $ZDOTDIR/zsh_vi
 source $ZDOTDIR/zsh_todoist
 
 # csharp autocompletion
-_dotnet_zsh_complete() {
+_dotnet_zsh_complete()
+{
   local completions=("$(dotnet complete "$words")")
   reply=( "${(ps:\n:)completions}" )
 }

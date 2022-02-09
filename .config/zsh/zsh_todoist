@@ -1,6 +1,7 @@
 select_items_command="todoist --namespace --project-namespace list | fzf | cut -d ' ' -f 1 | tr '\n' ' '"
 
-function insert-in-buffer () {
+function insert-in-buffer ()
+{
     if [ -n "$1" ]; then
         local new_left=""
         if [ -n "$LBUFFER" ]; then
@@ -16,7 +17,8 @@ function insert-in-buffer () {
 }
 
 # todoist find item
-function fzf-todoist-item () {
+function fzf-todoist-item ()
+{
     local SELECTED_ITEMS="$(eval ${select_items_command})"
     insert-in-buffer $SELECTED_ITEMS
     zle reset-prompt
@@ -25,7 +27,8 @@ zle -N fzf-todoist-item
 bindkey "^xtt" fzf-todoist-item
 
 # todoist find project
-function fzf-todoist-project () {
+function fzf-todoist-project ()
+{
     local SELECTED_PROJECT="$(todoist --project-namespace projects | fzf | head -n1 | cut -d ' ' -f 1)"
     insert-in-buffer "${SELECTED_PROJECT}" "-P"
     zle reset-prompt
@@ -34,7 +37,8 @@ zle -N fzf-todoist-project
 bindkey "^xtp" fzf-todoist-project
 
 # todoist find labels
-function fzf-todoist-labels () {
+function fzf-todoist-labels ()
+{
     local SELECTED_LABELS="$(todoist labels | fzf | cut -d ' ' -f 1 | tr '\n' ',' | sed -e 's/,$//')"
     insert-in-buffer "${SELECTED_LABELS}" "-L"
     zle reset-prompt
@@ -42,7 +46,8 @@ function fzf-todoist-labels () {
 zle -N fzf-todoist-labels
 bindkey "^xtl" fzf-todoist-labels
 
-function todoist-exec-with-select-task () {
+function todoist-exec-with-select-task ()
+{
     if [ -n "$2" ]; then
         BUFFER="todoist $1 $(echo "$2" | tr '\n' ' ')"
         CURSOR=$#BUFFER
@@ -51,7 +56,8 @@ function todoist-exec-with-select-task () {
 }
 
 # todoist close
-function fzf-todoist-close() {
+function fzf-todoist-close()
+{
     local SELECTED_ITEMS="$(eval ${select_items_command})"
     todoist-exec-with-select-task close $SELECTED_ITEMS
     zle reset-prompt
@@ -60,7 +66,8 @@ zle -N fzf-todoist-close
 bindkey "^xtc" fzf-todoist-close
 
 # todoist delete
-function fzf-todoist-delete() {
+function fzf-todoist-delete()
+{
     local SELECTED_ITEMS="$(eval ${select_items_command})"
     todoist-exec-with-select-task delete $SELECTED_ITEMS
     zle reset-prompt
@@ -69,7 +76,8 @@ zle -N fzf-todoist-delete
 bindkey "^xtd" fzf-todoist-delete
 
 # todoist open
-function fzf-todoist-open() {
+function fzf-todoist-open()
+{
     local SELECTED_ITEMS="$(eval ${select_items_command})"
     todoist-exec-with-select-task "show --browse" $SELECTED_ITEMS
     zle reset-prompt
