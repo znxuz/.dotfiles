@@ -40,10 +40,6 @@ endif
     set aw
     nnoremap <leader>o <cmd>!$BROWSER %&<cr><cr>
     cnoremap <leader>cd <c-r>=substitute(expand("%:p:h"), getcwd(), '.', '').'/'<cr>
-    aug format_file
-        au!
-        au BufWritePre * retab!
-    aug END
 
 " last argument of the last command
     cnoremap !$ <c-r>=substitute(@:, '.* ', '', '')<cr>
@@ -56,13 +52,11 @@ endif
     set ls=2
     aug stl
         au!
-        au ModeChanged * redraws!
         au VimEnter * hi default link STL StatusLineNC
         au VimEnter * hi default link STLMode WildMenu
-        au InsertEnter * hi link STLMode DiffText | redraws!
-        au CmdlineEnter * hi link STLMode Search | redraws!
-        au TermEnter * hi link STLMode IncSearch | redraws!
-        au InsertLeave,CmdlineLeave,CmdwinEnter,TermLeave * hi clear STLMode | redraws!
+        au ModeChanged *:n* hi clear STLMode | redraws!
+        au ModeChanged *:i* hi link STLMode DiffText | redraws!
+        au ModeChanged *:[vV\x16]* hi link STLMode Substitute | redraws!
     aug END
     set stl=
     set stl+=%#STLMode#%{'\ \ '.toupper(mode()).'\ '}%#STL#
