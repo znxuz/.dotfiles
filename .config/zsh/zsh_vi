@@ -5,16 +5,6 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
-# set prompt
-precmd()
-{
-    PROMPT="%F{blue}%~ %F{yellow}%(1j.[%j] .)%(?.%F{blue}.%F{red})❯%f "
-    echo "" # extra new line
-}
-preexec()
-{
-    printf '\e[2 q' # reset to steady block cursor
-}
 zle-line-init() zle-keymap-select()
 {
     if [[ $KEYMAP == main ]] || [[ $KEYMAP == viins ]]; then
@@ -23,16 +13,6 @@ zle-line-init() zle-keymap-select()
         PROMPT="%F{blue}%~ %F{yellow}%(1j.[%j] .)%(?.%F{magenta}.%F{red})❮%f "
     fi
     zle reset-prompt
-    if [[ -n "$SSH_CONNECTION" ]] {
-        case $KEYMAP {
-            viins|main)
-                printf '\e[6 q' # steady bar
-                ;;
-            *)
-                printf '\e[2 q' # steady block
-                ;;
-        }
-    }
 }
 zle -N zle-line-init
 zle -N zle-keymap-select

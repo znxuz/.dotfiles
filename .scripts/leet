@@ -31,9 +31,11 @@ function make_cpp()
 
 case "$1" in
     "-j"|"--java")
+        [[ -z "$2" ]] && exit 1
         make_java "$2" && nvim "$root_dir/Java/$2/Solution.java"
         ;;
     "-C")
+        [[ -z "$2" ]] && exit 1
         make_cpp "$2" && nvim "$root_dir/cpp/$2/solution.cpp"
         ;;
     *)

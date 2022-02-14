@@ -1,6 +1,17 @@
 # aliases
 source $HOME/.config/shell/aliasrc
 
+# set prompt
+precmd()
+{
+    PROMPT="%F{blue}%~ %F{yellow}%(1j.[%j] .)%(?.%F{blue}.%F{red})❯%f "
+    echo "" # extra new line
+}
+preexec()
+{
+    printf '\e[2 q' # reset to steady block cursor
+}
+
 # clear screen with extra new line
 custom_clear_screen()
 {
