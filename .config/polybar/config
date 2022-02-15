@@ -1,35 +1,17 @@
-;==========================================================
-;
-;
-;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
-;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
-;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
-;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
-;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
-;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
-;
-;
-;   To learn more about how to configure Polybar
-;   go to https://github.com/polybar/polybar
-;
-;   The README contains a lot of information
-;
-;==========================================================
-
 ;gruvbox colors
-;black      #282828
+;blac #282828
 ;black_hard #1d2021
-;bg         #1d2021
-;red        #cc241d
-;green      #98971a
-;yellow     #d79921
-;orange     #d65d0e
-;blue       #458588
-;purple     #b16286
-;aqua       #689d68
-;white      #ebdbb2
-;gray       #a89984
-;darkgray   #1d2021
+;bg #1d2021
+;red #cc241d
+;green #98971a
+;yellow #d79921
+;orange #d65d0e
+;blue #458588
+;purple #b16286
+;aqua #689d68
+;white #ebdbb2
+;gray #a89984
+;darkgray #1d2021
 
 [colors]
 alert = #d79921

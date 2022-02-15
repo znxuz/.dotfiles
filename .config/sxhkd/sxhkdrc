@@ -1,5 +1,5 @@
 super + Return
-    alacritty --working-directory $HOME
+	alacritty --working-directory $HOME
 
 # controls 
 super + {F10, F11}
@@ -8,7 +8,7 @@ super + F12
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
 # brightness
 super + {F1, F2}
-    xbacklight {-dec, -inc} 10
+	xbacklight {-dec, -inc} 10
 
 # controls (tp)
 XF86AudioRaiseVolume
@@ -74,9 +74,9 @@ super + grave
 
 # screenshot
 super + ctrl + s
-    flameshot gui && sleep 240 && pkill flameshot
+	flameshot gui && sleep 240 && pkill flameshot
 super + shift + s
-    flameshot full -c -p ~/Pictures/screenshots && sleep 30 && pkill flameshot
+	flameshot full -c -p ~/Pictures/screenshots && sleep 30 && pkill flameshot
 
 ## bspwm
 

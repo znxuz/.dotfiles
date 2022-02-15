@@ -4,20 +4,20 @@ source $HOME/.config/shell/aliasrc
 # set prompt
 precmd()
 {
-    PROMPT="%F{blue}%~ %F{yellow}%(1j.[%j] .)%(?.%F{blue}.%F{red})❯%f "
-    echo "" # extra new line
+	PROMPT="%F{blue}%~ %F{yellow}%(1j.[%j] .)%(?.%F{blue}.%F{red})❯%f "
+	echo "" # extra new line
 }
 preexec()
 {
-    printf '\e[2 q' # reset to steady block cursor
+	printf '\e[2 q' # reset to steady block cursor
 }
 
 # clear screen with extra new line
 custom_clear_screen()
 {
-    zle -I # Enable output to terminal.
-    print -n '\e[2J\e[3;0H' # Clear screen and move cursor to (4, 0).
-    zle .redisplay # Redraw prompt.
+	zle -I # Enable output to terminal.
+	print -n '\e[2J\e[3;0H' # Clear screen and move cursor to (4, 0).
+	zle .redisplay # Redraw prompt.
 }
 zle -N clear-screen custom_clear_screen
 
@@ -43,7 +43,7 @@ zmodload zsh/complist
 compinit
 setopt globdots
 setopt noclobber
-# _comp_options+=(globdots)       # Include hidden files.
+# _comp_options+=(globdots)		  # Include hidden files.
 
 # fzf
 source $ZDOTDIR/zsh_fzf

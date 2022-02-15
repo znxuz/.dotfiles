@@ -48,24 +48,24 @@ bat_print()
 path_pid="/tmp/polybar-bat-udev.pid"
 
 case "$1" in
-    --update)
-        pid=$(cat $path_pid)
+	--update)
+		pid=$(cat $path_pid)
 
-        if [ "$pid" != "" ]; then
-            kill -10 "$pid"
-        fi
-        ;;
-    *)
-        echo $$ > $path_pid
+		if [ "$pid" != "" ]; then
+			kill -10 "$pid"
+		fi
+		;;
+	*)
+		echo $$ > $path_pid
 
-        trap exit INT
-        trap "echo" USR1
+		trap exit INT
+		trap "echo" USR1
 
-        while true; do
-            bat_print
+		while true; do
+			bat_print
 
-            sleep 30 &
-            wait
-        done
-        ;;
+			sleep 30 &
+			wait
+		done
+		;;
 esac

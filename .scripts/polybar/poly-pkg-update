@@ -4,10 +4,10 @@ interface=$(ip route | awk '/^default/ { print $5 ; exit }')
 [[ -z "$interface" ]] && exit 1
 
 if ! [[ -e "/sys/class/net/${interface}/operstate" ]] ||
-    (! [[ "$TREAT_UNKNOWN_AS_UP" = "1" ]] &&
-    ! [[ "$(cat /sys/class/net/${interface}/operstate)" = "up" ]])
+	(! [[ "$TREAT_UNKNOWN_AS_UP" = "1" ]] &&
+	! [[ "$(cat /sys/class/net/${interface}/operstate)" = "up" ]])
 then
-    exit 1
+	exit 1
 fi
 
 pac_upd="$(checkupdates 2> /dev/null)"

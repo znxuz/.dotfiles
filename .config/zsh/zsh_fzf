@@ -7,11 +7,11 @@ bindkey '^ff' fzf-file-widget
 
 cd_fzf()
 {
-    local ret="$(fd -td -uu -L -E ".git/" -E ".cache/" \
-        --base-directory $1 | fzf --preview="tree -L 1 {}" \
-        --bind="ctrl-space:toggle-preview" --preview-window=:hidden)"
-    [[ ! -z "$ret" ]] && cd "$1/$ret"
-    zle reset-prompt
+	local ret="$(fd -td -uu -L -E ".git/" -E ".cache/" \
+		--base-directory $1 | fzf --preview="tree -L 1 {}" \
+		--bind="ctrl-space:toggle-preview" --preview-window=:hidden)"
+	[[ ! -z "$ret" ]] && cd "$1/$ret"
+	zle reset-prompt
 }
 cd_fzf_root() { cd_fzf $HOME }
 zle -N cd_fzf_root && bindkey '^th' cd_fzf_root
@@ -20,10 +20,10 @@ zle -N cd_fzf_mount && bindkey '^tm' cd_fzf_mount
 
 find_fzf()
 {
-    local ret="$(fd -uu -E ".git/" -E ".cache/" --base-directory $1 \
-        | fzf -m | sed -E -e "s|./|$1/|" -e 's/ /\\ /g' | tr '\n' ' ')"
-    [[ ! -z "$ret" ]] && LBUFFER="$LBUFFER$ret"
-    zle reset-prompt
+	local ret="$(fd -uu -E ".git/" -E ".cache/" --base-directory $1 \
+		| fzf -m | sed -E -e "s|./|$1/|" -e 's/ /\\ /g' | tr '\n' ' ')"
+	[[ ! -z "$ret" ]] && LBUFFER="$LBUFFER$ret"
+	zle reset-prompt
 }
 fzf_root() { find_fzf $HOME }
 zle -N fzf_root && bindkey '^fh' fzf_root
@@ -32,26 +32,26 @@ zle -N fzf_mount && bindkey '^fm' fzf_mount
 
 pac_search_remote()
 {
-    local ret="$(pacman -Sql | fzf -m --preview='pacman -Si {}' \
-        | tr '\n' ' ')"
-    LBUFFER=${LBUFFER}${ret}
-    zle reset-prompt
+	local ret="$(pacman -Sql | fzf -m --preview='pacman -Si {}' \
+		| tr '\n' ' ')"
+	LBUFFER=${LBUFFER}${ret}
+	zle reset-prompt
 }
 zle -N pac_search_remote && bindkey '^ps' pac_search_remote
 
 pac_search_local()
 {
-    local ret="$(pacman -Qq | fzf -m --preview='pacman -Qi {}' \
-        | tr '\n' ' ')"
-    LBUFFER=${LBUFFER}${ret}
-    zle reset-prompt
+	local ret="$(pacman -Qq | fzf -m --preview='pacman -Qi {}' \
+		| tr '\n' ' ')"
+	LBUFFER=${LBUFFER}${ret}
+	zle reset-prompt
 }
 zle -N pac_search_local && bindkey '^pq' pac_search_local
 
 pac_search_aur()
 {
-    local ret="$(aur-search)"
-    LBUFFER=${LBUFFER}${ret}
-    zle reset-prompt
+	local ret="$(aur-search)"
+	LBUFFER=${LBUFFER}${ret}
+	zle reset-prompt
 }
 zle -N pac_search_aur && bindkey '^pa' pac_search_aur

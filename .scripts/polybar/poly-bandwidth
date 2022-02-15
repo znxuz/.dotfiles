@@ -11,10 +11,10 @@ INTERFACE=$(ip route | awk '/^default/ { print $5 ; exit }')
 
 # Issue #36 compliant.
 if ! [ -e "/sys/class/net/${INTERFACE}/operstate" ] ||
-    (! [ "$TREAT_UNKNOWN_AS_UP" = "1" ] &&
+	(! [ "$TREAT_UNKNOWN_AS_UP" = "1" ] &&
 	! [ "$(cat /sys/class/net/${INTERFACE}/operstate)" = "up" ])
 then
-    echo "$INTERFACE down"; exit 0
+	echo "$INTERFACE down"; exit 0
 fi
 
 # path to store the old results in
