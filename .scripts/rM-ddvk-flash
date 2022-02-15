@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+rm="rM"
+
+ssh -q -o ConnectTimeout=3 -o BatchMode=yes $rm exit
+[[ $? -ne 0 ]] && echo "connection not available" && exit 1
+
+ssh -t "$rm" \
+	'sh -c "$(wget https://raw.githubusercontent.com/ddvk/remarkable-hacks/master/patch.sh -O-)"'
+
+scp $HOME/Dropbox/backups/rM/sleep_screen/suspended_rpl.png rM:/usr/share/remarkable/suspended.png
