@@ -1,4 +1,4 @@
-PATH=${PATH}:$(find $HOME/.scripts -type d | tr '\n' ':' | sed 's/:$//'):$HOME/.dotnet/tools
+PATH=$PATH:$(find $HOME/.scripts -type d | tr '\n' ':' | sed 's/:$//')
 
 export SHELL="/usr/bin/zsh"
 export EDITOR="nvim"

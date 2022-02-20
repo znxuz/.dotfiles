@@ -11,7 +11,7 @@ packer.startup(function(use)
 	-- aesthetics
 	use {
 		'sainnhe/gruvbox-material',
-		config = 'require("config.gruvbox")'
+		config = 'require("config.colorscheme")'
 	}
 	use {
 		'nvim-treesitter/nvim-treesitter',

@@ -39,6 +39,6 @@ case "$1" in
 		make_cpp "$2" && nvim "$root_dir/cpp/$2/solution.cpp"
 		;;
 	*)
-		make_java "$1" && make_cpp "$1" && nvim $(find "$root_dir" -type f -wholename "**/$1/[sS]olution.*")
+		make_java "$1" && make_cpp "$1" && nvim $(find "$root_dir" -type f -wholename "**/$1/[sS]olution.*" | sort)
 		;;
 esac

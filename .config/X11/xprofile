@@ -13,5 +13,3 @@ xinput set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" 0.3
 # disable touchpad
 xinput set-prop "Synaptics TM3276-022" "Device Enabled" 0
 	# xinput set-prop 14 187 0
-
-remap-keyboard
