@@ -5,6 +5,7 @@ cmp.setup {
 			require("luasnip").lsp_expand(args.body)
 		end,
 	},
+	completion = { completeopt = "menuone,noinsert" },
 	mapping = {
 		['<c-f>'] = cmp.mapping(cmp.mapping.scroll_docs(1), { 'i', 'c' }),
 		['<c-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-1), { 'i', 'c' }),
@@ -15,8 +16,8 @@ cmp.setup {
 		["<c-y>"] = cmp.mapping.confirm { select = true, },
 	},
 	sources = cmp.config.sources({
-		{ name = "nvim_lsp" , },
-		{ name = "luasnip" , },
+		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
 		{ name = "buffer", keyword_length = 3 },
 	})
 }

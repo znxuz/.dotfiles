@@ -16,10 +16,8 @@ window:
   dynamic_padding: true
 
 scrolling:
-  # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
   history: 10000
-
   # Scrolling distance multiplier.
   #multiplier: 3
 
@@ -39,7 +37,6 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: false
 
-# Colors (Gruvbox dark)
 colors:
   primary:
     background:        &gruvbox_dark_bg '#1d2021'
@@ -106,16 +103,11 @@ colors:
   #save_to_clipboard: false
 
 cursor:
-  # Cursor style
   style:
-    # Cursor shape
-    #
-    # Values for `shape`:
     #   - ▇ Block
     #   - _ Underline
     #   - | Beam
     shape: Block
-    # Values for `blinking`:
     #   - Never: Prevent the cursor from ever blinking
     #   - Off: Disable blinking by default
     #   - On: Enable blinking by default
@@ -129,8 +121,6 @@ cursor:
 #
 # Key bindings are specified as a list of objects. For example, this is the
 # default paste binding:
-#
-# `- { key: V, mods: Control|Shift, action: Paste }`
 #
 # Each key binding will specify a:
 #
@@ -330,21 +320,27 @@ cursor:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
-
 key_bindings:
-  - { key: U,    mods: Alt,   mode: ~Alt,        action: ScrollHalfPageUp,  }
-  - { key: D,  mods: Alt,   mode: ~Alt,        action: ScrollHalfPageDown }
-  - { key: K,    mods: Alt,   mode: ~Alt,        action: ScrollLineUp,  }
-  - { key: J,  mods: Alt,   mode: ~Alt,        action: ScrollLineDown }
-  - { key: Home,      mods: Control,   mode: ~Alt,        action: ScrollToTop,   }
-  - { key: End,       mods: Control,   mode: ~Alt,        action: ScrollToBottom }
+  - { key: Equals, mods: Control, action: ReceiveChar }
+  - { key: Minus, mods: Control, action: ReceiveChar }
+  - { key: Equals, mods: Alt, action: IncreaseFontSize }
+  - { key: Minus, mods: Alt, action: DecreaseFontSize }
+  - { key: U, mods: Alt, action: ScrollHalfPageUp }
+  - { key: D, mods: Alt, action: ScrollHalfPageDown }
+  - { key: K, mods: Alt, action: ScrollLineUp }
+  - { key: J, mods: Alt, action: ScrollLineDown }
+  - { key: Home, mods: Alt, action: ScrollToTop }
+  - { key: End, mods: Alt, action: ScrollToBottom }
+  - { key: Space, mods: Alt, action: ClearLogNotice }
+  - { key: Z, mods: Alt, command: { program: "alacritty-padding-toggle" } }
   # Vi Mode
-  - { key: V, mods: Alt, mode: ~Search,    action: ToggleViMode            }
-  - { key: LBracket, mods: Control,      mode: Vi|~Search, action: ClearSelection   }
-  # (Windows, Linux, and BSD only)
-  - { key: V,              mods: Control|Shift, mode: ~Vi,        action: Paste            }
-  - { key: C,              mods: Control|Shift,                   action: Copy             }
-  - { key: Z,              mods: Alt,                   command: { program: "alacritty-padding-toggle" } }
+  - { key: V, mods: Alt, action: ToggleViMode }
+  - { key: H, mods: Alt, mode: Vi, action: High }
+  - { key: M, mods: Alt, mode: Vi, action: Middle }
+  - { key: L, mods: Alt, mode: Vi, action: Low }
+  - { key: X, mode: Vi|~Search, action: Open }
+  - { key: LBracket, mods: Control, mode: Vi|Search, action: SearchCancel }
+  - { key: LBracket, mods: Control, mode: Vi|~Search, action: ClearSelection }
 
 #debug:
   # Display the time it takes to redraw each frame.

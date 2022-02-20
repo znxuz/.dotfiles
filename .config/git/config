@@ -7,3 +7,4 @@
 	defaultBranch = main
 [alias]
 	nccommit = commit -a --allow-empty-message -m \"\"
+	sync = add /home/zijian/.config /home/zijian/.scripts

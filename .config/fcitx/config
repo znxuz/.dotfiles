@@ -1,6 +1,6 @@
 [Hotkey]
 # Trigger Input Method
-TriggerKey=ALT_SPACE
+TriggerKey=CTRL_SHIFT_LSHIFT
 # Use extra trigger key only after using it to inactivate
 # Available Value:
 # True False
@@ -62,9 +62,9 @@ IMSwitchKey=False
 # Switch Full Width Punc Mode
 #PuncSwitchKey=CTRL_.
 # Prev Page
-#PrevPageKey=- UP
+PrevPageKey=-
 # Next Page
-#NextPageKey== DOWN
+NextPageKey==
 # Choose Second and Third Candidate Word
 #SecondThirdCandWordKey=
 # Saving All Config and Input History
