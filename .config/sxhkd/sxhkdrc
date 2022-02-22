@@ -1,5 +1,5 @@
 super + Return
-	alacritty --working-directory $HOME
+	alacritty --working-directory $HOME -e tmux
 
 # controls 
 super + {F10, F11}
