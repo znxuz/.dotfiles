@@ -6,7 +6,6 @@ dasht
 dockd
 dropbox
 gtk-theme-arc-gruvbox-git
-joplin-desktop
 libthinkpad
 mailspring
 neovim-nightly-bin
@@ -16,8 +15,8 @@ omnisharp-roslyn
 pfetch-git
 polybar
 redshift-minimal
+rmapi
 teams
-tectonic
 thinkfan
 todoist-git
 upd72020x-fw

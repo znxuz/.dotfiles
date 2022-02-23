@@ -65,6 +65,3 @@ compctl -K _dotnet_zsh_complete dotnet
 # must be at the end
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# eye candy
-echo "\n" && pfetch

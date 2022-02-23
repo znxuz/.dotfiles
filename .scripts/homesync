@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
 dest=${1:-"/mnt/external/home_backup"}
-
+backup_dir=$HOME/.config/misc
 log=$HOME/homesync.log
+
 rsync -azvhP --del --delete-excluded --exclude-from "$HOME/.scripts/.rsyncexclude" $HOME $dest | tee $log 2>&1
 
-pacman -Qqen | tee $HOME/.config/Qqen && cp -f $HOME/.config/Qqen $dest
-pacman -Qqem | tee $HOME/.config/Qqem && cp -f $HOME/.config/Qqem $dest
-systemctl list-unit-files --state=enabled --user | tee $HOME/.config/systemd-unit-files-user \
-	&& cp -f $HOME/.config/systemd-unit-files-user $dest
-systemctl list-unit-files --state=enabled | tee $HOME/.config/systemd-unit-files \
-	&& cp -f $HOME/.config/systemd-unit-files $dest
+pacman -Qqen | tee $backup_dir/Qqen && cp -f $backup_dir/Qqen $dest
+pacman -Qqem | tee $backup_dir/Qqem && cp -f $backup_dir/Qqem $dest
+systemctl list-unit-files --state=enabled --user | tee $backup_dir/systemd-unit-files-user \
+	&& cp -f $backup_dir/systemd-unit-files-user $dest
+systemctl list-unit-files --state=enabled | tee $backup_dir/systemd-unit-files \
+	&& cp -f $backup_dir/systemd-unit-files $dest

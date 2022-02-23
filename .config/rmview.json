@@ -1,9 +1,0 @@
-{
-  "ssh": {
-    "address": "192.168.1.28",
-    "auth_method": "key",
-    "timeout": 2
-  },
-  "orientation": "portrait",
-  "invert_colors": "true"
-}

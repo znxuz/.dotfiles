@@ -63,7 +63,6 @@ jq
 jre-openjdk
 jre11-openjdk
 libbsd
-libreoffice-still
 libtool
 linux
 linux-firmware
@@ -109,11 +108,12 @@ pdfcrack
 pdftk
 perl-rename
 picom
+pipewire-alsa
+pipewire-docs
+pipewire-pulse
 pkgconf
 pkgstats
 powertop
-pulseaudio
-pulseaudio-bluetooth
 python-pyjwt
 python-pyopenssl
 qbittorrent
@@ -131,6 +131,7 @@ speedtest-cli
 sudo
 sxhkd
 syncthing
+tectonic
 texinfo
 texlab
 throttled
@@ -146,6 +147,7 @@ unrar
 unzip
 valgrind
 virtualbox
+virtualbox-guest-iso
 vnstat
 vpnc
 weechat
@@ -154,9 +156,7 @@ which
 wireless_tools
 wmctrl
 xclip
-xdg-user-dirs
 xdg-utils
-xdotool
 xf86-video-intel
 xf86-video-vesa
 xorg-bdftopcf
