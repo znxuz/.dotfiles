@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-setup_dotfiles()
+function setup_dotfiles()
 {
 	src=$HOME/dotfiles.tmp
 	git clone --separate-git-dir=$HOME/.dotfiles \
@@ -11,19 +11,19 @@ setup_dotfiles()
 		config --local status.showUntrackedFiles no
 }
 
-setup_poly_bat()
+function setup_poly_bat()
 {
 	# poly-bat module via udev rule
 	[ ! -f /etc/udev/rules.d/95-battery.rules ] &&
 		sudo cp ~/.scripts/polybar/95-battery.rules /etc/udev/rules.d/
 }
 
-symlink_etc_conf()
+function symlink_etc_conf()
 {
 	find ~/.config/etc -type f -exec sudo ln -sf {} /etc \;
 }
 
-pkg_install()
+function pkg_install()
 {
 	sudo pacman -Syyy archlinux-keyring &&
 		sudo pacman -Syu --needed - < $HOME/.config/misc/Qqen
@@ -33,9 +33,10 @@ pkg_install()
 	git clone git@github.com:zijian-x/aur.git $aur &&
 		git -C $aur submodule update --init
 
-	pkgs="$(find $aur -maxdepth 1 -type d -not -path '*.git' -and -not -path $aur)"
+	cd $aur
+	pkgs="$(< $HOME/.config/misc/Qqem)"
 	for pkg in ${pkgs[@]}; do
-		git -C "$pkg" checkout master && aur-build "$pkg"
+		./aur-build "$pkg"
 	done
 }
 

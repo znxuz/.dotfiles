@@ -39,9 +39,6 @@ endif
 	nnoremap <leader>o <cmd>!$BROWSER %&<cr><cr>
 	cnoremap <leader>cd <c-r>=substitute(expand("%:p:h"), getcwd(), '.', '').'/'<cr>
 
-" last argument of the last command
-	cnoremap !$ <c-r>=substitute(@:, '.* ', '', '')<cr>
-
 " autocompletion
 	set wic
 	set wim=longest:list:lastused,full

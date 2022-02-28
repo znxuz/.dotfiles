@@ -1,20 +1,32 @@
+local map = require("config.utils").map
+map("n", "<leader>ff", "<cmd>FzfLua files<cr>")
+map("n", "<leader>fc", "<cmd>FzfLua files cwd=%:p:h<cr>")
+map("n", "<leader>fh", "<cmd>FzfLua files cwd=~<cr>")
+map("n", "<leader>fi", "<cmd>lua require('config.fzflua').find_files_in()<cr>")
+map("n", "<leader>fb", "<cmd>FzfLua buffers<cr>")
+map("n", "<leader>gg", "<cmd>FzfLua live_grep<cr>")
+map("n", "<leader>gc", "<cmd>FzfLua lgrep_curbuf<cr>")
+map("n", "<leader>gi", "<cmd>lua require('config.fzflua').grep_in()<cr>")
+map("n", "<leader>fa", "<cmd>FzfLua builtin<cr>")
+map("n", "<leader>fr", "<cmd>FzfLua resume<cr>")
+map("n", "<leader>fq", "<cmd>FzfLua quickfix<cr>")
+map("n", "<leader>fj", "<cmd>FzfLua jumps<cr>")
+map("n", "<leader>fo", "<cmd>FzfLua oldfiles<cr>")
+map("n", "<leader>ft", "<cmd>FzfLua help_tags<cr>")
+map("n", "<leader>fm", "<cmd>FzfLua man_pages<cr>")
+
 local actions = require('fzf-lua.actions')
 require('fzf-lua').setup {
 	winopts = {
-		border = 'single',				-- 'none', 'single', 'double' or 'rounded' (default)
+		border = 'single', -- 'none', 'single', 'double' or 'rounded' (default)
 		preview = {
-			hidden = 'hidden',				-- hidden|nohidden
-			vertical = 'down:45%',			-- up|down:size
-			horizontal = 'right:60%',			-- right|left:size
-			layout = 'flex',					-- horizontal|vertical|flex
-			flip_columns = 120,							-- #cols to switch to horizontal on flex
-			scrollbar = 'float',				 -- `false` or string:'float|border'
-																				-- float:  in-window floating border
-																				-- border: in-border chars (see below)
-			scrolloff = '-2',						 -- float scrollbar offset from right
-																				-- applies only when scrollbar = 'float'
-			scrollchars = {'█', '' },			 -- scrollbar chars ({ <full>, <empty> }
-																				-- applies only when scrollbar = 'border'
+			hidden = 'hidden',
+			vertical = 'down:45%', -- up|down:size
+			horizontal = 'right:60%', -- right|left:size
+			layout = 'flex',
+			flip_columns = 120, -- #cols to switch to horizontal on flex
+			scrollbar = 'float',
+			scrolloff = '-2',
 			delay = 0,
 			winopts = {
 				number = false,
@@ -70,18 +82,18 @@ require('fzf-lua').setup {
 	},
 	-- provider setup
 	files = {
-		multiprocess = true,					 -- run command in a separate process
-		git_icons = false,					 -- show git icons?
-		file_icons = false,						-- show file icons?
-		color_icons = false,					 -- colorize file|git icons
+		multiprocess = true,  -- run command in a separate process
+		git_icons = false,  -- show git icons?
+		file_icons = false, -- show file icons?
+		color_icons = false,  -- colorize file|git icons
 	},
 	git = {
 		files = {
 			cmd = 'git ls-files --exclude-standard',
-			multiprocess = false,					 -- run command in a separate process
-			git_icons = false,					 -- show git icons?
-			file_icons = false,						-- show file icons?
-			color_icons = false,					 -- colorize file|git icons
+			multiprocess = false,  -- run command in a separate process
+			git_icons = false,  -- show git icons?
+			file_icons = false, -- show file icons?
+			color_icons = false,  -- colorize file|git icons
 			-- force display the cwd header line regardles of your current working directory
 			-- can also be used to hide the header when not wanted
 			-- show_cwd_header = true
@@ -93,10 +105,10 @@ require('fzf-lua').setup {
 		},
 	},
 	grep = {
-		multiprocess = true,					 -- run command in a separate process
-		git_icons = false,					 -- show git icons?
-		file_icons = false,						-- show file icons?
-		color_icons = false,					 -- colorize file|git icons
+		multiprocess = true,  -- run command in a separate process
+		git_icons = false,  -- show git icons?
+		file_icons = false, -- show file icons?
+		color_icons = false,  -- colorize file|git icons
 	},
 	args = {
 		files_only = true,
@@ -127,15 +139,15 @@ require('fzf-lua').setup {
 		lsp_icons = false,
 		severity = "hint",
 		icons = {
-			["Error"] = { icon = "", color = "red" },			 -- error
-			["Warning"] = { icon = "", color = "yellow" },		 -- warning
-			["Information"] = { icon = "", color = "blue" },			 -- info
-			["Hint"] = { icon = "", color = "magenta" },		-- hint
+			["Error"] = { icon = "", color = "red" },  -- error
+			["Warning"] = { icon = "", color = "yellow" },  -- warning
+			["Information"] = { icon = "", color = "blue" },  -- info
+			["Hint"] = { icon = "", color = "magenta" }, -- hint
 		},
 	},
 	-- uncomment to disable the previewer
-	-- nvim = { marks = { previewer = { _ctor = false } } },
 	helptags = { previewer = { _ctor = false } },
+	-- nvim = { marks = { previewer = { _ctor = false } } },
 	-- manpages = { previewer = { _ctor = false } },
 	-- uncomment to set dummy win location (help|man bar)
 	-- "topleft"	: up
@@ -151,17 +163,24 @@ require('fzf-lua').setup {
 	-- double-width icon rendering
 }
 
-local map = require("config.utils").map
-map("n", "<leader>ff", "<cmd>FzfLua files<cr>")
-map("n", "<leader>fc", "<cmd>FzfLua files cwd=%:p:h<cr>")
-map("n", "<leader>fh", "<cmd>FzfLua files cwd=~<cr>")
-map("n", "<leader>fb", "<cmd>FzfLua buffers<cr>")
-map("n", "<leader>gg", "<cmd>FzfLua live_grep<cr>")
-map("n", "<leader>gc", "<cmd>FzfLua lgrep_curbuf<cr>")
-map("n", "<leader>fa", "<cmd>FzfLua builtin<cr>")
-map("n", "<leader>fr", "<cmd>FzfLua resume<cr>")
-map("n", "<leader>fq", "<cmd>FzfLua quickfix<cr>")
-map("n", "<leader>fj", "<cmd>FzfLua jumps<cr>")
-map("n", "<leader>fo", "<cmd>FzfLua oldfiles<cr>")
-map("n", "<leader>ft", "<cmd>FzfLua help_tags<cr>")
-map("n", "<leader>fm", "<cmd>FzfLua man_pages<cr>")
+local M = {}
+
+M.find_files_in = function()
+	vim.ui.input({ prompt = "Directory: " }, function(input)
+		if input == nil or input == "" then
+			return
+		end
+		require('fzf-lua').files({ cwd = input })
+	end)
+end
+
+M.grep_in = function()
+	vim.ui.input({ prompt = "Directory: " }, function(input)
+		if input == nil or input == "" then
+			return
+		end
+		require('fzf-lua').live_grep({ cwd = input })
+	end)
+end
+
+return M

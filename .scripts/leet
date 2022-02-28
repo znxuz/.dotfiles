@@ -9,11 +9,6 @@ function make_java()
 	dir="$root_dir/Java"
 	sed -E -i "0,/SRC_DIR/{s/(SRC_DIR := ).*/\1$1/}" "$dir/makefile" &&
 		mkdir "$dir/$1" &&
-		printf "%s\n\n%s\n\n\t%s\n\n\t%s\n\t%s\n%s\n" \
-		"package $1;" \
-		"class Main {" \
-		"private static final Solution sol = new Solution();" \
-		"public static void main(String[] args) {" "}" "}" > "$dir/$1/Main.java" &&
 		printf "%s\n\n" "package $1;" > "$dir/$1/Solution.java"
 }
 
@@ -39,6 +34,6 @@ case "$1" in
 		make_cpp "$2" && nvim "$root_dir/cpp/$2/solution.cpp"
 		;;
 	*)
-		make_java "$1" && make_cpp "$1" && nvim $(find "$root_dir" -type f -wholename "**/$1/[sS]olution.*" | sort)
+		make_cpp "$1" && nvim "$root_dir/cpp/$1/solution.cpp"
 		;;
 esac

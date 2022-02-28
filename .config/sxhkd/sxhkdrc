@@ -1,5 +1,20 @@
 super + Return
-	alacritty --working-directory $HOME -e tmux
+	alacritty -e tmux
+
+super + ctrl + Return
+	rofi -show
+
+# opening programs
+super + shift + Return ; {b, d, q, m, v}
+	{ $BROWSER\
+	, discord\
+	, qbittorrent\
+	, mailspring\
+	, vb-start\
+	}
+
+super + ctrl + bracketleft
+	rofi-proc-kill
 
 # controls 
 super + {F10, F11}
@@ -26,7 +41,7 @@ XF86MonBrightnessDown
 	xbacklight -dec 10
 
 # systems
-super + shift + Escape ; {apostrophe, b, s, S, u, r, o, x, k}
+super + shift + Escape ; {k, b, s, S, u, r, o, x, m}
 	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded"\
 	, $XDG_CONFIG_HOME/polybar/launch.sh > /dev/null 2>&1 \
 	, notify-send -u low "zzz..." && sleep 1 && systemctl suspend\
@@ -45,22 +60,6 @@ super + shift + {Up, Down, Left, Right}
 	, set-orientation "left" \
 	, set-orientation "right" \
 	}
-
-# opening programs
-super + apostrophe ; {b, d, q, x, m, v}
-	{ $BROWSER\
-	, discord\
-	, qbittorrent\
-	, source $XDG_CONFIG_HOME/X11/xprofile\
-	, mailspring\
-	, vb-start\
-	}
-
-super + ctrl + apostrophe
-	rofi -show
-
-super + ctrl + bracketleft
-	rofi-proc-kill
 
 # dunst
 super + space

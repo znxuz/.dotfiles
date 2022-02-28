@@ -52,8 +52,8 @@ packer.startup(function(use)
 		},
 		{
 			'rcarriga/nvim-dap-ui',
-			requires = 'nvim-dap',
-		},
+			requires = 'nvim-dap'
+		}
 	}
 
 	-- misc

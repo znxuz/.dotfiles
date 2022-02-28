@@ -1,9 +1,22 @@
 #!/usr/bin/env bash
 
-[[ -z "$*" ]] && printf "no arguments given\n" && exit 1
+function install()
+{
+	git -C "$pkg" checkout master &&
+		git -C "$pkg" pull &&
+		sh -c "cd $pkg && makepkg -sirc --noconfirm -- && git clean -xfd && git reset --hard HEAD"
+}
 
-for pkg in "$@"
+pkgs="$@"
+
+if [[ -z "$pkgs" ]]; then
+	if [[ $(pwd) =~ ".*/aur" ]]; then
+		echo "not in aur repo" && exit 1
+	fi
+	pkgs="$(find . -maxdepth 1 -type d -not -path . -and -not -path "*.git")"
+fi
+
+for pkg in "$pkgs"
 do
-	git -C "$pkg" pull && \
-	sh -c "cd $pkg && makepkg -sirc --noconfirm -- && git clean -xfd && git reset --hard HEAD"
+	install "$pkg"
 done
