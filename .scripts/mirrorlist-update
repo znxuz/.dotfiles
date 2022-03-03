@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-if [ -z "$1" ] || [  "$1" != "now" ]; then
+if [ -z "$1" ] || [ "$1" != "now" ]; then
 	notify-send -t 300000 -u critical "mirrorlist update" "in 5 minutes"
 	sleep 5m
 fi
