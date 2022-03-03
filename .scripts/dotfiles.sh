@@ -23,24 +23,6 @@ function symlink_etc_conf()
 	find ~/.config/etc -type f -exec sudo ln -sf {} /etc \;
 }
 
-function pkg_install()
-{
-	sudo pacman -Syyy archlinux-keyring &&
-		sudo pacman -Syu --needed - < $HOME/.config/misc/Qqen
-
-	aur=$HOME/aur
-
-	git clone git@github.com:zijian-x/aur.git $aur &&
-		git -C $aur submodule update --init
-
-	cd $aur
-	pkgs="$(< $HOME/.config/misc/Qqem)"
-	for pkg in ${pkgs[@]}; do
-		./aur-build "$pkg"
-	done
-}
-
 setup_dotfiles &&
 	setup_poly_bat &&
-	symlink_etc_conf &&
-	pkg_install
+	symlink_etc_conf

@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+function pkg_install()
+{
+	sudo pacman -Syyy archlinux-keyring &&
+		sudo pacman -Syu --needed - < $HOME/.config/misc/Qqen
+}
+
+function aur_install()
+{
+	aur=$HOME/aur
+
+	[[ ! -d "$aur" ]] &&
+		git clone git@github.com:zijian-x/aur.git $aur &&
+		git -C $aur submodule update --init
+
+	cd $aur
+	pkgs="$(< $HOME/.config/misc/Qqem)"
+	for pkg in ${pkgs[@]}; do
+		read -p "==> continue to build $pkg? [y/n] " ans
+		if [[ -z "$ans" ]] || [[ "$ans" =~ [y/Y] ]]; then
+			./aur-build "$pkg"
+		fi
+		echo
+	done
+}
+
+pkg_install
+aur_install

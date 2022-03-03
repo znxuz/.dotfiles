@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+undodir="$HOME/.local/share/nvim/undodir"
+
+function check()
+{
+	filename="$(echo "$1" | sed 's/%/\//g')"
+	[[ ! -f "$filename" ]] && rm "$undodir/$1"
+}
+
+readarray -t files < <(ls "$undodir")
+
+for f in "${files[@]}"; do
+	check "$f"
+done
