@@ -95,7 +95,7 @@ format-prefix = " "
 type = custom/script
 exec = bsp-node-counter
 tail = true
-format-foreground = ${colors.purple}
+format-foreground = ${colors.primary}
 
 [module/eth]
 type = custom/script

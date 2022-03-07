@@ -8,8 +8,9 @@ function check()
 	[[ ! -f "$filename" ]] && rm "$undodir/$1"
 }
 
-readarray -t files < <(ls "$undodir")
+find "$undodir" -type f -ctime +30 -delete
 
+readarray -t files < <(ls "$undodir")
 for f in "${files[@]}"; do
 	check "$f"
 done

@@ -19,7 +19,7 @@ function aur_install()
 	for pkg in ${pkgs[@]}; do
 		read -p "==> continue to build $pkg? [y/n] " ans
 		if [[ -z "$ans" ]] || [[ "$ans" =~ [y/Y] ]]; then
-			./aur-build "$pkg"
+			"$HOME/.scripts/aur/aur-build" "$pkg"
 		fi
 		echo
 	done
