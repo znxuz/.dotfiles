@@ -44,16 +44,15 @@ packer.startup(function(use)
 
 	-- debugger
 	use {
-		{
-			'mfussenegger/nvim-dap',
-			opt = true,
-			keys = '<leader>di',
-			config = 'require("config.nvim-dap")'
-		},
-		{
-			'rcarriga/nvim-dap-ui',
-			requires = 'nvim-dap'
-		}
+		'mfussenegger/nvim-dap',
+		after = 'nvim-dap-ui',
+		config = 'require("config.nvim-dap")'
+	}
+	use {
+		'rcarriga/nvim-dap-ui',
+		requires = 'nvim-dap',
+		opt = true,
+		keys = '<leader>di'
 	}
 
 	-- misc
@@ -70,6 +69,10 @@ packer.startup(function(use)
 	use {
 		'mbbill/undotree',
 		config = 'vim.cmd("nnoremap <leader>u <cmd>UndotreeToggle<cr>")'
+	}
+	use {
+		'sunaku/vim-dasht',
+		config = 'require("config.vim-dasht")'
 	}
 
 end)

@@ -1,19 +1,19 @@
-local map = require("config.utils").map
-map("n", "<leader>ff", "<cmd>FzfLua files<cr>")
-map("n", "<leader>fc", "<cmd>FzfLua files cwd=%:p:h<cr>")
-map("n", "<leader>fh", "<cmd>FzfLua files cwd=~<cr>")
-map("n", "<leader>fi", "<cmd>lua require('config.fzflua').find_files_in()<cr>")
-map("n", "<leader>fb", "<cmd>FzfLua buffers<cr>")
-map("n", "<leader>gg", "<cmd>FzfLua live_grep<cr>")
-map("n", "<leader>gc", "<cmd>FzfLua lgrep_curbuf<cr>")
-map("n", "<leader>gi", "<cmd>lua require('config.fzflua').grep_in()<cr>")
-map("n", "<leader>fa", "<cmd>FzfLua builtin<cr>")
-map("n", "<leader>fr", "<cmd>FzfLua resume<cr>")
-map("n", "<leader>fq", "<cmd>FzfLua quickfix<cr>")
-map("n", "<leader>fj", "<cmd>FzfLua jumps<cr>")
-map("n", "<leader>fo", "<cmd>FzfLua oldfiles<cr>")
-map("n", "<leader>ft", "<cmd>FzfLua help_tags<cr>")
-map("n", "<leader>fm", "<cmd>FzfLua man_pages<cr>")
+local map = require('config.utils').map
+map('n', '<leader>ff', '<cmd>FzfLua files<cr>')
+map('n', '<leader>fc', '<cmd>FzfLua files cwd=%:p:h<cr>')
+map('n', '<leader>fh', '<cmd>FzfLua files cwd=~<cr>')
+map('n', '<leader>fi', '<cmd>lua require("config.fzflua").find_files_in()<cr>')
+map('n', '<leader>fb', '<cmd>FzfLua buffers<cr>')
+map('n', '<leader>gg', '<cmd>FzfLua live_grep<cr>')
+map('n', '<leader>gc', '<cmd>FzfLua lgrep_curbuf<cr>')
+map('n', '<leader>gi', '<cmd>lua require("config.fzflua").grep_in()<cr>')
+map('n', '<leader>fa', '<cmd>FzfLua builtin<cr>')
+map('n', '<leader>fr', '<cmd>FzfLua resume<cr>')
+map('n', '<leader>fq', '<cmd>FzfLua quickfix<cr>')
+map('n', '<leader>fj', '<cmd>FzfLua jumps<cr>')
+map('n', '<leader>fo', '<cmd>FzfLua oldfiles<cr>')
+map('n', '<leader>ft', '<cmd>FzfLua help_tags<cr>')
+map('n', '<leader>fm', '<cmd>FzfLua man_pages<cr>')
 
 local actions = require('fzf-lua.actions')
 require('fzf-lua').setup {
@@ -47,38 +47,38 @@ require('fzf-lua').setup {
 		-- delete or modify is sufficient
 		builtin = {
 			-- neovim `:tmap` mappings for the fzf win
-			["<F2>"] = "toggle-fullscreen",
+			['<F2>'] = 'toggle-fullscreen',
 			-- Only valid with the 'builtin' previewer
-			["<c-space>"] = "toggle-preview",
+			['<c-space>'] = 'toggle-preview',
 			-- Rotate preview clockwise/counter-clockwise
-			["<c-d>"] = "preview-page-down",
-			["<c-u>"] = "preview-page-up",
+			['<c-d>'] = 'preview-page-down',
+			['<c-u>'] = 'preview-page-up',
 		},
 		fzf = {
 			-- fzf '--bind=' options
-			["ctrl-z"] = "abort",
-			["ctrl-f"] = "page-down",
-			["ctrl-b"] = "page-up",
-			["ctrl-a"] = "beginning-of-line",
-			["ctrl-e"] = "end-of-line",
-			["alt-a"] = "toggle-all",
+			['ctrl-z'] = 'abort',
+			['ctrl-f'] = 'page-down',
+			['ctrl-b'] = 'page-up',
+			['ctrl-a'] = 'beginning-of-line',
+			['ctrl-e'] = 'end-of-line',
+			['alt-a'] = 'toggle-all',
 		},
 	},
 	fzf_colors = {
 		-- fzf '--color=' options (optional)
-		["fg"] = { "fg", "CursorLine" },
-		["bg"] = { "bg", "Normal" },
-		["hl"] = { "fg", "Comment" },
-		["fg+"] = { "fg", "Normal" },
-		["bg+"] = { "bg", "CursorLine" },
-		["hl+"] = { "fg", "Statement" },
-		["info"] = { "fg", "PreProc" },
-		["prompt"] = { "fg", "Conditional" },
-		["pointer"] = { "fg", "Exception" },
-		["marker"] = { "fg", "Keyword" },
-		["spinner"] = { "fg", "Label" },
-		["header"] = { "fg", "Comment" },
-		["gutter"] = { "bg", "Normal" },
+		['fg'] = { 'fg', 'CursorLine' },
+		['bg'] = { 'bg', 'Normal' },
+		['hl'] = { 'fg', 'Comment' },
+		['fg+'] = { 'fg', 'Normal' },
+		['bg+'] = { 'bg', 'CursorLine' },
+		['hl+'] = { 'fg', 'Statement' },
+		['info'] = { 'fg', 'PreProc' },
+		['prompt'] = { 'fg', 'Conditional' },
+		['pointer'] = { 'fg', 'Exception' },
+		['marker'] = { 'fg', 'Keyword' },
+		['spinner'] = { 'fg', 'Label' },
+		['header'] = { 'fg', 'Comment' },
+		['gutter'] = { 'bg', 'Normal' },
 	},
 	-- provider setup
 	files = {
@@ -113,7 +113,7 @@ require('fzf-lua').setup {
 	args = {
 		files_only = true,
 		-- added on top of regular file actions
-		actions = { ["ctrl-x"] = actions.arg_del }
+		actions = { ['ctrl-x'] = actions.arg_del }
 	},
 	oldfiles = {
 		cwd_only = false,
@@ -137,12 +137,12 @@ require('fzf-lua').setup {
 		file_icons = false,
 		git_icons = false,
 		lsp_icons = false,
-		severity = "hint",
+		severity = 'hint',
 		icons = {
-			["Error"] = { icon = "", color = "red" },  -- error
-			["Warning"] = { icon = "", color = "yellow" },  -- warning
-			["Information"] = { icon = "", color = "blue" },  -- info
-			["Hint"] = { icon = "", color = "magenta" }, -- hint
+			['Error'] = { icon = '', color = 'red' },  -- error
+			['Warning'] = { icon = '', color = 'yellow' },  -- warning
+			['Information'] = { icon = '', color = 'blue' },  -- info
+			['Hint'] = { icon = '', color = 'magenta' }, -- hint
 		},
 	},
 	-- uncomment to disable the previewer
@@ -150,9 +150,9 @@ require('fzf-lua').setup {
 	-- nvim = { marks = { previewer = { _ctor = false } } },
 	-- manpages = { previewer = { _ctor = false } },
 	-- uncomment to set dummy win location (help|man bar)
-	-- "topleft"	: up
-	-- "botright" : down
-	-- helptags = { previewer = { split = "topleft" } },
+	-- 'topleft'	: up
+	-- 'botright' : down
+	-- helptags = { previewer = { split = 'topleft' } },
 	-- uncomment to use `man` command as native fzf previewer
 	manpages = { previewer = { _ctor = require'fzf-lua.previewer'.fzf.man_pages } },
 	-- optional override of file extension icon colors
@@ -166,8 +166,8 @@ require('fzf-lua').setup {
 local M = {}
 
 M.find_files_in = function()
-	vim.ui.input({ prompt = "Directory: " }, function(input)
-		if input == nil or input == "" then
+	vim.ui.input({ prompt = 'Directory: ' }, function(input)
+		if input == nil or input == '' then
 			return
 		end
 		require('fzf-lua').files({ cwd = input })
@@ -175,8 +175,8 @@ M.find_files_in = function()
 end
 
 M.grep_in = function()
-	vim.ui.input({ prompt = "Directory: " }, function(input)
-		if input == nil or input == "" then
+	vim.ui.input({ prompt = 'Directory: ' }, function(input)
+		if input == nil or input == '' then
 			return
 		end
 		require('fzf-lua').live_grep({ cwd = input })
