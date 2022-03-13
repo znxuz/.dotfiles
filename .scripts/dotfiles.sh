@@ -11,18 +11,18 @@ function setup_dotfiles()
 		config --local status.showUntrackedFiles no
 }
 
-function setup_poly_bat()
-{
-	# poly-bat module via udev rule
-	[ ! -f /etc/udev/rules.d/95-battery.rules ] &&
-		sudo cp ~/.scripts/polybar/95-battery.rules /etc/udev/rules.d/
-}
-
 function symlink_etc_conf()
 {
-	find ~/.config/etc -type f -exec sudo ln -sf {} /etc \;
+	[ ! -f /etc/udev/rules.d/95-battery.rules ] &&
+		sudo cp ~/.scripts/polybar/95-battery.rules /etc/udev/rules.d/
+
+	path="$HOME/.config/etc"
+	configs=$(find "$path" -type f)
+	for src in $configs; do
+		target="$(echo "$src" | sed "s;$HOME/.config;;")"
+		echo "=> symlink "$src" to "$target""
+		sudo ln -sf "$src" "$target"
+	done
 }
 
-setup_dotfiles &&
-	setup_poly_bat &&
-	symlink_etc_conf
+setup_dotfiles && symlink_etc_conf

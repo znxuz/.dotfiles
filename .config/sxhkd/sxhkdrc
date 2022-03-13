@@ -7,7 +7,7 @@ super + ctrl + Return
 # opening programs
 super + shift + Return ; {b, d, q, m, v}
 	{ $BROWSER\
-	, discord\
+	, dropbox\
 	, qbittorrent\
 	, mailspring\
 	, vb-start\
