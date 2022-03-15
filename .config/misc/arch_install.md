@@ -12,7 +12,7 @@ iwctl --passphrase <password> station <device> connect <SSID>
 ## Start
 ```sh
 timedatectl set-ntp true
-pacman -Syyy &&& pacman -S reflector
+pacman -Syyy &&& pacman -S reflector archlinux-keyring
 reflector -c Germany -a 6 --sort rate --save /etc/pacman.d/mirrorlist
 pacman -Syyy
 ```
@@ -67,7 +67,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 ```
 
-## Chroot
+## Setup
 ```sh
 # timedatectl list-timezones | grep Berlin
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
@@ -140,7 +140,6 @@ chsh -s /bin/zsh
 # git clone https://aur.archlinux.org/dropbox.git
 	# gpg --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
 
-# clone dotfiles repo
-git clone --separate-git-dir=~/.dotfiles \
-	<ssh-link of repo> ~/dotfiles.tmp
+# copy ssh keys
+# install dotfiles
 ```

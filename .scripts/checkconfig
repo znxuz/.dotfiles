@@ -24,6 +24,4 @@ if [[ -n "$new_entries" ]]; then
 		fi
 	done
 	exit 0
-else
-	exit 1
 fi

@@ -20,5 +20,5 @@ alias \
 
 alias \
 	dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
-	update="sudo pacman -Syu && aur-update && nvim-update && $XDG_CONFIG_HOME/polybar/launch.sh > /dev/null 2>&1" \
+	update="sudo pacman -Syu && aur-update && nvim-update" \
 	wtr='curl wttr.in/dortmund_oespel'
