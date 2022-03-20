@@ -1,4 +1,11 @@
-lua << EOF
+if pcall(function () require('jdtls') end) == false then
+	return
+end
+
+local map = require('config.utils').map
+map('n', '<leader>ci', '<cmd>lua require("jdtls").organize_imports()<cr>')
+map('i', '<leader>ci', '<cmd>lua require("jdtls").organize_imports()<cr>')
+
 local workspace_dir = vim.env.HOME .. '/.local/share/workspace/'
 local config = {
 	cmd = {'java-lsp',
@@ -18,4 +25,3 @@ local config = {
 	}
 }
 require('jdtls').start_or_attach(config)
-EOF

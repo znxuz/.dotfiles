@@ -61,10 +61,6 @@ lsp.sumneko_lua.setup {
 	},
 }
 
--- Java
-map('n', '<leader>ci', '<cmd>lua require("jdtls").organize_imports()<cr>')
-map('i', '<leader>ci', '<cmd>lua require("jdtls").organize_imports()<cr>')
-
 -- HTML
 --Enable (broadcasting) snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()

@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+function pkg_upgrade()
+{
+	sudo pacman -Syu && aur-upgrade
+}
+
+function vim_upgrade()
+{
+	nvim-upgrade
+}
+
+function main()
+{
+	[[ -z "$@" ]] && pkg_upgrade && vim_upgrade && return
+
+	pkg=
+	vim=
+	for opt in "$@"; do
+		[[ ! $opt =~ -* ]] && echo "invalid option" && exit 1
+		for ((i=1; i<${#opt}; ++i)); do
+			case ${opt:i:1} in
+				h | -help)
+					printf "options\n\t%s\n\t%s\n" \
+						"-p - upgrade packagaes" \
+						"-v - upgrade (n)vim"
+					exit 0
+					;;
+				p)
+					pkg=1
+					;;
+				v)
+					vim=1
+					;;
+			esac
+		done
+	done
+
+	[[ -n $pkg ]] && pkg_upgrade
+	[[ -n $vim ]] && vim_upgrade
+	exit 0
+}
+
+main "$@"

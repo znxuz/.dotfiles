@@ -40,7 +40,10 @@ packer.startup(function(use)
 		},
 		config = 'require("config.nvim-cmp")'
 	}
-	use 'mfussenegger/nvim-jdtls'
+	use {
+		'mfussenegger/nvim-jdtls',
+		opt = true
+	}
 
 	-- debugger
 	use {
@@ -56,7 +59,9 @@ packer.startup(function(use)
 	}
 
 	-- misc
-	use 'mcchrish/nnn.vim'
+	use {
+		'mcchrish/nnn.vim'
+	}
 	use {
 		'voldikss/vim-floaterm',
 		config = 'require("config.floaterm")'
@@ -69,10 +74,6 @@ packer.startup(function(use)
 	use {
 		'mbbill/undotree',
 		config = 'vim.cmd("nnoremap <leader>u <cmd>UndotreeToggle<cr>")'
-	}
-	use {
-		'sunaku/vim-dasht',
-		config = 'require("config.vim-dasht")'
 	}
 
 end)

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 sudo pacman -Sc --noconfirm
-
-nvim-undodir-clean
+journalctl --vacuum-time=2weeks
+nvim-clean

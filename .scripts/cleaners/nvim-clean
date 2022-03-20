@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+function undodir_entries()
+{
+	undodir="$HOME/.local/share/nvim/undodir"
+
+	find "$undodir" -type f -ctime +30 -delete
+
+	readarray -t files < <(ls "$undodir")
+	for f in "${files[@]}"; do
+		filename="$(echo "$f" | sed 's/%/\//g')"
+		[[ ! -f "$filename" ]] && rm "$undodir/$f"
+	done
+}
+
+function log_files()
+{
+	rm $XDG_CACHE_HOME/nvim/*log
+}
+
+undodir_entries
+log_files

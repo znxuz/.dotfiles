@@ -1,20 +1,3 @@
-if has('nvim')
-	set guicursor=a:block
-else
-	" let &t_EI .= "\e[2 q"
-	" let &t_SI .= "\e[6 q"
-	set syntax=on
-	set hid
-	set is
-	set noesckeys
-	set nocp
-	set backspace=indent,eol,start
-	set viminfo+=n~/.vim/viminfo
-	set novisualbell noerrorbells
-	set t_vb =
-	filetype plugin indent on
-endif
-
 " basics
 	let mapleader=","
 	set nosc
@@ -66,3 +49,21 @@ endif
 	set stl+=%l:%c%{'\ \|\ '}
 	set stl+=%p%%
 	set stl+=%{&filetype==''?'\ ':'\ \|\ '.toupper(&filetype).'\ '}
+
+if has('nvim')
+	set guicursor=a:block
+	lua require('plugins')
+else
+	" let &t_EI .= "\e[2 q"
+	" let &t_SI .= "\e[6 q"
+	set syntax=on
+	set hid
+	set is
+	set noesckeys
+	set nocp
+	set backspace=indent,eol,start
+	set viminfo+=n~/.vim/viminfo
+	set novisualbell noerrorbells
+	set t_vb =
+	filetype plugin indent on
+endif
