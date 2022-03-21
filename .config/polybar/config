@@ -45,7 +45,7 @@ font-2 = Noto Sans:pixelsize=10;2
 
 modules-left = bspwm
 ;modules-center = mpd
-modules-right = wmnode pkg eth cputemp memory pulseaudio bat date tray
+modules-right = wmnode pkg eth memory cputemp pulseaudio bat date tray
 
 tray-position = right
 tray-padding = 4

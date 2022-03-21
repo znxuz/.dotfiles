@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 
 config=${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/window.yml
-pad=255
+
 no_pad=20
 
-old_padding=$(grep -A1 "padding:" "$config" | awk '/x:/{print $2}' "$config")
-new_padding=$([[ $old_padding == "$no_pad" ]] && echo "$pad" || echo "$no_pad")
+pad_x=255
+pad_y=51
 
-sed -i "0,/x: $old_padding/s/x: $old_padding/x: $new_padding/" "$config"
+old_x=$(grep -A2 "padding:" "$config" | awk '/x:/{print $2}')
+old_y=$(grep -A2 "padding:" "$config" | awk '/y:/{print $2}')
+new_x=$([[ $old_x == "$no_pad" ]] && echo "$pad_x" || echo "$no_pad")
+new_y=$([[ $old_y == "$no_pad" ]] && echo "$pad_y" || echo "$no_pad")
+
+sed -i "0,/x: $old_x/s/x: $old_x/x: $new_x/" "$config" &&
+	sed -i "0,/y: $old_y/s/y: $old_y/y: $new_y/" "$config"

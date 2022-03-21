@@ -27,7 +27,11 @@
 	set wim=longest:list:lastused,full
 
 " stautus line
-	set ls=2
+	if has('nvim')
+		set ls=3
+	else
+		set ls=2
+	endif
 	aug stl
 		au!
 		au VimEnter * hi default link STL StatusLineNC
