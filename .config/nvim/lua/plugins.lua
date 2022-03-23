@@ -68,7 +68,6 @@ packer.startup(function(use)
 	}
 	use {
 		'vimwiki/vimwiki',
-		opt = true,
 		cmd = 'VimwikiUISelect'
 	}
 	use {
@@ -76,4 +75,5 @@ packer.startup(function(use)
 		config = 'vim.cmd("nnoremap <leader>u <cmd>UndotreeToggle<cr>")'
 	}
 
+	require('config.general')
 end)

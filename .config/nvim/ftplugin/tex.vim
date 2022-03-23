@@ -4,4 +4,4 @@ aug tex_ft
 	au BufEnter *.tex set textwidth=80 | set scrolloff=10
 	au BufLeave *.tex set textwidth=0 | set scrolloff=0
 aug END
-nnoremap <leader>c <cmd>!tectonic -o out/ %<cr>
+nnoremap <leader>c <cmd>!tectonic %<cr>

@@ -26,7 +26,7 @@ function make_cpp()
 		"using namespace std;" \
 		"using namespace util;" \
 		"int main(int argc, char** argv)" > "$dir/$1/solution.cpp" &&
-		nvim "$dir/$1/solution.cpp" +"let @f=']mhs]mhs=2i}'" +"norm 4}"
+		nvim "$dir/$1/solution.cpp" +"let @f=']mhs]mhs=2i}]mJ'" +"norm 4}"
 }
 
 function main()
