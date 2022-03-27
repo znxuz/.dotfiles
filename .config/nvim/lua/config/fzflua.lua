@@ -86,6 +86,11 @@ require('fzf-lua').setup {
 		git_icons = false,  -- show git icons?
 		file_icons = false, -- show file icons?
 		color_icons = false,  -- colorize file|git icons
+		actions = {
+			["alt-d"] = { function (selected)
+				for _, file_name in ipairs(selected) do vim.fn.system('rm ' .. file_name) end
+			end, actions.resume }
+		}
 	},
 	git = {
 		files = {
@@ -166,7 +171,7 @@ require('fzf-lua').setup {
 local M = {}
 
 M.find_files_in = function()
-	vim.ui.input({ prompt = 'Directory: ' }, function(input)
+	vim.ui.input({ prompt = 'directory: ' }, function(input)
 		if input == nil or input == '' then
 			return
 		end
@@ -175,7 +180,7 @@ M.find_files_in = function()
 end
 
 M.grep_in = function()
-	vim.ui.input({ prompt = 'Directory: ' }, function(input)
+	vim.ui.input({ prompt = 'directory: ' }, function(input)
 		if input == nil or input == '' then
 			return
 		end

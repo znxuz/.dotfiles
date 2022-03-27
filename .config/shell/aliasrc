@@ -9,15 +9,13 @@ alias \
 	nv='nordvpn' \
 	bt='bluetoothctl' \
 	detach="function detach() { bg && disown %\$(jobs | wc -l) } && detach" \
-	zathura='function zathura() { /usr/bin/zathura "$@" &! } && zathura' \
-	z='zathura' \
-	brave='function brave() { /usr/bin/brave "$@" > /dev/null 2>&1 &! } && brave' \
+	z='function zathura() { /usr/bin/zathura "$@" &! } && zathura' \
 	eject='udisksctl power-off -b' \
 	xclip='xclip -sel clip' \
 	sc='shellcheck' \
-	gcalcli='gcalcli --config-folder $HOME/.config/gcalcli'
 	dropbox='dropbox > /dev/null 2>&1 &!'
 
 alias \
 	dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
+	brave='function brave() { /usr/bin/brave $(<"$1") > /dev/null 2>&1 &! } && brave' \
 	wtr='curl wttr.in/dortmund_oespel'

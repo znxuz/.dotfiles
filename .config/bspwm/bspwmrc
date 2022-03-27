@@ -32,6 +32,7 @@ bspc config pointer_action2 resize_side
 bspc config initial_polarity first_child
 
 bspc rule -a Zathura state=tiled
+bspc rule -a Brave-browser desktop=II
 
 screenwidth=$(xdpyinfo | awk -F'[ x]+' '/dimensions:/{print $3}')
 screenheight=$(xdpyinfo | awk -F'[ x]+' '/dimensions:/{print $4}')
