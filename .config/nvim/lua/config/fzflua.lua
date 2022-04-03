@@ -5,7 +5,7 @@ map('n', '<leader>fh', '<cmd>FzfLua files cwd=~<cr>')
 map('n', '<leader>fi', '<cmd>lua require("config.fzflua").find_files_in()<cr>')
 map('n', '<leader>fb', '<cmd>FzfLua buffers<cr>')
 map('n', '<leader>gg', '<cmd>FzfLua live_grep<cr>')
-map('n', '<leader>gc', '<cmd>FzfLua lgrep_curbuf<cr>')
+map('n', '<leader>gc', '<cmd>FzfLua live_grep cwd=%:p:h<cr>')
 map('n', '<leader>gi', '<cmd>lua require("config.fzflua").grep_in()<cr>')
 map('n', '<leader>fa', '<cmd>FzfLua builtin<cr>')
 map('n', '<leader>fr', '<cmd>FzfLua resume<cr>')
@@ -172,19 +172,17 @@ local M = {}
 
 M.find_files_in = function()
 	vim.ui.input({ prompt = 'directory: ' }, function(input)
-		if input == nil or input == '' then
-			return
+		if input ~= nil and input ~= '' then
+			require('fzf-lua').files({ cwd = input })
 		end
-		require('fzf-lua').files({ cwd = input })
 	end)
 end
 
 M.grep_in = function()
 	vim.ui.input({ prompt = 'directory: ' }, function(input)
-		if input == nil or input == '' then
-			return
+		if input ~= nil and input ~= '' then
+			require('fzf-lua').live_grep({ cwd = input })
 		end
-		require('fzf-lua').live_grep({ cwd = input })
 	end)
 end
 

@@ -4,7 +4,6 @@ alias \
 	ls='ls --color=auto --group-directories-first' \
 
 alias \
-	e='$EDITOR' \
 	vim='$EDITOR' \
 	nv='nordvpn' \
 	bt='bluetoothctl' \
