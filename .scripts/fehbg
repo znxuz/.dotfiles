@@ -1,8 +1,20 @@
 #!/bin/sh
 
-selection=$HOME/.config/feh/selection
-if [ -n "$1" ]; then
-	[ -f "$HOME/Pictures/wallpapers/$1" ] || mv "$1" $HOME/Pictures/wallpapers
-	echo "$HOME/Pictures/wallpapers/$1" > "$selection"
-fi
-feh --no-fehbg --bg-scale "$(< $selection)"
+set_wp()
+{
+	path="$HOME"/Pictures/wallpapers
+	cached="$HOME"/.config/feh/selection
+
+	if [ "$1" = "-n" ]; then
+		feh --no-fehbg --bg-scale "$2"
+		exit
+	fi
+	if [ -n "$1" ]; then
+		[ -f "$path/$1" ] || mv "$1" "$path"
+		echo "$path/$1" > "$cached"
+	fi
+
+	feh --no-fehbg --bg-scale "$(cat "$cached")"
+}
+
+set_wp "$@"

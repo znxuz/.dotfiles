@@ -39,5 +39,5 @@ zoom_fit s
 toggle_filenames d
 
 # I only hit these accidentaly
-save_image
+save_image S
 save_filelist

@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 
-sudo pacman -Sc --noconfirm
-journalctl --vacuum-time=2weeks
-nvim-clean
+printf "\n==> removing package cache\n\n" && sudo pacman -Sc --noconfirm
+printf "\n==> cleaning undodir & removing log entries\n\n" && nvim-clean
