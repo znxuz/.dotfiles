@@ -17,7 +17,6 @@ set nobk
 set undodir=$HOME/.local/share/nvim/undodir
 set undofile
 set aw
-nnoremap <leader>o <cmd>silent !$BROWSER %&<cr>
 cnoremap <leader>cd <c-r>=substitute(expand("%:p:h"), getcwd(), '.', '').'/'<cr>
 
 " === autocompletion ===
