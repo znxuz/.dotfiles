@@ -8,27 +8,16 @@ packer.init {
 packer.startup(function(use)
 	use 'wbthomason/packer.nvim'
 
-	-- aesthetics
-	use {
-		'sainnhe/gruvbox-material',
-		config = 'require("config.colorscheme")'
-	}
-	use {
-		'nvim-treesitter/nvim-treesitter',
-		run = 'TSUpdate',
-		config = 'require("config.treesitter")'
-	}
-
 	-- almighty picker
 	use {
 		'ibhagwan/fzf-lua',
-		config = 'require("config.fzflua")'
+		config = function () require('config.fzflua') end
 	}
 
 	-- lsp
 	use {
 		'neovim/nvim-lspconfig',
-		config = 'require("config.lsp")'
+		config = function () require('config.lsp') end
 	}
 	use {
 		'hrsh7th/nvim-cmp',
@@ -38,7 +27,7 @@ packer.startup(function(use)
 			'saadparwaiz1/cmp_luasnip',
 			'L3MON4D3/LuaSnip',
 		},
-		config = 'require("config.nvim-cmp")'
+		config = function () require('config.nvim-cmp') end
 	}
 	use {
 		'mfussenegger/nvim-jdtls',
@@ -49,7 +38,7 @@ packer.startup(function(use)
 	use {
 		'mfussenegger/nvim-dap',
 		after = 'nvim-dap-ui',
-		config = 'require("config.nvim-dap")'
+		config = function () require('config.nvim-dap') end
 	}
 	use {
 		'rcarriga/nvim-dap-ui',
@@ -64,7 +53,7 @@ packer.startup(function(use)
 	}
 	use {
 		'voldikss/vim-floaterm',
-		config = 'require("config.floaterm")'
+		config = function () require('config.floaterm') end
 	}
 	use {
 		'vimwiki/vimwiki',
@@ -72,7 +61,18 @@ packer.startup(function(use)
 	}
 	use {
 		'mbbill/undotree',
-		config = 'vim.cmd("nnoremap <leader>u <cmd>UndotreeToggle<cr>")'
+		config = function () vim.cmd('nnoremap <leader>u <cmd>UndotreeToggle<cr>') end
+	}
+
+	-- aesthetics
+	use {
+		'sainnhe/gruvbox-material',
+		config = function () require('config.colorscheme') end
+	}
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		run = 'TSUpdate',
+		config = function () require('config.treesitter') end
 	}
 
 	require('config.general')

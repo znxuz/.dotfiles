@@ -7,6 +7,7 @@ const {
 	vmapkey,
 	map,
 	unmap,
+	iunmap,
 	cmap,
 	addSearchAlias,
 	removeSearchAlias,
@@ -32,6 +33,7 @@ unmap("E"); // unmap tab left
 unmap("x"); // unmap close tab
 unmap("<Ctrl-h>") // history
 unmap("<Ctrl-j>") // download
+iunmap(":"); // disable emoji
 
 // tab history
 map("<Alt-o>", "B");

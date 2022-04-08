@@ -1,7 +1,2 @@
-*.o
-*.out
-*.class
 .git
 .cache
-undodir
-dasht
