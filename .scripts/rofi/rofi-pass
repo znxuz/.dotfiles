@@ -13,4 +13,5 @@ name=$(printf '%s\n' "${password_files[@]}" | rofi -dmenu)
 
 [[ -n $name ]] || exit
 
-pass show "$name" | { IFS= read -r pass; printf %s "$pass"; } | $xdotool
+pass show "$name" | { IFS= read -r pass; printf %s "$pass"; } | $xdotool &&
+	pass show "$name" | xclip -sel clip

@@ -14,13 +14,13 @@ if [[ -n "$new_entries" ]]; then
 		read ret && if [[ "$ret" =~ [N|n] ]]; then
 			printf "remove [%s] (y|n)?: " "$entry"
 			read ret && if [[ "$ret" =~ [Y|y] ]]; then
-				rm -rf "$entry" && printf -- "-> %s removed\n\n" "$entry"
+				rm -rf "$entry" && printf -- "  -> %s removed\n\n" "$entry"
 			else
-				printf -- "-> added %s to .gitignore\n\n" "$entry" &&
+				printf -- "  -> added %s to .gitignore\n\n" "$entry" &&
 					echo "$entry" >> .gitignore
 			fi
 		else
-			dfs add "$entry" && printf -- "-> %s added to dfs repo\n\n" "$entry"
+			dfs add "$entry" && printf -- "  -> %s added to dfs repo\n\n" "$entry"
 		fi
 	done
 	exit 0
