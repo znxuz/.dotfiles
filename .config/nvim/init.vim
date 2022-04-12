@@ -1,5 +1,6 @@
 " === basics ===
 let mapleader=","
+set nowrap
 set nosc
 set ts=4 sw=4
 set exrc secure

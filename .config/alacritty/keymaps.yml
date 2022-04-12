@@ -206,10 +206,10 @@ key_bindings:
   - { key: Space, mods: Alt, action: ClearLogNotice }
   - { key: Z, mods: Alt, command: { program: "alacritty-padding-toggle" } }
   # Vi Mode
-  - { key: V, mods: Alt, action: ToggleViMode }
-  - { key: H, mods: Alt, mode: Vi, action: High }
-  - { key: M, mods: Alt, mode: Vi, action: Middle }
-  - { key: L, mods: Alt, mode: Vi, action: Low }
-  - { key: X, mode: Vi|~Search, action: Open }
-  - { key: LBracket, mods: Control, mode: Vi|Search, action: SearchCancel }
-  - { key: LBracket, mods: Control, mode: Vi|~Search, action: ClearSelection }
+  # - { key: V, mods: Alt, action: ToggleViMode }
+  # - { key: H, mods: Alt, mode: Vi, action: High }
+  # - { key: M, mods: Alt, mode: Vi, action: Middle }
+  # - { key: L, mods: Alt, mode: Vi, action: Low }
+  # - { key: X, mode: Vi|~Search, action: Open }
+  # - { key: LBracket, mods: Control, mode: Vi|Search, action: SearchCancel }
+  # - { key: LBracket, mods: Control, mode: Vi|~Search, action: ClearSelection }

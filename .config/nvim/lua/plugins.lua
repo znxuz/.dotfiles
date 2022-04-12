@@ -52,8 +52,7 @@ packer.startup(function(use)
 		'mcchrish/nnn.vim'
 	}
 	use {
-		'voldikss/vim-floaterm',
-		config = function () require('config.floaterm') end
+		'voldikss/vim-floaterm'
 	}
 	use {
 		'vimwiki/vimwiki',
@@ -75,5 +74,6 @@ packer.startup(function(use)
 		config = function () require('config.treesitter') end
 	}
 
+	-- mine tweaks
 	require('config.general')
 end)
