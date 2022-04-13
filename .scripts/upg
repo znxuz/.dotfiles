@@ -1,60 +1,64 @@
 #!/usr/bin/env bash
 
-function pkg_upgrade()
+noconfirm=
+
+pkg_upgrade()
 {
-	sudo pacman -Syu $1 && aur-upgrade
+	sudo pacman -Syu "$noconfirm" && aur-upg "$noconfirm"
 }
 
-function vim_upgrade()
+vim_upgrade()
 {
-	nvim-upgrade
+	nvim-upg
 }
 
-function exit_invalid
+exit_invalid
 {
 	echo "invalid option" && exit 1
 }
 
-function main()
+main()
 {
 	for opt in "$@"; do
 		[[ ! $opt == -* ]] && exit_invalid
-		for ((i=1; i<${#opt}; ++i)); do
-			if [[ $opt == --* ]]; then
-				case $opt in
-					--noconfirm)
-						noconfirm="--noconfirm"
-						;;
-					*)
-						exit_invalid
-						;;
-				esac
-			else
-				case ${opt:i:1} in
-					h | -help)
-						printf "options\n\t%s\n\t%s\n" \
-							"-p - upgrade packagaes" \
-							"-v - upgrade (n)vim"
-						exit 0
-						;;
-					p)
-						pkg=1
-						;;
-					v)
-						vim=1
-						;;
-					*)
-						exit_invalid
-						;;
-				esac
+
+		if [[ $opt == --* ]]; then
+			case $opt in
+				--noconfirm)
+					noconfirm="--noconfirm"
+					;;
+				*)
+					exit_invalid
+					;;
+			esac
+		else
+			for ((i=1; i<${#opt}; ++i)); do
+					case ${opt:i:1} in
+						h | -help)
+							printf "options\n\t%s\n\t%s\n" \
+								"-p - upgrade packagaes" \
+								"-v - upgrade (n)vim"
+							exit 0
+							;;
+						p)
+							pkg=1
+							;;
+						v)
+							vim=1
+							;;
+						*)
+							exit_invalid
+							;;
+					esac
+				done
 			fi
-		done
 	done
 
 	if [[ -z $pkg ]] && [[ -z $vim ]]; then
-		pkg_upgrade $noconfirm && vim_upgrade
+		pkg_upgrade
+		vim_upgrade
 	elif [[ -n $pkg ]]; then
-		pkg_upgrade $noconfirm
+		pkg_upgrade
 	elif [[ -n $vim ]]; then
 		vim_upgrade
 	fi

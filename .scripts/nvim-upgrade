@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-cd $HOME/aur
-
-auracle outdated nvim-packer-git > /dev/null 2>&1 && aur-build nvim-packer-git
-aur-build neovim-nightly-bin
-
-nvim -c PackerSync

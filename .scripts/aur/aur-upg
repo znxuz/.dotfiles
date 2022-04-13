@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+updates=$(auracle outdated -q)
+
+[[ "$1" == "--noconfirm" ]] && noconfirm="$1" && shift
+
+cnt=0
+cd /tmp
+for pkg in $updates; do
+	auracle clone $pkg && cd $pkg && makepkg -sirc "$noconfirm" && cd ../ && rm -rf $pkg
+	cnt=$((cnt + 1))
+done
+
+[[ $cnt -gt 1 ]] && $HOME/.config/polybar/launch.sh > /dev/null 2>&1

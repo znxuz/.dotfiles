@@ -73,6 +73,10 @@ packer.startup(function(use)
 		run = 'TSUpdate',
 		config = function () require('config.treesitter') end
 	}
+	use {
+		'lewis6991/gitsigns.nvim',
+		config = function () require('gitsigns').setup() end
+	}
 
 	-- mine tweaks
 	require('config.general')
