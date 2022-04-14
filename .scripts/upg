@@ -12,7 +12,7 @@ vim_upgrade()
 	nvim-upg
 }
 
-exit_invalid
+exit_invalid()
 {
 	echo "invalid option" && exit 1
 }
