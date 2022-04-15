@@ -3,7 +3,6 @@ let mapleader=","
 set nowrap
 set nosc
 set ts=4 sw=4
-set exrc secure
 set clipboard+=unnamedplus
 set cc=
 set ttm=0
@@ -13,7 +12,7 @@ set nohls
 set ic scs
 
 " === file management ===
-set noswapfile
+set noswf
 set nobk
 set undodir=$HOME/.local/share/nvim/undodir
 set undofile

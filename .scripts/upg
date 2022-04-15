@@ -4,7 +4,9 @@ noconfirm=
 
 pkg_upgrade()
 {
-	sudo pacman -Syu "$noconfirm" && aur-upg "$noconfirm"
+	sudo pacman -Syu "$noconfirm"
+	aur-upg "$noconfirm"
+	$HOME/.config/polybar/launch.sh > /dev/null 2>&1
 }
 
 vim_upgrade()
