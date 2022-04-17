@@ -1,0 +1,41 @@
+[general]
+# A folder where vdirsyncer can store some metadata about each pair.
+status_path = "~/.local/share/vdirsyncer/status/"
+
+# CARDDAV
+[pair contacts]
+a = "contacts_local"
+b = "contacts_remote"
+
+collections = ["from a", "from b"]
+
+[storage contacts_local]
+type = "filesystem"
+path = "~/.local/share/vdirsyncer/contacts/"
+fileext = ".vcf"
+
+[storage contacts_remote]
+type = "carddav"
+url = "https://nextcloud05.webo.cloud/remote.php/dav"
+username = "zijian.xu@outlook.com"
+password.fetch = ["command", "pass", "nextcloud"]
+
+# CALDAV
+[pair calendars]
+a = "cal_local"
+b = "cal_remote"
+collections = ["from a", "from b"]
+
+# Calendars also have a color property
+# metadata = ["displayname", "color"]
+
+[storage cal_local]
+type = "filesystem"
+path = "~/.local/share/vdirsyncer/calendars/"
+fileext = ".ics"
+
+[storage cal_remote]
+type = "caldav"
+url = "https://nextcloud05.webo.cloud/remote.php/dav"
+username = "zijian.xu@outlook.com"
+password.fetch = ["command", "pass", "nextcloud"]
