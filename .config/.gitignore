@@ -1,4 +1,3 @@
-neofetch
 autostart
 BraveSoftware
 calibre
@@ -8,7 +7,6 @@ Electron
 flameshot
 htop
 ibus
-Mailspring
 nnn
 nordvpn
 obs-studio
@@ -18,15 +16,12 @@ qBittorrent/**/*
 !qBittorrent/mumble-dark.qbtheme
 Slack
 s-tui
-user-dirs.locale
 VirtualBox
 zoomus.conf
 bottom
 GIMP
-Microsoft Teams - Preview
-p3x-onenote
+Microsoft*
 teams
-Microsoft
 syncthing
 obsidian
 libreoffice
@@ -35,13 +30,12 @@ vlc
 gh
 weechat
 configstore
-joplin
 NuGet
 csharp.history
 rmapi
 procps
 mpv
 cppman
-calcurse
 java
 whoozle.github.io
+systemd

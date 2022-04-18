@@ -11,7 +11,7 @@ bspc monitor \
     | head -n1 | cut -d' ' -f1 | tr -d '\n') \
     -d I II III IV V
 
-bspc query -D | xargs -I{} bspc desktop {} -l monocle
+# bspc query -D | xargs -I{} bspc desktop {} -l monocle
 bspc config single_monocle          true
 bspc config borderless_monocle      true
 

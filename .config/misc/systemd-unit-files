@@ -2,7 +2,6 @@ UNIT FILE                          STATE   VENDOR PRESET
 acpid.service                      enabled disabled
 auto-cpufreq.service               enabled disabled
 bluetooth.service                  enabled disabled
-cronie.service                     enabled disabled
 getty@.service                     enabled enabled
 lenovo_fix.service                 enabled disabled
 lm_sensors.service                 enabled disabled
@@ -18,4 +17,4 @@ tlp.service                        enabled disabled
 remote-fs.target                   enabled enabled
 fstrim.timer                       enabled disabled
 
-18 unit files listed.
+17 unit files listed.

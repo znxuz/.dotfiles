@@ -9,5 +9,6 @@ gpg-agent.socket               enabled enabled
 p11-kit-server.socket          enabled enabled
 pipewire-pulse.socket          enabled enabled
 pipewire.socket                enabled enabled
+vdirsyncer.timer               enabled enabled
 
-10 unit files listed.
+11 unit files listed.

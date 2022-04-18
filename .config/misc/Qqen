@@ -1,7 +1,9 @@
 acpi_call
+aerc
 alacritty
 alsa-utils
 android-file-transfer
+android-tools
 arandr
 arch-wiki-docs
 arch-wiki-lite
@@ -18,8 +20,10 @@ bottom
 bspwm
 calibre
 clang
+cppcheck
 cronie
 dialog
+dictd
 discord
 dunst
 efibootmgr
@@ -54,14 +58,10 @@ gzip
 htop
 imagemagick
 intel-ucode
-java-environment-common
-java11-openjfx
-java11-openjfx-doc
-java11-openjfx-src
 jdk-openjdk
 jq
 jre-openjdk
-jre11-openjdk
+khal
 libbsd
 libtool
 linux
@@ -74,7 +74,6 @@ m4
 make
 man-db
 man-pages
-maven
 mpv
 ncdu
 nethogs
@@ -92,8 +91,6 @@ nvme-cli
 obs-studio
 openjdk-doc
 openjdk-src
-openjdk11-doc
-openjdk11-src
 openssh
 os-prober
 otf-font-awesome
@@ -101,11 +98,11 @@ otf-hermit
 p7zip
 pacman
 pacman-contrib
+pandoc
 pass
 patch
 pavucontrol
 pdfcrack
-pdftk
 perl-rename
 picom
 pipewire-alsa
@@ -114,7 +111,7 @@ pipewire-pulse
 pkgconf
 pkgstats
 powertop
-python-pyjwt
+python-httplib2
 python-pyopenssl
 qbittorrent
 reflector
@@ -126,6 +123,7 @@ screenkey
 scrot
 sed
 shellcheck
+signify
 smartmontools
 speedtest-cli
 sudo
@@ -139,6 +137,7 @@ tldr
 tlp
 tlp-rdw
 tmux
+todoman
 trash-cli
 tree
 ttf-roboto
@@ -146,10 +145,12 @@ unclutter
 unrar
 unzip
 valgrind
+vdirsyncer
 virtualbox
 virtualbox-guest-iso
 vnstat
 vpnc
+w3m
 weechat
 wget
 which
@@ -157,6 +158,7 @@ wireless_tools
 wmctrl
 xclip
 xdg-utils
+xdotool
 xf86-video-intel
 xf86-video-vesa
 xorg-bdftopcf
