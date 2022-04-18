@@ -3,7 +3,7 @@
 # sudo copy(symlink won't work) 95-battery.rules to /etc/udev/rules.d/95-battery.rules.
 # Make sure that the paths(home, script name etc.) in the file have been modified properly.
 
-function get_bat_icon()
+get_bat_icon()
 {
 	[[ -z "$1" ]] && return 1
 	if [[ "$1" -gt 90 ]]; then
@@ -19,7 +19,7 @@ function get_bat_icon()
 	fi
 }
 
-function get_bat_status()
+get_bat_status()
 {
 	bat_full=$(cat "$1/energy_full")
 	bat_current=$(cat "$1/energy_now")

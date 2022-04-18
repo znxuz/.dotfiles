@@ -22,7 +22,7 @@ cnoremap <leader>cd <c-r>=substitute(expand("%:p:h"), getcwd(), '.', '').'/'<cr>
 
 " === autocompletion ===
 set wic
-set wim=full:lastused
+set wim=longest,full:lastused
 
 " === stautus line ===
 aug stl

@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-function setup_dotfiles()
+setup_dotfiles()
 {
 	src=$HOME/dotfiles.tmp
 	git clone --separate-git-dir=$HOME/.dotfiles \
@@ -11,7 +11,7 @@ function setup_dotfiles()
 		config --local status.showUntrackedFiles no
 }
 
-function symlink_etc_conf()
+symlink_etc_conf()
 {
 	[ ! -f /etc/udev/rules.d/95-battery.rules ] &&
 		sudo cp ~/.scripts/polybar/95-battery.rules /etc/udev/rules.d/

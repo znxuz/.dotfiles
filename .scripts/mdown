@@ -2,7 +2,8 @@
 
 dirs=(vorlesung uebung)
 
-download() {
+download()
+{
 	download=($(< links))
 	for link in "${download[@]}"; do
 		wget "$link"

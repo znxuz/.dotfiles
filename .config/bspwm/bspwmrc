@@ -32,3 +32,5 @@ bspc config pointer_action2 resize_side
 bspc config initial_polarity first_child
 
 bspc rule -a Zathura state=tiled
+
+which alacritty-auto-pad > /dev/null 2>&1 && alacritty-auto-pad

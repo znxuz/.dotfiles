@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-function pkg_install()
+pkg_install()
 {
 	sudo pacman -Syyy archlinux-keyring &&
 		sudo pacman -Syu --needed - < $HOME/.config/misc/Qqen
 }
 
-function aur_install()
+aur_install()
 {
 	aur=$HOME/aur
 

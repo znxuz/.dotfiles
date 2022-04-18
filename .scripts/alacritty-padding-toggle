@@ -2,15 +2,39 @@
 
 config=${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/window.yml
 
-no_pad=20
-
 pad_x=255
 pad_y=51
 
-old_x=$(grep -A2 "padding:" "$config" | awk '/x:/{print $2}')
-old_y=$(grep -A2 "padding:" "$config" | awk '/y:/{print $2}')
-new_x=$([[ $old_x == "$no_pad" ]] && echo "$pad_x" || echo "$no_pad")
-new_y=$([[ $old_y == "$no_pad" ]] && echo "$pad_y" || echo "$no_pad")
+no_pad=20
 
-sed -i "0,/x: $old_x/s/x: $old_x/x: $new_x/" "$config" &&
-	sed -i "0,/y: $old_y/s/y: $old_y/y: $new_y/" "$config"
+pad()
+{
+	sed -i "0,/x: [[:digit:]]\+/s/x: [[:digit:]]\+/x: $pad_x/" "$config" &&
+		sed -i "0,/y: [[:digit:]]\+/s/y: [[:digit:]]\+/y: $pad_y/" "$config"
+}
+
+unpad()
+{
+	sed -i "0,/x: [[:digit:]]\+/s/x: [[:digit:]]\+/x: $no_pad/" "$config" &&
+		sed -i "0,/y: [[:digit:]]\+/s/y: [[:digit:]]\+/y: $no_pad/" "$config"
+}
+
+toggle()
+{
+	cur_val=$(grep -A2 "padding:" "$config" | awk '/x:/{print $2}')
+
+	if [[ "$cur_val" -eq "$pad_x" ]]; then
+		unpad
+	else
+		pad
+	fi
+}
+
+
+if [[  -z "$1" ]]; then
+	toggle
+elif [[  "$1" == "pad" ]]; then
+	pad
+else
+	unpad
+fi
