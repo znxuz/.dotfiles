@@ -1,6 +1,6 @@
 # A glob expression in path will match all directories relevant.
 path = "~/.local/share/vdirsyncer/calendars/tasks-2/"
-date_format = "%m-%d-%Y"
+date_format = "%d-%m-%Y"
 time_format = "%H:%M"
 
 default_command ="list --sort=priority"

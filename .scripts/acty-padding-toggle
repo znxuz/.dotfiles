@@ -2,10 +2,9 @@
 
 config=${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/window.yml
 
+no_pad=20
 pad_x=255
 pad_y=51
-
-no_pad=20
 
 pad()
 {
@@ -31,10 +30,12 @@ toggle()
 }
 
 
-if [[  -z "$1" ]]; then
+if [[  -z "$*" ]]; then
 	toggle
 elif [[  "$1" == "pad" ]]; then
 	pad
-else
+elif [[ "$1" == "unpad" ]]; then
 	unpad
+else
+	exit 1
 fi

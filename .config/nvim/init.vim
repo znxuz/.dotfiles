@@ -15,14 +15,14 @@ set ic scs
 " === file management ===
 set noswf
 set nobk
-set undodir=$HOME/.local/share/nvim/undodir
+set undodir=~/.local/share/nvim/undodir
 set undofile
 set aw
-cnoremap <leader>cd <c-r>=substitute(expand("%:p:h"), getcwd(), '.', '').'/'<cr>
 
-" === autocompletion ===
+" === wildmode & autocompletion ===
 set wic
-set wim=longest,full:lastused
+set wim=longest:full:lastused
+set cot=menuone,noselect,preview
 
 " === stautus line ===
 aug stl

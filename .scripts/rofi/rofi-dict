@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
 
-pacman -Qi dictd dict-wn > /dev/null 2>&1 || exit 1
-
-word=$(awk '{print $1}' /usr/share/dictd/wn.index | sort | uniq |
-	rofi -dmenu -p "dict")
-
-[[ -n $word ]] && rofi -e "$(dict "$word")"
+word="$(rofi -theme-str "#listview {lines: 0;}" -dmenu -p "dict")"
+[[ -n "$word" ]] && rofi -e "$(dict -d wn "$word")"

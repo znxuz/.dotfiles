@@ -11,7 +11,6 @@ bspc monitor \
     | head -n1 | cut -d' ' -f1 | tr -d '\n') \
     -d I II III IV V
 
-# bspc query -D | xargs -I{} bspc desktop {} -l monocle
 bspc config single_monocle          true
 bspc config borderless_monocle      true
 
@@ -33,4 +32,7 @@ bspc config initial_polarity first_child
 
 bspc rule -a Zathura state=tiled
 
-which alacritty-auto-pad > /dev/null 2>&1 && alacritty-auto-pad
+if which acty-auto-pad > /dev/null 2>&1; then
+	pgrep -f "bash.+acty-auto-pad" | xargs -I{} kill {};
+	acty-auto-pad
+fi

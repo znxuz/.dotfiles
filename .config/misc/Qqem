@@ -1,9 +1,7 @@
-aic94xx-firmware
 auracle-git
 auto-cpufreq
 brave-bin
 cppman
-dict-wn
 dockd
 dropbox
 gtk-theme-arc-gruvbox-git
@@ -11,11 +9,11 @@ libthinkpad
 neovim-nightly-bin
 nordvpn-bin
 nvim-packer-git
+pandoc-bin
 polybar
 redshift-minimal
 restream
 rmapi
+shellcheck-bin
 thinkfan
-upd72020x-fw
 virtualbox-ext-oracle
-wd719x-firmware

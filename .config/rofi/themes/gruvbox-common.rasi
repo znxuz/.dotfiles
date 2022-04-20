@@ -130,9 +130,9 @@ button.selected {
 
 textbox-prompt-sep {
     expand:     false;
-    str:        ":";
+    str:        "  ❯";
     text-color: @normal-foreground;
-    margin:     0 0.3em 0 0;
+    margin:     0 0.5em 0 0;
 }
 element-text, element-icon {
     background-color: inherit;

@@ -1,6 +1,9 @@
 super + Return
 	alacritty -e tmux
 
+alt + z
+	acty-padding-toggle
+
 super + ctrl + Return
 	rofi -show
 

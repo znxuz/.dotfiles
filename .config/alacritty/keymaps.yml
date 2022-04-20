@@ -204,7 +204,6 @@
 # in the order they were defined in.
 key_bindings:
   - { key: Space, mods: Alt, action: ClearLogNotice }
-  - { key: Z, mods: Alt, command: { program: "alacritty-padding-toggle" } }
   # Vi Mode
   # - { key: V, mods: Alt, action: ToggleViMode }
   # - { key: H, mods: Alt, mode: Vi, action: High }
