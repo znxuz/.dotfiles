@@ -1,4 +1,19 @@
 #!/usr/bin/env bash
 
-word="$(rofi -theme-str "#listview {lines: 0;}" -dmenu -p "dict")"
-[[ -n "$word" ]] && rofi -e "$(dict -d wn "$word")"
+get_word()
+{
+	echo "$(rofi -theme-str "#listview {lines: 0;}" -dmenu -p "dict")"
+}
+
+word="$(get_word)"
+while [[ -n "$word" ]] && [[ -z "$explanation" ]];
+do
+	explanation="$(dict -d wn "$word")"
+	if [[ -z "$explanation" ]];
+	then
+		rofi -e "no explanation found - try again" && word="$(get_word)"
+	elif [[ -n "$word" ]];
+	then
+		rofi -e "$explanation"
+	fi
+done

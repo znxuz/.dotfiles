@@ -11,10 +11,10 @@ alias \
 	z='zathura() { /usr/bin/zathura "$@" &! } && zathura' \
 	xclip='xclip -sel clip' \
 	sc='shellcheck' \
-	dropbox='dropbox > /dev/null 2>&1 &!'
+	db='dropbox > /dev/null 2>&1 &!'
 
 alias \
 	dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
 	dfs-sync='checkconfig && dfs add $HOME/.config $HOME/.scripts' \
-	link-open='l-open() { "$BROWSER" "$(<"$1")" > /dev/null 2>&1 &! } && l-open' \
+	link-open='l-open() { $BROWSER "$(<$1)" > /dev/null 2>&1 &! } && l-open' \
 	wtr='curl wttr.in/dortmund_oespel'

@@ -10,6 +10,7 @@ cmp.setup {
 		['<c-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-1), { 'i', 'c' }),
 		['<c-n>'] = cmp.mapping.select_next_item(),
 		['<c-p>'] = cmp.mapping.select_prev_item(),
+		['<c-l>'] = cmp.mapping.complete(),
 		['<c-e>'] = cmp.mapping.close(),
 	},
 	sources = cmp.config.sources({

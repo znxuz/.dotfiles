@@ -8,6 +8,7 @@ a = "contacts_local"
 b = "contacts_remote"
 
 collections = ["from a", "from b"]
+conflict_resolution = "b wins"
 
 [storage contacts_local]
 type = "filesystem"
@@ -24,10 +25,9 @@ password.fetch = ["command", "pass", "nextcloud"]
 [pair calendars]
 a = "cal_local"
 b = "cal_remote"
-collections = ["from a", "from b"]
 
-# Calendars also have a color property
-# metadata = ["displayname", "color"]
+collections = ["from a", "from b"]
+conflict_resolution = "a wins"
 
 [storage cal_local]
 type = "filesystem"

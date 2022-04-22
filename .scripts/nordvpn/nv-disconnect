@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 
-if ! pgrep -x nordvpnd > /dev/null; then
-	notify-send -u low "no nordvpnd instance running" && exit 1
-fi
+! systemctl status nordvpnd && notify-send -u low "no nordvpnd instance running" && exit 1
 
 nordvpn disconnect
-
 expect <<- DONE
 	set timeout -1
 	spawn systemctl stop nordvpnd
@@ -15,8 +12,9 @@ expect <<- DONE
 	expect eof
 DONE
 
-if systemctl status nordvpnd > /dev/null; then
+if systemctl status nordvpnd;
+then
 	notify-send -u low "failed killing daemon"
-else
-	notify-send -u low "daemon killed" && exit 0
+	exit 1
 fi
+notify-send -u low "daemon killed" && exit 0

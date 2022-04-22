@@ -1,6 +1,9 @@
 set sandbox none
 set selection-clipboard clipboard
-set statusbar-basename true
+set guioptions ""
+set statusbar-basename false
+set statusbar-home-tilde true
+set statusbar-page-percent true
 
 map <C-[> abort
 map u scroll half-up

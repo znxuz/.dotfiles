@@ -1,12 +1,3 @@
-super + Return
-	alacritty -e tmux
-
-alt + z
-	acty-padding-toggle
-
-super + ctrl + Return
-	rofi -show
-
 # opening programs
 super + shift + Return ; {b, d, q, m, v}
 	{ $BROWSER\
@@ -16,19 +7,23 @@ super + shift + Return ; {b, d, q, m, v}
 	, vb-start\
 	}
 
-super + ctrl + bracketleft
-	rofi-proc-kill
+# alacritty
+super + Return
+	alacritty -e tmux
+alt + z
+	acty-padding-toggle
 
 # controls 
 super + {F10, F11}
 	pactl set-sink-volume @DEFAULT_SINK@ {-5%,+5%}
 super + F12
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
-# brightness
+
+## brightness
 super + {F1, F2}
 	xbacklight {-dec, -inc} 10
 
-# controls (tp)
+## controls (tp)
 XF86AudioRaiseVolume
 	pactl set-sink-volume @DEFAULT_SINK@ +5%
 XF86AudioLowerVolume
@@ -56,7 +51,7 @@ super + shift + Escape ; {k, b, s, S, u, r, o, x, m}
 	, remap-keyboard\
 	}
 
-# screen orientation
+## screen orientation
 super + shift + {Up, Down, Left, Right}
 	{ set-orientation "inverted" \
 	, set-orientation "normal" \
@@ -64,85 +59,86 @@ super + shift + {Up, Down, Left, Right}
 	, set-orientation "right" \
 	}
 
-# dunst
-super + space
-	dunstctl close
+# bspwm
 
-super + shift + space
-	dunstctl close-all
-
-super + grave
-	dunstctl history-pop
-
-# screenshot
-super + ctrl + s
-	flameshot gui && sleep 240 && pkill flameshot
-super + shift + s
-	flameshot full -c -p ~/Pictures/screenshots && sleep 30 && pkill flameshot
-
-## bspwm
-
-# restart bspwm
+## restart bspwm
 super + shift + r
 	bspc wm -r
 
-# close
+## close
 super + shift + c
 	bspc node -c
 
-#
-# state/flags
-#
-
-# set the window state
+## state/flags
+### set the window state
 super + {t,shift + t,s,f}
 	bspc node -t {tiled,\~pseudo_tiled,\~floating,\~fullscreen}
 
-# alternate between the tiled and monocle layout
+### alternate between the tiled and monocle layout
 super + m
 	bspc desktop -l next
 
-#
-# focus/swap
-#
+## focus/swap
 
-# swap the current node and the biggest window
+### swap the current node and the biggest window
 super + g
 	bspc node -s biggest.window.local
 
-# focus the node in the given direction
+### focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
-# focus or send to the given desktop
+### focus or send to the given desktop
 super + {_,shift + }{1-5}
 	bspc {desktop -f,node -d} '^{1-5}'
-
 super + 0
 	bspc desktop -f Desktop
 
-# move window to next or previous desktop
+## move window to next or previous desktop
 super + shift + bracket{left,right}
 	bspc node -d {prev,next}.local
 
-# focus the next/previous desktop in the current monitor
+## focus the next/previous desktop in the current monitor
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
-# focus the next/previous window in the current desktop
+## focus the next/previous window in the current desktop
 super + {n,p}
 	bspc node -f {next,prev}.local.!hidden.window
 
-# focus the last node/desktop
+## focus the last node/desktop
 super + {6,Tab}
 	bspc {node,desktop} -f last
 
-# focus the older or newer node in the focus history
+## focus the older or newer node in the focus history
 super + {o,i}
 	bspc wm -h off; \
 	bspc node {older,newer} -f; \
 	bspc wm -h on
 
-# move a floating window
+## move a floating window
 super + alt + {h,j,k,l}
 	bspc node -v {-40 0,0 40,0 -40,40 0}
+
+# dunst
+super + space
+	dunstctl close
+super + shift + space
+	dunstctl close-all
+super + grave
+	dunstctl history-pop
+
+# screenshot
+super + ctrl + s
+	flameshot gui
+super + shift + s
+	flameshot full -c -p ~/Pictures/screenshots
+
+# rofi
+
+super + ctrl + Return
+	rofi -show
+super + ctrl + bracketleft
+	rofi-proc-kill
+super + ctrl + d
+	rofi-dict

@@ -8,7 +8,7 @@ local lsp = require('lspconfig')
 vim.cmd 'set shortmess+=c'
 vim.cmd 'set signcolumn=yes'
 vim.cmd 'set completeopt=menuone,noinsert'
-vim.cmd 'set pumheight=20'
+vim.cmd 'set pumheight=10'
 
 map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
 map('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>')

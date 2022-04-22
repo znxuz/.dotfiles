@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-server="$(curl --silent "https://api.nordvpn.com/v1/servers/recommendations?filters\[country_id\]=74&limit=1" | jq --raw-output '.[].hostname' | cut -d'.' -f1)"
+# server="$(curl --silent "https://api.nordvpn.com/v1/servers/recommendations?filters\[country_id\]=74&limit=1" | jq --raw-output '.[].hostname' | cut -d'.' -f1)"
 
-if pgrep -x nordvpnd; then
-	notify-send -u low "nordvpnd already exists, proceeding to connect to ${1:-$server}"
+if systemctl status nordvpnd; then
+	notify-send -u low "nordvpnd already exists, proceeding to connect to ${1:-France}"
 else
 	expect <<- DONE
 		set timeout -1
@@ -13,15 +13,17 @@ else
 		send -- "\r"
 		expect eof
 	DONE
-	if systemctl status nordvpnd | grep -q '\bactive'; then
+
+	if systemctl status nordvpnd;
+	then
 		notify-send -u low "nordvpnd started successfully"
 	else
-		notify-send -u low "starting nordvpnd failed" && exit 1
+		notify-send -u low "starting nordvpnd failed"
+		exit 1
 	fi
 fi
 
-nordvpn connect --group P2P "${1:-$server}" && exit 0
+# nordvpn connect --group P2P "${1:-$server}" && exit 0
 
-notify-send -u low "connection to $server failed"
-notify-send -u low "connecting to France..."
+notify-send -u low "connecting to ${1:-France}..."
 nordvpn connect --group P2P France
