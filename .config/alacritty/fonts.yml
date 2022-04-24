@@ -1,14 +1,15 @@
 font:
+  type: &type Hermit
   normal:
-    family: Hermit
+    family: *type
   bold:
-    family: Hermit
+    family: *type
     style: Bold
   italic:
-    family: Hermit
+    family: *type
     style: Italic
   bold_italic:
-    family: Hermit
+    family: *type
     style: Bold Italic
   size: 11
 # If `true`, bold text is drawn using the bright color variants.

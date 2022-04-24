@@ -28,7 +28,7 @@ map('n', '<leader>en', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 map('n', '<leader>es', '<cmd>lua vim.diagnostic.open_float()<cr>')
 
 -- Tex
-lsp.texlab.setup{}
+lsp.texlab.setup {}
 
 -- C/CPP
 lsp.clangd.setup {

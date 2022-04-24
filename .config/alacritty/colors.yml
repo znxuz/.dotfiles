@@ -25,4 +25,3 @@ colors:
     background: *bg
     foreground: *fg
 # indexed_colors: []
-
