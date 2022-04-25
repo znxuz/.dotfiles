@@ -16,5 +16,5 @@ alias \
 alias \
 	dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
 	dfs-sync='checkconfig && dfs add $HOME/.config $HOME/.scripts' \
-	link-open='l-open() { $BROWSER "$(<$1)" > /dev/null 2>&1 &! } && l-open' \
+	lopen='_lopen() { $BROWSER "$(<$1)" > /dev/null 2>&1 &! } && _lopen' \
 	wtr='curl wttr.in/dortmund_oespel'

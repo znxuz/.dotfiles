@@ -1,7 +1,6 @@
 " === basics ===
 let mapleader=" "
 set nu
-set nowrap
 set nosc
 set ts=4 sw=4
 set list lcs=tab:\¦\ ,trail:-,nbsp:+
@@ -23,7 +22,7 @@ set aw
 " === wildmode & autocompletion ===
 set wic
 set wim=longest:full:lastused
-set cot=menuone,noselect,preview
+set cot=menuone,noinsert,noselect,preview
 
 " === stautus line ===
 aug stl
