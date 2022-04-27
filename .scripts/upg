@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 
-noconfirm=
+noconfirm=""
 
 pkg_upgrade()
 {
-	sudo pacman -Syu "$noconfirm"
-	aur-upg "$noconfirm"
+	if [[ -n "$noconfirm" ]];
+	then
+		sudo pacman -Syu "$noconfirm" && aur-upg "$noconfirm"
+	else
+		sudo pacman -Syu && aur-upg
+	fi
+
 	$HOME/.config/polybar/launch.sh > /dev/null 2>&1
 }
 
@@ -57,8 +62,7 @@ main()
 	done
 
 	if [[ -z $pkg ]] && [[ -z $vim ]]; then
-		pkg_upgrade
-		vim_upgrade
+		pkg_upgrade && vim_upgrade
 	elif [[ -n $pkg ]]; then
 		pkg_upgrade
 	elif [[ -n $vim ]]; then
