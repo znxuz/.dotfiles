@@ -1,8 +1,8 @@
 vim.o.termguicolors = true
 
+require('config.bg')
 vim.g['gruvbox_material_background'] = 'hard'
 vim.g['gruvbox_material_sign_column_background'] = 'none'
-vim.o.background = 'dark'
 vim.cmd 'colorscheme gruvbox-material'
 
 -- custom highlight groups

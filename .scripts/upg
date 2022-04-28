@@ -11,7 +11,7 @@ pkg_upgrade()
 		sudo pacman -Syu && aur-upg
 	fi
 
-	$HOME/.config/polybar/launch.sh > /dev/null 2>&1
+	[[ "$?" -eq 0 ]] && $HOME/.config/polybar/launch.sh > /dev/null 2>&1
 }
 
 vim_upgrade()

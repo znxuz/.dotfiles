@@ -1,20 +1,25 @@
 #!/bin/sh
 
+wp_path="$HOME/Dropbox/Pictures/wallpapers"
+config_path="${XDG_CONFIG_HOME:-$HOME/.config}/feh"
+
 set_wp()
 {
-	path="$HOME"/Pictures/wallpapers
-	cached="$HOME"/.config/feh/selection
+	mode="$config_path/mode"
+	[ "$1" = "-d" ] && echo dark > "$mode" && shift
+	[ "$1" = "-l" ] && echo light > "$mode" && shift
 
-	if [ "$1" = "-n" ]; then
-		feh --no-fehbg --bg-scale "$2"
-		exit
-	fi
-	if [ -n "$1" ]; then
-		[ -f "$path/$1" ] || mv "$1" "$path"
-		echo "$path/$1" > "$cached"
+	cached="$config_path/$(< "$mode")"
+
+	wp_file="$1"
+	if [ -n "$wp_file" ];
+	then
+		[ -f "$wp_path/$wp_file" ] || mv "$wp_file" "$wp_path"
+		echo "$wp_path/$wp_file" > "$cached"
 	fi
 
-	feh --no-fehbg --bg-scale "$(cat "$cached")"
+	feh --no-fehbg --bg-scale "$(< "$cached")"
 }
 
+[ "$1" = "-n" ] && feh --no-fehbg --bg-scale "$2" && exit
 set_wp "$@"

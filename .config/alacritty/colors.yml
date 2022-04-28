@@ -1,27 +1,2 @@
-colors:
-  bright:
-    black: '#928374'
-    red: '#ea6962'
-    green: '#a9b665'
-    yellow: '#d8a657'
-    blue: '#7daea3'
-    magenta: '#d3869b'
-    cyan: '#89b482'
-    white: '#a89984'
-    orange: '#e78a4e'
-  normal:
-    black: '#1d2021'
-    red: '#ea6962'
-    green: '#a9b665'
-    yellow: '#d8a657'
-    blue: '#7daea3'
-    magenta: '#d3869b'
-    cyan: '#89b482'
-    white: '#928374'
-    orange: '#e78a4e'
-    bg: &bg '#1d2021'
-    fg: &fg '#d4be98'
-  primary:
-    background: *bg
-    foreground: *fg
-# indexed_colors: []
+import:
+  - /home/zijian/.config/alacritty/dark.yml

@@ -1,0 +1,28 @@
+# light
+colors:
+  bright:
+    white: '#928374'
+    black: '#1d2021'
+    red: '#c14a4a'
+    orange: '#c35e0a'
+    yellow: '#b47109'
+    green: '#6c782e'
+    cyan: '#4c7a5d'
+    blue: '#45707a'
+    magenta: '#945e80'
+  normal:
+    white: '#928374'
+    black: '#1d2021'
+    red: '#c14a4a'
+    orange: '#c35e0a'
+    yellow: '#b47109'
+    green: '#6c782e'
+    cyan: '#4c7a5d'
+    blue: '#45707a'
+    magenta: '#945e80'
+    bg: &bg '#f9f5d7'
+    fg: &fg '#654735'
+  primary:
+    background: *bg
+    foreground: *fg
+# indexed_colors: []

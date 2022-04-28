@@ -15,4 +15,4 @@ configuration {
       sorting-method:    "name";
   }
 }
-@theme "gruvbox-dark-hard"
+@import "colors.rasi"
