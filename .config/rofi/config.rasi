@@ -1,18 +1,19 @@
 configuration {
-	modi: "run";
-	font: "Hermit 12";
-	sort: false;
-	cycle: false;
-	matching: "fuzzy";
-	dpi: 0;
-	scroll-method: 1;
-  timeout {
-      action: "kb-cancel";
-      delay:  0;
-  }
-  filebrowser {
-      directories-first: true;
-      sorting-method:    "name";
-  }
+    modi: "run";
+    font: "Hermit 12";
+    sort: false;
+    cycle: false;
+    matching: "fuzzy";
+    dpi: 0;
+    scroll-method: 1;
+    timeout {
+	action: "kb-cancel";
+	delay:  0;
+     }
+    filebrowser {
+	 directories-first: true;
+	 sorting-method:    "name";
+     }
 }
+
 @import "colors.rasi"

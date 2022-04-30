@@ -1,32 +1,32 @@
 local telescope = require('telescope')
 local actions = require('telescope.actions')
 telescope.setup {
-	defaults = {
-		prompt_prefix = " ❯ ",
-		layout_config = { prompt_position = "top", },
-		sorting_strategy = "ascending",
-		file_sorter = require('telescope.sorters').get_fzy_sorter,
-		file_ignore_patterns = {".git/", ".cache", "%.o", "%.a", "%.out", "%.class",
-		"%.pdf", "%.mkv", "%.mp4", "%.zip"},
-		shorten_path = false,
-		mappings = {
-			i = {
-				["<esc>"] = actions.close,
-				["<c-s>"] = actions.select_horizontal,
-			},
-		},
+    defaults = {
+	prompt_prefix = " ❯ ",
+	layout_config = { prompt_position = "top", },
+	sorting_strategy = "ascending",
+	file_sorter = require('telescope.sorters').get_fzy_sorter,
+	file_ignore_patterns = {".git/", ".cache", "%.o", "%.a", "%.out", "%.class",
+	"%.pdf", "%.mkv", "%.mp4", "%.zip"},
+	shorten_path = false,
+	mappings = {
+	    i = {
+		["<esc>"] = actions.close,
+		["<c-s>"] = actions.select_horizontal,
+	    },
 	},
-	pickers = {
-		find_files = { hidden = true, no_ignore = true, },
-		file_browser = { hidden = true, no_ignore = true, },
-	},
-	extensions = {
-		fzf = {
-			fuzzy = true,
-			override_generic_sorter = true,
-			override_file_sorter = true,
-		}
+    },
+    pickers = {
+	find_files = { hidden = true, no_ignore = true, },
+	file_browser = { hidden = true, no_ignore = true, },
+    },
+    extensions = {
+	fzf = {
+	    fuzzy = true,
+	    override_generic_sorter = true,
+	    override_file_sorter = true,
 	}
+    }
 }
 telescope.load_extension('fzf')
 

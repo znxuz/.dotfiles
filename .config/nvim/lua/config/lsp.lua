@@ -32,7 +32,7 @@ lsp.texlab.setup {}
 
 -- C/CPP
 lsp.clangd.setup {
-	cmd = { 'clangd', '--background-index', '--log=error' }
+    cmd = { 'clangd', '--background-index', '--log=error' }
 }
 map('n', '<leader><c-^>', '<cmd>ClangdSwitchSourceHeader<cr>')
 
@@ -41,24 +41,24 @@ USER = vim.fn.expand('$USER')
 local sumneko_root_path = ''
 local sumneko_binary = ''
 if vim.fn.has('unix') == 1 then
-	sumneko_root_path = '/usr/share/lua-language-server'
-	sumneko_binary = '/usr/bin/lua-language-server'
+    sumneko_root_path = '/usr/share/lua-language-server'
+    sumneko_binary = '/usr/bin/lua-language-server'
 else
-	print('Unsupported system for sumneko')
+    print('Unsupported system for sumneko')
 end
 lsp.sumneko_lua.setup {
-	cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
-	settings = {
-		Lua = {
-			runtime = {
-				version = 'LuaJIT',
-				path = vim.split(package.path, ';')
-			},
-			diagnostics = { globals = {'vim'} },
-			workspace = { library = vim.api.nvim_get_runtime_file('', true), },
-			telemetry = { enable = false },
-		},
+    cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
+    settings = {
+	Lua = {
+	    runtime = {
+		version = 'LuaJIT',
+		path = vim.split(package.path, ';')
+	    },
+	    diagnostics = { globals = {'vim'} },
+	    workspace = { library = vim.api.nvim_get_runtime_file('', true), },
+	    telemetry = { enable = false },
 	},
+    },
 }
 
 -- HTML

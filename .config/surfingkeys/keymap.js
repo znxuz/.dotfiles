@@ -1,23 +1,23 @@
 const {
-	aceVimMap,
-	mapkey,
-	imap,
-	imapkey,
-	getClickableElements,
-	vmapkey,
-	map,
-	unmap,
-	iunmap,
-	cmap,
-	addSearchAlias,
-	removeSearchAlias,
-	tabOpenLink,
-	readText,
-	Clipboard,
-	Front,
-	Hints,
-	Visual,
-	RUNTIME
+    aceVimMap,
+    mapkey,
+    imap,
+    imapkey,
+    getClickableElements,
+    vmapkey,
+    map,
+    unmap,
+    iunmap,
+    cmap,
+    addSearchAlias,
+    removeSearchAlias,
+    tabOpenLink,
+    readText,
+    Clipboard,
+    Front,
+    Hints,
+    Visual,
+    RUNTIME
 } = api;
 
 map("<Ctrl-[>", "<Esc>");
@@ -53,68 +53,68 @@ map("$", "g$"); // go to first tab
 
 unmap("gx");
 mapkey("gx", "open shortcuts", function() {
-	tabOpenLink("chrome://extensions/shortcuts");
+    tabOpenLink("chrome://extensions/shortcuts");
 });
 
 settings.theme = `
 :root {
-  --font: 'Hermit', sans;
-  --font-size: 11;
-  --fg: #fbf1c7;
-  --bg: #1d2021;
-  --bg-dark: #1d2021;
-  --border: #2D2E2E;
-  --main-fg: #fbf1c7;
-  --info-fg: #A6E22E;
-  --select: #a89984;
+    --font: 'Hermit', sans;
+    --font-size: 11;
+    --fg: #fbf1c7;
+    --bg: #1d2021;
+    --bg-dark: #1d2021;
+    --border: #2D2E2E;
+    --main-fg: #fbf1c7;
+    --info-fg: #A6E22E;
+    --select: #a89984;
 }
 .sk_theme {
-	background: var(--bg);
-	color: var(--fg);
+    background: var(--bg);
+    color: var(--fg);
 }
 .sk_theme tbody {
-	color: #b8bb26;
+    color: #b8bb26;
 }
 .sk_theme input {
-	color: #d9dce0;
+    color: #d9dce0;
 }
 .sk_theme .url {
-	color: #98971a;
+    color: #98971a;
 }
 .sk_theme .annotation {
-	color: #b16286;
+    color: #b16286;
 }
 .sk_theme .omnibar_highlight {
-	color: #333;
-	background: var(--fg);
+    color: #333;
+    background: var(--fg);
 }
 .sk_theme #sk_omnibarSearchResult ul>li:nth-child(odd) {
-	background: var(--bg);
+    background: var(--bg);
 }
 .sk_theme #sk_omnibarSearchResult ul>li.focused {
-	background: #d3869b;
+    background: #d3869b;
 }
 
 /*  ACE Editor  */
 #sk_editor {
-  background: var(--bg) !important;
-  height: 50% !important;
+    background: var(--bg) !important;
+    height: 50% !important;
 }
 .ace_dialog-bottom {
-  border-top: 1px solid var(--bg) !important;
+    border-top: 1px solid var(--bg) !important;
 }
 .ace-chrome .ace_print-margin,
 .ace_gutter,
 .ace_gutter-cell,
 .ace_dialog {
-  background: var(--bg) !important;
+    background: var(--bg) !important;
 }
 .ace-chrome {
-  color: var(--fg) !important;
+    color: var(--fg) !important;
 }
 .ace_gutter,
 .ace_dialog {
-  color: var(--fg) !important;
+    color: var(--fg) !important;
 }
 .ace_cursor {
   color: var(--fg) !important;

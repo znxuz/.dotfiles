@@ -1,20 +1,19 @@
 alias \
-	diff='diff --color=auto' \
-	grep='grep --color=auto' \
-	ls='ls --color=auto --group-directories-first' \
+    diff='diff --color=auto' \
+    grep='grep --color=auto' \
+    ls='ls --color=auto --group-directories-first'
 
 alias \
-	vim='$EDITOR' \
-	nv='nordvpn' \
-	bt='bluetoothctl' \
-	detach="detach() { bg && disown %\$(jobs | wc -l) } && detach" \
-	z='zathura() { /usr/bin/zathura "$@" &! } && zathura' \
-	xclip='xclip -sel clip' \
-	sc='shellcheck' \
-	db='dropbox > /dev/null 2>&1 &!'
+    vim='$EDITOR' \
+    nv='nordvpn' \
+    bt='bluetoothctl' \
+    detach="detach() { bg && disown %\$(jobs | wc -l) } && detach" \
+    z='zathura() { /usr/bin/zathura "$@" &! } && zathura' \
+    xclip='xclip -sel clip' \
+    sc='shellcheck' \
+    db='dropbox > /dev/null 2>&1 &!'
 
 alias \
-	dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
-	dfs-sync='checkconfig && dfs add $HOME/.config $HOME/.scripts' \
-	lopen='_lopen() { $BROWSER "$(<$1)" > /dev/null 2>&1 &! } && _lopen' \
-	wtr='curl wttr.in/dortmund_oespel'
+    dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
+    dfs-sync='checkconfig && dfs add $HOME/.config $HOME/.scripts' \
+    wtr='curl wttr.in/dortmund_oespel'

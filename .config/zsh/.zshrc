@@ -4,15 +4,15 @@ source $HOME/.config/shell/aliasrc
 # set prompt
 precmd()
 {
-	PROMPT="%F{blue}%~ %F{yellow}%(1j.[%j] .)%(?.%F{blue}.%F{red})❯%f "
-	# echo "" # extra new line
+    PROMPT="%F{blue}%~ %F{yellow}%(1j.[%j] .)%(?.%F{blue}.%F{red})❯%f "
+    # echo "" # extra new line
 }
 preexec()
 {
-	printf '\e[2 q' # reset to steady block cursor
+    printf '\e[2 q' # reset to steady block cursor
 }
 
-# color zsh
+# colors
 eval $(dircolors $XDG_CONFIG_HOME/shell/gruvbox_dircolors)
 autoload -U colors && colors
 
@@ -35,16 +35,10 @@ compinit
 setopt globdots
 setopt noclobber
 
-# fzf
 source $ZDOTDIR/zsh_fzf
-
-# vi mode
 source $ZDOTDIR/zsh_vi
 
-# todos
-source $ZDOTDIR/zsh_todoist
-
-# must be at the end
+# gotta be at the end
 source /usr/share/zsh/site-functions/_cppman
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
