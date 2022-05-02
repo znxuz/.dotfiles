@@ -42,7 +42,6 @@ fcitx &
 dunst &
 unclutter &
 redshift &
-remap-keyboard
 pgrep -x sxhkd > /dev/null || sxhkd &
 pgrep -x dockd > /dev/null || dockd --daemon &
 xrandr-setup && fehbg

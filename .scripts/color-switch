@@ -15,7 +15,7 @@ toggle()
 
 switch_wp()
 {
-    if grep -o "dark" "${XDG_CONFIG_HOME:-$HOME/.config}/feh/mode" > /dev/null;
+    if grep -o "dark" "${XDG_CONFIG_HOME:-$HOME/.config}/feh/.mode" > /dev/null;
     then
 	fehbg -l
     else
