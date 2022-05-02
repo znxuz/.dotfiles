@@ -14,4 +14,4 @@ map <C--> zoom out
 map b toggle_statusbar
 
 set recolor true
-include gruvbox-theme/gruvbox-dark-hard
+include colorsrc

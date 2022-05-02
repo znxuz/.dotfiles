@@ -1,20 +1,3 @@
-local map = require('config.utils').map
-map('n', '<leader>ff', '<cmd>FzfLua files<cr>')
-map('n', '<leader>fc', '<cmd>FzfLua files cwd=%:p:h<cr>')
-map('n', '<leader>fh', '<cmd>FzfLua files cwd=~<cr>')
-map('n', '<leader>fi', '<cmd>lua require("config.fzflua").find_files_in()<cr>')
-map('n', '<leader>fb', '<cmd>FzfLua buffers<cr>')
-map('n', '<leader>gg', '<cmd>FzfLua live_grep<cr>')
-map('n', '<leader>gc', '<cmd>FzfLua live_grep cwd=%:p:h<cr>')
-map('n', '<leader>gi', '<cmd>lua require("config.fzflua").grep_in()<cr>')
-map('n', '<leader>fa', '<cmd>FzfLua builtin<cr>')
-map('n', '<leader>fr', '<cmd>FzfLua resume<cr>')
-map('n', '<leader>fq', '<cmd>FzfLua quickfix<cr>')
-map('n', '<leader>fj', '<cmd>FzfLua jumps<cr>')
-map('n', '<leader>fo', '<cmd>FzfLua oldfiles<cr>')
-map('n', '<leader>ft', '<cmd>FzfLua help_tags<cr>')
-map('n', '<leader>fm', '<cmd>FzfLua man_pages<cr>')
-
 local actions = require('fzf-lua.actions')
 require('fzf-lua').setup {
     winopts = {
@@ -185,5 +168,22 @@ M.grep_in = function()
 	end
     end)
 end
+
+local map = require('config.utils').map
+map('n', '<leader>ff', '<cmd>FzfLua files<cr>')
+map('n', '<leader>fc', '<cmd>FzfLua files cwd=%:p:h<cr>')
+map('n', '<leader>fh', '<cmd>FzfLua files cwd=~<cr>')
+map('n', '<leader>fi', '<cmd>lua require("config.fzflua").find_files_in()<cr>')
+map('n', '<leader>fb', '<cmd>FzfLua buffers<cr>')
+map('n', '<leader>gg', '<cmd>FzfLua live_grep<cr>')
+map('n', '<leader>gc', '<cmd>FzfLua live_grep cwd=%:p:h<cr>')
+map('n', '<leader>gi', '<cmd>lua require("config.fzflua").grep_in()<cr>')
+map('n', '<leader>fa', '<cmd>FzfLua builtin<cr>')
+map('n', '<leader>fr', '<cmd>FzfLua resume<cr>')
+map('n', '<leader>fq', '<cmd>FzfLua quickfix<cr>')
+map('n', '<leader>fj', '<cmd>FzfLua jumps<cr>')
+map('n', '<leader>fo', '<cmd>FzfLua oldfiles<cr>')
+map('n', '<leader>ft', '<cmd>FzfLua help_tags<cr>')
+map('n', '<leader>fm', '<cmd>FzfLua man_pages<cr>')
 
 return M

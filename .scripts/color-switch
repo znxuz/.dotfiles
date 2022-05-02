@@ -40,6 +40,7 @@ main()
     tmx="${XDG_CONFIG_HOME:-$HOME/.config}/tmux/colors.conf"
     plb="${XDG_CONFIG_HOME:-$HOME/.config}/polybar/colors.ini"
     rf="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/colors.rasi"
+    ztr="${XDG_CONFIG_HOME:-$HOME/.config}/zathura/colorsrc"
 
     switch_wp &&
 	toggle "$plb" && "${XDG_CONFIG_HOME:-$HOME/.config}/polybar/launch.sh" > /dev/null 2>&1 &&
@@ -47,6 +48,7 @@ main()
 	toggle "$nvm" &&
 	toggle "$tmx" &&
 	toggle "$rf" &&
+	toggle "$ztr" &&
 	switch_dunst
 }
 
