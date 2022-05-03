@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+get_cur_desktop_id()
+{
+    cur="$(bspc query -D -d focused --names)"
+    case "$cur" in
+	"I")
+	    echo 0
+	    ;;
+	"II")
+	    echo 1
+	    ;;
+	"III")
+	    echo 2
+	    ;;
+	"IV")
+	    echo 3
+	    ;;
+	"V")
+	    echo 4
+	    ;;
+    esac
+}
+
+check_count()
+{
+    d_id=$(get_cur_desktop_id)
+    local_win_list=$(wmctrl -l | awk -v id="$d_id" '{ if ($2 == id) print }')
+
+    [[ -z "$local_win_list" || ! "$local_win_list" =~ .+Alacritty ]] && return
+
+    if [[ "$(echo "$local_win_list" | wc -l)" -eq 1 ]]; then
+	acty-padding-toggle pad
+    else
+	acty-padding-toggle unpad
+    fi
+
+}
+
+which wmctrl > /dev/null 2>&1 || exit 1
+
+bspc subscribe node_add node_remove node_transfer desktop_focus | while read -r event;
+do
+    check_count "$event"
+done

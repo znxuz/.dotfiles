@@ -15,5 +15,5 @@ alias \
 
 alias \
     dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
-    dfs-sync='checkconfig && dfs add $HOME/.config $HOME/.scripts' \
+    dfs-sync='checkconfig && dfs add $HOME/.config $HOME/.local/bin' \
     wtr='curl wttr.in/dortmund_oespel'

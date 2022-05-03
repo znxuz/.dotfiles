@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-core_temp_path=$(find /sys/devices -type f -name "temp*_input" \
-	| grep virtual | head -n1)
-[[ -n "$core_temp_path" ]] && cores_temp=$(cut -c1,2 "$core_temp_path")
-
-printf "%s°\n" "$cores_temp"

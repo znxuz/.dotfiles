@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+shopt -s nullglob globstar
+
+xdotool="xdotool type --clearmodifiers --file -"
+
+prefix=${PASSWORD_STORE_DIR:-~/.password-store}
+password_files=( "$prefix"/**/*.gpg )
+password_files=( "${password_files[@]#"$prefix"/}" )
+password_files=( "${password_files[@]%.gpg}" )
+
+name=$(printf '%s\n' "${password_files[@]}" | rofi -dmenu)
+
+[[ -n $name ]] || exit
+
+pass show "$name" | { IFS= read -r pass; printf %s "$pass"; } | $xdotool &&
+    pass show "$name" | xclip -sel clip

@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+config=${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/window.yml
+
+no_pad=20
+pad_x=255
+pad_y=51
+
+pad()
+{
+    sed -i "0,/x: [[:digit:]]\+/s/x: [[:digit:]]\+/x: $pad_x/" "$config" &&
+	sed -i "0,/y: [[:digit:]]\+/s/y: [[:digit:]]\+/y: $pad_y/" "$config"
+    }
+
+    unpad()
+    {
+	sed -i "0,/x: [[:digit:]]\+/s/x: [[:digit:]]\+/x: $no_pad/" "$config" &&
+	    sed -i "0,/y: [[:digit:]]\+/s/y: [[:digit:]]\+/y: $no_pad/" "$config"
+	}
+
+	toggle()
+	{
+	    cur_val=$(grep -A2 "padding:" "$config" | awk '/x:/{print $2}')
+
+	    if [[ "$cur_val" -eq "$pad_x" ]]; then
+		unpad
+	    else
+		pad
+	    fi
+	}
+
+
+	if [[  -z "$*" ]]; then
+	    toggle
+	elif [[  "$1" == "pad" ]]; then
+	    pad
+	elif [[ "$1" == "unpad" ]]; then
+	    unpad
+	else
+	    exit 1
+	fi

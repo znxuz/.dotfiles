@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+[[ -z "$*" ]] && exit 1
+
+root_dir="$HOME/code/leetcode"
+
+make_java()
+{
+    dir="$root_dir/Java"
+    sed -E -i "0,/SRC_DIR/{s/(SRC_DIR := ).*/\1$1/}" "$dir/makefile" &&
+	mkdir "$dir/$1" &&
+	printf "%s\n\n" "package $1;" > "$dir/$1/Solution.java" &&
+	nvim "$root_dir/Java/$2/Solution.java"
+    }
+
+    make_cpp()
+    {
+	dir="$root_dir/cpp"
+	sed -E -i "0,/SRC_DIR/{s/(SRC_DIR := ).*/\1$1/}" "$dir/makefile" &&
+	    mkdir "$dir/$1" &&
+	    printf "%s\n\n%s\n%s\n\n%s\n\n%s\n%s\n\n\n%s\n{\n}" \
+	    "// $2" \
+	    "#include <iostream>" \
+	    "#include <vector>" \
+	    "#include \"helper.h\"" \
+	    "using namespace std;" \
+	    "using namespace util;" \
+	    "int main(int argc, char** argv)" > "$dir/$1/solution.cpp" &&
+	    nvim "$dir/$1/solution.cpp" +"let @f=']mhs]mhs=2i}]mJ'" +"norm 4}"
+	}
+
+	main()
+	{
+	    case "$1" in
+		"-j"|"--java")
+		    [[ "$#" -lt 2 ]] && exit 1
+		    shift;
+		    make_java "$@"
+		    ;;
+		"-C")
+		    [[ "$#" -lt 2 ]] && exit 1
+		    shift;
+		    make_cpp "$@"
+		    ;;
+		*)
+		    make_cpp "$@"
+		    ;;
+	    esac
+	}
+
+	main "$@"

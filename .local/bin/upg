@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+noconfirm=""
+
+pkg_upgrade()
+{
+    if [[ -n "$noconfirm" ]];
+    then
+	sudo pacman -Syu "$noconfirm" && aur-upg "$noconfirm"
+    else
+	sudo pacman -Syu && aur-upg
+    fi
+
+    [[ "$?" -eq 0 ]] && $HOME/.config/polybar/launch.sh > /dev/null 2>&1
+}
+
+vim_upgrade()
+{
+    nvim-upg
+}
+
+exit_invalid()
+{
+    echo "invalid option" && exit 1
+}
+
+main()
+{
+    for opt in "$@"; do
+	[[ ! $opt == -* ]] && exit_invalid
+
+	if [[ $opt == --* ]]; then
+	    case $opt in
+		--noconfirm)
+		    noconfirm="--noconfirm"
+		    ;;
+		*)
+		    exit_invalid
+		    ;;
+	    esac
+	else
+	    for ((i=1; i<${#opt}; ++i)); do
+		case ${opt:i:1} in
+		    h | -help)
+			printf "options\n\t%s\n\t%s\n" \
+			    "-p - upgrade packagaes" \
+			    "-v - upgrade (n)vim"
+						    exit 0
+						    ;;
+						p)
+						    pkg=1
+						    ;;
+						v)
+						    vim=1
+						    ;;
+						*)
+						    exit_invalid
+						    ;;
+					    esac
+					done
+	fi
+    done
+
+    if [[ -z $pkg ]] && [[ -z $vim ]]; then
+	pkg_upgrade && vim_upgrade
+    elif [[ -n $pkg ]]; then
+	pkg_upgrade
+    elif [[ -n $vim ]]; then
+	vim_upgrade
+    fi
+    exit 0
+}
+
+main "$@"

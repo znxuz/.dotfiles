@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+if ! systemctl status nordvpnd > /dev/null 2>&1;
+then
+    notify-send -u low "no nordvpnd instance running" && exit 1
+fi
+
+nordvpn disconnect
+expect <<- DONE
+set timeout -1
+spawn systemctl stop nordvpnd
+expect "*?assword:*"
+send -- "$(pass user-zijian)"
+send -- "\r"
+expect eof
+DONE
+
+if systemctl status nordvpnd;
+then
+    notify-send -u low "failed killing daemon"
+    exit 1
+fi
+notify-send -u low "daemon killed" && exit 0

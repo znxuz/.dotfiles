@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-bookshelf=$HOME/bookshelf
-
-book="$(ls $bookshelf | rofi -dmenu -i -sep'\n' -p 'read')"
-[[ -n "$book" ]] && xdg-open "$bookshelf/$book"

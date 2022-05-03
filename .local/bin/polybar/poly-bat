@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+# sudo copy(symlink won't work) 95-battery.rules to /etc/udev/rules.d/95-battery.rules.
+# Make sure that the paths(home, script name etc.) in the file have been modified properly.
+
+get_icon()
+{
+    [[ -z "$1" ]] && return 1
+    if [[ "$1" -gt 90 ]]; then
+	echo ""
+    elif [[ "$1" -gt 55 ]]; then
+	echo ""
+    elif [[ "$1" -gt 45 ]]; then
+	echo ""
+    elif [[ "$1" -gt 15 ]]; then
+	echo ""
+    else
+	echo ""
+    fi
+}
+
+get_percentage()
+{
+    percent="$(cat "$1"/capacity)"
+    echo "$(get_icon "$percent") $percent"
+}
+
+bat_print()
+{
+    charging=
+    bat_status=
+
+	# check AC status
+	[[ -e /sys/class/power_supply/AC/online &&
+	    $(cat /sys/class/power_supply/AC/online) -eq 1 ]] && charging=" "
+
+	for bat_dir in /sys/class/power_supply/BAT?
+	do
+	    bat_status="$bat_status $(get_percentage "$bat_dir")"
+	done
+
+	echo "$charging${bat_status:1}"
+    }
+
+    path_pid="/tmp/polybar-bat-udev.pid"
+
+    case "$1" in
+	--update)
+	    pid=$(cat $path_pid)
+
+	    if [ "$pid" != "" ]; then
+		kill -10 "$pid"
+	    fi
+	    ;;
+	*)
+	    echo $$ > $path_pid
+
+	    trap exit INT
+	    trap "echo" USR1
+
+	    while true; do
+		bat_print
+
+		sleep 30 &
+		wait
+	    done
+	    ;;
+    esac

@@ -1,7 +1,0 @@
-#!/bin/sh
-
-[ -z "$*" ] && exit 1
-
-for dev in "$@"; do
-	sudo umount $(findmnt -l | grep "$dev" | awk '{print $1}') && udisksctl power-off -b "$dev"
-done

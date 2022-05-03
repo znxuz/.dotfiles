@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+[[ ! -f /proc/acpi/ibm/fan || ! -f /etc/thinkfan.conf ]] && exit 1
+
+if systemctl status thinkfan > /dev/null; then
+    expect <<- DONE
+    set timeout -1
+    spawn systemctl stop thinkfan
+    expect "*?assword:*"
+    send -- "$(pass user-zijian)"
+    send -- "\r"
+    expect eof
+DONE
+[[ $? -eq 0 ]] && notify-send -u low "thinkfan daemon stopped"
+else
+    expect <<- EOF
+    set timeout -1
+    spawn systemctl start thinkfan
+    expect "*?assword:*"
+    send -- "$(pass user-zijian)"
+    send -- "\r"
+    expect eof
+    EOF
+    [[ $? -eq 0 ]] && notify-send -u low "thinkfan daemon started"
+fi
