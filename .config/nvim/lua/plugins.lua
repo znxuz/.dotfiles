@@ -77,7 +77,10 @@ packer.startup(function(use)
 	'lewis6991/gitsigns.nvim',
 	config = function () require('gitsigns').setup() end
     }
-
+    use {
+	'norcalli/nvim-colorizer.lua',
+	config = function () require'colorizer'.setup() end
+    }
     -- mine tweaks
     require('config.general')
 end)

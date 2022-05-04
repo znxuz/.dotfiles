@@ -6,6 +6,7 @@ set sts=4 sw=4
 set clipboard+=unnamedplus
 set cc=
 set ttm=0
+set tgc
 
 " === search ===
 set nohls

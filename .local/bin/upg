@@ -16,7 +16,7 @@ pkg_upgrade()
 
 vim_upgrade()
 {
-    nvim-upg
+    nvim-upg $noconfirm
 }
 
 exit_invalid()
