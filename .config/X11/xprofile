@@ -7,12 +7,13 @@ setxkbmap -option compose:ralt
 # set screen timeouts
 xset dpms 300 300 600
 
-# track point accel
-xinput set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" 0.3
-	# xinput set-prop 15 347 0.5
 # disable touchpad
 xinput set-prop "Synaptics TM3276-022" "Device Enabled" 0
-	# xinput set-prop 14 187 0
+# TrackPoint accel
+xinput set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" 0.3
+# disable mouse middle button paste
+xinput set-button-map "TPPS/2 IBM TrackPoint" 1 0 3
+xinput set-button-map "Lenovo TrackPoint Keyboard II Mouse" 1 0 3
 
 # auto switch audio on bluetooth connect
 pactl load-module module-switch-on-connect

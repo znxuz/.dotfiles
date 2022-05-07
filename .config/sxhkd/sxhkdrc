@@ -13,16 +13,6 @@ super + Return
 alt + z
 	acty-padding-toggle
 
-# controls 
-super + {F10, F11}
-	pactl set-sink-volume @DEFAULT_SINK@ {-5%,+5%}
-super + F12
-	pactl set-sink-mute @DEFAULT_SINK@ toggle
-
-## brightness
-super + {F1, F2}
-	xbacklight {-dec, -inc} 10
-
 ## controls (tp)
 XF86AudioRaiseVolume
 	pactl set-sink-volume @DEFAULT_SINK@ +5%
