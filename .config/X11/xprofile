@@ -10,7 +10,7 @@ xset dpms 300 300 600
 # disable touchpad
 xinput set-prop "Synaptics TM3276-022" "Device Enabled" 0
 # TrackPoint accel
-xinput set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" 0.3
+xinput set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" 0.7
 # disable mouse middle button paste
 xinput set-button-map "TPPS/2 IBM TrackPoint" 1 0 3
 xinput set-button-map "Lenovo TrackPoint Keyboard II Mouse" 1 0 3
