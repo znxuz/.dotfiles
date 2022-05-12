@@ -5,15 +5,39 @@ get_word()
     echo "$(rofi -theme-str "#listview {lines: 0;}" -dmenu -p "dict")"
 }
 
-word="$(get_word)"
-while [[ -n "$word" ]] && [[ -z "$explanation" ]];
-do
-    explanation="$(dict -d wn "$word")"
-    if [[ -z "$explanation" ]];
-    then
-	rofi -e "no explanation found - try again" && word="$(get_word)"
-    elif [[ -n "$word" ]];
-    then
-	rofi -e "$explanation"
-    fi
-done
+search_dict()
+{
+    opt="${1:-'-d wn'}"
+    word="$(get_word)"
+    while [[ -n "$word" ]] && [[ -z "$result" ]];
+    do
+	result="$(dict $opt $word)"
+	if [[ -z "$result" ]];
+	then
+	    rofi -e "no result found - try again" &&
+		word="$(get_word)"
+	elif [[ -n "$word" ]];
+	then
+	    rofi -e "$result"
+	fi
+    done
+}
+
+get_database()
+{
+    echo "$(dict -h dict.org -I | awk '{print $1}' | rofi -dmenu -p "list")"
+}
+
+main()
+{
+    case "$1" in
+	-h)
+	    search_dict "-h dict.org -d $(get_database)"
+	    ;;
+	-l|*)
+	    search_dict
+	    ;;
+    esac
+}
+
+main "$*"

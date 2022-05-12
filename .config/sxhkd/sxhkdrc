@@ -132,3 +132,5 @@ super + ctrl + bracketleft
 	rofi-proc-kill
 super + ctrl + d
 	rofi-dict
+super + ctrl + shift + d
+	rofi-dict -h

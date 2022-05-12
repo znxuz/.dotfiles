@@ -2,7 +2,7 @@ configuration {
     modi: "run";
     font: "Hermit 12";
     sort: false;
-    cycle: false;
+    cycle: true;
     matching: "fuzzy";
     dpi: 0;
     scroll-method: 1;
