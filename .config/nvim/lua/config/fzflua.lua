@@ -24,6 +24,7 @@ require('fzf-lua').setup {
 	    }
 	}
     },
+    fzf_opts = { ['--cycle'] = '' },
     keymap = {
 	-- These override the default tables completely
 	-- no need to set to `false` to disable a bind

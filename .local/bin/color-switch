@@ -5,7 +5,7 @@ toggle()
     [[ -z "$1" ]] && exit 1
     path="$1"
 
-    if grep -o "dark" "$path";
+    if grep -oq "dark" "$path";
     then
 	sed -i 's/dark/light/' "$path"
     else
@@ -15,7 +15,7 @@ toggle()
 
 switch_wp()
 {
-    if grep -o "dark" "${XDG_CONFIG_HOME:-$HOME/.config}/feh/.mode" > /dev/null;
+    if grep -oq "dark" "${XDG_CONFIG_HOME:-$HOME/.config}/feh/.mode" > /dev/null;
     then
 	fehbg -l
     else

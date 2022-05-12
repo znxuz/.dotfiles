@@ -26,4 +26,4 @@ fi
 # nordvpn connect --group P2P "${1:-$server}" && exit 0
 
 notify-send -u low "connecting to ${1:-France}..." &&
-    sleep 1 && nordvpn connect --group P2P France || notify-send -u low "failed to connect nv server"
+    sleep 1 && nordvpn connect France || notify-send -u low "failed to connect nv server"

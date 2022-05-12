@@ -1,1 +1,1 @@
-setl wig=*.o
+set cino=g0
