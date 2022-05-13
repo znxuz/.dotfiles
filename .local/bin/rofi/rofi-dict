@@ -32,7 +32,8 @@ main()
 {
     case "$1" in
 	-h)
-	    search_dict "-h dict.org -d $(get_database)"
+	    opt=$(get_database)
+	    [[ -n $opt ]] && search_dict "-h dict.org -d $opt"
 	    ;;
 	-l|*)
 	    search_dict

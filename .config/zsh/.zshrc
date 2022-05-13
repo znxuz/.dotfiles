@@ -2,15 +2,9 @@
 source $HOME/.config/shell/aliasrc
 
 # set prompt
-precmd()
-{
-    PROMPT="%F{blue}%~ %F{yellow}%(1j.[%j] .)%(?.%F{blue}.%F{red})❯%f "
-    # echo "" # extra new line
-}
-preexec()
-{
-    printf '\e[2 q' # reset to steady block cursor
-}
+precmd() { PROMPT="%F{blue}%~ %F{yellow}%(1j.[%j] .)%(?.%F{blue}.%F{red})❯%f " }
+# reset to steady block cursor
+preexec() { printf '\e[2 q' }
 
 # colors
 eval $(dircolors $XDG_CONFIG_HOME/shell/gruvbox_dircolors)
@@ -31,7 +25,7 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zmodload zsh/complist
-compinit
+compinit -d $XDG_CACHE_HOME/zsh/zcompdump
 setopt globdots
 setopt noclobber
 
