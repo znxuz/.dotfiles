@@ -1,11 +1,16 @@
 # key repeat
 xset r rate 200 60
 
-# set compose key
+# compose key
 setxkbmap -option compose:ralt
 
-# set screen timeouts
-xset dpms 300 300 600
+# screen timeouts
+if [ $(cat /sys/class/power_supply/AC/online) -eq 1 ];
+then
+    xset dpms 600 600 900
+else
+    xset dpms 300 300 600
+fi
 
 # disable touchpad
 xinput set-prop "Synaptics TM3276-022" "Device Enabled" 0

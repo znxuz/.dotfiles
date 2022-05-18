@@ -4,6 +4,5 @@ vim.g['gruvbox_material_sign_column_background'] = 'none'
 vim.cmd 'colorscheme gruvbox-material'
 
 -- custom highlight groups
-vim.cmd 'hi! link FloatermBorder None'
 vim.cmd 'hi! link PMenu StatusLine'
 vim.cmd 'hi! link NormalFloat StatusLine'

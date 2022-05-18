@@ -1,42 +1,15 @@
 #!/usr/bin/env bash
 
-path=~/tmp/scratch
+path="$HOME"/tmp/scratch
 
 main()
 {
-    declare -a buffers
-    for dir in "$path"/*
-    do
-	buffers+=("$dir")
-    done
+    lang=$(find "$path" -maxdepth 1 -type d -not -path "$path" -print0 |
+	xargs -0 -I {} basename {} | fzf)
 
-    echo "scratch buffers:"
-    cnt=1
-    for b in "${buffers[@]}";
-    do
-	echo "  ${cnt}. $(basename "$b")"
-	cnt=$((cnt + 1))
-    done
-
-    read -rp "  > " idx
-    [[ "$idx" -lt 1 || "$idx" -gt "${#buffers[@]}" ]] && echo "invalid index" && exit 1
-
-    idx=$((idx - 1))
-    cd "${buffers[idx]}"
-    case "$(basename "${buffers[idx]}")" in
-	c|cpp)
-	    nvim src/main.$(basename "${buffers[idx]}")
-	    ;;
-	lua)
-	    nvim main.lua
-	    ;;
-	sh)
-	    nvim main.sh
-	    ;;
-	*)
-	    nvim
-	    ;;
-    esac
+    [[ -z "$lang" || ! -d "$path/$lang" ]] && exit 1
+    cd "$path/$lang" &&
+	nvim "$(find "$path/$lang" -type f -name "scratch.$lang")"
 }
 
 main

@@ -8,7 +8,7 @@ bindkey '^ff' fzf-file-widget
 cd_fzf()
 {
     local ret="$(fd -td -uu -L -E ".git/" -E ".cache/" \
-	--base-directory $1 | fzf --preview="tree -L 1 {}" \
+	--base-directory $1 -0 | fzf --read0 --preview="tree -L 1 {}" \
 	--bind="ctrl-space:toggle-preview" --preview-window=:hidden)"
 
     [[ ! -z "$ret" ]] && cd "$1/$ret"
@@ -21,8 +21,8 @@ zle -N cd_fzf_mount && bindkey '^tm' cd_fzf_mount
 
 find_fzf()
 {
-    local ret="$(fd -uu -E ".git/" -E ".cache/" --base-directory $1 \
-	| fzf -m | sed -E -e "s|./|$1/|" -e 's/ /\\ /g' | tr '\n' ' ')"
+    local ret="$(fd -uu -E ".git/" -E ".cache/" --base-directory $1 -0 \
+	| fzf --read0 -m | sed -E -e "s|./|$1/|" -e 's/ /\\ /g' | tr '\n' ' ')"
 
     [[ ! -z "$ret" ]] && LBUFFER="$LBUFFER$ret"
     zle reset-prompt
