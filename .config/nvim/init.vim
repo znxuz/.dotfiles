@@ -3,6 +3,7 @@ let mapleader=" "
 set nu
 set nosc
 set sts=4 sw=4
+set bs=indent,eol,nostop
 set clipboard+=unnamedplus
 set ttm=0
 set tgc
@@ -10,10 +11,6 @@ set tgc
 " === search ===
 set nohls
 set ic scs
-if executable("rg")
-  set grepprg=rg\ --vimgrep\ --smart-case
-  set grepformat=%f:%l:%c:%m
-endif
 
 " === file management ===
 set noswf
@@ -28,6 +25,7 @@ set wim=longest:full:lastused
 set cot=menuone,noinsert,noselect,preview
 
 " === stautus line ===
+set ls=2
 aug stl
     au!
     au VimEnter * hi default link STL StatusLineNC
@@ -52,20 +50,17 @@ set stl+=%{&filetype==''?'\ ':'\ \|\ '.toupper(&filetype).'\ '}
 
 if has('nvim')
     set guicursor=a:block
-    set ls=3
     lua require('plugins')
 else
-    " let &t_EI .= "\e[2 q"
-    " let &t_SI .= "\e[6 q"
     set syntax=on
-    set ls=2
     set hid
     set is
     set noesckeys
     set nocp
-    set backspace=indent,eol,start
     set viminfo+=n~/.vim/viminfo
-    set novisualbell noerrorbells
+    set novb noeb
     set t_vb =
     filetype plugin indent on
+    " let &t_EI .= "\e[2 q"
+    " let &t_SI .= "\e[6 q"
 endif
