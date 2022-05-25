@@ -21,7 +21,7 @@ set aw
 
 " === wildmode & autocompletion ===
 set wic
-set wim=longest:full:lastused
+set wim=longest:full
 set cot=menuone,noinsert,noselect,preview
 
 " === stautus line ===

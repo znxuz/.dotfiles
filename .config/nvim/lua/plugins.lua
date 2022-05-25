@@ -49,13 +49,6 @@ packer.startup(function(use)
 
     -- misc
     use {
-	'mcchrish/nnn.vim'
-    }
-    use {
-	'voldikss/vim-floaterm',
-	config = function () require('config.floaterm') end
-    }
-    use {
 	'vimwiki/vimwiki',
 	cmd = 'VimwikiUISelect'
     }
@@ -63,24 +56,13 @@ packer.startup(function(use)
 	'mbbill/undotree',
 	config = function () vim.cmd('nnoremap <leader>u <cmd>UndotreeToggle<cr>') end
     }
-
-    -- aesthetics
-    use {
-	'sainnhe/gruvbox-material',
-	config = function () require('config.colorscheme') end
-    }
-    use {
-	'nvim-treesitter/nvim-treesitter',
-	run = 'TSUpdate',
-	config = function () require('config.treesitter') end
-    }
-    use {
-	'lewis6991/gitsigns.nvim',
-	config = function () require('gitsigns').setup() end
-    }
     use {
 	'norcalli/nvim-colorizer.lua',
 	config = function () require'colorizer'.setup() end
+    }
+    use {
+	'zijian-x/gruvbox-material',
+	config = function () require('config.colorscheme') end
     }
 
     -- mine tweaks

@@ -1,3 +1,6 @@
+# disable beep
+xset -b
+
 # key repeat
 xset r rate 200 60
 
