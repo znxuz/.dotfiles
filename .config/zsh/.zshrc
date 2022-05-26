@@ -1,10 +1,8 @@
 # aliases
 source $HOME/.config/shell/aliasrc
 
-# set prompt
-precmd() { PROMPT="%F{blue}%~ %F{yellow}%(1j.[%j] .)%(?.%F{blue}.%F{red})❯%f " }
-# reset to steady block cursor
-preexec() { printf '\e[2 q' }
+# prompt
+PROMPT="%F{blue}%~ %F{yellow}%(1j.[%j] .)%(?.%F{blue}.%F{red})❯%f "
 
 # colors
 eval $(dircolors $XDG_CONFIG_HOME/shell/gruvbox_dircolors)
@@ -29,8 +27,12 @@ compinit -d $XDG_CACHE_HOME/zsh/zcompdump
 setopt globdots
 setopt noclobber
 
+bindkey -e
+autoload edit-command-line &&
+    zle -N edit-command-line &&
+    bindkey '^x^e' edit-command-line
+
 source $ZDOTDIR/zsh_fzf
-source $ZDOTDIR/zsh_vi
 
 # gotta be at the end
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
