@@ -1,6 +1,6 @@
 [Hotkey]
 # Trigger Input Method
-TriggerKey=CTRL_SHIFT_RSHIFT
+TriggerKey=ALT_SHIFT_LSHIFT
 # Use extra trigger key only after using it to inactivate
 # Available Value:
 # True False
@@ -105,7 +105,7 @@ NextPageKey==
 # True False
 #SendTextWhenSwitchEng=True
 # Candidate Word Number
-#CandidateWordNumber=5
+CandidateWordNumber=9
 # Give the tips of Phrase
 # Available Value:
 # True False

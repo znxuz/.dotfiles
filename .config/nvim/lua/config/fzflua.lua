@@ -1,20 +1,20 @@
 local actions = require('fzf-lua.actions')
 require('fzf-lua').setup {
     winopts = {
-	border = 'single', -- 'none', 'single', 'double' or 'rounded' (default)
+	border = 'single',
 	preview = {
 	    hidden = 'hidden',
-	    vertical = 'down:45%', -- up|down:size
-	    horizontal = 'right:60%', -- right|left:size
+	    vertical = 'down:45%',
+	    horizontal = 'right:60%',
 	    layout = 'flex',
-	    flip_columns = 120, -- #cols to switch to horizontal on flex
+	    flip_columns = 120,
 	    scrollbar = 'float',
 	    scrolloff = '-2',
 	    delay = 0,
 	    winopts = {
-		number = false,
+		number = true,
 		relativenumber = false,
-		cursorline = true,
+		cursorline = false,
 		cursorlineopt = 'both',
 		cursorcolumn = false,
 		signcolumn = 'no',
@@ -26,12 +26,7 @@ require('fzf-lua').setup {
     },
     fzf_opts = { ['--cycle'] = '' },
     keymap = {
-	-- These override the default tables completely
-	-- no need to set to `false` to disable a bind
-	-- delete or modify is sufficient
 	builtin = {
-	    -- neovim `:tmap` mappings for the fzf win
-	    ['<F2>'] = 'toggle-fullscreen',
 	    -- Only valid with the 'builtin' previewer
 	    ['<c-space>'] = 'toggle-preview',
 	    -- Rotate preview clockwise/counter-clockwise
@@ -40,12 +35,9 @@ require('fzf-lua').setup {
 	},
 	fzf = {
 	    -- fzf '--bind=' options
-	    ['ctrl-z'] = 'abort',
-	    ['ctrl-f'] = 'page-down',
-	    ['ctrl-b'] = 'page-up',
+	    ['alt-a'] = 'toggle-all',
 	    ['ctrl-a'] = 'beginning-of-line',
 	    ['ctrl-e'] = 'end-of-line',
-	    ['alt-a'] = 'toggle-all',
 	},
     },
     fzf_colors = {
