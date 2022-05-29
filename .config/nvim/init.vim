@@ -15,7 +15,6 @@ set ic scs
 " === file management ===
 set noswf
 set nobk
-set undodir=~/.local/share/nvim/undodir
 set undofile
 set aw
 
@@ -50,6 +49,7 @@ set stl+=%{&filetype==''?'\ ':'\ \|\ '.toupper(&filetype).'\ '}
 
 if has('nvim')
     set guicursor=a:block
+    set undodir=~/.local/share/nvim/undodir
     lua require('plugins')
 else
     set syntax=on
@@ -58,6 +58,7 @@ else
     set noesckeys
     set nocp
     set viminfo+=n~/.vim/viminfo
+    set undodir=~/.vim/undodir
     set novb noeb
     set t_vb =
     filetype plugin indent on

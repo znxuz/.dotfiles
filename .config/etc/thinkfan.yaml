@@ -1,0 +1,10 @@
+sensors:
+  - hwmon: /sys/devices/virtual/thermal/thermal_zone0/hwmon1/temp1_input
+
+fans:
+  - tpacpi: /proc/acpi/ibm/fan
+
+levels:
+  - [0, 0, 55]
+  - ["level auto", 50, 75]
+  - ["level disengaged", 70, 255]

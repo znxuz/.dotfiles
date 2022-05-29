@@ -58,13 +58,10 @@ packer.startup(function(use)
     }
     use {
 	'norcalli/nvim-colorizer.lua',
-	config = function () require'colorizer'.setup() end
+	config = function () require('colorizer').setup() end
     }
     use {
 	'zijian-x/gruvbox-material',
 	config = function () require('config.colorscheme') end
     }
-
-    -- mine tweaks
-    require('config.general')
 end)
