@@ -29,7 +29,7 @@ XF86MonBrightnessDown
 	xbacklight -dec 10
 
 # systems
-super + shift + Escape ; {k, b, s, S, u, r, o, x, c}
+super + shift + Escape ; {k, b, s, S, u, r, o, x, c, w}
 	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded"\
 	, $XDG_CONFIG_HOME/polybar/launch.sh > /dev/null 2>&1 \
 	, notify-send -u low "zzz..." && sleep 1 && systemctl suspend\
@@ -39,6 +39,7 @@ super + shift + Escape ; {k, b, s, S, u, r, o, x, c}
 	, notify-send -u low "  " && sleep 1 && xset dpms force off\
 	, xrandr-refresh\
 	, color-switch\
+	, bspc wm -r\
 	}
 
 ## screen orientation
@@ -51,11 +52,7 @@ super + shift + {Up, Down, Left, Right}
 
 # bspwm
 
-## restart bspwm
-super + shift + r
-	bspc wm -r
-
-## close
+## close window
 super + shift + c
 	bspc node -c
 

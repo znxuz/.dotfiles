@@ -10,8 +10,21 @@ print_count()
     echo $bar
 }
 
-bspc subscribe node_add node_remove node_transfer desktop_focus |
-    while read; do
-	node_count=$(bspc query -N -d focused -n .!hidden.window | wc -l)
-	print_count $node_count
+output()
+{
+    node_count=$(bspc query -N -d focused -n .!hidden.window | wc -l)
+    print_count $node_count
+}
+
+main()
+{
+    output
+
+    bspc subscribe node_add node_remove \
+	node_transfer desktop_focus | while read
+    do
+	output
     done
+}
+
+main

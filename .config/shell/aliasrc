@@ -10,7 +10,6 @@ alias \
     detach="detach() { bg && disown %\$(jobs | wc -l) } && detach" \
     z='zathura() { /usr/bin/zathura "$@" &! } && zathura' \
     xclip='xclip -sel clip' \
-    sc='shellcheck' \
     db='dropbox > /dev/null 2>&1 &!'
 
 alias \
