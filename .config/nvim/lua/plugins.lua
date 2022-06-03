@@ -24,8 +24,6 @@ packer.startup(function(use)
 	requires = {
 	    'hrsh7th/cmp-nvim-lsp',
 	    'hrsh7th/cmp-buffer',
-	    'saadparwaiz1/cmp_luasnip',
-	    'L3MON4D3/LuaSnip',
 	},
 	config = function () require('config.nvim-cmp') end
     }

@@ -3,6 +3,9 @@ source /usr/share/fzf/key-bindings.zsh
 bindkey -r '^T'
 bindkey '^[f' fzf-file-widget
 
+bindkey -r '^R'
+bindkey '^[r' fzf-history-widget
+
 cd_fzf()
 {
     local ret="$(fd -td -uu -L -E ".git/" -E ".cache/" \

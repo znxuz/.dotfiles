@@ -4,6 +4,7 @@ require('fzf-lua').setup {
     global_resume_query = false,
     winopts = {
 	border = 'single',
+	hl = { border = 'LineNr' },
 	preview = {
 	    hidden = 'hidden',
 	    vertical = 'down:45%',
@@ -26,12 +27,9 @@ require('fzf-lua').setup {
 	    }
 	}
     },
-    fzf_opts = { ['--cycle'] = '' },
     keymap = {
 	builtin = {
-	    -- Only valid with the 'builtin' previewer
 	    ['<c-space>'] = 'toggle-preview',
-	    -- Rotate preview clockwise/counter-clockwise
 	    ['<c-d>'] = 'preview-page-down',
 	    ['<c-u>'] = 'preview-page-up',
 	},
