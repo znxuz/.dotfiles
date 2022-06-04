@@ -13,7 +13,7 @@ obs-studio
 pulse
 QtProject.conf
 qBittorrent/**/*
-!qBittorrent/mumble-dark.qbtheme
+!qBittorrent/*.qbtheme
 Slack
 s-tui
 VirtualBox

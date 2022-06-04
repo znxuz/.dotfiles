@@ -2,5 +2,5 @@
 
 bookshelf="$HOME/bookshelf/"
 
-book="$(find "$bookshelf" -type l -printf "%P\n" | rofi -dmenu -i -sep'\n' -p 'read')"
+book="$(find "$bookshelf" -type l -printf "%P\n" | rofi -dmenu -i -sep '\n' -p 'read')"
 [[ -n "$book" ]] && xdg-open "$bookshelf/$book"

@@ -42,14 +42,6 @@ super + shift + Escape ; {k, b, s, S, u, r, o, x, c, w}
 	, bspc wm -r\
 	}
 
-## screen orientation
-super + shift + {Up, Down, Left, Right}
-	{ set-orientation "inverted" \
-	, set-orientation "normal" \
-	, set-orientation "left" \
-	, set-orientation "right" \
-	}
-
 # bspwm
 
 ## close window
@@ -122,12 +114,17 @@ super + shift + s
 	flameshot full -c -p ~/Pictures/screenshots
 
 # rofi
-
 super + ctrl + Return
 	rofi -show
 super + ctrl + bracketleft
-	rofi-proc-kill
-super + ctrl + d
-	rofi-dict
-super + ctrl + shift + d
-	rofi-dict -h
+	r-proc-kill
+super + ctrl + {_,shift + } d
+	r-dict {_,-h}
+## screen orientation
+super + shift + {Up,Down,Left,Right}
+	{ r-set-orientation "inverted" \
+	, r-set-orientation "normal" \
+	, r-set-orientation "left" \
+	, r-set-orientation "right" \
+	}
+
