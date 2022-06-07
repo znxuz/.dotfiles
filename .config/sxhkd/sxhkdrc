@@ -38,7 +38,7 @@ super + shift + Escape ; {k, b, s, S, u, r, o, x, c, w}
 	, notify-send -u low "  " && sleep 1 && reboot\
 	, notify-send -u low "  " && sleep 1 && xset dpms force off\
 	, xrandr-refresh\
-	, color-switch\
+	, notify-send -u low "  " && color-switch\
 	, bspc wm -r\
 	}
 

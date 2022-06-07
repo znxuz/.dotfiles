@@ -5,12 +5,17 @@
    Source: https://github.com/bardisty/gruvbox-rofi
    Modified: Mon Feb 12 2018 06:06:47 PST -0800
    ========================================================================== */
+* {
+    /* Theme settings */
+    highlight: underline;
+    scrollbar: false;
+}
 
 window {
     background-color: @background;
     border: 2;
-	width: 20%;
-	padding: 20;
+    width: 20%;
+    padding: 20;
 }
 
 mainbox {
@@ -32,16 +37,16 @@ textbox {
 listview {
     border:       2 solid 0 0;
     border-color: @separatorcolor;
-	lines: 5;
-	scrollbar: false;
-	padding: 20;
-	spacing: 0;
+    lines: 5;
+    scrollbar: false;
+    padding: 20;
+    spacing: 0;
 }
 
 element {
     border:  0;
     padding: 5;
-	spacing: 0;
+    spacing: 0;
 }
 
 element-text {
@@ -130,9 +135,9 @@ button.selected {
 
 textbox-prompt-sep {
     expand:     false;
-    str:        "  ❯";
+    str:        ": ";
     text-color: @normal-foreground;
-    margin:     0 0.5em 0 0;
+    margin:     0 0 0 0;
 }
 element-text, element-icon {
     background-color: inherit;

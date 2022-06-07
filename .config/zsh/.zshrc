@@ -2,7 +2,7 @@
 source $HOME/.config/shell/aliasrc
 
 # prompt
-PROMPT="%F{blue}%~ %F{yellow}%(1j.[%j] .)%(?.%F{blue}.%F{red})❯%f "
+PROMPT="%F{blue}%~ %F{yellow}%(1j.[%j] .)%(?.%F{blue}.%F{red})>%f "
 
 # colors
 eval $(dircolors $XDG_CONFIG_HOME/shell/gruvbox_dircolors)

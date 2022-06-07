@@ -1,6 +1,6 @@
 configuration {
     modi: "run";
-    font: "Hermit 12";
+    font: "Inconsolata 13";
     sort: false;
     cycle: true;
     matching: "fuzzy";

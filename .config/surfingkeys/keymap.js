@@ -58,7 +58,7 @@ mapkey("gx", "open shortcuts", function() {
 
 settings.theme = `
 :root {
-    --font: 'Hermit', sans;
+    --font: 'Inconsolata', sans;
     --font-size: 11;
     --fg: #fbf1c7;
     --bg: #1d2021;

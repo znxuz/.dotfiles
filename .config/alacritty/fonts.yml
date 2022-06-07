@@ -1,5 +1,5 @@
 font:
-  type: &type Hermit
+  type: &type Inconsolata
   normal:
     family: *type
   bold:
@@ -11,7 +11,5 @@ font:
   bold_italic:
     family: *type
     style: Bold Italic
-  size: 10.5
-# If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: false
-
+  size: 12
+  draw_bold_text_with_bright_colors: false

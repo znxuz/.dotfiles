@@ -12,10 +12,6 @@
    ========================================================================== */
 
 * {
-    /* Theme settings */
-    highlight: bold italic;
-    scrollbar: false;
-
     /* Gruvbox dark colors */
     gruvbox-dark-bg0:          #1d2021;
     gruvbox-dark-bg0:          #1d2021;

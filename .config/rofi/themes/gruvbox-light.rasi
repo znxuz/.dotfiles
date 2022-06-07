@@ -12,10 +12,6 @@
    ========================================================================== */
 
 * {
-    /* Theme settings */
-    highlight: bold italic;
-    scrollbar: false;
-
     /* Gruvbox light colors */
     gruvbox-light-bg0:          #f9f5d7;
     gruvbox-light-bg0:          #f9f5d7;
