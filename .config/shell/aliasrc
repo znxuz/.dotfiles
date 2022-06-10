@@ -9,8 +9,6 @@ alias \
     bt='bluetoothctl' \
     detach="detach() { bg && disown %\$(jobs | wc -l) } && detach" \
     z='zathura() { /usr/bin/zathura "$@" &! } && zathura' \
-    xclip='xclip -sel clip' \
-    db='dropbox > /dev/null 2>&1 &!'
 
 alias \
     dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
