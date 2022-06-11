@@ -2,6 +2,7 @@
 
 setup_dotfiles()
 {
+    [ -d $HOME/.dotfiles ] && echo "dotfiles already exist" && return
     src=$HOME/dotfiles.tmp
     git clone --separate-git-dir=$HOME/.dotfiles \
 	git@github.com:zijian-x/.dotfiles.git $src &&
@@ -24,9 +25,10 @@ symlink_etc_conf()
 	dir="$(dirname "$target")"
 	[ ! -d "$dir" ] && sudo mkdir "$dir" &&
 	    echo "=> mkdir $dir"
-	echo "=> force symlink "$src" to "$target""
+	echo "=> force symlink $src to $target"
 	sudo ln -sf "$src" "$target"
     done
 }
 
-setup_dotfiles && symlink_etc_conf
+setup_dotfiles
+symlink_etc_conf

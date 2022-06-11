@@ -22,7 +22,7 @@ fcitx &
 dunst &
 unclutter &
 redshift &
-pgrep -x sxhkd > /dev/null || sxhkd &
+sxhkd &
 pgrep -x dockd > /dev/null || dockd --daemon &
 xrandr-setup && fehbg
 

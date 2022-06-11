@@ -2,12 +2,12 @@
 
 get_word()
 {
-    echo "$(rofi -theme-str "#listview {lines: 0;}" -dmenu -p "dict")"
+    echo "$(rofi -theme-str "listview {lines: 0;}" -dmenu -p "dict")"
 }
 
 search_dict()
 {
-    opt="${1:-'-d wn'}"
+    opt="${1:--d wn}"
     word="$(get_word)"
     while [[ -n "$word" ]] && [[ -z "$result" ]];
     do
@@ -18,7 +18,8 @@ search_dict()
 		word="$(get_word)"
 	elif [[ -n "$word" ]];
 	then
-	    rofi -e "$result"
+	    rofi -theme-str 'window {width: 30%; anchor: center; location: center;} textbox {
+	    horizontal-align: 0.5; vertical-align: 0.5;}' -e "$result"
 	fi
     done
 }

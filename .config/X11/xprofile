@@ -7,6 +7,9 @@ xset r rate 200 60
 # compose key
 setxkbmap -option compose:ralt
 
+# powertop auto-tune
+[ $(cat /sys/class/power_supply/AC/online) -eq 0 ] && sudo powertop --auto-tune &
+
 # screen timeouts
 if [ $(cat /sys/class/power_supply/AC/online) -eq 1 ];
 then
@@ -17,7 +20,7 @@ fi
 
 # TrackPoint
 ## accel built in
-xinput set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" 1
+xinput set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" 0.5
 ## accel external
 xinput set-prop "Lenovo TrackPoint Keyboard II Mouse" "libinput Accel Speed" -0.3
 

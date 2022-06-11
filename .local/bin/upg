@@ -45,24 +45,28 @@ main()
 			printf "options\n\t%s\n\t%s\n" \
 			    "-p - upgrade packagaes" \
 			    "-v - upgrade (n)vim"
-						    exit 0
-						    ;;
-						p)
-						    pkg=1
-						    ;;
-						v)
-						    vim=1
-						    ;;
-						*)
-						    exit_invalid
-						    ;;
-					    esac
-					done
+			exit 0
+			;;
+		    p)
+			pkg=1
+			;;
+		    v)
+			vim=1
+			;;
+		    a)
+			pkg=1
+			vim=1
+			;;
+		    *)
+			exit_invalid
+			;;
+		esac
+	    done
 	fi
     done
 
-    if [[ -z $pkg ]] && [[ -z $vim ]]; then
-	pkg_upgrade && vim_upgrade
+    if [[ -z $pkg ]] && [[ -z $vim ]] || [[ -n $pkg ]]; then
+	pkg_upgrade
     elif [[ -n $pkg ]]; then
 	pkg_upgrade
     elif [[ -n $vim ]]; then
