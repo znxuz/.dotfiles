@@ -47,14 +47,14 @@ main()
 			    "-v - upgrade (n)vim"
 			exit 0
 			;;
+		    a)
+			pkg=1
+			vim=1
+			;;
 		    p)
 			pkg=1
 			;;
 		    v)
-			vim=1
-			;;
-		    a)
-			pkg=1
 			vim=1
 			;;
 		    *)
@@ -65,9 +65,9 @@ main()
 	fi
     done
 
-    if [[ -z $pkg ]] && [[ -z $vim ]] || [[ -n $pkg ]]; then
-	pkg_upgrade
-    elif [[ -n $pkg ]]; then
+    if [[ -n $pkg ]] && [[ -n $vim ]]; then
+	pkg_upgrade && vim_upgrade
+    elif [[ -n $pkg ]] || [[ -z $pkg ]] && [[ -z $vim ]]; then
 	pkg_upgrade
     elif [[ -n $vim ]]; then
 	vim_upgrade

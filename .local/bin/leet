@@ -19,15 +19,13 @@ make_cpp()
     dir="$root_dir/cpp"
     sed -E -i "0,/SRC_DIR/{s/(SRC_DIR := ).*/\1$1/}" "$dir/makefile" &&
 	mkdir "$dir/$1" &&
-	printf "%s\n\n%s\n%s\n\n%s\n\n%s\n%s\n\n\n%s\n{\n}" \
+	printf "%s\n\n%s\n\n%s\n%s\n\n\n\n%s\n{\n}" \
 	"// $2" \
-	"#include <iostream>" \
-	"#include <vector>" \
 	"#include \"helper.h\"" \
 	"using namespace std;" \
 	"using namespace util;" \
 	"int main(int argc, char** argv)" > "$dir/$1/solution.cpp" &&
-	nvim "$dir/$1/solution.cpp" +"let @f=':%s/\(.\+\){/\1\r{gg=G2]m' " +"norm 4}"
+	nvim "$dir/$1/solution.cpp" +"let @f=':%s/\(.\+\){/\1\r{gg=G2]m' " +"norm 3}j"
 }
 
 main()
