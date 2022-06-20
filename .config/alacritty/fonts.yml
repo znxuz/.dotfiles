@@ -1,5 +1,5 @@
 font:
-  type: &type Inconsolata
+  type: &type IBMPlexMono
   normal:
     family: *type
   bold:
@@ -10,6 +10,6 @@ font:
     style: Italic
   bold_italic:
     family: *type
-    style: Bold Italic
-  size: 12
+    style: BoldItalic
+  size: 10
   draw_bold_text_with_bright_colors: false

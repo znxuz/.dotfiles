@@ -1,12 +1,7 @@
 #!/usr/bin/env bash
 
-if [[ "$(color-switch -q)" == "light" ]];
-then
-    echo "current mode is light mode, abort"
-    exit 1
-fi
+[[ "$(color-switch -q)" == "light" ]] && echo "current mode is light mode, abort" && exit 1
 
 shopt -s expand_aliases &&
     source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
-
 checkconfig && dfs add $HOME/.config $HOME/.local/bin

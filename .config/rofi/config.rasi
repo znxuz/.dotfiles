@@ -1,6 +1,6 @@
 configuration {
     modi: "run";
-    font: "Inconsolata 13";
+    font: "IBMPlexMono 10";
     sort: false;
     cycle: true;
     matching: "fuzzy";
