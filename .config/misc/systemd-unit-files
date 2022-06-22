@@ -6,7 +6,6 @@ dictd.service                      enabled disabled
 getty@.service                     enabled enabled
 lenovo_fix.service                 enabled disabled
 lm_sensors.service                 enabled disabled
-ly.service                         enabled disabled
 NetworkManager-dispatcher.service  enabled disabled
 NetworkManager-wait-online.service enabled disabled
 NetworkManager.service             enabled disabled
@@ -19,4 +18,4 @@ tlp.service                        enabled disabled
 remote-fs.target                   enabled enabled
 fstrim.timer                       enabled disabled
 
-19 unit files listed.
+18 unit files listed.

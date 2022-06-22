@@ -11,6 +11,7 @@ at
 autoconf
 automake
 base
+bash-completion
 bc
 binutils
 bison
@@ -27,6 +28,7 @@ dictd
 discord
 dunst
 efibootmgr
+entr
 ethtool
 expect
 fakeroot
@@ -65,6 +67,7 @@ jq
 jre-openjdk
 khal
 libbsd
+libreoffice-still
 libtool
 linux
 linux-firmware
@@ -84,9 +87,7 @@ networkmanager
 newsboat
 ninja
 nnn
-noto-fonts
 noto-fonts-cjk
-noto-fonts-emoji
 npm
 ntfs-3g
 nvme-cli
@@ -94,10 +95,7 @@ obs-studio
 openjdk-doc
 openjdk-src
 openssh
-os-prober
-otf-fira-mono
 otf-font-awesome
-otf-hermit
 p7zip
 pacman
 pacman-contrib
@@ -112,6 +110,7 @@ pipewire-docs
 pipewire-pulse
 pkgconf
 pkgstats
+polybar
 powertop
 python-httplib2
 python-pyopenssl
@@ -140,6 +139,7 @@ tmux
 todoman
 trash-cli
 tree
+ttf-ibm-plex
 ttf-roboto
 unclutter
 unrar

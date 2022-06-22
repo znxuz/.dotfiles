@@ -28,11 +28,6 @@ require('fzf-lua').setup {
 	}
     },
     keymap = {
-	builtin = {
-	    ['<c-space>'] = 'toggle-preview',
-	    ['<c-d>'] = 'preview-page-down',
-	    ['<c-u>'] = 'preview-page-up',
-	},
 	fzf = {
 	    -- fzf '--bind=' options
 	    ['alt-a'] = 'toggle-all',
@@ -158,6 +153,5 @@ map('n', '<leader>ig', '<cmd>lua require("config.fzflua").grep_in()<cr>')
 map('n', '<leader>A', '<cmd>FzfLua builtin<cr>')
 map('n', '<leader>j', '<cmd>FzfLua jumps<cr>')
 map('n', '<leader>h', '<cmd>FzfLua help_tags<cr>')
-map('n', '<leader>m', '<cmd>FzfLua man_pages<cr>')
 
 return M
