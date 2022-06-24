@@ -26,6 +26,8 @@ zmodload zsh/complist
 compinit -d $XDG_CACHE_HOME/zsh/zcompdump
 setopt globdots
 setopt noclobber
+bindkey -M menuselect '^p'  vi-up-line-or-history
+bindkey -M menuselect '^n' vi-down-line-or-history
 
 bindkey -e
 autoload edit-command-line &&
