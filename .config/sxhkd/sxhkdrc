@@ -34,7 +34,7 @@ super + shift + Escape ; {k, b, s, S, u, r, o, x, c, w}
 	, $XDG_CONFIG_HOME/polybar/launch.sh > /dev/null 2>&1 \
 	, notify-send -u low "zzz..." && sleep 1 && systemctl suspend\
 	, notify-send -u low "  " && sleep 1 && systemctl poweroff\
-	, notify-send -u low "  " && sleep 1 && user-logout\
+	, notify-send -u low "  " && sleep 1 && loginctl terminate-session self\
 	, notify-send -u low "  " && sleep 1 && reboot\
 	, notify-send -u low "  " && sleep 1 && xset dpms force off\
 	, xrandr-refresh\

@@ -16,7 +16,14 @@ pkg_upgrade()
 
 vim_upgrade()
 {
-    nvim-upg $noconfirm
+    cd "$HOME/aur" || exit 1
+
+    noconfirm="$1"
+
+    auracle outdated nvim-packer-git > /dev/null 2>&1 &&
+	aur-build "$noconfirm" nvim-packer-git
+	    aur-build "$noconfirm" neovim-nightly-bin
+	    nvim -c PackerSync
 }
 
 exit_invalid()

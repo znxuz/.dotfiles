@@ -13,4 +13,5 @@ alias \
 alias \
     dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
     vdir-sync='vdirsyncer sync && todo flush --yes && vdirsyncer sync calendars' \
+    edit-sshc='chmod 700 ~/.ssh/config && nvim ~/.ssh/config && chmod 400 ~/.ssh/config' \
     wtr='curl wttr.in/dortmund_oespel'

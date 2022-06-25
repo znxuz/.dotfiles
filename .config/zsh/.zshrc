@@ -15,6 +15,8 @@ unsetopt beep
 setopt hist_ignore_all_dups
 setopt extendedglob
 setopt rmstarsilent
+setopt globdots
+setopt noclobber
 unsetopt prompt_cr prompt_sp
 
 # completion
@@ -24,10 +26,8 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zmodload zsh/complist
 compinit -d $XDG_CACHE_HOME/zsh/zcompdump
-setopt globdots
-setopt noclobber
-bindkey -M menuselect '^p'  vi-up-line-or-history
-bindkey -M menuselect '^n' vi-down-line-or-history
+# shift-tab select previous menu entry
+bindkey -M menuselect '^[[Z' reverse-menu-complete
 
 bindkey -e
 autoload edit-command-line &&
