@@ -4,7 +4,7 @@ let g:vimwiki_list = [
 		\ 'syntax': 'markdown', 'ext': '.md'
 		\ },
 		\ {
-		    \ 'path': '~/Dropbox/notes/programming',
+		    \ 'path': '~/Dropbox/notes/compsci',
 		    \ 'syntax': 'markdown', 'ext': '.md'
 		    \ },
 		    \ {
