@@ -2,7 +2,7 @@
 
 undodir_entries()
 {
-    undodir="$HOME/.local/share/nvim/undodir"
+    undodir="$HOME/.local/state/nvim/undodir"
 
     find "$undodir" -type f -ctime +30 -delete
 
@@ -15,7 +15,7 @@ undodir_entries()
 
 log_files()
 {
-    rm $XDG_CACHE_HOME/nvim/*log
+    rm $XDG_STATE_HOME/nvim/*log
 }
 
 undodir_entries

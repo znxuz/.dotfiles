@@ -49,7 +49,7 @@ set stl+=%{&filetype==''?'\ ':'\ \|\ '.toupper(&filetype).'\ '}
 
 if has('nvim')
     set guicursor=a:block
-    set undodir=~/.local/share/nvim/undodir
+    set undodir=~/.local/state/nvim/undodir
     lua require('plugins')
 else
     set syntax=on
