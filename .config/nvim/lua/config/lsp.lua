@@ -7,7 +7,6 @@ local lsp = require('lspconfig')
 
 vim.cmd 'set shortmess+=c'
 vim.cmd 'set signcolumn=yes'
-vim.cmd 'set completeopt=menuone,noinsert'
 vim.cmd 'set pumheight=10'
 
 map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
@@ -26,16 +25,17 @@ map('n', '<leader>pe', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
 map('n', '<leader>ne', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 map('n', '<leader>ce', '<cmd>lua vim.diagnostic.open_float()<cr>')
 
--- Tex
-lsp.texlab.setup {}
-
 -- C/CPP
 lsp.clangd.setup {
     cmd = { 'clangd', '--background-index', '--log=error' }
 }
 map('n', '<leader><c-^>', '<cmd>ClangdSwitchSourceHeader<cr>')
 
+-- Tex
+lsp.texlab.setup {}
+
 -- Lua
+--[[
 USER = vim.fn.expand('$USER')
 local sumneko_root_path = ''
 local sumneko_binary = ''
@@ -59,10 +59,4 @@ lsp.sumneko_lua.setup {
 	},
     },
 }
-
--- HTML
---Enable (broadcasting) snippet capability for completion
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-lsp.html.setup { capabilities = capabilities }
-lsp.cssls.setup { capabilities = capabilities }
+--]]

@@ -4,7 +4,6 @@ alias \
     ls='ls --color=auto --group-directories-first'
 
 alias \
-    vim='$EDITOR' \
     nv='nordvpn' \
     bt='bluetoothctl' \
     detach="detach() { bg && disown %\$(jobs | wc -l) } && detach" \

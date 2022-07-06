@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-printf "\n==> removing package cache\n\n" && sudo pacman -Sc --noconfirm
-printf "\n==> cleaning undodir & removing log entries\n\n" && nvim-clean

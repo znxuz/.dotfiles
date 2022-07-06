@@ -47,16 +47,12 @@ packer.startup(function(use)
 
     -- misc
     use {
-	'vimwiki/vimwiki',
-	cmd = 'VimwikiUISelect'
-    }
-    use {
 	'mbbill/undotree',
 	config = function () vim.cmd('nnoremap <leader>u <cmd>UndotreeToggle<cr>') end
     }
     use {
-	'norcalli/nvim-colorizer.lua',
-	config = function () require('colorizer').setup() end
+	'vimwiki/vimwiki',
+	cmd = 'VimwikiUISelect'
     }
     use {
 	'zijian-x/gruvbox-material',

@@ -1,6 +1,5 @@
-let &t_EI .= "\<Esc>[4 q"
-let &t_SI .= "\<Esc>[6 q"
-
+" let &t_EI .= "\<Esc>[4 q"
+" let &t_SI .= "\<Esc>[6 q"
 " if &term =~ '^xterm'
     " " enter vim
     " " autocmd VimEnter * silent !echo -ne "\e[3 q"

@@ -1,27 +1,51 @@
-" === basics ===
-let mapleader=" "
+" === sane defaults ===
+syntax on
+set syntax=on
 set nu
-set nosc
+set is
+set hid
+set noesckeys
+set bo=all
+set t_vb=
 set sts=4 sw=4
 set bs=indent,eol,nostop
-set clipboard+=unnamedplus
-set ttm=0
+set sta
 set tgc
+set ttimeout
+set ttm=0
+filetype plugin indent on
+set cb=unnamedplus
+set undodir=~/.vim/undo
+set viminfo+=n~/.vim/.viminfo
+set fo+=j
+set langnoremap
+set lcs=tab:>\ ,trail:-,nbsp:+
+set nosol
+let g:netrw_dirhistmax = 0
+
+" === leader key ===
+let mapleader=" "
 
 " === search ===
-set nohls
 set ic scs
 
 " === file management ===
-set noswf
-set nobk
-set undofile
+set ar
 set aw
+set noswf
+set undofile
 
-" === wildmode & autocompletion ===
+" === completion ===
 set wic
+set wmnu
+set wop=pum
 set wim=longest:full
+set cpt-=t,i
 set cot=menuone,noinsert,noselect,preview
+set shm-=S
+set shm+=cF
+set scl=number
+set ph=10
 
 " === stautus line ===
 set ls=2
@@ -47,21 +71,7 @@ set stl+=%l:%c%{'\ \|\ '}
 set stl+=%p%%
 set stl+=%{&filetype==''?'\ ':'\ \|\ '.toupper(&filetype).'\ '}
 
-if has('nvim')
-    set guicursor=a:block
-    set undodir=$XDG_STATE_HOME/nvim/undo
-    lua require('plugins')
-else
-    set syntax=on
-    set hid
-    set is
-    set noesckeys
-    set nocp
-    set viminfo+=n~/.vim/viminfo
-    set undodir=~/.vim/undodir
-    set novb noeb
-    set t_vb =
-    filetype plugin indent on
-    " let &t_EI .= "\e[2 q"
-    " let &t_SI .= "\e[6 q"
+" === plugins ===
+if !empty(glob('~/.vim/pack'))
+    so ~/.vim/pack/plugins/plugins.vim
 endif

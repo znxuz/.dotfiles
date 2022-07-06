@@ -1,0 +1,7 @@
+{
+    "suggest.minTriggerInputLength": 3,
+    "coc.source.buffer.enable": false,
+
+    "languageserver": {
+    }
+}
