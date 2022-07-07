@@ -4,5 +4,5 @@ aug md_ft
 aug END
 
 setl tw=80
-setl spell spl=en_us,de spf=/home/zijian/.local/share/nvim/spell/en.utf-8.add
-nnoremap <buffer> <leader>o <cmd>silent !pandoc --pdf-engine=xelatex -V geometry:margin=2cm -N % -t pdf \| zathura - &<cr>
+setl spell spl=en_us,de spf=~/.vim/spell/en.utf-8.add
+nnoremap <buffer> <leader>p <cmd>silent !pandoc --pdf-engine=xelatex -V geometry:margin=2cm -N % -t pdf \| zathura - &<cr>

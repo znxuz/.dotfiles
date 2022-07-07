@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 acty="${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/colors.yml"
-nvm="${XDG_CONFIG_HOME:-$HOME/.config}/vim/pack/plugins/config/bg.vim"
+vm="${XDG_CONFIG_HOME:-$HOME/.config}/vim/config/bg.vim"
 tmx="${XDG_CONFIG_HOME:-$HOME/.config}/tmux/colors.conf"
 plb="${XDG_CONFIG_HOME:-$HOME/.config}/polybar/colors.ini"
 rf="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/colors.rasi"
@@ -61,7 +61,7 @@ main()
     switch_wp &&
 	toggle "$plb" && "${XDG_CONFIG_HOME:-$HOME/.config}/polybar/launch.sh" > /dev/null 2>&1 &&
 	toggle "$acty" &&
-	toggle "$nvm" &&
+	toggle "$vm" &&
 	toggle "$tmx" &&
 	toggle "$rf" &&
 	toggle "$ztr" &&

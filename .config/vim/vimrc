@@ -1,41 +1,40 @@
-" === sane defaults ===
-syntax on
+vim9script
+
+# === sane defaults ===
+syntax enable
 set syntax=on
 set nu
-set is
 set hid
+set nosol
 set noesckeys
+set bs=indent,eol,nostop
 set bo=all
 set t_vb=
-set sts=4 sw=4
-set bs=indent,eol,nostop
-set sta
+set sta sts=4 sw=4
 set tgc
-set ttimeout
-set ttm=0
-filetype plugin indent on
+set ttimeout ttm=0
 set cb=unnamedplus
-set undodir=~/.vim/undo
 set viminfo+=n~/.vim/.viminfo
 set fo+=j
 set langnoremap
 set lcs=tab:>\ ,trail:-,nbsp:+
-set nosol
-let g:netrw_dirhistmax = 0
+filetype plugin indent on
+g:netrw_dirhistmax = 0
 
-" === leader key ===
-let mapleader=" "
+# === leader key ===
+g:mapleader = " "
 
-" === search ===
-set ic scs
+# === search ===
+set is ic scs
 
-" === file management ===
-set ar
-set aw
+# === file management ===
+set ar aw
 set noswf
 set undofile
+set undodir=~/.vim/undo
+set sbr=/
 
-" === completion ===
+# === completion ===
 set wic
 set wmnu
 set wop=pum
@@ -46,8 +45,6 @@ set shm-=S
 set shm+=cF
 set scl=number
 set ph=10
-
-" === stautus line ===
 set ls=2
 aug stl
     au!
@@ -55,7 +52,7 @@ aug stl
     au VimEnter * hi default link STLMode WildMenu
     au ModeChanged *:n* hi clear STLMode | redraws!
     au ModeChanged *:i* hi link STLMode DiffText | redraws!
-    au ModeChanged *:[vV\x16]* hi link STLMode Substitute | redraws!
+    au ModeChanged *:[vV\x16]* hi link STLMode Visual | redraws!
 aug END
 set stl=
 set stl+=%#STLMode#%{'\ \ '.toupper(mode()).'\ '}%#STL#
@@ -71,7 +68,20 @@ set stl+=%l:%c%{'\ \|\ '}
 set stl+=%p%%
 set stl+=%{&filetype==''?'\ ':'\ \|\ '.toupper(&filetype).'\ '}
 
-" === plugins ===
-if !empty(glob('~/.vim/pack'))
-    so ~/.vim/pack/plugins/plugins.vim
+if !empty('~/.vim/autoload/plug.vim')
+    call plug#begin()
+    Plug 'junegunn/fzf.vim'
+    Plug 'neoclide/coc.nvim', { 'branch' : 'release' }
+    Plug 'vimwiki/vimwiki', { 'on' : 'VimwikiUISelect' }
+    Plug 'mbbill/undotree'
+    Plug 'zijian-x/gruvbox-material'
+    call plug#end()
+
+    nn <leader>u <cmd>UndotreeToggle<cr>
+    packadd! matchit
+
+    var cfgs = glob('~/.vim/config/*', 0, 1)
+    for cfg in cfgs
+	exec 'so ' .. cfg
+    endfor
 endif
