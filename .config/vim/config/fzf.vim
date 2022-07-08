@@ -30,12 +30,12 @@ let g:fzf_colors =
 	    \ 'header':  ['fg', 'Comment'],
 	    \ }
 
-nn <leader>f <cmd>Files<cr>
-nn <leader>F <cmd>Files ~<cr>
-nn <leader>cf <cmd>Files %:p:h<cr>
+nn <leader>p <cmd>FZF --prompt=FZF>\ <cr>
+nn <leader>P <cmd>FZF ~<cr>
+nn <leader>cp <cmd>FZF --prompt=FZF>\  %:p:h<cr>
 nn <leader>b <cmd>Buffers<cr>
 nn <leader>r <cmd>Rg<cr>
-nn <leader>C <cmd>Commands<cr>
+nn <leader>A <cmd>Commands<cr>
 nn <leader>h <cmd>Helptags<cr>
 nn <leader>o <cmd>History<cr>
 

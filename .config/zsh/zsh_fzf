@@ -1,10 +1,10 @@
 source /usr/share/fzf/key-bindings.zsh
 # reset defaults
 bindkey -r '^T'
-bindkey '^[f' fzf-file-widget
+bindkey '^[p' fzf-file-widget
 
 bindkey -r '^R'
-bindkey '^[r' fzf-history-widget
+bindkey '^[o' fzf-history-widget
 
 cd_fzf()
 {
@@ -27,7 +27,7 @@ find_fzf()
     zle reset-prompt
 }
 fzf_home() { find_fzf $HOME }
-zle -N fzf_home && bindkey '^[F' fzf_home
+zle -N fzf_home && bindkey '^[P' fzf_home
 
 pac_search_remote()
 {
