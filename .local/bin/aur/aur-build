@@ -1,27 +1,24 @@
 #!/usr/bin/env bash
 
-aur_install()
+build()
 {
     pkg="$1"
     git -C "$pkg" checkout master &&
 	git -C "$pkg" pull &&
 	sh -c "cd $pkg && makepkg -sirc $noconfirm -- && git clean -xfd && git reset --hard HEAD"
-    }
+}
 
-    main()
-    {
-	[[ "$1" == "--noconfirm" ]] && noconfirm="$1" && shift
-	pkgs=("$@")
+main()
+{
+    [[ "$1" == "--noconfirm" ]] && noconfirm="$1" && shift
+    pkgs=("$@")
 
-	if [[ "${#pkgs[@]}" -eq 0 ]]; then
-	    [[ ! "$(pwd)" =~ .*/aur ]] && echo "not in aur repo" && exit 1
-	    pkgs=("$(find . -maxdepth 1 -type d -not -path . -and -not -path "*.git")")
-	fi
+    [[ "${#pkgs[@]}" -eq 0 ]] && exit 1
 
-	for pkg in ${pkgs[@]}
-	do
-	    aur_install "$pkg"
-	done
-    }
+    for pkg in ${pkgs[@]}
+    do
+	build "$pkg"
+    done
+}
 
-    main "$@"
+main "$@"

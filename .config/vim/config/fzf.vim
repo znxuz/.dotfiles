@@ -4,14 +4,13 @@ fu! s:send_quickfix_list(lines)
     cc
 endf
 
-let g:fzf_preview_window = []
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.6, 'border' : 'sharp' } }
 let g:fzf_action = {
 	    \ 'ctrl-q': function('s:send_quickfix_list'),
 	    \ 'ctrl-t': 'tab split',
 	    \ 'ctrl-x': 'split',
 	    \ 'ctrl-v': 'vsplit'
 	    \ }
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.6, 'border' : 'sharp' } }
 let g:fzf_colors =
 	    \ {
 	    \ 'fg':      ['fg', 'Normal'],
@@ -27,12 +26,17 @@ let g:fzf_colors =
 	    \ 'pointer': ['fg', 'Exception'],
 	    \ 'marker':  ['fg', 'Keyword'],
 	    \ 'spinner': ['fg', 'Label'],
-	    \ 'header':  ['fg', 'Comment'],
+	    \ 'header':  ['fg', 'Comment']
 	    \ }
+let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/']
+let $FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS .. ' ' ..
+	    \ '--bind ctrl-y:preview-up,ctrl-e:preview-down,' ..
+	    \ 'ctrl-b:preview-page-up,ctrl-f:preview-page-down,' ..
+	    \ 'ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down'
 
-nn <leader>p <cmd>FZF --prompt=FZF>\ <cr>
-nn <leader>P <cmd>FZF ~<cr>
-nn <leader>cp <cmd>FZF --prompt=FZF>\  %:p:h<cr>
+nn <leader>p <cmd>Files<cr>
+nn <leader>P <cmd>Files ~<cr>
+nn <leader>cp <cmd>Files %:p:h<cr>
 nn <leader>b <cmd>Buffers<cr>
 nn <leader>r <cmd>Rg<cr>
 nn <leader>A <cmd>Commands<cr>

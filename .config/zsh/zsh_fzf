@@ -15,7 +15,7 @@ cd_fzf()
     [[ ! -z "$ret" ]] && cd "$1/$ret"
     zle reset-prompt
 }
-cd_fzf_home() { cd_fzf $HOME }
+cd_fzf_home() { cd_fzf "$HOME" }
 zle -N cd_fzf_home && bindkey '^[C' cd_fzf_home
 
 find_fzf()
@@ -51,7 +51,24 @@ zle -N pac_search_local && bindkey '^[l' pac_search_local
 
 pac_search_aur()
 {
-    local ret="$(aur-search)"
+    aur_list="/tmp/packages.gz"
+
+    if [[ ! -f "$aur_list" ]]; then
+	curl -s "https://aur.archlinux.org/packages.gz" > "$aur_list" ||
+	    return 1
+    else
+	now=$(date +"%s")
+	pkg_time=$(stat -c "%Y" "$aur_list")
+	diff=$(( now - pkg_time ))
+	if [[ $diff -gt 86400 ]]; then
+	    rm "$aur_list" &&
+	    curl -s "https://aur.archlinux.org/packages.gz" > "$aur_list" ||
+	    return 1
+	fi
+    fi
+
+    local ret="$(zcat "$aur_list" | fzf -m --preview="auracle info {}" |
+	tr '\n' ' ')"
     LBUFFER=${LBUFFER}${ret}
     zle reset-prompt
 }

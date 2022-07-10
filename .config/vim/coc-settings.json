@@ -1,7 +1,9 @@
 {
+    "dialog.rounded": false,
+    "notification.border": false,
     "suggest.minTriggerInputLength": 3,
-    "coc.source.buffer.enable": false,
     "signature.enable": false,
+    "coc.source.buffer.enable": false,
 
     "languageserver": {
     }

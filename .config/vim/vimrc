@@ -1,51 +1,49 @@
-vim9script
-
-# === sane defaults ===
+" === sane defaults ===
 syntax enable
-set syntax=on
+set syn=on
 set nu
 set hid
+set tgc
 set nosol
-set noesckeys
 set bs=indent,eol,nostop
 set bo=all
 set t_vb=
 set sta sts=4 sw=4
-set tgc
-set ttimeout ttm=0
+set ttimeout ttm=1
 set cb=unnamedplus
-set viminfo+=n~/.vim/.viminfo
+set vi+=n~/.vim/.viminfo
 set fo+=j
-set langnoremap
+set nolnr
 set lcs=tab:>\ ,trail:-,nbsp:+
 filetype plugin indent on
-g:netrw_dirhistmax = 0
+let g:netrw_dirhistmax = 0
 
-# === leader key ===
-g:mapleader = " "
+" === leader key ===
+let mapleader = " "
 
-# === search ===
+" === search ===
 set is ic scs
 
-# === file management ===
+" === file management ===
 set ar aw
 set noswf
-set undofile
-set undodir=~/.vim/undo
-set sbr=/
+set sbr=>\\
+set udf
+set udir=~/.vim/undo
 
-# === completion ===
-set wic
+" === completion ===
 set wmnu
 set wop=pum
+set wic
 set wim=longest:full
 set cpt-=t,i
 set cot=menuone,noinsert,noselect,preview
-set shm-=S
-set shm+=cF
+set shm-=S shm+=cF
 set scl=number
 set ph=10
 set ls=2
+
+" === statusline ===
 aug stl
     au!
     au VimEnter * hi default link STL StatusLineNC
@@ -68,20 +66,24 @@ set stl+=%l:%c%{'\ \|\ '}
 set stl+=%p%%
 set stl+=%{&filetype==''?'\ ':'\ \|\ '.toupper(&filetype).'\ '}
 
-if !empty('~/.vim/autoload/plug.vim')
+" === plugins ===
+packadd! matchit
+if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin()
     Plug 'junegunn/fzf.vim'
     Plug 'neoclide/coc.nvim', { 'branch' : 'release' }
+    Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
     Plug 'vimwiki/vimwiki', { 'on' : 'VimwikiUISelect' }
     Plug 'mbbill/undotree'
     Plug 'zijian-x/gruvbox-material'
     call plug#end()
 
-    nn <leader>u <cmd>UndotreeToggle<cr>
-    packadd! matchit
-
-    var cfgs = glob('~/.vim/config/*', 0, 1)
-    for cfg in cfgs
+    " === source config ===
+    let s:cfgs = glob('~/.vim/config/*', 0, 1)
+    for cfg in s:cfgs
 	exec 'so ' .. cfg
     endfor
+
+    " === misc oneliners ===
+    nn <leader>u <cmd>UndotreeToggle<cr>
 endif

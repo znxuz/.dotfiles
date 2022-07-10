@@ -23,8 +23,8 @@ const {
 map("<Ctrl-[>", "<Esc>");
 imap("<Ctrl-[>", "<Esc>");
 Hints.characters = 'asdfgqwertzxcvbyuiophjklnm';
-Hints.style('font-family: Noto Sans; font-size: 12px; border: solid 2px #ea6962; color: #fbf1c7; background: none; background-color: #1d2021;');
-Hints.style('font-family: Noto Sans; font-size: 12px; border: solid 2px #ea6962; color: #fbf1c7; background: none; background-color: #1d2021;', 'text');
+Hints.style('font-size: 10px; border: solid 1px #ea6962; color: #fbf1c7; background: none; background-color: #1d2021;');
+Hints.style('font-size: 10px; border: solid 1px #ea6962; color: #fbf1c7; background: none; background-color: #1d2021;', 'text');
 settings.focusFirstCandidate = true;
 settings.hintAlign = "left";
 
