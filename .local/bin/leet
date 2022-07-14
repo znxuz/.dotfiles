@@ -24,7 +24,7 @@ make_cpp()
 	"#include \"helper.h\"" \
 	"using namespace std;" \
 	"using namespace util;" \
-	"int main(int argc, char** argv)" > "$dir/$1/solution.cpp" &&
+	"int main(int argc, char **argv)" > "$dir/$1/solution.cpp" &&
 	vim "$dir/$1/solution.cpp" +"let @f=':%s/\(.\+\){/\1\r{gg=G2]m' " +"norm 3}j"
 }
 
