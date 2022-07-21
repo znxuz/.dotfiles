@@ -15,28 +15,28 @@ set visible-stats off
 set mark-directories on
 set mark-symlinked-directories on
 
-# vi mode										  
-set editing-mode vi											   
-$if mode=vi				   
-	# normal mode							
-	set keymap vi-command								  
-	Control-l: clear-screen
-	# insert mode			  
-	set keymap vi-insert						  
-	Control-l: clear-screen
+# vi mode
+# set editing-mode vi
+# $if mode=vi
+	# # normal mode
+	# set keymap vi-command
+	# Control-l: clear-screen
+	# # insert mode
+	# set keymap vi-insert
+	# Control-l: clear-screen
+#
+	# # remap escape
+	# ",q": vi-movement-mode
+#
+	# set show-mode-in-prompt on
+	# set vi-ins-mode-string \1\e[5 q\2
+	# set vi-cmd-mode-string \1\e[3 q\2
+#
+	# # reset cursor on enter
+	# RETURN: "\e\n"
+# $endif
 
-	# remap escape
-	",q": vi-movement-mode 
-
-	set show-mode-in-prompt on 
-	set vi-ins-mode-string \1\e[5 q\2
-	set vi-cmd-mode-string \1\e[3 q\2
-
-	# reset cursor on enter
-	RETURN: "\e\n"
-$endif 
-
-# cursor shape options: 
+# cursor shape options:
 #	 0 -> blinking block.
 #	 1 -> blinking block (default).
 #	 2 -> steady block.

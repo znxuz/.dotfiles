@@ -18,16 +18,17 @@ setopt rmstarsilent
 setopt globdots
 setopt noclobber
 unsetopt prompt_cr prompt_sp
+setopt nolistambiguous
 
 # completion
 autoload -Uz compinit
+zmodload zsh/complist
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zmodload zsh/complist
-compinit -d $XDG_CACHE_HOME/zsh/zcompdump
 # shift-tab select previous menu entry
 bindkey -M menuselect '^[[Z' reverse-menu-complete
+compinit -d $XDG_CACHE_HOME/zsh/zcompdump
 
 bindkey -e
 autoload edit-command-line &&
