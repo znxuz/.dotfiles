@@ -14,3 +14,5 @@ let g:vimwiki_list = [
 	    \ ]
 
 nnoremap <leader>ws <cmd>VimwikiUISelect<cr>
+nnoremap <c-n> <cmd>VimwikiNextLink<cr>
+nnoremap <c-p> <cmd>VimwikiPrevLink<cr>

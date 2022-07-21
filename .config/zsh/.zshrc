@@ -1,3 +1,5 @@
+KEYTIMEOUT=1
+
 # aliases
 source $HOME/.config/shell/aliasrc
 
@@ -26,9 +28,9 @@ zmodload zsh/complist
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-# shift-tab select previous menu entry
-bindkey -M menuselect '^[[Z' reverse-menu-complete
 compinit -d $XDG_CACHE_HOME/zsh/zcompdump
+bindkey -M menuselect '^[[Z' reverse-menu-complete
+bindkey -M menuselect '^[' send-break
 
 bindkey -e
 autoload edit-command-line &&
