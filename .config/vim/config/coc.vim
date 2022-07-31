@@ -1,4 +1,4 @@
-ino <silent><expr> <c-@> coc#refresh()
+ino <silent><expr> <c-l> coc#refresh()
 nn <silent> gd <plug>(coc-definition)
 nn <silent> gy <plug>(coc-type-definition)
 nn <silent> gi <plug>(coc-implementation)
