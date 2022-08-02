@@ -1,6 +1,7 @@
 {
     "dialog.rounded": false,
     "notification.border": false,
+    "suggest.noselect": true,
     "suggest.minTriggerInputLength": 3,
     "signature.enable": false,
     "coc.source.buffer.enable": false,

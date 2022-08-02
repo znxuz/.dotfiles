@@ -5,3 +5,7 @@ color gruvbox-material
 
 hi! link PMenu StatusLine
 hi! link NormalFloat StatusLine
+
+hi! link CocFloating StatusLine
+hi! link CocMenuSel PMenuSel
+hi! link CocPum StatusLine
