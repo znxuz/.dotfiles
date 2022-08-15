@@ -1,8 +1,10 @@
 sensors:
   - hwmon: /sys/devices/virtual/thermal/thermal_zone0/hwmon1/temp1_input
+    max_errors: 10
 
 fans:
   - tpacpi: /proc/acpi/ibm/fan
+    max_errors: 10
 
 levels:
   - [0, 0, 55]

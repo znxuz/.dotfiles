@@ -19,23 +19,29 @@ else
 fi
 
 # TrackPoint
-## accel built in
+## accel built in:
 xinput set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" 0.8
-## accel external
-xinput set-prop "Lenovo TrackPoint Keyboard II Mouse" "libinput Accel Speed" -0.3
+## accel external:
+## xinput set-prop "Lenovo TrackPoint Keyboard II Mouse" "libinput Accel Speed" -0.3
+## tmp fix:
+for id in $(xinput list |
+    grep 'Lenovo TrackPoint Keyboard II' |
+    sed 's/.*=\([0-9]\+\).*/\1/');
+do
+    xinput list-props $id | grep -q 'libinput Accel Speed' &&
+	xinput set-prop $id 'libinput Accel Speed' -0.3 &&
+	xinput set-button-map $id 1 0 3
+done
 
-# Disabling
-## touch pad
+# disable touch pad:
 xinput set-prop "Synaptics TM3276-022" "Device Enabled" 0
-## middle button paste
-### built in
+# disable middle button paste
+## built in:
 xinput set-button-map "TPPS/2 IBM TrackPoint" 1 0 3
-### external
-xinput set-button-map "Lenovo TrackPoint Keyboard II Mouse" 1 0 3
+## external:
+## xinput set-button-map "Lenovo TrackPoint Keyboard II Mouse" 1 0 3
+## tmp fix above
 
 # auto switch audio upon bluetooth connect
 pactl list | grep -q module-switch-on-connect ||
     pactl load-module module-switch-on-connect
-
-# temp fix for thinkfan
-systemctl status thinkfan > /dev/null 2>&1 || systemctl start thinkfan

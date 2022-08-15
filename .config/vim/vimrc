@@ -88,5 +88,3 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     " === misc oneliners ===
     nn <leader>u <cmd>UndotreeToggle<cr>
 endif
-
-set nu

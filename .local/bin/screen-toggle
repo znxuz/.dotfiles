@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-external="DP2-2"
+external="$(xrandr | awk '/^DP[0-9]-[0-9] connected/ {print $1}')"
 internal="eDP1"
 
 xrandr | grep "$external" || exit 1
@@ -10,7 +10,7 @@ if [[ -n "$status" ]]; then
     xrandr --output "$internal" --off &&
 	bspc desktop V --to-monitor "$external" &&
 	bspc monitor "$internal" --remove
-	else
-	    xrandr --output "$internal" --mode 1920x1080 --right-of "$external" --scale 1.5 &&
-		bspc desktop V --to-monitor "$internal" && fehbg
+else
+    xrandr --output "$internal" --mode 1920x1080 --right-of "$external" --scale 1.5 &&
+	bspc desktop V --to-monitor "$internal" && fehbg
 fi

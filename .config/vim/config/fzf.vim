@@ -6,8 +6,7 @@ endf
 
 let g:fzf_action = {
 	    \ 'ctrl-q': function('s:send_quickfix_list'),
-	    \ 'ctrl-t': 'tab split',
-	    \ 'ctrl-x': 'split',
+	    \ 'ctrl-s': 'split',
 	    \ 'ctrl-v': 'vsplit'
 	    \ }
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.6, 'border' : 'sharp' } }

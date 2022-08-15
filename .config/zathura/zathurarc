@@ -1,8 +1,9 @@
 set sandbox none
 set selection-clipboard clipboard
-set guioptions ""
-set statusbar-basename false
+
+set guioptions "s"
 set statusbar-home-tilde true
+set statusbar-basename false
 set statusbar-page-percent true
 
 map <C-[> abort

@@ -10,7 +10,7 @@ alias \
 
 alias \
     dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
-    upg='sys-upg() { [ -n $1 ] && [ $1 != "--noconfirm" ] && return 1; sudo pacman -Syu $1 && aur-upg "$1" } && sys-upg' \
+    upd='sys-upd() { [ -n $1 ] && [ $1 != "--noconfirm" ] && return 1; sudo pacman -Syu $1 && aur-upd "$1" } && sys-upd' \
     vdir-sync='vdirsyncer sync && todo flush --yes && vdirsyncer sync calendars' \
     edit-sshc='chmod 700 ~/.ssh/config && vim ~/.ssh/config && chmod 400 ~/.ssh/config' \
     wtr='curl wttr.in/dortmund_oespel'
