@@ -1,4 +1,4 @@
-UNIT FILE                          STATE   VENDOR PRESET
+UNIT FILE                          STATE   PRESET
 acpid.service                      enabled disabled
 auto-cpufreq.service               enabled disabled
 bluetooth.service                  enabled disabled

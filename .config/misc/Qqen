@@ -11,8 +11,8 @@ at
 autoconf
 automake
 base
-bash-completion
 bc
+bear
 binutils
 bison
 bluez
@@ -21,6 +21,7 @@ bottom
 bspwm
 calibre
 clang
+cmake
 cppcheck
 cronie
 dialog
@@ -42,6 +43,7 @@ file
 findutils
 flameshot
 flex
+fmt
 fwupd
 fzf
 gawk
@@ -72,8 +74,6 @@ libtool
 linux
 linux-firmware
 linux-headers
-lua-language-server
-luarocks
 lvm2
 m4
 make
@@ -87,8 +87,10 @@ networkmanager
 newsboat
 ninja
 nnn
+nodejs
+noto-fonts
 noto-fonts-cjk
-npm
+noto-fonts-emoji
 ntfs-3g
 nvme-cli
 obs-studio
@@ -103,6 +105,7 @@ pass
 patch
 pavucontrol
 pdfcrack
+pdfgrep
 perl-rename
 picom
 pipewire-alsa
@@ -150,7 +153,6 @@ virtualbox
 virtualbox-guest-iso
 vnstat
 vpnc
-weechat
 wget
 which
 wireless_tools
@@ -205,6 +207,7 @@ xorg-xwd
 xorg-xwininfo
 xorg-xwud
 xsensors
+yarn
 youtube-dl
 zathura
 zathura-pdf-poppler

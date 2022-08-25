@@ -1,4 +1,4 @@
-UNIT FILE                   STATE   VENDOR PRESET
+UNIT FILE                   STATE   PRESET
 wireplumber.service         enabled enabled
 dirmngr.socket              enabled enabled
 gcr-ssh-agent.socket        enabled enabled
