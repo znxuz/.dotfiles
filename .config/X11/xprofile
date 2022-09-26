@@ -20,7 +20,7 @@ fi
 
 # TrackPoint
 ## accel built in:
-xinput set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" 0.9
+xinput set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" 0.8
 ## accel external:
 ## xinput set-prop "Lenovo TrackPoint Keyboard II Mouse" "libinput Accel Speed" -0.3
 ## tmp fix:

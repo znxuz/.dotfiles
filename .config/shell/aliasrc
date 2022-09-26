@@ -4,7 +4,7 @@ alias \
     ls='ls --color=auto --group-directories-first'
 
 alias \
-    nv='nordvpn' \
+    mlv='mullvad' \
     bt='bluetoothctl' \
     z='zathura() { /usr/bin/zathura "$@" &! } && zathura'
 
