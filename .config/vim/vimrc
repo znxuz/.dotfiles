@@ -4,7 +4,6 @@ set syn=on
 set nu
 set hid
 set tgc
-set nowrap
 set nosol
 set bs=indent,eol,nostop
 set bo=all

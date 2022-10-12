@@ -26,4 +26,4 @@ fi
 # nordvpn connect --group P2P "${1:-$server}" && exit 0
 
 notify-send -u low "connecting" &&
-    mullvad connect || notify-send -u low "failed to connect nv server"
+    mullvad connect
