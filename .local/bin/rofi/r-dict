@@ -18,7 +18,8 @@ search_dict()
 		word="$(get_word)"
 	elif [[ -n "$word" ]];
 	then
-	    rofi -theme-str 'window {width: 30%; anchor: center; location: center;} textbox {
+	    # width: 30%;
+	    rofi -theme-str 'window {fullscreen: true; anchor: center; location: center;} textbox {
 	    horizontal-align: 0.5; vertical-align: 0.5;}' -e "$result"
 	fi
     done
