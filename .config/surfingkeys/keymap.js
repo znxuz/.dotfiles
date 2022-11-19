@@ -27,6 +27,7 @@ Hints.style('font-size: 10px; border: solid 1px #ea6962; color: #fbf1c7; backgro
 Hints.style('font-size: 10px; border: solid 1px #ea6962; color: #fbf1c7; background: none; background-color: #1d2021;', 'text');
 settings.focusFirstCandidate = true;
 settings.hintAlign = "left";
+settings.hintShiftNonActive = true;
 
 unmap("R"); // unmap tab right
 unmap("E"); // unmap tab left
@@ -54,6 +55,9 @@ map("$", "g$"); // go to first tab
 unmap("gx");
 mapkey("gx", "open shortcuts", function() {
     tabOpenLink("chrome://extensions/shortcuts");
+});
+mapkey("gp", "open shortcuts", function() {
+    tabOpenLink("chrome://settings/passwords");
 });
 
 settings.theme = `

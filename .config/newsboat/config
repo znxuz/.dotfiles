@@ -7,6 +7,8 @@ unbind-key c
 unbind-key ,
 browser "/usr/bin/brave %u > /dev/null 2>&1 &"
 
+scrolloff 1000
+
 # Feed settings
 prepopulate-query-feeds yes
 refresh-on-startup yes
@@ -30,8 +32,8 @@ bind-key N prev-unread
 color background default default
 color listnormal white default
 color listnormal_unread default default
-color listfocus color16 white
-color listfocus_unread color16 white
+color listfocus default black
+color listfocus_unread default black
 color info default black
 color article default default
 
