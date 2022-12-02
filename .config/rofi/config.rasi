@@ -1,8 +1,8 @@
 configuration {
     modi: "run";
     font: "IBMPlexMono 10";
-    sort: false;
     cycle: true;
+    sort: true;
     matching: "fuzzy";
     dpi: 0;
     scroll-method: 1;

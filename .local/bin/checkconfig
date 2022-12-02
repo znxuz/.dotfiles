@@ -5,9 +5,9 @@ cd ${XDG_CONFIG_HOME-:$HOME/.config} && shopt -s expand_aliases \
 
 all_entries=$(ls --color=never | sort)
 cached=$(dfs ls-files -c | awk -F'/' '{print $1}' | sort | uniq)
-new_entries=$(comm -23 <(comm -23 <(echo "$all_entries") <(echo "$cached")) <(sort .gitignore))
+readarray -t new_entries < <(comm -23 <(comm -23 <(echo "$all_entries") <(echo "$cached")) <(sort .gitignore))
 
-for entry in $new_entries
+for entry in "${new_entries[@]}"
 do
     read -rp "cache this directory [$entry] (y|n)?: " ret
     if [[ -n "$ret" && "$ret" =~ [N|n] ]]; then
