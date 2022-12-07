@@ -8,6 +8,7 @@ rf="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/colors.rasi"
 ztr="${XDG_CONFIG_HOME:-$HOME/.config}/zathura/colorsrc"
 feh="${XDG_CONFIG_HOME:-$HOME/.config}/feh/.mode"
 dnst_dir="${XDG_CONFIG_HOME:-$HOME/.config}/dunst/dunstrc.d"
+bsp="${XDG_CONFIG_HOME:-$HOME/.config}/bspwm/colors"
 
 query()
 {
@@ -49,7 +50,7 @@ main()
 {
     if [[ -n "$1" ]]; then
 	case "$1" in
-	    -q)
+	    -q|--query)
 		query "dark" "$acty" && echo "dark" || echo "light"
 		exit 0
 		;;
@@ -60,6 +61,7 @@ main()
 
     switch_wp &&
 	toggle "$plb" && "${XDG_CONFIG_HOME:-$HOME/.config}/polybar/launch.sh" > /dev/null 2>&1 &&
+	toggle "$bsp" && bspc wm -r &&
 	toggle "$acty" &&
 	toggle "$vm" &&
 	toggle "$tmx" &&

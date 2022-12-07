@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+query="$(pass | tail -n+2 | awk '{print $2}' | fzf --preview 'pass show {}')"
+
+[[ -z "$query" ]] && exit 1 || pass show "$query"
