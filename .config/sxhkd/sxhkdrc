@@ -29,16 +29,15 @@ XF86MonBrightnessDown
 	xbacklight -dec 10
 
 # systems
-super + shift + Escape ; {k, b, s, S, u, r, o, X, c, w}
+super + shift + Escape ; {k, s, S, U, R, o, X, c, W}
 	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded"\
-	, $XDG_CONFIG_HOME/polybar/launch.sh > /dev/null 2>&1 \
-	, notify-send -u low "zzz..." && sleep 1 && systemctl suspend\
-	, notify-send -u low "  " && sleep 1 && systemctl poweroff\
-	, notify-send -u low "  " && sleep 1 && loginctl terminate-session self\
-	, notify-send -u low "  " && sleep 1 && reboot\
-	, notify-send -u low "  " && sleep 1 && xset dpms force off\
-	, xrandr-refresh\
-	, notify-send -u low "  " && color-switch\
+	, notify-send -u low "zzz..." && sleep 0.5 && systemctl suspend\
+	, notify-send -u low "  " && sleep 0.5 && systemctl poweroff\
+	, notify-send -u low "  " && sleep 0.5 && loginctl terminate-session self\
+	, notify-send -u low "  " && sleep 0.5 && reboot\
+	, notify-send -u low "  " && sleep 0.5 && xset dpms force off\
+	, notify-send -u low "  " && sleep 0.5 && xrandr-refresh\
+	, notify-send -u low "  " && sleep 0.5 && color-switch\
 	, bspc wm -r\
 	}
 

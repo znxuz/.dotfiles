@@ -6,6 +6,10 @@
     "signature.enable": false,
     "coc.source.buffer.enable": false,
 
+    "json.enable": true,
+    "clangd.enabled": true,
+    "sh.enable": true,
+
     "languageserver": {
     }
 }

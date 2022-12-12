@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-acty="${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/colors.yml"
+alcty="${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/colors.yml"
 vm="${XDG_CONFIG_HOME:-$HOME/.config}/vim/config/bg.vim"
 tmx="${XDG_CONFIG_HOME:-$HOME/.config}/tmux/colors.conf"
 plb="${XDG_CONFIG_HOME:-$HOME/.config}/polybar/colors.ini"
@@ -51,7 +51,7 @@ main()
     if [[ -n "$1" ]]; then
 	case "$1" in
 	    -q|--query)
-		query "dark" "$acty" && echo "dark" || echo "light"
+		query "dark" "$alcty" && echo "dark" || echo "light"
 		exit 0
 		;;
 	    *)
@@ -59,15 +59,14 @@ main()
 	esac
     fi
 
-    switch_wp &&
-	toggle "$plb" && "${XDG_CONFIG_HOME:-$HOME/.config}/polybar/launch.sh" > /dev/null 2>&1 &&
+    switch_wp && switch_dunst &&
+	toggle "$plb" && # polybar reloads with bspwm
 	toggle "$bsp" && bspc wm -r &&
-	toggle "$acty" &&
+	toggle "$alcty" &&
 	toggle "$vm" &&
-	toggle "$tmx" &&
+	toggle "$tmx" && tmux source-file ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf &&
 	toggle "$rf" &&
-	toggle "$ztr" &&
-	switch_dunst
+	toggle "$ztr"
 }
 
 main "$@"

@@ -37,7 +37,7 @@ check_count()
 
 }
 
-which wmctrl > /dev/null 2>&1 || exit 1
+command -v wmctrl > /dev/null 2>&1 || exit 1
 
 bspc subscribe node_add node_remove node_transfer desktop_focus | while read -r event;
 do
