@@ -26,13 +26,14 @@ toggle()
     else
 	sed -i 's/light/dark/' "$path"
     fi
+    # echo "edited $path" >> ~/log
 }
 
 switch_wp()
 {
     if grep -oq "dark" "$feh" > /dev/null;
     then
-	fehbg -l && xbacklight -set 30
+	fehbg -l && xbacklight -set 40
     else
 	fehbg -d && xbacklight -set 60
     fi
@@ -59,16 +60,14 @@ main()
 	esac
     fi
 
-    toggle "$plb" && # polybar reloads with bspwm
+    switch_wp && switch_dunst &&
+	toggle "$plb" && # polybar reloads with bspwm
 	toggle "$bsp" && bspc wm -r &&
 	toggle "$alcty" &&
 	toggle "$vm" &&
-	toggle "$tmx" && tmux source-file ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf &&
 	toggle "$rf" &&
 	toggle "$ztr" &&
-	switch_dunst &&
-	switch_wp
-
+	toggle "$tmx" && tmux source-file "${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"
 }
 
 main "$@"
