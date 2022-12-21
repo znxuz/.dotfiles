@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# server="$(curl --silent "https://api.nordvpn.com/v1/servers/recommendations?filters\[country_id\]=74&limit=1" | jq --raw-output '.[].hostname' | cut -d'.' -f1)"
-
 if systemctl status mullvad-daemon.service; then
     notify-send -u low "mullvad-daemon is running, proceeding to connect"
 else
@@ -22,8 +20,6 @@ else
     exit 1
 fi
 fi
-
-# nordvpn connect --group P2P "${1:-$server}" && exit 0
 
 notify-send -u low "connecting" &&
     mullvad connect
