@@ -7,7 +7,7 @@ bspc monitor \
     "$(xrandr | grep '\bconnected\b' | grep -v 'primary' | cut -d' ' -f1)" -r
 bspc monitor \
     "$(xrandr | grep '\bconnected primary\b' | head -n1 | cut -d' ' -f1)" \
-    -d I II III IV
+    -d I II III IV V
 
 bspc config single_monocle          true
 bspc config borderless_monocle      true
