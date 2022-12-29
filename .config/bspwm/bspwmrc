@@ -1,15 +1,13 @@
 #! /bin/sh
 
 xsetroot -cursor_name left_ptr
-$HOME/.config/polybar/launch.sh
+"${XDG_CONFIG_HOME:-$HOME/.config}"/polybar/launch.sh
 
 bspc monitor \
-    $(xrandr | grep '\bconnected\b' | grep -v 'primary' | cut -d' ' -f1) \
-    -r
+    "$(xrandr | grep '\bconnected\b' | grep -v 'primary' | cut -d' ' -f1)" -r
 bspc monitor \
-    $(xrandr | grep '\bconnected primary\b' \
-    | head -n1 | cut -d' ' -f1 | tr -d '\n') \
-    -d I II III IV V
+    "$(xrandr | grep '\bconnected primary\b' | head -n1 | cut -d' ' -f1)" \
+    -d I II III IV
 
 bspc config single_monocle          true
 bspc config borderless_monocle      true
@@ -30,7 +28,7 @@ bspc config initial_polarity first_child
 
 bspc rule -a Zathura state=tiled
 
-if [[ "$(xrandr | awk '/primary/ {print $1}')" != "eDP1" ]] &&
+if [ "$(xrandr | awk '/primary/ {print $1}')" != "eDP1" ] &&
     which acty-auto-pad > /dev/null 2>&1; then
     pgrep -f "bash.+acty-auto-pad" | xargs -I{} kill {};
     acty-auto-pad
@@ -38,4 +36,5 @@ else
     acty-padding-toggle unpad
 fi
 
-source ${XDG_CONFIG_HOME:-$HOME/.config}/bspwm/colors
+bspc config focused_border_color    \#ea6962
+source "${XDG_CONFIG_HOME:-$HOME/.config}"/bspwm/colors

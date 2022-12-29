@@ -33,9 +33,9 @@ switch_wp()
 {
     if grep -oq "dark" "$feh" > /dev/null;
     then
-	fehbg -l && xbacklight -set 40
+	fehbg -l
     else
-	fehbg -d && xbacklight -set 60
+	fehbg -d
     fi
 }
 
@@ -61,7 +61,7 @@ main()
     fi
 
     switch_wp && switch_dunst &&
-	toggle "$plb" && # polybar reloads with bspwm
+	toggle "$plb" && # polybar reloads with bspwm, no need to manually refresh
 	toggle "$bsp" && bspc wm -r &&
 	toggle "$alcty" &&
 	toggle "$vm" &&

@@ -1,4 +1,4 @@
-# opening programs
+# program controls
 super + shift + Return ; {b, d, q, m, v}
 	{ $BROWSER\
 	, dropbox\
@@ -7,13 +7,19 @@ super + shift + Return ; {b, d, q, m, v}
 	, vb-start\
 	}
 
-# alacritty
+## alacritty
 super + Return
 	alacritty -e tmux
 alt + z
 	acty-padding-toggle
 
-## controls (tp)
+## mpv
+
+super + ctrl + {p}
+    { echo 'cycle pause' | socat - /tmp/mpv_ipc \
+    }
+
+# controls
 XF86AudioRaiseVolume
 	pactl set-sink-volume @DEFAULT_SINK@ +5%
 XF86AudioLowerVolume
@@ -22,13 +28,8 @@ XF86AudioMute
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
 XF86AudioMicMute
 	pactl set-source-mute @DEFAULT_SOURCE@ toggle
-# brightness
-XF86MonBrightnessUp
-	xbacklight -inc 10
-XF86MonBrightnessDown
-	xbacklight -dec 10
 
-# systems
+## system
 super + shift + Escape ; {k, s, S, U, R, o, X, c, W}
 	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded"\
 	, notify-send -u low "zzz..." && sleep 0.5 && systemctl suspend\
@@ -40,6 +41,12 @@ super + shift + Escape ; {k, s, S, U, R, o, X, c, W}
 	, notify-send -u low "  " && sleep 0.5 && color-switch\
 	, bspc wm -r\
 	}
+
+## brightness
+XF86MonBrightnessUp
+	xbacklight -inc 10
+XF86MonBrightnessDown
+	xbacklight -dec 10
 
 # bspwm
 
