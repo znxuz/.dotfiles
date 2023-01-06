@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 setup_dotfiles()
 {
@@ -30,5 +30,8 @@ symlink_etc_conf()
     done
 }
 
-setup_dotfiles
-symlink_etc_conf
+read -rp "Setup dotfiles? (y|n)?: " ret
+[[  -n "$ret" && "$ret" =~ [N|n] ]] && setup_dotfiles
+
+read -rp "Setup symlinks? (y|n)?: " ret
+[[  -n "$ret" && "$ret" =~ [N|n] ]] && symlink_etc_conf

@@ -11,7 +11,7 @@ super + shift + Return ; {b, d, q, m, v}
 super + Return
 	alacritty -e tmux
 alt + z
-	acty-padding-toggle
+	alcty-padding-toggle
 
 ## mpv
 

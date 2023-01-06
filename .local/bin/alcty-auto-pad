@@ -30,9 +30,9 @@ check_count()
     [[ -z "$local_win_list" || ! "$local_win_list" =~ .+Alacritty ]] && return
 
     if [[ "$(echo "$local_win_list" | wc -l)" -eq 1 ]]; then
-	acty-padding-toggle pad
+	alcty-padding-toggle pad
     else
-	acty-padding-toggle unpad
+	alcty-padding-toggle unpad
     fi
 
 }

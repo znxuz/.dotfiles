@@ -29,11 +29,11 @@ bspc config initial_polarity first_child
 bspc rule -a Zathura state=tiled
 
 if [ "$(xrandr | awk '/primary/ {print $1}')" != "eDP1" ] &&
-    which acty-auto-pad > /dev/null 2>&1; then
-    pgrep -f "bash.+acty-auto-pad" | xargs -I{} kill {};
-    acty-auto-pad
+    which alcty-auto-pad > /dev/null 2>&1; then
+    pgrep -f "bash.+alcty-auto-pad" | xargs -I{} kill {};
+    alcty-auto-pad
 else
-    acty-padding-toggle unpad
+    alcty-padding-toggle unpad
 fi
 
 bspc config focused_border_color    \#ea6962

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+cnt=0
+sum=0
+
+for bat_dir in /sys/class/power_supply/BAT?;
+do
+    (( ++cnt ))
+    capacity="$(cat "$bat_dir/capacity")"
+    (( sum += capacity ))
+done
+
+total=$(( sum / cnt ))
+[[ $total -lt 5 ]] && notify-send -u critical "Battery Low"
