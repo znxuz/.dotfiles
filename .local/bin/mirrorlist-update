@@ -1,12 +1,11 @@
 #!/usr/bin/env sh
 
 if [ -z "$1" ] || [ "$1" != "now" ]; then
-    notify-send -t 300000 -u critical "mirrorlist update" "in 5 minutes"
-    sleep 5m
+    notify-send -t 300000 -u critical "mirrorlist update" "in 1 minutes"
+    sleep 1m
 fi
 
 log="$HOME/reflector.log"
 touch "$log"
 sudo reflector --country Germany --sort score -f 50 -l 100 --save /etc/pacman.d/mirrorlist | tee "$log" 2>&1 &&
-    printf "\n== mirrorlist updated ==\n\n" | tee "$log" &&
-    cat /etc/pacman.d/mirrorlist | tee "$log"
+    printf "\n== mirrorlist updated ==\n\n" | tee "$log" && tee "$log" < /etc/pacman.d/mirrorlist
