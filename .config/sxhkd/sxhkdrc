@@ -13,10 +13,10 @@ super + Return
 alt + z
 	alcty-padding-toggle
 
-## mpv
+## playerctl
 
 super + ctrl + {p}
-    { echo 'cycle pause' | socat - /tmp/mpv_ipc \
+    { playerctl play-pause \
     }
 
 # controls
