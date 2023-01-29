@@ -36,5 +36,5 @@ else
     alcty-padding-toggle unpad
 fi
 
-bspc config focused_border_color    \#ea6962
 source "${XDG_CONFIG_HOME:-$HOME/.config}"/bspwm/colors
+bspc config focused_border_color    \#ea6962

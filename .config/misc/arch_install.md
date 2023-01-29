@@ -106,7 +106,6 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 uuid=$(blkid --match-tag UUID -o value /dev/nvme0n1p2)
 vim /etc/default/grub
 GRUB_CMDLINE_LINUX="cryptdevice=UUID=${uuid}:cryptlvm root=/dev/volgrp/root"
-GRUB_DISABLE_OS_PROBER=false
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
