@@ -14,9 +14,10 @@ alt + z
 	alcty-padding-toggle
 
 ## playerctl
-
-super + ctrl + {p}
+super + ctrl + {space, n, p}
     { playerctl play-pause \
+    , playerctl next \
+    , playerctl previous \
     }
 
 # controls

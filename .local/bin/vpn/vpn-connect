@@ -23,4 +23,4 @@ fi
 
 notify-send -u low "connecting" &&
     mullvad connect &&
-    sleep 2 && vpn-status
+    sleep 1 && vpn-status
