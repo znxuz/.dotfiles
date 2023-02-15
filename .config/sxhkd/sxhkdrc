@@ -1,7 +1,7 @@
 # program controls
 super + shift + Return ; {b, d, q, m, v}
 	{ $BROWSER\
-	, dropbox\
+	, discord\
 	, qbittorrent\
 	, mailspring\
 	, vb-start\

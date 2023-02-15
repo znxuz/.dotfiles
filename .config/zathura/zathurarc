@@ -16,3 +16,5 @@ map b toggle_statusbar
 
 set recolor true
 include colorsrc
+
+set cache-size 100
