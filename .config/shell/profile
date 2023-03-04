@@ -5,7 +5,7 @@ export EDITOR="vim"
 export VISUAL="$EDITOR"
 export SUDO_EDITOR="$EDITOR"
 export TERMINAL="alacritty"
-export BROWSER="brave"
+export BROWSER="firefox"
 export LESSHISTFILE="-"
 
 export XDG_CONFIG_HOME=$HOME/.config
@@ -22,7 +22,7 @@ export PASSWORD_STORE_DIR=$XDG_DATA_HOME/password-store
 export GTK2_RC_FILES=$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java
 export XAUTHORITY=$XDG_CONFIG_HOME/X11/Xauthority
-
+export CARGO_HOME=$XDG_DATA_HOME/cargo
 # fzf
 export ESCDELAY="1"
 export FZF_DEFAULT_OPTS='--border=sharp --color=16 --layout=reverse --height=50% --cycle'

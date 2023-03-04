@@ -6,10 +6,12 @@ type = discover
 
 [locale]
 timeformat = %H:%M
-dateformat = %d/%m/%Y
-longdateformat = %d/%m/%Y
-datetimeformat = %d/%m/%Y %H:%M
-longdatetimeformat = %d/%m/%Y %H:%M
+dateformat = %d.%m
+longdateformat = %d.%m.%Y
+datetimeformat = %d.%m %H:%M
+longdatetimeformat = %d.%m.%Y %H:%M
 
 [default]
 default_calendar = personal
+print_new = event
+timedelta = 30d
