@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+rm -rf /tmp/firefox-omni
+
+mkdir /tmp/firefox-omni && cd /tmp/firefox-omni || exit
+unzip /usr/lib/firefox/browser/omni.ja
+
+# change ctrl-[
+patch chrome/browser/content/browser/browser.xhtml <<EOF
+@@ -292,7 +292,7 @@
+     <key id="openFileKb" data-l10n-id="file-open-shortcut" command="Browser:OpenFile"  modifiers="accel"/>
+     <key id="key_savePage" data-l10n-id="save-page-shortcut" command="Browser:SavePage" modifiers="accel"/>
+     <key id="printKb" data-l10n-id="print-shortcut" command="cmd_print"  modifiers="accel"/>
+-    <key id="key_close" data-l10n-id="close-shortcut" command="cmd_close" modifiers="accel" reserved="true"/>
++    <key id="key_close" data-l10n-id="close-shortcut" command="cmd_close" modifiers="alt" reserved="true"/>
+     <key id="key_closeWindow" data-l10n-id="close-shortcut" command="cmd_closeWindow" modifiers="accel,shift" reserved="true"/>
+     <key id="key_toggleMute" data-l10n-id="mute-toggle-shortcut" command="cmd_toggleMute" modifiers="control"/>
+     <key id="key_undo"
+@@ -322,8 +322,8 @@
+     <key keycode="VK_BACK" command="cmd_handleShiftBackspace" modifiers="shift" reserved="false"/>
+     <key id="goBackKb"  keycode="VK_LEFT" command="Browser:Back" modifiers="alt"/>
+     <key id="goForwardKb"  keycode="VK_RIGHT" command="Browser:Forward" modifiers="alt"/>
+-    <key id="goBackKb2" data-l10n-id="nav-back-shortcut-alt" command="Browser:Back" modifiers="accel"/>
+-    <key id="goForwardKb2" data-l10n-id="nav-fwd-shortcut-alt" command="Browser:Forward" modifiers="accel"/>
++    <key id="goBackKb2" command="Browser:Back" key="j" modifiers="alt"/>
++    <key id="goForwardKb2" command="Browser:Forward" key="k" modifiers="alt"/>
+     <key id="goHome" keycode="VK_HOME" oncommand="BrowserHome();" modifiers="alt"/>
+     <key keycode="VK_F5" command="Browser:Reload"/>
+     <key id="showAllHistoryKb" data-l10n-id="history-show-all-shortcut" command="Browser:ShowAllHistory" modifiers="accel,shift"/>
+EOF
+
+zip -0DXqr /tmp/omni.ja ./*
+sudo cp /usr/lib/firefox/browser/omni.ja /usr/lib/firefox/browser/omni.ja.orig
+sudo mv /tmp/omni.ja /usr/lib/firefox/browser/omni.ja
+rm -rf ~/.cache/mozilla/firefox/*/startupCache
+

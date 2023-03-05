@@ -10,6 +10,8 @@
     "clangd.enabled": true,
     "sh.enable": true,
 
+    "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
+
     "languageserver": {
     }
 }
