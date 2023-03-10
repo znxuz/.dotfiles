@@ -5,7 +5,7 @@ unbind-key H
 unbind-key L
 unbind-key c
 unbind-key ,
-browser "/usr/bin/brave %u > /dev/null 2>&1 &"
+browser "$BROWSER %u > /dev/null 2>&1 &"
 
 scrolloff 1000
 
