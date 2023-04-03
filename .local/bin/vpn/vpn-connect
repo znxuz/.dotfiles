@@ -12,13 +12,13 @@ else
     expect eof
 DONE
 
-if systemctl status mullvad-daemon.service;
-then
-    notify-send -u low "mullvad-daemon started successfully"
-else
-    notify-send -u low "starting mullvad-daemon failed"
-    exit 1
-fi
+    if systemctl status mullvad-daemon.service;
+    then
+	notify-send -u low "mullvad-daemon started successfully"
+    else
+	notify-send -u low "starting mullvad-daemon failed"
+	exit 1
+    fi
 fi
 
 notify-send -u low "connecting" &&
