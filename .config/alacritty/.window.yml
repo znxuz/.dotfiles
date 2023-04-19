@@ -1,0 +1,6 @@
+window:
+  padding:
+    x: 200
+    y: 51
+    opacity: 1
+  dynamic_padding: true

@@ -52,3 +52,6 @@ export MAVEN_OPTS="-Dmaven.repo.local=$XDG_DATA_HOME/m2"
 # npm
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/config
 export NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
+
+# QT
+export QT_AUTO_SCREEN_SCALE_FACTOR=1

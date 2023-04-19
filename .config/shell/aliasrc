@@ -14,4 +14,5 @@ alias \
     vdir-sync='vdirsyncer sync && todo flush --yes && vdirsyncer sync calendars' \
     edit-sshc='chmod 700 ~/.ssh/config && vim ~/.ssh/config && chmod 400 ~/.ssh/config' \
     newscr='make_scr() { echo "#!/usr/bin/env bash\n\n" > "$1" && chmod 744 "$1" && vim +"norm G" "$1" } && make_scr' \
+    grub-upd='sudo grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB && sudo grub-mkconfig -o /boot/grub/grub.cfg' \
     wtr='curl wttr.in/dortmund_oespel'

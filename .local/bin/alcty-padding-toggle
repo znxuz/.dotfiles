@@ -3,7 +3,7 @@
 config=${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/window.yml
 
 no_pad=20
-pad_x=255
+pad_x=200
 pad_y=51
 
 pad()
