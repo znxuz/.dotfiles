@@ -2,13 +2,13 @@
 
 setup_dotfiles()
 {
-    [ -d $HOME/.dotfiles ] && echo "dotfiles already exist" && return
-    src=$HOME/dotfiles.tmp
-    git clone --separate-git-dir=$HOME/.dotfiles \
-	git@github.com:zijian-x/.dotfiles.git $src &&
-	find $src -maxdepth 1 -not -path $src \
-	-exec mv -f {} $HOME \; && rmdir $src &&
-	git --git-dir=$HOME/.dotfiles --work-tree=$HOME	\
+    [ -d "$HOME"/.dotfiles ] && echo "dotfiles already exist" && return
+    src="$HOME"/dotfiles.tmp
+    git clone --separate-git-dir="$HOME"/.dotfiles \
+	git@github.com:zijian-x/.dotfiles.git "$src" &&
+	find "$src" -maxdepth 1 -not -path "$src" \
+	-exec mv -f {} "$HOME" \; && rmdir "$src" &&
+	git --git-dir="$HOME"/.dotfiles --work-tree="$HOME"	\
 	config --local status.showUntrackedFiles no
 }
 
@@ -31,7 +31,7 @@ symlink_etc_conf()
 }
 
 read -rp "Setup dotfiles? (y|n)?: " ret
-[[  -n "$ret" && "$ret" =~ [N|n] ]] && setup_dotfiles
+[[  -z "$ret" || "$ret" =~ [Y|y] ]] && setup_dotfiles
 
 read -rp "Setup symlinks? (y|n)?: " ret
-[[  -n "$ret" && "$ret" =~ [N|n] ]] && symlink_etc_conf
+[[  -z "$ret" || "$ret" =~ [Y|y] ]] && symlink_etc_conf
