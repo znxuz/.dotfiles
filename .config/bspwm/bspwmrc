@@ -12,9 +12,9 @@ bspc monitor \
 bspc config single_monocle          true
 bspc config borderless_monocle      true
 
-bspc config split_ratio             0.5
-bspc config border_width            3
-bspc config window_gap              30
+bspc config split_ratio             0
+bspc config border_width            2
+bspc config window_gap              20
 bspc config top_padding             0
 bspc config right_padding           0
 bspc config bottom_padding          0

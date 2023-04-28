@@ -14,8 +14,8 @@
 window {
     background-color: @background;
     border: 2;
-    width: 20%;
-    padding: 20;
+    width: 40%;
+    padding: 10;
 }
 
 mainbox {

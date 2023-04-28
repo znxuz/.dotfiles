@@ -5,4 +5,4 @@ aug END
 
 setl tw=80
 setl spell spl=en_us,de spf=~/.vim/spell/en.utf-8.add
-nnoremap <buffer> <leader>gp <cmd>silent !pandoc --wrap=preserve --pdf-engine=xelatex -V geometry:margin=2cm -N % -t pdf \| zathura - &<cr>
+nnoremap <buffer> <leader>gp <cmd>silent !pandoc --wrap=preserve --pdf-engine=xelatex -V geometry:margin=2cm % -t pdf \| zathura - &<cr>
