@@ -10,7 +10,7 @@ alias \
 
 alias \
     dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
-    upd='sys-upd() { [ -n $1 ] && [ $1 != "--noconfirm" ] && return 1; sudo pacman -Syu $1 && aur-upd "$1" && ~/.config/polybar/launch.sh > /dev/null 2>&1 &! } && sys-upd' \
+    upd='sys-upd() { sudo pacman -Syu && paru -Syu && ~/.config/polybar/launch.sh > /dev/null 2>&1 &! } && sys-upd' \
     vdir-sync='vdirsyncer sync && todo flush --yes && vdirsyncer sync calendars' \
     edit-sshc='chmod 700 ~/.ssh/config && vim ~/.ssh/config && chmod 400 ~/.ssh/config' \
     newscr='make_scr() { echo "#!/usr/bin/env bash\n\n" > "$1" && chmod 744 "$1" && vim +"norm G" "$1" } && make_scr' \

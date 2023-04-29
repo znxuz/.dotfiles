@@ -1,5 +1,7 @@
-Xft.dpi: 120
-*.dpi: 120
-
-! Xft.dpi: 168
-! *.dpi: 168
+#ifdef HIDPI
+    Xft.dpi: 192
+    *.dpi: 192
+#else
+    Xft.dpi: 120
+    *.dpi: 120
+#endif

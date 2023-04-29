@@ -1,9 +1,10 @@
 configuration {
     modi: "run";
-    font: "IBMPlexMono 12";
+    font: "IBMPlexMono 10";
     cycle: true;
     sort: true;
     matching: "fuzzy";
+    dpi: 0;
     scroll-method: 1;
     timeout {
 	action: "kb-cancel";

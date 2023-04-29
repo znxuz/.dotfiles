@@ -1,33 +1,32 @@
 #!/bin/sh
 
-get_scale()
-{
-    resolution="$1"
-    if [ "$resolution" = '1920x1080' ]; then
-	echo 1
-	# echo 1.5
-    else
-	echo 1
-    fi
-}
+userresources=${XDG_CONFIG_HOME:-$HOME/.config}/X11/Xresources
 
-displ_status=$(xrandr | grep -o '\bconnected\b' | wc -l)
-if [ "$displ_status" -gt 1 ]
-then
+displ_count=$(xrandr | grep -o '\bconnected\b' | wc -l)
+
+if [ "$displ_count" -gt 1 ]; then
+    # set global dpi for X
+    xrdb -DHIDPI=0 "$userresources"
+
     # 4k single external monitor
     xrandr_output="$(xrandr | grep -v 'eDP1')"
     display=$(echo "$xrandr_output" | grep '\bconnected\b' | cut -d' ' -f1)
     mode=$(echo "$xrandr_output" | grep '\bconnected\b' -A1 | tail -n1 \
 	| grep -Eo '[[:digit:]]{4}x[[:digit:]]{4}')
+    dpi=$(xrdb -query | awk '/*.dpi/ {print $2}')
 
-    xrandr --output "$display" --primary --mode "$mode" --scale 1 --dpi 168 \
-	--output eDP1 --off
-	else
-	    # integrated display
-	    display=$(xrandr | grep '\bconnected\b' | cut -d' ' -f1)
-	    mode=$(xrandr | grep -A1 '\bconnected\b' | tail -n1 \
-		| grep -Eo '[[:digit:]]{4}x[[:digit:]]{4}')
+    xrandr --output "$display" --primary --mode "$mode" \
+	--dpi "$dpi" --output eDP1 --off
+else
+    # set global dpi for X
+    xrdb "$userresources"
 
-	    xrandr --output "$display" --primary --mode "$mode" \
-		--scale 1 --dpi 168
+    # integrated display
+    display=$(xrandr | grep '\bconnected\b' | cut -d' ' -f1)
+    mode=$(xrandr | grep -A1 '\bconnected\b' | tail -n1 \
+	| grep -Eo '[[:digit:]]{4}x[[:digit:]]{4}')
+    dpi=$(xrdb -query | awk '/*.dpi/ {print $2}')
+
+    xrandr --output "$display" --primary --mode "$mode" \
+	--dpi "$dpi"
 fi
