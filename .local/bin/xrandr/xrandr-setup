@@ -5,10 +5,10 @@ userresources=${XDG_CONFIG_HOME:-$HOME/.config}/X11/Xresources
 displ_count=$(xrandr | grep -o '\bconnected\b' | wc -l)
 
 if [ "$displ_count" -gt 1 ]; then
-    # set global dpi for X
+    # set dpi for X with HIDPI preprocessor defined
     xrdb -DHIDPI=0 "$userresources"
 
-    # 4k single external monitor
+    # for 4k single external monitor
     xrandr_output="$(xrandr | grep -v 'eDP1')"
     display=$(echo "$xrandr_output" | grep '\bconnected\b' | cut -d' ' -f1)
     mode=$(echo "$xrandr_output" | grep '\bconnected\b' -A1 | tail -n1 \
@@ -18,10 +18,10 @@ if [ "$displ_count" -gt 1 ]; then
     xrandr --output "$display" --primary --mode "$mode" \
 	--dpi "$dpi" --output eDP1 --off
 else
-    # set global dpi for X
+    # set dpi for X on integrated display
     xrdb "$userresources"
 
-    # integrated display
+    # for integrated display
     display=$(xrandr | grep '\bconnected\b' | cut -d' ' -f1)
     mode=$(xrandr | grep -A1 '\bconnected\b' | tail -n1 \
 	| grep -Eo '[[:digit:]]{4}x[[:digit:]]{4}')
