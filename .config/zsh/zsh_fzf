@@ -1,4 +1,5 @@
 source /usr/share/fzf/key-bindings.zsh
+
 # reset defaults
 bindkey -r '^T'
 bindkey '^[p' fzf-file-widget
@@ -8,7 +9,7 @@ bindkey '^[o' fzf-history-widget
 
 cd_fzf()
 {
-    local ret="$(fd -td -uu -L -E ".git/" -E ".cache/" \
+    local ret="$(fd -td -u -L \
 	--base-directory $1 -0 | fzf --read0 --preview="tree -L 1 {}" \
 	--bind="ctrl-space:toggle-preview" --preview-window=:hidden)"
 
@@ -20,7 +21,7 @@ zle -N cd_fzf_home && bindkey '^[C' cd_fzf_home
 
 find_fzf()
 {
-    local ret="$(fd -uu -E ".git/" -E ".cache/" --base-directory $1 -0 \
+    local ret="$(fd -u --base-directory $1 -0 \
 	| fzf --read0 -m | sed -E -e "s|./|$1/|" -e 's/ /\\ /g' | tr '\n' ' ')"
 
     [[ ! -z "$ret" ]] && LBUFFER="$LBUFFER$ret"

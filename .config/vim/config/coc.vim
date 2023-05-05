@@ -6,13 +6,14 @@ nn <silent> gr <plug>(coc-references)
 nn <silent> [e <plug>(coc-diagnostic-prev)
 nn <silent> ]e <plug>(coc-diagnostic-next)
 nn <leader>e <cmd>CocFzfList diagnostics<cr>
-nn <leader>ce <cmd>call CocAction('diagnosticPreview')<cr>
+nn <leader>ce <cmd>CocFzfList diagnostics --current-buf<cr>
+nn <leader>ae <cmd>call CocAction('diagnosticPreview')<cr>
 nn <leader>s <cmd>CocFzfList outline<cr>
-nn <leader>ca <plug>(coc-codeaction)
-xn <leader>ca <plug>(coc-codeaction-selected)
-nn <leader>cr <plug>(coc-rename)
-nn <leader>cf <plug>(coc-fix-current)
-nn <leader>cA <cmd>CocFzfList commands<cr>
+nn <leader>aa <plug>(coc-codeaction)
+xn <leader>aa <plug>(coc-codeaction-selected)
+nn <leader>ar <plug>(coc-rename)
+nn <leader>af <plug>(coc-fix-current)
+nn <leader>A <cmd>CocFzfList commands<cr>
 ino <c-h> <cmd>call CocActionAsync('showSignatureHelp')<cr>
 nn gh <cmd>if CocAction('hasProvider', 'hover')<cr>call CocActionAsync('doHover')<cr>endif<cr>
 

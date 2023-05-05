@@ -9,10 +9,11 @@ alias \
     za='zathura() { /usr/bin/zathura "$@" &! } && zathura'
 
 alias \
+    ckhal='khal calendar' \
     dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
-    upd='sys-upd() { sudo pacman -Syu && paru -Syu && ~/.config/polybar/launch.sh > /dev/null 2>&1 &! } && sys-upd' \
     vdir-sync='vdirsyncer sync && todo flush --yes && vdirsyncer sync calendars' \
     edit-sshc='chmod 700 ~/.ssh/config && vim ~/.ssh/config && chmod 400 ~/.ssh/config' \
+    upd='sys-upd() { sudo pacman -Syu && paru -Syu && ~/.config/polybar/launch.sh > /dev/null 2>&1 &! } && sys-upd' \
     newscr='make_scr() { echo "#!/usr/bin/env bash\n\n" > "$1" && chmod 744 "$1" && vim +"norm G" "$1" } && make_scr' \
     grub-upd='sudo grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB && sudo grub-mkconfig -o /boot/grub/grub.cfg' \
     wtr='curl wttr.in/dortmund_oespel'
