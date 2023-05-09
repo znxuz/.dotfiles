@@ -28,6 +28,7 @@ let g:fzf_colors =
 	    \ 'header':  ['fg', 'Comment']
 	    \ }
 let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/']
+let $FZF_DEFAULT_COMMAND=$FZF_DEFAULT_COMMAND .. ' -tf'
 let $FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS .. ' ' ..
 	    \ '--bind ctrl-y:preview-up,ctrl-e:preview-down,' ..
 	    \ 'ctrl-b:preview-page-up,ctrl-f:preview-page-down,' ..
@@ -43,7 +44,3 @@ nn <leader>cl <cmd>Blines<cr>
 nn <leader>A <cmd>Commands<cr>
 nn <leader>h <cmd>Helptags<cr>
 nn <leader>o <cmd>History<cr>
-
-" map('n', '<leader>cg', '<cmd>FzfLua live_grep cwd=%:p:h<cr>')
-" map('n', '<leader>if', '<cmd>lua require("config.fzflua").find_files_in()<cr>')
-" map('n', '<leader>ig', '<cmd>lua require("config.fzflua").grep_in()<cr>')
