@@ -57,8 +57,8 @@ set stl=
 set stl+=%#STLMode#%{'\ \ '.toupper(mode()).'\ '}%#STL#
 set stl+=%#STLMode#%{&readonly?'\ \|\ '.'RO\ ':''}%#STL#
 set stl+=%#STLMode#%{&paste?'\ \|\ '.'P\ ':''}%#STL#
-set stl+=%<%{'\ \ '.fnamemodify(getcwd(),':~')}
-set stl+=%{expand('%')==''?'':'\ \ \|\ '.fnamemodify(expand('%:p'),\ ':~:.')}
+set stl+=%<%{'\ \ '.pathshorten(fnamemodify(getcwd(),':~'),2)}
+set stl+=%{expand('%')==''?'':'\ \ \|\ '.pathshorten(fnamemodify(expand('%:p'),\ ':~:.'),2)}
 set stl+=%{&modified?'\ \ '.'[+]':''}
 set stl+=%=
 set stl+=%{'\ \ \ \ '.&fileformat}%{'\ \ \|\ '}
@@ -66,6 +66,19 @@ set stl+=%{&fileencoding?&fileencoding:&encoding}%{'\ '.'\ \|\ '}
 set stl+=%l:%c%{'\ \|\ '}
 set stl+=%p%%
 set stl+=%{&filetype==''?'\ ':'\ \|\ '.toupper(&filetype).'\ '}
+
+" === maximize window toggle ===
+let g:maximized_window = 0
+fu! g:Maximize_window_toggle()
+    if g:maximized_window == 0
+	execute "norm \<c-w>_ \<c-w>|"
+	let g:maximized_window = 1
+    else
+	execute "norm \<c-w>="
+	let g:maximized_window = 0
+    endif
+endf
+nnoremap <leader>z <cmd>call Maximize_window_toggle()<cr>
 
 " === plugins ===
 pa! matchit

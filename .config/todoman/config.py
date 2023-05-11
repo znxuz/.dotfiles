@@ -2,8 +2,8 @@
 path = "~/.local/share/vdirsyncer/calendars/tasks-2/"
 date_format = "%d-%m-%Y"
 time_format = "%H:%M"
-
-default_command ="list --sort=priority"
+default_priority = 5
+default_command ="list --sort=priority,id --no-reverse"
 default_list = "tasks-2"
 default_due = 0
 dt_separator = " | "
