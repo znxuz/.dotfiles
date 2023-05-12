@@ -40,7 +40,8 @@ nn <leader>cp <cmd>Files %:p:h<cr>
 nn <leader>b <cmd>Buffers<cr>
 nn <leader>r <cmd>Rg<cr>
 nn <leader>l <cmd>Lines<cr>
-nn <leader>cl <cmd>Blines<cr>
+nn <leader>cl <cmd>BLines<cr>
+nn <leader>c= <cmd>BLines [.*]\(.*\)<cr>
 nn <leader>A <cmd>Commands<cr>
 nn <leader>h <cmd>Helptags<cr>
 nn <leader>o <cmd>History<cr>

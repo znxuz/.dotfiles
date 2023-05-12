@@ -1,24 +1,13 @@
 #!/usr/bin/env bash
 
-[[ $# -eq 0 ]] && echo "argument missing" && exit 1
+remove_suffix()
+{
+    echo "$1" | sed -E 's/(.*)\.(.+)/\1/'
+}
 
-if [[ $# -eq 1 ]]; then
-    name="$1"
-else
-    name="$2"
-fi
+[ $# -eq 0 ] && echo "file missing" && exit 1
 
-name=$(echo "$name" | sed -E 's/(.*)\.(.+)/\1/')
+for file in "$@"; do
+    pdftoppm -png "$file" "$(remove_suffix "$file")"
+done
 
-if [[ $# -eq 1 ]]; then
-    pdftoppm -png "$1" "$name"
-else
-    case "$1" in
-	-png)
-	    pdftoppm -png "$2" "$name"
-	    ;;
-	*)
-	    echo "unknown extension" && exit 1
-	    # TODO
-	esac
-fi

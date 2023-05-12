@@ -67,19 +67,6 @@ set stl+=%l:%c%{'\ \|\ '}
 set stl+=%p%%
 set stl+=%{&filetype==''?'\ ':'\ \|\ '.toupper(&filetype).'\ '}
 
-" === maximize window toggle ===
-let g:maximized_window = 0
-fu! g:Maximize_window_toggle()
-    if g:maximized_window == 0
-	execute "norm \<c-w>_ \<c-w>|"
-	let g:maximized_window = 1
-    else
-	execute "norm \<c-w>="
-	let g:maximized_window = 0
-    endif
-endf
-nnoremap <leader>z <cmd>call Maximize_window_toggle()<cr>
-
 " === plugins ===
 pa! matchit
 if !empty(glob('~/.vim/autoload/plug.vim'))

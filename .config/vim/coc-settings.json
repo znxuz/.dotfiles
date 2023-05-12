@@ -7,15 +7,9 @@
     "coc.source.buffer.enable": false,
 
     "json.enable": true,
-
     "clangd.enabled": true,
-
     "sh.enable": true,
 
     "rust-analyzer.server.path": "/home/z/.local/share/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rust-analyzer",
-
-    "java.project.referencedLibraries": ["lib/**/*.jar", "Server.jar"],
-
-    "languageserver": {
-    }
+    "java.project.referencedLibraries": ["lib/**/*.jar", "Server.jar"]
 }
