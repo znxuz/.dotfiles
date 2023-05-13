@@ -36,6 +36,7 @@ omap ac <plug>(coc-classobj-a)
 
 com! -nargs=0 Fmt :call CocActionAsync('format')
 com! -nargs=0 OI :call CocActionAsync('runCommand', 'editor.action.organizeImport')
+com! -nargs=0 InlayHintsToggle :CocCommand document.toggleInlayHint
 
 " clangd
 nn <leader><c-^> <cmd>CocCommand clangd.switchSourceHeader<cr>

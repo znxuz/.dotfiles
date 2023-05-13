@@ -57,8 +57,8 @@ set stl=
 set stl+=%#STLMode#%{'\ \ '.toupper(mode()).'\ '}%#STL#
 set stl+=%#STLMode#%{&readonly?'\ \|\ '.'RO\ ':''}%#STL#
 set stl+=%#STLMode#%{&paste?'\ \|\ '.'P\ ':''}%#STL#
-set stl+=%<%{'\ \ '.pathshorten(fnamemodify(getcwd(),':~'),2)}
-set stl+=%{expand('%')==''?'':'\ \ \|\ '.pathshorten(fnamemodify(expand('%:p'),\ ':~:.'),2)}
+set stl+=%<%{'\ \ '.pathshorten(fnamemodify(getcwd(),':~'),1)}
+set stl+=%{expand('%')==''?'':'\ \ \|\ '.pathshorten(fnamemodify(expand('%:p'),\ ':~:.'),1)}
 set stl+=%{&modified?'\ \ '.'[+]':''}
 set stl+=%=
 set stl+=%{'\ \ \ \ '.&fileformat}%{'\ \ \|\ '}
@@ -78,12 +78,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'mbbill/undotree'
     Plug 'zijian-x/gruvbox-material'
     call plug#end()
-
-    " === source config ===
-    let s:cfgs = glob('~/.vim/config/*', 0, 1)
-    for cfg in s:cfgs
-	exec 'so ' .. cfg
-    endfor
 
     " === misc oneliners ===
     nn <leader>u <cmd>UndotreeToggle<cr>
