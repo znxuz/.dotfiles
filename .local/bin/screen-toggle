@@ -11,6 +11,6 @@ if [[ -n "$status" ]]; then
 	bspc desktop V --to-monitor "$external" &&
 	bspc monitor "$internal" --remove
 else
-    xrandr --output "$internal" --mode 1920x1080 --right-of "$external" --scale 1.5 &&
+    xrandr --output "$internal" --mode 1920x1080 --right-of "$external" --scale 2 &&
 	bspc desktop V --to-monitor "$internal" && fehbg
 fi

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 alcty="${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/colors.yml"
-vm="${XDG_CONFIG_HOME:-$HOME/.config}/vim/config/bg.vim"
+vm="${XDG_CONFIG_HOME:-$HOME/.config}/vim/plugin/bg.vim"
 tmx="${XDG_CONFIG_HOME:-$HOME/.config}/tmux/colors.conf"
 plb="${XDG_CONFIG_HOME:-$HOME/.config}/polybar/colors.ini"
 rf="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/colors.rasi"
