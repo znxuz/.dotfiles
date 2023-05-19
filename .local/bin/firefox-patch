@@ -33,4 +33,3 @@ zip -0DXqr /tmp/omni.ja ./*
 sudo cp /usr/lib/firefox/browser/omni.ja /usr/lib/firefox/browser/omni.ja.orig
 sudo mv /tmp/omni.ja /usr/lib/firefox/browser/omni.ja
 rm -rf ~/.cache/mozilla/firefox/*/startupCache
-
