@@ -17,6 +17,9 @@ nn <leader>A <cmd>CocFzfList commands<cr>
 ino <c-h> <cmd>call CocActionAsync('showSignatureHelp')<cr>
 nn gh <cmd>if CocAction('hasProvider', 'hover')<cr>call CocActionAsync('doHover')<cr>endif<cr>
 
+ino <silent><nowait><expr> <c-_> coc#pum#visible() ? coc#pum#cancel() : "\<c-_>"
+
+" floating doc scroll
 nn <silent><nowait><expr> <c-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<c-e>"
 nn <silent><nowait><expr> <c-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<c-y>"
 ino <silent><nowait><expr> <c-e> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<c-e>"
@@ -24,7 +27,8 @@ ino <silent><nowait><expr> <c-y> coc#float#has_scroll() ? "\<c-r>=coc#float#scro
 vn <silent><nowait><expr> <c-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<c-e>"
 vn <silent><nowait><expr> <c-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<c-y>"
 
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+" treat function as vim object
+" Requires 'textDocument.documentSymbol' support from the language server
 xmap if <plug>(coc-funcobj-i)
 omap if <plug>(coc-funcobj-i)
 xmap af <plug>(coc-funcobj-a)
@@ -36,7 +40,8 @@ omap ac <plug>(coc-classobj-a)
 
 com! -nargs=0 Fmt :call CocActionAsync('format')
 com! -nargs=0 OI :call CocActionAsync('runCommand', 'editor.action.organizeImport')
-com! -nargs=0 InlayHintsToggle :CocCommand document.toggleInlayHint
+
+nn <leader>i <cmd>CocCommand document.toggleInlayHint<cr>
 
 " clangd
 nn <leader><c-^> <cmd>CocCommand clangd.switchSourceHeader<cr>
