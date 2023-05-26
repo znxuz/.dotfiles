@@ -19,7 +19,7 @@ fileext = ".vcf"
 type = "carddav"
 url = "https://nextcloud05.webo.cloud/remote.php/dav"
 username = "znx418@gmail.com"
-password.fetch = ["command", "pass", "nextcloud"]
+password.fetch = ["command", "pass", "nextcloud05.webo.cloud"]
 
 # CALDAV
 [pair calendars]
@@ -38,4 +38,4 @@ fileext = ".ics"
 type = "caldav"
 url = "https://nextcloud05.webo.cloud/remote.php/dav"
 username = "znx418@gmail.com"
-password.fetch = ["command", "pass", "nextcloud"]
+password.fetch = ["command", "pass", "nextcloud05.webo.cloud"]

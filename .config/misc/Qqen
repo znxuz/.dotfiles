@@ -11,6 +11,7 @@ at
 autoconf
 automake
 base
+base-devel
 bc
 bear
 binutils
@@ -41,9 +42,11 @@ feh
 figlet
 file
 findutils
+firefox
 flameshot
 flex
 fmt
+freeplane
 fwupd
 fzf
 gawk
@@ -66,7 +69,6 @@ inetutils
 intel-ucode
 jdk-openjdk
 jq
-jre-openjdk
 khal
 libbsd
 libreoffice-still
@@ -79,8 +81,13 @@ m4
 make
 man-db
 man-pages
+mdbook
+mesa-utils
+monero
 mpv
+mpv-mpris
 ncdu
+net-tools
 nethogs
 network-manager-applet
 networkmanager
@@ -113,6 +120,7 @@ pipewire-docs
 pipewire-pulse
 pkgconf
 pkgstats
+playerctl
 polybar
 powertop
 python-httplib2
@@ -122,12 +130,15 @@ reflector
 ripgrep
 rofi
 rsync
+rustup
 s-tui
 screenkey
 scrot
 sed
 smartmontools
+socat
 speedtest-cli
+spotify-launcher
 sudo
 sxhkd
 syncthing
@@ -156,6 +167,7 @@ vpnc
 wget
 which
 wireless_tools
+wireshark-qt
 wmctrl
 xclip
 xdg-utils
@@ -208,7 +220,7 @@ xorg-xwininfo
 xorg-xwud
 xsensors
 yarn
-youtube-dl
+yt-dlp
 zathura
 zathura-pdf-poppler
 zip
