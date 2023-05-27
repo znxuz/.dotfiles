@@ -66,8 +66,8 @@ main()
 	toggle "$alcty" &&
 	toggle "$vm" &&
 	toggle "$rf" &&
-	toggle "$ztr" &&
-	toggle "$tmx" && tmux source-file "${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"
+	toggle "$ztr"
+	# toggle "$tmx" && tmux source-file "${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"
 }
 
 main "$@"

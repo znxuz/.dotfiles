@@ -1,0 +1,17 @@
+#!/usr/bin/env zsh
+
+injector="$HOME/.local/bin/switch/ns-usbloader-7.0.jar"
+payload="$HOME/.local/bin/switch/hekate_ctcaer_6.0.4.bin"
+
+if [[ ! -f "$injector" ]] || [[ ! -f "$payload" ]];
+then
+    echo "injector or payload not fount" >&2
+    exit 1
+fi
+
+if [[ -z "$*" ]];
+then
+    sudo java -jar "$injector" > /dev/null 2>&1 &!
+else
+    sudo java -jar "$injector" -r "$payload"
+fi

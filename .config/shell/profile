@@ -24,6 +24,7 @@ export _JAVA_OPTIONS=-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java
 export XAUTHORITY=$XDG_CONFIG_HOME/X11/Xauthority
 export RUSTUP_HOME=$XDG_DATA_HOME/rustup
 export CARGO_HOME=$XDG_DATA_HOME/cargo
+export PATH=$PATH:$CARGO_HOME/bin
 
 # fzf
 export ESCDELAY="1"
