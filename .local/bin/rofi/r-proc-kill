@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 
-process="$(ps -U $(whoami) | awk '{print $NF}' | sort | uniq | rofi -dmenu -i -sep'\n' -p 'kill')"
-[[ -n "$process" ]] && killall "$process" > /dev/null 2>&1 &&
-    notify-send -u low " $process"
+pid="$(ps -U "$(whoami)" | awk '{print $NF}' | sort | uniq | rofi -dmenu -i -sep'\n' -p 'kill')"
+[[ -n "$pid" ]] && killall "$pid" > /dev/null 2>&1 && notify-send -u low " $pid"

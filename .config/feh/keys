@@ -15,15 +15,14 @@ menu_up     k Up
 menu_select space Return
 menu_close C-bracketleft
 
-# Same for image navigation ...
-next_img j Right space
-prev_img k Left BackSpace
+next_img Right space
+prev_img Left S-space
 
 # and image movement
-scroll_up    J C-Up
-scroll_down  K C-Down
-scroll_left  H C-Left
-scroll_right L C-Right
+scroll_up    j C-Up
+scroll_down  k C-Down
+scroll_left  h C-Left
+scroll_right l C-Right
 
 # File deletion
 remove     D   Delete

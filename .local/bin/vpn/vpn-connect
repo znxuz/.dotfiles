@@ -1,26 +1,24 @@
 #!/usr/bin/env bash
 
-if systemctl status mullvad-daemon.service; then
+if systemctl is-active --quiet mullvad-daemon.service; then
     notify-send -u low "mullvad-daemon is running, proceeding to connect"
 else
     expect <<- DONE
     set timeout -1
     spawn systemctl start mullvad-daemon.service
     expect "*?assword:*"
-    send -- "$(pass user-zijian)"
+    send -- "$(pass user-z)"
     send -- "\r"
     expect eof
 DONE
 
-    if systemctl status mullvad-daemon.service;
+    if systemctl is-active --quiet mullvad-daemon.service;
     then
-	notify-send -u low "mullvad-daemon started successfully"
+	notify-send -u low "mullvad-daemon started successfully, proceeding to connect"
     else
 	notify-send -u low "starting mullvad-daemon failed"
 	exit 1
     fi
 fi
 
-notify-send -u low "connecting" &&
-    mullvad connect &&
-    sleep 1 && vpn-status
+mullvad connect -w && vpn-status

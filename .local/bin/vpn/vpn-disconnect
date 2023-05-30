@@ -1,22 +1,22 @@
 #!/usr/bin/env bash
 
-if ! systemctl status mullvad-daemon.service > /dev/null 2>&1;
+if ! systemctl is-active --quiet mullvad-daemon.service > /dev/null 2>&1;
 then
     notify-send -u low "mullvad daemon not running" && exit 1
 fi
 
-mullvad disconnect
+mullvad disconnect -w
 
 expect <<- DONE
 set timeout -1
 spawn systemctl stop mullvad-daemon.service
 expect "*?assword:*"
-send -- "$(pass user-zijian)"
+send -- "$(pass user-z)"
 send -- "\r"
 expect eof
 DONE
 
-if systemctl status mullvad-daemon.service;
+if systemctl is-active --quiet mullvad-daemon.service;
 then
     notify-send -u low "failed killing daemon"
     exit 1
