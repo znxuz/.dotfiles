@@ -56,6 +56,3 @@ export NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
 
 # QT
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
-
-# chatgpt
-export OPENAI_KEY='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'

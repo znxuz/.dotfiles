@@ -3,7 +3,7 @@
 for dev in "$@"; do
     mnt_points="$(findmnt -l | grep "$dev" | awk '{print $1}')"
     for mnt in $mnt_points; do
-	sudo umount "$mnt"
+	sudo umount "$mnt" || exit 1
     done
     udisksctl power-off -b "$dev"
 done
