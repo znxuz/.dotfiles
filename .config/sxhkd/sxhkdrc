@@ -1,10 +1,8 @@
 # program controls
-super + shift + Return ; {b, d, q, m, v}
+super + shift + Return ; {b, d, q}
 	{ $BROWSER\
 	, discord\
 	, qbittorrent\
-	, mailspring\
-	, vb-start\
 	}
 
 ## alacritty
@@ -33,14 +31,14 @@ XF86AudioMicMute
 ## system
 super + shift + Escape ; {k, s, S, U, R, o, X, c, W}
 	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded"\
-	, notify-send -u low "zzz..." && sleep 0.5 && systemctl suspend\
-	, notify-send -u low "  " && sleep 0.5 && systemctl poweroff\
-	, notify-send -u low "  " && sleep 0.5 && loginctl terminate-session self\
-	, notify-send -u low "  " && sleep 0.5 && reboot\
-	, notify-send -u low "  " && sleep 0.5 && xset dpms force off\
-	, notify-send -u low "  " && sleep 0.5 && xrandr-refresh\
-	, notify-send -u low "  " && sleep 0.5 && color-switch\
-	, bspc wm -r\
+	, notify-send -u low "zzz..." && sleep 0.5 && systemctl suspend \
+	, notify-send -u low "  " && sleep 0.5 && systemctl poweroff \
+	, notify-send -u low "  " && sleep 0.5 && loginctl terminate-session self \
+	, notify-send -u low "  " && sleep 0.5 && reboot \
+	, notify-send -u low "  " && sleep 0.5 && xset dpms force off \
+	, notify-send -u low "  " && sleep 0.5 && xrandr-refresh \
+	, notify-send -u low "  " && sleep 0.5 && color-switch \
+	, bspc wm -r \
 	}
 
 ## brightness

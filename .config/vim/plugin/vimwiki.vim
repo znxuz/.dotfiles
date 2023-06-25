@@ -30,13 +30,12 @@ fu! g:Paste_image_from_clip()
     call system('feh /tmp/' .. s:image_name)
     let s:header_name = input("Enter the header name for this image: ")
     if !empty(s:header_name)
-	let s:full_path = expand('%:p:h') .. '/' .. s:image_name
-	call system('mv /tmp/' .. s:image_name .. ' ' .. s:full_path)
+	call system('mv /tmp/' .. s:image_name .. ' ' .. expand('%:p:h') .. '/' .. s:image_name)
 	if v:shell_error
 	    echohl ErrorMsg | echo 'Error: Failed moving the image into the directory of the current file' | echohl None
 	    return
 	endif
-	execute 'norm a![' .. s:header_name .. '](' .. s:full_path .. ')'
+	execute 'norm a![' .. s:header_name .. '](' .. s:image_name .. ')'
     endif
 endf
 

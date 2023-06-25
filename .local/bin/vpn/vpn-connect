@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if systemctl is-active --quiet mullvad-daemon.service; then
-    notify-send -u low "mullvad-daemon is running, proceeding to connect"
+    notify-send -u low "mullvad-daemon is active, proceeding to connect"
 else
     expect <<- DONE
     set timeout -1
