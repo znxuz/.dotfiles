@@ -18,8 +18,7 @@ nnoremap <c-n> <cmd>VimwikiNextLink<cr>
 nnoremap <c-p> <cmd>VimwikiPrevLink<cr>
 
 fu! g:Paste_image_from_clip()
-    let s:check_xclip_image = "xclip -sel clip -o -t TARGETS | grep -q 'image/png'"
-    call system(s:check_xclip_image)
+    call system("xclip -sel clip -o -t TARGETS | grep -q 'image/png'")
     if v:shell_error
 	echohl ErrorMsg | echo 'Error: Clipboard content is not of type image/png' | echohl None
 	return
