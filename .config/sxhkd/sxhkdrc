@@ -84,7 +84,7 @@ super + shift + bracket{left,right}
 
 ## focus the next/previous desktop in the current monitor
 super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
+	bspc desktop -f {prev,next}.local.occupied
 
 ## focus the next/previous window in the current desktop
 super + {n,p}

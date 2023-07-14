@@ -1,16 +1,26 @@
 KEYTIMEOUT=1
 
 # aliases
+
 source $HOME/.config/shell/aliasrc
 
 # prompt
-PROMPT="%F{blue}%~ %F{yellow}%(1j.[%j] .)%(?.%F{blue}.%F{red})>%f "
+
+setopt prompt_subst
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' formats '%F{magenta}[%F{green}%b%F{magenta}]%F{blue} '
+zstyle ':vcs_info:*' enable git
+
+precmd () { vcs_info }
+PROMPT='%F{blue}%~ %B${vcs_info_msg_0_}%F{yellow}%(1j.[%j] .)%b%(?.%F{blue}.%F{red})>%f '
 
 # colors
+
 eval $(dircolors $XDG_CONFIG_HOME/shell/gruvbox_dircolors)
 autoload -U colors && colors
 
 # misc
+
 HISTSIZE=100000
 SAVEHIST=100000
 unsetopt beep
@@ -23,6 +33,7 @@ unsetopt prompt_cr prompt_sp
 setopt nolistambiguous
 
 # completion
+
 autoload -Uz compinit
 zmodload zsh/complist
 zstyle ':completion:*' menu select
@@ -40,5 +51,6 @@ autoload edit-command-line &&
 source $ZDOTDIR/zsh_fzf
 
 # gotta be at the end
+
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

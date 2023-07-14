@@ -16,8 +16,8 @@ fu! g:MD2PDF()
     let s:dir = expand('%:p:h')
 
     " change to abs. path for pandoc
-    execute '%s;\(!\[.\+\]\)(\([^;~].\+\));\1(' .. s:dir .. '/\2);'
-    write
+    silent! exe '%s;\(!\[.\+\]\)(\([^;~].\+\));\1(' .. s:dir .. '/\2);'
+    silent! w
 
     if s:target == "preview"
 	call system('pandoc --wrap=preserve --pdf-engine=xelatex -V geometry:margin=2cm ' .. s:src .. ' -t pdf | zathura - ')
@@ -25,8 +25,8 @@ fu! g:MD2PDF()
 	call system('pandoc --wrap=preserve --pdf-engine=xelatex -V geometry:margin=2cm ' .. s:src .. ' -t pdf -o ' .. s:target)
     endif
 
-    execute '%s;' .. s:dir .. '/;;'
-    write
+    silent! exe '%s;' .. s:dir .. '/;;'
+    silent! w
 endf
 
 nnoremap <buffer> <leader>gp <cmd>silent !pandoc --wrap=preserve --pdf-engine=xelatex -V geometry:margin=2cm % -t pdf \| zathura - &<cr>

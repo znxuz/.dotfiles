@@ -16,10 +16,12 @@
     "clangd.disableSnippetCompletion": true,
     "rust-analyzer.server.path": "$XDG_DATA_HOME/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rust-analyzer",
     "rust-analyzer.completion.callable.snippets": "none",
-
     "java.completion.enabled": true,
     "java.completion.guessMethodArguments": false,
-    "java.completion.postfix.enabled": false,
     "java.saveActions.organizeImports": true,
-    "java.project.referencedLibraries": ["lib/**/*.jar"]
+    "java.project.referencedLibraries": ["lib/**/*.jar"],
+    "java.import.gradle.offline.enabled": true,
+    "java.import.gradle.wrapper.enabled": false,
+    "java.import.gradle.home": "/usr/share/java/gradle",
+    "java.import.gradle.user.home": "/home/z/.gradle"
 }

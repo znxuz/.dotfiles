@@ -14,6 +14,7 @@ cd_fzf()
 	--bind="ctrl-space:toggle-preview" --preview-window=:hidden)"
 
     [[ ! -z "$ret" ]] && cd "$1/$ret"
+    vcs_info
     zle reset-prompt
 }
 cd_fzf_home() { cd_fzf "$HOME" }
