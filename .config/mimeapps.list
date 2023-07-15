@@ -1,8 +1,8 @@
 [Default Applications]
-text/plain=vim.desktop
+text/plain=nnvim.desktop
 text/html=firefox.desktop
-text/java=vim.desktop
-text/x-shellscript=vim.desktop
+text/java=nvim.desktop
+text/x-shellscript=nvim.desktop
 inode/directory=nnn.desktop
 application/x-directory=nnn.desktop
 image/jpeg=feh.desktop

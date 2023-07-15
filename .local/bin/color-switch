@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 alcty="${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/colors.yml"
-vm="${XDG_CONFIG_HOME:-$HOME/.config}/vim/plugin/bg.vim"
+nvm="${XDG_CONFIG_HOME:-$HOME/.config}/nvim/lua/config/bg.lua"
 tmx="${XDG_CONFIG_HOME:-$HOME/.config}/tmux/colors.conf"
 plb="${XDG_CONFIG_HOME:-$HOME/.config}/polybar/colors.ini"
 rf="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/colors.rasi"
@@ -64,7 +64,7 @@ main()
 	toggle "$plb" && # polybar reloads with bspwm, no need to manually refresh
 	toggle "$bsp" && bspc wm -r &&
 	toggle "$alcty" &&
-	toggle "$vm" &&
+	toggle "$nvm" &&
 	toggle "$rf" &&
 	toggle "$ztr"
 	# toggle "$tmx" && tmux source-file "${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"

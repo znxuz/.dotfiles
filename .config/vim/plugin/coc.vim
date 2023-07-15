@@ -1,6 +1,6 @@
 ino <silent><expr> <c-l> coc#refresh()
 nn <silent> gd <plug>(coc-definition)
-nn <silent> gy <plug>(coc-type-definition)
+nn <silent> gD <plug>(coc-type-definition)
 nn <silent> gi <plug>(coc-implementation)
 nn <silent> gr <plug>(coc-references)
 nn <silent> [e <plug>(coc-diagnostic-prev)

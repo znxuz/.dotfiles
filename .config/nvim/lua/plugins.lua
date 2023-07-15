@@ -1,61 +1,61 @@
 local packer = require('packer')
 packer.reset()
 packer.init {
-    ensure_dependencies = true,
-    compile_on_sync = true
+  ensure_dependencies = true,
+  compile_on_sync = true
 }
 
 packer.startup(function(use)
-    use 'wbthomason/packer.nvim'
+  use 'wbthomason/packer.nvim'
 
-    -- almighty picker
-    use {
-	'ibhagwan/fzf-lua',
-	config = function () require('config.fzflua') end
-    }
+  -- almighty picker
+  use {
+    'ibhagwan/fzf-lua',
+    config = function () require('config.fzflua') end
+  }
 
-    -- lsp
-    use {
-	'neovim/nvim-lspconfig',
-	config = function () require('config.lsp') end
-    }
-    use {
-	'hrsh7th/nvim-cmp',
-	requires = {
-	    'hrsh7th/cmp-nvim-lsp',
-	    'hrsh7th/cmp-buffer',
-	},
-	config = function () require('config.nvim-cmp') end
-    }
-    use {
-	'mfussenegger/nvim-jdtls',
-	opt = true
-    }
+  -- lsp
+  use {
+    'neovim/nvim-lspconfig',
+    config = function () require('config.lsp') end
+  }
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+    },
+    config = function () require('config.nvim-cmp') end
+  }
+  use {
+    'mfussenegger/nvim-jdtls',
+    opt = true
+  }
 
-    -- debugger
-    use {
-	'mfussenegger/nvim-dap',
-	after = 'nvim-dap-ui',
-	config = function () require('config.nvim-dap') end
-    }
-    use {
-	'rcarriga/nvim-dap-ui',
-	requires = 'nvim-dap',
-	opt = true,
-	keys = '<leader>di'
-    }
+  -- debugger
+  use {
+    'mfussenegger/nvim-dap',
+    after = 'nvim-dap-ui',
+    config = function () require('config.nvim-dap') end
+  }
+  use {
+    'rcarriga/nvim-dap-ui',
+    requires = 'nvim-dap',
+    opt = true,
+    keys = '<leader>di'
+  }
 
-    -- misc
-    use {
-	'mbbill/undotree',
-	config = function () vim.cmd('nnoremap <leader>u <cmd>UndotreeToggle<cr>') end
-    }
-    use {
-	'vimwiki/vimwiki',
-	cmd = 'VimwikiUISelect'
-    }
-    use {
-	'zijian-x/gruvbox-material',
-	config = function () require('config.colorscheme') end
-    }
+  -- misc
+  use {
+    'mbbill/undotree',
+    config = function () vim.cmd('nnoremap <leader>u <cmd>UndotreeToggle<cr>') end
+  }
+  use {
+    'vimwiki/vimwiki',
+    cmd = 'VimwikiUISelect'
+  }
+  use {
+    'zijian-x/gruvbox-material',
+    config = function () require('config.colorscheme') end
+  }
 end)

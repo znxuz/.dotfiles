@@ -1,44 +1,65 @@
-" === basics ===
-let mapleader=" "
+" === nvim ===
+set guicursor=a:block
+
+" === defaults ===
+syntax enable
+set syn=on
 set nu
-set nosc
-set sts=4 sw=4
-set bs=indent,eol,nostop
-set clipboard+=unnamedplus
-set ttm=0
+set hid
 set tgc
+set nosol
+set bs=indent,eol,nostop
+set bo=all
+set t_vb=
+set sta sts=4 sw=4
+set ttimeout ttm=1
+set cb=unnamedplus
+set vi+=n$XDG_STATE_HOME/nvim/viminfo
+set fo+=j
+set nolnr
+set lcs=tab:>\ ,trail:-,nbsp:+
+filetype plugin indent on
+let g:netrw_dirhistmax = 0
+
+" === leader key ===
+let mapleader = " "
 
 " === search ===
-set nohls
-set ic scs
+set is ic scs nohls
 
 " === file management ===
+set ar aw
 set noswf
-set nobk
-set undofile
-set aw
+set sbr=>\\
+set udf
 
-" === wildmode & autocompletion ===
+" === completion ===
+set wmnu
+set wop=pum
 set wic
-set wim=longest:full
+set wim=longest:full,full
+set cpt-=t,i
 set cot=menuone,noinsert,noselect,preview
-
-" === stautus line ===
+set shm-=S shm+=cF
+set scl=number
+set ph=10
 set ls=2
+
+" === statusline ===
 aug stl
     au!
     au VimEnter * hi default link STL StatusLineNC
     au VimEnter * hi default link STLMode WildMenu
     au ModeChanged *:n* hi clear STLMode | redraws!
     au ModeChanged *:i* hi link STLMode DiffText | redraws!
-    au ModeChanged *:[vV\x16]* hi link STLMode Substitute | redraws!
+    au ModeChanged *:[vV\x16]* hi link STLMode Visual | redraws!
 aug END
 set stl=
 set stl+=%#STLMode#%{'\ \ '.toupper(mode()).'\ '}%#STL#
 set stl+=%#STLMode#%{&readonly?'\ \|\ '.'RO\ ':''}%#STL#
 set stl+=%#STLMode#%{&paste?'\ \|\ '.'P\ ':''}%#STL#
-set stl+=%<%{'\ \ '.fnamemodify(getcwd(),':~')}
-set stl+=%{expand('%')==''?'':'\ \ \|\ '.fnamemodify(expand('%:p'),\ ':~:.')}
+set stl+=%<%{'\ \ '.pathshorten(fnamemodify(getcwd(),':~'),1)}
+set stl+=%{expand('%')==''?'':'\ \ \|\ '.pathshorten(fnamemodify(expand('%:p'),\ ':~:.'),1)}
 set stl+=%{&modified?'\ \ '.'[+]':''}
 set stl+=%=
 set stl+=%{'\ \ \ \ '.&fileformat}%{'\ \ \|\ '}
@@ -47,21 +68,5 @@ set stl+=%l:%c%{'\ \|\ '}
 set stl+=%p%%
 set stl+=%{&filetype==''?'\ ':'\ \|\ '.toupper(&filetype).'\ '}
 
-if has('nvim')
-    set guicursor=a:block
-    set undodir=$XDG_STATE_HOME/nvim/undo
-    lua require('plugins')
-else
-    set syntax=on
-    set hid
-    set is
-    set noesckeys
-    set nocp
-    set viminfo+=n~/.vim/viminfo
-    set undodir=~/.vim/undodir
-    set novb noeb
-    set t_vb =
-    filetype plugin indent on
-    " let &t_EI .= "\e[2 q"
-    " let &t_SI .= "\e[6 q"
-endif
+" === plugins ===
+lua require('plugins')

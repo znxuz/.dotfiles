@@ -1,5 +1,4 @@
 setl cc=80
-set cino=g0
 
 nn <buffer> <leader>mm <cmd>make<cr>
 nn <buffer> <leader>mr <cmd>make && make run<cr>
