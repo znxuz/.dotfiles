@@ -7,17 +7,15 @@ set syn=on
 set nu
 set hid
 set tgc
-set nosol
 set bs=indent,eol,nostop
-set bo=all
-set t_vb=
 set sta sts=4 sw=4
 set ttimeout ttm=1
 set cb=unnamedplus
-set vi+=n$XDG_STATE_HOME/nvim/viminfo
+set shada+=n$XDG_STATE_HOME/nvim/viminfo
 set fo+=j
-set nolnr
+set nosc
 set lcs=tab:>\ ,trail:-,nbsp:+
+set scl=yes
 filetype plugin indent on
 let g:netrw_dirhistmax = 0
 
@@ -41,7 +39,6 @@ set wim=longest:full,full
 set cpt-=t,i
 set cot=menuone,noinsert,noselect,preview
 set shm-=S shm+=cF
-set scl=number
 set ph=10
 set ls=2
 

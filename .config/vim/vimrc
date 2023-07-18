@@ -71,12 +71,12 @@ set stl+=%{&filetype==''?'\ ':'\ \|\ '.toupper(&filetype).'\ '}
 pa! matchit
 if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin()
-    Plug 'junegunn/fzf.vim'
-    Plug 'neoclide/coc.nvim', { 'branch' : 'release' }
-    Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
-    Plug 'vimwiki/vimwiki', { 'on' : 'VimwikiUISelect' }
-    Plug 'mbbill/undotree'
-    Plug 'zijian-x/gruvbox-material'
+    " Plug 'junegunn/fzf.vim'
+    " Plug 'neoclide/coc.nvim', { 'branch' : 'release' }
+    " Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
+    " Plug 'vimwiki/vimwiki', { 'on' : 'VimwikiUISelect' }
+    " Plug 'mbbill/undotree'
+    " Plug 'zijian-x/gruvbox-material'
     call plug#end()
 
     " === misc oneliners ===
