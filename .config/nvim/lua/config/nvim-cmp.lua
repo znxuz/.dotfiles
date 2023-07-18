@@ -1,5 +1,6 @@
 local cmp = require 'cmp'
 cmp.setup {
+  preselect = cmp.PreselectMode.None,
   mapping = {
     ['<c-e>'] = cmp.mapping(cmp.mapping.scroll_docs(5), { 'i', 'c' }),
     ['<c-y>'] = cmp.mapping(cmp.mapping.scroll_docs(-5), { 'i', 'c' }),
