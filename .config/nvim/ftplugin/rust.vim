@@ -1,3 +1,5 @@
+setl wig+=target/*,Cargo.lock
+
 nn <buffer> <leader>mm <cmd>!cargo build<cr>
 nn <buffer> <leader>mr <cmd>!cargo run<cr>
 nn <buffer> <leader>mc <cmd>!cargo check<cr>

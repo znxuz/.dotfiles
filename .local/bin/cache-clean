@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-vim_undo_clean()
+nvim_undo_clean()
 {
-    undodir="$HOME/.vim/undo"
+    undodir="$XDG_STATE_HOME/nvim/undo"
 
     find "$undodir" -type f -ctime +30 -delete
 
@@ -14,4 +14,4 @@ vim_undo_clean()
 }
 
 printf "\n==> removing package cache\n\n" && sudo pacman -Sc --noconfirm
-printf "\n==> cleaning undodir & removing log entries\n\n" && vim_undo_clean
+printf "\n==> cleaning undodir & removing log entries\n\n" && nvim_undo_clean

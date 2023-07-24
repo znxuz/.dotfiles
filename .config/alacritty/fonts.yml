@@ -10,6 +10,6 @@ font:
     style: Italic
   bold_italic:
     family: *type
-    style: BoldItalic
+    style: Bold Italic
   size: 10
   draw_bold_text_with_bright_colors: false
