@@ -19,8 +19,6 @@ let g:vimwiki_key_mappings =
 	    \ }
 
 nnoremap <leader>ws <cmd>VimwikiUISelect<cr>
-nnoremap <c-n> <cmd>VimwikiNextLink<cr>
-nnoremap <c-p> <cmd>VimwikiPrevLink<cr>
 
 fu! g:Paste_image_from_clip()
     call system("xclip -sel clip -o -t TARGETS | grep -q 'image/png'")

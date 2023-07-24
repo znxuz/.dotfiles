@@ -29,7 +29,7 @@ XF86AudioMicMute
 	pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 ## system
-super + shift + Escape ; {k, s, S, U, R, o, X, c, W}
+super + shift + Escape ; {K, s, S, U, R, o, X, c, W}
 	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded"\
 	, notify-send -u low "zzz..." && sleep 0.5 && systemctl suspend \
 	, notify-send -u low "  " && sleep 0.5 && systemctl poweroff \

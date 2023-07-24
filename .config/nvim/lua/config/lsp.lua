@@ -4,7 +4,7 @@
 -- ]]
 
 local map = require('config.utils').map
-local lsp = require('lspconfig')
+local lspconfig = require('lspconfig')
 
 vim.cmd 'set shortmess+=c'
 vim.cmd 'set signcolumn=yes'
@@ -24,23 +24,20 @@ map('n', '<leader>e', '<cmd>FzfLua lsp_document_diagnostics<cr>')
 map('n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
 map('n', ']e', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 map('n', '<leader>ce', '<cmd>lua vim.diagnostic.open_float()<cr>')
+map('n', '<leader>ai', '<cmd>lua vim.lsp.inlay_hint(0)<cr>')
 
 -- clangd
-lsp.clangd.setup { cmd = { 'clangd', '--background-index', '--log=error' } }
+lspconfig.clangd.setup { cmd = { 'clangd', '--background-index', '--log=error' } }
 map('n', '<leader><c-^>', '<cmd>ClangdSwitchSourceHeader<cr>')
 
 -- tex
-lsp.texlab.setup {}
+lspconfig.texlab.setup {}
 
 -- lua
-lsp.lua_ls.setup {
+lspconfig.lua_ls.setup {
   settings = {
     Lua = {
-      runtime = {
-	-- Tell the language server which version of Lua you're using (most
-	-- likely LuaJIT in the case of Neovim)
-	version = 'LuaJIT',
-      },
+      runtime = { version = 'LuaJIT', },
       diagnostics = {
 	-- Get the language server to recognize the `vim` global
 	globals = {'vim'},
@@ -49,16 +46,12 @@ lsp.lua_ls.setup {
 	-- Make the server aware of Neovim runtime files
 	library = vim.api.nvim_get_runtime_file("", true),
       },
-      -- Do not send telemetry data containing a randomized but unique
-      -- identifier
-      telemetry = {
-	enable = false,
-      },
+      telemetry = { enable = false, },
     },
   },
 }
 
 -- rust-analyzer
-lsp.rust_analyzer.setup {
+lspconfig.rust_analyzer.setup {
   settings = { ['rust-analyzer'] = { diagnostics = { enable = true; } } }
 }

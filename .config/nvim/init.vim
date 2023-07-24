@@ -1,4 +1,5 @@
 " === nvim ===
+set mouse=
 set guicursor=a:block
 
 " === defaults ===

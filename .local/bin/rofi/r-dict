@@ -18,16 +18,15 @@ search_dict()
 		word="$(get_word)"
 	elif [[ -n "$word" ]];
 	then
-	    # width: 30%;
-	    rofi -theme-str 'window {fullscreen: true; anchor: center; location: center;} textbox {
-	    horizontal-align: 0.5; vertical-align: 0.5;}' -e "$result"
+	    # width: 30%; or fullscreen: true;
+	    rofi -theme-str 'window {anchor: center; location: center;} ' -e "$result"
 	fi
     done
 }
 
 get_database()
 {
-    echo "$(dict -h dict.org -I | awk '{print $1}' | rofi -dmenu -p "list")"
+    echo "$(dict -h dict.org -D | cut -d' ' -f2 | tail -n+2 | rofi -dmenu -p "dict.org")"
 }
 
 main()
