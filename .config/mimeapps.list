@@ -1,5 +1,5 @@
 [Default Applications]
-text/plain=nnvim.desktop
+text/plain=nvim.desktop
 text/html=firefox.desktop
 text/java=nvim.desktop
 text/x-shellscript=nvim.desktop

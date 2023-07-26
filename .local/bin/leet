@@ -11,7 +11,7 @@ make_java()
     sed -E -i "0,/SRC_DIR/{s/(SRC_DIR := ).*/\1$1/}" "$dir/makefile" &&
 	mkdir "$dir/$1" &&
 	printf "%s\n\n" "package $1;" > "$dir/$1/Solution.java" &&
-	vim "$root_dir/Java/$2/Solution.java"
+	$EDITOR "$root_dir/Java/$2/Solution.java"
 }
 
 make_cpp()
@@ -25,7 +25,7 @@ make_cpp()
 	"using namespace std;" \
 	"using namespace util;" \
 	"int main(int argc, char **argv)" > "$dir/$1/solution.cpp" &&
-	vim "$dir/$1/solution.cpp" +"let @f=':%s/\(.\+\){/\1\r{gg=G2]m' " +"norm 3}j"
+	$EDITOR "$dir/$1/solution.cpp" +"let @f=':%s/\(.\+\){/\1\r{gg=G2]m' " +"norm 3}j"
 }
 
 main()

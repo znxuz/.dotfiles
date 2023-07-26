@@ -1,7 +1,3 @@
-" === nvim ===
-set mouse=
-set guicursor=a:block
-
 " === defaults ===
 syntax enable
 set syn=on
@@ -65,6 +61,10 @@ set stl+=%{&fileencoding?&fileencoding:&encoding}%{'\ '.'\ \|\ '}
 set stl+=%l:%c%{'\ \|\ '}
 set stl+=%p%%
 set stl+=%{&filetype==''?'\ ':'\ \|\ '.toupper(&filetype).'\ '}
+
+" === nvim ===
+set mouse=
+set guicursor=a:block
 
 " === plugins ===
 lua require('plugins')

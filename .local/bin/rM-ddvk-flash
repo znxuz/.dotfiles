@@ -8,4 +8,4 @@ ssh -q -o ConnectTimeout=3 -o BatchMode=yes $rm exit
 ssh -t "$rm" \
     'sh -c "$(wget https://raw.githubusercontent.com/ddvk/remarkable-hacks/master/patch.sh -O-)"'
 
-scp $HOME/Dropbox/Pictures/rM_sleep_screen/transparent_rM.png rM:/usr/share/remarkable/suspended.png
+scp $HOME/Dropbox/Pictures/rM_sleep_screen/transparent_rM.png rM.lan:/usr/share/remarkable/suspended.png
