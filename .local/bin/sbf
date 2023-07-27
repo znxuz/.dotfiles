@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-path="$HOME"/tmp/sbf
+path="$HOME"/misc/sbf
 
 main()
 {
