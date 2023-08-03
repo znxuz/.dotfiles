@@ -12,11 +12,12 @@ alt + z
 	alcty-padding-toggle
 
 ## playerctl
-super + ctrl + {space, n, p}
-    { playerctl play-pause \
-    , playerctl next \
-    , playerctl previous \
-    }
+super + ctrl + {space, s, n, p}
+	{ playerctl play-pause \
+	, playerctl stop \
+	, playerctl next \
+	, playerctl previous \
+	}
 
 # controls
 XF86AudioRaiseVolume
@@ -30,7 +31,7 @@ XF86AudioMicMute
 
 ## system
 super + shift + Escape ; {K, s, S, U, R, o, X, c, W}
-	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded"\
+	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded" \
 	, notify-send -u low "zzz..." && sleep 0.5 && systemctl suspend \
 	, notify-send -u low "  " && sleep 0.5 && systemctl poweroff \
 	, notify-send -u low "  " && sleep 0.5 && loginctl terminate-session self \
@@ -113,10 +114,8 @@ super + grave
 	dunstctl history-pop
 
 # screenshot
-super + ctrl + s
+super + S
 	flameshot gui
-super + shift + s
-	flameshot full -c -p ~/Pictures/screenshots
 
 # rofi
 super + ctrl + Return
@@ -132,4 +131,3 @@ super + shift + {Up,Down,Left,Right}
 	, r-set-orientation "left" \
 	, r-set-orientation "right" \
 	}
-

@@ -6,33 +6,36 @@ aug END
 setl tw=80
 setl spell spl=en_us,de spf=$XDG_CONFIG_HOME/nvim/spell/en.utf-8.add
 
-nnoremap <c-n> <cmd>VimwikiNextLink<cr>
-nnoremap <c-p> <cmd>VimwikiPrevLink<cr>
-
 fu! g:MD2PDF()
     let s:src = expand('%')
-    let s:target = input("preview or enter the file name with the extension .pdf for the current file: ", "preview")
-    if empty(s:target)
+    let s:dest = input("preview or enter the file name with the extension .pdf: ", "preview")
+    redraw!
+
+    if empty(s:dest)
 	return
     endif
 
     let s:dir = expand('%:p:h')
 
-    " change to abs. path for pandoc
-    silent! exe '%s;\(!\[.\+\]\)(\([^;~].\+\));\1(' .. s:dir .. '/\2);'
+    " change to abs. path for inlining pictures inside markdown
+    silent! exe '%s;\(!\[.\+\]\)(\([^;~].\+\));\1(' . s:dir . '/\2);'
     silent! w
 
-    if s:target == "preview"
-	call system('pandoc --wrap=preserve --pdf-engine=xelatex -V geometry:margin=2cm ' .. s:src .. ' -t pdf | zathura - ')
-    el
-	call system('pandoc --wrap=preserve --pdf-engine=xelatex -V geometry:margin=2cm ' .. s:src .. ' -t pdf -o ' .. s:target)
+    let s:pandoc_cmd = 'pandoc --wrap=preserve --number-sections --pdf-engine=xelatex -V geometry:margin=2.54cm '
+    if s:dest == "preview"
+	call system(s:pandoc_cmd . s:src . ' -t pdf | zathura - ')
+    elseif expand(s:dest . ':e') != 'pdf'
+	echohl ErrorMsg | echo 'Error: entered file name doesn''t contain a pdf file extension' | echohl None
+    else
+	call system(s:pandoc_cmd . s:src . ' -t pdf -o ' . s:dest)
     endif
 
-    silent! exe '%s;' .. s:dir .. '/;;'
+    silent! exe '%s;' . s:dir . '/;;'
     silent! w
 endf
 
-nnoremap <buffer> <leader>gp <cmd>silent !pandoc --wrap=preserve --pdf-engine=xelatex -V geometry:margin=2cm % -t pdf \| zathura - &<cr>
+nnoremap <buffer> <c-n> <cmd>VimwikiNextLink<cr>
+nnoremap <buffer> <c-p> <cmd>VimwikiPrevLink<cr>
 nnoremap <buffer> <leader>gp <cmd>call MD2PDF()<cr>
 
 " cursive

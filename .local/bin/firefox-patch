@@ -1,5 +1,18 @@
 #!/usr/bin/env bash
 
+check_firefox_running()
+{
+    if pgrep firefox > /dev/null 2>&1; then
+	read -rp "firefox is currently running, update anyway (y|n)?: " ret
+	if [[ -n "$ret" && "$ret" =~ [N|n] ]]; then
+	    echo "firefox-patch aborted, remember to patch it later." && return 1
+	fi
+    fi
+    return 0
+}
+
+check_firefox_running || exit 0
+
 rm -rf /tmp/firefox-omni
 
 mkdir /tmp/firefox-omni && cd /tmp/firefox-omni || exit
