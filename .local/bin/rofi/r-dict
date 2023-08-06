@@ -2,39 +2,43 @@
 
 get_word()
 {
-    echo "$(rofi -theme-str "listview {lines: 0;}" -dmenu -p "dict")"
+    rofi -dmenu -p "enter a word"
 }
 
 search_dict()
 {
-    opt="${1:--d wn}"
+    server="${1:--d wn}"
     word="$(get_word)"
-    while [[ -n "$word" ]] && [[ -z "$result" ]];
-    do
-	result="$(dict $opt $word)"
-	if [[ -z "$result" ]];
-	then
-	    rofi -e "no result found - try again" &&
+    while [[ -n "$word" ]] && [[ -z "$result" ]]; do
+	result="$(dict $server "$word")"
+	suggestions="$(dict $server "$word" 2>&1 1>/dev/null | grep -o 'wn:.*' |
+	    cut -d' ' -f2- | awk '{ for (i=1; i<=NF; i++) print $i }')"
+
+	[[ -n "$result" ]] && rofi -e "$result" && return 0
+
+	if [[ -n "$suggestions" ]]; then
+	    show_sugg="$(printf "yes\nno" | rofi -dmenu -p 'show suggestions')"
+	    if [[ "$show_sugg" == 'yes' ]]; then
+		word="$(echo "$suggestions" | get_word)"
+	    elif [[ "$show_sugg" == 'no' ]]; then
 		word="$(get_word)"
-	elif [[ -n "$word" ]];
-	then
-	    # width: 30%; or fullscreen: true;
-	    rofi -theme-str 'window {anchor: center; location: center;} ' -e "$result"
+	    else
+		word=""
+	    fi
+	else
+	    rofi -e "no result found - try again"
+	    word="$(get_word)"
 	fi
     done
-}
-
-get_database()
-{
-    echo "$(dict -h dict.org -D | cut -d' ' -f2 | tail -n+2 | rofi -dmenu -p "dict.org")"
 }
 
 main()
 {
     case "$1" in
 	-h)
-	    opt=$(get_database)
-	    [[ -n $opt ]] && search_dict "-h dict.org -d $opt"
+	    server=$(dict -h dict.org -D | cut -d' ' -f2 | tail -n+2 |
+		rofi -dmenu -p "dict.org")
+	    [[ -n $server ]] && search_dict "-h dict.org -d $server"
 	    ;;
 	-l|*)
 	    search_dict

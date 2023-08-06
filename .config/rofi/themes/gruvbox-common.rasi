@@ -7,14 +7,14 @@
    ========================================================================== */
 * {
     /* Theme settings */
-    highlight: underline;
+    highlight: bold;
     scrollbar: false;
 }
 
 window {
     background-color: @background;
     border: 2;
-    width: 40%;
+    width: calc(40% min 80ch);
     padding: 10;
 }
 
@@ -32,6 +32,8 @@ message {
 textbox {
     highlight:  @highlight;
     text-color: @foreground;
+    // horizontal-align: 0.5;
+    // vertical-align: 0.5;
 }
 
 listview {
@@ -41,6 +43,8 @@ listview {
     scrollbar: false;
     padding: 20;
     spacing: 0;
+    fixed-height: false;
+    fixed-columns: false;
 }
 
 element {
@@ -52,7 +56,6 @@ element {
 element-text {
     horizontal-align: 0.5;
     vertical-align: 0.5;
-    text-align: center;
 }
 
 element.normal.normal {
