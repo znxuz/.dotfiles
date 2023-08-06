@@ -3,23 +3,21 @@
 check_firefox_running()
 {
     if pgrep firefox > /dev/null 2>&1; then
-	read -rp "firefox is currently running, update anyway (y|n)?: " ret
-	if [[ -n "$ret" && "$ret" =~ [N|n] ]]; then
-	    echo "firefox-patch aborted, remember to patch it later." && return 1
-	fi
+	echo "Patch aborted, because a firefox instance is currently running. Remember to patch it later" && return 1
+    else
+	echo "No firefox instance is running currently, start to patch..." && return 0
     fi
-    return 0
 }
 
 check_firefox_running || exit 0
 
-rm -rf /tmp/firefox-omni
+sudo rm -rf /tmp/firefox-omni
 
 mkdir /tmp/firefox-omni && cd /tmp/firefox-omni || exit
-unzip /usr/lib/firefox/browser/omni.ja
+unzip -q /usr/lib/firefox/browser/omni.ja
 
 # change ctrl-[
-patch chrome/browser/content/browser/browser.xhtml <<EOF
+patch -s chrome/browser/content/browser/browser.xhtml <<EOF
 @@ -292,7 +292,7 @@
      <key id="openFileKb" data-l10n-id="file-open-shortcut" command="Browser:OpenFile"  modifiers="accel"/>
      <key id="key_savePage" data-l10n-id="save-page-shortcut" command="Browser:SavePage" modifiers="accel"/>
@@ -42,7 +40,7 @@ patch chrome/browser/content/browser/browser.xhtml <<EOF
      <key id="showAllHistoryKb" data-l10n-id="history-show-all-shortcut" command="Browser:ShowAllHistory" modifiers="accel,shift"/>
 EOF
 
-zip -0DXqr /tmp/omni.ja ./*
+zip -q -0DXqr /tmp/omni.ja ./*
 sudo cp /usr/lib/firefox/browser/omni.ja /usr/lib/firefox/browser/omni.ja.orig
 sudo mv /tmp/omni.ja /usr/lib/firefox/browser/omni.ja
 rm -rf ~/.cache/mozilla/firefox/*/startupCache

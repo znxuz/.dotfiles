@@ -1,2 +1,2 @@
 let g:tex_flavor = "latex"
-set ft=tex
+setl ft=tex

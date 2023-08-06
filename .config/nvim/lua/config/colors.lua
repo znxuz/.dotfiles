@@ -3,9 +3,14 @@ vim.g['gruvbox_material_background'] = 'hard'
 vim.g['gruvbox_material_sign_column_background'] = 'none'
 vim.cmd 'color gruvbox-material'
 
--- custom highlight groups
-vim.cmd 'hi! link PMenu StatusLine'
-vim.cmd 'hi! link NormalFloat StatusLine'
+-- change highlight groups automatically upon switching bg
+vim.cmd([[
+aug Custom_Hi
+au!
+au ColorScheme * hi! link PMenu StatusLine | hi! link NormalFloat StatusLine
+aug END
+]])
+vim.cmd'doau ColorScheme'
 
 -- change bg automatically upon receiving SIGUSR1
 vim.cmd([[

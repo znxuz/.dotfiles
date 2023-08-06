@@ -3,4 +3,4 @@ aug tex_ft
     au BufWritePre *.tex :%s/\s\+$//e
 aug END
 
-nnoremap <leader>c <cmd>!tectonic %<cr>
+nnoremap <buffer> <leader>c <cmd>!tectonic %<cr>

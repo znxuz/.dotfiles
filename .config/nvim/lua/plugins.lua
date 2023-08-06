@@ -56,6 +56,6 @@ packer.startup(function(use)
   }
   use {
     'zijian-x/gruvbox-material',
-    config = function () require('config.colorscheme') end
+    config = function () require('config.colors') end
   }
 end)

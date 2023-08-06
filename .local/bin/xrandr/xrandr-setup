@@ -3,7 +3,6 @@
 userresources=${XDG_CONFIG_HOME:-$HOME/.config}/X11/Xresources
 
 displ_count=$(xrandr | grep -o '\bconnected\b' | wc -l)
-
 if [ "$displ_count" -gt 1 ]; then
     # set dpi for X with HIDPI preprocessor defined
     xrdb -DHIDPI=0 "$userresources"
@@ -15,8 +14,8 @@ if [ "$displ_count" -gt 1 ]; then
 	| grep -Eo '[[:digit:]]{4}x[[:digit:]]{4}')
     dpi=$(xrdb -query | awk '/*.dpi/ {print $2}')
 
-    xrandr --output "$display" --primary --mode "$mode" \
-	--dpi "$dpi" --output eDP1 --off
+    xrandr --output "$display" --primary --mode "$mode" --dpi "$dpi" \
+	--output eDP1 --off
 else
     # set dpi for X on integrated display
     xrdb "$userresources"
@@ -27,6 +26,5 @@ else
 	| grep -Eo '[[:digit:]]{4}x[[:digit:]]{4}')
     dpi=$(xrdb -query | awk '/*.dpi/ {print $2}')
 
-    xrandr --output "$display" --primary --mode "$mode" \
-	--dpi "$dpi"
+    xrandr --output "$display" --primary --mode "$mode" --dpi "$dpi"
 fi

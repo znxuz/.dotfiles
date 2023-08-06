@@ -63,9 +63,9 @@ main()
 	toggle "$plb" && # polybar reloads with bspwm, no need to manually refresh
 	toggle "$bsp" && bspc wm -r &&
 	toggle "$alcty" &&
-	toggle "$nvm" && killall -s 10 nvim  &&
 	toggle "$rf" &&
-	toggle "$ztr"
+	toggle "$ztr" &&
+	toggle "$nvm" && killall -s 10 nvim > /dev/null 2>&1
 	# toggle "$tmx" && tmux source-file "${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"
 }
 
