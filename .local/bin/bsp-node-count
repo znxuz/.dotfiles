@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+icon="■"
+
+display_help()
+{
+    echo "Usage: $0 [OPTIONS]"
+    echo "Options:"
+    echo "  -h, --help	Display this help message and exit"
+    echo "  -i, --icon  Display with the given icon"
+}
+
+output()
+{
+    node_count=$(bspc query -N -d focused -n .!hidden.window | wc -l)
+    [[ $node_count -lt 2 ]] && echo '' && return 0
+
+    out=""
+    for _ in $(seq 1 "$node_count"); do
+	out="$icon $out"
+    done
+    echo "$out"
+}
+
+main()
+{
+    while [[ $# -gt 0 ]]; do
+	case "$1" in
+	    -h|--help)
+		display_help
+		exit 0
+		;;
+	    -i|--icon)
+		icon="$2"
+		shift 2
+		;;
+	    *)
+		echo "Error: Unknown option: $1"
+		exit 1
+		;;
+	esac
+    done
+
+    output
+    bspc subscribe node_add node_remove node_transfer desktop_focus | while read -r; do
+	output
+    done
+}
+
+main "$@"

@@ -60,11 +60,11 @@ main()
     fi
 
     switch_wp && switch_dunst &&
-	toggle "$plb" && # polybar reloads with bspwm, no need to manually refresh
-	toggle "$bsp" && bspc wm -r &&
 	toggle "$alcty" &&
 	toggle "$rf" &&
 	toggle "$ztr" &&
+	toggle "$plb" && # polybar reloads with bspwm, no need to manually refresh
+	toggle "$bsp" && bspc wm -r &&
 	toggle "$nvm" && killall -s 10 nvim > /dev/null 2>&1
 	# toggle "$tmx" && tmux source-file "${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"
 }

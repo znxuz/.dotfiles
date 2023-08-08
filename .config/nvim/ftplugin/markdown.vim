@@ -1,8 +1,3 @@
-aug md_ft
-    au!
-    au BufWritePre *.md :%s/\s\+$//e
-aug END
-
 setl tw=80
 setl spell spl=en_us,de spf=$XDG_CONFIG_HOME/nvim/spell/en.utf-8.add
 
@@ -23,9 +18,10 @@ fu! g:MD2PDF()
 
     let s:pandoc_cmd = 'pandoc --wrap=preserve --number-sections --pdf-engine=xelatex -V geometry:margin=2.54cm '
     if s:dest == "preview"
-	call system(s:pandoc_cmd . s:src . ' -t pdf | zathura - ')
-    elseif expand(s:dest . ':e') != 'pdf'
-	echohl ErrorMsg | echo 'Error: entered file name doesn''t contain a pdf file extension' | echohl None
+	let s:dest = '/tmp/vimwiki_' . s:dest . '.pdf'
+	" call system(s:pandoc_cmd . s:src . ' -t pdf | zathura - ')
+	call system(s:pandoc_cmd . s:src . ' -t pdf -o ' . s:dest)
+	call jobstart('zathura ' . s:dest)
     else
 	call system(s:pandoc_cmd . s:src . ' -t pdf -o ' . s:dest)
     endif

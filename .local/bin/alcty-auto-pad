@@ -1,45 +1,64 @@
 #!/usr/bin/env bash
 
-get_cur_desktop_id()
+cur_desktop_id()
 {
-    cur="$(bspc query -D -d focused --names)"
-    case "$cur" in
-	"I")
-	    echo 0
-	    ;;
-	"II")
-	    echo 1
-	    ;;
-	"III")
-	    echo 2
-	    ;;
-	"IV")
-	    echo 3
-	    ;;
-	"V")
-	    echo 4
-	    ;;
-    esac
+    readarray -t desktops < <(bspc query -D)
+
+    idx=-1
+    cur_desktop="$(bspc query -D -d focused)"
+    for i in $(seq 0 "${#desktops[@]}"); do
+	if [[ "${desktops[i]}" = "$cur_desktop" ]]; then
+	    idx=$i
+	    break;
+	fi
+    done
+
+    echo "$idx"
 }
 
-check_count()
+check_node_count()
 {
-    d_id=$(get_cur_desktop_id)
-    local_win_list=$(wmctrl -l | awk -v id="$d_id" '{ if ($2 == id) print }')
+    desktop_id=$(cur_desktop_id)
+    [[ "$desktop_id" -eq -1 ]] && echo "Invalid desktop ID" && exit 1
 
-    [[ -z "$local_win_list" || ! "$local_win_list" =~ .+Alacritty ]] && return
-
-    if [[ "$(echo "$local_win_list" | wc -l)" -eq 1 ]]; then
-	alcty-padding-toggle pad
+    local_windows=$(wmctrl -l | awk -v id="$desktop_id" '{ if ($2 == id) print }')
+    [[ -z "$local_windows" || ! "$local_windows" =~ .+Alacritty ]] && return
+    if [[ "$(echo "$local_windows" | wc -l)" -eq 1 ]]; then
+	alcty-padding pad
     else
-	alcty-padding-toggle unpad
+	alcty-padding unpad
     fi
-
 }
 
-command -v wmctrl > /dev/null 2>&1 || exit 1
+main()
+{
+    layout=""
+    prev_layout=""
 
-bspc subscribe node_add node_remove node_transfer desktop_focus | while read -r event;
-do
-    check_count "$event"
-done
+    bspc subscribe desktop_focus desktop_layout | while read -r event; do
+	event_type=$(echo "$event" | cut -d' ' -f1)
+	case $event_type in
+	    desktop_layout)
+		layout=$(echo "$event" | awk '{print $NF}')
+		;;
+	    desktop_focus)
+		layout=$(bspc query -d focused -T | jq -r '.layout')
+		;;
+	esac
+
+	case "$layout" in
+	    monocle)
+		[[ $prev_layout != "monocle" ]] && alcty-padding pad
+		;;
+	    tiled)
+		[[ $prev_layout != "tiled" ]] && check_node_count
+		;;
+	esac
+
+	prev_layout=$layout
+    done
+}
+
+command -v wmctrl jq > /dev/null || exit 1
+
+main

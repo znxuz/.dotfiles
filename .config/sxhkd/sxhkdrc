@@ -9,7 +9,7 @@ super + shift + Return ; {b, d, q}
 super + Return
 	alacritty -e tmux
 alt + z
-	alcty-padding-toggle
+	alcty-padding
 
 ## playerctl
 super + ctrl + {space, s, n, p}

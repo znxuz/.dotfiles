@@ -9,23 +9,27 @@ local lspconfig = require('lspconfig')
 vim.cmd 'set shortmess+=c'
 vim.cmd 'set signcolumn=yes'
 
-map('n', 'gd', '<cmd>FzfLua lsp_definitions<cr>')
-map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
-map('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>')
-map('n', 'gr', '<cmd>FzfLua lsp_references<cr>')
-map('i', '<c-h>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
-map('n', '<leader>d', '<cmd>FzfLua lsp_typedefs<cr>')
-map('n', '<leader>aa', '<cmd>FzfLua lsp_code_actions<cr>')
-map('n', '<leader>ar', '<cmd>lua vim.lsp.buf.rename()<cr>')
-map('n', '<leader>s', '<cmd>FzfLua lsp_document_symbols<cr>')
-map('n', '<leader>S', '<cmd>FzfLua lsp_live_workspace_symbols<cr>')
-map('n', '<leader>E', '<cmd>FzfLua lsp_workspace_diagnostics<cr>')
-map('n', '<leader>e', '<cmd>FzfLua lsp_document_diagnostics<cr>')
-map('n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-map('n', ']e', '<cmd>lua vim.diagnostic.goto_next()<cr>')
-map('n', '<leader>ce', '<cmd>lua vim.diagnostic.open_float()<cr>')
-map('n', '<leader>ai', '<cmd>lua vim.lsp.inlay_hint(0)<cr>')
-
+-- lsp mappings
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(_)
+    map('n', 'gd', '<cmd>FzfLua lsp_definitions<cr>', { buffer = true })
+    map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', { buffer = true })
+    map('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>', { buffer = true })
+    map('n', 'gr', '<cmd>FzfLua lsp_references<cr>', { buffer = true })
+    map('i', '<c-h>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', { buffer = true })
+    map('n', '<leader>d', '<cmd>FzfLua lsp_typedefs<cr>', { buffer = true })
+    map('n', '<leader>aa', '<cmd>FzfLua lsp_code_actions<cr>', { buffer = true })
+    map('n', '<leader>ar', '<cmd>lua vim.lsp.buf.rename()<cr>', { buffer = true })
+    map('n', '<leader>s', '<cmd>FzfLua lsp_document_symbols<cr>', { buffer = true })
+    map('n', '<leader>S', '<cmd>FzfLua lsp_live_workspace_symbols<cr>', { buffer = true })
+    map('n', '<leader>E', '<cmd>FzfLua lsp_workspace_diagnostics<cr>', { buffer = true })
+    map('n', '<leader>e', '<cmd>FzfLua lsp_document_diagnostics<cr>', { buffer = true })
+    map('n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<cr>', { buffer = true })
+    map('n', ']e', '<cmd>lua vim.diagnostic.goto_next()<cr>', { buffer = true })
+    map('n', '<leader>ce', '<cmd>lua vim.diagnostic.open_float()<cr>', { buffer = true })
+    map('n', '<leader>ai', '<cmd>lua vim.lsp.inlay_hint(0)<cr>', { buffer = true })
+  end,
+})
 -- clangd
 lspconfig.clangd.setup { cmd = { 'clangd', '--background-index', '--log=error' } }
 map('n', '<leader><c-^>', '<cmd>ClangdSwitchSourceHeader<cr>')
