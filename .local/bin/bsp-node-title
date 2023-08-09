@@ -1,35 +1,20 @@
 #!/usr/bin/env bash
 
-output()
+print_title()
 {
     node_id=$(bspc query -N -n focused | tr '[:upper:]' '[:lower:]')
-    sleep 0.5
-    node_title=$(wmctrl -l | awk -v node_id="$node_id" '$1 == node_id { print $NF }')
-    ## get full title, but if browser changes tab, the output won't get updated
-    # node_title=$(wmctrl -l | awk -v node_id="$node_id" \
-	# '{ if ($1 == node_id) for(i=4; i<=NF; i++) printf "%s ", $i;}')
+    sleep 0.2
+    node_title=$(basename "$(wmctrl -l | awk -v node_id="$node_id" '$1 == node_id { print $NF }')")
 
     echo "$node_title"
 }
 
 main()
 {
-    while [[ $# -gt 0 ]]; do
-	case "$1" in
-	    -h|--help)
-		display_help
-		exit 0
-		;;
-	    *)
-		echo "Error: Unknown option: $1"
-		exit 1
-		;;
-	esac
-    done
+    print_title
 
-    output
     bspc subscribe node_focus node_remove desktop_focus | while read -r; do
-	output
+	print_title
     done
 }
 

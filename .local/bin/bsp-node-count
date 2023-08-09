@@ -10,16 +10,16 @@ display_help()
     echo "  -i, --icon  Display with the given icon"
 }
 
-output()
+print_counts()
 {
     node_count=$(bspc query -N -d focused -n .!hidden.window | wc -l)
     [[ $node_count -lt 2 ]] && echo '' && return 0
 
-    out=""
+    icon_row=""
     for _ in $(seq 1 "$node_count"); do
-	out="$icon $out"
+	icon_row="$icon $icon_row"
     done
-    echo "$out"
+    echo "$icon_row"
 }
 
 main()
@@ -41,9 +41,9 @@ main()
 	esac
     done
 
-    output
+    print_counts
     bspc subscribe node_add node_remove node_transfer desktop_focus | while read -r; do
-	output
+	print_counts
     done
 }
 
