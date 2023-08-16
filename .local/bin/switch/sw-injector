@@ -62,7 +62,7 @@ main()
 {
     case "$1" in
 	"")
-	    sudo java -jar "$injector" > /dev/null 2>&1 & disown %"$(jobs | wc -l)"
+	    sudo java -jar "$injector" &> /dev/null & disown %"$(jobs | wc -l)"
 	    ;;
 	"-r")
 	    sudo java -jar "$injector" -r "$payload"

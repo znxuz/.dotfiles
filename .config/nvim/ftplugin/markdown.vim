@@ -2,31 +2,39 @@ setl tw=80
 setl spell spl=en_us,de spf=$XDG_CONFIG_HOME/nvim/spell/en.utf-8.add
 
 fu! g:MD2PDF()
-    let s:src = expand('%')
-    let s:dest = input("preview or enter the file name with the extension .pdf: ", "preview")
+    let l:src = expand('%')
+    let l:dest = input("preview or enter the file name with the extension .pdf: ", "preview")
     redraw!
 
-    if empty(s:dest)
+    if empty(l:dest)
 	return
     endif
 
-    let s:dir = expand('%:p:h')
+    let l:dir = expand('%:p:h')
 
     " change to abs. path for inlining pictures inside markdown
-    silent! exe '%s;\(!\[.\+\]\)(\([^;~].\+\));\1(' . s:dir . '/\2);'
+    silent! exe '%s;\(!\[.\+\]\)(\([^;~].\+\));\1(' . l:dir . '/\2);'
     silent! w
 
-    let s:pandoc_cmd = 'pandoc --wrap=preserve --number-sections --pdf-engine=xelatex -V geometry:margin=2.54cm '
-    if s:dest == "preview"
-	let s:dest = '/tmp/vimwiki_' . s:dest . '.pdf'
-	" call system(s:pandoc_cmd . s:src . ' -t pdf | zathura - ')
-	call system(s:pandoc_cmd . s:src . ' -t pdf -o ' . s:dest)
-	call jobstart('zathura ' . s:dest)
+    let l:pandoc_cmd = 'pandoc --wrap=preserve -N --toc --pdf-engine=xelatex -V geometry:margin=2.54cm '
+    if l:dest == "preview"
+	let l:dest = '/tmp/vimwiki_' . l:dest . '.pdf'
+
+	call system('sudo rm -f ' . l:dest)
+	let l:ret = system(l:pandoc_cmd . l:src . ' -t pdf -o ' . l:dest)
+	if v:shell_error == 0
+	    call jobstart('zathura ' . l:dest)
+	else
+	    echohl ErrorMsg | echo l:ret | echohl None
+	endif
     else
-	call system(s:pandoc_cmd . s:src . ' -t pdf -o ' . s:dest)
+	call system(l:pandoc_cmd . l:src . ' -t pdf -o ' . l:dest)
+	if v:shell_error == 1
+	    echohl ErrorMsg | echo l:ret | echohl None
+	endif
     endif
 
-    silent! exe '%s;' . s:dir . '/;;'
+    silent! exe '%s;' . l:dir . '/;;'
     silent! w
 endf
 
@@ -37,17 +45,17 @@ fu! g:Paste_image_from_clip()
 	return
     endif
 
-    let s:image_name = system('echo -n $(date "+%Y-%m-%d_%H-%M-%S")') .. '.png'
-    call system('xclip -sel clip -t image/png -o > ' .. '/tmp/' .. s:image_name)
-    call system('feh /tmp/' .. s:image_name)
-    let s:header_name = input("Enter the header name for this image: ")
-    if !empty(s:header_name)
-	call system('mv /tmp/' .. s:image_name .. ' ' .. expand('%:p:h') .. '/' .. s:image_name)
+    let l:image_name = system('echo -n $(date "+%Y-%m-%d_%H-%M-%S")') .. '.png'
+    call system('xclip -sel clip -t image/png -o > ' .. '/tmp/' .. l:image_name)
+    call system('feh /tmp/' .. l:image_name)
+    let l:header_name = input("Enter the header name for this image: ")
+    if !empty(l:header_name)
+	call system('mv /tmp/' .. l:image_name .. ' ' .. expand('%:p:h') .. '/' .. l:image_name)
 	if v:shell_error
 	    echohl ErrorMsg | echo 'Error: Failed moving the image into the directory of the current file' | echohl None
 	    return
 	endif
-	execute 'norm a<br>![' .. s:header_name .. '](' .. s:image_name .. ')<br>'
+	execute 'norm a<br>![' .. l:header_name .. '](' .. l:image_name .. ')<br>'
     endif
 endf
 

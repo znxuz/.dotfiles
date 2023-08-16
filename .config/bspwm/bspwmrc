@@ -32,9 +32,9 @@ bspc config focused_border_color    \#ea6962
 if [ "$(xrandr | awk '/primary/ {print $1}')" != "eDP1" ] &&
     which alcty-auto-pad > /dev/null 2>&1; then
     pgrep -f "bash.+alcty-auto-pad" | xargs -I{} kill {};
-    alcty-padding pad && alcty-auto-pad
+    alcty-padding pad && alcty-auto-pad &
 else
     alcty-padding unpad
 fi
 
-source "${XDG_CONFIG_HOME:-$HOME/.config}"/bspwm/colors
+. "${XDG_CONFIG_HOME:-$HOME/.config}"/bspwm/colors

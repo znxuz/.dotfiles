@@ -1,6 +1,9 @@
 # disable beep
 xset -b
 
+# disable touchscreen
+xinput disable $(xinput | awk '/Touch System/ {print}' | grep -Po 'id=\K\d+')
+
 # key repeat
 xset r rate 200 60
 

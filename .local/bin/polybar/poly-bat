@@ -30,39 +30,39 @@ bat_print()
     charging=
     bat_status=
 
-	# check AC status
-	[[ -e /sys/class/power_supply/AC/online &&
-	    $(cat /sys/class/power_supply/AC/online) -eq 1 ]] && charging=" "
+    # check AC status
+    [[ -e /sys/class/power_supply/AC/online &&
+	$(cat /sys/class/power_supply/AC/online) -eq 1 ]] && charging=" "
 
-	for bat_dir in /sys/class/power_supply/BAT?
-	do
-	    bat_status="$bat_status $(get_percentage "$bat_dir")"
+    for bat_dir in /sys/class/power_supply/BAT?
+    do
+	bat_status="$bat_status $(get_percentage "$bat_dir")"
+    done
+
+    echo "$charging${bat_status:1}"
+}
+
+path_pid="/tmp/polybar-bat-udev.pid"
+
+case "$1" in
+    --update)
+	pid=$(cat $path_pid)
+
+	if [ "$pid" != "" ]; then
+	    kill -10 "$pid"
+	fi
+	;;
+    *)
+	echo $$ > $path_pid
+
+	trap exit INT
+	trap "echo" USR1
+
+	while true; do
+	    bat_print
+
+	    sleep 60 &
+	    wait
 	done
-
-	echo "$charging${bat_status:1}"
-    }
-
-    path_pid="/tmp/polybar-bat-udev.pid"
-
-    case "$1" in
-	--update)
-	    pid=$(cat $path_pid)
-
-	    if [ "$pid" != "" ]; then
-		kill -10 "$pid"
-	    fi
-	    ;;
-	*)
-	    echo $$ > $path_pid
-
-	    trap exit INT
-	    trap "echo" USR1
-
-	    while true; do
-		bat_print
-
-		sleep 30 &
-		wait
-	    done
-	    ;;
-    esac
+	;;
+esac

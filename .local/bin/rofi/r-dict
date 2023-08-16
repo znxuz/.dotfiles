@@ -2,7 +2,7 @@
 
 get_word()
 {
-    rofi -dmenu -p "enter a word"
+    rofi -dmenu -p "word"
 }
 
 search_dict()

@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+fifo="/tmp/poly-pkg-upgrade.fifo"
+output=""
+
+set_output()
+{
+    pac_upd="$(checkupdates 2> /dev/null)"
+    count=$(echo "$pac_upd" | wc -l)
+    if echo "$pac_upd" | grep -q "linux-.*arch" ; then
+	output=" $count"
+    elif [[ "$count" -gt 9 ]]; then
+	output="$count"
+    fi
+
+    aur_upd="$(auracle outdated 2> /dev/null | wc -l)"
+    if [[ "$aur_upd" -ne 0 ]]; then
+	if [[ -n "$output" ]]; then
+	    output="$output "
+	fi
+	output="$output $aur_upd"
+    fi
+}
+
+main()
+{
+    ping -qc 1 archlinux.org &> /dev/null || exit 1
+
+    case "$1" in
+	-u|--update)
+	    echo "" > "$fifo"
+	    ;;
+	*)
+	    set_output
+	    [[ -z "$output" ]] && exit 0
+
+	    mkfifo "$fifo" &> /dev/null
+	    printf "%s\n" "$output"
+	    cat "$fifo" &> /dev/null && echo ""
+	esac
+}
+
+main "$@"
