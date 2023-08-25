@@ -3,5 +3,4 @@
 xrandr-setup &&
     fehbg &&
     bspc wm -r &&
-    . "$HOME/.config/X11/xprofile" &&
-    notify-send -u low "xrandr & bspwm reloaded"
+    . "$HOME/.config/X11/xprofile"

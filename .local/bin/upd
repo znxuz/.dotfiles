@@ -1,3 +1,13 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
-sudo pacman -Syu --noconfirm && paru -Syu --noconfirm && pgrep -f 'poly-pkg-upgrade' &> /dev/null && poly-pkg-upgrade -u
+pac_upg()
+{
+    sudo pacman -Syu --noconfirm && paru -Syu --noconfirm && pgrep -f 'poly-pkg-upgrade' &> /dev/null && poly-pkg-upgrade -u
+}
+
+nvim_upg()
+{
+    nvim +'PackerSync'
+}
+
+pac_upg; nvim_upg

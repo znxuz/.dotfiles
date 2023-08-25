@@ -161,6 +161,7 @@
     ### Icons ###
 
     # Align icons left/right/off
+    icon_path = ""
     icon_position = off
 
     # Scale small icons up to this size, set to 0 to disable. Helpful

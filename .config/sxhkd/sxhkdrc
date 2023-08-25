@@ -30,7 +30,7 @@ XF86AudioMicMute
 	pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 ## system
-super + shift + Escape ; {K, s, S, U, R, o, X, c, W}
+super + shift + Escape ; {K, s, S, U, R, o, X, c}
 	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded" \
 	, notify-send -u low "zzz..." && sleep 0.5 && systemctl suspend \
 	, notify-send -u low "  " && sleep 0.5 && systemctl poweroff \
@@ -38,8 +38,12 @@ super + shift + Escape ; {K, s, S, U, R, o, X, c, W}
 	, notify-send -u low "  " && sleep 0.5 && reboot \
 	, notify-send -u low "  " && sleep 0.5 && xset dpms force off \
 	, notify-send -u low "  " && sleep 0.5 && xrandr-refresh \
-	, notify-send -u low "  " && sleep 0.5 && color-switch \
-	, bspc wm -r \
+	, notify-send -u low "  " && sleep 0.5 && eclipse \
+	}
+
+super + shift + Escape ; {W, x}
+	{ bspc wm -r && notify-send -u low "bspwm reloaded" \
+	, . $HOME/.config/X11/xprofile && notify-send -u low "xprofile sourced" \
 	}
 
 ## brightness

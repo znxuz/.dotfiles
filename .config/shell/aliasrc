@@ -6,7 +6,7 @@ alias \
 alias \
     mlv='mullvad' \
     bt='bluetoothctl' \
-    za='zathura() { /usr/bin/zathura "$@" &! } && zathura'
+    za='zathura --fork'
 
 alias \
     ckhal='khal calendar' \

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
+[[ "$(eclipse -q)" == "light" ]] && echo "Current mode is light mode, operation aborted" && exit 1
+
 shopt -s expand_aliases &&
-    source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" || exit 1
+    source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
 
 checkconfig && dfs add $HOME/.config $HOME/.local/bin

@@ -23,7 +23,7 @@ fu! g:MD2PDF()
 	call system('sudo rm -f ' . l:dest)
 	let l:ret = system(l:pandoc_cmd . l:src . ' -t pdf -o ' . l:dest)
 	if v:shell_error == 0
-	    call jobstart('zathura ' . l:dest)
+	    call system('zathura --fork ' . l:dest)
 	else
 	    echohl ErrorMsg | echo l:ret | echohl None
 	endif

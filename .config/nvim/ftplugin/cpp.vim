@@ -1,5 +1,6 @@
 setl cc=80
 setl cino=g0
+setl wig+=bin/*
 
 nn <buffer> <leader>mm <cmd>make<cr>
 nn <buffer> <leader>mr <cmd>make && make run<cr>
