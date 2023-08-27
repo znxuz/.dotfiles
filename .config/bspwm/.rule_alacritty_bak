@@ -1,7 +1,0 @@
-screenwidth=$(xdpyinfo | awk -F'[ x]+' '/dimensions:/{print $3}')
-screenheight=$(xdpyinfo | awk -F'[ x]+' '/dimensions:/{print $4}')
-windowwidth=$(("$screenwidth" / 4 * 3))
-windowheight=$(("$screenheight" / 9 * 8))
-windowx=$(("$screenwidth" / 2 -"$windowwidth" / 2))
-windowy=$(("$screenheight" / 2 -"$windowheight" / 2))
-bspc rule -a Alacritty rectangle="$windowwidth"x"$windowheight"+"$windowx"+"$windowy"
