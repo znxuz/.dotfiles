@@ -1,10 +1,12 @@
-local actions = require('fzf-lua.actions')
 require('fzf-lua').setup {
-  global_resume      = false,
+
+  -- global_resume      = false, -- need to disable otherwise fzf_exec won't work
   global_resume_query = false,
   winopts = {
     border = 'single',
     hl = { border = 'LineNr' },
+    height = 0.7,
+    width = 0.6,
     preview = {
       hidden = 'hidden',
       vertical = 'down:45%',
@@ -53,16 +55,11 @@ require('fzf-lua').setup {
   },
   -- provider setup
   files = {
-    path_shroten = 1,
+    path_shorten = false,
     multiprocess = true,  -- run command in a separate process
     git_icons = false,  -- show git icons?
     file_icons = false, -- show file icons?
     color_icons = false,  -- colorize file|git icons
-    actions = {
-      ["alt-d"] = { function (selected)
-	for _, file_name in ipairs(selected) do vim.fn.system('rm ' .. file_name) end
-      end, actions.resume }
-    }
   },
   git = {
     files = {
@@ -84,11 +81,7 @@ require('fzf-lua').setup {
     git_icons = false,  -- show git icons?
     file_icons = false, -- show file icons?
     color_icons = false,  -- colorize file|git icons
-  },
-  args = {
-    files_only = true,
-    -- added on top of regular file actions
-    actions = { ['ctrl-x'] = actions.arg_del }
+    glob_flag = "--iglob",  -- for case sensitive globs use '--glob'
   },
   oldfiles = {
     cwd_only = false,
@@ -127,7 +120,7 @@ require('fzf-lua').setup {
 local M = {}
 
 M.find_files_in = function()
-  vim.ui.input({ prompt = 'Files in: ' }, function(input)
+  vim.ui.input({ prompt = 'Files in: ', completion = "file" }, function(input)
     if input ~= nil and input ~= '' then
       require('fzf-lua').files({ cwd = input })
     end
@@ -135,7 +128,7 @@ M.find_files_in = function()
 end
 
 M.grep_in = function()
-  vim.ui.input({ prompt = 'Grep in: ' }, function(input)
+  vim.ui.input({ prompt = 'Grep in: ', completion = "file" }, function(input)
     if input ~= nil and input ~= '' then
       require('fzf-lua').live_grep({ cwd = input })
     end
@@ -154,5 +147,6 @@ map('n', '<leader>ir', '<cmd>lua require("config.fzflua").grep_in()<cr>')
 map('n', '<leader>A', '<cmd>FzfLua builtin<cr>')
 map('n', '<leader>j', '<cmd>FzfLua jumps<cr>')
 map('n', '<leader>h', '<cmd>FzfLua help_tags<cr>')
+map('n', '<leader>k', '<cmd>FzfLua keymaps<cr>')
 
 return M

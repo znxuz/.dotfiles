@@ -54,7 +54,7 @@ checkup()
 {
     if [[ ! -f "$injector" ]] || [[ ! -f "$payload" ]];
     then
-	echo "injector or payload not found" >&2; exit 1
+	echo "injector or payload not found" >&2 && exit 127
     fi
 }
 

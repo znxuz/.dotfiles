@@ -1,50 +1,77 @@
 #!/usr/bin/env bash
 
-[[ -z "$*" ]] && exit 1
+cpp_flag=0
+redo_flag=0
+problem_dir=""
 
 root_dir="$HOME/code/leetcode"
 
-make_java()
+show_help()
 {
-    dir="$root_dir/Java"
-
-    sed -E -i "0,/SRC_DIR/{s/(SRC_DIR := ).*/\1$1/}" "$dir/makefile" &&
-	mkdir "$dir/$1" &&
-	printf "%s\n\n" "package $1;" > "$dir/$1/Solution.java" &&
-	$EDITOR "$root_dir/Java/$2/Solution.java"
+    cat <<-EOF
+Usage: $(basename "$0") [options] <directory name> <link>
+Options:
+  -h, --help     Display this help message
+  -C, --cpp      Create CPP leetcode problem
+  -r, --redo     Redo the exercise
+Example:
+  $0 -C two_sum https://...
+EOF
 }
 
 make_cpp()
 {
-    dir="$root_dir/cpp"
-    sed -E -i "0,/SRC_DIR/{s/(SRC_DIR := ).*/\1$1/}" "$dir/makefile" &&
-	mkdir "$dir/$1" &&
+    lang_dir="$root_dir/cpp"
+    ((redo_flag == 1)) && file_name="solution_re.cpp" || file_name="solution.cpp"
+
+    mkdir "$lang_dir/$problem_dir" &> /dev/null
+    sed -E -i "0,/SRC_DIR/{s/(SRC_DIR := ).*/\1$problem_dir/}" "$lang_dir/makefile" &&
 	printf "%s\n\n%s\n\n%s\n%s\n\n\n\n%s\n{\n}" \
-	"// $2" \
+	"// $link" \
 	"#include \"helper.h\"" \
 	"using namespace std;" \
 	"using namespace util;" \
-	"int main(int argc, char **argv)" > "$dir/$1/solution.cpp" &&
-	$EDITOR "$dir/$1/solution.cpp" +"let @f=':%s/\(.\+\){/\1\r{gg=G2]m' " +"norm 3}j"
+	"int main(int argc, char **argv)" > "$lang_dir/$problem_dir/$file_name" &&
+	$EDITOR "$lang_dir/$problem_dir/$file_name" +"let @f=':%s/\(.\+\){/\1\r{gg=G2]m' " +"norm 3}j"
 }
 
 main()
 {
-    case "$1" in
-	"-j"|"--java")
-	    [[ "$#" -lt 2 ]] && exit 1
-	    shift;
-	    make_java "$@"
-	    ;;
-	"-C")
-	    [[ "$#" -lt 2 ]] && exit 1
-	    shift;
-	    make_cpp "$@"
-	    ;;
-	*)
-	    make_cpp "$@"
-	    ;;
-    esac
+    [[ ! -d "$root_dir" ]] && echo "leetcode directory not found" >&2 && exit 127
+    [[ "$1" != '-h' && "$#" -lt 2 ]] && echo "not enough arguments" >&2 && exit 1
+
+    while [ $# -ne 0 ]; do
+	case "$1" in
+	    -h|--help)
+		show_help
+		exit 0
+		;;
+	    -C)
+		cpp_flag=1
+		[[ "$#" -lt 2 ]] && echo "not enough arguments" >&2 && exit 1
+		;;
+	    -r|--redo)
+		redo_flag=1
+		;;
+	    http*)
+		link="$1"
+		;;
+	    *)
+		problem_dir="$1"
+		;;
+	esac
+	shift
+    done
+
+    if ((cpp_flag == 1)); then
+	if ((redo_flag == 0)); then
+	    [[ -d "$problem_dir" ]] && echo "Directory already exists." >&2 && exit 1
+	    [[ -z "$link" ]] && echo "Link to the problem isn't provided." >&2 && exit 1
+	else
+	    [[ ! -d "$problem_dir" ]] && echo "Unknown directory." >&2 && exit 127
+	fi
+	make_cpp
+    fi
 }
 
 main "$@"

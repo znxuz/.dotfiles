@@ -1,15 +1,16 @@
 # program controls
-super + shift + Return ; {b, d, q}
+super + shift + Return ; {b, d, q, u}
 	{ $BROWSER\
 	, discord\
 	, qbittorrent\
+	, uget-gtk\
 	}
 
 ## alacritty
 super + Return
 	alacritty -e tmux
 alt + z
-	alcty-padding
+	alcty-padding toggle
 
 ## playerctl
 super + ctrl + {space, s, n, p}

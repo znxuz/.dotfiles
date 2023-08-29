@@ -13,6 +13,12 @@ packer.startup(function(use)
     'ibhagwan/fzf-lua',
     config = function () require('config.fzflua') end
   }
+  -- use {
+    -- 'nvim-telescope/telescope.nvim',
+    -- requires = 'nvim-lua/plenary.nvim',
+    -- config = function () require'config.telescope' end
+  -- }
+  -- use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- lsp
   use {

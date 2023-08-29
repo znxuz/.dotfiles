@@ -6,6 +6,11 @@ no_pad=20
 pad_x=200
 pad_y=51
 
+get_cur_val()
+{
+    grep -A2 "padding:" "$config" | awk '/x:/{print $2}'
+}
+
 pad()
 {
     sed -i "0,/x: [[:digit:]]\+/s/x: [[:digit:]]\+/x: $pad_x/" "$config" &&
@@ -20,7 +25,7 @@ unpad()
 
 toggle()
 {
-    cur_val=$(grep -A2 "padding:" "$config" | awk '/x:/{print $2}')
+    cur_val=$(get_cur_val)
 
     if [[ "$cur_val" -eq "$pad_x" ]]; then
 	unpad
@@ -31,7 +36,7 @@ toggle()
 
 main()
 {
-    [[ $# -eq 0 ]] && toggle && exit 0
+    [[ -z "$*" ]] && echo "Error: No arguments given" && exit 1
 
     case "$1" in
 	pad)
@@ -39,6 +44,12 @@ main()
 	    ;;
 	unpad)
 	    unpad
+	    ;;
+	toggle)
+	    toggle
+	    ;;
+	query)
+	    [[ $(get_cur_val) -eq $no_pad ]] && echo "No pad" || echo "Pad"
 	    ;;
 	*)
 	    echo "Error: unknown operation: $1"
