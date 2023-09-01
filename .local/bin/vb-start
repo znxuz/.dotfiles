@@ -2,4 +2,4 @@
 
 sudo vboxreload
 
-sudo modprobe vboxdrv vboxnetadp vboxnetflt && virtualbox && sudo rmmod vboxnetadp vboxnetflt vboxdrv
+sudo modprobe vboxdrv vboxnetadp vboxnetflt && virtualbox

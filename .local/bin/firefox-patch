@@ -3,7 +3,7 @@
 check_firefox_running()
 {
     if pgrep firefox &> /dev/null; then
-	echo "Patch aborted, because a firefox instance is currently running. Remember to patch it later" && return 1
+	echo "A firefox instance is currently running, patch aborted" >&2 && return 1
     else
 	echo "No firefox instance is running currently, start to patch..." && return 0
     fi

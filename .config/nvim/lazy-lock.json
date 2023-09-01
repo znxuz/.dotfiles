@@ -1,0 +1,13 @@
+{
+  "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
+  "cmp-nvim-lsp": { "branch": "main", "commit": "44b16d11215dce86f253ce0c30949813c0a90765" },
+  "fzf-lua": { "branch": "main", "commit": "2632033492cadfbda3a8678d3c3e65d9397e521d" },
+  "gruvbox-material": { "branch": "master", "commit": "fac324463976368556f43d44a04544667f659261" },
+  "nvim-cmp": { "branch": "main", "commit": "5dce1b778b85c717f6614e3f4da45e9f19f54435" },
+  "nvim-dap": { "branch": "master", "commit": "31e1ece773e10448dcb616d5144290946a6264b7" },
+  "nvim-dap-ui": { "branch": "master", "commit": "85b16ac2309d85c88577cd8ee1733ce52be8227e" },
+  "nvim-jdtls": { "branch": "master", "commit": "095dc490f362adc85be66dc14bd9665ddd94413b" },
+  "nvim-lspconfig": { "branch": "master", "commit": "a27356f1ef9c11e1f459cc96a3fcac5c265e72d6" },
+  "undotree": { "branch": "master", "commit": "0e11ba7325efbbb3f3bebe06213afa3e7ec75131" },
+  "vimwiki": { "branch": "dev", "commit": "f0fe154ede6b11e3db9b058b930005a056a3d1c6" }
+}

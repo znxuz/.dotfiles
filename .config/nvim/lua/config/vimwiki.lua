@@ -1,3 +1,4 @@
+vim.cmd [[
 let g:vimwiki_list = [
 	    \ {
 	    \ 'path': '~/Dropbox/notes/misc',
@@ -17,5 +18,4 @@ let g:vimwiki_key_mappings =
 	    \ {
 	    \ 'headers': 0,
 	    \ }
-
-nnoremap <leader>ws <cmd>VimwikiUISelect<cr>
+]]

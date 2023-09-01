@@ -7,7 +7,7 @@ pac_upg()
 
 nvim_upg()
 {
-    nvim +'PackerSync'
+    nvim --headless +'Lazy! sync | qa'
 }
 
 pac_upg; nvim_upg

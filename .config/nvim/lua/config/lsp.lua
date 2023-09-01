@@ -28,11 +28,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map('n', ']e', '<cmd>lua vim.diagnostic.goto_next()<cr>', { buffer = true })
     map('n', '<leader>ce', '<cmd>lua vim.diagnostic.open_float()<cr>', { buffer = true })
     map('n', '<leader>ai', '<cmd>lua vim.lsp.inlay_hint(0)<cr>', { buffer = true })
+
+    map('n', '<leader><c-^>', '<cmd>ClangdSwitchSourceHeader<cr>')
   end,
 })
+
 -- clangd
 lspconfig.clangd.setup { cmd = { 'clangd', '--background-index', '--log=error' } }
-map('n', '<leader><c-^>', '<cmd>ClangdSwitchSourceHeader<cr>')
 
 -- tex
 lspconfig.texlab.setup {}

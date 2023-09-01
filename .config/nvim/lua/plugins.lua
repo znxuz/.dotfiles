@@ -1,67 +1,56 @@
-local packer = require('packer')
-packer.reset()
-packer.init {
-  ensure_dependencies = true,
-  compile_on_sync = true
-}
-
-packer.startup(function(use)
-  use 'wbthomason/packer.nvim'
-
+require'lazy'.setup({
   -- almighty picker
-  use {
+  {
     'ibhagwan/fzf-lua',
     config = function () require('config.fzflua') end
-  }
-  -- use {
-    -- 'nvim-telescope/telescope.nvim',
-    -- requires = 'nvim-lua/plenary.nvim',
-    -- config = function () require'config.telescope' end
-  -- }
-  -- use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  },
 
   -- lsp
-  use {
+  {
     'neovim/nvim-lspconfig',
     config = function () require('config.lsp') end
-  }
-  use {
+  },
+  {
     'hrsh7th/nvim-cmp',
-    requires = {
+    dependencies = {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
     },
     config = function () require('config.nvim-cmp') end
-  }
-  use {
+  },
+  {
     'mfussenegger/nvim-jdtls',
-    opt = true
-  }
+    lazy = true
+  },
 
   -- debugger
-  use {
+  {
     'mfussenegger/nvim-dap',
     after = 'nvim-dap-ui',
+    lazy = true,
+    keys = { '<leader>di' },
     config = function () require('config.nvim-dap') end
-  }
-  use {
+  },
+  {
     'rcarriga/nvim-dap-ui',
-    requires = 'nvim-dap',
-    opt = true,
-    keys = '<leader>di'
-  }
+    dependencies = 'nvim-dap',
+    lazy = true,
+    keys = { '<leader>di' }
+  },
 
   -- misc
-  use {
+  {
     'mbbill/undotree',
     config = function () vim.cmd('nnoremap <leader>u <cmd>UndotreeToggle<cr>') end
-  }
-  use {
+  },
+  {
     'vimwiki/vimwiki',
-    cmd = 'VimwikiUISelect'
-  }
-  use {
+    keys = { { '<leader>ws', '<cmd>VimwikiUISelect<cr>', desc = 'Vimwiki UI select' } },
+    init = function () require('config.vimwiki') end
+  },
+  {
     'zijian-x/gruvbox-material',
     config = function () require('config.colors') end
-  }
-end)
+  },
+})
+
