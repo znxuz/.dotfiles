@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
+readarray -t desktops < <(bspc query -D)
+
 get_wmctrl_id()
 {
-    readarray -t desktops < <(bspc query -D)
-
     idx=-1
     cur_desktop_id="${1:-$(bspc query -D -d focused)}"
     for i in $(seq 0 "${#desktops[@]}"); do
@@ -16,65 +16,20 @@ get_wmctrl_id()
     echo "$idx"
 }
 
-check_node_count()
-{
-    cur_desktop_id="${1:-$ref_desktop_id}"
-    wmctrl_id="$(get_wmctrl_id "$cur_desktop_id")"
-    [[ "$wmctrl_id" -eq -1 ]] && echo "Invalid desktop ID" && return 1
-
-    local_windows=$(wmctrl -l | awk -v id="$wmctrl_id" '{ if ($2 == id) print }')
-    [[ -z "$local_windows" || ! "$local_windows" =~ .+Alacritty ]] && return
-    if [[ "$(echo "$local_windows" | wc -l)" -eq 1 ]]; then
-	alcty-padding pad
-    else
-	alcty-padding unpad
-    fi
-}
-
-get_cur_desktop_id()
-{
-    case $event_type in
-	desktop_layout)
-	    echo "$event" | awk '{print $(NF-1)}'
-	    ;;
-	desktop_focus)
-	    echo "$event" | awk '{print $NF}'
-	    ;;
-    esac
-}
-
-get_cur_layout()
-{
-    case $event_type in
-	desktop_layout)
-	    echo "$event" | awk '{print $NF}'
-	    ;;
-	desktop_focus)
-	    bspc query -d focused -T | jq -r '.layout'
-	    ;;
-    esac
-}
-
 main()
 {
-    cur_layout=""
-    prev_layout=""
+    bspc subscribe node_add node_remove node_transfer desktop_focus |
+    while read -r event; do
+	cur_desktop_id=$(echo "$event" | cut -d' ' -f3)
+	wmctrl_id="$(get_wmctrl_id "$cur_desktop_id")"
+	local_windows=$(wmctrl -l | awk -v id="$wmctrl_id" '{ if ($2 == id) print }')
+	[[ -z "$local_windows" || ! "$local_windows" =~ .+Alacritty ]] && continue
 
-    bspc subscribe desktop_focus desktop_layout | while read -r event; do
-	event_type=$(echo "$event" | cut -d' ' -f1)
-	ref_desktop_id=$(get_cur_desktop_id)
-	cur_layout=$(get_cur_layout)
-
-	case "$cur_layout" in
-	    monocle)
-		[[ $prev_layout != "monocle" ]] && alcty-padding pad
-		;;
-	    tiled)
-		[[ $prev_layout != "tiled" ]] && check_node_count "$ref_desktop_id"
-		;;
-	esac
-
-	prev_layout=$cur_layout
+	if [[ "$(echo "$local_windows" | wc -l)" -eq 1 ]]; then
+	    alcty-padding pad
+	else
+	    alcty-padding unpad
+	fi
     done
 }
 

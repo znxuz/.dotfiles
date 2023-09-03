@@ -42,23 +42,19 @@ set ls=2
 " === statusline ===
 aug stl
     au!
-    " au VimEnter * hi default link STL StatusLineNC
     au VimEnter * hi default link STLMode StatusLineNC
-
-    au ModeChanged *:n* hi clear STLMode | redraws!
+    au ModeChanged *:n hi clear STLMode | redraws!
+    au ModeChanged *:ni* hi link STLMode StatusLine | redraws!
     au ModeChanged *:i* hi link STLMode WildMenu | redraws!
     au ModeChanged *:[vV\x16]* hi link STLMode Substitute | redraws!
 aug END
 set stl=
-" set stl+=%#STLMode#%{'\ \ '.toupper(mode()).'\ '}
-" set stl+=%#STLMode#%{&readonly?'\ \|\ '.'RO\ ':''}
-" set stl+=%#STLMode#%{&paste?'\ \|\ '.'P\ ':''}
 set stl+=%#STLMode#
 set stl+=%<%{'\ \ '.pathshorten(fnamemodify(getcwd(),':~'),1)}
 set stl+=%{expand('%')==''?'':'\ \ \|\ '.pathshorten(fnamemodify(expand('%:p'),\ ':~:.'),1)}
+set stl+=%{&modified?'\ \ '.'[+]':''}
 set stl+=%{&readonly?'\ \ '.'[RO]':''}
 set stl+=%{&paste?'\ \ '.'[P]':''}
-set stl+=%{&modified?'\ \ '.'[+]':''}
 set stl+=%=
 set stl+=%{'\ \ \ \ '.&fileformat}%{'\ \ \|\ '}
 set stl+=%{&fileencoding?&fileencoding:&encoding}%{'\ '.'\ \|\ '}

@@ -91,7 +91,6 @@ require('fzf-lua').setup {
   buffers = {
     file_icons = false,
     color_icons = false,
-    -- sort_lastused = true,
   },
   quickfix = {
     file_icons = false,
@@ -104,14 +103,7 @@ require('fzf-lua').setup {
     cwd_only = false,
     file_icons = false,
     git_icons = false,
-    lsp_icons = false,
     severity = 'hint',
-    icons = {
-      ['Error'] = { icon = '', color = 'red' },  -- error
-      ['Warning'] = { icon = '', color = 'yellow' },  -- warning
-      ['Information'] = { icon = '', color = 'blue' },  -- info
-      ['Hint'] = { icon = '', color = 'magenta' }, -- hint
-    },
   },
   helptags = { previewer = { _ctor = false } },
   manpages = { previewer = { _ctor = false } },

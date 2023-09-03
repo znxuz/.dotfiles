@@ -11,23 +11,28 @@ get_cur_val()
     grep -A2 "padding:" "$config" | awk '/x:/{print $2}'
 }
 
+query()
+{
+    [[ $(get_cur_val) -eq $no_pad ]] && echo "No pad" || echo "Pad"
+}
+
 pad()
 {
+    [[ "$(get_cur_val)" -eq "$pad_x" ]] && return 0
     sed -i "0,/x: [[:digit:]]\+/s/x: [[:digit:]]\+/x: $pad_x/" "$config" &&
 	sed -i "0,/y: [[:digit:]]\+/s/y: [[:digit:]]\+/y: $pad_y/" "$config"
 }
 
 unpad()
 {
+    [[ "$(get_cur_val)" -ne "$pad_x" ]] && return 0
     sed -i "0,/x: [[:digit:]]\+/s/x: [[:digit:]]\+/x: $no_pad/" "$config" &&
 	sed -i "0,/y: [[:digit:]]\+/s/y: [[:digit:]]\+/y: $no_pad/" "$config"
 }
 
 toggle()
 {
-    cur_val=$(get_cur_val)
-
-    if [[ "$cur_val" -eq "$pad_x" ]]; then
+    if [[ "$(get_cur_val)" -eq "$pad_x" ]]; then
 	unpad
     else
 	pad
@@ -49,7 +54,7 @@ main()
 	    toggle
 	    ;;
 	query)
-	    [[ $(get_cur_val) -eq $no_pad ]] && echo "No pad" || echo "Pad"
+	    query
 	    ;;
 	*)
 	    echo "Error: unknown operation: $1"

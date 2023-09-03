@@ -24,7 +24,7 @@ set_output()
 
 main()
 {
-    ping -qc 1 archlinux.org &> /dev/null || exit 1
+    ping -qc 1 1.1.1.1 &> /dev/null || exit 1
 
     case "$1" in
 	-u|--update)
