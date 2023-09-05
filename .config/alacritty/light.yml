@@ -12,7 +12,7 @@ colors:
     magenta: '#945e80'
   normal:
     white: '#928374'
-    black: '#f3eac7'
+    black: '#f3ead6'
     red: '#c14a4a'
     orange: '#c35e0a'
     yellow: '#b47109'
@@ -20,7 +20,7 @@ colors:
     cyan: '#4c7a5d'
     blue: '#45707a'
     magenta: '#945e80'
-    bg: &bg '#f9f5d7'
+    bg: &bg '#f9f5e6'
     fg: &fg '#654735'
   primary:
     background: *bg

@@ -13,16 +13,16 @@
 
 * {
     /* Gruvbox light colors */
-    gruvbox-light-bg0:          #f9f5d7;
-    gruvbox-light-bg0:          #f9f5d7;
-    gruvbox-light-bg2:          #f5edca;
+    gruvbox-light-bg0:          #f9f5e6;
+    gruvbox-light-bg1:          #f5edd9;
+    gruvbox-light-bg2:          #f3ead6;
     gruvbox-light-fg0:          #654735;
     gruvbox-light-fg1:          #654735;
     gruvbox-light-red-light:     #c14a4a;
     gruvbox-light-red-light:    #c14a4a;
     gruvbox-light-yellow-light:  #b47109;
     gruvbox-light-yellow-light: #b47109;
-    gruvbox-light-gray:         #928374;
+    gruvbox-light-gray:         #a89984;
 
     /* Theme colors */
     background:                  @gruvbox-light-bg0;

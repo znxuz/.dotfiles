@@ -49,8 +49,13 @@ require'lazy'.setup({
     init = function () require('config.vimwiki') end
   },
   {
+    'norcalli/nvim-colorizer.lua',
+    lazy = true,
+    config = function () require'colorizer'.setup() end
+  },
+  {
     'zijian-x/gruvbox-material',
     config = function () require('config.colors') end
-  },
+  }
 })
 

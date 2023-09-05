@@ -1,9 +1,10 @@
 # program controls
-super + shift + Return ; {b, d, q, u}
+super + shift + Return ; {b, d, q, u, v}
 	{ $BROWSER\
 	, discord\
 	, qbittorrent\
 	, uget-gtk\
+	, vb-start\
 	}
 
 ## alacritty

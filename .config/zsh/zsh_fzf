@@ -17,18 +17,23 @@ cd_fzf()
     vcs_info
     zle reset-prompt
 }
+
 cd_fzf_home() { cd_fzf "$HOME" }
+
 zle -N cd_fzf_home && bindkey '^[C' cd_fzf_home
 
 find_fzf()
 {
+    [[ -z $1 ]] && exit 1
     local ret="$(fd -u --base-directory $1 -0 \
 	| fzf --read0 -m | sed -E -e "s|./|$1/|" -e 's/ /\\ /g' | tr '\n' ' ')"
 
     [[ ! -z "$ret" ]] && LBUFFER="$LBUFFER$ret"
     zle reset-prompt
 }
+
 fzf_home() { find_fzf $HOME }
+
 zle -N fzf_home && bindkey '^[P' fzf_home
 
 pac_search_remote()
@@ -39,6 +44,7 @@ pac_search_remote()
     LBUFFER=${LBUFFER}${ret}
     zle reset-prompt
 }
+
 zle -N pac_search_remote && bindkey '^[a' pac_search_remote
 
 pac_search_local()
@@ -49,6 +55,7 @@ pac_search_local()
     LBUFFER=${LBUFFER}${ret}
     zle reset-prompt
 }
+
 zle -N pac_search_local && bindkey '^[l' pac_search_local
 
 pac_search_aur()
@@ -74,4 +81,5 @@ pac_search_aur()
     LBUFFER=${LBUFFER}${ret}
     zle reset-prompt
 }
+
 zle -N pac_search_aur && bindkey '^[A' pac_search_aur
