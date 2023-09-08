@@ -5,9 +5,4 @@ pac_upg()
     sudo pacman -Syu --noconfirm && paru -Syu --noconfirm && pgrep -f 'poly-pkg-upgrade' &> /dev/null && poly-pkg-upgrade -u
 }
 
-nvim_upg()
-{
-    nvim --headless +'Lazy! sync | qa'
-}
-
-pac_upg; nvim_upg
+pac_upg

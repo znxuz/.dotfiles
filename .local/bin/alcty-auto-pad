@@ -23,8 +23,8 @@ main()
 	cur_desktop_id=$(echo "$event" | cut -d' ' -f3)
 	wmctrl_id="$(get_wmctrl_id "$cur_desktop_id")"
 	local_windows=$(wmctrl -l | awk -v id="$wmctrl_id" '{ if ($2 == id) print }')
-	[[ -z "$local_windows" || ! "$local_windows" =~ .+Alacritty ]] && continue
 
+	[[ -z "$local_windows" || ! "$local_windows" =~ .+Alacritty ]] && continue
 	if [[ "$(echo "$local_windows" | wc -l)" -eq 1 ]]; then
 	    alcty-padding pad
 	else
@@ -33,6 +33,6 @@ main()
     done
 }
 
-command -v wmctrl jq > /dev/null || exit 1
+command -v wmctrl > /dev/null || exit 1
 
 main

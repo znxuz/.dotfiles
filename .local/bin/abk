@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-[[ -n "$1" ]] && ln -sf "$(pwd)/$1" "$HOME/bookshelf/" || exit 1
+[[ -z "$1" ]] || [[ ! -f "$1" ]] && echo "Invalid argument" >&2 && exit 1
+
+ln -sf "$(pwd)/$1" "$HOME/bookshelf/"

@@ -34,7 +34,7 @@ set wop=pum
 set wic
 set wim=longest:full,full
 set cpt-=t,i
-set cot=menuone,noinsert,noselect,preview
+set cot=menuone,preview,noinsert,noselect
 set shm-=S shm+=cF
 set ph=10
 set ls=2

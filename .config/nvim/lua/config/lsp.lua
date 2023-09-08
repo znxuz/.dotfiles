@@ -1,10 +1,6 @@
--- [[
--- language server configuration command: lspconfig -all
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
--- ]]
-
 local map = require('config.utils').map
 local lspconfig = require('lspconfig')
+local ls = require 'luasnip'
 
 vim.cmd 'set shortmess+=c'
 vim.cmd 'set signcolumn=yes'
@@ -30,6 +26,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map('n', '<leader>ai', '<cmd>lua vim.lsp.inlay_hint(0)<cr>', { buffer = true })
 
     map('n', '<leader><c-^>', '<cmd>ClangdSwitchSourceHeader<cr>')
+
+    map({"i"}, "<c-k>", function() ls.expand() end, {silent = true})
+    -- map({"i", "s"}, "<c-k>", function() ls.jump( 1) end, {silent = true})
+    -- map({"i", "s"}, "<c-j>", function() ls.jump(-1) end, {silent = true})
+    -- map({"i", "s"}, "<c-e>", function() if ls.choice_active() then ls.change_choice(1) end end, {silent = true})
   end,
 })
 
