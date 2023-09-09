@@ -1,5 +1,6 @@
 local map = require('config.utils').map
 local lspconfig = require('lspconfig')
+local ls = require 'luasnip'
 
 vim.cmd 'set shortmess+=c'
 vim.cmd 'set signcolumn=yes'
@@ -7,29 +8,42 @@ vim.cmd 'set signcolumn=yes'
 -- lsp mappings
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(_)
-    map('n', 'gd', '<cmd>FzfLua lsp_definitions<cr>', { buffer = true })
-    map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', { buffer = true })
-    map('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>', { buffer = true })
-    map('n', 'gr', '<cmd>FzfLua lsp_references<cr>', { buffer = true })
-    map('i', '<c-h>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', { buffer = true })
-    map('n', '<leader>d', '<cmd>FzfLua lsp_typedefs<cr>', { buffer = true })
-    map('n', '<leader>aa', '<cmd>FzfLua lsp_code_actions<cr>', { buffer = true })
-    map('n', '<leader>ar', '<cmd>lua vim.lsp.buf.rename()<cr>', { buffer = true })
+    map('n', 'gd', function () vim.lsp.buf.definition() end, { buffer = true })
+    map('n', 'gD', function () vim.lsp.buf.type_definition() end, { buffer = true })
+    map('n', 'gh', function () vim.lsp.buf.hover() end, { buffer = true })
+    map('n', 'gr', function () vim.lsp.buf.references() end, { buffer = true })
+    map('i', '<c-h>', function () vim.lsp.buf.signature_help() end, { buffer = true })
+    map('n', '<leader>aa', function () vim.lsp.buf.code_action() end, { buffer = true })
+    map('n', '<leader>ar', function () vim.lsp.buf.rename() end, { buffer = true })
     map('n', '<leader>s', '<cmd>FzfLua lsp_document_symbols<cr>', { buffer = true })
     map('n', '<leader>S', '<cmd>FzfLua lsp_live_workspace_symbols<cr>', { buffer = true })
     map('n', '<leader>E', '<cmd>FzfLua lsp_workspace_diagnostics<cr>', { buffer = true })
     map('n', '<leader>e', '<cmd>FzfLua lsp_document_diagnostics<cr>', { buffer = true })
-    map('n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<cr>', { buffer = true })
-    map('n', ']e', '<cmd>lua vim.diagnostic.goto_next()<cr>', { buffer = true })
-    map('n', '<leader>ce', '<cmd>lua vim.diagnostic.open_float()<cr>', { buffer = true })
-    map('n', '<leader>ai', '<cmd>lua vim.lsp.inlay_hint(0)<cr>', { buffer = true })
+    map('n', '[e', function () vim.diagnostic.goto_prev() end, { buffer = true })
+    map('n', ']e', function () vim.diagnostic.goto_next() end, { buffer = true })
+    map('n', '<leader>ce', function () vim.diagnostic.open_float() end, { buffer = true })
+    map('n', '<leader>ai', function () vim.lsp.inlay_hint(0) end, { buffer = true })
 
     map('n', '<leader><c-^>', '<cmd>ClangdSwitchSourceHeader<cr>')
+
+    map({"i", "s"}, "<c-j>", function() ls.jump(1) end, {silent = true})
+    map({"i", "s"}, "<c-k>", function() ls.jump(-1) end, {silent = true})
   end,
 })
 
 -- clangd
-lspconfig.clangd.setup { cmd = { 'clangd', '--background-index', '--log=error' }, }
+lspconfig.clangd.setup {
+  cmd = { 'clangd', '--background-index', '--log=error' },
+  capabilities = {
+    textDocument = {
+      completion = {
+	completionItem = {
+	  snippetSupport = false,
+	},
+      },
+    },
+  },
+}
 
 -- tex
 lspconfig.texlab.setup {}

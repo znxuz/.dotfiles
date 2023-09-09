@@ -4,6 +4,9 @@ local ELLIPSIS_CHAR = '…'
 
 cmp.setup {
   preselect = cmp.PreselectMode.None,
+  snippet = {
+    expand = function(args) require'luasnip'.lsp_expand(args.body) end,
+  },
   mapping = {
     ['<c-e>'] = cmp.mapping(cmp.mapping.scroll_docs(1), { 'i', 'c' }),
     ['<c-y>'] = cmp.mapping(cmp.mapping.scroll_docs(-1), { 'i', 'c' }),
@@ -22,6 +25,7 @@ cmp.setup {
     end,
   },
   sources = cmp.config.sources({
+    { name = 'luasnip' },
     { name = 'nvim_lsp' },
     { name = 'buffer' }
   })

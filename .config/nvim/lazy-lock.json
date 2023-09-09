@@ -1,6 +1,8 @@
 {
+  "LuaSnip": { "branch": "master", "commit": "ea7d7ea510c641c4f15042becd27f35b3e5b3c2b" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "44b16d11215dce86f253ce0c30949813c0a90765" },
+  "cmp_luasnip": { "branch": "master", "commit": "18095520391186d634a0045dacaa346291096566" },
   "fzf-lua": { "branch": "main", "commit": "ff6839852cef39ca0b617be341747948638142a2" },
   "gruvbox-material": { "branch": "master", "commit": "a0f1d9a3a6979035b4fa36717a53cfca1f73ff64" },
   "nvim-cmp": { "branch": "main", "commit": "5dce1b778b85c717f6614e3f4da45e9f19f54435" },
