@@ -15,6 +15,7 @@ set lcs=tab:>\ ,trail:-,nbsp:+
 set scl=yes
 filetype plugin indent on
 let g:netrw_dirhistmax = 0
+let g:netrw_keepdir = 0
 
 " === leader key ===
 let mapleader = " "

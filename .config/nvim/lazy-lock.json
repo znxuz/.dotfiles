@@ -1,8 +1,6 @@
 {
-  "LuaSnip": { "branch": "master", "commit": "ea7d7ea510c641c4f15042becd27f35b3e5b3c2b" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "44b16d11215dce86f253ce0c30949813c0a90765" },
-  "cmp_luasnip": { "branch": "master", "commit": "18095520391186d634a0045dacaa346291096566" },
   "fzf-lua": { "branch": "main", "commit": "ff6839852cef39ca0b617be341747948638142a2" },
   "gruvbox-material": { "branch": "master", "commit": "a0f1d9a3a6979035b4fa36717a53cfca1f73ff64" },
   "nvim-cmp": { "branch": "main", "commit": "5dce1b778b85c717f6614e3f4da45e9f19f54435" },
@@ -10,7 +8,7 @@
   "nvim-dap": { "branch": "master", "commit": "0e6b7c47dd70e80793ed39271b2aa712d9366dbc" },
   "nvim-dap-ui": { "branch": "master", "commit": "85b16ac2309d85c88577cd8ee1733ce52be8227e" },
   "nvim-jdtls": { "branch": "master", "commit": "095dc490f362adc85be66dc14bd9665ddd94413b" },
-  "nvim-lspconfig": { "branch": "master", "commit": "0517d8522dcec286b1dba47aa3ee1ed8f523aed6" },
+  "nvim-lspconfig": { "branch": "master", "commit": "d177ad277a638f262edb73c75ffe33e377b95dc5" },
   "undotree": { "branch": "master", "commit": "0e11ba7325efbbb3f3bebe06213afa3e7ec75131" },
   "vimwiki": { "branch": "dev", "commit": "f0fe154ede6b11e3db9b058b930005a056a3d1c6" }
 }
