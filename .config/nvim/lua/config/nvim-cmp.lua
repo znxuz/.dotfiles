@@ -12,7 +12,6 @@ cmp.setup {
     ['<c-y>'] = cmp.mapping(cmp.mapping.scroll_docs(-1), { 'i', 'c' }),
     ['<c-n>'] = cmp.mapping.select_next_item(),
     ['<c-p>'] = cmp.mapping.select_prev_item(),
-    ['<tab>'] = cmp.mapping.confirm({ select = true }),
     ['<c-l>'] = cmp.mapping.close(),
     ['<c-_>'] = cmp.mapping.abort(),
   },
