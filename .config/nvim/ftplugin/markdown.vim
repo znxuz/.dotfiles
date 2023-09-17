@@ -16,7 +16,8 @@ fu! g:MD2PDF()
     silent! exe '%s;\(!\[.\+\]\)(\([^;~].\+\));\1(' . l:dir . '/\2);'
     silent! w
 
-    let l:pandoc_cmd = 'pandoc --wrap=preserve -N --toc --pdf-engine=xelatex -V geometry:margin=2.54cm '
+
+    let l:pandoc_cmd = 'pandoc --metadata-file=$HOME/.config/pandoc/headers.yml -H $HOME/.config/pandoc/header_includes.tex --tab-stop=8 --pdf-engine=xelatex '
     if l:dest == "preview"
 	let l:dest = '/tmp/vimwiki_' . l:dest . '.pdf'
 

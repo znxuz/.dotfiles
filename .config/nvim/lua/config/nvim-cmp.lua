@@ -8,10 +8,12 @@ cmp.setup {
     expand = function(args) require'luasnip'.lsp_expand(args.body) end,
   },
   mapping = {
+    -- TODO map c-y to confirm, tab to complete/invoke
     ['<c-e>'] = cmp.mapping(cmp.mapping.scroll_docs(1), { 'i', 'c' }),
     ['<c-y>'] = cmp.mapping(cmp.mapping.scroll_docs(-1), { 'i', 'c' }),
-    ['<c-n>'] = cmp.mapping.select_next_item(),
+    ['<tab>'] = cmp.mapping.confirm({ select = true }),
     ['<c-p>'] = cmp.mapping.select_prev_item(),
+    ['<c-n>'] = cmp.mapping.select_next_item(),
     ['<c-l>'] = cmp.mapping.close(),
     ['<c-_>'] = cmp.mapping.abort(),
   },

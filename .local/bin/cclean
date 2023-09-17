@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+nvim_undo_clean()
+{
+    undodir="$XDG_STATE_HOME/nvim/undo"
+
+    find "$undodir" -type f -ctime +30 -delete
+
+    readarray -t files < <(ls "$undodir")
+    for f in "${files[@]}"; do
+	filename="$(echo "$f" | sed 's/%/\//g')"
+	[[ ! -f "$filename" ]] && rm "$undodir/$f"
+    done
+}
+
+zathura_history_clean()
+{
+    zathura_dir="${XDG_DATA_HOME:-$HOME/.config}/zathura/history"
+    [[ ! -f "$zathura_dir" ]] && echo "Zathura history file not found" >&2 && exit 127
+
+    expiry_date="3 months ago"
+    limit=$(date -d "$expiry_date" +%s)
+
+    older_entries=$(awk -F'=' -v limit="$limit" '/time/ {if ($2 <= limit) print $2}' "$zathura_dir" | sort | uniq)
+    (($(echo -n "$older_entries" | wc -l) > 0)) && older_entries=$(echo -n "$older_entries" | sed '/^$/d' | tr '\n' '|' | sed 's/|/\\|/g') || exit 0
+
+    vim_cmd=":g/$older_entries/norm dap"
+    nvim --headless +"$vim_cmd" +wq "$zathura_dir"
+}
+
+echo "==> removing package cache" && sudo pacman -Sc --noconfirm
+echo "==> cleaning undodir & removing log entries" && nvim_undo_clean
+echo "==> cleaning zathura history filen" && zathura_history_clean

@@ -1,0 +1,10 @@
+# title:
+# author:
+date: \today
+toc: true
+numbersections: true
+geometry: margin=2.54cm
+urlcolor: blue
+wrap: reserve
+header-includes:
+  - '\newpage'
