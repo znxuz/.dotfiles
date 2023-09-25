@@ -11,7 +11,6 @@ alias \
 alias \
     ckhal='khal calendar' \
     dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
-    vdir-sync='vdirsyncer sync && todo flush --yes && vdirsyncer sync calendars' \
     sshconf-edit='chmod 700 ~/.ssh/config && $EDITOR ~/.ssh/config && chmod 400 ~/.ssh/config' \
     grub-upd='sudo grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB && sudo grub-mkconfig -o /boot/grub/grub.cfg' \
     wtr='curl wttr.in/dortmund_oespel'

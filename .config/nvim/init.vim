@@ -40,6 +40,10 @@ set ph=10
 set ls=2
 
 " === statusline ===
+fu! FormatPath(path)
+    return pathshorten(fnamemodify(a:path,':~:.'), 1)
+endfu
+
 aug stl
     au!
     au VimEnter * hi default link STLMode StatusLineNC
@@ -50,8 +54,8 @@ aug stl
 aug END
 set stl=
 set stl+=%#STLMode#
-set stl+=%<%{'\ \ '.pathshorten(fnamemodify(getcwd(),':~'),1)}
-set stl+=%{expand('%')==''?'':'\ \ \|\ '.pathshorten(fnamemodify(expand('%:p'),\ ':~:.'),1)}
+set stl+=%<%{'\ \ '.FormatPath(getcwd())}
+set stl+=%{expand('%')==''?'':'\ \ \|\ '.FormatPath(expand('%:p'))}
 set stl+=%{&modified?'\ \ '.'[+]':''}
 set stl+=%{&readonly?'\ \ '.'[RO]':''}
 set stl+=%{&paste?'\ \ '.'[P]':''}

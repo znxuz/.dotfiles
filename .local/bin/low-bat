@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+low_threshold=15
+
 cnt=0
 sum=0
 
@@ -11,4 +13,6 @@ do
 done
 
 total=$(( sum / cnt ))
-[[ $total -lt 5 ]] && notify-send -u critical "Battery Low"
+(( total < low_threshold )) && notify-send -u critical "Battery Low" && exit 0
+
+exit 1

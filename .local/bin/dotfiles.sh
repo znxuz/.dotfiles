@@ -8,7 +8,7 @@ setup_dotfiles()
 	git@github.com:zijian-x/.dotfiles.git "$src" &&
 	find "$src" -maxdepth 1 -not -path "$src" \
 	-exec mv -f {} "$HOME" \; && rmdir "$src" &&
-	git --git-dir="$HOME"/.dotfiles --work-tree="$HOME"	\
+	git --git-dir="$HOME"/.dotfiles --work-tree="$HOME" \
 	config --local status.showUntrackedFiles no
 }
 
@@ -33,5 +33,10 @@ symlink_etc_conf()
 read -rp "Setup dotfiles? (y|n)?: " ret
 [[  -z "$ret" || "$ret" =~ [Y|y] ]] && setup_dotfiles
 
-read -rp "Setup symlinks? (y|n)?: " ret
+read -rp "Setup /etc symlinks? (y|n)?: " ret
 [[  -z "$ret" || "$ret" =~ [Y|y] ]] && symlink_etc_conf
+
+cron_file="${XDG_CONFIG_HOME:-$HOME/.config}/cron/cron_file"
+read -rp "Install cron_file(y|n)?: " ret
+[[  -z "$ret" || "$ret" =~ [Y|y] ]] && [[ -f "$cron_file" ]] &&
+    sudo crontab -u "$(whoami)" "$cron_file"

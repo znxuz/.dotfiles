@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# let cronie use pass command with the alternative pass store file
+export PASSWORD_STORE_DIR=${XDG_DATA_HOME:-$HOME/.local/share}/password-store
+
+vdirsyncer sync && todo flush --yes && vdirsyncer sync calendars
