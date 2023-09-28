@@ -1,1 +1,1 @@
-* */6 * * * $HOME/.local/bin/vdir-sync >> /var/log/cron.log
+* */6 * * * $HOME/.local/bin/vdir-sync

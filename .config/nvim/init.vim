@@ -11,8 +11,8 @@ set cb=unnamedplus
 set shada+=n$XDG_STATE_HOME/nvim/viminfo
 set fo+=j
 set nosc
-set lcs=tab:>\ ,trail:-,nbsp:+
 set scl=yes
+set sbr=>\\
 filetype plugin indent on
 let g:netrw_dirhistmax = 0
 
@@ -25,7 +25,6 @@ set is ic scs nohls
 " === file management ===
 set ar aw
 set noswf
-set sbr=>\\
 set udf
 
 " === completion ===

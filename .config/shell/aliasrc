@@ -1,14 +1,9 @@
 alias \
+    ls='ls --color=auto --group-directories-first' \
     diff='diff --color=auto' \
     grep='grep --color=auto' \
-    ls='ls --color=auto --group-directories-first'
-
-alias \
-    mlv='mullvad' \
     bt='bluetoothctl' \
-    za='zathura --fork'
-
-alias \
+    za='zathura --fork' \
     ckhal='khal calendar' \
     dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
     sshconf-edit='chmod 700 ~/.ssh/config && $EDITOR ~/.ssh/config && chmod 400 ~/.ssh/config' \

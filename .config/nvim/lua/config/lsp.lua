@@ -85,3 +85,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- bash
 require'lspconfig'.bashls.setup{}
+
+-- python
+require'lspconfig'.pylsp.setup{}
