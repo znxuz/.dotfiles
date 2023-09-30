@@ -1,11 +1,23 @@
 local cmp = require 'cmp'
 local MAX_LABEL_WIDTH = 40
 local ELLIPSIS_CHAR = '…'
+local compare = cmp.config.compare
 
 cmp.setup {
   preselect = cmp.PreselectMode.None,
   snippet = {
     expand = function(args) require'luasnip'.lsp_expand(args.body) end,
+  },
+  sorting = {
+    priority_weight = 1.0,
+    comparators = {
+      compare.locality,
+      compare.recently_used,
+      compare.length,
+      compare.order,
+      compare.score,
+      compare.offset,
+    },
   },
   mapping = {
     -- TODO map c-y to confirm, tab to complete/invoke
