@@ -43,6 +43,10 @@ fu! FormatPath(path)
     return pathshorten(fnamemodify(a:path,':~:.'), 1)
 endfu
 
+fu! ShowDiagnosticCount()
+    return luaeval('require"config.lsp".StatuslineDiagCountAll()')
+endf
+
 aug stl
     au!
     au VimEnter * hi default link STLMode StatusLineNC
@@ -53,18 +57,25 @@ aug stl
 aug END
 set stl=
 set stl+=%#STLMode#
-set stl+=%<%{'\ \ '.FormatPath(getcwd())}
+set stl+=%<\ %{FormatPath(getcwd())}
 set stl+=%{expand('%')==''?'':'\ \ \|\ '.FormatPath(expand('%:p'))}
-set stl+=%{&modified?'\ \ '.'[+]':''}
-set stl+=%{&readonly?'\ \ '.'[RO]':''}
-set stl+=%{&paste?'\ \ '.'[P]':''}
+set stl+=%{&modified?'\ \ [+]':''}
+set stl+=%{&readonly?'\ \ [RO]':''}
+set stl+=%{&paste?'\ \ [P]':''}
+set stl+=%{ShowDiagnosticCount()}
 set stl+=%=
-set stl+=%{'\ \ \ \ '.&fileformat}%{'\ \ \|\ '}
-set stl+=%{&fileencoding?&fileencoding:&encoding}%{'\ '.'\ \|\ '}
-set stl+=%l:%c%{'\ \|\ '}
-set stl+=%p%%
+set stl+=\ \ %{&fileformat}
+set stl+=\ \|\ %{&fileencoding?&fileencoding:&encoding}
+set stl+=\ \|\ %l:%c
+set stl+=\ \|\ %p%%
 set stl+=%{&filetype==''?'\ ':'\ \|\ '.toupper(&filetype).'\ '}
 set nosmd
+
+" === qflist ===
+nn [c <cmd>cprev<cr>
+nn ]c <cmd>cnext<cr>
+nn [C <cmd>cfir<cr>
+nn ]C <cmd>clast<cr>
 
 " === nvim ===
 set mouse=

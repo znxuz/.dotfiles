@@ -3,8 +3,8 @@ then
   return
 end
 
-local map = require('config.utils').map
-map('n', '<leader>ci', '<cmd>lua require("jdtls").organize_imports()<cr>')
+local map = require('config.mapper').map
+map('n', '<leader>ao', '<cmd>lua require("jdtls").organize_imports()<cr>')
 
 local xdg_data_home = os.getenv('XDG_DATA_HOME')
 local config = {

@@ -1,6 +1,5 @@
-local map = require('config.utils').map
+local map = require('config.mapper').map
 local lspconfig = require('lspconfig')
-local ls = require 'luasnip'
 
 vim.cmd 'set shortmess+=c'
 vim.cmd 'set signcolumn=yes'
@@ -15,19 +14,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map('i', '<c-h>', function () vim.lsp.buf.signature_help() end, { buffer = true })
     map('n', '<leader>aa', function () vim.lsp.buf.code_action() end, { buffer = true })
     map('n', '<leader>ar', function () vim.lsp.buf.rename() end, { buffer = true })
-    map('n', '<leader>s', '<cmd>FzfLua lsp_document_symbols<cr>', { buffer = true })
-    map('n', '<leader>S', '<cmd>FzfLua lsp_live_workspace_symbols<cr>', { buffer = true })
-    map('n', '<leader>E', '<cmd>FzfLua lsp_workspace_diagnostics<cr>', { buffer = true })
-    map('n', '<leader>e', '<cmd>FzfLua lsp_document_diagnostics<cr>', { buffer = true })
+    map('n', '<leader>s', function () vim.lsp.buf.document_symbol() end, { buffer = true })
+    map('n', '<leader>S', function () vim.lsp.buf.workspace_symbol() end, { buffer = true })
+    map('n', '<leader><c-e>', function () vim.diagnostic.open_float() end, { buffer = true })
+    map('n', '<leader>e', function ()
+      vim.fn.setqflist(vim.diagnostic.toqflist(vim.diagnostic.get(0)), 'r')
+      vim.cmd'cope'
+    end, { buffer = true })
+    map('n', '<leader>E', function () vim.diagnostic.setqflist() end, { buffer = true })
     map('n', '[e', function () vim.diagnostic.goto_prev() end, { buffer = true })
     map('n', ']e', function () vim.diagnostic.goto_next() end, { buffer = true })
-    map('n', '<leader>ce', function () vim.diagnostic.open_float() end, { buffer = true })
     map('n', '<leader>ai', function () vim.lsp.inlay_hint(0) end, { buffer = true })
 
     map('n', '<leader><c-^>', '<cmd>ClangdSwitchSourceHeader<cr>')
-
-    map({"i", "s"}, "<c-j>", function() ls.jump(1) end, {silent = true})
-    map({"i", "s"}, "<c-k>", function() ls.jump(-1) end, {silent = true})
   end,
 })
 
@@ -88,3 +87,21 @@ require'lspconfig'.bashls.setup{}
 
 -- python
 require'lspconfig'.pylsp.setup{}
+
+local M = {}
+
+function M.StatuslineDiagCountAll()
+  local cur = vim.api.nvim_get_current_buf()
+  local clients = vim.lsp.get_clients({ bufnr = cur })
+  if #clients == 0 then return "" end
+
+  local warn = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+  local err = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+  if warn ~= 0 or err ~= 0 then
+    return string.format("  | ⚠️ %d ❌%d", warn, err)
+  end
+
+  return ""
+end
+
+return M

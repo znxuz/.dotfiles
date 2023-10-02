@@ -75,7 +75,7 @@ require('dapui').setup({
   windows = { indent = 1 },
 })
 
-local map = require('config.utils').map
+local map = require('config.mapper').map
 map("n", "<leader>dd", "<cmd>lua require'dap'.continue()<cr>")
 map("n", "<leader>dj", "<cmd>lua require'dap'.step_over()<cr>")
 map("n", "<leader>dl", "<cmd>lua require'dap'.step_into()<cr>")

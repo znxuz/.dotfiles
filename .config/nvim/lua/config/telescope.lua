@@ -52,10 +52,9 @@ M.live_grep_in = function()
 end
 
 
-local map = require("config.utils").map
+local map = require("config.mapper").map
 map('n', '<leader>p', '<cmd>Telescope find_files<cr>')
 map('n', '<leader>P', '<cmd>Telescope find_files search_dirs=~<cr>')
-map('n', '<leader>cp', '<cmd>Telescope find_files search_dirs=%:p:h<cr>')
 map('n', '<leader>ip', '<cmd>lua require"config.telescope".find_files_in()<cr>')
 map('n', '<leader>b', '<cmd>Telescope buffers<cr>')
 map('n', '<leader>ir', '<cmd>lua require"config.telescope".live_grep_in()<cr>')

@@ -18,7 +18,10 @@ require'lazy'.setup({
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
     },
-    config = function () require('config.nvim-cmp') end
+    config = function ()
+      require('config.nvim-cmp')
+      require('config.ls')
+    end
   },
   {
     'mfussenegger/nvim-jdtls',

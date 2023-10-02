@@ -127,14 +127,12 @@ M.grep_in = function()
   end)
 end
 
-local map = require('config.utils').map
+local map = require('config.mapper').map
 map('n', '<leader>p', '<cmd>FzfLua files<cr>')
 map('n', '<leader>P', '<cmd>FzfLua files cwd=~<cr>')
-map('n', '<leader>cp', '<cmd>FzfLua files cwd=%:h<cr>')
 map('n', '<leader>ip', '<cmd>lua require("config.fzflua").find_files_in()<cr>')
 map('n', '<leader>b', '<cmd>FzfLua buffers<cr>')
 map('n', '<leader>r', '<cmd>FzfLua live_grep<cr>')
-map('n', '<leader>cr', '<cmd>FzfLua live_grep cwd=%:p:h<cr>')
 map('n', '<leader>ir', '<cmd>lua require("config.fzflua").grep_in()<cr>')
 map('n', '<leader>A', '<cmd>FzfLua builtin<cr>')
 map('n', '<leader>j', '<cmd>FzfLua jumps<cr>')
