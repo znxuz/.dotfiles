@@ -1,11 +1,10 @@
 require('fzf-lua').setup {
-
   -- global_resume      = false, -- need to disable otherwise fzf_exec won't work
   global_resume_query = false,
   winopts = {
     border = 'single',
     hl = { border = 'LineNr' },
-    height = 0.7,
+    height = 0.6,
     width = 0.6,
     preview = {
       hidden = 'hidden',
@@ -55,7 +54,7 @@ require('fzf-lua').setup {
   },
   -- provider setup
   files = {
-    path_shorten = false,
+    path_shorten = true,
     multiprocess = true,  -- run command in a separate process
     git_icons = false,  -- show git icons?
     file_icons = false, -- show file icons?
@@ -129,7 +128,6 @@ end
 
 local map = require('config.mapper').map
 map('n', '<leader>p', '<cmd>FzfLua files<cr>')
-map('n', '<leader>P', '<cmd>FzfLua files cwd=~<cr>')
 map('n', '<leader>ip', '<cmd>lua require("config.fzflua").find_files_in()<cr>')
 map('n', '<leader>b', '<cmd>FzfLua buffers<cr>')
 map('n', '<leader>r', '<cmd>FzfLua live_grep<cr>')

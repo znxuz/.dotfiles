@@ -1,33 +1,33 @@
-local cmp = require 'cmp'
+local cmp = require('cmp')
 local ls = require('luasnip')
 local MAX_LABEL_WIDTH = 40
 local ELLIPSIS_CHAR = '…'
-local compare = cmp.config.compare
+-- local compare = cmp.config.compare
 
 cmp.setup {
   preselect = cmp.PreselectMode.None,
   snippet = {
     expand = function(args) require'luasnip'.lsp_expand(args.body) end,
   },
-  sorting = {
-    priority_weight = 1.0,
-    comparators = {
-      compare.length,
-      compare.recently_used,
-      compare.locality,
-      compare.order,
-      compare.score,
-      compare.offset,
-    },
-  },
+  -- sorting = {
+    -- priority_weight = 1.0,
+    -- comparators = {
+      -- compare.score,
+      -- compare.order,
+      -- compare.recently_used,
+      -- compare.locality,
+      -- compare.length,
+      -- compare.offset,
+    -- },
+  -- },
   mapping = {
     ['<c-e>'] = cmp.mapping(cmp.mapping.scroll_docs(1), { 'i', 'c' }),
     ['<c-y>'] = cmp.mapping(cmp.mapping.scroll_docs(-1), { 'i', 'c' }),
     ['<tab>'] = cmp.mapping(function (fallback)
-      if cmp.visible() then
-	cmp.confirm({ select = true})
-      elseif ls.jumpable(1) then
+      if ls.jumpable(1) then
 	ls.jump(1)
+      elseif cmp.visible() then
+	cmp.confirm({ select = true})
       else
 	fallback()
       end

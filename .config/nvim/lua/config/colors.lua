@@ -4,7 +4,7 @@ vim.g['gruvbox_material_background'] = 'hard'
 vim.g['gruvbox_material_sign_column_background'] = 'none'
 vim.cmd 'color gruvbox-material'
 
-vim.cmd 'hi! link PMenu StatusLine | hi! link NormalFloat StatusLine'
+vim.cmd 'hi! link PMenu StatusLine | hi! link NormalFloat StatusLine | hi! link TabLine StatusLine'
 
 -- change bg & set custom highlights upon receiving SIGUSR1
 vim.cmd([[

@@ -2,7 +2,7 @@ require'lazy'.setup({
   -- almighty picker
   {
     'ibhagwan/fzf-lua',
-    config = function () require('config.fzflua') end
+    config = function () require('config.fzflua') end,
   },
 
   -- lsp
@@ -52,6 +52,9 @@ require'lazy'.setup({
     'vimwiki/vimwiki',
     keys = { { '<leader>ws', '<cmd>VimwikiUISelect<cr>', desc = 'Vimwiki UI select' } },
     init = function () require('config.vimwiki') end
+  },
+  {
+    'romainl/vim-devdocs'
   },
   {
     'norcalli/nvim-colorizer.lua',

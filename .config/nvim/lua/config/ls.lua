@@ -13,19 +13,23 @@ ls.filetype_set("c", { "cpp" })
 
 ls.add_snippets(nil, {
   cpp = {
-    s({
-      trig = "tt",
-      namr = "TEST",
-    }, {
-      t({"TEST("}), i(1, "Fixture"), t({", "}), i(2, "TestName"),
-      t({")", "{", "    "}), i(0, ""), t({"", "}"}),
+    s({ trig = "struct", namr = "Struct" }, {
+      t({"struct "}), i(1, "struct_name"),
+      t({"", "{", "    "}), i(0, ""),
+      t({"", "};"})
     }),
-    s({
-      trig = "ttf",
-      namr = "TEST_F",
-    }, {
+    s({ trig = "class", namr = "Class" }, {
+      t({"class "}), i(1, "class_name"),
+      t({"", "{", "    "}), i(0, ""),
+      t({"", "};"})
+    }),
+    s({ trig = "tt", namr = "TEST" }, {
+      t({"TEST("}), i(1, "Fixture"), t({", "}), i(2, "TestName"),
+      t({")", "{", "    "}), i(0, ""), t({"", "}"})
+    }),
+    s({ trig = "ttf", namr = "TEST_F" }, {
       t({"TEST_F("}), i(1, "Fixture"), t({", "}), i(2, "TestName"),
-      t({")", "{", "    "}), i(0, ""), t({"", "}"}),
+      t({")", "{", "    "}), i(0, ""), t({"", "}"})
     }),
   },
 })
