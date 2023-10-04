@@ -13,6 +13,14 @@ ls.filetype_set("c", { "cpp" })
 
 ls.add_snippets(nil, {
   cpp = {
+    -- function
+    s( { trig = "fn", namer = "Function" }, {
+      i(1, "return_type"), t({" "}), i(2, "function_name"), t({"("}), i(3, "params"),
+      t({")", "{", "    "}), i(0, ""),
+      t({"", "}"})
+    }),
+
+    -- class/struct
     s({ trig = "struct", namr = "Struct" }, {
       t({"struct "}), i(1, "struct_name"),
       t({"", "{", "    "}), i(0, ""),
@@ -23,6 +31,8 @@ ls.add_snippets(nil, {
       t({"", "{", "    "}), i(0, ""),
       t({"", "};"})
     }),
+
+    -- gtest macro template
     s({ trig = "tt", namr = "TEST" }, {
       t({"TEST("}), i(1, "Fixture"), t({", "}), i(2, "TestName"),
       t({")", "{", "    "}), i(0, ""), t({"", "}"})

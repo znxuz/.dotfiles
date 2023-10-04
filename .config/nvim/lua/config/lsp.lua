@@ -4,7 +4,7 @@ local lspconfig = require('lspconfig')
 vim.cmd 'set shortmess+=c'
 vim.cmd 'set signcolumn=yes'
 
--- lsp mappings
+--[[
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(_)
     map('n', 'gd', function () vim.lsp.buf.definition() end, { buffer = true })
@@ -25,6 +25,30 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map('n', '[e', function () vim.diagnostic.goto_prev() end, { buffer = true })
     map('n', ']e', function () vim.diagnostic.goto_next() end, { buffer = true })
     map('n', '<leader>ai', function () vim.lsp.inlay_hint(0) end, { buffer = true })
+
+    map('n', '<leader><c-^>', '<cmd>ClangdSwitchSourceHeader<cr>')
+  end,
+})
+--]]
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(_)
+    map('n', 'gd', '<cmd>FzfLua lsp_definitions<cr>', { buffer = true })
+    map('n', 'gD', '<cmd>FzfLua lsp_typedefs<cr>' , { buffer = true })
+    map('n', 'gr', '<cmd>FzfLua lsp_references<cr>', { buffer = true })
+    map('n', 'gI', '<cmd>FzfLua lsp_implementations<cr>', { buffer = true })
+    map('n', '<leader>aa', '<cmd>FzfLua lsp_code_actions<cr>', { buffer = true })
+    map('n', '<leader>s', '<cmd>FzfLua lsp_document_symbols<cr>', { buffer = true })
+    map('n', '<leader>S', '<cmd>FzfLua lsp_workspace_symbols<cr>', { buffer = true })
+    map('n', '<leader>e', '<cmd>FzfLua diagnostics_document<cr>', { buffer = true })
+    map('n', '<leader>E', '<cmd>FzfLua diagnostics_workspace<cr>', { buffer = true })
+    map('n', '<leader>ce', function () vim.diagnostic.open_float() end, { buffer = true })
+    map('n', '[e', function () vim.diagnostic.goto_prev() end, { buffer = true })
+    map('n', ']e', function () vim.diagnostic.goto_next() end, { buffer = true })
+    map('n', '<leader>ai', function () vim.lsp.inlay_hint(0) end, { buffer = true })
+    map('n', '<leader>ar', function () vim.lsp.buf.rename() end, { buffer = true })
+    map('n', 'gh', function () vim.lsp.buf.hover() end, { buffer = true })
+    map('i', '<c-h>', function () vim.lsp.buf.signature_help() end, { buffer = true })
 
     map('n', '<leader><c-^>', '<cmd>ClangdSwitchSourceHeader<cr>')
   end,

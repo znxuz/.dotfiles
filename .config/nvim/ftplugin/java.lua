@@ -4,7 +4,7 @@ then
 end
 
 local map = require('config.mapper').map
-map('n', '<leader>ao', '<cmd>lua require("jdtls").organize_imports()<cr>')
+map('n', '<leader>ao', function () require("jdtls").organize_imports() end)
 
 local xdg_data_home = os.getenv('XDG_DATA_HOME')
 local config = {
