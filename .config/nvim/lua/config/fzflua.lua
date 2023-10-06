@@ -88,6 +88,7 @@ require('fzf-lua').setup {
     color_icons = false,
   },
   buffers = {
+    path_shorten = true,
     file_icons = false,
     color_icons = false,
   },
