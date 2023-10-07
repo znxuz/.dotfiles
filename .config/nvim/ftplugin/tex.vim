@@ -1,1 +1,1 @@
-nnoremap <buffer> <leader>mc <cmd>!tectonic %<cr>
+nnoremap <buffer> <leader>mt <cmd>!tectonic %<cr>

@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+package_cache_clean()
+{
+    echo "==> pacman package cache" && sudo pacman -Sc --noconfirm
+    echo "==> paru package cache" && paru -Sc --noconfirm
+}
+
 nvim_undo_clean()
 {
     echo "==> cleaning undodir & removing log entries"
@@ -36,10 +42,10 @@ zathura_non_exist_entries()
 
     echo "==> removing non-exising file entries"
     vim_cmd=":g?$non_exists?norm dap"
-    nvim --headless +"$vim_cmd" "$zathura_his"
+    nvim --headless +"$vim_cmd" +wq "$zathura_his"
 }
 
-echo "==> removing package cache" && sudo pacman -Sc --noconfirm
+package_cache_clean
 nvim_undo_clean
 
 zathura_his="${XDG_DATA_HOME:-$HOME/.config}/zathura/history"
