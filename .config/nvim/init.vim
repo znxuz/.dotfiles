@@ -13,6 +13,7 @@ set fo+=j
 set nosc
 set scl=yes
 set sbr=>\\
+set list
 filetype plugin indent on
 let g:netrw_dirhistmax = 0
 

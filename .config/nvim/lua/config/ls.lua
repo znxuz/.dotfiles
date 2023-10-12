@@ -32,6 +32,17 @@ ls.add_snippets(nil, {
       t({"", "};"})
     }),
 
+    -- fmt
+    s( { trig = "println", namr = "Function" }, {
+      t({"fmt::println(\""}), i(1, ""), t({"\", "}), i(2, ""), t({");"})
+    }),
+    s( { trig = "print", namr = "Function" }, {
+      t({"fmt::print(\""}), i(1, ""), t({"\", "}), i(2, ""), t({");"})
+    }),
+    s( { trig = "format", namr = "Function" }, {
+      t({"std::format(\""}), i(1, ""), t({"\", "}), i(2, ""), t({");"})
+    }),
+
     -- gtest macro template
     s({ trig = "tt", namr = "TEST" }, {
       t({"TEST("}), i(1, "Fixture"), t({", "}), i(2, "TestName"),
@@ -46,4 +57,4 @@ ls.add_snippets(nil, {
 
 map({"i", "s"}, "<c-j>", function() ls.jump(1) end, {silent = true})
 map({"i", "s"}, "<c-k>", function() ls.jump(-1) end, {silent = true})
-map('n', "<leader>as", "<cmd>so ~/.config/nvim/lua/config/ls.lua<cr>")
+map('n', "<leader>as", "<cmd>so ~/.config/nvim/lua/config/ls.lua | echo 'lua snippet sourced'<cr>")
