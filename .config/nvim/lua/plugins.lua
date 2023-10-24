@@ -62,6 +62,10 @@ require'lazy'.setup({
     config = function () require'colorizer'.setup() end
   },
   {
+    'lewis6991/gitsigns.nvim',
+    config = function () require('gitsigns').setup() end
+  },
+  {
     'zijian-x/gruvbox-material',
     config = function () require('config.colors') end
   }

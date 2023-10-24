@@ -34,10 +34,10 @@ ls.add_snippets(nil, {
 
     -- fmt
     s( { trig = "println", namr = "Function" }, {
-      t({"fmt::println(\""}), i(1, ""), t({"\", "}), i(2, ""), t({");"})
+      t({"fmt::println(\""}), i(1, ""), t({"\""}), i(2, ""), t({");"})
     }),
     s( { trig = "print", namr = "Function" }, {
-      t({"fmt::print(\""}), i(1, ""), t({"\", "}), i(2, ""), t({");"})
+      t({"fmt::print(\""}), i(1, ""), t({"\""}), i(2, ""), t({");"})
     }),
     s( { trig = "format", namr = "Function" }, {
       t({"std::format(\""}), i(1, ""), t({"\", "}), i(2, ""), t({");"})

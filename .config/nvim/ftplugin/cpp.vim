@@ -3,16 +3,6 @@ setl et
 setl cino=g0
 setl wig+=bin/*,*.o
 
-function! s:CppMan()
-    let old_isk = &iskeyword
-    setl iskeyword+=:
-    let str = expand("<cword>")
-    let &l:iskeyword = old_isk
-    execute 'Man ' . str
-endfunction
-
-nn <buffer> K <cmd>call <sid>CppMan()<cr>
-
 function s:CppCheck()
   try
     let save_makeprg=&makeprg
