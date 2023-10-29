@@ -52,12 +52,39 @@ symlink_etc_conf()
 install_cron()
 {
     cron_file="${XDG_CONFIG_HOME:-$HOME/.config}/cron/cron_file"
-    read -rp "Install cron_file(y|n)?: " ret
-    [[  -z "$ret" || "$ret" =~ [Y|y] ]] && [[ -f "$cron_file" ]] &&
-	sudo crontab -u "$(whoami)" "$cron_file"
+    read -rp "Install cron_file (y|n)?: " ret
+    [[  -n "$ret" && "$ret" =~ [N|n] ]] && return
+
+    [[ -f "$cron_file" ]] && sudo crontab -u "$(whoami)" "$cron_file"
+}
+
+setup_dropbox()
+{
+    read -rp "Install dropbox (y|n)?: " ret
+    [[  -n "$ret" && "$ret" =~ [N|n] ]] && return
+    pacman -Q dropbox || paru -S --noconfirm dropbox || return
+
+    rm -rf ~/.dropbox-dist
+    install -dm0 ~/.dropbox-dist
+}
+
+install_pkg()
+{
+    native_pkg_list=$HOME/.config/misc/Qqen
+    foreign_pkg_list=$HOME/.config/misc/Qqem
+
+    read -rp "Install packages from list (y|n)?: " ret
+    [[  -n "$ret" && "$ret" =~ [N|n] ]] ||
+	[[ ! -f $native_pkg_list ]] || 
+	[[ ! -f $foreign_pkg_list ]] && return
+
+    vim "$native_pkg_list" && cat "$native_pkg_list" | sudo pacman -S -
+    vim "$foreign_pkg_list" && paru -S - < "$foreign_pkg_list"
 }
 
 setup_dotfiles
 setup_aur
 symlink_etc_conf
 install_cron
+setup_dropbox
+install_pkg
