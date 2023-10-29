@@ -7,9 +7,16 @@ setup_dotfiles()
     git clone --separate-git-dir="$HOME"/.dotfiles \
 	git@github.com:zijian-x/.dotfiles.git "$src" &&
 	find "$src" -maxdepth 1 -not -path "$src" \
-	-exec mv -f {} "$HOME" \; && rmdir "$src" &&
+	-exec cp -rf {} "$HOME" \; && rm -rf "$src" &&
 	git --git-dir="$HOME"/.dotfiles --work-tree="$HOME" \
 	config --local status.showUntrackedFiles no
+}
+
+setup_aur()
+{
+    paru_git='/tmp/paru'
+    git clone 'https://aur.archlinux.org/paru.git' "$paru_git" &&
+	cd "$paru_git" && makepkg -sirc
 }
 
 symlink_etc_conf()
@@ -32,6 +39,9 @@ symlink_etc_conf()
 
 read -rp "Setup dotfiles? (y|n)?: " ret
 [[  -z "$ret" || "$ret" =~ [Y|y] ]] && setup_dotfiles
+
+read -rp "Setup AUR with paru? (y|n)?: " ret
+[[  -z "$ret" || "$ret" =~ [Y|y] ]] && setup_aur
 
 read -rp "Setup /etc symlinks? (y|n)?: " ret
 [[  -z "$ret" || "$ret" =~ [Y|y] ]] && symlink_etc_conf
