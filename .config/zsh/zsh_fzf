@@ -25,8 +25,7 @@ zle -N cd_fzf_home && bindkey '^[C' cd_fzf_home
 find_fzf()
 {
     [[ -z $1 ]] && exit 1
-    local ret="$(fd -u --base-directory $1 -0 \
-	| fzf --read0 -m | sed -E -e "s|./|$1/|" -e 's/ /\\ /g' | tr '\n' ' ')"
+    local ret="$(printf "%q" "$(fd -u --base-directory $1 -0 \ | fzf --read0 -m)")"
 
     [[ ! -z "$ret" ]] && LBUFFER="$LBUFFER$ret"
     zle reset-prompt

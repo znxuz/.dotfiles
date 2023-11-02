@@ -9,7 +9,9 @@ rsync -azvhP --del --delete-excluded --exclude-from "$HOME/.local/bin/.rsyncexcl
 
 pacman -Qqen | tee "$misc_dir/Qqen" && cp -f "$misc_dir/Qqen" "$dest"
 pacman -Qqem | tee "$misc_dir/Qqem" && cp -f "$misc_dir/Qqem" "$dest"
+
 systemctl list-unit-files --state=enabled --user | tee "$misc_dir/systemd-unit-files-user" \
     && cp -f "$misc_dir/systemd-unit-files-user" "$dest"
-    systemctl list-unit-files --state=enabled | tee "$misc_dir/systemd-unit-files" \
-	&& cp -f "$misc_dir/systemd-unit-files" "$dest"
+
+systemctl list-unit-files --state=enabled | tee "$misc_dir/systemd-unit-files" \
+    && cp -f "$misc_dir/systemd-unit-files" "$dest"
