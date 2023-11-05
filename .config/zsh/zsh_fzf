@@ -10,10 +10,10 @@ bindkey '^[o' fzf-history-widget
 cd_fzf()
 {
     local ret="$(fd -td -u -L \
-	--base-directory $1 -0 | fzf --read0 --preview="tree -L 1 {}" \
+	--search-path $1 -0 | fzf --read0 --preview="tree -L 1 {}" \
 	--bind="ctrl-space:toggle-preview" --preview-window=:hidden)"
 
-    [[ ! -z "$ret" ]] && cd "$1/$ret"
+    [[ ! -z "$ret" ]] && cd "$ret"
     vcs_info
     zle reset-prompt
 }
@@ -25,7 +25,7 @@ zle -N cd_fzf_home && bindkey '^[C' cd_fzf_home
 find_fzf()
 {
     [[ -z $1 ]] && exit 1
-    local ret="$(fd -u --base-directory $1 -0 | fzf --read0 -m)"
+    local ret="$(fd -u --search-path $1 -0 | fzf --read0 -m)"
     if [[ -n "$ret" ]]; then
 	ret="$(printf "%q" "$ret")"
 	LBUFFER="$LBUFFER$ret"
