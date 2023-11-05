@@ -45,11 +45,21 @@ zathura_non_exist_entries()
     nvim --headless +"$vim_cmd" +wq "$zathura_his"
 }
 
+zathura_clean()
+{
+    zathura_his="${XDG_DATA_HOME:-$HOME/.config}/zathura/history"
+    [[ ! -f "$zathura_his" ]] && echo "Zathura history file not found" >&2 && exit 127
+
+    zathura_old_entries
+    zathura_non_exist_entries
+}
+
+journal_clean()
+{
+    sudo journalctl --vacuum-time=1month
+}
+
 package_cache_clean
 nvim_undo_clean
-
-zathura_his="${XDG_DATA_HOME:-$HOME/.config}/zathura/history"
-[[ ! -f "$zathura_his" ]] && echo "Zathura history file not found" >&2 && exit 127
-
-zathura_old_entries
-zathura_non_exist_entries
+zathura_clean
+journal_clean

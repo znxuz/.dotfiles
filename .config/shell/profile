@@ -37,10 +37,6 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND -td"
 # make
 export MAKEFLAGS='-j'
 
-# nnn
-export NNN_FCOLORS="000004020005050009060B00"
-export NNN_OPTS="eER"
-
 # calibre dark theme
 export CALIBRE_USE_DARK_PALETTE=1
 

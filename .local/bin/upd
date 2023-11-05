@@ -2,7 +2,7 @@
 
 pac_upg()
 {
-    sudo pacman -Syu --noconfirm && paru -Syu --noconfirm
+    paru -Syu --noconfirm
     pgrep -f 'poly-pkg-upgrade' &> /dev/null && poly-pkg-upgrade -u
 }
 
