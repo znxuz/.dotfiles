@@ -1,5 +1,4 @@
 local cmp = require('cmp')
-local ls = require('luasnip')
 local MAX_LABEL_WIDTH = 40
 local ELLIPSIS_CHAR = '…'
 local compare = cmp.config.compare

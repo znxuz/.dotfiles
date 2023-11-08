@@ -4,33 +4,6 @@ local lspconfig = require('lspconfig')
 vim.cmd 'set shortmess+=c'
 vim.cmd 'set signcolumn=yes'
 
---[[
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(_)
-    map('n', 'gd', function () vim.lsp.buf.definition() end, { buffer = true })
-    map('n', 'gD', function () vim.lsp.buf.type_definition() end, { buffer = true })
-    map('n', 'gh', function () vim.lsp.buf.hover() end, { buffer = true })
-    map('n', 'gr', function () vim.lsp.buf.references() end, { buffer = true })
-    map('i', '<c-h>', function () vim.lsp.buf.signature_help() end, { buffer = true })
-    map('n', '<leader>aa', function () vim.lsp.buf.code_action() end, { buffer = true })
-    map('n', '<leader>ar', function () vim.lsp.buf.rename() end, { buffer = true })
-    map('n', '<leader>s', function () vim.lsp.buf.document_symbol() end, { buffer = true })
-    map('n', '<leader>S', function () vim.lsp.buf.workspace_symbol() end, { buffer = true })
-    map('n', '<leader><c-e>', function () vim.diagnostic.open_float() end, { buffer = true })
-    map('n', '<leader>e', function ()
-      vim.fn.setqflist(vim.diagnostic.toqflist(vim.diagnostic.get(0)), 'r')
-      vim.cmd'cope'
-    end, { buffer = true })
-    map('n', '<leader>E', function () vim.diagnostic.setqflist() end, { buffer = true })
-    map('n', '[e', function () vim.diagnostic.goto_prev() end, { buffer = true })
-    map('n', ']e', function () vim.diagnostic.goto_next() end, { buffer = true })
-    map('n', '<leader>ai', function () vim.lsp.inlay_hint(0) end, { buffer = true })
-
-    map('n', '<leader><c-^>', '<cmd>ClangdSwitchSourceHeader<cr>')
-  end,
-})
---]]
-
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(_)
     map('n', 'gd', '<cmd>FzfLua lsp_definitions<cr>', { buffer = true })

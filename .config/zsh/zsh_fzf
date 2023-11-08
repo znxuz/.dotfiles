@@ -25,7 +25,7 @@ zle -N cd_fzf_home && bindkey '^[C' cd_fzf_home
 find_fzf()
 {
     [[ -z $1 ]] && exit 1
-    local ret="$(fd -u --search-path $1 -0 | fzf --read0 -m)"
+    local ret="$(fd -H --search-path $1 -0 | fzf --read0 -m)"
     if [[ -n "$ret" ]]; then
 	ret="$(printf "%q" "$ret")"
 	LBUFFER="$LBUFFER$ret"

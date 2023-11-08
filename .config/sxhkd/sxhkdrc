@@ -126,6 +126,8 @@ super + grave
 # screenshot
 super + S
 	flameshot gui
+super + W
+	scrot -u -z ~/Pictures/screenshot.png && notify-send -u low "Captured the currently focused window"
 
 # rofi
 super + ctrl + Return
