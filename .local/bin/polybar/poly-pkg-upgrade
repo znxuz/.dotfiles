@@ -7,7 +7,7 @@ set_output()
 {
     pac_upd="$(checkupdates 2> /dev/null)"
     count=$(echo "$pac_upd" | wc -l)
-    if echo "$pac_upd" | grep -q "linux-.*arch" ; then
+    if echo "$pac_upd" | grep -q "linux\W.*arch" ; then
 	output=" $count"
     elif [[ "$count" -gt 9 ]]; then
 	output="$count"
