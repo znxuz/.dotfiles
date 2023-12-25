@@ -1,5 +1,13 @@
+## alacritty
+super + Return
+	alacritty -e tmux
+super + shift + Return
+	tmux ls && alacritty -e tmux attach
+alt + z
+	alcty-padding toggle
+
 # program controls
-super + shift + Return ; {b, d, q, u, v}
+super + ctrl + {b, d, q, u, v}
 	{ $BROWSER\
 	, discord\
 	, qbittorrent\
@@ -7,18 +15,27 @@ super + shift + Return ; {b, d, q, u, v}
 	, vb-start\
 	}
 
-## alacritty
-super + Return
-	alacritty -e tmux
-alt + z
-	alcty-padding toggle
-
 ## playerctl
 super + ctrl + {space, s, n, p}
 	{ playerctl play-pause \
 	, playerctl stop \
 	, playerctl next \
 	, playerctl previous \
+	}
+
+# rofi
+super + ctrl + Return
+	rofi -show
+super + ctrl + bracketleft
+	r-proc-kill
+super + ctrl + {_,shift + } d
+	r-dict {_,-h}
+## screen orientation
+super + shift + {Up,Down,Left,Right}
+	{ r-set-orientation "inverted" \
+	, r-set-orientation "normal" \
+	, r-set-orientation "left" \
+	, r-set-orientation "right" \
 	}
 
 # controls
@@ -128,18 +145,3 @@ super + S
 	flameshot gui
 super + W
 	scrot -u -z ~/Pictures/screenshot.png && notify-send -u low "Captured the currently focused window"
-
-# rofi
-super + ctrl + Return
-	rofi -show
-super + ctrl + bracketleft
-	r-proc-kill
-super + ctrl + {_,shift + } d
-	r-dict {_,-h}
-## screen orientation
-super + shift + {Up,Down,Left,Right}
-	{ r-set-orientation "inverted" \
-	, r-set-orientation "normal" \
-	, r-set-orientation "left" \
-	, r-set-orientation "right" \
-	}
