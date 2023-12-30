@@ -234,13 +234,18 @@
 	"description": "A standard function for a C++ program"
     },
     "fmt::print": {
-	"prefix": "fmtprint",
+	"prefix": "fprint",
 	"body": ["fmt::print(\"$1\", $0);"],
 	"description": "fmt::print() snippet"
     },
     "fmt::println": {
-	"prefix": "fmtprintln",
+	"prefix": "fprintln",
 	"body": ["fmt::println(\"$1\", $0);"],
 	"description": "fmt::println() snippet"
+    },
+    "fmt::format": {
+	"prefix": "fformat",
+	"body": ["fmt::format(\"$1\", $0);"],
+	"description": "fmt::format() snippet"
     }
 }

@@ -1,0 +1,17 @@
+[font]
+size = 10
+
+[font.bold]
+family = "IBMPlexMono"
+style = "Bold"
+
+[font.bold_italic]
+family = "IBMPlexMono"
+style = "Bold Italic"
+
+[font.italic]
+family = "IBMPlexMono"
+style = "Italic"
+
+[font.normal]
+family = "IBMPlexMono"

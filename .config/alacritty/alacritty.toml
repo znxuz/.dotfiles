@@ -1,0 +1,8 @@
+import = ["/home/z/.config/alacritty/colors.toml", "/home/z/.config/alacritty/fonts.toml", "/home/z/.config/alacritty/keymaps.toml", "/home/z/.config/alacritty/window.toml"]
+
+[cursor.style]
+blinking = "Off"
+shape = "Block"
+
+[scrolling]
+history = 10000

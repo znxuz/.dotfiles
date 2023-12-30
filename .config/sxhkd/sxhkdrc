@@ -1,4 +1,4 @@
-## alacritty
+## commandline
 super + Return
 	alacritty -e tmux
 super + shift + Return
@@ -7,11 +7,9 @@ alt + z
 	alcty-padding toggle
 
 # program controls
-super + ctrl + {b, d, q, u, v}
+super + ctrl + {b, q, v}
 	{ $BROWSER\
-	, discord\
 	, qbittorrent\
-	, uget-gtk\
 	, vb-start\
 	}
 

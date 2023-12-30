@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-config=${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/window.yml
+config=${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/window.toml
 
-no_pad=20
+no_pad=10
 pad_x=200
-pad_y=51
+pad_y=50
 
 get_cur_val()
 {
-    grep -A2 "padding:" "$config" | awk '/x:/{print $2}'
+    grep -A1 "window.padding" "$config" | awk '/x = / {print $3}'
 }
 
 query()
@@ -19,15 +19,15 @@ query()
 pad()
 {
     [[ "$(get_cur_val)" -eq "$pad_x" ]] && return 0
-    sed -i "0,/x: [[:digit:]]\+/s/x: [[:digit:]]\+/x: $pad_x/" "$config" &&
-	sed -i "0,/y: [[:digit:]]\+/s/y: [[:digit:]]\+/y: $pad_y/" "$config"
+    sed -i "0,/x = [[:digit:]]\+/s/x = [[:digit:]]\+/x = $pad_x/" "$config" &&
+	sed -i "0,/y = [[:digit:]]\+/s/y = [[:digit:]]\+/y = $pad_y/" "$config"
 }
 
 unpad()
 {
     [[ "$(get_cur_val)" -ne "$pad_x" ]] && return 0
-    sed -i "0,/x: [[:digit:]]\+/s/x: [[:digit:]]\+/x: $no_pad/" "$config" &&
-	sed -i "0,/y: [[:digit:]]\+/s/y: [[:digit:]]\+/y: $no_pad/" "$config"
+    sed -i "0,/x = [[:digit:]]\+/s/x = [[:digit:]]\+/x = $no_pad/" "$config" &&
+	sed -i "0,/y = [[:digit:]]\+/s/y = [[:digit:]]\+/y = $no_pad/" "$config"
 }
 
 toggle()
