@@ -10,6 +10,6 @@ dfs add "$HOME/.config" "$HOME/.local/bin"
 
 read -ra eclipse_files < <(eclipse -f)
 for file in "${eclipse_files[@]}"; do
-    dfs rm --cached -r "$file"
+    dfs restore --staged -r "$file"
 done
 
