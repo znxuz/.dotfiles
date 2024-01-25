@@ -5,7 +5,7 @@ xset -b
 xinput disable $(xinput | awk '/Touch System/ {print}' | grep -Po 'id=\K\d+')
 
 # key repeat
-xset r rate 200 60
+xset r rate 250 60
 
 # compose key
 setxkbmap -option compose:ralt

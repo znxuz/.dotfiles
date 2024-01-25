@@ -62,9 +62,10 @@ super + shift + Escape ; {K, s, S, U, R, o, X, c}
 	, notify-send -u low "  " && sleep 0.5 && eclipse \
 	}
 
-super + shift + Escape ; {W, x}
+super + shift + Escape ; {W, x, r}
 	{ bspc wm -r && notify-send -u low "bspwm reloaded" \
 	, . $HOME/.config/X11/xprofile && notify-send -u low "xprofile sourced" \
+	, xrandr --output eDP1 --primary --mode 1920x1080 --dpi 120 \
 	}
 
 ## brightness

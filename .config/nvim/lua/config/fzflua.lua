@@ -113,6 +113,7 @@ map('n', '<leader>cp', function () require('fzf-lua').files({ cwd = vim.fn.expan
 map('n', '<leader>ip', function () require("config.fzflua").find_files_in() end)
 map('n', '<leader>b', '<cmd>FzfLua buffers<cr>')
 map('n', '<leader>r', '<cmd>FzfLua live_grep<cr>')
+map('n', '<leader>l', '<cmd>FzfLua lines<cr>')
 map('n', '<leader>ir', function () require("config.fzflua").grep_in() end)
 map('n', '<leader>A', '<cmd>FzfLua builtin<cr>')
 map('n', '<leader>j', '<cmd>FzfLua jumps<cr>')

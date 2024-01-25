@@ -2,7 +2,7 @@
 # author:
 date: \today
 toc: false
-numbersections: true
+numbersections: false
 geometry: margin=2.54cm
 urlcolor: blue
 wrap: reserve

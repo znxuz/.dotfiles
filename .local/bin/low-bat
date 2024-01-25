@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-low_threshold=15
+low_threshold=10
 
 cnt=0
 sum=0
