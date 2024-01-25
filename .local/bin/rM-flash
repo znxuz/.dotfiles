@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+if ! command -v fzf &> /dev/null; then
+    echo "fzf command not found"
+    exit 1
+fi
+
+conn="$(grep -o "rM\..\+" "$HOME/.ssh/config" | fzf)"
+
+[[ -z "$conn" ]] && exit 1
+
+if ! ssh -q -o ConnectTimeout=3 -o BatchMode=yes "$conn" exit; then
+    echo "ssh connection failed"
+    exit 1
+fi
+
+ssh -t "$conn" \
+    'sh -c "$(wget https://raw.githubusercontent.com/mb1986/rm-hacks/main/install.sh -O-)"'

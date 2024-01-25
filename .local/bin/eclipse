@@ -10,6 +10,13 @@ dnst_dir="${XDG_CONFIG_HOME:-$HOME/.config}/dunst/dunstrc.d"
 bsp="${XDG_CONFIG_HOME:-$HOME/.config}/bspwm/colors"
 # tmx="${XDG_CONFIG_HOME:-$HOME/.config}/tmux/colors.conf"
 
+files=($alcty $nvm $plb $rf $ztr $feh $dnst_dir $bsp)
+
+files()
+{
+    echo "${files[@]}"
+}
+
 query()
 {
     grep -oq "$@"
@@ -52,6 +59,10 @@ main()
 	case "$1" in
 	    -q|--query)
 		query "dark" "$alcty" && echo "dark" || echo "light"
+		exit 0
+		;;
+	    -f|--files)
+		files
 		exit 0
 		;;
 	    *)

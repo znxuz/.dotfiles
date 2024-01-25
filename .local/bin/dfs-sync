@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 
-[[ "$(eclipse -q)" == "light" ]] && echo "Current mode is light mode, operation aborted" && exit 1
-
 shopt -s expand_aliases && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" || exit 1
 
-checkconfig && dfs add $HOME/.config $HOME/.local/bin
+if ! checkconfig; then
+    echo "no changes found"
+fi
+
+dfs add "$HOME/.config" "$HOME/.local/bin"
+
+read -ra eclipse_files < <(eclipse -f)
+for file in "${eclipse_files[@]}"; do
+    dfs rm --cached -r "$file"
+done
+
