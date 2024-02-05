@@ -16,4 +16,4 @@ weeknumbers = left
 [default]
 default_calendar = personal
 print_new = event
-timedelta = 7d
+timedelta = 30d

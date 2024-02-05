@@ -50,6 +50,16 @@ XF86AudioMute
 XF86AudioMicMute
 	pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
+# screenshot
+ctrl + Print
+	flameshot gui
+Print
+	scrot -u -z ~/Pictures/screenshot.png && notify-send -u low "Captured the currently focused window"
+
+# bleutooth
+XF86Bluetooth
+	if sudo systemctl is-active --quiet bluetooth.service; then sudo systemctl stop bluetooth.service; else sudo systemctl start bluetooth.service; fi
+
 ## system
 super + shift + Escape ; {K, s, S, U, R, o, X, c}
 	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded" \
@@ -138,9 +148,3 @@ super + shift + space
 	dunstctl close-all
 super + grave
 	dunstctl history-pop
-
-# screenshot
-super + S
-	flameshot gui
-super + W
-	scrot -u -z ~/Pictures/screenshot.png && notify-send -u low "Captured the currently focused window"

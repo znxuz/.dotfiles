@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+print_title()
+{
+    node_id=$(bspc query -N -n focused | tr '[:upper:]' '[:lower:]')
+    sleep 0.4
+    wmctrl -r Brave -N Browser
+    basename "$(wmctrl -l | grep "$node_id" | cut -d' ' -f5-)"
+}
+
+main()
+{
+    print_title
+
+    bspc subscribe node_focus | while read -r; do
+	print_title
+    done
+}
+
+main "$@"

@@ -17,7 +17,7 @@ print_counts()
 
     icon_row=""
     for _ in $(seq 1 "$node_count"); do
-	icon_row="$icon $icon_row"
+	icon_row+=" $icon"
     done
     echo "$icon_row"
 }

@@ -13,6 +13,4 @@ do
 done
 
 total=$(( sum / cnt ))
-(( total < low_threshold )) && notify-send -u critical "Battery Low" && exit 0
-
-exit 1
+(( total <= low_threshold )) && notify-send -u critical "Battery Low"
