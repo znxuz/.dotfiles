@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-path="$HOME"/misc/sbf
+path="$HOME/Desktop/sbf"
 
 main()
 {

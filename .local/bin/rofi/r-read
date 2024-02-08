@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-bookshelf="$HOME/Dropbox/books/.bookshelf/"
+bookshelf="$HOME/Dropbox/books/bookshelf/"
 
 book="$(find "$bookshelf" -type l -printf "%P\n" | rofi -dmenu -i -sep '\n' -p 'read')"
 [[ -n "$book" ]] && xdg-open "$bookshelf/$book"
