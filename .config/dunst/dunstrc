@@ -59,9 +59,6 @@
     # Set to 0 to disable.
     frame_width = 1
 
-    # Defines color of the frame around the notification window.
-    frame_color = "#d4be98"
-
     # Define a color for the separator.
     # possible values are:
     #  * auto: dunst tries to find a color fitting to the background;

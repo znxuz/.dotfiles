@@ -1,1 +1,1 @@
-import = ["/home/z/.config/alacritty/dark.toml"]
+import = ["~/.config/alacritty/themes/rose-pine-dark.toml"]

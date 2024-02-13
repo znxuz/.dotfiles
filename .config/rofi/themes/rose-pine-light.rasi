@@ -1,0 +1,31 @@
+@import "default"
+
+* {
+	bg: #faf4ed;
+	fg: #575279;
+	cur: #fffaf3;
+	cmt: #9893a5;
+	cya: #56949f;
+	grn: #286983;
+	ora: #d7827e;
+	pur: #907aa9;
+	red: #b4637a;
+	yel: #ea9d34;
+
+	foreground: @fg;
+	background: @bg;
+	active-background: @cya;
+	urgent-background: @red;
+
+	selected-background: @active-background;
+	selected-normal-foreground: @yel;
+	selected-normal-background: @cur;
+	selected-urgent-background: @urgent-background;
+	selected-active-background: @active-background;
+	alternate-normal-background: @bg;
+	separatorcolor: @active-background;
+	bordercolor: @ora;
+	scrollbar-handle: @border-color;
+}
+
+@import "common.rasi"

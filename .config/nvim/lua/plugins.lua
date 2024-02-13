@@ -58,12 +58,14 @@ require'lazy'.setup({
   },
   {
     'norcalli/nvim-colorizer.lua',
-    lazy = true,
     config = function () require'colorizer'.setup() end
   },
   {
     'lewis6991/gitsigns.nvim',
     config = function () require('gitsigns').setup() end
+  },
+  {
+    'rose-pine/neovim',
   },
   {
     'zijian-x/gruvbox-material',

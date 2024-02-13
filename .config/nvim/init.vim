@@ -3,12 +3,12 @@ syntax enable
 set syn=on
 set nu
 set hid
-set tgc
 set bs=indent,eol,nostop
 set sta sts=4 sw=4
 set ttimeout ttm=1
 set cb=unnamedplus
 set shada+=n$XDG_STATE_HOME/nvim/viminfo
+set tgc
 set fo+=j
 set nosc
 set scl=yes
