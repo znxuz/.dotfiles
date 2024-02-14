@@ -128,7 +128,7 @@ super + {n,p}
 	bspc node -f {next,prev}.local.!hidden.window
 
 ## focus the last node/desktop
-super + {6,Tab}
+super + {Tab,6}
 	bspc {node,desktop} -f last
 
 ## focus the older or newer node in the focus history

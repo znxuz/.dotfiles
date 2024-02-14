@@ -16,7 +16,7 @@ PROMPT='%F{blue}%~ %B${vcs_info_msg_0_}%F{yellow}%(1j.[%j] .)%b%(?.%F{blue}.%F{r
 
 # colors
 
-eval $(dircolors $XDG_CONFIG_HOME/shell/gruvbox_dircolors)
+eval $(dircolors $XDG_CONFIG_HOME/shell/colors)
 autoload -U colors && colors
 
 # misc

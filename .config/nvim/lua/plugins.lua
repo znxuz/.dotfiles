@@ -66,9 +66,6 @@ require'lazy'.setup({
   },
   {
     'rose-pine/neovim',
-  },
-  {
-    'zijian-x/gruvbox-material',
     config = function () require('config.colors') end
   }
 })

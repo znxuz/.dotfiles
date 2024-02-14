@@ -18,9 +18,11 @@ set_wp()
     cached="$(echo "$config_path/$(cat "$mode")".*)"
 
     wallpr_arg="$1"
-    [ -n "$wallpr_arg" ] && rm -f "$cached" && cp -f "$wallpr_arg" \
-	"$config_path/$(echo "$wallpr_arg" | sed "s/.\+\(\..\+\)/$(cat "$mode")\1/")"
-	    feh --no-fehbg --bg-scale "$cached"
+    [ -n "$wallpr_arg" ] && rm -f "$cached" &&
+	cached=$config_path/$(echo "$wallpr_arg" | sed "s/.\+\(\..\+\)/$(cat "$mode")\1/") &&
+	cp -f "$wallpr_arg" "$cached"
+
+    feh --no-fehbg --bg-scale "$cached"
 }
 
 [ "$1" = "-h" ] && show_help && exit

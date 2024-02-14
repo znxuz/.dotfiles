@@ -53,7 +53,7 @@ aug stl
     au VimEnter * hi default link STLMode StatusLineNC
     au ModeChanged *:n hi clear STLMode | redraws!
     au ModeChanged *:ni* hi link STLMode StatusLine | redraws!
-    au ModeChanged *:i* hi link STLMode WildMenu | redraws!
+    au ModeChanged *:i* hi link STLMode Search | redraws!
     au ModeChanged *:[vV\x16]* hi link STLMode Substitute | redraws!
 aug END
 set stl=
