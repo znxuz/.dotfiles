@@ -9,8 +9,8 @@ setup_dotfiles()
     src="$HOME"/dotfiles.tmp
     git clone --separate-git-dir="$HOME"/.dotfiles \
 	git@github.com:zijian-x/.dotfiles.git "$src" &&
-	find "$src" -maxdepth 1 -not -path "$src" \
-	-exec cp -rf {} "$HOME" \; && rm -rf "$src" &&
+	find "$src" -mindepth 1 -maxdepth 1 -exec cp -rf {} "$HOME" \; &&
+	rm -rf "$src" &&
 	git --git-dir="$HOME"/.dotfiles --work-tree="$HOME" \
 	config --local status.showUntrackedFiles no
 

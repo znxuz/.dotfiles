@@ -1,7 +1,7 @@
-#ifdef HIDPI
-    Xft.dpi: 192
-    *.dpi: 192
+#ifdef DPI
+Xft.dpi: DPI
+*.dpi: DPI
 #else
-    Xft.dpi: 120
-    *.dpi: 120
+Xft.dpi: 120
+*.dpi: 120
 #endif

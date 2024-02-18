@@ -8,9 +8,8 @@ ztr="${XDG_CONFIG_HOME:-$HOME/.config}/zathura/colorsrc"
 feh="${XDG_CONFIG_HOME:-$HOME/.config}/feh/.mode"
 dnst_dir="${XDG_CONFIG_HOME:-$HOME/.config}/dunst/dunstrc.d"
 bsp="${XDG_CONFIG_HOME:-$HOME/.config}/bspwm/colors"
-# tmx="${XDG_CONFIG_HOME:-$HOME/.config}/tmux/colors.conf"
 
-files=($alcty $nvm $plb $rf $ztr $feh $dnst_dir $bsp)
+files=("$alcty" "$nvm" "$plb" "$rf" "$ztr" "$feh" "$dnst_dir" "$bsp")
 
 files()
 {
@@ -58,7 +57,7 @@ main()
     if [[ -n "$1" ]]; then
 	case "$1" in
 	    -q|--query)
-		query "dark" "$alcty" && echo "dark" || echo "light"
+		query "dark" "$feh" && echo "dark" || echo "light"
 		exit 0
 		;;
 	    -f|--files)
@@ -74,10 +73,9 @@ main()
 	toggle "$alcty" &&
 	toggle "$rf" &&
 	toggle "$ztr" &&
-	toggle "$plb" && # polybar reloads with bspwm, no need to manually refresh
+	toggle "$plb" && # polybar reloads with bspwm below
 	toggle "$bsp" && bspc wm -r &&
 	toggle "$nvm" && killall -s 10 nvim &> /dev/null
-	# toggle "$tmx" && tmux source-file "${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"
 }
 
 main "$@"

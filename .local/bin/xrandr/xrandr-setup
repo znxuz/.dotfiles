@@ -1,30 +1,68 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-userresources=${XDG_CONFIG_HOME:-$HOME/.config}/X11/Xresources
+XRANDR_CONNECTED="$(xrandr | grep '\bconnected' -A1)"
 
-displ_count=$(xrandr | grep -o '\bconnected\b' | wc -l)
-if [ "$displ_count" -gt 1 ]; then
-    # set dpi for X with HIDPI preprocessor defined
-    xrdb -DHIDPI=0 "$userresources"
+get_dpi()
+{
+    case "$1" in
+	3840x2160)
+	    echo 192
+	    ;;
+	1920x1080|*)
+	    echo 120
+	    ;;
+    esac
+}
 
-    # for 4k single external monitor
-    xrandr_output="$(xrandr | grep -v 'eDP1')"
-    display=$(echo "$xrandr_output" | grep '\bconnected\b' | cut -d' ' -f1)
-    mode=$(echo "$xrandr_output" | grep '\bconnected\b' -A1 | tail -n1 \
-	| grep -Eo '[[:digit:]]{4}x[[:digit:]]{4}')
-    dpi=$(xrdb -query | awk '/*.dpi/ {print $2}')
+main()
+{
+    mon=""
+    res=""
+    while read -r line; do
+	if [[ -z "$mon" ]]; then
+	    mon="$(echo "$line" | grep '\bconnected' | cut -d' ' -f1)"
+	else
+	    res="$(echo "$line" | grep -Eo '[[:digit:]]{4}x[[:digit:]]{4}')"
+	fi
 
-    xrandr --output "$display" --primary --mode "$mode" --dpi "$dpi" \
-	--output eDP1 --off
-else
-    # set dpi for X on integrated display
-    xrdb "$userresources"
+	if [[ -n "$mon" ]] && [[ -n "$res" ]]; then
+	    mons+=("$mon $res")
+	    mon=""
+	    res=""
+	fi
+    done <<< "$XRANDR_CONNECTED"
+    mapfile -t mons < <(printf "%s\n" "${mons[@]}" | sort -nr -k 2)
 
-    # for integrated display
-    display=$(xrandr | grep '\bconnected\b' | cut -d' ' -f1)
-    mode=$(xrandr | grep -A1 '\bconnected\b' | tail -n1 \
-	| grep -Eo '[[:digit:]]{4}x[[:digit:]]{4}')
-    dpi=$(xrdb -query | awk '/*.dpi/ {print $2}')
+    dpi=$(get_dpi "$(echo "${mons[0]}" | cut -d' ' -f2)")
+    xrdb -DDPI="$dpi" "${XDG_CONFIG_HOME:-$HOME/.config}/X11/Xresources"
 
-    xrandr --output "$display" --primary --mode "$mode" --dpi "$dpi"
-fi
+    read -r display res <<< "${mons[0]}"
+    for mon in $(xrandr | tail -n+2 | grep -v '^ .*' | cut -d' ' -f1); do
+	xrandr --output "$mon" --off
+    done
+    xrandr --output "$display" --primary --mode "$res" --dpi "$dpi"
+
+    n=0
+    while [[ "$#" -gt 0 ]]; do
+	case "$1" in
+	    -a|--all)
+		n=${#mons[@]}
+		shift
+		;;
+	    -d|--duplicate)
+		n=2
+		shift
+		;;
+	    -s|--single|*)
+		n=0
+		shift
+	esac
+    done
+
+    for ((i = 1; i < n; i++)); do
+	read -r display res <<< "${mons[i]}"
+	xrandr --output "$display" --mode "$res" --dpi "$dpi" # FIXME calculate scale value
+    done
+}
+
+main "$@"

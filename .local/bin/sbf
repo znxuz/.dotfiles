@@ -4,7 +4,7 @@ path="$HOME/Desktop/sbf"
 
 main()
 {
-    lang=$(find "$path" -maxdepth 1 -type d -not -path "$path" -print0 |
+    lang=$(find "$path" -mindepth 1 -maxdepth 1 -type d -print0 |
 	xargs -0 -I {} basename {} | fzf)
 
     [[ -z "$lang" || ! -d "$path/$lang" ]] && exit 1

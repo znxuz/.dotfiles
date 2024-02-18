@@ -5,6 +5,5 @@
 # enabling WiFi, turning touchpads on or off etc.
 # THIS SCRIPT EXECUTES AS NON-ROOT!
 
-source $HOME/.xprofile &&
-sleep 0.5 && xrandr-refresh && remap-keyboard
+sleep 0.5 && xrandr-refresh | tee /home/z/log
 exit

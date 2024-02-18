@@ -1,4 +1,9 @@
-import = ["/home/z/.config/alacritty/colors.toml", "/home/z/.config/alacritty/fonts.toml", "/home/z/.config/alacritty/keymaps.toml", "/home/z/.config/alacritty/window.toml"]
+import = [
+    "~/.config/alacritty/colors.toml",
+    "~/.config/alacritty/fonts.toml",
+    "~/.config/alacritty/keymaps.toml",
+    "~/.config/alacritty/window.toml"
+]
 
 [cursor.style]
 blinking = "Off"

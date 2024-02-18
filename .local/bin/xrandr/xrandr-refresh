@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/env bash
 
-xrandr-setup &&
-    fehbg &&
-    bspc wm -r &&
-    . "$HOME/.config/X11/xprofile"
+xrandr-setup
+fehbg
+bspc wm -r
+source ~/.config/X11/xprofile

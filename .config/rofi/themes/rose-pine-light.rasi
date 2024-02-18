@@ -17,9 +17,9 @@
 	active-background: @cya;
 	urgent-background: @red;
 
-	selected-background: @active-background;
-	selected-normal-foreground: @yel;
+	selected-normal-foreground: @ora;
 	selected-normal-background: @cur;
+	selected-background: @active-background;
 	selected-urgent-background: @urgent-background;
 	selected-active-background: @active-background;
 	alternate-normal-background: @bg;

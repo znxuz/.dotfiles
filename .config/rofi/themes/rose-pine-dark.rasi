@@ -2,8 +2,8 @@
 
 * {
 	bg: #191724;
-	cur: #1f1d2e;
 	fg: #e0def4;
+	cur: #1f1d2e;
 	cmt: #6e6a86;
 	cya: #9ccfd8;
 	grn: #31748f;
@@ -17,7 +17,7 @@
 	active-background: @cya;
 	urgent-background: @red;
 
-	selected-normal-foreground: @yel;
+	selected-normal-foreground: @ora;
 	selected-normal-background: @cur;
 	selected-background: @active-background;
 	selected-urgent-background: @urgent-background;

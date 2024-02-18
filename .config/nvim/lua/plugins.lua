@@ -28,21 +28,6 @@ require'lazy'.setup({
     lazy = true
   },
 
-  -- debugger
-  {
-    'mfussenegger/nvim-dap',
-    after = 'nvim-dap-ui',
-    lazy = true,
-    keys = { '<leader>di' },
-    config = function () require('config.nvim-dap') end
-  },
-  {
-    'rcarriga/nvim-dap-ui',
-    dependencies = 'nvim-dap',
-    lazy = true,
-    keys = { '<leader>di' }
-  },
-
   -- misc
   {
     'mbbill/undotree',
