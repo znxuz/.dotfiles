@@ -30,6 +30,10 @@ require'lazy'.setup({
 
   -- misc
   {
+    'nvim-treesitter/nvim-treesitter',
+    config = function () require('config.treesitter') end
+  },
+  {
     'mbbill/undotree',
     config = function () vim.cmd('nnoremap <leader>u <cmd>UndotreeToggle<cr>') end
   },
@@ -39,8 +43,10 @@ require'lazy'.setup({
     init = function () require('config.vimwiki') end
   },
   {
-    'romainl/vim-devdocs'
+    'jbyuki/nabla.nvim',
+    ft = { 'vimwiki', 'md', 'tex' }
   },
+  { 'romainl/vim-devdocs' },
   {
     'norcalli/nvim-colorizer.lua',
     config = function () require'colorizer'.setup() end
@@ -52,6 +58,6 @@ require'lazy'.setup({
   {
     'rose-pine/neovim',
     config = function () require('config.colors') end
-  }
+  },
 })
 

@@ -47,3 +47,5 @@ matplotlib
 cat_installer
 user-dirs.dirs
 user-dirs.locale
+jupyter
+ipython

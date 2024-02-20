@@ -80,3 +80,6 @@ vnoremap <buffer> gm c$"$
 " code line
 nnoremap <buffer> g` ciw`"`
 vnoremap <buffer> g` c`"`
+
+" nabla.nvim
+lua require('config.mapper').map('n', 'gp', function () require('nabla').popup() end, { buffer = true })
