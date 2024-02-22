@@ -4,6 +4,9 @@ local ELLIPSIS_CHAR = '…'
 local compare = cmp.config.compare
 
 cmp.setup {
+  enabled = function () -- disables completion for the cli(q:) window
+    if vim.fn.bufname("%") == "[Command Line]" then return false else return true end
+  end,
   preselect = cmp.PreselectMode.None,
   snippet = {
     expand = function(args) require'luasnip'.lsp_expand(args.body) end,

@@ -1,5 +1,5 @@
 local map = require('config.mapper').map
-local lspconfig = require('lspconfig')
+local lspc = require('lspconfig')
 
 vim.cmd 'set shortmess+=c'
 vim.cmd 'set signcolumn=yes'
@@ -28,7 +28,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- clangd
-lspconfig.clangd.setup {
+lspc.clangd.setup {
   cmd = { 'clangd', '--background-index', '--log=error' },
   capabilities = {
     textDocument = {
@@ -42,10 +42,10 @@ lspconfig.clangd.setup {
 }
 
 -- tex
-lspconfig.texlab.setup {}
+lspc.texlab.setup {}
 
 -- lua
-lspconfig.lua_ls.setup {
+lspc.lua_ls.setup {
   settings = {
     Lua = {
       runtime = { version = 'LuaJIT', },
@@ -63,7 +63,7 @@ lspconfig.lua_ls.setup {
 }
 
 -- rust-analyzer
-lspconfig.rust_analyzer.setup {
+lspc.rust_analyzer.setup {
   settings = {
     ['rust-analyzer'] = {
       diagnostics = { enable = true; }

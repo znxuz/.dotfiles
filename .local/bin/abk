@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
-[[ -z "$1" ]] || [[ ! -f "$1" ]] && echo "file doesn't exist" >&2 && exit 1
+bookshelf="$HOME/Dropbox/books/bookshelf/"
 
-ln -sf "$(pwd)/$1" "$HOME/bookshelf/"
+[[ -z "$1" ]] || [[ ! -f "$1" ]] && echo "file doesn't exist" >&2 && exit 1
+ln -sf "$(pwd)/$1" "$bookshelf"

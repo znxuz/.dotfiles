@@ -1,25 +1,28 @@
 {
     "contributes": {
-        "snippets": [
-            {
-                "language": [
-                    "plaintext",
-                    "markdown",
-                    "tex",
-                    "html",
-                    "global",
-                    "all"
-                ],
-                "path": "./global.json"
-            },
-            {
-                "language": "c",
-                "path": "./c.json"
-            },
-            {
-                "language": "cpp",
-                "path": "./cpp.json"
-            }
-        ]
+	"snippets": [
+	    {
+		"language": [
+		    "plaintext",
+		    "tex",
+		    "html",
+		    "global",
+		    "all"
+		],
+		"path": "./global.json"
+	    },
+	    {
+		"language": "markdown",
+		"path": "./markdown.json"
+	    },
+	    {
+		"language": "c",
+		"path": "./c.json"
+	    },
+	    {
+		"language": "cpp",
+		"path": "./cpp.json"
+	    }
+	]
     }
 }

@@ -51,7 +51,7 @@ map("^", "g0"); // go to first tab
 map("$", "g$"); // go to first tab
 
 const hintsCss =
-  "font-size: 9pt; font-family: 'JetBrains Mono NL', 'Cascadia Code', 'Helvetica Neue', Helvetica, Arial, sans-serif; border: 0px; color: #e0def4 !important; background: #191724; background-color: #191724";
+  "font-size: 8pt; font-family: 'JetBrains Mono NL', 'Cascadia Code', 'Helvetica Neue', Helvetica, Arial, sans-serif; border: solid 1px #e0def4; color: #e0def4 !important; background: #191724; background-color: #191724";
 
 Hints.style(hintsCss);
 Hints.style(hintsCss, "text");

@@ -23,7 +23,7 @@ super + ctrl + {space, s, n, p}
 
 # rofi
 super + ctrl + Return
-	rofi -show
+	rofi -show run
 super + ctrl + bracketleft
 	r-proc-kill
 super + ctrl + {_,shift + } d
@@ -38,11 +38,11 @@ super + shift + {Up,Down,Left,Right}
 
 # controls
 XF86AudioRaiseVolume
-	pactl set-sink-volume @DEFAULT_SINK@ +5%
+	pactl set-sink-volume @DEFAULT_SINK@ +10%
 ctrl + XF86AudioRaiseVolume
 	pactl set-sink-volume @DEFAULT_SINK@ +1%
 XF86AudioLowerVolume
-	pactl set-sink-volume @DEFAULT_SINK@ -5%
+	pactl set-sink-volume @DEFAULT_SINK@ -10%
 ctrl + XF86AudioLowerVolume
 	pactl set-sink-volume @DEFAULT_SINK@ -1%
 XF86AudioMute
