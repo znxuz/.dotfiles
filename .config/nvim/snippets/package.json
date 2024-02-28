@@ -12,7 +12,7 @@
 		"path": "./global.json"
 	    },
 	    {
-		"language": "markdown",
+		"language": ["markdown", "vimwiki"],
 		"path": "./markdown.json"
 	    },
 	    {
