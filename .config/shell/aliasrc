@@ -11,4 +11,5 @@ alias \
     ssctl='sudo systemctl' \
     sshconf-edit='chmod 700 ~/.ssh/config && $EDITOR ~/.ssh/config && chmod 400 ~/.ssh/config' \
     grub-upd='sudo grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB && sudo grub-mkconfig -o /boot/grub/grub.cfg' \
+    gpt='OPENAI_KEY=$(pass openai) chatgpt' \
     wtr='curl wttr.in/dortmund_oespel'

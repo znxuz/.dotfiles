@@ -2,7 +2,7 @@
 
 package_cache_clean()
 {
-    echo "==> pacman package cache" && sudo pacman -Sc --noconfirm
+    echo "==> pacman package cache" && sudo pacman -Scc --noconfirm
     echo "==> paru package cache" && paru -Sc --noconfirm
 }
 
@@ -56,7 +56,7 @@ zathura_clean()
 
 journal_clean()
 {
-    sudo journalctl --vacuum-time=1month
+    sudo journalctl --vacuum-time=1week
 }
 
 package_cache_clean

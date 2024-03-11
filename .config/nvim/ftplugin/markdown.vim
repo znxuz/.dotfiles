@@ -2,8 +2,8 @@ setl tw=80
 setl spell spl=en_us,de spf=$XDG_CONFIG_HOME/nvim/spell/en.utf-8.add
 
 fu! g:MD2PDF()
-    let l:src = expand('%')
-    let l:dest = input("preview or enter the file name with the extension .pdf: ", "preview")
+    let l:src = shellescape(expand('%'))
+    let l:dest = shellescape(input("preview or enter the file name with the extension .pdf: ", "preview"))
     redraw!
 
     if empty(l:dest)

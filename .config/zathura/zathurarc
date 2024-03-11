@@ -18,5 +18,5 @@ map b toggle_statusbar
 
 set page-cache-size 1000
 
-set recolor true
+set recolor false
 include colorsrc
