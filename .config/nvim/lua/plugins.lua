@@ -5,6 +5,11 @@ require'lazy'.setup({
     config = function () require('config.fzflua') end,
   },
 
+  {
+    'nvim-tree/nvim-tree.lua',
+    config = function() require('config.nvim-tree') end
+  },
+
   -- lsp
   {
     'neovim/nvim-lspconfig',

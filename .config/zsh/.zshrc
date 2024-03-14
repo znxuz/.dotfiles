@@ -38,8 +38,6 @@ autoload -Uz compinit
 zmodload zsh/complist
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-compinit -d $XDG_CACHE_HOME/zsh/zcompdump
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 bindkey -M menuselect '^[' send-break
 
@@ -49,6 +47,14 @@ autoload edit-command-line &&
     bindkey '^x^e' edit-command-line
 
 source $ZDOTDIR/zsh_fzf
+
+# ros2
+
+rosinit()
+{
+    export ROS_DOMAIN_ID=42
+    . /opt/ros/iron/setup.zsh
+}
 
 # gotta be at the end
 

@@ -1,3 +1,4 @@
+zsh/.zcompdump
 autostart
 BraveSoftware
 calibre
@@ -49,3 +50,4 @@ user-dirs.dirs
 user-dirs.locale
 jupyter
 ipython
+ros.org
