@@ -18,7 +18,7 @@ fu! g:MD2PDF()
 
 
     let l:pandoc_cmd = 'pandoc --metadata-file=$HOME/.config/pandoc/headers.yml --tab-stop=8 --pdf-engine=xelatex '
-    if l:dest == "preview"
+    if l:dest == "'preview'"
 	let l:dest = '/tmp/vimwiki_' . l:dest . '.pdf'
 
 	call system('sudo rm -f ' . l:dest)

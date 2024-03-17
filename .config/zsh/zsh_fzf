@@ -27,8 +27,10 @@ find_fzf()
     [[ -z $1 ]] && exit 1
     local ret="$(fd -H --search-path $1 -0 | fzf --read0 -m)"
     if [[ -n "$ret" ]]; then
-	ret="$(printf "%q " "$ret")"
-	LBUFFER=${LBUFFER}${ret}
+	echo "$ret" | while read -r elem; do
+	    elem="$(printf "%q " "$elem")"
+	    LBUFFER=${LBUFFER}${elem}
+	done
     fi
     zle reset-prompt
 }

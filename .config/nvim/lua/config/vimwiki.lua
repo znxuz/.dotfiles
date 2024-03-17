@@ -17,6 +17,5 @@ let g:vimwiki_list = [
 let g:vimwiki_key_mappings =
 	    \ {
 	    \ 'headers': 0,
-            \ 'lists': 0,
 	    \ }
 ]]

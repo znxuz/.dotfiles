@@ -32,12 +32,13 @@ setopt noclobber
 unsetopt prompt_cr prompt_sp
 setopt nolistambiguous
 
-# completion
 
+# completion
 autoload -Uz compinit
 zmodload zsh/complist
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+compinit -d $XDG_CONFIG_HOME/zsh/.zcompdump
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 bindkey -M menuselect '^[' send-break
 
@@ -50,10 +51,17 @@ source $ZDOTDIR/zsh_fzf
 
 # ros2
 
-rosinit()
+ros2init()
 {
     export ROS_DOMAIN_ID=42
     . /opt/ros/iron/setup.zsh
+    . /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
+
+    eval "$(register-python-argcomplete ros2)"
+
+    ws_setup="./install/setup.zsh"
+    [[ -f "$ws_setup" ]] && . "$ws_setup"
+    return 0
 }
 
 # gotta be at the end

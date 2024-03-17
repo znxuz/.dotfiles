@@ -26,6 +26,7 @@ export RUSTUP_HOME=$XDG_DATA_HOME/rustup
 export CARGO_HOME=$XDG_DATA_HOME/cargo
 export PATH=$PATH:$CARGO_HOME/bin
 export JUPYTER_PLATFORM_DIRS=$XDG_CONFIG_HOME/jupyter
+export PYTHON_HISTORY=$XDG_STATE_HOME/python/history
 
 # fzf
 export ESCDELAY="1"
@@ -36,6 +37,9 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND -td"
 
 # make
 # export MAKEFLAGS='-j' # buggy with some builds
+
+# ros
+export ROS_HOME=$XDG_DATA_HOME/ros
 
 # calibre dark theme
 export CALIBRE_USE_DARK_PALETTE=1
