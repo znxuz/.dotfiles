@@ -28,14 +28,7 @@ require('fzf-lua').setup {
       }
     }
   },
-  keymap = {
-    fzf = {
-      -- fzf '--bind=' options
-      ['alt-a'] = 'toggle-all',
-      ['ctrl-a'] = 'beginning-of-line',
-      ['ctrl-e'] = 'end-of-line',
-    },
-  },
+  keymap = { fzf = { ['alt-a'] = 'toggle-all', }, },
   fzf_colors = {
     -- fzf '--color=' options (optional)
     ['fg'] = { 'fg', 'CursorLine' },
@@ -54,7 +47,7 @@ require('fzf-lua').setup {
   },
   -- provider setup
   files = {
-    path_shorten = true,
+    path_shorten = false,
     multiprocess = true,  -- run command in a separate process
   },
   git = {
@@ -108,11 +101,12 @@ M.grep_in = function()
 end
 
 local map = require('config.mapper').map
-map('n', '<leader>p', '<cmd>FzfLua files<cr>')
-map('n', '<leader>cp', function () require('fzf-lua').files({ cwd = vim.fn.expand('%:h') }) end)
-map('n', '<leader>ip', function () require("config.fzflua").find_files_in() end)
+map('n', '<leader>f', '<cmd>FzfLua files<cr>')
+map('n', '<leader>cf', function () require('fzf-lua').files({ cwd = vim.fn.expand('%:h') }) end)
+map('n', '<leader>if', function () require("config.fzflua").find_files_in() end)
 map('n', '<leader>b', '<cmd>FzfLua buffers<cr>')
 map('n', '<leader>r', '<cmd>FzfLua live_grep<cr>')
+map('n', '<leader>o', '<cmd>FzfLua oldfiles<cr>')
 map('n', '<leader>l', '<cmd>FzfLua lines<cr>')
 map('n', '<leader>ir', function () require("config.fzflua").grep_in() end)
 map('n', '<leader>A', '<cmd>FzfLua builtin<cr>')

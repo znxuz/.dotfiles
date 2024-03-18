@@ -1,1 +1,2 @@
 bspc config normal_border_color     \#191724
+bspc config focused_border_color    \#ebbcba

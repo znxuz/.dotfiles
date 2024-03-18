@@ -40,6 +40,7 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND -td"
 
 # ros
 export ROS_HOME=$XDG_DATA_HOME/ros
+export COLCON_BUILD_ARGS="--symlink-install --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
 
 # calibre dark theme
 export CALIBRE_USE_DARK_PALETTE=1

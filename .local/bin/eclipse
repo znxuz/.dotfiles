@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+palette="${XDG_CONFIG_HOME:-$HOME/.config}/shell/color_palette"
 alcty="${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/colors.toml"
 nvm="${XDG_CONFIG_HOME:-$HOME/.config}/nvim/lua/config/bg.lua"
 plb="${XDG_CONFIG_HOME:-$HOME/.config}/polybar/colors.ini"
@@ -70,6 +71,7 @@ main()
     fi
 
     switch_wp && switch_dunst &&
+	toggle "$palette" &&
 	toggle "$alcty" &&
 	toggle "$rf" &&
 	toggle "$ztr" &&

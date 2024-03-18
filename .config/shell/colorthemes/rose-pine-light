@@ -1,0 +1,21 @@
+unset color_foreground
+unset color_background
+unset color_blac
+unset color_red
+unset color_green
+unset color_yellow
+unset color_blue
+unset color_magenta
+unset color_cyan
+unset color_white
+
+export color_foreground="#575279"
+export color_background="#faf4ed"
+export color_black="#f2e9e1"
+export color_red="#b4637a"
+export color_green="#286983"
+export color_yellow="#ea9d34"
+export color_blue="#56949f"
+export color_magenta="#907aa9"
+export color_cyan="#d7827e"
+export color_white="#575279"

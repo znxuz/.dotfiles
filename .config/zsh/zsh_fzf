@@ -1,11 +1,10 @@
 source /usr/share/fzf/key-bindings.zsh
 
 # reset defaults
-bindkey -r '^T'
-bindkey '^[p' fzf-file-widget
 
-bindkey -r '^R'
-bindkey '^[o' fzf-history-widget
+bindkey -r '^T' && bindkey '^f' fzf-file-widget
+bindkey -r '^r' && bindkey '^o' fzf-history-widget
+bindkey -r '\ec' && bindkey '^t' fzf-cd-widget
 
 cd_fzf()
 {
@@ -20,7 +19,7 @@ cd_fzf()
 
 cd_fzf_home() { cd_fzf "$HOME" }
 
-zle -N cd_fzf_home && bindkey '^[C' cd_fzf_home
+zle -N cd_fzf_home && bindkey '^[^t' cd_fzf_home
 
 find_fzf()
 {
@@ -37,31 +36,27 @@ find_fzf()
 
 fzf_home() { find_fzf $HOME }
 
-zle -N fzf_home && bindkey '^[P' fzf_home
+zle -N fzf_home && bindkey '^[^f' fzf_home
 
-pac_search_remote()
+rpac()
 {
-    local ret="$(pacman -Sql | fzf -m --preview='pacman -Si {}' \
-	| tr '\n' ' ')"
+    local ret="$(pacman -Sql | fzf -m --preview='pacman -Si {}' | tr '\n' ' ')"
 
     LBUFFER=${LBUFFER}${ret}
     zle reset-prompt
 }
+zle -N rpac && bindkey '^[^r' apac
 
-zle -N pac_search_remote && bindkey '^[a' pac_search_remote
-
-pac_search_local()
+lpac()
 {
-    local ret="$(pacman -Qq | fzf -m --preview='pacman -Qi {}' \
-	| tr '\n' ' ')"
+    local ret="$(pacman -Qq | fzf -m --preview='pacman -Qi {}' | tr '\n' ' ')"
 
     LBUFFER=${LBUFFER}${ret}
     zle reset-prompt
 }
+zle -N lpac && bindkey '^[^l' lpac
 
-zle -N pac_search_local && bindkey '^[l' pac_search_local
-
-pac_search_aur()
+apac()
 {
     aur_list="/tmp/packages.gz"
 
@@ -79,10 +74,11 @@ pac_search_aur()
 	fi
     fi
 
-    local ret="$(zcat "$aur_list" | fzf -m --preview="auracle info {}" |
-	tr '\n' ' ')"
-    LBUFFER=${LBUFFER}${ret}
-    zle reset-prompt
-}
+    # local ret="$(zcat "$aur_list" | fzf -m --preview="paru -Si {}" | tr '\n' ' ')"
 
-zle -N pac_search_aur && bindkey '^[A' pac_search_aur
+    zcat "$aur_list" | fzf -m --preview="paru -Si {}" | tr '\n' ' '
+
+    # LBUFFER=${LBUFFER}${ret}
+    # zle reset-prompt
+}
+zle -N apac && bindkey '^[^a' apac

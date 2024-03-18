@@ -16,7 +16,7 @@ PROMPT='%F{blue}%~ %B${vcs_info_msg_0_}%F{yellow}%(1j.[%j] .)%b%(?.%F{blue}.%F{r
 
 # colors
 
-eval $(dircolors $XDG_CONFIG_HOME/shell/colors)
+eval $(dircolors $XDG_CONFIG_HOME/shell/autocompletion_colors)
 autoload -U colors && colors
 
 # misc
@@ -49,19 +49,28 @@ autoload edit-command-line &&
 
 source $ZDOTDIR/zsh_fzf
 
-# ros2
+# ros
 
-ros2init()
+ross()
 {
     export ROS_DOMAIN_ID=42
-    . /opt/ros/iron/setup.zsh
-    . /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 
+    source /opt/ros/iron/setup.zsh
+
+    source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
     eval "$(register-python-argcomplete ros2)"
+}
+
+ross-ws()
+{
+    export ROS_DOMAIN_ID=42
 
     ws_setup="./install/setup.zsh"
-    [[ -f "$ws_setup" ]] && . "$ws_setup"
-    return 0
+    [[ ! -f $ws_setup ]] && echo "Not in a ROS2 workspace" && return 1
+    source "$ws_setup"
+
+    source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
+    eval "$(register-python-argcomplete ros2)"
 }
 
 # gotta be at the end

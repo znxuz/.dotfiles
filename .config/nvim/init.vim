@@ -41,7 +41,8 @@ set ls=2
 
 " === statusline ===
 fu! FormatPath(path)
-    return pathshorten(fnamemodify(a:path,':~:.'), 1)
+    return fnamemodify(a:path,':~:.')
+    " return pathshorten(fnamemodify(a:path,':~:.'), 1)
 endfu
 
 fu! ShowDiagnosticCount()
@@ -65,11 +66,12 @@ set stl+=%{&readonly?'\ \ [RO]':''}
 set stl+=%{&paste?'\ \ [P]':''}
 set stl+=%{ShowDiagnosticCount()}
 set stl+=%=
+set stl+=\ \ \ \ \ 
 set stl+=\ \ %{&fileformat}
 set stl+=\ \|\ %{&fileencoding?&fileencoding:&encoding}
-set stl+=\ \|\ %l:%c
-set stl+=\ \|\ %p%%
-set stl+=%{&filetype==''?'\ ':'\ \|\ '.toupper(&filetype).'\ '}
+" set stl+=\ \|\ %l:%c
+" set stl+=\ \|\ %p%%
+set stl+=%{&filetype==''?'\ ':'\ \ \|\ '.toupper(&filetype).'\ '}
 set nosmd
 
 " === qflist ===
