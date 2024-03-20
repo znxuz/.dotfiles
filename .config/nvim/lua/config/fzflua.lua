@@ -85,7 +85,7 @@ require('fzf-lua').setup {
 local M = {}
 
 M.find_files_in = function()
-  vim.ui.input({ prompt = 'Files in: ', completion = "file" }, function(input)
+  vim.ui.input({ prompt = 'Files in: ', completion = "dir" }, function(input)
     if input ~= nil and input ~= '' then
       require('fzf-lua').files({ cwd = input })
     end
@@ -93,7 +93,7 @@ M.find_files_in = function()
 end
 
 M.grep_in = function()
-  vim.ui.input({ prompt = 'Grep in: ', completion = "file" }, function(input)
+  vim.ui.input({ prompt = 'Grep in: ', completion = "dir" }, function(input)
     if input ~= nil and input ~= '' then
       require('fzf-lua').live_grep({ cwd = input })
     end

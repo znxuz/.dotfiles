@@ -31,13 +31,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 lspc.clangd.setup {
   cmd = { 'clangd', '--background-index', '--log=error' },
   capabilities = {
-    textDocument = {
-      completion = {
-	completionItem = {
-	  snippetSupport = false,
-	},
-      },
-    },
+    textDocument = { completion = { completionItem = { snippetSupport = false } } },
   },
 }
 

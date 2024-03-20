@@ -53,8 +53,6 @@ source $ZDOTDIR/zsh_fzf
 
 ross()
 {
-    export ROS_DOMAIN_ID=42
-
     source /opt/ros/iron/setup.zsh
 
     source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
@@ -63,7 +61,7 @@ ross()
 
 ross-ws()
 {
-    export ROS_DOMAIN_ID=42
+    ross
 
     ws_setup="./install/setup.zsh"
     [[ ! -f $ws_setup ]] && echo "Not in a ROS2 workspace" && return 1

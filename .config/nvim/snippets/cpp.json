@@ -246,5 +246,20 @@
 	"prefix": "fformat",
 	"body": ["fmt::format(\"$1\", $0);"],
 	"description": "fmt::format() snippet"
+    },
+    "RCLCPP_INFO": {
+	"prefix": "rclinfo",
+	"body": ["RCLCPP_INFO($1, $0);"],
+	"description": "RCLCPP_INFO() snippet"
+    },
+    "RCLCPP_WARN": {
+	"prefix": "rclwarn",
+	"body": ["RCLCPP_WARN($1, $0);"],
+	"description": "RCLCPP_WARN() snippet"
+    },
+    "RCLCPP_ERROR": {
+	"prefix": "rclerr",
+	"body": ["RCLCPP_ERROR($1, $0);"],
+	"description": "RCLCPP_ERROR() snippet"
     }
 }

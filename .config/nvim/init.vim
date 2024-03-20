@@ -31,7 +31,6 @@ set udf
 " === completion ===
 set wmnu
 set wop=pum
-set wic
 set wim=longest:full,full
 set cpt-=t,i
 set cot=menuone,preview,noinsert,noselect

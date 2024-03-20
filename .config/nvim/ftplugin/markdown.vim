@@ -66,12 +66,12 @@ nnoremap <buffer> <leader>gp <cmd>call MD2PDF()<cr>
 nnoremap <buffer> <leader>wp <cmd>call Paste_image_from_clip()<cr>
 
 " cursive
-nnoremap <buffer> gc ciw*"*
-vnoremap <buffer> gc c*"*
+nnoremap <buffer> gi ciw*"*
+vnoremap <buffer> gi c*"*
 
 " bold
-nnoremap <buffer> gb ciw**"**
-vnoremap <buffer> gb c**"**
+nnoremap <buffer> gt ciw**"**
+vnoremap <buffer> gt c**"**
 
 " math syntax
 nnoremap <buffer> gm ciw$"$

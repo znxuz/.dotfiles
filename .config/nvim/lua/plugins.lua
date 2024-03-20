@@ -2,7 +2,7 @@ require'lazy'.setup({
   -- almighty picker
   {
     'ibhagwan/fzf-lua',
-    config = function () require('config.fzflua') end,
+    config = function () require('config.fzflua') end
   },
 
   -- lsp
@@ -30,34 +30,59 @@ require'lazy'.setup({
 
   -- misc
   {
-    'nvim-treesitter/nvim-treesitter',
-    config = function () require('config.treesitter') end
-  },
-  {
-    'mbbill/undotree',
-    config = function () vim.cmd('nnoremap <leader>u <cmd>UndotreeToggle<cr>') end
-  },
-  {
     'vimwiki/vimwiki',
     keys = { { '<leader>ws', '<cmd>VimwikiUISelect<cr>', desc = 'Vimwiki UI select' } },
     init = function () require('config.vimwiki') end
   },
   {
-    'jbyuki/nabla.nvim',
-    ft = { 'vimwiki', 'md', 'tex' }
-  },
-  { 'romainl/vim-devdocs' },
-  {
-    'norcalli/nvim-colorizer.lua',
-    config = function () require'colorizer'.setup() end
+    'numToStr/Comment.nvim',
+    config = function () require('Comment').setup() end
   },
   {
     'lewis6991/gitsigns.nvim',
     config = function () require('gitsigns').setup() end
   },
   {
+    'mbbill/undotree',
+    config = function () vim.cmd('nnoremap <leader>u <cmd>UndotreeToggle<cr>') end
+  },
+  {
+    'jbyuki/nabla.nvim',
+    ft = { 'vimwiki', 'md', 'tex' }
+  },
+  { 'romainl/vim-devdocs' },
+
+  -- colortheme
+  {
     'rose-pine/neovim',
     config = function () require('config.colors') end
   },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    config = function () require('config.treesitter') end
+  },
+  {
+    'norcalli/nvim-colorizer.lua',
+    config = function () require('colorizer').setup() end
+  },
+}, {
+  ui = {
+    icons = {
+      cmd = "⌘",
+      config = "🛠",
+      event = "📅",
+      ft = "📂",
+      init = "⚙",
+      keys = "🗝",
+      plugin = "🔌",
+      runtime = "💻",
+      require = "🌙",
+      source = "📄",
+      start = "🚀",
+      task = "📌",
+      lazy = "💤 ",
+    },
+  },
+
 })
 

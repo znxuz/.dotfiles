@@ -10,7 +10,7 @@ feh="${XDG_CONFIG_HOME:-$HOME/.config}/feh/.mode"
 dnst_dir="${XDG_CONFIG_HOME:-$HOME/.config}/dunst/dunstrc.d"
 bsp="${XDG_CONFIG_HOME:-$HOME/.config}/bspwm/colors"
 
-files=("$alcty" "$nvm" "$plb" "$rf" "$ztr" "$feh" "$dnst_dir" "$bsp")
+files=("$palette" "$alcty" "$nvm" "$plb" "$rf" "$ztr" "$feh" "$dnst_dir" "$bsp")
 
 files()
 {
