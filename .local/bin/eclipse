@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-palette="${XDG_CONFIG_HOME:-$HOME/.config}/shell/color_palette"
 alcty="${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/colors.toml"
 nvm="${XDG_CONFIG_HOME:-$HOME/.config}/nvim/lua/config/bg.lua"
 plb="${XDG_CONFIG_HOME:-$HOME/.config}/polybar/colors.ini"
@@ -10,7 +9,7 @@ feh="${XDG_CONFIG_HOME:-$HOME/.config}/feh/.mode"
 dnst_dir="${XDG_CONFIG_HOME:-$HOME/.config}/dunst/dunstrc.d"
 bsp="${XDG_CONFIG_HOME:-$HOME/.config}/bspwm/colors"
 
-files=("$palette" "$alcty" "$nvm" "$plb" "$rf" "$ztr" "$feh" "$dnst_dir" "$bsp")
+files=("$alcty" "$nvm" "$plb" "$rf" "$ztr" "$feh" "$dnst_dir" "$bsp")
 
 files()
 {
@@ -71,7 +70,6 @@ main()
     fi
 
     switch_wp && switch_dunst &&
-	toggle "$palette" &&
 	toggle "$alcty" &&
 	toggle "$rf" &&
 	toggle "$ztr" &&

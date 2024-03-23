@@ -45,7 +45,7 @@ rpac()
     LBUFFER=${LBUFFER}${ret}
     zle reset-prompt
 }
-zle -N rpac && bindkey '^[^r' apac
+zle -N rpac && bindkey '^[^r' rpac
 
 lpac()
 {

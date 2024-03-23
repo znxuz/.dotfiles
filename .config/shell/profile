@@ -1,3 +1,6 @@
+[[ -n $PROFILE_SOURCED ]] && return
+export PROFILE_SOURCED="1"
+
 export PATH=$PATH:$(find $HOME/.local/bin -type d | tr '\n' ':' | sed 's/:$//')
 
 export SHELL="/usr/bin/zsh"
@@ -30,7 +33,7 @@ export PYTHON_HISTORY=$XDG_STATE_HOME/python/history
 
 # fzf
 export ESCDELAY="1"
-export FZF_DEFAULT_OPTS='--border=sharp --color=16 --layout=reverse --height=50% --cycle --tiebreak=length'
+export FZF_DEFAULT_OPTS='--border=sharp --color=16 --layout=reverse --height=50% --cycle --tiebreak=begin,length'
 export FZF_DEFAULT_COMMAND='fd -L -H'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND -td"

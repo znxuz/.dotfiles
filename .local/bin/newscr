@@ -1,3 +1,43 @@
 #!/usr/bin/env bash
 
-printf "#!/usr/bin/env bash\n\n\n" > "$1" && chmod 744 "$1" && $EDITOR +"norm G" "$1"
+print_help()
+{
+    echo "Usage: newscr [OPTIONS] [NAME]"
+    echo "Options:"
+    echo "  -p, --py    Create a new Python script"
+    echo "  -l, --lua   Create a new Lua script"
+    echo "  -b, --bash  Create a new Bash script"
+    echo "  -z, --zsh   Create a new Zsh script"
+}
+
+open_scr()
+{
+    printf "#!/usr/bin/env %s\n\n\n" "$1" > "$2" && chmod 745 "$2" && $EDITOR +"norm G" "$2"
+}
+
+# Main function for parsing flags
+main()
+{
+    [[ $# -ne 2 ]] && print_help && exit 1
+    case $1 in
+	-p|--py)
+	    open_scr python "$2"
+	    ;;
+	-l|--lua)
+	    open_scr lua "$2"
+	    ;;
+	-s|--sh)
+	    open_scr sh "$2"
+	    ;;
+	-b|--bash)
+	    open_scr bash "$2"
+	    ;;
+	-z|--zsh)
+	    open_scr zsh "$2"
+	    ;;
+	*)
+	    print_help && exit 1
+    esac
+}
+
+main "$@"

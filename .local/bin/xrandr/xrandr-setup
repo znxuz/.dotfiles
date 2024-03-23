@@ -2,22 +2,12 @@
 
 XRANDR_CONNECTED="$(xrandr | grep '\bconnected' -A1)"
 
-get_dpi()
-{
-    case "$1" in
-	3840x2160)
-	    echo 192
-	    ;;
-	1920x1080|*)
-	    echo 120
-	    ;;
-    esac
-}
+
+declare -A dpi_map
+dpi_map=([3840x2160]=192 [2560x1440]=144 [1920x1080]=120)
 
 main()
 {
-    mon=""
-    res=""
     while read -r line; do
 	if [[ -z "$mon" ]]; then
 	    mon="$(echo "$line" | grep '\bconnected' | cut -d' ' -f1)"
@@ -33,36 +23,14 @@ main()
     done <<< "$XRANDR_CONNECTED"
     mapfile -t mons < <(printf "%s\n" "${mons[@]}" | sort -nr -k 2)
 
-    dpi=$(get_dpi "$(echo "${mons[0]}" | cut -d' ' -f2)")
-    xrdb -DDPI="$dpi" "${XDG_CONFIG_HOME:-$HOME/.config}/X11/Xresources"
-
     read -r display res <<< "${mons[0]}"
+
+    dpi="${dpi_map[$res]}"
+    xrdb -DDPI="$dpi" "${XDG_CONFIG_HOME:-$HOME/.config}/X11/Xresources"
     for mon in $(xrandr | tail -n+2 | grep -v '^ .*' | cut -d' ' -f1); do
 	xrandr --output "$mon" --off
     done
     xrandr --output "$display" --primary --mode "$res" --dpi "$dpi"
-
-    n=0
-    while [[ "$#" -gt 0 ]]; do
-	case "$1" in
-	    -a|--all)
-		n=${#mons[@]}
-		shift
-		;;
-	    -d|--duplicate)
-		n=2
-		shift
-		;;
-	    -s|--single|*)
-		n=0
-		shift
-	esac
-    done
-
-    for ((i = 1; i < n; i++)); do
-	read -r display res <<< "${mons[i]}"
-	xrandr --output "$display" --mode "$res" --dpi "$dpi" # FIXME calculate scale value
-    done
 }
 
 main "$@"
