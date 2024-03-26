@@ -2,8 +2,7 @@
 
 package_cache_clean()
 {
-    echo "==> pacman package cache" && sudo pacman -Scc --noconfirm
-    echo "==> paru package cache" && paru -Sc --noconfirm
+    echo "==> paru package cache" && paru -Scc --noconfirm
 }
 
 nvim_undo_clean()

@@ -27,7 +27,6 @@ rmapi
 procps
 java
 systemd
-coc
 QtProject
 menus
 spotify
@@ -51,3 +50,4 @@ user-dirs.locale
 jupyter
 ipython
 ros.org
+Kitware

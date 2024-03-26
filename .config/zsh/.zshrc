@@ -12,7 +12,7 @@ zstyle ':vcs_info:*' formats '%F{magenta}[%F{green}%b%F{magenta}]%F{blue} '
 zstyle ':vcs_info:*' enable git
 
 precmd () { vcs_info }
-PROMPT='%F{blue}%~ %B${vcs_info_msg_0_}%F{yellow}%(1j.[%j] .)%b%(?.%F{blue}.%F{red})|>%f '
+PROMPT='%B%F{blue}%~ ${vcs_info_msg_0_}%F{yellow}%(1j.[%j] .)%(?.%F{blue}.%F{red})|>%f%b '
 
 # colors
 
@@ -47,13 +47,15 @@ autoload edit-command-line &&
     zle -N edit-command-line &&
     bindkey '^x^e' edit-command-line
 
+# fzf bindings
+
 source $ZDOTDIR/zsh_fzf
 
-# ros
+# ROS
 
 ross()
 {
-    source /opt/ros/iron/setup.zsh
+    source /opt/ros/humble/setup.zsh
 
     source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
     eval "$(register-python-argcomplete ros2)"

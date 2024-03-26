@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-[[ -n "$1" ]] && ln -s "$(pwd)/$1" $HOME/courses/learning || exit 1
+[[ -n "$1" ]] && ln -s "$(pwd)/$1" ~/courses/learning || exit 1
