@@ -23,5 +23,5 @@
     "java.import.gradle.offline.enabled": true,
     "java.import.gradle.wrapper.enabled": false,
     "java.import.gradle.home": "/usr/share/java/gradle",
-    "java.import.gradle.user.home": "/home/z/.gradle"
+    "java.import.gradle.user.home": "/home/znx/.gradle"
 }

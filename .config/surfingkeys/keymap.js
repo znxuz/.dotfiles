@@ -34,17 +34,8 @@ unmap("<Ctrl-h>") // history
 unmap("<Ctrl-j>") // download
 iunmap(":"); // disable emoji
 
-// tab history
-// map("<Alt-o>", "B");
-// map("<Alt-i>", "F");
-
-// page history
-// map("<Alt-j>", "S");
-// map("<Alt-k>", "D");
-
 map("F", "C"); // open link in background
 map("<Alt-f>", "cf"); // open links in background
-map("C", "X"); // reopen closed tab
 map("yf", "ya"); // copy link to clip
 map("<Alt-6>", "<Ctrl-6>"); // prev tab
 map("^", "g0"); // go to first tab

@@ -1,0 +1,7 @@
+[window]
+
+dynamic_padding = true
+
+[window.padding]
+x = 200
+y = 50

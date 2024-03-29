@@ -5,5 +5,5 @@
 # switching keyboard layouts etc.
 # SCRIPT EXECUTES AS NON ROOT!
 
-sleep 0.5 && xrandr-refresh | tee /home/z/log
+sleep 0.5 && xrandr-refresh
 exit

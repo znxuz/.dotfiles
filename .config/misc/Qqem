@@ -10,7 +10,6 @@ neovim-nightly-bin
 nvim-lazy
 otf-material-design-icons
 pandoc-bin
-paru
 python-colcon-core
 python-empy3
 python-sip4
@@ -20,7 +19,6 @@ restream-git
 rmapi
 ros2-arch-deps
 ros2-humble
-ros2-humble-debug
 rose-pine-gtk-theme
 shellcheck-bin
 sip4
@@ -29,5 +27,3 @@ stm32cubemx
 stm32cubeprog
 tango-icon-theme
 thinkfan
-uget-integrator
-uget-integrator-chrome

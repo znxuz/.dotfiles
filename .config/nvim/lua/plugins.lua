@@ -1,7 +1,7 @@
 require'lazy'.setup({
   -- almighty picker
   {
-    'ibhagwan/fzf-lua',
+    'https://gitlab.com/ibhagwan/fzf-lua',
     config = function () require('config.fzflua') end
   },
 

@@ -1,4 +1,4 @@
 SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_ONLINE}=="0", \
-    RUN+="/home/z/.local/bin/polybar/poly-bat --update"
+    RUN+="/home/znx/.local/bin/polybar/poly-bat --update"
 SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_ONLINE}=="1", \
-    RUN+="/home/z/.local/bin/polybar/poly-bat --update"
+    RUN+="/home/znx/.local/bin/polybar/poly-bat --update"
