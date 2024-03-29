@@ -1,10 +1,9 @@
 # Dotfiles
 
-These are my personal [dotfiles](https://wiki.archlinux.org/title/Dotfiles),
-containing configurations for various tools and applications, and my own scripts
-on Arch Linux. I use these to customize my development environment and
-streamline my workflow. Feel free to explore, use, or adapt anything you find
-here.
+These are my [dotfiles](https://wiki.archlinux.org/title/Dotfiles), containing
+configurations for various utilities and my own scripts on Arch Linux. I use
+these to customize my development environment and streamline my workflow. Feel
+free to explore, use, or adapt anything you find here.
 
 # `.config` Directory
 

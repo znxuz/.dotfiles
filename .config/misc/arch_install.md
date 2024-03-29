@@ -96,7 +96,7 @@ vim /etc/hosts
 passwd # root password
 
 # pacman parallel download
-pacman -S grub efibootmgr networkmanager wireless_tools texinfo \
+pacman -S grub <*-ucode> efibootmgr networkmanager wireless_tools texinfo \
 	dialog os-prober linux-headers reflector git bluez bluez-utils cups \
 	xdg-utils xdg-user-dirs openssh wpa_supplicant
 ```
@@ -105,7 +105,7 @@ pacman -S grub efibootmgr networkmanager wireless_tools texinfo \
 vim /etc/mkinitcpio.conf
 
 ```sh
-HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt lvm2 filesystems fsck)
+HOOKS=(base udev microcode autodetect keyboard keymap consolefont modconf block encrypt lvm2 filesystems fsck)
 mkinitcpio -p linux
 ```
 

@@ -32,7 +32,6 @@ setopt noclobber
 unsetopt prompt_cr prompt_sp
 setopt nolistambiguous
 
-
 # completion
 autoload -Uz compinit
 zmodload zsh/complist

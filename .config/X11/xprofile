@@ -1,9 +1,6 @@
 # disable beep
 xset -b
 
-# disable touchscreen
-xinput disable $(xinput | awk '/Touch System/ {print}' | grep -Po 'id=\K\d+')
-
 # key repeat
 xset r rate 250 60
 
@@ -21,29 +18,21 @@ else
     xset dpms 300 300 600
 fi
 
-# TrackPoint
-## accel built in:
+# laptop
+xinput set-prop "Synaptics TM3276-022" "Device Enabled" 0
 xinput set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" 0.4
-## accel external:
-### xinput set-prop "Lenovo TrackPoint Keyboard II Mouse" "libinput Accel Speed" -0.3
-## tmp fix:
+xinput set-button-map "TPPS/2 IBM TrackPoint" 1 0 3
+xinput disable $(xinput | awk '/Touch System/ {print}' | grep -Po 'id=\K\d+')
+
+# trackpoint keyboard
 for id in $(xinput list |
     grep 'Lenovo TrackPoint Keyboard II' |
     sed 's/.*=\([0-9]\+\).*/\1/');
 do
     xinput list-props $id | grep -q 'libinput Accel Speed' &&
-	xinput set-prop $id 'libinput Accel Speed' -0.2 &&
+	xinput set-prop $id 'libinput Accel Speed' -0.1 &&
 	xinput set-button-map $id 1 0 3
 done
-
-# disable touch pad:
-xinput set-prop "Synaptics TM3276-022" "Device Enabled" 0
-# disable middle button paste
-## built in:
-xinput set-button-map "TPPS/2 IBM TrackPoint" 1 0 3
-## external:
-### xinput set-button-map "Lenovo TrackPoint Keyboard II Mouse" 1 0 3
-### tmp fix above
 
 # auto switch audio upon bluetooth connect
 pactl list | grep -q module-switch-on-connect ||
