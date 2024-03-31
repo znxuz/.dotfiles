@@ -22,8 +22,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map('n', '<leader>ar', function () vim.lsp.buf.rename() end, { buffer = true })
     map('n', 'gh', function () vim.lsp.buf.hover() end, { buffer = true })
     map('i', '<c-h>', function () vim.lsp.buf.signature_help() end, { buffer = true })
-
-    map('n', '<leader><c-^>', '<cmd>ClangdSwitchSourceHeader<cr>')
   end,
 })
 
@@ -34,6 +32,7 @@ lspc.clangd.setup {
     textDocument = { completion = { completionItem = { snippetSupport = false } } },
   },
 }
+map('n', '<leader><c-^>', '<cmd>ClangdSwitchSourceHeader<cr>')
 
 -- tex
 lspc.texlab.setup {}

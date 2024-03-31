@@ -14,6 +14,7 @@ cmp.setup {
   sorting = {
     priority_weight = 1.0,
     comparators = {
+      compare.kind,
       compare.score,
       compare.recently_used,
       compare.locality,

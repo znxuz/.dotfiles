@@ -1,7 +1,7 @@
 require'lazy'.setup({
   -- almighty picker
   {
-    'https://gitlab.com/ibhagwan/fzf-lua',
+    'ibhagwan/fzf-lua',
     config = function () require('config.fzflua') end
   },
 
@@ -48,9 +48,9 @@ require'lazy'.setup({
   },
   {
     'jbyuki/nabla.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', },
     ft = { 'vimwiki', 'md', 'tex' }
   },
-  { 'romainl/vim-devdocs' },
 
   -- colortheme
   {
@@ -59,7 +59,8 @@ require'lazy'.setup({
   },
   {
     'nvim-treesitter/nvim-treesitter',
-    config = function () require('config.treesitter') end
+    config = function () require('config.treesitter') end,
+    lazy = true
   },
   {
     'norcalli/nvim-colorizer.lua',

@@ -41,11 +41,14 @@ set ls=2
 " === statusline ===
 fu! FormatPath(path)
     return fnamemodify(a:path,':~:.')
-    " return pathshorten(fnamemodify(a:path,':~:.'), 1)
 endfu
 
 fu! ShowDiagnosticCount()
-    return luaeval('require"config.lsp".StatuslineDiagCountAll()')
+    if luaeval("pcall(function () require('config.lsp').StatuslineDiagCountAll() end)")
+	return luaeval('require"config.lsp".StatuslineDiagCountAll()')
+    else
+	return ""
+    endif
 endf
 
 aug stl
