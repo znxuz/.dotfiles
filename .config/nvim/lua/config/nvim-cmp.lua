@@ -15,12 +15,13 @@ cmp.setup {
     priority_weight = 1.0,
     comparators = {
       compare.kind,
-      compare.score,
+      compare.exact,
       compare.recently_used,
+      compare.score,
       compare.locality,
-      compare.length,
       compare.order,
       compare.offset,
+      compare.length,
     },
   },
   mapping = {
