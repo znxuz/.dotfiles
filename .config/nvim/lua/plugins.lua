@@ -36,11 +36,11 @@ require'lazy'.setup({
   },
   {
     'numToStr/Comment.nvim',
-    config = function () require('Comment').setup() end
+    config = true,
   },
   {
     'lewis6991/gitsigns.nvim',
-    config = function () require('gitsigns').setup() end
+    config = true,
   },
   {
     'mbbill/undotree',
@@ -50,6 +50,11 @@ require'lazy'.setup({
     'jbyuki/nabla.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', },
     ft = { 'vimwiki', 'md', 'tex' }
+  },
+  {
+    'norcalli/nvim-colorizer.lua',
+    main = colorizer,
+    config = true,
   },
 
   -- colortheme
@@ -61,10 +66,6 @@ require'lazy'.setup({
     'nvim-treesitter/nvim-treesitter',
     config = function () require('config.treesitter') end,
     lazy = true
-  },
-  {
-    'norcalli/nvim-colorizer.lua',
-    config = function () require('colorizer').setup() end
   },
 }, {
   ui = {
