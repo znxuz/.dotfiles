@@ -15,7 +15,6 @@ set scl=yes
 set sbr=>\\
 set list
 filetype plugin indent on
-let g:netrw_dirhistmax = 0
 
 " === leader key ===
 let mapleader = " "
@@ -24,7 +23,6 @@ let mapleader = " "
 set is ic scs nohls
 
 " === file management ===
-set ar aw
 set noswf
 set udf
 
@@ -37,6 +35,10 @@ set cot=menuone,preview,noinsert,noselect
 set shm-=S shm+=cF
 set ph=10
 set ls=2
+
+" === netrw ===
+let g:netrw_altfile = 1
+let g:netrw_banner = 0
 
 " === statusline ===
 fu! FormatPath(path)
