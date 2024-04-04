@@ -14,9 +14,9 @@ zstyle ':vcs_info:*' enable git
 precmd () { vcs_info }
 PROMPT='%B%F{blue}%~ ${vcs_info_msg_0_}%F{yellow}%(1j.[%j] .)%(?.%F{blue}.%F{red})|>%f%b '
 
-# colors
+# dir colors
 
-eval $(dircolors $XDG_CONFIG_HOME/shell/autocompletion_colors)
+eval $(dircolors $XDG_CONFIG_HOME/shell/dircolors)
 autoload -U colors && colors
 
 # misc
