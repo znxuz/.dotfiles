@@ -19,12 +19,19 @@ PROMPT='%B%F{blue}%~ ${vcs_info_msg_0_}%F{yellow}%(1j.[%j] .)%(?.%F{blue}.%F{red
 eval $(dircolors $XDG_CONFIG_HOME/shell/dircolors)
 autoload -U colors && colors
 
-# misc
+# history
 
+HISTFILE=$ZDOTDIR/.zhistory
 HISTSIZE=100000
 SAVEHIST=100000
+setopt append_history
+setopt hist_find_no_dups
+setopt hist_expire_dups_first
+setopt hist_ignore_space
+
+# misc
+
 unsetopt beep
-setopt hist_ignore_all_dups
 setopt extendedglob
 setopt rmstarsilent
 setopt globdots
@@ -48,7 +55,7 @@ autoload edit-command-line &&
 
 # fzf bindings
 
-source $ZDOTDIR/zsh_fzf
+source $ZDOTDIR/zfzf
 
 # ROS
 

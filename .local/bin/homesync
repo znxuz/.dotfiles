@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-dest=${1:-"/mnt/external/home_backup"}
+dest=${1:-"/mnt/external/home/z"}
 misc_dir=$HOME/.config/misc
 log=$HOME/homesync.log
 

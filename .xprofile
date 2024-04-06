@@ -13,16 +13,15 @@ setxkbmap -option compose:ralt
 # screen timeouts
 if [ $(cat /sys/class/power_supply/AC/online) -eq 1 ];
 then
-    xset dpms 600 600 900
+    xset dpms 600 0 0
 else
-    xset dpms 300 300 600
+    xset dpms 60 300 600
 fi
 
 # laptop
-xinput set-prop "Synaptics TM3276-022" "Device Enabled" 0
-xinput set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" 0.4
-xinput set-button-map "TPPS/2 IBM TrackPoint" 1 0 3
-xinput disable $(xinput list --id-only "Raydium Corporation Raydium Touch System")
+xinput disable "SynPS/2 Synaptics TouchPad"
+xinput set-prop "TPPS/2 Elan TrackPoint" "libinput Accel Speed" 0.4
+xinput set-button-map "TPPS/2 Elan TrackPoint" 1 0 3
 
 # trackpoint keyboard
 for id in $(xinput list |

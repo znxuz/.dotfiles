@@ -1,17 +1,14 @@
-auto-cpufreq
 brave-bin
 chatgpt-shell-cli-git
 dict-wn
 dockd
 dropbox
-eddie-cli
-libthinkpad
 neovim-nightly-bin
 nvim-lazy
-otf-material-design-icons
 pandoc-bin
+paru
+paru-debug
 python-colcon-core
-python-empy3
 python-sip4
 quickemu
 redshift-minimal
@@ -26,4 +23,3 @@ stm32cubef7
 stm32cubemx
 stm32cubeprog
 tango-icon-theme
-thinkfan
