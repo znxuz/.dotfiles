@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-jdtls_dir="${XDG_CONFIG_HOME:-$HOME/.config}/coc/extensions/coc-java-data/jdt_ws"
-
-find "$jdtls_dir" -maxdepth 1 -type d ! -path "$jdtls_dir" \
-    \( -name '.metadata' -or ! -name 'jdt.ls-java-project' \) \
-    -and ! -name '.' -exec rm -rf '{}' \;

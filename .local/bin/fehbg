@@ -10,7 +10,7 @@ show_help()
 
 set_wp()
 {
-    config_path="${XDG_CONFIG_HOME:-$HOME/.config}/feh"
+    config_path="$XDG_CONFIG_HOME/feh"
 
     mode="$config_path/.mode"
     [ "$1" = "-d" ] && echo dark > "$mode" && shift

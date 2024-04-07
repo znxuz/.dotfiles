@@ -1,7 +1,7 @@
 #! /bin/sh
 
 xsetroot -cursor_name left_ptr
-"${XDG_CONFIG_HOME:-$HOME/.config}"/polybar/launch.sh
+$XDG_CONFIG_HOME/polybar/launch.sh
 
 primary_mon=$(xrandr | grep '\bconnected primary\b' | head -n1 | cut -d' ' -f1)
 bspc monitor "$primary_mon" -d I II III IV V
@@ -21,11 +21,11 @@ bspc config pointer_action2 resize_side
 bspc config initial_polarity first_child
 
 if [ "$(xrandr | awk '/primary/ {print $1}')" != "eDP1" ] &&
-    which alcty-auto-pad > /dev/null 2>&1; then
-    pgrep -f "bash.+alcty-auto-pad" | xargs -I{} kill {};
-    alcty-auto-pad &
+    which altty-auto-pad > /dev/null 2>&1; then
+    pgrep -f "bash.+altty-auto-pad" | xargs -I{} kill {};
+    altty-auto-pad &
 else
-    alcty-padding unpad
+    altty-padding unpad
 fi
 
-source "${XDG_CONFIG_HOME:-$HOME/.config}"/bspwm/colors
+source "$XDG_CONFIG_HOME/bspwm/colors"

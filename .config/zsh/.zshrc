@@ -2,7 +2,7 @@ KEYTIMEOUT=1
 
 # aliases
 
-source $HOME/.config/shell/aliasrc
+source $XDG_CONFIG_HOME/shell/aliasrc
 
 # prompt
 

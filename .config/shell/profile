@@ -1,9 +1,14 @@
-path_append()
+append_path()
 {
-    [ -z $PATH_SOURCED ] && export PATH=$PATH:$1
+    case ":$PATH:" in
+        *:"$1":*)
+            ;;
+        *)
+            PATH="${PATH:+$PATH:}$1"
+    esac
 }
 
-path_append $(find $HOME/.local/bin -type d | tr '\n' ':' | sed 's/:$//')
+append_path $(find $HOME/.local/bin -type d | tr '\n' ':' | sed 's/:$//')
 
 export SHELL="/usr/bin/zsh"
 export EDITOR="nvim"
@@ -28,7 +33,7 @@ export GTK2_RC_FILES=$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0
 export XAUTHORITY=$XDG_CONFIG_HOME/X11/Xauthority
 export RUSTUP_HOME=$XDG_DATA_HOME/rustup
 export CARGO_HOME=$XDG_DATA_HOME/cargo
-path_append $CARGO_HOME/bin
+append_path $CARGO_HOME/bin
 export JUPYTER_PLATFORM_DIRS=$XDG_CONFIG_HOME/jupyter
 export PYTHON_HISTORY=$XDG_STATE_HOME/python/history
 
@@ -71,5 +76,3 @@ export NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
 # QT
 # export QT_ENABLE_HIGHDPI_SCALING=1 # causes rviz2 screen flickering
 export QT_SCREEN_SCALE_FACTORS=1 # screen flickering fix
-
-export PATH_SOURCED=1

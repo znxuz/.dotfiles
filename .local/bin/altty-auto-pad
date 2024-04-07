@@ -26,9 +26,9 @@ main()
 
 	[[ -z "$local_windows" || ! "$local_windows" =~ .+Alacritty ]] && continue
 	if [[ "$(echo "$local_windows" | wc -l)" -eq 1 ]]; then
-	    alcty-padding pad
+	    altty-padding pad
 	else
-	    alcty-padding unpad
+	    altty-padding unpad
 	fi
     done
 }

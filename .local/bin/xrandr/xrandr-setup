@@ -26,7 +26,7 @@ main()
     read -r display res <<< "${mons[0]}"
 
     dpi="${dpi_map[$res]}"
-    xrdb -DDPI="$dpi" "${XDG_CONFIG_HOME:-$HOME/.config}/X11/Xresources"
+    xrdb -DDPI="$dpi" "$XDG_CONFIG_HOME/X11/Xresources"
     for mon in $(xrandr | tail -n+2 | grep -v '^ .*' | cut -d' ' -f1); do
 	xrandr --output "$mon" --off
     done

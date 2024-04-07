@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-alcty="${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/colors.toml"
-nvm="${XDG_CONFIG_HOME:-$HOME/.config}/nvim/lua/config/bg.lua"
-plb="${XDG_CONFIG_HOME:-$HOME/.config}/polybar/colors.ini"
-rf="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/colors.rasi"
-ztr="${XDG_CONFIG_HOME:-$HOME/.config}/zathura/colorsrc"
-feh="${XDG_CONFIG_HOME:-$HOME/.config}/feh/.mode"
-dnst_dir="${XDG_CONFIG_HOME:-$HOME/.config}/dunst/dunstrc.d"
-bsp="${XDG_CONFIG_HOME:-$HOME/.config}/bspwm/colors"
+altty="$XDG_CONFIG_HOME/alacritty/colors.toml"
+nvm="$XDG_CONFIG_HOME/nvim/lua/config/bg.lua"
+plb="$XDG_CONFIG_HOME/polybar/colors.ini"
+rf="$XDG_CONFIG_HOME/rofi/colors.rasi"
+ztr="$XDG_CONFIG_HOME/zathura/colorsrc"
+feh="$XDG_CONFIG_HOME/feh/.mode"
+dnst_dir="$XDG_CONFIG_HOME/dunst/dunstrc.d"
+bsp="$XDG_CONFIG_HOME/bspwm/colors"
 
-files=("$alcty" "$nvm" "$plb" "$rf" "$ztr" "$feh" "$dnst_dir" "$bsp")
+files=("$altty" "$nvm" "$plb" "$rf" "$ztr" "$feh" "$dnst_dir" "$bsp")
 
 files()
 {
@@ -70,7 +70,7 @@ main()
     fi
 
     switch_wp && switch_dunst &&
-	toggle "$alcty" &&
+	toggle "$altty" &&
 	toggle "$rf" &&
 	toggle "$ztr" &&
 	toggle "$plb" && # polybar reloads with bspwm below

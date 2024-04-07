@@ -4,7 +4,7 @@ super + Return
 super + shift + Return
 	tmux ls && alacritty -e tmux attach
 alt + z
-	alcty-padding toggle
+	altty-padding toggle
 
 # program controls
 super + ctrl + {b, q, v}
@@ -74,7 +74,7 @@ super + shift + Escape ; {K, s, S, U, R, o, X, c}
 
 super + shift + Escape ; {W, x}
 	{ bspc wm -r && notify-send -u low "bspwm reloaded" \
-	, source $HOME/.config/X11/xprofile && notify-send -u low "xprofile sourced" \
+	, source $HOME/.xprofile && notify-send -u low "xprofile sourced" \
 	}
 
 ## brightness

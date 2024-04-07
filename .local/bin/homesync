@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 dest=${1:-"/mnt/external/home/z"}
-misc_dir=$HOME/.config/misc
+misc_dir=$XDG_CONFIG_HOME/misc
 log=$HOME/homesync.log
 
 rsync -azvhP --del --delete-excluded --exclude-from "$HOME/.local/bin/.rsyncexclude" \
-    --exclude-from "$HOME/.config/.gitignore" "$HOME" "$dest" | tee "$log" 2>&1
+    --exclude-from "$XDG_CONFIG_HOME/.gitignore" "$HOME" "$dest" | tee "$log" 2>&1
 
 pacman -Qqen | tee "$misc_dir/Qqen" && cp -f "$misc_dir/Qqen" "$dest"
 pacman -Qqem | tee "$misc_dir/Qqem" && cp -f "$misc_dir/Qqem" "$dest"

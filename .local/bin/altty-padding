@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-config=${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/window.toml
+config=$XDG_CONFIG_HOME/alacritty/window.toml
 
 no_pad=10
 pad_x=200

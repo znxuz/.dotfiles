@@ -10,7 +10,7 @@ vim.cmd 'hi! link PMenu StatusLine | hi! link NormalFloat StatusLine | hi! link 
 vim.cmd([[
   aug Update_bg
   au!
-  au Signal SIGUSR1 luafile $HOME/.config/nvim/lua/config/bg.lua
+  au Signal SIGUSR1 luafile $XDG_CONFIG_HOME/nvim/lua/config/bg.lua
   au Signal SIGUSR1 hi! link PMenu StatusLine | hi! link NormalFloat StatusLine
   aug END
 ]])
