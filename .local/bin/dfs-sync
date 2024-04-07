@@ -2,7 +2,9 @@
 
 shopt -s expand_aliases && source "$XDG_CONFIG_HOME/shell/aliasrc" || exit 1
 
-dfs add "$XDG_CONFIG_HOME" "$HOME/.local/bin"
+checkconfig
+dfs add "$XDG_CONFIG_HOME"
+dfs add "$HOME/.local/bin"
 
 read -ra eclipse_files < <(eclipse -f)
 for file in "${eclipse_files[@]}"; do

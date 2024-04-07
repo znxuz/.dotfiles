@@ -7,6 +7,8 @@ all_entries=$(ls | sort)
 cached=$(dfs ls-files -c | awk -F'/' '{print $1}' | sort | uniq)
 readarray -t new_entries < <(comm -23 <(comm -23 <(echo "$all_entries") <(echo "$cached")) <(sort .gitignore))
 
+[[ "${#new_entries[@]}" -eq 0 ]] && exit 1
+
 for entry in "${new_entries[@]}"; do
     file_type="$([ -f "$entry" ] && echo 'file' || echo 'directory')"
     read -rp "cache this $file_type [$entry] (y|n)?: " ret
