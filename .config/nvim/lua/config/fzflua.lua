@@ -67,7 +67,7 @@ require('fzf-lua').setup {
     cwd_only = false,
   },
   buffers = {
-    path_shorten = true,
+    path_shorten = false,
   },
   quickfix = {
   },

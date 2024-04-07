@@ -7,10 +7,11 @@ alt + z
 	altty-padding toggle
 
 # program controls
-super + ctrl + {b, q, v}
+super + ctrl + {b, q, v, f}
 	{ $BROWSER\
 	, qbittorrent\
 	, vb-start\
+	, fcitx5\
 	}
 
 ## playerctl
