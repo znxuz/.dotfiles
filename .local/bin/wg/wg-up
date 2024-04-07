@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+CONF="$HOME/.config/wg/airvpn.conf"
+
+sudo wg-quick up "$CONF" && notify-send -t 1000 "Wireguard up"

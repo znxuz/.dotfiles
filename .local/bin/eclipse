@@ -4,19 +4,20 @@ altty="$XDG_CONFIG_HOME/alacritty/colors.toml"
 nvm="$XDG_CONFIG_HOME/nvim/lua/config/bg.lua"
 rf="$XDG_CONFIG_HOME/rofi/colors.rasi"
 ztr="$XDG_CONFIG_HOME/zathura/colorsrc"
-feh="$XDG_CONFIG_HOME/feh/.mode"
 dnst_dir="$XDG_CONFIG_HOME/dunst/dunstrc.d"
 
-files=("$altty" "$feh" "$nvm" "$rf" "$ztr" "$dnst_dir")
+files=("$altty" "$nvm" "$rf" "$ztr" "$dnst_dir")
 
-mode=$(xrdb -query | grep mode | cut -f2)
+mode=$(cat "$XDG_CONFIG_HOME/X11/themes/.mode")
 
 toggle_xrdb()
 {
     if [[ $mode == "dark" ]]; then
-	xrdb -merge "$XDG_CONFIG_HOME/X11/themes/rose-pine-light"
+	xrdb -merge "$XDG_CONFIG_HOME/X11/themes/rose-pine-light" &&
+	    echo "light" > "$XDG_CONFIG_HOME/X11/themes/.mode"
     else
-	xrdb -merge "$XDG_CONFIG_HOME/X11/themes/rose-pine-dark"
+	xrdb -merge "$XDG_CONFIG_HOME/X11/themes/rose-pine-dark" &&
+	    echo "dark" > "$XDG_CONFIG_HOME/X11/themes/.mode"
     fi
 }
 
@@ -37,43 +38,56 @@ toggle()
     fi
 }
 
-toggle_wp()
-{
-    if [[ $mode == "dark" ]]; then
-	fehbg -l
-    else
-	fehbg -d
-    fi
-}
-
 toggle_dunst()
 {
-    mv "$dnst_dir/00.conf" "$dnst_dir/02.conf" &&
-	mv "$dnst_dir/01.conf" "$dnst_dir/00.conf" &&
-	mv "$dnst_dir/02.conf" "$dnst_dir/01.conf" &&
-	killall dunst && dunst &
+    rename 01 02 "$dnst_dir/01.conf" &&
+	rename 00 01 "$dnst_dir/00.conf" &&
+	rename 02 00 "$dnst_dir/02.conf" &&
+	killall dunst; dunst &
 }
 
 main()
 {
-    # TODO parse with getopts
-    if [[ -n "$1" ]]; then
-	case "$1" in
-	    -q|--query)
+    while getopts ":qfo:" opt; do
+	case $opt in
+	    q)
 		echo "$mode"
-		exit 0
+		exit
 		;;
-	    -f|--files)
+	    f)
 		files
-		exit 0
+		exit
 		;;
-	    *)
+	    o)
+		case "$OPTARG" in
+		    alacritty|altty)
+			toggle "$altty"
+			;;
+		    dunst)
+			toggle_dunst
+			;;
+		    zathura)
+			toggle "$ztr"
+			;;
+		    rofi)
+			toggle "$rf"
+			;;
+		    nvim|neovim)
+			toggle "$nvm" && killall -s 10 nvim &> /dev/null
+			;;
+		esac
+		exit
+		;;
+	    \?)
+		echo "Invalid option: -$OPTARG" >&2
 		exit 1
+		;;
 	esac
-    fi
+    done
 
-    toggle_wp && toggle_dunst &&
-    toggle_xrdb && bspc wm -r &&
+    shift $((OPTIND -1))
+
+    toggle_xrdb && fehbg && toggle_dunst && bspc wm -r &&
 	toggle "$altty" &&
 	toggle "$rf" &&
 	toggle "$ztr" &&

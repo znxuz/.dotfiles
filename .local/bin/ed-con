@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-sudo eddie-cli --login=zyanite7 --password="$(pass www.airvpn.org)" --server=Gienah --connect

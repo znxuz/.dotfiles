@@ -1,21 +1,46 @@
 #!/bin/sh
 
+config_path="$XDG_CONFIG_HOME/feh"
+
 show_help()
 {
     printf "usage:\n%s\n%s\n%s\n"\
 	"  -n dry-run"\
-	"  -d dark mode"\
-	"  -l light mode"
+	"  -d dark wallpaper"\
+	"  -l light wallpaper"
 }
 
-set_wp()
+main()
 {
-    config_path="$XDG_CONFIG_HOME/feh"
+    mode="$(xrdb -query | grep mode | cut -f2)"
+    while getopts ":hldn:" opt; do
+	case $opt in
+	    h)
+		show_help
+		exit
+		;;
+	    d)
+		mode="dark"
+		;;
+	    l)
+		mode="light"
+		;;
+	    n)
+		feh --no-fehbg --bg-scale "$OPTARG" && exit
+		;;
+	    \?)
+		echo "Invalid option: -$OPTARG" >&2
+		exit 1
+		;;
+	    :)
+		echo "Option -$OPTARG requires an argument." >&2
+		exit 1
+		;;
+	esac
+    done
+    shift $((OPTIND -1))
 
-    mode="$config_path/.mode"
-    [ "$1" = "-d" ] && echo dark > "$mode" && shift
-    [ "$1" = "-l" ] && echo light > "$mode" && shift
-    cached="$(echo "$config_path/$(cat "$mode")".*)"
+    cached="$(find "$config_path" -type f -name "$mode.*")"
 
     wallpr_arg="$1"
     [ -n "$wallpr_arg" ] && rm -f "$cached" &&
@@ -25,7 +50,4 @@ set_wp()
     feh --no-fehbg --bg-scale "$cached"
 }
 
-[ "$1" = "-h" ] && show_help && exit
-[ "$1" = "-n" ] && feh --no-fehbg --bg-scale "$2" && exit
-
-set_wp "$@"
+main "$@"

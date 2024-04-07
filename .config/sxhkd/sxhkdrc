@@ -50,38 +50,38 @@ XF86AudioMute
 XF86AudioMicMute
 	pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-# screenshot
-ctrl + Print
-	flameshot gui
-Print
-	scrot -u -z ~/Pictures/screenshot.png && notify-send -u low "Captured the currently focused window"
-
-# bleutooth
-XF86Bluetooth
-	if sudo systemctl is-active --quiet bluetooth.service; then sudo systemctl stop bluetooth.service; else sudo systemctl start bluetooth.service; fi
-
-## system
-super + shift + Escape ; {K, s, S, U, R, o, X, c}
-	{ pkill -10 sxhkd && notify-send -u low "sxhkd daemon reloaded" \
-	, notify-send -u low "zzz..." && sleep 0.5 && systemctl suspend \
-	, notify-send -u low "  " && sleep 0.5 && systemctl poweroff \
-	, notify-send -u low "  " && sleep 0.5 && loginctl terminate-session self \
-	, notify-send -u low "  " && sleep 0.5 && reboot \
-	, notify-send -u low "  " && sleep 0.5 && xset dpms force off \
-	, notify-send -u low "  " && sleep 0.5 && xrandr-refresh \
-	, notify-send -u low "  " && sleep 0.5 && eclipse \
-	}
-
-super + shift + Escape ; {W, x}
-	{ bspc wm -r && notify-send -u low "bspwm reloaded" \
-	, source $HOME/.xprofile && notify-send -u low "xprofile sourced" \
-	}
-
 ## brightness
 XF86MonBrightnessUp
 	brightnessctl s +10\%
 XF86MonBrightnessDown
 	brightnessctl s 10\%-
+
+# bleutooth
+XF86Bluetooth
+	if sudo systemctl is-active --quiet bluetooth.service; then sudo systemctl stop bluetooth.service; else sudo systemctl start bluetooth.service; fi
+
+# screenshot
+ctrl + Print
+	flameshot gui
+Print
+	scrot -u -z ~/Pictures/screenshot.png && notify-send -t 1000 "Captured the currently focused window"
+
+## system
+super + shift + Escape ; {K, s, S, U, R, o, X, c}
+	{ pkill -10 sxhkd && notify-send -t 1000 "sxhkd daemon reloaded" \
+	, notify-send -t 1000 "...zzz"; sleep 1 && systemctl suspend \
+	, notify-send -t 1000 "  "; sleep 1 && systemctl poweroff \
+	, notify-send -t 1000 "  "; sleep 1 && loginctl terminate-session self \
+	, notify-send -t 1000 "  "; sleep 1 && reboot \
+	, notify-send -t 1000 "  "; sleep 1 && xset dpms force off \
+	, notify-send -t 1000 "  "; sleep 1 && xrandr-refresh \
+	, notify-send -t 1000 "  "; sleep 1 && eclipse \
+	}
+
+super + shift + Escape ; {W, x}
+	{ bspc wm -r && notify-send -t 1000 "bspwm reloaded" \
+	, source $HOME/.xprofile && notify-send -t 1000 "xprofile sourced" \
+	}
 
 # bspwm
 

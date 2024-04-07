@@ -19,4 +19,6 @@ let g:vimwiki_key_mappings =
 	    \ 'headers': 0,
             \ 'lists': 0,
 	    \ }
+
+nnoremap - <Plug>VimwikiGoBackLink
 ]]

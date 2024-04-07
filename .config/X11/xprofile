@@ -33,5 +33,7 @@ do
 done
 
 # auto switch audio upon bluetooth connect
-pactl list | grep -q module-switch-on-connect ||
-    pactl load-module module-switch-on-connect
+pactl list | grep -q module-switch-on-connect || pactl load-module module-switch-on-connect
+
+# theme
+xrdb -merge "$XDG_CONFIG_HOME/X11/themes/rose-pine-$(cat $XDG_CONFIG_HOME/X11/themes/.mode)"
