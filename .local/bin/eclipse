@@ -2,23 +2,27 @@
 
 altty="$XDG_CONFIG_HOME/alacritty/colors.toml"
 nvm="$XDG_CONFIG_HOME/nvim/lua/config/bg.lua"
-plb="$XDG_CONFIG_HOME/polybar/colors.ini"
 rf="$XDG_CONFIG_HOME/rofi/colors.rasi"
 ztr="$XDG_CONFIG_HOME/zathura/colorsrc"
 feh="$XDG_CONFIG_HOME/feh/.mode"
 dnst_dir="$XDG_CONFIG_HOME/dunst/dunstrc.d"
-bsp="$XDG_CONFIG_HOME/bspwm/colors"
 
-files=("$altty" "$nvm" "$plb" "$rf" "$ztr" "$feh" "$dnst_dir" "$bsp")
+files=("$altty" "$feh" "$nvm" "$rf" "$ztr" "$dnst_dir")
+
+mode=$(xrdb -query | grep mode | cut -f2)
+
+toggle_xrdb()
+{
+    if [[ $mode == "dark" ]]; then
+	xrdb -merge "$XDG_CONFIG_HOME/X11/themes/rose-pine-light"
+    else
+	xrdb -merge "$XDG_CONFIG_HOME/X11/themes/rose-pine-dark"
+    fi
+}
 
 files()
 {
     echo "${files[@]}"
-}
-
-query()
-{
-    grep -oq "$@"
 }
 
 toggle()
@@ -26,25 +30,23 @@ toggle()
     [[ -z "$1" ]] && exit 1
     path="$1"
 
-    if query "dark" "$path";
-    then
+    if [[ $mode == "dark" ]]; then
 	sed -i 's/dark/light/' "$path"
     else
 	sed -i 's/light/dark/' "$path"
     fi
 }
 
-switch_wp()
+toggle_wp()
 {
-    if grep -oq "dark" "$feh" > /dev/null;
-    then
+    if [[ $mode == "dark" ]]; then
 	fehbg -l
     else
 	fehbg -d
     fi
 }
 
-switch_dunst()
+toggle_dunst()
 {
     mv "$dnst_dir/00.conf" "$dnst_dir/02.conf" &&
 	mv "$dnst_dir/01.conf" "$dnst_dir/00.conf" &&
@@ -54,10 +56,11 @@ switch_dunst()
 
 main()
 {
+    # TODO parse with getopts
     if [[ -n "$1" ]]; then
 	case "$1" in
 	    -q|--query)
-		query "dark" "$feh" && echo "dark" || echo "light"
+		echo "$mode"
 		exit 0
 		;;
 	    -f|--files)
@@ -69,12 +72,11 @@ main()
 	esac
     fi
 
-    switch_wp && switch_dunst &&
+    toggle_wp && toggle_dunst &&
+    toggle_xrdb && bspc wm -r &&
 	toggle "$altty" &&
 	toggle "$rf" &&
 	toggle "$ztr" &&
-	toggle "$plb" && # polybar reloads with bspwm below
-	toggle "$bsp" && bspc wm -r &&
 	toggle "$nvm" && killall -s 10 nvim &> /dev/null
 }
 
