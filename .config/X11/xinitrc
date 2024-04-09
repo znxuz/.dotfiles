@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ -f ~/.xprofile ] && . ~/.xprofile
+source $XDG_CONFIG_HOME/X11/xprofile
 
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx

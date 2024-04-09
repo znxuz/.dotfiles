@@ -5,24 +5,18 @@
 
 get_icon()
 {
-    [[ -z "$1" ]] && return 1
-    if [[ "$1" -gt 90 ]]; then
-	echo ""
-    elif [[ "$1" -gt 55 ]]; then
-	echo ""
-    elif [[ "$1" -gt 45 ]]; then
-	echo ""
-    elif [[ "$1" -gt 15 ]]; then
-	echo ""
-    else
-	echo ""
-    fi
+    local percentage=$1
+    local index=$((percentage / 20))
+    [[ $index -gt 4 ]] && index=4
+    local icons=("" "" "" "" "")
+
+    echo "${icons[$index]}"
 }
 
-get_percentage()
+get_bat()
 {
-    percent="$(cat "$1"/capacity)"
-    echo "$(get_icon "$percent") $percent"
+    percentage="$(cat "$1"/capacity)"
+    echo "$(get_icon "$percentage") $percentage"
 }
 
 bat_print()
@@ -36,7 +30,7 @@ bat_print()
 
     for bat_dir in /sys/class/power_supply/BAT?
     do
-	bat_status="$bat_status $(get_percentage "$bat_dir")"
+	bat_status="$bat_status $(get_bat "$bat_dir")"
     done
 
     echo "$charging${bat_status:1}"

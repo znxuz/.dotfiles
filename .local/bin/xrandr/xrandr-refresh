@@ -3,4 +3,4 @@
 xrandr-setup
 fehbg
 bspc wm -r
-source $HOME/.xprofile
+source $XDG_CONFIG_HOME/X11/xprofile

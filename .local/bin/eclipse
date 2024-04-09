@@ -6,14 +6,15 @@ rf="$XDG_CONFIG_HOME/rofi/colors.rasi"
 ztr="$XDG_CONFIG_HOME/zathura/colorsrc"
 dnst_dir="$XDG_CONFIG_HOME/dunst/dunstrc.d"
 fcitx5="$XDG_CONFIG_HOME/fcitx5/conf/classicui.conf"
+mode="$XDG_CONFIG_HOME/X11/themes/.mode"
 
 files=("$altty" "$nvm" "$rf" "$ztr" "$dnst_dir" "$fcitx5")
 
-mode=$(cat "$XDG_CONFIG_HOME/X11/themes/.mode")
+current_mode="$(cat "$mode")"
 
 toggle_xrdb()
 {
-    if [[ $mode == "dark" ]]; then
+    if [[ $current_mode == "dark" ]]; then
 	xrdb -merge "$XDG_CONFIG_HOME/X11/themes/rose-pine-light" &&
 	    echo "light" > "$XDG_CONFIG_HOME/X11/themes/.mode"
     else
@@ -32,7 +33,7 @@ toggle()
     [[ -z "$1" ]] && exit 1
     path="$1"
 
-    if [[ $mode == "dark" ]]; then
+    if [[ $current_mode == "dark" ]]; then
 	sed -i 's/dark/light/' "$path"
     else
 	sed -i 's/light/dark/' "$path"
@@ -49,12 +50,12 @@ toggle_dunst()
 
 toggle_fcitx5()
 {
-    if [[ $mode == 'dark' ]]; then
+    if [[ $current_mode == 'dark' ]]; then
 	sed -i 's/rose-pine/rose-pine-dawn/' "$fcitx5"
     else
 	sed -i 's/rose-pine-dawn/rose-pine/' "$fcitx5"
     fi
-    fcitx5 -rd &
+    pgrep fcitx5 && fcitx5 -rd &
 }
 
 main()
@@ -62,7 +63,7 @@ main()
     while getopts ":qfo:" opt; do
 	case $opt in
 	    q)
-		echo "$mode"
+		echo "$current_mode"
 		exit
 		;;
 	    f)
