@@ -5,11 +5,10 @@ alias \
     bt='bluetoothctl' \
     za='zathura --fork' \
     ckhal='khal calendar' \
-    xbl='xbacklight' \
     lf='lf-ueberzug' \
     dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
-    ssctl='sudo systemctl' \
+    tmd='transmission-daemon' \
+    tmr='transmission-remote' \
     sshconf-edit='chmod 700 ~/.ssh/config && $EDITOR ~/.ssh/config && chmod 400 ~/.ssh/config' \
-    grub-upd='sudo grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB && sudo grub-mkconfig -o /boot/grub/grub.cfg' \
     gpt='OPENAI_KEY=$(pass openai) chatgpt' \
     wtr='curl wttr.in/dortmund_oespel'

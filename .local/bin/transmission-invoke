@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+pgrep -x transmission-da || transmission-daemon
+
+transmission-remote --add "$@" && notify-send -u low "Transmission daemon" "Torrent added"

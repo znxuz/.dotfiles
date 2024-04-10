@@ -3,17 +3,8 @@ local actions = require('telescope.actions')
 
 telescope.setup {
   defaults = {
-    border = false,
     prompt_prefix = " > ",
-    preview = false,
-    layout_strategy = "horizontal",
-    layout_config = {
-      prompt_position = "bottom",
-      height = 0.8,
-      width = 0.5,
-    },
     sorting_strategy = "ascending",
-    shorten_path = true,
     mappings = {
       i = {
 	["<esc>"] = actions.close,
@@ -22,24 +13,21 @@ telescope.setup {
       },
     },
   },
-  pickers = {
-    find_files = { hidden = true },
-    file_browser = { hidden = true },
-  },
-  -- extensions = {
-    -- fzf = {
-      -- fuzzy = true,
-      -- override_generic_sorter = true,
-      -- override_file_sorter = true,
-    -- }
-  -- }
+  extensions = {
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    }
+  }
 }
--- telescope.load_extension('fzf')
+telescope.load_extension('fzf')
 
 local M = {}
 
 M.find_files_in = function()
-  vim.ui.input({ prompt = 'Files in: ', completion = "file" }, function(input)
+  vim.ui.input({ prompt = 'Files in: ', completion = "dir" }, function(input)
     if input ~= nil and input ~= '' then
       require('telescope.builtin').find_files({ cwd = input })
     end
@@ -47,7 +35,7 @@ M.find_files_in = function()
 end
 
 M.live_grep_in = function()
-  vim.ui.input({ prompt = 'Grep in: ', completion = "file" }, function(input)
+  vim.ui.input({ prompt = 'Grep in: ', completion = "dir" }, function(input)
     if input ~= nil and input ~= '' then
       require('telescope.builtin').live_grep({ cwd = input })
     end
@@ -56,8 +44,9 @@ end
 
 
 local map = require("config.mapper").map
-map('n', '<leader>p', '<cmd>Telescope find_files<cr>')
-map('n', '<leader>ip', function () require"config.telescope".find_files_in() end)
+map('n', '<leader>f', '<cmd>Telescope find_files<cr>')
+map('n', '<leader>cf', '<cmd>Telescope find_files %:h<cr>')
+map('n', '<leader>if', function () require"config.telescope".find_files_in() end)
 map('n', '<leader>b', '<cmd>Telescope buffers<cr>')
 map('n', '<leader>ir', function () require"config.telescope".live_grep_in() end)
 map('n', '<leader>r', '<cmd>Telescope live_grep<cr>')

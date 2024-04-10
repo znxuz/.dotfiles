@@ -8,9 +8,9 @@ dnst_dir="$XDG_CONFIG_HOME/dunst/dunstrc.d"
 fcitx5="$XDG_CONFIG_HOME/fcitx5/conf/classicui.conf"
 mode="$XDG_CONFIG_HOME/X11/themes/.mode"
 
-files=("$altty" "$nvm" "$rf" "$ztr" "$dnst_dir" "$fcitx5")
+files=("$altty" "$nvm" "$rf" "$ztr" "$dnst_dir" "$fcitx5" "$mode")
 
-current_mode="$(cat "$mode")"
+current_mode="$(< "$mode")"
 
 toggle_xrdb()
 {
@@ -21,11 +21,6 @@ toggle_xrdb()
 	xrdb -merge "$XDG_CONFIG_HOME/X11/themes/rose-pine-dark" &&
 	    echo "dark" > "$XDG_CONFIG_HOME/X11/themes/.mode"
     fi
-}
-
-files()
-{
-    echo "${files[@]}"
 }
 
 toggle()
@@ -67,7 +62,7 @@ main()
 		exit
 		;;
 	    f)
-		files
+		echo "${files[@]}"
 		exit
 		;;
 	    o)

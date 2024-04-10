@@ -1,36 +1,28 @@
 require('fzf-lua').setup {
-  -- global_resume      = false, -- need to disable otherwise fzf_exec won't work
-  global_resume_query = false,
+  defaults = {
+    git_icons = false,
+    buffers_icons = false,
+    file_icons = false,
+  },
   winopts = {
     border = 'single',
-    hl = { border = 'LineNr' },
     height = 0.7,
     width = 0.7,
-    preview = {
-      hidden = 'hidden',
-      vertical = 'down:45%',
-      horizontal = 'right:60%',
-      layout = 'flex',
-      flip_columns = 120,
-      scrollbar = 'float',
-      scrolloff = '-2',
-      delay = 0,
-      winopts = {
-        number = true,
-        relativenumber = false,
-        cursorline = false,
-        cursorlineopt = 'both',
-        cursorcolumn = false,
-        signcolumn = 'no',
-        list = false,
-        foldenable = false,
-        foldmethod = 'manual',
-      }
-    }
+    preview = { hidden = 'hidden', }
   },
-  keymap = { fzf = { ['alt-a'] = 'toggle-all', }, },
+  hls = {
+    border = "LinrNr",
+  },
+  keymap = {
+    builtin = {
+      ["<c-e>"]    = "preview-page-down",
+      ["<c-y>"]      = "preview-page-up",
+    },
+    fzf = {
+      ['alt-a'] = 'toggle-all',
+    },
+  },
   fzf_colors = {
-    -- fzf '--color=' options (optional)
     ['fg'] = { 'fg', 'CursorLine' },
     ['bg'] = { 'bg', 'Normal' },
     ['hl'] = { 'fg', 'Comment' },
@@ -47,31 +39,14 @@ require('fzf-lua').setup {
   },
   -- provider setup
   files = {
+    prompt = 'Files> ',
     path_shorten = false,
-    multiprocess = true,  -- run command in a separate process
-  },
-  git = {
-    files = {
-      cmd = 'git ls-files --exclude-standard',
-      multiprocess = false,  -- run command in a separate process
-      -- show_cwd_header = true
-    },
-    status = {
-    },
-  },
-  grep = {
-    multiprocess = true,  -- run command in a separate process
-    glob_flag = "--iglob",  -- for case sensitive globs use '--glob'
-  },
-  oldfiles = {
-    cwd_only = false,
-  },
-  buffers = {
-    path_shorten = false,
-  },
-  quickfix = {
+    cwd_prompt = false,
+    -- cwd_prompt_shorten_len = 120,
+    multiprocess = true,
   },
   lsp = {
+    git_icons = false,
     jump_to_single_result = true,
     sync = true,
     async_or_timeout = 5000,

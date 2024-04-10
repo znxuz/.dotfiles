@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-CONF="$HOME/.config/wg/airvpn.conf"
+CONF="$XDG_CONFIG_HOME/wg/wg.conf"
 
 sudo wg-quick down "$CONF" && notify-send -t 1000 "Wireguard down"

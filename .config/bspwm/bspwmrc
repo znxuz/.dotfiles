@@ -21,7 +21,7 @@ bspc config pointer_action2 resize_side
 bspc config initial_polarity first_child
 
 bspc config normal_border_color     "$(xrdb -query | grep background | cut -f2)"
-bspc config focused_border_color    "$(xrdb -query | grep color3 | cut -f2)"
+bspc config focused_border_color    "$(xrdb -query | grep 'color1\b' | cut -f2)"
 
 if [ "$(xrandr | awk '/primary/ {print $1}')" != "eDP1" ] &&
     which altty-auto-pad > /dev/null 2>&1; then
