@@ -25,8 +25,10 @@ HISTFILE=$ZDOTDIR/.zhistory
 HISTSIZE=100000
 SAVEHIST=100000
 setopt append_history
-setopt hist_find_no_dups
 setopt hist_expire_dups_first
+setopt hist_ignore_all_dups
+setopt hist_find_no_dups
+setopt hist_save_no_dups
 setopt hist_ignore_space
 
 # misc
@@ -44,7 +46,7 @@ autoload -Uz compinit
 zmodload zsh/complist
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+# zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 compinit -d $XDG_CONFIG_HOME/zsh/.zcompdump
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 bindkey -M menuselect '^[' send-break

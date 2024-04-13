@@ -13,6 +13,10 @@ bspc config borderless_monocle      true
 
 bspc config border_width            2
 bspc config window_gap              20
+bspc config top_padding             0
+bspc config right_padding           0
+bspc config bottom_padding          0
+bspc config left_padding            0
 
 bspc config pointer_modifier mod4
 bspc config pointer_action1 move
