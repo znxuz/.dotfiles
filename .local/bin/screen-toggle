@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 external="$(xrandr | awk '/^DP[0-9]-[0-9] connected/ {print $1}')"
-internal="eDP1"
+internal="eDP"
 
 status=$(cat /sys/class/drm/card1-eDP-1/enabled)
 if [[ "$status" == "enabled" ]]; then
