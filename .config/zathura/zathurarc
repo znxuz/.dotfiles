@@ -1,5 +1,8 @@
 set sandbox none
 
+# tmp fix, see zathurarc
+set database sqlite
+
 set selection-clipboard clipboard
 
 set guioptions "s"

@@ -1,9 +1,22 @@
 require'lazy'.setup({
   -- almighty picker
   {
+      'nvim-telescope/telescope.nvim',
+      dependencies = {
+          'nvim-lua/plenary.nvim',
+      },
+      config = function () require('config.telescope') end
+  },
+  {
+      'nvim-telescope/telescope-fzf-native.nvim',
+      build = 'make'
+  },
+  --[[
+  {
     'ibhagwan/fzf-lua',
     config = function () require('config.fzflua') end
   },
+  --]]
 
   -- lsp
   {
@@ -35,6 +48,16 @@ require'lazy'.setup({
     init = function () require('config.vimwiki') end
   },
   {
+    'luckasRanarison/nvim-devdocs',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'nvim-treesitter/nvim-treesitter',
+    },
+    event = 'LspAttach',
+    config = function () require('config.devdocs') end,
+  },
+  {
     'numToStr/Comment.nvim',
     config = true,
   },
@@ -53,7 +76,6 @@ require'lazy'.setup({
   },
   {
     'norcalli/nvim-colorizer.lua',
-    main = colorizer,
     config = true,
   },
 

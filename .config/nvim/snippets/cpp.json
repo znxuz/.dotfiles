@@ -234,17 +234,17 @@
     },
     "fmt::print": {
 	"prefix": "fprint",
-	"body": ["fmt::print(\"$1\", $0);"],
+	"body": ["fmt::print(\"$1\"$0);"],
 	"description": "fmt::print() snippet"
     },
     "fmt::println": {
 	"prefix": "fprintln",
-	"body": ["fmt::println(\"$1\", $0);"],
+	"body": ["fmt::println(\"$1\"$0);"],
 	"description": "fmt::println() snippet"
     },
     "fmt::format": {
 	"prefix": "fformat",
-	"body": ["fmt::format(\"$1\", $0);"],
+	"body": ["fmt::format(\"$1\"$0);"],
 	"description": "fmt::format() snippet"
     },
     "RCLCPP_INFO": {
