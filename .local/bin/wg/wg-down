@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
-CONF="$XDG_CONFIG_HOME/wg/wg.conf"
+CONF="wg.conf"
+CONF_GPG="$XDG_CONFIG_HOME/wg/$CONF.asc"
 
-sudo wg-quick down "$CONF" && notify-send -t 1000 "Wireguard down"
+[[ ! -f "$CONF_GPG" ]] && echo "Wireguard config file not found." >&2 && exit 127
+
+gpg -d --default-recipient-self -o "/tmp/$CONF" "$CONF_GPG" && sudo wg-quick down "/tmp/$CONF"
+
+[[ $? -eq 0 ]] && notify-send -t 1000 "Wireguard down"
+
+rm -f "/tmp/$CONF"

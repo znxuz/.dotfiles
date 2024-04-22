@@ -14,11 +14,11 @@ cmp.setup {
   sorting = {
     comparators = {
       compare.exact,
-      compare.kind,
       compare.length,
-      compare.recently_used,
-      compare.score,
       compare.locality,
+      compare.recently_used,
+      compare.kind,
+      compare.score,
       compare.order,
       compare.offset,
     },

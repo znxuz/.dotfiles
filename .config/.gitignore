@@ -1,6 +1,5 @@
 autostart
 BraveSoftware
-calibre
 dconf
 discord
 htop
@@ -12,7 +11,6 @@ QtProject.conf
 qBittorrent/**/*
 !qBittorrent/*.qbtheme
 VirtualBox
-bottom
 GIMP
 Microsoft*
 teams
@@ -27,8 +25,6 @@ procps
 java
 systemd
 QtProject
-menus
-spotify
 GNS3
 wireshark
 uGet
@@ -53,7 +49,6 @@ Kitware
 jxbrowser
 spicy
 SEGGER
-wg
 fcitx
 transmission-daemon
 asciinema
