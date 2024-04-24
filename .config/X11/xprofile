@@ -1,4 +1,6 @@
-# disable beep
+#!/bin/sh
+
+#disable beep
 xset -b
 
 # key repeat

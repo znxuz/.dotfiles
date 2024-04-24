@@ -19,6 +19,7 @@ telescope.setup {
         ["<c-f>"] = actions_layout.toggle_preview,
       },
     },
+    file_ignore_patterns = { ".git", ".cache" },
   },
   pickers = {
     find_files = {
@@ -26,6 +27,14 @@ telescope.setup {
       no_ignore = false,
     },
   },
+  extensions = {
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    }
+  }
 }
 telescope.load_extension('fzf')
 

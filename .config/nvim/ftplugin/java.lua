@@ -1,10 +1,10 @@
-if pcall(function () require('jdtls') end) == false
-then
+vim.cmd 'setl et'
+
+if pcall(function () require('jdtls') end) == false then
   return
 end
 
-local map = require('config.mapper').map
-map('n', '<leader>ao', function () require("jdtls").organize_imports() end)
+require('config.mapper').map('n', '<leader>ao', function () require("jdtls").organize_imports() end)
 
 local xdg_data_home = os.getenv('XDG_DATA_HOME')
 local config = {
@@ -30,9 +30,7 @@ local config = {
     java = {
       project = {
 	referencedLibraries = {
-	  -- '/usr/lib/jvm/java-20-openjfx/lib/javafx.base.jar',
-	  -- '/usr/lib/jvm/java-20-openjfx/lib/javafx.controls.jar',
-	  -- '/usr/lib/jvm/java-20-openjfx/lib/javafx.graphics.jar'
+          vim.fn.getcwd() .. '/lib/**/*.jar',
 	}
       }
     }

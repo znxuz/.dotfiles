@@ -20,14 +20,14 @@ filetype plugin indent on
 let mapleader = " "
 
 " === search ===
-set nohls
+set ic scs nohls
 
 " === file management ===
 set shada+=n$XDG_STATE_HOME/nvim/viminfo
 set udf
 
 " === completion ===
-set wmnu
+set wic
 set wop=pum
 set wim=longest:full,full
 set cpt-=t,i
