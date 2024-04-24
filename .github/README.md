@@ -1,6 +1,6 @@
 # `dotfiles`
 
-Curated configuration files and scripts for Arch, cultivated over the years.
+Curated configuration files and scripts for Arch.
 
 # `.config`
 
