@@ -1,5 +1,4 @@
 setl cc=80
-setl et
 setl cino=g0
 setl wig+=bin/*,*.o
 

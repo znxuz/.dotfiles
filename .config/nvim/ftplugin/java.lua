@@ -1,5 +1,3 @@
-vim.cmd 'setl et'
-
 if pcall(function () require('jdtls') end) == false then
   return
 end

@@ -47,20 +47,7 @@ require'lazy'.setup({
     keys = { { '<leader>ws', '<cmd>VimwikiUISelect<cr>', desc = 'Vimwiki UI select' } },
     init = function () require('config.vimwiki') end
   },
-  {
-    'luckasRanarison/nvim-devdocs',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-      'nvim-treesitter/nvim-treesitter',
-    },
-    event = 'LspAttach',
-    config = function () require('config.devdocs') end,
-  },
-  {
-    'numToStr/Comment.nvim',
-    config = true,
-  },
+  { 'romainl/vim-devdocs' },
   {
     'lewis6991/gitsigns.nvim',
     config = true,
@@ -77,6 +64,7 @@ require'lazy'.setup({
   {
     'norcalli/nvim-colorizer.lua',
     config = true,
+    cmd = 'ColorizerAttachToBuffer'
   },
 
   -- colortheme

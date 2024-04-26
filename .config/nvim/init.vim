@@ -4,7 +4,7 @@ set syn=on
 set nu
 set hid
 set bs=indent,eol,nostop
-set sts=4 sw=4
+set sw=0 ts=4
 set ttimeout ttm=1
 set cb=unnamedplus
 set tgc
@@ -13,6 +13,7 @@ set nosc
 set scl=yes
 set sbr=>\\
 set list
+set listchars=tab:│\ ,nbsp:␣,trail:•
 set cul
 filetype plugin indent on
 
