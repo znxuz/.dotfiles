@@ -5,10 +5,10 @@ internal="eDP"
 
 status=$(cat /sys/class/drm/card1-eDP-1/enabled)
 if [[ "$status" == "enabled" ]]; then
-    xrandr --output "$internal" --off &&
+	xrandr --output "$internal" --off &&
 	bspc desktop V --to-monitor "$external" &&
 	bspc monitor "$internal" --remove
 else
-    xrandr --output "$internal" --mode 1920x1080 --right-of "$external" --scale 2 &&
+	xrandr --output "$internal" --mode 1920x1080 --right-of "$external" --scale 2 &&
 	bspc desktop V --to-monitor "$internal" && fehbg
 fi

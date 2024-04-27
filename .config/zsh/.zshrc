@@ -53,8 +53,8 @@ bindkey -M menuselect '^[' send-break
 
 bindkey -e
 autoload edit-command-line &&
-    zle -N edit-command-line &&
-    bindkey '^x^e' edit-command-line
+	zle -N edit-command-line &&
+	bindkey '^x^e' edit-command-line
 
 # fzf bindings
 
@@ -64,22 +64,22 @@ source $ZDOTDIR/zfzf
 
 ross()
 {
-    source /opt/ros/humble/setup.zsh
+	source /opt/ros/humble/setup.zsh
 
-    source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
-    eval "$(register-python-argcomplete ros2)"
+	source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
+	eval "$(register-python-argcomplete ros2)"
 }
 
 ross-ws()
 {
-    ross
+	ross
 
-    ws_setup="./install/setup.zsh"
-    [[ ! -f $ws_setup ]] && echo "Not in a ROS2 workspace" && return 1
-    source "$ws_setup"
+	ws_setup="./install/setup.zsh"
+	[[ ! -f $ws_setup ]] && echo "Not in a ROS2 workspace" && return 1
+	source "$ws_setup"
 
-    source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
-    eval "$(register-python-argcomplete ros2)"
+	source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
+	eval "$(register-python-argcomplete ros2)"
 }
 
 # gotta be at the end

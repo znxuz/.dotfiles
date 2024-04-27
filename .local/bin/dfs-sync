@@ -8,6 +8,6 @@ dfs add "$HOME/.local/bin"
 
 read -ra eclipse_files < <(eclipse -f)
 for file in "${eclipse_files[@]}"; do
-    dfs restore --staged "$file"
+	dfs restore --staged "$file"
 done
 

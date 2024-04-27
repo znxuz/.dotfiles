@@ -43,24 +43,24 @@ let g:netrw_banner = 0
 
 " === statusline ===
 fu! FormatPath(path)
-    return fnamemodify(a:path,':~:.')
+	return fnamemodify(a:path,':~:.')
 endfu
 
 fu! ShowDiagnosticCount()
-    if luaeval("pcall(function () require('config.lsp').StatuslineDiagCountAll() end)")
-	return luaeval('require"config.lsp".StatuslineDiagCountAll()')
-    else
-	return ""
-    endif
-endf
+	if luaeval("pcall(function () require('config.lsp').StatuslineDiagCountAll() end)")
+		return luaeval('require"config.lsp".StatuslineDiagCountAll()')
+	else
+		return ""
+	endif
+endfu
 
 aug stl
-    au!
-    au VimEnter * hi default link STLMode StatusLineNC
-    au ModeChanged *:n hi clear STLMode | redraws!
-    au ModeChanged *:ni* hi link STLMode StatusLine | redraws!
-    au ModeChanged *:i* hi link STLMode Search | redraws!
-    au ModeChanged *:[vV\x16]* hi link STLMode Substitute | redraws!
+	au!
+	au VimEnter * hi default link STLMode StatusLineNC
+	au ModeChanged *:n hi clear STLMode | redraws!
+	au ModeChanged *:ni* hi link STLMode StatusLine | redraws!
+	au ModeChanged *:i* hi link STLMode Search | redraws!
+	au ModeChanged *:[vV\x16]* hi link STLMode Substitute | redraws!
 aug END
 set stl=
 set stl+=%#STLMode#
@@ -91,13 +91,13 @@ set guicursor=a:block
 
 " === last cursor ===
 aug RestoreCursor
-    au!
-    au BufRead * au FileType <buffer> ++once
-		\ let s:line = line("'\"")
-		\ | if s:line >= 1 && s:line <= line("$") && &filetype !~# 'commit'
-		\      && index(['xxd', 'gitrebase'], &filetype) == -1
-		\ |   execute "normal! g`\""
-		\ | endif
+	au!
+	au BufRead * au FileType <buffer> ++once
+				\ let s:line = line("'\"")
+				\ | if s:line >= 1 && s:line <= line("$") && &filetype !~# 'commit'
+				\      && index(['xxd', 'gitrebase'], &filetype) == -1
+				\ |   execute "normal! g`\""
+				\ | endif
 aug END
 
 " === plugins ===

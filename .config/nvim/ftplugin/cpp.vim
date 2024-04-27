@@ -2,15 +2,15 @@ setl cc=80
 setl cino=g0
 setl wig+=bin/*,*.o
 
-function s:CppCheck()
-  try
-    let save_makeprg=&makeprg
-    set makeprg=cppcheck
-    :make --suppress=missingIncludeSystem --enable=all src/
-  finally
-    let &makeprg=save_makeprg
-  endtry
-endfunction
+fu s:CppCheck()
+	try
+		let save_makeprg=&makeprg
+		set makeprg=cppcheck
+		:make --suppress=missingIncludeSystem --enable=all src/
+	finally
+		let &makeprg=save_makeprg
+	endtry
+endfu
 
 nn <buffer> <leader>mm <cmd>make<cr>
 nn <buffer> <leader>mr <cmd>make run<cr>

@@ -2,12 +2,12 @@
 
 get_injector()
 {
-    find "$HOME/.local/bin/switch" -name "ns-usbloader*.jar"
+	find "$HOME/.local/bin/switch" -name "ns-usbloader*.jar"
 }
 
 get_payload()
 {
-    find "$HOME/.local/bin/switch" -name "hekate_ctcaer_*.bin"
+	find "$HOME/.local/bin/switch" -name "hekate_ctcaer_*.bin"
 }
 
 injector_api_info="/tmp/ns-usbloader_api_latest.info"
@@ -18,61 +18,61 @@ payload="$(get_payload)"
 
 update_injector()
 {
-    url="$(grep -E 'browser_download_url.+/ns-usbloader-[0-9]+\.[0.9]+\.jar' "$injector_api_info" | cut -d'"' -f4)"
-    if ! wget -P "$(dirname "$injector")" "$url"; then
+	url="$(grep -E 'browser_download_url.+/ns-usbloader-[0-9]+\.[0.9]+\.jar' "$injector_api_info" | cut -d'"' -f4)"
+	if ! wget -P "$(dirname "$injector")" "$url"; then
 	echo "failed updating injector" >&2 && exit 1
-    fi
+	fi
 
-    rm "$injector" && injector="$(get_injector)"
+	rm "$injector" && injector="$(get_injector)"
 }
 
 checkupdate_injector()
 {
-    curl -s 'https://api.github.com/repos/developersu/ns-usbloader/releases/latest' > "$injector_api_info"
-    grep -q 'Not Found' "$injector_api_info" && echo "invalid github api url" >&2 && exit 1
+	curl -s 'https://api.github.com/repos/developersu/ns-usbloader/releases/latest' > "$injector_api_info"
+	grep -q 'Not Found' "$injector_api_info" && echo "invalid github api url" >&2 && exit 1
 
-    version="$(grep -Eo '[0-9]+\.[0-9]+' <(basename "$injector"))"
-    [[ "$(grep 'tag_name' "$injector_api_info" | cut -d'"' -f4)" =~ $version ]] && return 0
-    
-    read -rp "An update for ns-usbloader is available, update? [y/n]: " ret
-    [[ -z "$ret" || "$ret" =~ Y|y ]] && update_injector
+	version="$(grep -Eo '[0-9]+\.[0-9]+' <(basename "$injector"))"
+	[[ "$(grep 'tag_name' "$injector_api_info" | cut -d'"' -f4)" =~ $version ]] && return 0
+	
+	read -rp "An update for ns-usbloader is available, update? [y/n]: " ret
+	[[ -z "$ret" || "$ret" =~ Y|y ]] && update_injector
 }
 
 checkupdate_payload()
 {
-    curl -s 'https://api.github.com/repos/CTCaer/hekate/releases/latest' > "$payload_api_info"
-    grep -q 'Not Found' "$payload_api_info" && echo "invalid github api url" >&2 && exit 0
-    version="$(grep -Eo '[0-9]+\.[0-9]+\.[0-9]+' <(basename "$payload"))"
-    newest_vers="$(grep 'tag_name' "$payload_api_info" | cut -d'"' -f4)"
-    [[ "$newest_vers" =~ $version ]] && return 0
+	curl -s 'https://api.github.com/repos/CTCaer/hekate/releases/latest' > "$payload_api_info"
+	grep -q 'Not Found' "$payload_api_info" && echo "invalid github api url" >&2 && exit 0
+	version="$(grep -Eo '[0-9]+\.[0-9]+\.[0-9]+' <(basename "$payload"))"
+	newest_vers="$(grep 'tag_name' "$payload_api_info" | cut -d'"' -f4)"
+	[[ "$newest_vers" =~ $version ]] && return 0
 
-    echo "An update for the payload is available echo v$version -> $newest_vers"
-    echo 'https://github.com/CTCaer/hekate/releases/'
+	echo "An update for the payload is available echo v$version -> $newest_vers"
+	echo 'https://github.com/CTCaer/hekate/releases/'
 }
 
 checkup()
 {
-    if [[ ! -f "$injector" ]] || [[ ! -f "$payload" ]];
-    then
+	if [[ ! -f "$injector" ]] || [[ ! -f "$payload" ]];
+	then
 	echo "injector or payload not found" >&2 && exit 127
-    fi
+	fi
 }
 
 main()
 {
-    case "$1" in
+	case "$1" in
 	"")
-	    sudo java -jar "$injector" &> /dev/null & disown %"$(jobs | wc -l)"
-	    ;;
+		sudo java -jar "$injector" &> /dev/null & disown %"$(jobs | wc -l)"
+		;;
 	"-r")
-	    sudo java -jar "$injector" -r "$payload"
-	    ;;
+		sudo java -jar "$injector" -r "$payload"
+		;;
 	"-U")
-	    checkupdate_injector && checkupdate_payload
-	    ;;
+		checkupdate_injector && checkupdate_payload
+		;;
 	*)
-	    sudo java -jar "$injector" "$*"
-    esac
+		sudo java -jar "$injector" "$*"
+	esac
 }
 
 checkup && main "$@"

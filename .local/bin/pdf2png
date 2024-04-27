@@ -2,12 +2,12 @@
 
 remove_suffix()
 {
-    echo "$1" | sed -E 's/(.*)\.(.+)/\1/'
+	echo "$1" | sed -E 's/(.*)\.(.+)/\1/'
 }
 
 [ $# -eq 0 ] && echo "file missing" && exit 1
 
 for file in "$@"; do
-    pdftoppm -png "$file" "$(remove_suffix "$file")"
+	pdftoppm -png "$file" "$(remove_suffix "$file")"
 done
 

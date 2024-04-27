@@ -14,30 +14,30 @@ current_mode="$(< "$mode")"
 
 toggle_xrdb()
 {
-    if [[ $current_mode == "dark" ]]; then
+	if [[ $current_mode == "dark" ]]; then
 	xrdb -merge "$XDG_CONFIG_HOME/X11/themes/rose-pine-light" &&
-	    echo "light" > "$XDG_CONFIG_HOME/X11/themes/.mode"
-    else
+		echo "light" > "$XDG_CONFIG_HOME/X11/themes/.mode"
+	else
 	xrdb -merge "$XDG_CONFIG_HOME/X11/themes/rose-pine-dark" &&
-	    echo "dark" > "$XDG_CONFIG_HOME/X11/themes/.mode"
-    fi
+		echo "dark" > "$XDG_CONFIG_HOME/X11/themes/.mode"
+	fi
 }
 
 toggle()
 {
-    [[ -z "$1" ]] && exit 1
-    path="$1"
+	[[ -z "$1" ]] && exit 1
+	path="$1"
 
-    if [[ $current_mode == "dark" ]]; then
+	if [[ $current_mode == "dark" ]]; then
 	sed -i 's/dark/light/' "$path"
-    else
+	else
 	sed -i 's/light/dark/' "$path"
-    fi
+	fi
 }
 
 toggle_dunst()
 {
-    rename 01 02 "$dnst_dir/01.conf" &&
+	rename 01 02 "$dnst_dir/01.conf" &&
 	rename 00 01 "$dnst_dir/00.conf" &&
 	rename 02 00 "$dnst_dir/02.conf" &&
 	killall dunst; dunst &
@@ -45,56 +45,56 @@ toggle_dunst()
 
 toggle_fcitx5()
 {
-    if [[ $current_mode == 'dark' ]]; then
+	if [[ $current_mode == 'dark' ]]; then
 	sed -i 's/rose-pine/rose-pine-dawn/' "$fcitx5"
-    else
+	else
 	sed -i 's/rose-pine-dawn/rose-pine/' "$fcitx5"
-    fi
-    pgrep fcitx5 && fcitx5 -rd &
+	fi
+	pgrep fcitx5 && fcitx5 -rd &
 }
 
 main()
 {
-    while getopts ":qfo:" opt; do
+	while getopts ":qfo:" opt; do
 	case $opt in
-	    q)
+		q)
 		echo "$current_mode"
 		exit
 		;;
-	    f)
+		f)
 		echo "${files[@]}"
 		exit
 		;;
-	    o)
+		o)
 		case "$OPTARG" in
-		    alacritty|altty)
+			alacritty|altty)
 			toggle "$altty"
 			;;
-		    dunst)
+			dunst)
 			toggle_dunst
 			;;
-		    zathura)
+			zathura)
 			toggle "$ztr"
 			;;
-		    rofi)
+			rofi)
 			toggle "$rf"
 			;;
-		    nvim|neovim)
+			nvim|neovim)
 			toggle "$nvm" && killall -s 10 nvim &> /dev/null
 			;;
 		esac
 		exit
 		;;
-	    \?)
+		\?)
 		echo "Invalid option: -$OPTARG" >&2
 		exit 1
 		;;
 	esac
-    done
+	done
 
-    shift $((OPTIND -1))
+	shift $((OPTIND -1))
 
-    toggle_xrdb && fehbg && toggle_dunst && bspc wm -r &&
+	toggle_xrdb && fehbg && toggle_dunst && bspc wm -r &&
 	toggle_fcitx5 &&
 	toggle "$altty" &&
 	toggle "$rf" &&

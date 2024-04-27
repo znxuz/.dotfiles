@@ -2,48 +2,48 @@
 
 get_word()
 {
-    rofi -dmenu -p "word"
+	rofi -dmenu -p "word"
 }
 
 search_dict()
 {
-    server="${1:--d wn}"
-    word="$(get_word)"
-    while [[ -n "$word" ]] && [[ -z "$result" ]]; do
+	server="${1:--d wn}"
+	word="$(get_word)"
+	while [[ -n "$word" ]] && [[ -z "$result" ]]; do
 	result="$(dict $server "$word")"
 	suggestions="$(dict $server "$word" 2>&1 1>/dev/null | grep -o 'wn:.*' |
-	    cut -d' ' -f2- | awk '{ for (i=1; i<=NF; i++) print $i }')"
+		cut -d' ' -f2- | awk '{ for (i=1; i<=NF; i++) print $i }')"
 
 	[[ -n "$result" ]] && rofi -e "$result" && return 0
 
 	if [[ -n "$suggestions" ]]; then
-	    show_sugg="$(printf "yes\nno" | rofi -dmenu -p 'show suggestions')"
-	    if [[ "$show_sugg" == 'yes' ]]; then
+		show_sugg="$(printf "yes\nno" | rofi -dmenu -p 'show suggestions')"
+		if [[ "$show_sugg" == 'yes' ]]; then
 		word="$(echo "$suggestions" | get_word)"
-	    elif [[ "$show_sugg" == 'no' ]]; then
+		elif [[ "$show_sugg" == 'no' ]]; then
 		word="$(get_word)"
-	    else
+		else
 		word=""
-	    fi
+		fi
 	else
-	    rofi -e "no result found - try again"
-	    word="$(get_word)"
+		rofi -e "no result found - try again"
+		word="$(get_word)"
 	fi
-    done
+	done
 }
 
 main()
 {
-    case "$1" in
+	case "$1" in
 	-h)
-	    server=$(dict -h dict.org -D | cut -d' ' -f2 | tail -n+2 |
+		server=$(dict -h dict.org -D | cut -d' ' -f2 | tail -n+2 |
 		rofi -dmenu -p "dict.org")
-	    [[ -n $server ]] && search_dict "-h dict.org -d $server"
-	    ;;
+		[[ -n $server ]] && search_dict "-h dict.org -d $server"
+		;;
 	-l|*)
-	    search_dict
-	    ;;
-    esac
+		search_dict
+		;;
+	esac
 }
 
 main "$*"

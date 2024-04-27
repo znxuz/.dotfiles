@@ -8,61 +8,61 @@ pad_y=50
 
 get_cur_val()
 {
-    grep -A1 "window.padding" "$config" | awk '/x = / {print $3}'
+	grep -A1 "window.padding" "$config" | awk '/x = / {print $3}'
 }
 
 query()
 {
-    [[ $(get_cur_val) -eq $no_pad ]] && echo "No pad" || echo "Pad"
+	[[ $(get_cur_val) -eq $no_pad ]] && echo "No pad" || echo "Pad"
 }
 
 pad()
 {
-    [[ "$(get_cur_val)" -eq "$pad_x" ]] && return 0
-    sed -i "0,/x = [[:digit:]]\+/s/x = [[:digit:]]\+/x = $pad_x/" "$config" &&
+	[[ "$(get_cur_val)" -eq "$pad_x" ]] && return 0
+	sed -i "0,/x = [[:digit:]]\+/s/x = [[:digit:]]\+/x = $pad_x/" "$config" &&
 	sed -i "0,/y = [[:digit:]]\+/s/y = [[:digit:]]\+/y = $pad_y/" "$config"
 }
 
 unpad()
 {
-    [[ "$(get_cur_val)" -ne "$pad_x" ]] && return 0
-    sed -i "0,/x = [[:digit:]]\+/s/x = [[:digit:]]\+/x = $no_pad/" "$config" &&
+	[[ "$(get_cur_val)" -ne "$pad_x" ]] && return 0
+	sed -i "0,/x = [[:digit:]]\+/s/x = [[:digit:]]\+/x = $no_pad/" "$config" &&
 	sed -i "0,/y = [[:digit:]]\+/s/y = [[:digit:]]\+/y = $no_pad/" "$config"
 }
 
 toggle()
 {
-    if [[ "$(get_cur_val)" -eq "$pad_x" ]]; then
+	if [[ "$(get_cur_val)" -eq "$pad_x" ]]; then
 	unpad
-    else
+	else
 	pad
-    fi
+	fi
 }
 
 main()
 {
-    [[ -z "$*" ]] && echo "Error: No arguments given" && exit 1
+	[[ -z "$*" ]] && echo "Error: No arguments given" && exit 1
 
-    case "$1" in
+	case "$1" in
 	pad)
-	    pad
-	    ;;
+		pad
+		;;
 	unpad)
-	    unpad
-	    ;;
+		unpad
+		;;
 	toggle)
-	    toggle
-	    ;;
+		toggle
+		;;
 	query)
-	    query
-	    ;;
+		query
+		;;
 	*)
-	    echo "Error: unknown operation: $1"
-	    exit 1
-	    ;;
-    esac
+		echo "Error: unknown operation: $1"
+		exit 1
+		;;
+	esac
 
-    exit 0
+	exit 0
 }
 
 main "$@"

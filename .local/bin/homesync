@@ -5,13 +5,13 @@ misc_dir=$XDG_CONFIG_HOME/misc
 log=$HOME/homesync.log
 
 rsync -azvhP --del --delete-excluded --exclude ".ssh" --exclude ".gnupg" --exclude ".cache" \
-    "$HOME" "$dest" | tee "$log" 2>&1
+	"$HOME" "$dest" | tee "$log" 2>&1
 
 pacman -Qqen | tee "$misc_dir/Qqen" && cp -f "$misc_dir/Qqen" "$dest"
 pacman -Qqem | tee "$misc_dir/Qqem" && cp -f "$misc_dir/Qqem" "$dest"
 
 systemctl list-unit-files --state=enabled --user | tee "$misc_dir/systemd-unit-files-user" \
-    && cp -f "$misc_dir/systemd-unit-files-user" "$dest"
+	&& cp -f "$misc_dir/systemd-unit-files-user" "$dest"
 
 systemctl list-unit-files --state=enabled | tee "$misc_dir/systemd-unit-files" \
-    && cp -f "$misc_dir/systemd-unit-files" "$dest"
+	&& cp -f "$misc_dir/systemd-unit-files" "$dest"

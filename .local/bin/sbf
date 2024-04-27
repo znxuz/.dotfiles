@@ -4,11 +4,11 @@ path="$HOME/Desktop/sbf"
 
 main()
 {
-    lang=$(find "$path" -mindepth 1 -maxdepth 1 -type d -print0 |
+	lang=$(find "$path" -mindepth 1 -maxdepth 1 -type d -print0 |
 	xargs -0 -I {} basename {} | fzf)
 
-    [[ -z "$lang" || ! -d "$path/$lang" ]] && exit 1
-    cd "$path/$lang" &&
+	[[ -z "$lang" || ! -d "$path/$lang" ]] && exit 1
+	cd "$path/$lang" &&
 	$EDITOR "$(find "$path/$lang" -type f -name "[mM]ain.$lang")"
 }
 

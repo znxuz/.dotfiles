@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 cd "$XDG_CONFIG_HOME" && shopt -s expand_aliases \
-    && source "$XDG_CONFIG_HOME/shell/aliasrc" || exit 1
+	&& source "$XDG_CONFIG_HOME/shell/aliasrc" || exit 1
 
 all_entries=$(ls | sort)
 cached=$(dfs ls-files -c | awk -F'/' '{print $1}' | sort | uniq)
@@ -10,17 +10,17 @@ readarray -t new_entries < <(comm -23 <(comm -23 <(echo "$all_entries") <(echo "
 [[ "${#new_entries[@]}" -eq 0 ]] && exit 1
 
 for entry in "${new_entries[@]}"; do
-    file_type="$([ -f "$entry" ] && echo 'file' || echo 'directory')"
-    read -rp "cache this $file_type [$entry] (y|n)?: " ret
-    if [[ -n "$ret" && "$ret" =~ [N|n] ]]; then
+	file_type="$([ -f "$entry" ] && echo 'file' || echo 'directory')"
+	read -rp "cache this $file_type [$entry] (y|n)?: " ret
+	if [[ -n "$ret" && "$ret" =~ [N|n] ]]; then
 	read -rp "remove [$entry] (y|n)?: " ret
 	if [[ -z "$ret" || "$ret" =~ [Y|y] ]]; then
-	    rm -rf "$entry" && printf -- "  => %s removed\n" "$entry"
+		rm -rf "$entry" && printf -- "	=> %s removed\n" "$entry"
 	else
-	    printf -- "  => added %s to .gitignore\n" "$entry" &&
+		printf -- "  => added %s to .gitignore\n" "$entry" &&
 		echo "$entry" >> .gitignore
 	fi
-    else
+	else
 	dfs add "$entry" && printf -- "  => %s added to dfs repo\n" "$entry"
-    fi
+	fi
 done

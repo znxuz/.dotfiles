@@ -8,6 +8,6 @@ CONF_GPG="$XDG_CONFIG_HOME/wg/$CONF.asc"
 gpg -d --default-recipient-self -o "/tmp/$CONF" "$CONF_GPG" && sudo wg-quick up "/tmp/$CONF"
 
 [[ $? -eq 0 ]] && notify-send -t 1000 "Wireguard up" &&
-    brave 'https://www.ipleak.net' &> /dev/null & disown
+	brave 'https://www.ipleak.net' &> /dev/null & disown
 
 rm -f "/tmp/$CONF"

@@ -1,5 +1,5 @@
 if &ft=="cpp"
-    finish
+	finish
 endif
 
 setl cc=80

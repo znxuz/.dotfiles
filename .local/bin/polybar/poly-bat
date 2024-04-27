@@ -5,58 +5,58 @@
 
 get_icon()
 {
-    local percentage=$1
-    local index=$((percentage / 20))
-    [[ $index -gt 4 ]] && index=4
-    local icons=("" "" "" "" "")
+	local percentage=$1
+	local index=$((percentage / 20))
+	[[ $index -gt 4 ]] && index=4
+	local icons=("" "" "" "" "")
 
-    echo "${icons[$index]}"
+	echo "${icons[$index]}"
 }
 
 get_bat()
 {
-    percentage="$(cat "$1"/capacity)"
-    echo "$(get_icon "$percentage") $percentage"
+	percentage="$(cat "$1"/capacity)"
+	echo "$(get_icon "$percentage") $percentage"
 }
 
 bat_print()
 {
-    charging=
-    bat_status=
+	charging=
+	bat_status=
 
-    # check AC status
-    [[ -e /sys/class/power_supply/AC/online &&
+	# check AC status
+	[[ -e /sys/class/power_supply/AC/online &&
 	$(cat /sys/class/power_supply/AC/online) -eq 1 ]] && charging=" "
 
-    for bat_dir in /sys/class/power_supply/BAT?
-    do
+	for bat_dir in /sys/class/power_supply/BAT?
+	do
 	bat_status="$bat_status $(get_bat "$bat_dir")"
-    done
+	done
 
-    echo "$charging${bat_status:1}"
+	echo "$charging${bat_status:1}"
 }
 
 path_pid="/tmp/polybar-bat-udev.pid"
 
 case "$1" in
-    --update)
+	--update)
 	pid=$(cat $path_pid)
 
 	if [ "$pid" != "" ]; then
-	    kill -10 "$pid"
+		kill -10 "$pid"
 	fi
 	;;
-    *)
+	*)
 	echo $$ > $path_pid
 
 	trap exit INT
 	trap "echo" USR1
 
 	while true; do
-	    bat_print
+		bat_print
 
-	    sleep 60 &
-	    wait
+		sleep 60 &
+		wait
 	done
 	;;
 esac

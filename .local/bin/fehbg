@@ -4,7 +4,7 @@ config_path="$XDG_CONFIG_HOME/feh"
 
 show_help()
 {
-    printf "usage:\n%s\n%s\n%s\n"\
+	printf "usage:\n%s\n%s\n%s\n"\
 	"  -n dry-run"\
 	"  -d dark wallpaper"\
 	"  -l light wallpaper"
@@ -12,42 +12,42 @@ show_help()
 
 main()
 {
-    mode="$(xrdb -query | grep mode | cut -f2)"
-    while getopts ":hldn:" opt; do
+	mode="$(xrdb -query | grep mode | cut -f2)"
+	while getopts ":hldn:" opt; do
 	case $opt in
-	    h)
+		h)
 		show_help
 		exit
 		;;
-	    d)
+		d)
 		mode="dark"
 		;;
-	    l)
+		l)
 		mode="light"
 		;;
-	    n)
+		n)
 		feh --no-fehbg --bg-scale "$OPTARG" && exit
 		;;
-	    \?)
+		\?)
 		echo "Invalid option: -$OPTARG" >&2
 		exit 1
 		;;
-	    :)
+		:)
 		echo "Option -$OPTARG requires an argument." >&2
 		exit 1
 		;;
 	esac
-    done
-    shift $((OPTIND -1))
+	done
+	shift $((OPTIND -1))
 
-    cached="$(find "$config_path" -type f -name "$mode.*")"
+	cached="$(find "$config_path" -type f -name "$mode.*")"
 
-    wallpr_arg="$1"
-    [ -n "$wallpr_arg" ] && rm -f "$cached" &&
+	wallpr_arg="$1"
+	[ -n "$wallpr_arg" ] && rm -f "$cached" &&
 	cached=$config_path/$(echo "$wallpr_arg" | sed "s/.\+\(\..\+\)/$(cat "$mode")\1/") &&
 	cp -f "$wallpr_arg" "$cached"
 
-    feh --no-fehbg --bg-scale "$cached"
+	feh --no-fehbg --bg-scale "$cached"
 }
 
 main "$@"

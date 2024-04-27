@@ -7,9 +7,9 @@ sum=0
 
 for bat_dir in /sys/class/power_supply/BAT?;
 do
-    (( ++cnt ))
-    capacity="$(cat "$bat_dir/capacity")"
-    (( sum += capacity ))
+	(( ++cnt ))
+	capacity="$(cat "$bat_dir/capacity")"
+	(( sum += capacity ))
 done
 
 total=$(( sum / cnt ))

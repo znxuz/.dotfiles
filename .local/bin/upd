@@ -2,9 +2,9 @@
 
 pac_upg()
 {
-    paru -Syu --noconfirm
-    pgrep -f 'poly-pkg-upgrade' &> /dev/null && poly-pkg-upgrade -u
-    return 0
+	paru -Syu --noconfirm
+	pgrep -f 'poly-pkg-upgrade' &> /dev/null && poly-pkg-upgrade -u
+	return 0
 }
 
 pac_upg
