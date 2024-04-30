@@ -61,26 +61,12 @@ fu! g:Paste_image_from_clip()
 	endif
 endfu
 
-nnoremap <buffer> <c-n> <cmd>VimwikiNextLink<cr>
-nnoremap <buffer> <c-p> <cmd>VimwikiPrevLink<cr>
+nnoremap <buffer> - <Plug>VimwikiGoBackLink
+nnoremap <buffer> <c-n> <Plug>VimwikiNextLink
+nnoremap <buffer> <c-p> <Plug>VimwikiPrevLink
+
 nnoremap <buffer> <leader>gp <cmd>call MD2PDF()<cr>
 nnoremap <buffer> <leader>wp <cmd>call Paste_image_from_clip()<cr>
-
-" cursive
-nnoremap <buffer> gi ciw*"*
-vnoremap <buffer> gi c*"*
-
-" bold
-nnoremap <buffer> gt ciw**"**
-vnoremap <buffer> gt c**"**
-
-" math syntax
-nnoremap <buffer> gm ciw$"$
-vnoremap <buffer> gm c$"$
-
-" code line
-nnoremap <buffer> g` ciw`"`
-vnoremap <buffer> g` c`"`
 
 " nabla.nvim
 lua require('config.mapper').map('n', 'gp', function () require('nabla').popup() end, { buffer = true })

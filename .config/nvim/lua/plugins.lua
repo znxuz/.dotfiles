@@ -40,8 +40,12 @@ require'lazy'.setup({
 		'mfussenegger/nvim-jdtls',
 		lazy = true
 	},
-
-	-- misc
+-- misc
+	{
+		"kylechui/nvim-surround",
+		event = "VeryLazy",
+		config = true
+	},
 	{
 		'vimwiki/vimwiki',
 		keys = { { '<leader>ws', '<cmd>VimwikiUISelect<cr>', desc = 'Vimwiki UI select' } },

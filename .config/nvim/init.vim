@@ -13,7 +13,7 @@ set nosc
 set scl=yes
 set sbr=>\\
 set list
-set listchars=tab:│\ ,nbsp:␣,trail:•
+set lcs=tab:│\ ,nbsp:␣,trail:•
 set cul
 filetype plugin indent on
 

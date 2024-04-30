@@ -1,5 +1,3 @@
-#!/bin/sh
-
 #disable beep
 xset -b
 
@@ -10,11 +8,10 @@ xset r rate 250 60
 setxkbmap -option compose:ralt
 
 # powertop auto-tune
-[ $(cat /sys/class/power_supply/AC/online) -eq 0 ] && sudo powertop --auto-tune &
+[ $(< /sys/class/power_supply/AC/online) -eq 0 ] && sudo powertop --auto-tune &
 
 # screen timeouts
-if [ $(cat /sys/class/power_supply/AC/online) -eq 1 ];
-then
+if [ $(cat /sys/class/power_supply/AC/online) -eq 1 ]; then
 	xset dpms 600 0 0
 else
 	xset dpms 60 300 600
@@ -27,8 +24,7 @@ xinput set-button-map "TPPS/2 Elan TrackPoint" 1 0 3
 # trackpoint keyboard
 for id in $(xinput list |
 	grep 'Lenovo TrackPoint Keyboard II' |
-	sed 's/.*=\([0-9]\+\).*/\1/');
-do
+	sed 's/.*=\([0-9]\+\).*/\1/'); do
 	xinput list-props $id | grep -q 'libinput Accel Speed' &&
 	xinput set-prop $id 'libinput Accel Speed' -0.1 &&
 	xinput set-button-map $id 1 0 3

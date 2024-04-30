@@ -11,7 +11,7 @@ telescope.setup {
 			height = 0.9,
 		},
 		borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
-		preview = { hide_on_startup = false },
+		preview = { hide_on_startup = true },
 		mappings = {
 			i = {
 				["<esc>"] = actions.close,

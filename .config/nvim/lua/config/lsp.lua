@@ -25,7 +25,6 @@ lspc.clangd.setup {
 		textDocument = { completion = { completionItem = { snippetSupport = false } } },
 	},
 }
-map('n', '<leader><c-^>', '<cmd>ClangdSwitchSourceHeader<cr>')
 
 -- tex
 lspc.texlab.setup {}

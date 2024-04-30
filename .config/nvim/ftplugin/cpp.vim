@@ -20,3 +20,4 @@ nn <buffer> <leader>mcC <cmd>make fclean<cr>
 nn <buffer> <leader>mct <cmd>make clean_test<cr>
 nn <buffer> <leader>mt <cmd>make test<cr>
 nn <buffer> <leader>mch <cmd>call <sid>CppCheck()<cr>
+nn <buffer> <leader><c-^> <cmd>ClangdSwitchSourceHeader<cr>
