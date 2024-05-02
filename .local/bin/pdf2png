@@ -1,13 +1,38 @@
 #!/usr/bin/env bash
 
+print_help()
+{
+	echo "Usage: pdf2png [OPTIONS] [FILES]"
+	echo "Options:"
+	echo "  -d, --delete    Delete the original files after conversion"
+}
+
 remove_suffix()
 {
 	echo "$1" | sed -E 's/(.*)\.(.+)/\1/'
 }
 
-[ $# -eq 0 ] && echo "file missing" && exit 1
+main()
+{
+	while getopts ":d" opt; do
+		case $opt in
+			d)
+				delete=true
+				;;
+			\?)
+				echo "Invalid option: -$OPTARG" >&2
+				exit 1
+				;;
+		esac
+	done
+	shift $((OPTIND -1))
 
-for file in "$@"; do
-	pdftoppm -png "$file" "$(remove_suffix "$file")"
-done
+	[ $# -eq 0 ] && echo "file missing" && exit 1
 
+	for file in "$@"; do
+		pdftoppm -png "$file" "$(remove_suffix "$file")"
+		[[ -n $delete ]] && rm "$file"
+	done
+}
+
+main "$@"

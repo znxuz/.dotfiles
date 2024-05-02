@@ -4,10 +4,10 @@ print_help()
 {
 	echo "Usage: newscr [OPTIONS] [NAME]"
 	echo "Options:"
-	echo "	-p, --py	Create a new Python script"
-	echo "	-l, --lua	Create a new Lua script"
-	echo "	-b, --bash	Create a new Bash script"
-	echo "	-z, --zsh	Create a new Zsh script"
+	echo "  -p, --py    Create a new Python script"
+	echo "  -l, --lua   Create a new Lua script"
+	echo "  -b, --bash  Create a new Bash script"
+	echo "  -z, --zsh   Create a new Zsh script"
 }
 
 open_scr()
@@ -20,23 +20,23 @@ main()
 {
 	[[ $# -ne 2 ]] && print_help && exit 1
 	case $1 in
-	-p|--py)
-		open_scr python "$2"
-		;;
-	-l|--lua)
-		open_scr lua "$2"
-		;;
-	-s|--sh)
-		open_scr sh "$2"
-		;;
-	-b|--bash)
-		open_scr bash "$2"
-		;;
-	-z|--zsh)
-		open_scr zsh "$2"
-		;;
-	*)
-		print_help && exit 1
+		-p|--py)
+			open_scr python "$2"
+			;;
+		-l|--lua)
+			open_scr lua "$2"
+			;;
+		-s|--sh)
+			open_scr sh "$2"
+			;;
+		-b|--bash)
+			open_scr bash "$2"
+			;;
+		-z|--zsh)
+			open_scr zsh "$2"
+			;;
+		*)
+			print_help && exit 1
 	esac
 }
 

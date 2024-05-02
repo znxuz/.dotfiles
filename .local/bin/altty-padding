@@ -20,22 +20,22 @@ pad()
 {
 	[[ "$(get_cur_val)" -eq "$pad_x" ]] && return 0
 	sed -i "0,/x = [[:digit:]]\+/s/x = [[:digit:]]\+/x = $pad_x/" "$config" &&
-	sed -i "0,/y = [[:digit:]]\+/s/y = [[:digit:]]\+/y = $pad_y/" "$config"
+		sed -i "0,/y = [[:digit:]]\+/s/y = [[:digit:]]\+/y = $pad_y/" "$config"
 }
 
 unpad()
 {
 	[[ "$(get_cur_val)" -ne "$pad_x" ]] && return 0
 	sed -i "0,/x = [[:digit:]]\+/s/x = [[:digit:]]\+/x = $no_pad/" "$config" &&
-	sed -i "0,/y = [[:digit:]]\+/s/y = [[:digit:]]\+/y = $no_pad/" "$config"
+		sed -i "0,/y = [[:digit:]]\+/s/y = [[:digit:]]\+/y = $no_pad/" "$config"
 }
 
 toggle()
 {
 	if [[ "$(get_cur_val)" -eq "$pad_x" ]]; then
-	unpad
+		unpad
 	else
-	pad
+		pad
 	fi
 }
 
@@ -44,22 +44,22 @@ main()
 	[[ -z "$*" ]] && echo "Error: No arguments given" && exit 1
 
 	case "$1" in
-	pad)
-		pad
-		;;
-	unpad)
-		unpad
-		;;
-	toggle)
-		toggle
-		;;
-	query)
-		query
-		;;
-	*)
-		echo "Error: unknown operation: $1"
-		exit 1
-		;;
+		pad)
+			pad
+			;;
+		unpad)
+			unpad
+			;;
+		toggle)
+			toggle
+			;;
+		query)
+			query
+			;;
+		*)
+			echo "Error: unknown operation: $1"
+			exit 1
+			;;
 	esac
 
 	exit 0

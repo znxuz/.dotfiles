@@ -7,10 +7,10 @@ get_wmctrl_id()
 	idx=-1
 	cur_desktop_id="${1:-$(bspc query -D -d focused)}"
 	for i in $(seq 0 "${#desktops[@]}"); do
-	if [[ "${desktops[i]}" = "$cur_desktop_id" ]]; then
-		idx=$i
-		break;
-	fi
+		if [[ "${desktops[i]}" = "$cur_desktop_id" ]]; then
+			idx=$i
+			break;
+		fi
 	done
 
 	echo "$idx"
@@ -19,18 +19,18 @@ get_wmctrl_id()
 main()
 {
 	bspc subscribe node_add node_remove node_transfer desktop_focus |
-	while read -r event; do
-	cur_desktop_id=$(echo "$event" | cut -d' ' -f3)
-	wmctrl_id="$(get_wmctrl_id "$cur_desktop_id")"
-	local_windows=$(wmctrl -l | awk -v id="$wmctrl_id" '{ if ($2 == id) print }')
+		while read -r event; do
+			cur_desktop_id=$(echo "$event" | cut -d' ' -f3)
+			wmctrl_id="$(get_wmctrl_id "$cur_desktop_id")"
+			local_windows=$(wmctrl -l | awk -v id="$wmctrl_id" '{ if ($2 == id) print }')
 
-	[[ -z "$local_windows" || ! "$local_windows" =~ .+Alacritty ]] && continue
-	if [[ "$(echo "$local_windows" | wc -l)" -eq 1 ]]; then
-		altty-padding pad
-	else
-		altty-padding unpad
-	fi
-	done
+			[[ -z "$local_windows" || ! "$local_windows" =~ .+Alacritty ]] && continue
+			if [[ "$(echo "$local_windows" | wc -l)" -eq 1 ]]; then
+				altty-padding pad
+			else
+				altty-padding unpad
+			fi
+		done
 }
 
 command -v wmctrl &> /dev/null || exit 1

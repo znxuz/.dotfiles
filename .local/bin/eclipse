@@ -15,11 +15,11 @@ current_mode="$(< "$mode")"
 toggle_xrdb()
 {
 	if [[ $current_mode == "dark" ]]; then
-	xrdb -merge "$XDG_CONFIG_HOME/X11/themes/rose-pine-light" &&
-		echo "light" > "$XDG_CONFIG_HOME/X11/themes/.mode"
+		xrdb -merge "$XDG_CONFIG_HOME/X11/themes/rose-pine-light" &&
+			echo "light" > "$XDG_CONFIG_HOME/X11/themes/.mode"
 	else
-	xrdb -merge "$XDG_CONFIG_HOME/X11/themes/rose-pine-dark" &&
-		echo "dark" > "$XDG_CONFIG_HOME/X11/themes/.mode"
+		xrdb -merge "$XDG_CONFIG_HOME/X11/themes/rose-pine-dark" &&
+			echo "dark" > "$XDG_CONFIG_HOME/X11/themes/.mode"
 	fi
 }
 
@@ -29,26 +29,26 @@ toggle()
 	path="$1"
 
 	if [[ $current_mode == "dark" ]]; then
-	sed -i 's/dark/light/' "$path"
+		sed -i 's/dark/light/' "$path"
 	else
-	sed -i 's/light/dark/' "$path"
+		sed -i 's/light/dark/' "$path"
 	fi
 }
 
 toggle_dunst()
 {
 	rename 01 02 "$dnst_dir/01.conf" &&
-	rename 00 01 "$dnst_dir/00.conf" &&
-	rename 02 00 "$dnst_dir/02.conf" &&
-	killall dunst; dunst &
+		rename 00 01 "$dnst_dir/00.conf" &&
+		rename 02 00 "$dnst_dir/02.conf" &&
+		killall dunst; dunst &
 }
 
 toggle_fcitx5()
 {
 	if [[ $current_mode == 'dark' ]]; then
-	sed -i 's/rose-pine/rose-pine-dawn/' "$fcitx5"
+		sed -i 's/rose-pine/rose-pine-dawn/' "$fcitx5"
 	else
-	sed -i 's/rose-pine-dawn/rose-pine/' "$fcitx5"
+		sed -i 's/rose-pine-dawn/rose-pine/' "$fcitx5"
 	fi
 	pgrep fcitx5 && fcitx5 -rd &
 }
@@ -56,50 +56,50 @@ toggle_fcitx5()
 main()
 {
 	while getopts ":qfo:" opt; do
-	case $opt in
-		q)
-		echo "$current_mode"
-		exit
-		;;
-		f)
-		echo "${files[@]}"
-		exit
-		;;
-		o)
-		case "$OPTARG" in
-			alacritty|altty)
-			toggle "$altty"
-			;;
-			dunst)
-			toggle_dunst
-			;;
-			zathura)
-			toggle "$ztr"
-			;;
-			rofi)
-			toggle "$rf"
-			;;
-			nvim|neovim)
-			toggle "$nvm" && killall -s 10 nvim &> /dev/null
-			;;
+		case $opt in
+			q)
+				echo "$current_mode"
+				exit
+				;;
+			f)
+				echo "${files[@]}"
+				exit
+				;;
+			o)
+				case "$OPTARG" in
+					alacritty|altty)
+						toggle "$altty"
+						;;
+					dunst)
+						toggle_dunst
+						;;
+					zathura)
+						toggle "$ztr"
+						;;
+					rofi)
+						toggle "$rf"
+						;;
+					nvim|neovim)
+						toggle "$nvm" && killall -s 10 nvim &> /dev/null
+						;;
+				esac
+				exit
+				;;
+			\?)
+				echo "Invalid option: -$OPTARG" >&2
+				exit 1
+				;;
 		esac
-		exit
-		;;
-		\?)
-		echo "Invalid option: -$OPTARG" >&2
-		exit 1
-		;;
-	esac
 	done
 
 	shift $((OPTIND -1))
 
 	toggle_xrdb && fehbg && toggle_dunst && bspc wm -r &&
-	toggle_fcitx5 &&
-	toggle "$altty" &&
-	toggle "$rf" &&
-	toggle "$ztr" &&
-	toggle "$nvm" && killall -s 10 nvim &> /dev/null
+		toggle_fcitx5 &&
+		toggle "$altty" &&
+		toggle "$rf" &&
+		toggle "$ztr" &&
+		toggle "$nvm" && killall -s 10 nvim &> /dev/null
 }
 
 main "$@"
