@@ -1,6 +1,6 @@
 require('config.bg')
 
--- change bg & set custom highlights upon receiving SIGUSR1
+-- change bg upon receiving SIGUSR1
 vim.cmd([[
 aug Update_bg
 au!

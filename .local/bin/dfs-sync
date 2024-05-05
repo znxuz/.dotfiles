@@ -6,7 +6,7 @@ checkconfig
 dfs add "$XDG_CONFIG_HOME"
 dfs add "$HOME/.local/bin"
 
-read -ra eclipse_files < <(eclipse -f)
+read -ra eclipse_files < <(eclipse -l)
 for file in "${eclipse_files[@]}"; do
 	dfs restore --staged "$file"
 done
