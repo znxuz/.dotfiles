@@ -9,6 +9,7 @@ export XMODIFIERS=@im=fcitx
 dunst &
 unclutter &
 sxhkd &
+redshift &
 pgrep -x dockd > /dev/null || dockd --daemon &
 xrandr-setup && fehbg
 

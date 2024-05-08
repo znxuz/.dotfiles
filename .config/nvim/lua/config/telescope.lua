@@ -15,6 +15,7 @@ telescope.setup {
 		mappings = {
 			i = {
 				["<esc>"] = actions.close,
+				["<c-q>"] = actions.smart_send_to_qflist,
 				["<c-s>"] = actions.select_horizontal,
 				["<c-f>"] = actions_layout.toggle_preview,
 			},
