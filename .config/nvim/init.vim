@@ -37,10 +37,6 @@ set shm-=S shm+=cF
 set ph=10
 set ls=2
 
-" === netrw ===
-let g:netrw_altfile = 1
-let g:netrw_banner = 0
-
 " === statusline ===
 fu! FormatPath(path)
 	return fnamemodify(a:path,':~:.')
@@ -78,12 +74,6 @@ set stl+=\ \|\ %{&fileencoding?&fileencoding:&encoding}
 " set stl+=\ \|\ %p%%
 set stl+=%{&filetype==''?'\ ':'\ \ \|\ '.toupper(&filetype).'\ '}
 set nosmd
-
-" === qflist ===
-nn [c <cmd>cprev<cr>
-nn ]c <cmd>cnext<cr>
-nn [C <cmd>cfir<cr>
-nn ]C <cmd>clast<cr>
 
 " === nvim ===
 set mouse=

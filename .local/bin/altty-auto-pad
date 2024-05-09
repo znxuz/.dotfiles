@@ -37,7 +37,7 @@ command -v wmctrl &> /dev/null || exit 1
 command -v altty-padding &> /dev/null || exit 1
 
 if [ "$(xrandr | awk '/primary/ {print $1}')" == "eDP" ]; then
-	echo "No need for padding, exiting..."
+	echo "No need for padding, exiting..." >&2
 	altty-padding unpad
 	exit 0
 fi

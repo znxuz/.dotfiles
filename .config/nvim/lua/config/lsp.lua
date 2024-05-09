@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- clangd
 lspc.clangd.setup {
-	cmd = { 'clangd', '--background-index', '--log=error', '--query-driver=/usr/bin/arm-none-eabi-gcc' },
+	cmd = { 'clangd', '--background-index', '--log=error', '--query-driver=/usr/bin/arm-none-eabi-gcc,/usr/bin/arm-none-eabi-g++' },
 	capabilities = {
 		textDocument = { completion = { completionItem = { snippetSupport = false } } },
 	},
