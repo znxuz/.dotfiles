@@ -1,5 +1,5 @@
 setl cc=80
-setl cino=g0
+setl cino=g0,E-s,N-s
 setl wig+=bin/*,*.o
 
 fu s:CppCheck()

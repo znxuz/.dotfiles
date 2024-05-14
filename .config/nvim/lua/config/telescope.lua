@@ -79,8 +79,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map('n', '<leader>aa', function () vim.lsp.buf.code_action() end, { buffer = true })
 		map('n', '<leader>s', function () builtin.lsp_document_symbols() end, { buffer = true })
 		map('n', '<leader>S', function () builtin.lsp_workspace_symbols() end, { buffer = true })
-		map('n', '<leader>e', function () builtin.diagnostics({ bufnr = 0 }) end, { buffer = true })
-		map('n', '<leader>E', function () builtin.diagnostics() end, { buffer = true })
+		map('n', '<leader>d', function () builtin.diagnostics({ bufnr = 0 }) end, { buffer = true })
+		map('n', '<leader>D', function () builtin.diagnostics() end, { buffer = true })
 	end,
 })
 

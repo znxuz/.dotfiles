@@ -6,9 +6,9 @@ vim.cmd 'set signcolumn=yes'
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(_)
-		map('n', '<leader>ce', function () vim.diagnostic.open_float() end, { buffer = true })
-		map('n', '[e', function () vim.diagnostic.goto_prev() end, { buffer = true })
-		map('n', ']e', function () vim.diagnostic.goto_next() end, { buffer = true })
+		map('n', '<leader>cd', function () vim.diagnostic.open_float() end, { buffer = true })
+		map('n', '[d', function () vim.diagnostic.goto_prev() end, { buffer = true })
+		map('n', ']d', function () vim.diagnostic.goto_next() end, { buffer = true })
 		map('n', '<leader>ai', function ()
 			vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
 		end, { buffer = true })

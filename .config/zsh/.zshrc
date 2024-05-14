@@ -46,7 +46,7 @@ autoload -Uz compinit
 zmodload zsh/complist
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+# zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 compinit -d $XDG_CONFIG_HOME/zsh/.zcompdump
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 bindkey -M menuselect '^[' send-break

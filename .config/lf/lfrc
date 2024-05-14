@@ -3,6 +3,8 @@ set shell zsh
 set promptfmt "\033[34;1m%d\033[0m\033[1m%f\033[0m"
 set ratios 1:2:1
 set wrapscroll true
+set ignorecase false
+set smartcase false
 
 cmd delete-f ${{
     rm -rf $fx

@@ -15,20 +15,20 @@ set sbr=>\\
 set list
 set lcs=tab:│\ ,nbsp:␣,trail:•
 set cul
+set nohls
 filetype plugin indent on
 
 " === leader key ===
 let mapleader = " "
 
-" === search ===
-set ic scs nohls
+" === case sensitivity ===
+" set ic scs wic
 
 " === file management ===
 set shada+=n$XDG_STATE_HOME/nvim/viminfo
 set udf
 
 " === completion ===
-set wic
 set wop=pum
 set wim=longest:full,full
 set cpt-=t,i
@@ -38,7 +38,7 @@ set ph=10
 set ls=2
 
 " === statusline ===
-fu! FormatPath(path)
+fu! PathReduce(path)
 	return fnamemodify(a:path,':~:.')
 endfu
 
@@ -60,8 +60,8 @@ aug stl
 aug END
 set stl=
 set stl+=%#STLMode#
-set stl+=%<\ %{FormatPath(getcwd())}
-set stl+=%{expand('%')==''?'':'\ \ \|\ '.FormatPath(expand('%:p'))}
+set stl+=%<\ %{PathReduce(getcwd())}
+set stl+=%{expand('%')==''?'':'\ \ \|\ '.PathReduce(expand('%:p'))}
 set stl+=%{&modified?'\ \ [+]':''}
 set stl+=%{&readonly?'\ \ [RO]':''}
 set stl+=%{&paste?'\ \ [P]':''}
@@ -80,15 +80,16 @@ set mouse=
 set guicursor=a:block
 
 " === last cursor ===
-aug RestoreCursor
-	au!
-	au BufRead * au FileType <buffer> ++once
-				\ let s:line = line("'\"")
-				\ | if s:line >= 1 && s:line <= line("$") && &filetype !~# 'commit'
-				\      && index(['xxd', 'gitrebase'], &filetype) == -1
-				\ |   execute "normal! g`\""
-				\ | endif
-aug END
+" bug with telescope and status line
+" aug RestoreCursor
+	" au!
+	" au BufRead * au FileType <buffer> ++once
+				" \ let s:line = line("'\"")
+				" \ | if s:line >= 1 && s:line <= line("$") && &filetype !~# 'commit'
+				" \      && index(['xxd', 'gitrebase'], &filetype) == -1
+				" \ |   execute "normal! g`\""
+				" \ | endif
+" aug END
 
 " === plugins ===
 lua require('plugins')

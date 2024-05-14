@@ -9,7 +9,7 @@ main()
 
 	[[ -z "$lang" || ! -d "$path/$lang" ]] && exit 1
 	cd "$path/$lang" &&
-		$EDITOR "$(find "$path/$lang" -type f -name "[mM]ain.$lang")"
+		$EDITOR "$(find "$path/$lang" -type f -name "[mM]ain.$lang" | head -n1)"
 }
 
 main

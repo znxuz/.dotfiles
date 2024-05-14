@@ -11,12 +11,16 @@ require'lazy'.setup({
 		'nvim-telescope/telescope-fzf-native.nvim',
 		build = 'make'
 	},
-	--[[
+
+	-- speedy edit
 	{
-		'ibhagwan/fzf-lua',
-		config = function () require('config.fzflua') end
+		'tpope/vim-unimpaired'
 	},
-	--]]
+	{
+		"kylechui/nvim-surround",
+		event = "VeryLazy",
+		config = true
+	},
 
 	-- lsp
 	{
@@ -40,12 +44,8 @@ require'lazy'.setup({
 		'mfussenegger/nvim-jdtls',
 		lazy = true
 	},
+
 -- misc
-	{
-		"kylechui/nvim-surround",
-		event = "VeryLazy",
-		config = true
-	},
 	{
 		'vimwiki/vimwiki',
 		keys = { { '<leader>ws', '<cmd>VimwikiUISelect<cr>', desc = 'Vimwiki UI select' } },

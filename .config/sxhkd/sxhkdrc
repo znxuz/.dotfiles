@@ -75,7 +75,7 @@ super + shift + Escape ; {K, s, S, U, R, o, X, c}
 	, notify-send -t 1000 "  "; sleep 1 && loginctl terminate-session self \
 	, notify-send -t 1000 "  "; sleep 1 && reboot \
 	, notify-send -t 1000 "  "; sleep 1 && xset dpms force off \
-	, notify-send -t 1000 "  "; sleep 1 && xrandr-refresh \
+	, notify-send -t 1000 "  "; sleep 1 && xrandr-reload \
 	, notify-send -t 1000 "  "; sleep 1 && eclipse \
 	}
 

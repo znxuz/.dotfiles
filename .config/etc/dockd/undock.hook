@@ -5,6 +5,6 @@
 # enabling WiFi, turning touchpads on or off etc.
 # THIS SCRIPT EXECUTES AS NON-ROOT!
 
-sleep 2 && xrandr-refresh
+sleep 2 && xrandr-reload
 
 exit

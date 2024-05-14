@@ -13,6 +13,7 @@ show_help()
 main()
 {
 	mode="$(xrdb -query | grep mode | cut -f2)"
+
 	while getopts ":hldn:" opt; do
 		case $opt in
 			h)
@@ -42,10 +43,10 @@ main()
 
 	cached="$(find "$config_path" -type f -name "$mode.*")"
 
-	wallpr_arg="$1"
-	[ -n "$wallpr_arg" ] && rm -f "$cached" &&
-		cached=$config_path/$(echo "$wallpr_arg" | sed "s/.\+\(\..\+\)/$(cat "$mode")\1/") &&
-		cp -f "$wallpr_arg" "$cached"
+	new_wallpr="$1"
+	[ -n "$new_wallpr" ] && rm -f "$cached" &&
+		cached=$config_path/$(echo "$new_wallpr" | sed "s/.\+\(\..\+\)/$mode\1/") &&
+		cp -f "$new_wallpr" "$cached"
 
 	feh --no-fehbg --bg-scale "$cached"
 }

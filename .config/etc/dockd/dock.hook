@@ -5,6 +5,6 @@
 # switching keyboard layouts etc.
 # SCRIPT EXECUTES AS NON ROOT!
 
-sleep 2 && xrandr-refresh
+sleep 2 && xrandr-reload
 
 exit
