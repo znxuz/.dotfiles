@@ -1,0 +1,10 @@
+[Desktop Entry]
+Categories=Network;FileTransfer;P2P;
+Exec=/usr/bin/env transmission-invoke %U
+GenericName=transmission-cil client
+MimeType=application/x-bittorrent;x-scheme-handler/magnet;
+Name=transmission
+Type=Application
+Terminal=true
+Keywords=torrent;magnet;download;p2p;
+X-Desktop-File-Install-Version=0.27
