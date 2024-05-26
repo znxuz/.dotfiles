@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 zathura_his="${XDG_DATA_HOME:-$HOME/.local/share}/zathura/history"
+nvim_dir="$XDG_STATE_HOME/nvim"
 
 package_cache_clean()
 {
@@ -11,7 +12,7 @@ nvim_undo_clean()
 {
 	echo "==> cleaning undodir & removing log entries"
 
-	undodir="$XDG_STATE_HOME/nvim/undo"
+	undodir="$nvim_dir/undo"
 	find "$undodir" -type f -ctime +30 -delete
 
 	readarray -t files < <(ls "$undodir")
@@ -19,6 +20,11 @@ nvim_undo_clean()
 	filename="$(echo "$f" | sed 's/%/\//g')"
 	[[ ! -f "$filename" ]] && rm "$undodir/$f"
 	done
+}
+
+nvim_log_clean()
+{
+	rm "$nvim_dir/*log"
 }
 
 zathura_old_entries()
@@ -61,5 +67,6 @@ journal_clean()
 
 package_cache_clean
 nvim_undo_clean
+nvim_log_clean
 zathura_clean
 journal_clean

@@ -1,11 +1,10 @@
 require('config.bg')
 
--- change bg upon receiving SIGUSR1
-vim.cmd([[
-aug Update_bg
-au!
-au Signal SIGUSR1 luafile $HOME/.config/nvim/lua/config/bg.lua
-aug END
-]])
+vim.api.nvim_create_augroup("Update_bg", {})
+vim.api.nvim_create_autocmd({"Signal"}, {
+	group = "Update_bg",
+	pattern = { "SIGUSR1" },
+	command = "luafile $HOME/.config/nvim/lua/config/bg.lua"
+})
 
 vim.cmd.colorscheme('rose-pine')

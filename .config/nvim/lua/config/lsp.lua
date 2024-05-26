@@ -1,8 +1,8 @@
 local map = require('config.mapper').map
 local lspc = require('lspconfig')
 
-vim.cmd 'set shortmess+=c'
-vim.cmd 'set signcolumn=yes'
+vim.opt.shortmess:append('c')
+vim.opt.signcolumn = 'yes'
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(_)

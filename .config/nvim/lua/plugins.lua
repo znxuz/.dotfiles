@@ -1,5 +1,5 @@
 require'lazy'.setup({
-	-- almighty picker
+	-- almighty picker --
 	{
 		'nvim-telescope/telescope.nvim',
 		dependencies = {
@@ -12,7 +12,7 @@ require'lazy'.setup({
 		build = 'make'
 	},
 
-	-- speedy edit
+	-- speedy edit --
 	{
 		'tpope/vim-unimpaired'
 	},
@@ -22,7 +22,7 @@ require'lazy'.setup({
 		config = true
 	},
 
-	-- lsp
+	-- lsp --
 	{
 		'neovim/nvim-lspconfig',
 		config = function () require('config.lsp') end
@@ -45,7 +45,7 @@ require'lazy'.setup({
 		lazy = true
 	},
 
--- misc
+	-- misc --
 	{
 		'vimwiki/vimwiki',
 		keys = { { '<leader>ws', '<cmd>VimwikiUISelect<cr>', desc = 'Vimwiki UI select' } },
@@ -58,7 +58,9 @@ require'lazy'.setup({
 	},
 	{
 		'mbbill/undotree',
-		config = function () vim.cmd('nnoremap <leader>u <cmd>UndotreeToggle<cr>') end
+		config = function ()
+			require('config.mapper').map('n', '<leader>u', '<cmd>UndotreeToggle<cr>')
+		end
 	},
 	{
 		'jbyuki/nabla.nvim',
@@ -71,7 +73,7 @@ require'lazy'.setup({
 		cmd = 'ColorizerAttachToBuffer'
 	},
 
-	-- colortheme
+	-- colortheme --
 	{
 		'rose-pine/neovim',
 		config = function () require('config.colors') end

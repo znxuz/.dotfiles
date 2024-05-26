@@ -11,7 +11,7 @@ telescope.setup {
 			height = 0.9,
 		},
 		borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
-		preview = { hide_on_startup = true },
+		preview = { hide_on_startup = false },
 		mappings = {
 			i = {
 				["<esc>"] = actions.close,
@@ -41,34 +41,39 @@ telescope.load_extension('fzf')
 
 local M = {}
 
-M.find_files_in = function()
-	vim.ui.input({ prompt = 'Files in: ', completion = 'dir' }, function(input)
-		if input ~= nil and input ~= '' then
-			builtin.find_files({ cwd = input })
+-- TODO combine the functions into a single function taking a callback
+
+M.prompt_cwd_callback = function(args)
+	vim.ui.input({ prompt = args.prompt, completion = 'dir' }, function(input)
+		if input == nil or input == '' then
+			return
+		elseif vim.fn.isdirectory(vim.fn.fnamemodify(input, ':p')) == 0 then
+			vim.api.nvim_command('redraw')
+			vim.api.nvim_err_writeln('Input is not a directory')
+			return
 		end
+
+		args.callback({ cwd = input })
 	end)
 end
-
-M.live_grep_in = function()
-	vim.ui.input({ prompt = 'Grep in: ', completion = 'dir' }, function(input)
-		if input ~= nil and input ~= '' then
-			builtin.live_grep({ cwd = input })
-		end
-	end)
-end
-
 
 local map = require("config.mapper").map
 map('n', '<leader>f', function () builtin.find_files() end)
 map('n', '<leader>cf', function () builtin.find_files({ cwd = vim.fn.expand('%:h') }) end)
-map('n', '<leader>if', function () require'config.telescope'.find_files_in() end)
+map('n', '<leader>if', function ()
+	M.prompt_cwd_callback({ prompt = 'Files in: ', callback = builtin.find_files})
+end)
 map('n', '<leader>b', function () builtin.buffers() end)
-map('n', '<leader>ir', function () require'config.telescope'.live_grep_in() end)
-map('n', '<leader>r', function () builtin.live_grep() end)
+map('n', '<leader>r', function () builtin.grep_string({ search = "" }) end)
+map({'n', 'v'}, '<leader>cr', function () builtin.grep_string() end)
+map('n', '<leader>R', function () builtin.live_grep() end)
+map('n', '<leader>iR', function ()
+	M.prompt_cwd_callback({ prompt = 'Live grep in: ', callback = builtin.live_grep})
+end)
 map('n', '<leader>h', function () builtin.help_tags() end)
-map('n', '<leader>A', function () builtin.builtin() end)
 map('n', '<leader>o', function () builtin.oldfiles() end)
 map('n', '<leader>k', function () builtin.keymaps() end)
+map('n', '<leader>A', function () builtin.builtin() end)
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(_)

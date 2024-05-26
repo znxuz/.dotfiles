@@ -50,46 +50,54 @@ fu! ShowDiagnosticCount()
 	endif
 endfu
 
+fu! DefSTL() abort
+	let stl = ""
+	if g:statusline_winid == win_getid(winnr())
+		let stl .= "%#STLMode#"
+	else
+		let stl .= "%#StatusLineNC#"
+	endif
+	let stl .= "%<\ %{PathReduce(getcwd())}"
+
+	let stl .= "%{expand('%')==''?'':'\ \ \|\ '.PathReduce(expand('%:p'))}"
+	let stl .= "%{&modified?'\ \ [+]':''}"
+	let stl .= "%{&readonly?'\ \ [RO]':''}"
+	let stl .= "%{&paste?'\ \ [P]':''}"
+	let stl .= "%{ShowDiagnosticCount()}"
+	let stl .= "%="
+	let stl .= "\ \ \ \ \ "
+	let stl .= "\ \ %{&fileformat}"
+	let stl .= "\ \|\ %{&fileencoding?&fileencoding:&encoding}"
+	" let stl .= "\ \|\ %l:%c"
+	" let stl .= "\ \|\ %p%%"
+	let stl .= "%{&filetype==''?'\ ':'\ \ \|\ '.toupper(&filetype).'\ '}"
+
+	return stl
+endfu
+
 aug stl
 	au!
-	au VimEnter * hi default link STLMode StatusLineNC
+	au VimEnter * hi default link STLMode StatusLine
 	au ModeChanged *:n hi clear STLMode | redraws!
-	au ModeChanged *:ni* hi link STLMode StatusLine | redraws!
+	au ModeChanged *:ni* hi link STLMode Visual | redraws!
 	au ModeChanged *:i* hi link STLMode Search | redraws!
 	au ModeChanged *:[vV\x16]* hi link STLMode Substitute | redraws!
+	au ModeChanged *:R* hi link STLMode CursorLineNr | redraws!
 aug END
-set stl=
-set stl+=%#STLMode#
-set stl+=%<\ %{PathReduce(getcwd())}
-set stl+=%{expand('%')==''?'':'\ \ \|\ '.PathReduce(expand('%:p'))}
-set stl+=%{&modified?'\ \ [+]':''}
-set stl+=%{&readonly?'\ \ [RO]':''}
-set stl+=%{&paste?'\ \ [P]':''}
-set stl+=%{ShowDiagnosticCount()}
-set stl+=%=
-set stl+=\ \ \ \ \ 
-set stl+=\ \ %{&fileformat}
-set stl+=\ \|\ %{&fileencoding?&fileencoding:&encoding}
-" set stl+=\ \|\ %l:%c
-" set stl+=\ \|\ %p%%
-set stl+=%{&filetype==''?'\ ':'\ \ \|\ '.toupper(&filetype).'\ '}
+
 set nosmd
+set stl=
+set stl=%!DefSTL()
 
 " === nvim ===
 set mouse=
 set guicursor=a:block
+if exists(':EditQuery')
+	delc EditQuery " fucking useless neovim command polluting the shorthand to :Ex
+endif
 
-" === last cursor ===
-" bug with telescope and status line
-" aug RestoreCursor
-	" au!
-	" au BufRead * au FileType <buffer> ++once
-				" \ let s:line = line("'\"")
-				" \ | if s:line >= 1 && s:line <= line("$") && &filetype !~# 'commit'
-				" \      && index(['xxd', 'gitrebase'], &filetype) == -1
-				" \ |   execute "normal! g`\""
-				" \ | endif
-" aug END
+" === netrw ===
+let netrw_banner = 0
 
 " === plugins ===
 lua require('plugins')
