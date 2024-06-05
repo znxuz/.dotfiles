@@ -6,7 +6,6 @@ vim.opt.signcolumn = 'yes'
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(_)
-		map('n', '<leader>cd', function () vim.diagnostic.open_float() end, { buffer = true })
 		map('n', '<leader>ai', function ()
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
 		end, { buffer = true })
@@ -69,7 +68,7 @@ require'lspconfig'.pylsp.setup{}
 
 local M = {}
 
-function M.StatuslineDiagCountAll()
+function M.stl_diagnostic_count()
 	local cur = vim.api.nvim_get_current_buf()
 	local clients = vim.lsp.get_clients({ bufnr = cur })
 	if #clients == 0 then return "" end

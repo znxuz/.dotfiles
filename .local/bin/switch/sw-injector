@@ -52,9 +52,10 @@ checkupdate_payload()
 
 checkup()
 {
-	if [[ ! -f "$injector" ]] || [[ ! -f "$payload" ]];
-	then
-	echo "injector or payload not found" >&2 && exit 127
+	if [[ ! -f /etc/udev/rules.d/99-NS-RCM.rules ]]; then
+		echo "udev rule not present, see ns-usbloader website" >& 2 && exit 127
+	elif [[ ! -f "$injector" ]] || [[ ! -f "$payload" ]]; then
+		echo "injector or payload not found" >&2 && exit 127
 	fi
 }
 

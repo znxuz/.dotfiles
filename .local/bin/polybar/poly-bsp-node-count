@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-icon="■"
+icon="${1:-■}"
 
 display_help()
 {
@@ -24,26 +24,30 @@ print_counts()
 
 main()
 {
-	while [[ $# -gt 0 ]]; do
-	case "$1" in
-		-h|--help)
-		display_help
-		exit 0
-		;;
-		-i|--icon)
-		icon="$2"
-		shift 2
-		;;
-		*)
-		echo "Error: Unknown option: $1"
-		exit 1
-		;;
-	esac
+	while getopts ":hi:" opt; do
+		case ${opt} in
+			h)
+				display_help
+				exit
+				;;
+			i)
+				icon="${OPTARG}"
+				;;
+			\?)
+				echo "Invalid option: -$OPTARG" >&2
+				exit 1
+				;;
+			:)
+				echo "Option -$OPTARG requires an argument." >&2
+				exit 1
+				;;
+		esac
 	done
+	shift $((OPTIND -1))
 
 	print_counts
 	bspc subscribe node_add node_remove node_transfer desktop_focus | while read -r; do
-	print_counts
+		print_counts
 	done
 }
 

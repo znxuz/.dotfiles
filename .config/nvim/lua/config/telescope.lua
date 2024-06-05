@@ -41,8 +41,6 @@ telescope.load_extension('fzf')
 
 local M = {}
 
--- TODO combine the functions into a single function taking a callback
-
 M.prompt_cwd_callback = function(args)
 	vim.ui.input({ prompt = args.prompt, completion = 'dir' }, function(input)
 		if input == nil or input == '' then
@@ -71,7 +69,7 @@ map('n', '<leader>iR', function ()
 	M.prompt_cwd_callback({ prompt = 'Live grep in: ', callback = builtin.live_grep})
 end)
 map('n', '<leader>h', function () builtin.help_tags() end)
-map('n', '<leader>o', function () builtin.oldfiles() end)
+map('n', '<leader>j', function () builtin.jumplist() end)
 map('n', '<leader>k', function () builtin.keymaps() end)
 map('n', '<leader>A', function () builtin.builtin() end)
 

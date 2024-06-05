@@ -1,16 +1,11 @@
 " === configurations ===
 syntax enable
-set syn=on
 set nu
-set hid
-set bs=indent,eol,nostop
 set sw=0 ts=4
-set ttimeout ttm=1
+set ttm=1
 set cb=unnamedplus
 set tgc
-set fo+=j
 set nosc
-set scl=yes
 set sbr=>\\
 set list
 set lcs=tab:│\ ,nbsp:␣,trail:•
@@ -21,9 +16,6 @@ filetype plugin indent on
 " === leader key ===
 let mapleader = " "
 
-" === case sensitivity ===
-" set ic scs wic
-
 " === file management ===
 set shada+=n$XDG_STATE_HOME/nvim/viminfo
 set udf
@@ -31,23 +23,20 @@ set udf
 " === completion ===
 set wop=pum
 set wim=longest:full,full
-set cpt-=t,i
+set cpt-=t
 set cot=menuone,preview,noinsert,noselect
-set shm-=S shm+=cF
 set ph=10
-set ls=2
 
 " === statusline ===
 fu! PathReduce(path)
 	return fnamemodify(a:path,':~:.')
 endfu
 
-fu! ShowDiagnosticCount()
-	if luaeval("pcall(function () require('config.lsp').StatuslineDiagCountAll() end)")
-		return luaeval('require"config.lsp".StatuslineDiagCountAll()')
-	else
-		return ""
+fu! ShowDiagnosticCount() abort
+	if luaeval('vim.lsp.buf_is_attached(0)')
+		return luaeval('require"config.lsp".stl_diagnostic_count()')
 	endif
+	return ""
 endfu
 
 fu! DefSTL() abort
@@ -92,9 +81,7 @@ set stl=%!DefSTL()
 " === nvim ===
 set mouse=
 set guicursor=a:block
-if exists(':EditQuery')
-	delc EditQuery " fucking useless neovim command polluting the shorthand to :Ex
-endif
+silent! delc EditQuery " fucking useless neovim command polluting the shorthand to :Ex
 
 " === netrw ===
 let netrw_banner = 0

@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+upd_icon="${1:-}"
+aur_icon="${1:-}"
+
 fifo="/tmp/poly-pkg-upgrade.fifo"
 output=""
 
@@ -8,7 +11,7 @@ set_output()
 	pac_upd="$(checkupdates 2> /dev/null)"
 	count=$(echo "$pac_upd" | wc -l)
 	if echo "$pac_upd" | grep -q "linux\W.*arch" ; then
-	output=" $count"
+	output="$upd_icon $count"
 	elif [[ "$count" -gt 9 ]]; then
 	output="$count"
 	fi
@@ -18,7 +21,7 @@ set_output()
 	if [[ -n "$output" ]]; then
 		output="$output "
 	fi
-	output="$output $aur_upd"
+	output="$output$aur_icon $aur_upd"
 	fi
 }
 
