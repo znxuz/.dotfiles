@@ -2,9 +2,7 @@ require'lazy'.setup({
 	-- almighty picker --
 	{
 		'nvim-telescope/telescope.nvim',
-		dependencies = {
-			'nvim-lua/plenary.nvim',
-		},
+		dependencies = 'nvim-lua/plenary.nvim',
 		config = function () require('config.telescope') end
 	},
 	{
@@ -14,11 +12,8 @@ require'lazy'.setup({
 
 	-- speedy edit --
 	{
-		'tpope/vim-unimpaired'
-	},
-	{
 		"kylechui/nvim-surround",
-		event = "VeryLazy",
+		event = 'VeryLazy',
 		config = true
 	},
 
@@ -51,7 +46,10 @@ require'lazy'.setup({
 		keys = { { '<leader>ws', '<cmd>VimwikiUISelect<cr>', desc = 'Vimwiki UI select' } },
 		init = function () require('config.vimwiki') end
 	},
-	{ 'romainl/vim-devdocs' },
+	{
+		'romainl/vim-devdocs',
+		event = 'LspAttach',
+	},
 	{
 		'lewis6991/gitsigns.nvim',
 		config = true,
@@ -64,13 +62,19 @@ require'lazy'.setup({
 	},
 	{
 		'jbyuki/nabla.nvim',
-		dependencies = { 'nvim-treesitter/nvim-treesitter', },
+		dependencies = 'nvim-treesitter/nvim-treesitter',
+		lazy = true,
 		ft = { 'vimwiki', 'md', 'tex' }
 	},
 	{
 		'norcalli/nvim-colorizer.lua',
 		config = true,
 		cmd = 'ColorizerAttachToBuffer'
+	},
+	{
+		'nvim-treesitter/nvim-treesitter-context',
+		dependencies = 'nvim-treesitter/nvim-treesitter',
+		event = 'LspAttach',
 	},
 
 	-- colortheme --

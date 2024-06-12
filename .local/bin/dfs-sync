@@ -2,11 +2,16 @@
 
 shopt -s expand_aliases && source "$XDG_CONFIG_HOME/shell/aliasrc" || exit 1
 
+restore_color_files()
+{
+	read -ra eclipse_files < <(eclipse -l)
+	for file in "${eclipse_files[@]}"; do
+		dfs restore --staged "$file"
+	done
+}
+
 checkconfig
 dfs add "$XDG_CONFIG_HOME"
 dfs add "$HOME/.local/bin"
-
-read -ra eclipse_files < <(eclipse -l)
-for file in "${eclipse_files[@]}"; do
-	dfs restore --staged "$file"
-done
+dfs add "$HOME/.github"
+restore_color_files

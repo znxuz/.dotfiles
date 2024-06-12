@@ -8,8 +8,6 @@ nnn
 obs-studio
 pulse
 QtProject.conf
-qBittorrent/**/*
-!qBittorrent/*.qbtheme
 VirtualBox
 GIMP
 Microsoft*
@@ -19,7 +17,6 @@ libreoffice
 pavucontrol.ini
 vlc
 gh
-weechat
 rmapi
 procps
 java
@@ -53,3 +50,4 @@ fcitx
 transmission-daemon
 asciinema
 Electron
+zotify

@@ -4,7 +4,9 @@ local lspc = require('lspconfig')
 vim.opt.shortmess:append('c')
 vim.opt.signcolumn = 'yes'
 
+vim.api.nvim_create_augroup("LspMapping", { clear = false })
 vim.api.nvim_create_autocmd("LspAttach", {
+	group = "LspMapping",
 	callback = function(_)
 		map('n', '<leader>ai', function ()
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
@@ -55,6 +57,7 @@ lspc.rust_analyzer.setup {
 
 -- disable extra syntax highlighting
 vim.api.nvim_create_autocmd("LspAttach", {
+	group = "LspMapping",
 	callback = function(args)
 		vim.lsp.get_client_by_id(args.data.client_id).server_capabilities.semanticTokensProvider = nil
 	end,
@@ -65,21 +68,3 @@ require'lspconfig'.bashls.setup{}
 
 -- python
 require'lspconfig'.pylsp.setup{}
-
-local M = {}
-
-function M.stl_diagnostic_count()
-	local cur = vim.api.nvim_get_current_buf()
-	local clients = vim.lsp.get_clients({ bufnr = cur })
-	if #clients == 0 then return "" end
-
-	local warn = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
-	local err = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
-	if warn ~= 0 or err ~= 0 then
-		return string.format("  | ⚠️ %d ❌%d", warn, err)
-	end
-
-	return ""
-end
-
-return M

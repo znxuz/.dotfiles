@@ -6,18 +6,18 @@ Curated configuration files and scripts for Arch.
 
 - shell: `zsh`
 - editor: `nvim`
-- terminal emulator: `alacritty`
-- terminal multiplexer: `tmux`
+- terminal emulator & multiplexer: `alacritty` & `tmux`
 - window manager: `bspwm`
 - status bar: `polybar`
 - PDF viewer: `zathura`
 - application launcher: `rofi`
 - email client: `aerc`
 - news aggregator: `newsboat`
-- etc.
+- torrenting client: `transmission`
+- and much more...
 
 Check the respective directories for more details.
 
 # `.local/bin`
 
-Custom scripts for automating things.
+Scripts for automating things.

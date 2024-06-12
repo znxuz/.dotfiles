@@ -6,5 +6,10 @@ vim.api.nvim_create_autocmd({"Signal"}, {
 	pattern = { "SIGUSR1" },
 	command = "luafile $HOME/.config/nvim/lua/config/bg.lua"
 })
+vim.api.nvim_create_autocmd({"Signal"}, {
+	group = "Update_bg",
+	pattern = { "SIGUSR1" },
+	command = "hi! default link StatusLine STLMode"
+})
 
 vim.cmd.colorscheme('rose-pine')

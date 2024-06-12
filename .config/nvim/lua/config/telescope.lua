@@ -9,6 +9,7 @@ telescope.setup {
 		layout_config = {
 			width = 0.7,
 			height = 0.9,
+			preview_cutoff = 25
 		},
 		borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
 		preview = { hide_on_startup = false },
@@ -73,7 +74,9 @@ map('n', '<leader>j', function () builtin.jumplist() end)
 map('n', '<leader>k', function () builtin.keymaps() end)
 map('n', '<leader>A', function () builtin.builtin() end)
 
-vim.api.nvim_create_autocmd("LspAttach", {
+vim.api.nvim_create_augroup('LspMapping', { clear = false })
+vim.api.nvim_create_autocmd('LspAttach', {
+	group = 'LspMapping',
 	callback = function(_)
 		map('n', 'gd', function () builtin.lsp_definitions() end, { buffer = true })
 		map('n', 'gD', function () builtin.lsp_type_definitions() end, { buffer = true })
