@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd({"Signal"}, {
 vim.api.nvim_create_autocmd({"Signal"}, {
 	group = "Update_bg",
 	pattern = { "SIGUSR1" },
-	command = "hi! default link StatusLine STLMode"
+	command = "hi! default link StatusLine STL"
 })
 
 vim.cmd.colorscheme('rose-pine')

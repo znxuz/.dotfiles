@@ -74,6 +74,7 @@ require'lazy'.setup({
 	{
 		'nvim-treesitter/nvim-treesitter-context',
 		dependencies = 'nvim-treesitter/nvim-treesitter',
+		config = function () require('config.ts-context') end,
 		event = 'LspAttach',
 	},
 
@@ -85,6 +86,7 @@ require'lazy'.setup({
 	{
 		'nvim-treesitter/nvim-treesitter',
 		config = function () require('config.treesitter') end,
+		run = 'TSUpdate',
 		lazy = true
 	},
 }, {

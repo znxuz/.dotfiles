@@ -28,6 +28,9 @@ telescope.setup {
 			hidden = true,
 			no_ignore = false,
 		},
+		buffers = {
+			sort_mru = true,
+		},
 	},
 	extensions = {
 		fzf = {

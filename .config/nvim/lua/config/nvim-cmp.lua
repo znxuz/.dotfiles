@@ -7,8 +7,11 @@ local compare = cmp.config.compare
 cmp.setup {
 	enabled = function ()
 		if vim.fn.bufname("%") == "[Command Line]" then
-			return false else return true
+			return false
+		elseif vim.api.nvim_get_option_value('buftype', { buf = 0}) == 'prompt' then
+			return false
 		end
+		return true
 	end,
 	preselect = cmp.PreselectMode.None,
 	snippet = { expand = function(args) require'luasnip'.lsp_expand(args.body) end, },

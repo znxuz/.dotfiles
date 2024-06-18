@@ -1,4 +1,4 @@
-" === configurations ===
+" === my defaults ===
 syntax enable
 set nu
 set sw=0 ts=4
