@@ -8,6 +8,7 @@ vim.api.nvim_create_augroup("LspMapping", { clear = false })
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = "LspMapping",
 	callback = function(_)
+		map('n', 'g<c-]>', function() vim.lsp.buf.type_definition() end, { buffer = true })
 		map('n', '<leader>ai', function ()
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
 		end, { buffer = true })

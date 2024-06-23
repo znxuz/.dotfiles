@@ -49,7 +49,7 @@ fu! DefSTL() abort
 	let stl .= "%{&paste?'\ \ [P]':''}"
 	let stl .= "%{LuaStlCallback()}"
 	let stl .= "%="
-	let stl .= "\ \ \ \ \ \ \ "
+	let stl .= "\ \ \ \ \ "
 	let stl .= "%{&fileformat}"
 	let stl .= "\ \|\ %{&fileencoding?&fileencoding:&encoding}"
 	" let stl .= "\ \|\ %l:%c"

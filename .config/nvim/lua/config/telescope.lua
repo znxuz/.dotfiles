@@ -11,8 +11,11 @@ telescope.setup {
 			height = 0.9,
 			preview_cutoff = 25
 		},
-		borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
-		preview = { hide_on_startup = false },
+		borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+		preview = {
+			hide_on_startup = false,
+			treesitter = false,
+		},
 		mappings = {
 			i = {
 				["<esc>"] = actions.close,
@@ -43,9 +46,7 @@ telescope.setup {
 }
 telescope.load_extension('fzf')
 
-local M = {}
-
-M.prompt_cwd_callback = function(args)
+local function prompt_cwd_callback(args)
 	vim.ui.input({ prompt = args.prompt, completion = 'dir' }, function(input)
 		if input == nil or input == '' then
 			return
@@ -60,37 +61,33 @@ M.prompt_cwd_callback = function(args)
 end
 
 local map = require("config.mapper").map
-map('n', '<leader>f', function () builtin.find_files() end)
-map('n', '<leader>cf', function () builtin.find_files({ cwd = vim.fn.expand('%:h') }) end)
-map('n', '<leader>if', function ()
-	M.prompt_cwd_callback({ prompt = 'Files in: ', callback = builtin.find_files})
+map('n', '<leader>f', function() builtin.find_files() end)
+map('n', '<leader>cf', function() builtin.find_files({ cwd = vim.fn.expand('%:h') }) end)
+map('n', '<leader>if', function()
+	prompt_cwd_callback({ prompt = 'Files in: ', callback = builtin.find_files })
 end)
-map('n', '<leader>b', function () builtin.buffers() end)
-map('n', '<leader>r', function () builtin.grep_string({ search = "" }) end)
-map({'n', 'v'}, '<leader>cr', function () builtin.grep_string() end)
-map('n', '<leader>R', function () builtin.live_grep() end)
-map('n', '<leader>iR', function ()
-	M.prompt_cwd_callback({ prompt = 'Live grep in: ', callback = builtin.live_grep})
+map('n', '<leader>b', function() builtin.buffers() end)
+map('n', '<leader>r', function() builtin.grep_string({ search = "" }) end)
+map({ 'n', 'v' }, '<leader>cr', function() builtin.grep_string() end)
+map('n', '<leader>R', function() builtin.live_grep() end)
+map('n', '<leader>iR', function()
+	prompt_cwd_callback({ prompt = 'Live grep in: ', callback = builtin.live_grep })
 end)
-map('n', '<leader>h', function () builtin.help_tags() end)
-map('n', '<leader>j', function () builtin.jumplist() end)
-map('n', '<leader>k', function () builtin.keymaps() end)
-map('n', '<leader>A', function () builtin.builtin() end)
+map('n', '<leader>h', function() builtin.help_tags() end)
+map('n', '<leader>j', function() builtin.jumplist() end)
+map('n', '<leader>k', function() builtin.keymaps() end)
+map('n', '<leader>A', function() builtin.builtin() end)
 
 vim.api.nvim_create_augroup('LspMapping', { clear = false })
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = 'LspMapping',
 	callback = function(_)
-		map('n', 'gd', function () builtin.lsp_definitions() end, { buffer = true })
-		map('n', 'gD', function () builtin.lsp_type_definitions() end, { buffer = true })
-		map('n', 'gr', function () builtin.lsp_references() end, { buffer = true })
-		map('n', 'gI', function () builtin.lsp_implementations() end, { buffer = true })
-		map('n', '<leader>aa', function () vim.lsp.buf.code_action() end, { buffer = true })
-		map('n', '<leader>s', function () builtin.lsp_document_symbols() end, { buffer = true })
-		map('n', '<leader>S', function () builtin.lsp_workspace_symbols() end, { buffer = true })
-		map('n', '<leader>d', function () builtin.diagnostics({ bufnr = 0 }) end, { buffer = true })
-		map('n', '<leader>D', function () builtin.diagnostics() end, { buffer = true })
+		map('n', 'gr', function() builtin.lsp_references() end, { buffer = true })
+		map('n', 'gI', function() builtin.lsp_implementations() end, { buffer = true })
+		map('n', '<leader>aa', function() vim.lsp.buf.code_action() end, { buffer = true })
+		map('n', '<leader>s', function() builtin.lsp_document_symbols() end, { buffer = true })
+		map('n', '<leader>S', function() builtin.lsp_workspace_symbols() end, { buffer = true })
+		map('n', '<leader>d', function() builtin.diagnostics({ bufnr = 0 }) end, { buffer = true })
+		map('n', '<leader>D', function() builtin.diagnostics() end, { buffer = true })
 	end,
 })
-
-return M
