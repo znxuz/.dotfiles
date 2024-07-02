@@ -37,6 +37,7 @@ append_path $CARGO_HOME/bin
 export JUPYTER_PLATFORM_DIRS=$XDG_CONFIG_HOME/jupyter
 export PYTHON_HISTORY=$XDG_STATE_HOME/python/history
 export DOCKER_CONFIG=$XDG_CONFIG_HOME/docker
+export WAKATIME_HOME=$XDG_CONFIG_HOME/wakatime
 
 # fzf
 export ESCDELAY="1"

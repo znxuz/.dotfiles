@@ -32,8 +32,10 @@ unmap("E"); // unmap tab left
 unmap("x"); // unmap close tab
 unmap("<Ctrl-h>") // history
 unmap("<Ctrl-j>") // download
+unmap("D") // download
 iunmap(":"); // disable emoji
 
+map("D", "P"); // scroll full page down
 map("F", "C"); // open link in background
 map("<Alt-f>", "cf"); // open links in background
 map("yf", "ya"); // copy link to clip

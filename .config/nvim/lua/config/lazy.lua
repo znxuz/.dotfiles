@@ -77,6 +77,10 @@ require'lazy'.setup({
 		config = function () require('config.ts-context') end,
 		event = 'LspAttach',
 	},
+	{
+		'wakatime/vim-wakatime',
+		lazy = false,
+	},
 
 	-- colortheme --
 	{

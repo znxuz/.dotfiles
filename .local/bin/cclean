@@ -24,7 +24,7 @@ nvim_undo_clean()
 
 nvim_log_clean()
 {
-	rm "$nvim_dir/*log"
+	rm "$nvim_dir"/*log
 }
 
 zathura_old_entries()

@@ -46,7 +46,6 @@ autoload -Uz compinit
 zmodload zsh/complist
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-# zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 compinit -d $XDG_CONFIG_HOME/zsh/.zcompdump
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 bindkey -M menuselect '^[' send-break
@@ -64,7 +63,7 @@ source $ZDOTDIR/zfzf
 
 ross()
 {
-	source /opt/ros/humble/setup.zsh
+	source /opt/ros/jazzy-base/setup.zsh
 
 	source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 	eval "$(register-python-argcomplete ros2)"
@@ -74,7 +73,7 @@ ross-ws()
 {
 	ross
 
-	ws_setup="./install/setup.zsh"
+	ws_setup="./install/local_setup.zsh"
 	[[ ! -f $ws_setup ]] && echo "Not in a ROS2 workspace" && return 1
 	source "$ws_setup"
 

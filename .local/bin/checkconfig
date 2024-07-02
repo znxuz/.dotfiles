@@ -15,7 +15,7 @@ for entry in "${new_entries[@]}"; do
 	if [[ -n "$ret" && "$ret" =~ [N|n] ]]; then
 		read -rp "remove [$entry] (y|n)?: " ret
 		if [[ -z "$ret" || "$ret" =~ [Y|y] ]]; then
-			rm -rf "$entry" && printf -- "	=> %s removed\n" "$entry"
+			rm -rf "$entry" && printf -- "  => %s removed\n" "$entry"
 		else
 			printf -- "  => added %s to .gitignore\n" "$entry" &&
 				echo "$entry" >> .gitignore

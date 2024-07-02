@@ -52,8 +52,6 @@ fu! DefSTL() abort
 	let stl .= "\ \ \ \ \ "
 	let stl .= "%{&fileformat}"
 	let stl .= "\ \|\ %{&fileencoding?&fileencoding:&encoding}"
-	" let stl .= "\ \|\ %l:%c"
-	" let stl .= "\ \|\ %p%%"
 	let stl .= "%{&filetype==''?'\ ':'\ \ \|\ '.toupper(&filetype).'\ '}"
 
 	return stl
@@ -82,4 +80,4 @@ silent! delc EditQuery " useless neovim command polluting the shorthand to :Ex
 let netrw_banner = 0
 
 " === plugins ===
-lua require('plugins')
+lua require('config.lazy')
