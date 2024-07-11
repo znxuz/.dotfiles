@@ -78,3 +78,7 @@ export NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
 # QT
 # export QT_ENABLE_HIGHDPI_SCALING=1 # causes rviz2 screen flickering
 export QT_SCREEN_SCALE_FACTORS=1 # screen flickering fix
+
+# flutter
+append_path /home/z/fhdo/Module/MAE/flutter/bin
+export ANDROID_SDK_ROOT=$HOME/android-sdk

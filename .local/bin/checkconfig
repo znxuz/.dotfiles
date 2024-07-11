@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-cd "$XDG_CONFIG_HOME" && shopt -s expand_aliases \
-	&& source "$XDG_CONFIG_HOME/shell/aliasrc" || exit 1
+shopt -s expand_aliases
+alias dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
-all_entries=$(ls | sort)
+all_entries=$(ls -A | sort)
 cached=$(dfs ls-files -c | awk -F'/' '{print $1}' | sort | uniq)
 readarray -t new_entries < <(comm -23 <(comm -23 <(echo "$all_entries") <(echo "$cached")) <(sort .gitignore))
 
@@ -21,6 +21,6 @@ for entry in "${new_entries[@]}"; do
 				echo "$entry" >> .gitignore
 		fi
 	else
-		dfs add "$entry" && printf -- "  => %s added to dfs repo\n" "$entry"
+		dfs add "$entry" && printf -- "  => %s added to .dotfiles repo\n" "$entry"
 	fi
 done

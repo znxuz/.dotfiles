@@ -5,7 +5,7 @@ nvim_dir="$XDG_STATE_HOME/nvim"
 
 package_cache_clean()
 {
-	echo "==> paru package cache" && paru -Scc --noconfirm
+	echo "==> paru package cache" && paru -Sccd --noconfirm
 }
 
 nvim_undo_clean()

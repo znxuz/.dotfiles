@@ -17,12 +17,12 @@ cmp.setup {
 	snippet = { expand = function(args) require'luasnip'.lsp_expand(args.body) end, },
 	sorting = {
 		comparators = {
-			compare.exact,
+			compare.score, -- sources' priority probably
 			compare.length,
+			compare.exact,
 			compare.locality,
 			compare.recently_used,
 			compare.kind,
-			compare.score,
 			compare.order,
 			compare.offset,
 		},
@@ -63,6 +63,6 @@ cmp.setup {
 	sources = cmp.config.sources({
 		{ name = 'luasnip' },
 		{ name = 'nvim_lsp' },
-		{ name = 'buffer', weight = 0.5 }
+		{ name = 'buffer' }
 	})
 }
