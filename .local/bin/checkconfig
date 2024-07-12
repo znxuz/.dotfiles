@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+cd "$XDG_CONFIG_HOME" || exit 1
 shopt -s expand_aliases
 alias dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
