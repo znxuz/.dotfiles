@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+pgrep -x flameshot &>/dev/null || flameshot &!
+flameshot "$@"

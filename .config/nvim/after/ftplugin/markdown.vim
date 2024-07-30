@@ -3,10 +3,10 @@ setl spell spl=en_us,de spf=$XDG_STATE_HOME/nvim/en.utf-8.add
 
 fu! g:MD2PDF()
 	let l:src = shellescape(expand('%'))
-	let l:dest = shellescape(input("Enter 'preview' or enter the pdf name with the file suffix: ", "preview"))
+	let l:dest = input("Enter 'preview' or enter the pdf name with the file suffix: ", "preview")
 	redraw!
 
-	if empty(l:dest) || l:dest == "''"
+	if empty(l:dest)
 		return
 	endif
 
@@ -17,20 +17,20 @@ fu! g:MD2PDF()
 	silent! exe '%s;\(!\[.\+\]\)(\([^;~].\+\));\1(' . l:dir . '/\2);'
 	silent! w
 
-
 	let l:pandoc_cmd = 'pandoc --metadata-file=$XDG_CONFIG_HOME/pandoc/headers.yml --tab-stop=8 --pdf-engine=xelatex '
-	if l:dest == "'preview'"
+	if l:dest == "preview"
 		let l:dest = '/tmp/vimwiki_' . l:dest . '.pdf'
 
 		call system('sudo rm -f ' . l:dest)
-		let l:ret = system(l:pandoc_cmd . l:src . ' -t pdf -o ' . l:dest)
+		let l:ret = system(l:pandoc_cmd . l:src . " -t pdf -o " . l:dest)
 		if v:shell_error == 0
 			call system('zathura --fork ' . l:dest)
 		else
 			echohl ErrorMsg | echo l:ret | echohl None
 		endif
 	else
-		call system(l:pandoc_cmd . l:src . ' -t pdf -o ' . l:dest)
+		let l:dest = shellescape(expand(l:dest))
+		let l:ret = system(l:pandoc_cmd . l:src . ' -t pdf -o ' . l:dest)
 		if v:shell_error == 1
 			echohl ErrorMsg | echo l:ret | echohl None
 		endif

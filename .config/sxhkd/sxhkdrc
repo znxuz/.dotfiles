@@ -61,11 +61,11 @@ XF86MonBrightnessDown
 XF86Bluetooth
 	if sudo systemctl is-active --quiet bluetooth.service; then sudo systemctl stop bluetooth.service; else sudo systemctl start bluetooth.service; fi
 
-# screenshot
+# screenshot via flameshot script
 ctrl + Print
-	flameshot gui
+	flameshotter gui
 Print
-	scrot -u -z ~/Pictures/screenshot.png && notify-send -t 1000 "Captured the currently focused window"
+	flameshotter screen
 
 ## system
 super + shift + Escape ; {K, s, S, U, R, o, X, c}

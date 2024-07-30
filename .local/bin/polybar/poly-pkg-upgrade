@@ -4,24 +4,26 @@ upd_icon="${1:-}"
 aur_icon="${1:-}"
 
 fifo="/tmp/poly-pkg-upgrade.fifo"
-output=""
 
 set_output()
 {
-	pac_upd="$(checkupdates 2> /dev/null)"
+	output=""
+	[[ -f /var/lib/pacman/db.lck ]] && return 1
+	paru -Sy &>/dev/null
+	pac_upd="$(pacman -Qqu)"
 	count=$(echo "$pac_upd" | wc -l)
 	if echo "$pac_upd" | grep -q "linux\W.*arch" ; then
-	output="$upd_icon $count"
+		output="$upd_icon $count"
 	elif [[ "$count" -gt 9 ]]; then
-	output="$count"
+		output="$count"
 	fi
 
-	aur_upd="$(auracle outdated 2> /dev/null | wc -l)"
+	aur_upd="$(paru -Qua | wc -l)"
 	if [[ "$aur_upd" -ne 0 ]]; then
-	if [[ -n "$output" ]]; then
-		output="$output "
-	fi
-	output="$output$aur_icon $aur_upd"
+		if [[ -n "$output" ]]; then
+			output="$output "
+		fi
+		output="$output$aur_icon $aur_upd"
 	fi
 }
 
@@ -30,16 +32,16 @@ main()
 	ping -qc 1 1.1.1.1 &> /dev/null || exit 1
 
 	case "$1" in
-	-u|--update)
-		echo "" > "$fifo"
-		;;
-	*)
-		set_output
-		[[ -z "$output" ]] && exit 0
+		-u|--update)
+			echo "" > "$fifo"
+			;;
+		*)
+			set_output
+			[[ -z "$output" ]] && exit 0
 
-		mkfifo "$fifo" &> /dev/null
-		printf "%s\n" "$output"
-		cat "$fifo" &> /dev/null && echo ""
+			mkfifo "$fifo" &> /dev/null
+			printf "%s\n" "$output"
+			cat "$fifo" &> /dev/null && echo ""
 	esac
 }
 

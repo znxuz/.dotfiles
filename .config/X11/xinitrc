@@ -10,7 +10,7 @@ dunst &
 unclutter &
 sxhkd &
 redshift &
-pgrep -x dockd > /dev/null || dockd --daemon &
+# pgrep -x dockd > /dev/null || dockd --daemon &
 xrandr-setup && fehbg
 
 exec bspwm
