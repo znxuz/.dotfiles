@@ -15,13 +15,13 @@ current_mode="$(< "$mode")"
 
 show_help()
 {
-    echo "Usage: script_name [OPTIONS]"
-    echo "Options:"
+	echo "Usage: script_name [OPTIONS]"
+	echo "Options:"
 	echo "  -h         Show help"
 	echo "  -q         Show current theme mode(light, dark)"
-    echo "  -l         Show all files to be changed for switching themes"
-    echo "  -o <arg>   Toggle specific application (alacritty, dunst, zathura, rofi, nvim)"
-    echo "Example: script_name -q"
+	echo "  -l         Show all files to be changed for switching themes"
+	echo "  -o <arg>   Toggle specific application (alacritty, dunst, zathura, rofi, nvim)"
+	echo "Example: script_name -q"
 }
 
 toggle_xrdb()

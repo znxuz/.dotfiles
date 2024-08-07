@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+rm -rf -- *.{aux,fls,log}
+rm -- *.fdb_latexmk
