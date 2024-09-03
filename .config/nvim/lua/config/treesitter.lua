@@ -1,14 +1,15 @@
 require('nvim-treesitter.configs').setup {
 	ensure_installed = {
-		'c',
-		'lua',
-		'vim',
+		'markdown',
 		'vimdoc',
-		'query',
+		'c',
 		'cpp',
+		'lua',
 		'bash',
-		'latex',
 		'rust',
+		'vim',
+		'query',
+		-- 'latex', -- binary package in PATH needed
 		'toml',
 		'comment'
 	},
