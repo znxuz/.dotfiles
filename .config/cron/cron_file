@@ -1,2 +1,1 @@
 * */6 * * * $HOME/.local/bin/vdir-sync
-*/5 * * * * $HOME/.local/bin/low-bat
