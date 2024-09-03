@@ -2,13 +2,13 @@ alias \
 		  ls='ls --color=auto --group-directories-first' \
 		  diff='diff --color=auto' \
 		  grep='grep --color=auto' \
-		  bt='bluetoothctl' \
 		  za='zathura --fork' \
 		  ckhal='khal calendar' \
 		  lf='lf-ueberzug' \
 		  dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
 		  tmd='transmission-daemon' \
 		  tmr='transmission-remote' \
+		  tmrw='watch -n1 transmission-remote -l' \
 		  tme='transmission-remote --exit' \
 		  sshconf-edit='chmod 700 ~/.ssh/config && $EDITOR ~/.ssh/config && chmod 400 ~/.ssh/config' \
 		  gpt='CHATGPTRC=$XDG_CONFIG_HOME/chatgpt.sh/chatgpt.conf OPENAI_API_KEY=$(pass openai) chatgpt.sh' \

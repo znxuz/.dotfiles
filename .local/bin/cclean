@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-zathura_his="${XDG_DATA_HOME:-$HOME/.local/share}/zathura/history"
 nvim_dir="$XDG_STATE_HOME/nvim"
 
 package_cache_clean()
@@ -27,39 +26,6 @@ nvim_log_clean()
 	rm "$nvim_dir"/*log
 }
 
-zathura_old_entries()
-{
-	expiry_date="3 months ago"
-	limit=$(date -d "$expiry_date" +%s)
-
-	echo "==> filtering file entries older than 3 months ago"
-	expired=$(awk -F'=' -v limit="$limit" '/time/ {if ($2 <= limit) print $2}' "$zathura_his" | sort | uniq)
-	(($(echo -n "$expired" | wc -l) > 0)) && expired=$(echo -n "$expired" | sed '/^$/d' | tr '\n' '|' | sed 's/|/\\|/g') || return 0
-
-	echo "==> removing files older than 3 months ago"
-	vim_cmd=":g/$expired/norm dap"
-	nvim --headless +"$vim_cmd" +wq "$zathura_his"
-}
-
-zathura_non_exist_entries()
-{
-	echo "==> filtering non-exising file entries"
-	non_exists=$(grep -o '\[.\+\]' "$zathura_his" | sed 's/\[\(.*\)\]/\1/' | xargs -I{} sh -c "test ! -e \"{}\" && echo \"{}\"")
-	(($(echo -n "$non_exists" | wc -l) > 0)) && non_exists=$(echo -n "$non_exists" | sed '/^$/d' | tr '\n' '|' | sed 's/|/\\|/g') || return 0
-
-	echo "==> removing non-exising file entries"
-	vim_cmd=":g?$non_exists?norm dap"
-	nvim --headless +"$vim_cmd" +wq "$zathura_his"
-}
-
-zathura_clean()
-{
-	[[ ! -f "$zathura_his" ]] && echo "Zathura history file not found" >&2 && return 127
-
-	zathura_old_entries
-	zathura_non_exist_entries
-}
-
 journal_clean()
 {
 	sudo journalctl --vacuum-time=1week
@@ -68,5 +34,4 @@ journal_clean()
 package_cache_clean
 nvim_undo_clean
 nvim_log_clean
-zathura_clean
 journal_clean

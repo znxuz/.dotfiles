@@ -78,6 +78,11 @@ silent! delc EditQuery " useless neovim command polluting the shorthand to :Ex
 
 " === netrw ===
 let netrw_banner = 0
+nn <leader>nn <cmd>Ntree<cr>
+nn <leader>ne <cmd>Explore<cr>
+nn <leader>nr <cmd>Rexplore<cr>
+nn <leader>nh <cmd>Hexplore<cr>
+nn <leader>nl <cmd>Lexplore<cr>
 
 " === plugins ===
 lua require('config.lazy')
