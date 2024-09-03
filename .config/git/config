@@ -6,7 +6,7 @@
 [init]
 	defaultBranch = main
 [alias]
-	nccommit = commit -a --allow-empty-message -m \"\"
+	nccommit = commit --allow-empty-message -m \"\"
 [diff]
     tool = nvimdiff
 [difftool "nvimdiff"]
