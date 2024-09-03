@@ -8,13 +8,13 @@ source $XDG_CONFIG_HOME/shell/aliasrc
 
 setopt prompt_subst
 autoload -Uz vcs_info
-zstyle ':vcs_info:*' formats '%F{magenta}[%F{green}%b%F{magenta}]%F{blue}'
+zstyle ':vcs_info:*' formats ' %F{magenta}[%F{green}%b%F{magenta}]%F{blue}'
 zstyle ':vcs_info:*' enable git
 precmd () { vcs_info }
 
 PROMPT='%B%F{blue}%~' # pwd
-PROMPT="$PROMPT "'${vcs_info_msg_0_}' # git branch integration
-PROMPT="$PROMPT %(1j.%F{magenta}[%F{yellow}%j%F{magenta}] .)" # job count
+PROMPT="$PROMPT"'${vcs_info_msg_0_}' # git branch integration
+PROMPT="$PROMPT %(1j.%F{magenta}[%F{yellow}%j%F{magenta}].)" # job count
 PROMPT="$PROMPT"$'\n'"%(?.%F{blue}.%F{red})⤷%f%b " # actual prompt on a new line
 
 # dir colors
