@@ -7,8 +7,9 @@ fifo="/tmp/poly-pkg-upgrade.fifo"
 
 set_output()
 {
+	pacman_lck="/var/lib/pacman/db.lck"
 	output=""
-	[[ -f /var/lib/pacman/db.lck ]] && return 1
+	[[ -f "$pacman_lck" ]] && sudo rm "$pacman_lck"
 	paru -Sy &>/dev/null
 	pac_upd="$(pacman -Qqu)"
 	count=$(echo "$pac_upd" | wc -l)
