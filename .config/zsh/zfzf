@@ -3,8 +3,8 @@ source /usr/share/fzf/key-bindings.zsh
 # reset defaults
 
 bindkey -r '^T' && bindkey '^f' fzf-file-widget
-bindkey -r '^r' && bindkey '^o' fzf-history-widget
 bindkey -r '\ec' && bindkey '^t' fzf-cd-widget
+# bindkey -r '^r' && bindkey '^o' fzf-history-widget
 
 cd_fzf()
 {
