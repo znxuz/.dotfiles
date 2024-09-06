@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-dest=${1:-"/mnt/external/home/z"}
+dest=${1:-"/mnt/home/z"}
 misc_dir=$XDG_CONFIG_HOME/misc
 log=$HOME/homesync.log
 
 rsync -azvhP --del --delete-excluded --exclude ".ssh" --exclude ".gnupg" --exclude ".cache" \
+	--exclude ".config/BraveSoftware" --exclude ".config/discord" \
 	"$HOME" "$dest" | tee "$log" 2>&1
 
 pacman -Qqen | tee "$misc_dir/Qqen" && cp -f "$misc_dir/Qqen" "$dest"

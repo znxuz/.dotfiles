@@ -7,13 +7,16 @@ lm_sensors.service                 enabled disabled
 NetworkManager-dispatcher.service  enabled disabled
 NetworkManager-wait-online.service enabled disabled
 NetworkManager.service             enabled disabled
+nix-daemon.service                 enabled disabled
 sshd.service                       enabled disabled
 systemd-resolved.service           enabled enabled
 systemd-timesyncd.service          enabled enabled
 tlp.service                        enabled disabled
 wpa_supplicant.service             enabled disabled
+docker.socket                      enabled disabled
 systemd-userdbd.socket             enabled enabled
 remote-fs.target                   enabled enabled
 fstrim.timer                       enabled disabled
+snapper-cleanup.timer              enabled disabled
 
-16 unit files listed.
+19 unit files listed.
