@@ -22,8 +22,7 @@ xinput disable "SynPS/2 Synaptics TouchPad"
 xinput set-button-map "TPPS/2 Elan TrackPoint" 1 0 3
 
 # trackpoint keyboard
-for id in $(xinput list |
-	grep 'Lenovo TrackPoint Keyboard II' |
+for id in $(xinput list | grep 'TrackPoint Keyboard II' |
 	sed 's/.*=\([0-9]\+\).*/\1/'); do
 	xinput list-props $id | grep -q 'libinput Accel Speed' &&
 	xinput set-prop $id 'libinput Accel Speed' -0.1 &&

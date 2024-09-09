@@ -83,9 +83,8 @@ vim.api.nvim_create_augroup('LspMapping', { clear = false })
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = 'LspMapping',
 	callback = function(_)
-		map('n', 'gr', function() builtin.lsp_references() end, { buffer = true })
+		map('n', 'grr', function() builtin.lsp_references() end, { buffer = true })
 		map('n', 'gI', function() builtin.lsp_implementations() end, { buffer = true })
-		map('n', '<leader>aa', function() vim.lsp.buf.code_action() end, { buffer = true })
 		map('n', '<leader>s', function() builtin.lsp_document_symbols() end, { buffer = true })
 		map('n', '<leader>S', function() builtin.lsp_workspace_symbols() end, { buffer = true })
 		map('n', '<leader>d', function() builtin.diagnostics({ bufnr = 0 }) end, { buffer = true })

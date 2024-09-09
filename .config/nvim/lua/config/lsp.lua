@@ -13,7 +13,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map('n', '<leader>ai', function ()
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
 		end, { buffer = true })
-		map('n', '<leader>ar', function () vim.lsp.buf.rename() end, { buffer = true })
 		map('n', 'gh', function () vim.lsp.buf.hover() end, { buffer = true })
 		map('i', '<c-h>', function () vim.lsp.buf.signature_help() end, { buffer = true })
 	end,
