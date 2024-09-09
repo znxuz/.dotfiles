@@ -14,8 +14,8 @@ precmd () { vcs_info }
 
 PROMPT='%B%F{blue}%n%F{magenta}:%F{blue}%~' # pwd
 PROMPT="$PROMPT"'${vcs_info_msg_0_}' # git branch integration
-PROMPT="$PROMPT %(1j.%F{magenta}[%F{yellow}%j%F{magenta}].)" # job count
-PROMPT="$PROMPT"$'\n'"%(?.%F{blue}.%F{red})⤷%f%b " # actual prompt on a new line
+PROMPT="$PROMPT$"$'\n'"%(1j.%F{magenta}[%F{yellow}%j%F{magenta}] .)" # job count
+PROMPT="$PROMPT""%(?.%F{blue}.%F{red})⤷%f%b " # actual prompt on a new line
 
 # dir colors
 
