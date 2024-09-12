@@ -10,7 +10,6 @@ set sbr=>\\
 set list
 set lcs=tab:│\ ,nbsp:␣,trail:•
 set cul
-set nohls
 set exrc
 filetype plugin indent on
 

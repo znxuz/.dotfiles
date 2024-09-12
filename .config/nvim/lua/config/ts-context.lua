@@ -10,4 +10,4 @@ require'treesitter-context'.setup {
   zindex = 20,
   on_attach = nil,
 }
-require('config.mapper').map('n', '<leader>ac', '<cmd>TSContextToggle<cr>')
+require('config.mapper').map('n', 'grc', '<cmd>TSContextToggle<cr>')
