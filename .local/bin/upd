@@ -1,12 +1,20 @@
 #!/usr/bin/env bash
 
-pac_upg()
+pac_upd()
 {
 	[[ -f /var/lib/pacman/db.lck ]] && sudo rm /var/lib/pacman/db.lck
 
 	paru -Syu --noconfirm &&
 		pgrep -f 'poly-pkg-upgrade' &> /dev/null && poly-pkg-upgrade -u
+
 	return 0
 }
 
-pac_upg
+nvim_upd()
+{
+	nvim --headless +'La load nvim-treesitter | TSUpdate' +q
+	echo ""
+}
+
+pac_upd
+nvim_upd

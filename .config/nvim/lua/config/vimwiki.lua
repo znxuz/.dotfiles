@@ -12,6 +12,12 @@ vim.g.vimwiki_list = {
 		ext = '.md'
 	},
 	{
+		name = 'work',
+		path = '~/Dropbox/notes/work',
+		syntax = 'markdown',
+		ext = '.md'
+	},
+	{
 		name = 'fhdo',
 		path = '~/Dropbox/notes/fh',
 		syntax = 'markdown',
