@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+for path in "$@"; do
+	attr -s com.dropbox.ignored -V 1 "$path"
+done
