@@ -10,17 +10,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(_)
 		map('n', 'gd', function() vim.lsp.buf.definition() end, { buffer = true })
 		map('n', 'gD', function() vim.lsp.buf.type_definition() end, { buffer = true })
-		map('n', 'gri', function ()
+		map('n', 'gri', function()
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
 		end, { buffer = true })
-		map('n', 'gh', function () vim.lsp.buf.hover() end, { buffer = true })
-		map('i', '<c-h>', function () vim.lsp.buf.signature_help() end, { buffer = true })
+		map('n', 'gh', function() vim.lsp.buf.hover() end, { buffer = true })
+		map('i', '<c-h>', function() vim.lsp.buf.signature_help() end, { buffer = true })
 	end,
 })
 
 -- clangd
 lspc.clangd.setup {
-	cmd = { 'clangd', '--background-index', '--log=error', '--query-driver=/usr/bin/arm-none-eabi-gcc,/usr/bin/arm-none-eabi-g++' },
+	cmd = {
+		'clangd',
+		'--background-index',
+		'--log=error',
+		'--query-driver=/usr/bin/arm-none-eabi-gcc,/usr/bin/arm-none-eabi-g++'
+	},
 	capabilities = {
 		textDocument = { completion = { completionItem = { snippetSupport = false } } },
 	},
@@ -36,7 +41,7 @@ lspc.lua_ls.setup {
 			runtime = { version = 'LuaJIT', },
 			diagnostics = {
 				-- Get the language server to recognize the `vim` global
-				globals = {'vim'},
+				globals = { 'vim' },
 			},
 			workspace = {
 				-- Make the server aware of Neovim runtime files
@@ -51,7 +56,7 @@ lspc.lua_ls.setup {
 lspc.rust_analyzer.setup {
 	settings = {
 		['rust-analyzer'] = {
-			diagnostics = { enable = true; }
+			diagnostics = { enable = true, }
 		}
 	}
 }
@@ -65,10 +70,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- bash
-require'lspconfig'.bashls.setup{}
+require 'lspconfig'.bashls.setup {}
 
 -- python
-require'lspconfig'.pylsp.setup{}
+require 'lspconfig'.pylsp.setup {}
 
 --dart
-require'lspconfig'.dartls.setup{}
+require 'lspconfig'.dartls.setup {}

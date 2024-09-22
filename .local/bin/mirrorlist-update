@@ -7,5 +7,5 @@ fi
 
 log="$HOME/reflector.log"
 touch "$log"
-sudo reflector --country Germany --sort score -f 50 -l 100 --save /etc/pacman.d/mirrorlist | tee "$log" 2>&1 &&
+sudo reflector --country Germany --sort score -f 25 -l 50 --save /etc/pacman.d/mirrorlist | tee "$log" 2>&1 &&
 	printf "\n== mirrorlist updated ==\n\n" | tee "$log" && tee "$log" < /etc/pacman.d/mirrorlist

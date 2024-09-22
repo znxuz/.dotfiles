@@ -1,25 +1,25 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out,                            "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
 end
 
 vim.opt.rtp:prepend(lazypath)
-require'lazy'.setup({
+require 'lazy'.setup({
 	-- almighty picker --
 	{
 		'nvim-telescope/telescope.nvim',
 		dependencies = 'nvim-lua/plenary.nvim',
-		config = function () require('config.telescope') end
+		config = function() require('config.telescope') end
 	},
 	{
 		'nvim-telescope/telescope-fzf-native.nvim',
@@ -36,7 +36,7 @@ require'lazy'.setup({
 	-- lsp --
 	{
 		'neovim/nvim-lspconfig',
-		config = function () require('config.lsp') end
+		config = function() require('config.lsp') end
 	},
 	{
 		'hrsh7th/nvim-cmp',
@@ -46,7 +46,7 @@ require'lazy'.setup({
 			'L3MON4D3/LuaSnip',
 			'saadparwaiz1/cmp_luasnip',
 		},
-		config = function ()
+		config = function()
 			require('config.nvim-cmp')
 			require('config.ls')
 		end
@@ -60,7 +60,7 @@ require'lazy'.setup({
 	{
 		'vimwiki/vimwiki',
 		keys = { { '<leader>ws', '<cmd>VimwikiUISelect<cr>', desc = 'Vimwiki UI select' } },
-		init = function () require('config.vimwiki') end
+		init = function() require('config.vimwiki') end
 	},
 	{
 		'romainl/vim-devdocs',
@@ -72,7 +72,7 @@ require'lazy'.setup({
 	},
 	{
 		'mbbill/undotree',
-		config = function ()
+		config = function()
 			require('config.mapper').map('n', '<leader>u', '<cmd>UndotreeToggle<cr>')
 		end
 	},
@@ -90,7 +90,7 @@ require'lazy'.setup({
 	{
 		'nvim-treesitter/nvim-treesitter-context',
 		dependencies = 'nvim-treesitter/nvim-treesitter',
-		config = function () require('config.ts-context') end,
+		config = function() require('config.ts-context') end,
 		event = 'LspAttach',
 	},
 	{
@@ -101,11 +101,12 @@ require'lazy'.setup({
 	-- colortheme --
 	{
 		'rose-pine/neovim',
-		config = function () require('config.colors') end
+		priority = 1000,
+		config = function() require('config.colors') end
 	},
 	{
 		'nvim-treesitter/nvim-treesitter',
-		config = function () require('config.treesitter') end,
+		config = function() require('config.treesitter') end,
 		lazy = true
 	},
 }, {

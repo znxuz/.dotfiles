@@ -1,9 +1,9 @@
-if pcall(function () require('jdtls') end) == false
+if pcall(function() require('jdtls') end) == false
 then
 	return
 end
 
-require('config.mapper').map('n', '<leader>ao', function () require("jdtls").organize_imports() end)
+require('config.mapper').map('n', '<leader>ao', function() require("jdtls").organize_imports() end)
 
 local xdg_data_home = os.getenv('XDG_DATA_HOME')
 local config = {
@@ -23,7 +23,7 @@ local config = {
 		'-data', xdg_data_home .. '/nvim/jdtls/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 	},
 
-	root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'}),
+	root_dir = require('jdtls.setup').find_root({ '.git', 'mvnw', 'gradlew' }),
 
 	settings = {
 		java = {

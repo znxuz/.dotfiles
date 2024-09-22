@@ -5,16 +5,16 @@ local ELLIPSIS_CHAR = '…'
 local compare = cmp.config.compare
 
 cmp.setup {
-	enabled = function ()
+	enabled = function()
 		if vim.fn.bufname("%") == "[Command Line]" then
 			return false
-		elseif vim.api.nvim_get_option_value('buftype', { buf = 0}) == 'prompt' then
+		elseif vim.api.nvim_get_option_value('buftype', { buf = 0 }) == 'prompt' then
 			return false
 		end
 		return true
 	end,
 	preselect = cmp.PreselectMode.None,
-	snippet = { expand = function(args) require'luasnip'.lsp_expand(args.body) end, },
+	snippet = { expand = function(args) require 'luasnip'.lsp_expand(args.body) end, },
 	sorting = {
 		comparators = {
 			compare.score, -- sources' priority probably
@@ -31,22 +31,6 @@ cmp.setup {
 		['<c-e>'] = cmp.mapping(cmp.mapping.scroll_docs(1), { 'i', 'c' }),
 		['<c-y>'] = cmp.mapping(cmp.mapping.scroll_docs(-1), { 'i', 'c' }),
 		['<tab>'] = cmp.mapping.confirm({ select = true }),
-		-- ['<tab>'] = cmp.mapping(function (fallback)
-			-- if cmp.visible() then
-				-- cmp.confirm({ select = true })
-			-- elseif  ls.jumpable(1) then
-				-- ls.jump(1)
-			-- else
-				-- fallback()
-			-- end
-		-- end, {'i', 's'}),
-		-- ['<s-tab>'] = cmp.mapping(function (fallback)
-			-- if ls.jumpable(-1) then
-				-- ls.jump(-1)
-			-- else
-				-- fallback()
-			-- end
-		-- end, {'i', 's'}),
 		['<c-p>'] = cmp.mapping.select_prev_item(),
 		['<c-n>'] = cmp.mapping.select_next_item(),
 		['<c-l>'] = cmp.mapping.complete(),

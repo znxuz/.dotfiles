@@ -1,4 +1,5 @@
 set shell zsh
+set hidden true
 
 set promptfmt "\033[34;1m%d\033[0m\033[1m%f\033[0m"
 set ratios 1:2:1

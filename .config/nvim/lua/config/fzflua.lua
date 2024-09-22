@@ -15,8 +15,8 @@ require('fzf-lua').setup {
 	},
 	keymap = {
 		builtin = {
-			["<c-e>"]    = "preview-page-down",
-			["<c-y>"]      = "preview-page-up",
+			["<c-e>"] = "preview-page-down",
+			["<c-y>"] = "preview-page-up",
 		},
 		fzf = {
 			['alt-a'] = 'toggle-all',
@@ -77,13 +77,13 @@ end
 
 local map = require('config.mapper').map
 map('n', '<leader>f', '<cmd>FzfLua files<cr>')
-map('n', '<leader>cf', function () require('fzf-lua').files({ cwd = vim.fn.expand('%:h') }) end)
-map('n', '<leader>if', function () require("config.fzflua").find_files_in() end)
+map('n', '<leader>cf', function() require('fzf-lua').files({ cwd = vim.fn.expand('%:h') }) end)
+map('n', '<leader>if', function() require("config.fzflua").find_files_in() end)
 map('n', '<leader>b', '<cmd>FzfLua buffers<cr>')
 map('n', '<leader>r', '<cmd>FzfLua live_grep<cr>')
 map('n', '<leader>o', '<cmd>FzfLua oldfiles<cr>')
 map('n', '<leader>l', '<cmd>FzfLua lines<cr>')
-map('n', '<leader>ir', function () require("config.fzflua").grep_in() end)
+map('n', '<leader>ir', function() require("config.fzflua").grep_in() end)
 map('n', '<leader>A', '<cmd>FzfLua builtin<cr>')
 map('n', '<leader>j', '<cmd>FzfLua jumps<cr>')
 map('n', '<leader>h', '<cmd>FzfLua help_tags<cr>')
