@@ -4,7 +4,7 @@ XRANDR_CONNECTED="$(xrandr | grep '\bconnected' -A1)"
 
 
 declare -A dpi_map
-dpi_map=([3840x2160]=192 [2560x1440]=144 [1920x1080]=120)
+dpi_map=([3840x2160]=192 [2560x1440]=144 [1920x1080]=96)
 
 main()
 {
