@@ -77,7 +77,7 @@ end)
 map('n', '<leader>h', function() builtin.help_tags() end)
 map('n', '<leader>j', function() builtin.jumplist() end)
 map('n', '<leader>k', function() builtin.keymaps() end)
-map('n', '<leader>A', function() builtin.builtin() end)
+map('n', '<leader>t', function() builtin.builtin() end)
 
 vim.api.nvim_create_augroup('LspMapping', { clear = false })
 vim.api.nvim_create_autocmd('LspAttach', {

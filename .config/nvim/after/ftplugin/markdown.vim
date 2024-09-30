@@ -65,7 +65,7 @@ nnoremap <buffer> - <Plug>VimwikiGoBackLink
 nnoremap <buffer> <c-n> <Plug>VimwikiNextLink
 nnoremap <buffer> <c-p> <Plug>VimwikiPrevLink
 
-nnoremap <buffer> <leader>gp <cmd>call MD2PDF()<cr>
+nnoremap <buffer> <leader>mp <cmd>call MD2PDF()<cr>
 nnoremap <buffer> <leader>wp <cmd>call Paste_image_from_clip()<cr>
 
 " nabla.nvim

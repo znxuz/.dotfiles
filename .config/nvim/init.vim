@@ -1,4 +1,4 @@
-" === my defaults ===
+"sdf === my defaults ===
 syntax enable
 set nu
 set sw=0 ts=4
@@ -17,7 +17,7 @@ filetype plugin indent on
 let mapleader = " "
 
 " === file management ===
-set shada+=n$XDG_STATE_HOME/nvim/viminfo
+set shada+=n$HOME/.local/state/nvim/viminfo
 set udf
 
 " === completion ===
@@ -44,8 +44,8 @@ fu! DefSTL() abort
 	let stl = ""
 	let stl .= "%<\ %{PathReduce(getcwd())}"
 	let stl .= "%{expand('%')==''?'':'\ \ \|\ '.PathReduce(expand('%:p'))}"
-	let stl .= "%{&modified?'\ \ [+]':''}"
-	let stl .= "%{&readonly?'\ \ [RO]':''}"
+	let stl .= "%4m"
+	let stl .= "%5r"
 	let stl .= "%{&paste?'\ \ [P]':''}"
 	let stl .= "%{LuaStlCallback()}"
 	let stl .= "%="
@@ -74,14 +74,7 @@ set stl=%!DefSTL()
 " === nvim ===
 set mouse=
 set guicursor=a:block
-silent! delc EditQuery " useless neovim command polluting the shorthand to :Ex
-
-" === netrw ===
-nn <leader>nn <cmd>Ntree<cr>
-nn <leader>ne <cmd>Explore<cr>
-nn <leader>nr <cmd>Rexplore<cr>
-nn <leader>nh <cmd>Hexplore<cr>
-nn <leader>nl <cmd>Lexplore<cr>
+silent! delc EditQuery " dumb builtin command polluting the shorthand to :Ex
 
 " === plugins ===
 lua require('config.lazy')

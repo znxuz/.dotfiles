@@ -15,7 +15,7 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 require 'lazy'.setup({
-	-- almighty picker --
+	-- essentials --
 	{
 		'nvim-telescope/telescope.nvim',
 		dependencies = 'nvim-lua/plenary.nvim',
@@ -25,8 +25,6 @@ require 'lazy'.setup({
 		'nvim-telescope/telescope-fzf-native.nvim',
 		build = 'make'
 	},
-
-	-- speedy edit --
 	{
 		"kylechui/nvim-surround",
 		event = 'VeryLazy',
@@ -97,8 +95,12 @@ require 'lazy'.setup({
 		'wakatime/vim-wakatime',
 		lazy = false,
 	},
+	{
+		"robitx/gp.nvim",
+		config = function() require('config.gp') end,
+	},
 
-	-- colortheme --
+	-- colors --
 	{
 		'rose-pine/neovim',
 		priority = 1000,
