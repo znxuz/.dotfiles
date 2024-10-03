@@ -4,14 +4,14 @@ local MAIN_MODE = 'tabnew'
 require("gp").setup({
 	openai_api_key = { "pass", "openai" },
 	chat_confirm_delete = false,
-	default_chat_agent = 'gpt-4o-mini-code',
+	default_chat_agent = 'gpt-code',
 	agents = {
 		{
 			provider = 'openai',
-			name = "gpt-4o-mini-code",
+			name = "gpt-code",
 			chat = true,
 			command = false,
-			model = { model = "gpt-4o-mini", temperature = 0.3, top_p = 0.3 },
+			model = { model = "gpt-4o-mini", temperature = 0.3, top_p = 0.2 },
 			system_prompt = require("gp.defaults").code_system_prompt
 		},
 	}

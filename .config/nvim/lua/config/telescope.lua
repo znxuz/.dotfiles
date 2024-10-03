@@ -3,6 +3,11 @@ local builtin = require('telescope.builtin')
 local actions = require('telescope.actions')
 local actions_layout = require('telescope.actions.layout')
 
+local lsp_symbols_config = {
+  fname_width = 50,
+  symbol_width = 40,
+}
+
 telescope.setup {
 	defaults = {
 		layout_strategy = 'vertical',
@@ -35,6 +40,8 @@ telescope.setup {
 			sort_mru = true,
 			ignore_current_buffer = true,
 		},
+		lsp_document_symbols = lsp_symbols_config,
+		lsp_workspace_symbols = lsp_symbols_config,
 	},
 	extensions = {
 		fzf = {

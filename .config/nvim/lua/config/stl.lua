@@ -8,7 +8,8 @@ local function diagnostic_count()
 	local warn = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
 	local err = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
 	if warn ~= 0 or err ~= 0 then
-		return string.format("⚠️%d ❌%d", warn, err)
+		-- return string.format("⚠️%d ❌%d", warn, err)
+		return string.format(" %d  %d", warn, err)
 	end
 	return ""
 end
