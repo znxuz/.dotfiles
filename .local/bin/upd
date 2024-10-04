@@ -10,11 +10,4 @@ pac_upd()
 	return 0
 }
 
-nvim_upd()
-{
-	nvim --headless +'La load nvim-treesitter | TSUpdate' +q
-	echo ""
-}
-
 pac_upd
-nvim_upd

@@ -87,11 +87,9 @@ mesa-utils
 mpv
 mpv-mpris
 ncdu
-neovim
 network-manager-applet
 networkmanager
 newsboat
-nix
 nm-connection-editor
 noto-fonts
 noto-fonts-cjk
@@ -140,6 +138,7 @@ rsync
 rustup
 s-tui
 screenkey
+slock
 smartmontools
 snapper
 sof-firmware

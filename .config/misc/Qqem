@@ -4,7 +4,7 @@ dict-wn
 dockd
 droidcam-obs-plugin-bin
 dropbox
-nix-zsh-completions
+neovim-nightly-bin
 pandoc-bin
 paru
 paru-debug
@@ -17,6 +17,7 @@ rmapi
 ros2-humble
 ros2-jazzy-base
 rose-pine-gtk-theme
+saleae-logic2
 shellcheck-bin
 sip4
 stm32cubemx
@@ -26,4 +27,3 @@ uget-integrator-chromium
 wechat-universal-bwrap
 whisper-git
 zotify
-zsh-nix-shell

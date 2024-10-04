@@ -20,3 +20,5 @@ require('nvim-treesitter.configs').setup {
 	autopairs = { enable = false },
 	indent = { enable = false },
 }
+
+vim.cmd 'silent TSUpdate'
