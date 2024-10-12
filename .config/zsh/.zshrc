@@ -13,9 +13,11 @@ zstyle ':vcs_info:*' enable git
 precmd () { vcs_info }
 
 PROMPT='%B%F{blue}%n%F{magenta}:%F{blue}%~' # pwd
-PROMPT="$PROMPT"'${vcs_info_msg_0_}' # git branch integration
-PROMPT="$PROMPT"$'\n'"%(1j.%F{magenta}[%F{yellow}%j%F{magenta}] .)" # job count
-PROMPT="$PROMPT""%(?.%F{blue}.%F{red})⤷%f%b " # actual prompt on a new line
+PROMPT+='${vcs_info_msg_0_}' # git branch integration
+[[ -n $IN_NIX_SHELL ]] && PROMPT+=" %F{magenta}[%F{yellow}$IN_NIX_SHELL%F{magenta}]%f" # nix
+
+PROMPT+=$'\n'"%(1j.%F{magenta}[%F{yellow}%j%F{magenta}] .)" # job count
+PROMPT+="%(?.%F{blue}.%F{red})⤷%f%b " # actual prompt on a new line
 
 # dir colors
 
@@ -88,3 +90,4 @@ ross-ws()
 
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-nix-shell/nix-shell.plugin.zsh

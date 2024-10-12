@@ -12,121 +12,59 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 		os.exit(1)
 	end
 end
-
 vim.opt.rtp:prepend(lazypath)
+
 require 'lazy'.setup({
-	-- essentials --
-	{
-		'nvim-telescope/telescope.nvim',
-		dependencies = 'nvim-lua/plenary.nvim',
-		config = function() require('config.telescope') end
-	},
-	{
-		'nvim-telescope/telescope-fzf-native.nvim',
-		build = 'make'
-	},
+	{ import = 'plugins' },
+
 	{
 		"kylechui/nvim-surround",
 		event = 'VeryLazy',
-		config = true
-	},
-
-	-- lsp --
-	{
-		'neovim/nvim-lspconfig',
-		config = function() require('config.lsp') end
-	},
-	{
-		'hrsh7th/nvim-cmp',
-		dependencies = {
-			'hrsh7th/cmp-nvim-lsp',
-			'hrsh7th/cmp-buffer',
-			'L3MON4D3/LuaSnip',
-			'saadparwaiz1/cmp_luasnip',
-		},
-		config = function()
-			require('config.nvim-cmp')
-			require('config.ls')
-		end
-	},
-	{
-		'mfussenegger/nvim-jdtls',
-		lazy = true
-	},
-
-	-- misc --
-	{
-		'vimwiki/vimwiki',
-		keys = { { '<leader>ws', '<cmd>VimwikiUISelect<cr>', desc = 'Vimwiki UI select' } },
-		init = function() require('config.vimwiki') end
-	},
-	{
-		'romainl/vim-devdocs',
-		event = 'LspAttach',
-	},
-	{
-		'lewis6991/gitsigns.nvim',
 		config = true,
 	},
+	{ 'mfussenegger/nvim-jdtls', lazy = true },
+	{ 'lewis6991/gitsigns.nvim', config = true },
+	{ 'romainl/vim-devdocs',     event = 'LspAttach', },
 	{
 		'mbbill/undotree',
-		config = function()
-			require('config.mapper').map('n', '<leader>u', '<cmd>UndotreeToggle<cr>')
-		end
+		keys = { { '<leader>u', '<cmd>UndotreeToggle<cr>', desc = 'Undotree Toggle' } },
 	},
 	{
 		'jbyuki/nabla.nvim',
 		dependencies = 'nvim-treesitter/nvim-treesitter',
-		lazy = true,
 		ft = { 'vimwiki', 'md', 'tex' }
 	},
-	{
-		'norcalli/nvim-colorizer.lua',
-		config = true,
-		cmd = 'ColorizerAttachToBuffer'
-	},
-	{
-		'nvim-treesitter/nvim-treesitter-context',
-		dependencies = 'nvim-treesitter/nvim-treesitter',
-		config = function() require('config.ts-context') end,
-		event = 'LspAttach',
-	},
-	{
-		'wakatime/vim-wakatime',
-		lazy = false,
-	},
-	{
-		"robitx/gp.nvim",
-		config = function() require('config.gp') end,
-	},
-
-	-- colors --
-	{
-		'rose-pine/neovim',
-		priority = 1000,
-		config = function() require('config.colors') end
-	},
-	{
-		'nvim-treesitter/nvim-treesitter',
-		config = function() require('config.treesitter') end,
-		lazy = true
-	},
+	{ 'norcalli/nvim-colorizer.lua', cmd = 'ColorizerAttachToBuffer' },
+	{ 'wakatime/vim-wakatime',       lazy = false, },
 }, {
+	lockfile = vim.fn.stdpath('state') .. "/lazy/lazy-lock.json",
+	install = { colorscheme = { 'rose-pine' } },
 	ui = {
 		icons = {
-			cmd = "⌘",
-			config = "🛠",
-			event = "📅",
-			ft = "📂",
-			init = "⚙",
-			keys = "🗝",
-			plugin = "🔌",
-			runtime = "💻",
-			require = "🌙",
-			source = "📄",
-			start = "🚀",
-			task = "📌",
-			lazy = "💤 ",
+			cmd = "",
+			config = "",
+			event = "",
+			favorite = "",
+			ft = "",
+			init = "",
+			import = "",
+			keys = "",
+			lazy = "",
+			loaded = "",
+			not_loaded = "",
+			plugin = "",
+			runtime = "",
+			require = "",
+			source = "",
+			start = "",
+			task = "",
+			list = {
+				"",
+				"",
+				"",
+				"",
+			},
 		},
 	},
+	change_detection = { enabled = false },
 })

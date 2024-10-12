@@ -34,7 +34,7 @@ endfu
 
 fu! LuaStlCallback()
 	try
-		return luaeval('require"config.stl".inject()')
+		return luaeval('require("stl").inject()')
 	catch /.*/
 		return ""
 	endtry

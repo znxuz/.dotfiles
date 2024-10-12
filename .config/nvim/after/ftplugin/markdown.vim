@@ -69,4 +69,4 @@ nnoremap <buffer> <leader>mp <cmd>call MD2PDF()<cr>
 nnoremap <buffer> <leader>wp <cmd>call Paste_image_from_clip()<cr>
 
 " nabla.nvim
-lua require('config.mapper').map('n', 'gp', function () require('nabla').popup() end, { buffer = true })
+lua vim.keymap.set('n', 'gp', function () require('nabla').popup() end, { buffer = true })

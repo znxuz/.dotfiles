@@ -3,7 +3,7 @@
 mode="$XDG_CONFIG_HOME/X11/themes/.mode"
 
 altty="$XDG_CONFIG_HOME/alacritty/colors.toml"
-nvm="$XDG_CONFIG_HOME/nvim/lua/config/bg.lua"
+nvm="$XDG_CONFIG_HOME/nvim/lua/bg.lua"
 rf="$XDG_CONFIG_HOME/rofi/colors.rasi"
 ztr="$XDG_CONFIG_HOME/zathura/colorsrc"
 dnst_dir="$XDG_CONFIG_HOME/dunst/dunstrc.d"

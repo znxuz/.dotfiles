@@ -3,7 +3,7 @@ then
 	return
 end
 
-require('config.mapper').map('n', '<leader>ao', function() require("jdtls").organize_imports() end)
+vim.keymap.set('n', '<leader>ao', function() require("jdtls").organize_imports() end)
 
 local xdg_data_home = os.getenv('XDG_DATA_HOME')
 local config = {
