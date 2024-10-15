@@ -62,10 +62,10 @@ XF86Bluetooth
 	if sudo systemctl is-active --quiet bluetooth.service; then sudo systemctl stop bluetooth.service; else sudo systemctl start bluetooth.service; fi
 
 # screenshot via flameshot script
-ctrl + Print
-	flameshotter gui
 Print
 	flameshotter screen
+super + Print
+	flameshotter gui
 
 ## system
 super + shift + Escape ; {K, s, S, U, R, X, c}

@@ -17,14 +17,10 @@ vim.opt.rtp:prepend(lazypath)
 require 'lazy'.setup({
 	{ import = 'plugins' },
 
-	{
-		"kylechui/nvim-surround",
-		event = 'VeryLazy',
-		config = true,
-	},
-	{ 'mfussenegger/nvim-jdtls', lazy = true },
+	{ "kylechui/nvim-surround", event = 'VeryLazy', config = true },
 	{ 'lewis6991/gitsigns.nvim', config = true },
-	{ 'romainl/vim-devdocs',     event = 'LspAttach', },
+	{ 'mfussenegger/nvim-jdtls', lazy = true },
+	{ 'romainl/vim-devdocs',     event = 'LspAttach' },
 	{
 		'mbbill/undotree',
 		keys = { { '<leader>u', '<cmd>UndotreeToggle<cr>', desc = 'Undotree Toggle' } },

@@ -1,7 +1,6 @@
-local config = function()
-	local MAIN_MODE = 'tabnew'
-	local map = vim.keymap.set
+local MAIN_MODE = 'tabnew'
 
+local config = function()
 	require("gp").setup({
 		openai_api_key = { "pass", "openai" },
 		chat_confirm_delete = false,
@@ -17,17 +16,18 @@ local config = function()
 			},
 		}
 	})
-
-	map('n', '<leader>gn', '<cmd>GpChatNew ' .. MAIN_MODE .. '<cr>')
-	map('n', '<leader>gt', '<cmd>GpChatToggle ' .. MAIN_MODE .. '<cr>')
-	map('n', '<leader>gd', '<cmd>GpChatDelete<cr>')
-	map('n', '<leader>gf', '<cmd>GpChatFinder<cr>')
-	map({ 'n', 'v' }, '<leader>gp', "<cmd>'<,'>GpChatPaste " .. MAIN_MODE .. '<cr>')
 end
 
 return {
 	{
 		"robitx/gp.nvim",
-		config = config
+		config = config,
+		keys = {
+			{ '<leader>gn', '<cmd>GpChatNew ' .. MAIN_MODE .. '<cr>' },
+			{ '<leader>gt', '<cmd>GpChatToggle ' .. MAIN_MODE .. '<cr>' },
+			{ '<leader>gd', '<cmd>GpChatDelete<cr>' },
+			{ '<leader>gf', '<cmd>GpChatFinder<cr>' },
+			{ '<leader>gp', ":<c-u>'<,'>GpChatPaste " .. MAIN_MODE .. '<cr>', mode = 'v' } -- has to be :<c-u>'<,'>
+		}
 	},
 }

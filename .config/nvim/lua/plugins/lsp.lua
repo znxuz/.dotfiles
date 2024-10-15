@@ -14,12 +14,9 @@ local config = function()
 			map('n', 'gri', function()
 				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
 			end, { buffer = true })
-			map('n', 'gh', function() vim.lsp.buf.hover() end, { buffer = true })
-			map('i', '<c-h>', function() vim.lsp.buf.signature_help() end, { buffer = true })
 		end,
 	})
 
-	-- clangd
 	lspcfg.clangd.setup {
 		cmd = {
 			'clangd',
@@ -31,11 +28,8 @@ local config = function()
 			textDocument = { completion = { completionItem = { snippetSupport = false } } },
 		},
 	}
-
-	-- tex
 	lspcfg.texlab.setup {}
 
-	-- lua
 	lspcfg.lua_ls.setup {
 		settings = {
 			Lua = {
@@ -53,22 +47,15 @@ local config = function()
 		},
 	}
 
-	-- rust-analyzer
 	lspcfg.rust_analyzer.setup {
 		settings = {
 			['rust-analyzer'] = {
-				diagnostics = { enable = true, }
+				completion = {
+					callable = { snippets = "none" }
+				}
 			}
 		}
 	}
-
-	-- disable extra syntax highlighting
-	vim.api.nvim_create_autocmd("LspAttach", {
-		group = "LspMapping",
-		callback = function(args)
-			vim.lsp.get_client_by_id(args.data.client_id).server_capabilities.semanticTokensProvider = nil
-		end,
-	})
 
 	-- bash
 	lspcfg.bashls.setup {}
@@ -78,6 +65,14 @@ local config = function()
 
 	--dart
 	lspcfg.dartls.setup {}
+
+	-- disable extra syntax highlighting
+	vim.api.nvim_create_autocmd("LspAttach", {
+		group = "LspMapping",
+		callback = function(args)
+			vim.lsp.get_client_by_id(args.data.client_id).server_capabilities.semanticTokensProvider = nil
+		end,
+	})
 end
 
 return {

@@ -5,9 +5,19 @@ aur_icon="${1:-}"
 
 fifo="/tmp/poly-pkg-upgrade.fifo"
 
+check_pacman_lock()
+{
+	pacman_lck="/var/lib/pacman/db.lck"
+	[[ ! -f "$pacman_lck" ]] && return 0
+
+	sleep 300
+	[[ -f "$pacman_lck" ]] && sudo rm $pacman_lck
+}
+
 set_output()
 {
 	output=""
+	check_pacman_lock
 	paru -Sy &>/dev/null
 	pac_upd="$(pacman -Qqu)"
 	count=$(echo "$pac_upd" | wc -l)
