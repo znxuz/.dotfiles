@@ -1,6 +1,6 @@
 local config = function()
-	local map = vim.keymap.set
 	local lspcfg = require('lspconfig')
+	local map = vim.keymap.set
 
 	vim.opt.shortmess:append('c')
 	vim.opt.signcolumn = 'yes'

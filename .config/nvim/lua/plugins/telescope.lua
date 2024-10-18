@@ -1,14 +1,14 @@
-local telescope = require('telescope')
-local builtin = require('telescope.builtin')
-local actions = require('telescope.actions')
-local actions_layout = require('telescope.actions.layout')
-
-local lsp_symbols_config = {
-	fname_width = 50,
-	symbol_width = 40,
-}
-
 local config = function()
+	local telescope = require('telescope')
+	local builtin = require('telescope.builtin')
+	local actions = require('telescope.actions')
+	local actions_layout = require('telescope.actions.layout')
+
+	local lsp_symbols_config = {
+		fname_width = 50,
+		symbol_width = 40,
+	}
+
 	telescope.setup {
 		defaults = {
 			layout_strategy = 'vertical',
@@ -30,7 +30,7 @@ local config = function()
 					["<c-f>"] = actions_layout.toggle_preview,
 				},
 			},
-			file_ignore_patterns = { ".git", ".cache" },
+			file_ignore_patterns = { ".git", ".cache", "build" },
 		},
 		pickers = {
 			find_files = {

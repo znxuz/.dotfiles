@@ -14,7 +14,7 @@ local config = function()
 			return true
 		end,
 		preselect = cmp.PreselectMode.None,
-		snippet = { expand = function(args) require 'luasnip'.lsp_expand(args.body) end, },
+		snippet = { expand = function(args) require 'luasnip'.lsp_expand(args.body) end },
 		sorting = {
 			comparators = {
 				compare.score, -- sources' priority probably
@@ -69,6 +69,7 @@ return {
 			},
 			'saadparwaiz1/cmp_luasnip',
 		},
-		config = config
+		config = config,
+		event = "InsertEnter",
 	},
 }
