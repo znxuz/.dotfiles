@@ -34,7 +34,7 @@ local config = function()
 			['<c-p>'] = cmp.mapping.select_prev_item(),
 			['<c-n>'] = cmp.mapping.select_next_item(),
 			['<c-l>'] = cmp.mapping.complete(),
-			['<c-_>'] = cmp.mapping.abort(),
+			['<c-h>'] = cmp.mapping.abort(),
 		},
 		-- format pum max width
 		formatting = {
