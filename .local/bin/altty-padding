@@ -4,7 +4,7 @@ config=$XDG_CONFIG_HOME/alacritty/window.toml
 
 no_pad=10
 pad_x=150
-pad_y=50
+pad_y=20
 
 get_cur_val()
 {

@@ -24,7 +24,7 @@ set udf
 set wop=pum
 set wim=longest:full,full
 set cpt-=t
-set cot=menuone,preview,noinsert,noselect
+set cot=menuone,preview,noinsert
 set ph=10
 
 " === statusline ===

@@ -13,7 +13,8 @@ local config = function()
 			end
 			return true
 		end,
-		preselect = cmp.PreselectMode.None,
+		preselect = cmp.PreselectMode.Item,
+		completion = { completeopt = table.concat(vim.opt.completeopt:get(), ',') },
 		snippet = { expand = function(args) require 'luasnip'.lsp_expand(args.body) end },
 		sorting = {
 			comparators = {

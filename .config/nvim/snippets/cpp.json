@@ -261,5 +261,23 @@
 		"prefix": "rclerr",
 		"body": ["RCLCPP_ERROR($1, $0);"],
 		"description": "RCLCPP_ERROR() snippet"
+	},
+	"TEST": {
+		"prefix": "gtest",
+		"body": [
+			"TEST_F($1, $2) {",
+				"\t$0",
+				"}"
+		],
+		"description": "TEST() snippet"
+	},
+	"TEST_F": {
+		"prefix": "gtestf",
+		"body": [
+			"TEST_F($1, $2) {",
+				"\t$0",
+				"}"
+		],
+		"description": "TEST_F() snippet"
 	}
 }
