@@ -15,7 +15,7 @@ local config = function()
 			layout_config = {
 				width = 0.6,
 				height = 0.8,
-				preview_cutoff = 25
+				preview_cutoff = 30
 			},
 			borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
 			preview = {
