@@ -28,6 +28,7 @@ return {
 			{ '<leader>gd', '<cmd>GpChatDelete<cr>' },
 			{ '<leader>gf', '<cmd>GpChatFinder<cr>' },
 			{ '<leader>gp', ":<c-u>'<,'>GpChatPaste " .. MAIN_MODE .. '<cr>', mode = 'v' } -- has to be :<c-u>'<,'>
-		}
+		},
+		enabled = false,
 	},
 }

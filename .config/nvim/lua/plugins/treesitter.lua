@@ -10,9 +10,10 @@ local config = function()
 			'rust',
 			'vim',
 			'query',
-			-- 'latex', -- binary package in PATH needed
+			'latex', -- binary in package `treesitter-cli` in PATH needed
 			'toml',
-			'comment'
+			'comment',
+			'yaml',
 		},
 		highlight = {
 			enable = false,
