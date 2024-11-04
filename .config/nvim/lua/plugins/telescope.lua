@@ -31,6 +31,7 @@ local config = function()
 				},
 			},
 			file_ignore_patterns = { ".git", ".cache", "build" },
+			color_devicons = false,
 		},
 		pickers = {
 			find_files = {
@@ -44,14 +45,6 @@ local config = function()
 			lsp_document_symbols = lsp_symbols_config,
 			lsp_workspace_symbols = lsp_symbols_config,
 		},
-		extensions = {
-			fzf = {
-				fuzzy = true,
-				override_generic_sorter = true,
-				override_file_sorter = true,
-				case_mode = "smart_case",
-			}
-		}
 	}
 	telescope.load_extension('fzf')
 
@@ -92,11 +85,10 @@ local config = function()
 		group = 'LspMapping',
 		callback = function(_)
 			map('n', 'grr', function() builtin.lsp_references() end, { buffer = true })
-			map('n', 'gI', function() builtin.lsp_implementations() end, { buffer = true })
-			map('n', '<leader>s', function() builtin.lsp_document_symbols() end, { buffer = true })
-			map('n', '<leader>S', function() builtin.lsp_workspace_symbols() end, { buffer = true })
-			map('n', '<leader>d', function() builtin.diagnostics({ bufnr = 0 }) end, { buffer = true })
-			map('n', '<leader>D', function() builtin.diagnostics() end, { buffer = true })
+			map('n', 'gri', function() builtin.lsp_implementations() end, { buffer = true })
+			map('n', 'gO', function() builtin.lsp_document_symbols() end, { buffer = true })
+			map('n', 'grd', function() builtin.diagnostics({ bufnr = 0 }) end, { buffer = true })
+			map('n', 'grD', function() builtin.diagnostics() end, { buffer = true })
 		end,
 	})
 end

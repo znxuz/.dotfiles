@@ -72,7 +72,7 @@ super + Print
 
 ## system
 
-super + alt + Escape ; {k, s, super + s, u, r, super + X, c}
+super + alt + Escape ; {k, s, super + s, u, r, super + x, c}
 	{ notify-send -t 1000 "reloading sxhkd daemon"; sleep 1 && pkill -10 sxhkd \
 	, notify-send -t 1000 "...zzz"; sleep 1 && systemctl suspend \
 	, notify-send -t 1000 "  "; sleep 1 && systemctl poweroff \

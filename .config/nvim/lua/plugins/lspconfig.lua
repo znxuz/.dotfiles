@@ -9,9 +9,8 @@ local config = function()
 	vim.api.nvim_create_autocmd("LspAttach", {
 		group = "LspMapping",
 		callback = function(_)
-			map('n', 'gd', function() vim.lsp.buf.definition() end, { buffer = true })
-			map('n', 'gD', function() vim.lsp.buf.type_definition() end, { buffer = true })
-			map('n', 'gri', function()
+			map('n', 'gd', function() vim.lsp.buf.type_definition() end, { buffer = true })
+			map('n', 'grh', function()
 				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
 			end, { buffer = true })
 		end,
