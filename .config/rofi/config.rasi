@@ -1,18 +1,18 @@
 configuration {
     modi: "run";
-    font: "IBMPlexMono 10";
+    font: "IBMPlexMono Medium 11";
     cycle: true;
     sort: true;
     matching: "fuzzy";
     dpi: 0;
     scroll-method: 1;
     timeout {
-	action: "kb-cancel";
-	delay:  0;
+        action: "kb-cancel";
+        delay: 0;
      }
     filebrowser {
-	 directories-first: true;
-	 sorting-method:    "name";
+         directories-first: true;
+         sorting-method: "name";
      }
 }
 

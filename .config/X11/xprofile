@@ -1,3 +1,7 @@
+xinput_get_id() {
+	xinput | awk -F= "/$1/ {print \$2}" | awk '{print $1}'
+}
+
 #disable beep
 xset -b
 
@@ -19,18 +23,21 @@ fi
 
 # laptop
 xinput disable "SynPS/2 Synaptics TouchPad"
-xinput set-button-map "$(xinput | awk '/TPPS\/2.*TrackPoint/ {print $6}' | grep -Eo '[0-9]+')" 1 0 3
+xinput set-button-map "$(xinput_get_id 'TPPS\/2.*TrackPoint')" 1 0 3
 
 # trackpoint keyboard
-for id in $(xinput list | grep 'TrackPoint Keyboard II' |
-	sed 's/.*=\([0-9]\+\).*/\1/'); do
+xinput_get_id "TrackPoint Keyboard II" | while read -r id; do
 	# xinput list-props $id | grep -q 'libinput Accel Speed' &&
 	# xinput set-prop $id 'libinput Accel Speed' -0.1 &&
 	xinput set-button-map $id 1 0 3
 done
 
+# external keyboard at work
+xinput set-prop "$(xinput_get_id 'ThinkPad Compact USB Keyboard')" 12 318 0.2
+
+
 # auto switch audio upon bluetooth connect
 pactl list | grep -q module-switch-on-connect || pactl load-module module-switch-on-connect
 
 # theme
-xrdb -merge "$XDG_CONFIG_HOME/X11/themes/rose-pine-$(cat $XDG_CONFIG_HOME/X11/themes/.mode)"
+xrdb -merge "$XDG_CONFIG_HOME/X11/themes/$(< $XDG_CONFIG_HOME/X11/themes/.mode)"

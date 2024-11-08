@@ -5,6 +5,21 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 	},
 	opts = {
+		display = {
+			chat = {
+				window = {
+					layout = "buffer", -- float|vertical|horizontal|buffer
+					border = "single",
+					height = 0.8,
+					width = 0.6,
+					opts = {
+						cursorline = true,
+						spell = true,
+					},
+				},
+				show_settings = true
+			},
+		},
 		strategies = {
 			chat = { adapter = "openai" },
 			inline = { adapter = "openai" },
@@ -13,6 +28,20 @@ return {
 			openai = function()
 				return require("codecompanion.adapters").extend("openai", {
 					env = { api_key = "cmd: pass openai" },
+					schema = {
+						model = {
+							default = "gpt-4o",
+							choices = {
+								"gpt-4o",
+								"gpt-4o-mini",
+								"gpt-4-turbo-preview",
+								"gpt-4",
+								"gpt-3.5-turbo",
+							},
+						},
+						temperature = { default = 0.6, },
+						top_p = { default = 0.5, },
+					},
 				})
 			end,
 		},

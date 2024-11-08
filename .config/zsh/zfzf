@@ -2,8 +2,8 @@ source /usr/share/fzf/key-bindings.zsh
 
 # reset defaults
 
-bindkey -r '^T' && bindkey '^f' fzf-file-widget
-bindkey -r '\ec' && bindkey '^t' fzf-cd-widget
+bindkey -r '^T' && bindkey '^[f' fzf-file-widget
+bindkey -r '\ec' && bindkey '^[t' fzf-cd-widget
 # bindkey -r '^r' && bindkey '^o' fzf-history-widget
 
 cd_fzf()
@@ -19,7 +19,7 @@ cd_fzf()
 
 cd_fzf_home() { cd_fzf "$HOME" }
 
-zle -N cd_fzf_home && bindkey '^[^t' cd_fzf_home
+zle -N cd_fzf_home && bindkey '^[T' cd_fzf_home
 
 find_fzf()
 {
@@ -36,7 +36,7 @@ find_fzf()
 
 fzf_home() { find_fzf $HOME }
 
-zle -N fzf_home && bindkey '^[^f' fzf_home
+zle -N fzf_home && bindkey '^[F' fzf_home
 
 rpac()
 {
@@ -45,7 +45,7 @@ rpac()
 	LBUFFER=${LBUFFER}${ret}
 	zle reset-prompt
 }
-zle -N rpac && bindkey '^[^r' rpac
+zle -N rpac && bindkey '^[a' rpac
 
 lpac()
 {
@@ -54,7 +54,7 @@ lpac()
 	LBUFFER=${LBUFFER}${ret}
 	zle reset-prompt
 }
-zle -N lpac && bindkey '^[^l' lpac
+zle -N lpac && bindkey '^[l' lpac
 
 apac()
 {
@@ -79,4 +79,4 @@ apac()
 	LBUFFER=${LBUFFER}${ret}
 	zle reset-prompt
 }
-zle -N apac && bindkey '^[^a' apac
+zle -N apac && bindkey '^[A' apac

@@ -2,16 +2,14 @@
 size = 11
 
 [font.bold]
-family = "IBMPlexMono"
 style = "Bold"
 
 [font.bold_italic]
-family = "IBMPlexMono"
 style = "Bold Italic"
 
 [font.italic]
-family = "IBMPlexMono"
-style = "Italic"
+style = "Medium Italic"
 
 [font.normal]
 family = "IBMPlexMono"
+style = 'Medium'
