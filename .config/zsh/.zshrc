@@ -19,6 +19,8 @@ PROMPT+='${vcs_info_msg_0_}' # git branch integration
 PROMPT+=$'\n'"%(1j.%F{magenta}[%F{yellow}%j%F{magenta}] .)" # job count
 PROMPT+="%(?.%F{blue}.%F{red})⤷%f%b " # actual prompt on a new line
 
+# RPROMPT='%F{cyan}%D{%H:%M:%S}%f' # add a timestamp on the right side
+
 # dir colors
 
 eval $(dircolors $XDG_CONFIG_HOME/shell/dircolors)

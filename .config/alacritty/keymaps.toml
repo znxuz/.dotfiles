@@ -1,4 +1,4 @@
 [[keyboard.bindings]]
 action = "ClearLogNotice"
-key = "Space"
+key = "Backspace"
 mods = "Alt"

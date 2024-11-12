@@ -22,8 +22,10 @@ else
 fi
 
 # laptop
-xinput disable "SynPS/2 Synaptics TouchPad"
-xinput set-button-map "$(xinput_get_id 'TPPS\/2.*TrackPoint')" 1 0 3
+# xinput disable "SynPS/2 Synaptics TouchPad"
+trackpoint_id="$(xinput_get_id 'TPPS\/2.*TrackPoint')"
+xinput set-prop $trackpoint_id 'libinput Accel Speed' -0.2
+xinput set-button-map $trackpoint_id 1 0 3
 
 # trackpoint keyboard
 xinput_get_id "TrackPoint Keyboard II" | while read -r id; do
@@ -32,8 +34,8 @@ xinput_get_id "TrackPoint Keyboard II" | while read -r id; do
 	xinput set-button-map $id 1 0 3
 done
 
-# external keyboard at work
-xinput set-prop "$(xinput_get_id 'ThinkPad Compact USB Keyboard')" 12 318 0.2
+# compact trackpoint keyboard
+xinput set-prop "$(xinput_get_id 'ThinkPad Compact USB Keyboard')" 12 318 0.7
 
 
 # auto switch audio upon bluetooth connect
