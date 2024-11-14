@@ -1,5 +1,6 @@
+app-librescore-appimage
 brave-bin
-chatgpt.sh
+can-utils
 dict-wn
 dockd
 droidcam-obs-plugin-bin
@@ -14,8 +15,8 @@ quickemu
 redshift-minimal
 restream-git
 rmapi
-ros2-humble
 ros2-jazzy-base
+ros2-jazzy-base-teleop-twist-keyboard
 rose-pine-gtk-theme
 saleae-logic2
 shellcheck-bin
@@ -27,3 +28,4 @@ uget-integrator-chromium
 wechat-universal-bwrap
 whisper-git
 zotify
+zsh-nix-shell

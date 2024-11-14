@@ -35,7 +35,10 @@ xinput_get_id "TrackPoint Keyboard II" | while read -r id; do
 done
 
 # compact trackpoint keyboard
-xinput set-prop "$(xinput_get_id 'ThinkPad Compact USB Keyboard')" 12 318 0.7
+xinput_get_id 'ThinkPad Compact USB Keyboard' | while read -r id; do
+	xinput set-prop $id 'libinput Accel Speed' 0.3
+	xinput set-button-map $id 1 0 3
+done
 
 
 # auto switch audio upon bluetooth connect

@@ -26,6 +26,8 @@ calibre
 clang
 cppcheck
 cronie
+cups
+cups-pdf
 detox
 devtools
 dialog
@@ -56,11 +58,11 @@ gimp
 git
 github-cli
 gnome-keyring
+gptfdisk
 graphicsmagick
 gst-plugin-pipewire
 htop
 imagemagick
-iotop
 jdk17-openjdk
 jdk21-openjdk
 jdk8-openjdk
@@ -86,11 +88,14 @@ man-pages
 mesa-utils
 mpv
 mpv-mpris
+musescore
 ncdu
 network-manager-applet
 networkmanager
 newsboat
+nix
 nm-connection-editor
+nmap
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
@@ -128,6 +133,7 @@ python-lsp-server
 python-pydot
 python-pyopenssl
 qemu-full
+qrencode
 qt5-graphicaleffects
 qt5-quickcontrols
 reflector
@@ -151,6 +157,8 @@ tectonic
 texlab
 texlive-langgerman
 texlive-meta
+tgpt
+tig
 time
 tinyxml2
 tldr
@@ -161,6 +169,7 @@ todoman
 transmission-cli
 trash-cli
 tree
+tree-sitter-cli
 ttf-ibm-plex
 ueberzug
 uget
