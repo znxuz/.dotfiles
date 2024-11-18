@@ -7,8 +7,6 @@ droidcam-obs-plugin-bin
 dropbox
 neovim-nightly-bin
 pandoc-bin
-paru
-paru-debug
 python-pyqt5-sip4
 python-sip4
 quickemu
@@ -16,14 +14,12 @@ redshift-minimal
 restream-git
 rmapi
 ros2-jazzy-base
-ros2-jazzy-base-teleop-twist-keyboard
 rose-pine-gtk-theme
 saleae-logic2
 shellcheck-bin
 sip4
 stm32cubemx
 tango-icon-theme
-teams
 uget-integrator-chromium
 wechat-universal-bwrap
 whisper-git

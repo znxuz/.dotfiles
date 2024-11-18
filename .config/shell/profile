@@ -78,3 +78,7 @@ export NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
 # QT
 # export QT_ENABLE_HIGHDPI_SCALING=1 # causes rviz2 screen flickering
 export QT_SCREEN_SCALE_FACTORS=1 # screen flickering fix
+
+# make & cmake
+export MAKEFLAGS="-j$(nproc)"
+export CMAKE_BUILD_PARALLEL_LEVEL="$(nproc)"

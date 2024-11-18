@@ -27,24 +27,8 @@ settings.focusFirstCandidate = true;
 settings.hintAlign = "left";
 settings.hintShiftNonActive = true;
 
-unmap("R"); // unmap tab right
-unmap("E"); // unmap tab left
-unmap("x"); // unmap close tab
-unmap("<Ctrl-h>") // history
-unmap("<Ctrl-j>") // download
-unmap("D") // download
-iunmap(":"); // disable emoji
-
-map("D", "P"); // scroll full page down
-map("F", "C"); // open link in background
-map("<Alt-f>", "cf"); // open links in background
-map("yf", "ya"); // copy link to clip
-map("<Alt-6>", "<Ctrl-6>"); // prev tab
-map("^", "g0"); // go to first tab
-map("$", "g$"); // go to first tab
-
 const hintsCss =
-  "font-size: 8pt; font-family: 'JetBrains Mono NL', 'Cascadia Code', 'Helvetica Neue', Helvetica, Arial, sans-serif; border: solid 1px #e0def4; color: #e0def4 !important; background: #191724; background-color: #191724";
+  "font-size: 8pt; font-family: IBMPlex, monospace; border: solid 1px #e0def4; color: #e0def4 !important; background: #191724; background-color: #191724";
 
 Hints.style(hintsCss);
 Hints.style(hintsCss, "text");

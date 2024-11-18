@@ -16,9 +16,8 @@ super + alt + {b, k}
 
 ## playerctl
 
-super + alt + {space, s, n, p}
+super + alt + {s, n, p}
 	{ playerctl play-pause \
-	, playerctl stop \
 	, playerctl next \
 	, playerctl previous \
 	}
@@ -76,7 +75,7 @@ super + alt + Escape ; {k, s, super + s, u, r, super + x, c}
 	{ notify-send -t 1000 "reloading sxhkd daemon"; sleep 1 && pkill -10 sxhkd \
 	, notify-send -t 1000 "...zzz"; sleep 1 && systemctl suspend \
 	, notify-send -t 1000 "  "; sleep 1 && systemctl poweroff \
-	, notify-send -t 1000 "  "; sleep 1 && loginctl terminate-session self \
+	, notify-send -t 1000 "  "; sleep 1 && loginctl kill-session self \
 	, notify-send -t 1000 "  "; sleep 1 && reboot \
 	, notify-send -t 1000 "  "; sleep 1 && xrandr-reload \
 	, notify-send -t 1000 "  "; sleep 1 && eclipse \
