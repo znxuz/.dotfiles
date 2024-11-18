@@ -11,13 +11,10 @@ xset r rate 250 60
 # compose key
 setxkbmap -option compose:ralt
 
-# powertop auto-tune
-[ $(< /sys/class/power_supply/AC/online) -eq 0 ] && sudo powertop --auto-tune &
-
-# screen timeouts
 if [ $(cat /sys/class/power_supply/AC/online) -eq 1 ]; then
 	xset dpms 600 0 0
 else
+	sudo powertop --auto-tune &
 	xset dpms 60 300 600
 fi
 

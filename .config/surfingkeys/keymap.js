@@ -28,7 +28,7 @@ settings.hintAlign = "left";
 settings.hintShiftNonActive = true;
 
 const hintsCss =
-  "font-size: 8pt; font-family: IBMPlex, monospace; border: solid 1px #e0def4; color: #e0def4 !important; background: #191724; background-color: #191724";
+  "font-size: 8pt; border: solid 1px #e0def4; color: #e0def4 !important; background: #191724; background-color: #191724";
 
 Hints.style(hintsCss);
 Hints.style(hintsCss, "text");
