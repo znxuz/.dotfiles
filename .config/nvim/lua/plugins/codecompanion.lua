@@ -8,15 +8,16 @@ return {
 		display = {
 			chat = {
 				window = {
-					layout = "buffer", -- float|vertical|horizontal|buffer
+					layout = "horizontal", -- float|vertical|horizontal|buffer
 					border = "single",
-					height = 0.8,
-					width = 0.6,
+					-- height = 0.5,
+					-- width = 0.5,
 					opts = {
 						cursorline = true,
 						spell = true,
 					},
 				},
+				intro_message = "",
 				show_settings = true
 			},
 		},
