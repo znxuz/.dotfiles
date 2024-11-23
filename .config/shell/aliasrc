@@ -11,6 +11,6 @@ alias \
 		  tmrw='watch -n1 transmission-remote -l' \
 		  tme='transmission-remote --exit' \
 		  sshconf-edit='chmod 700 ~/.ssh/config && $EDITOR ~/.ssh/config && chmod 400 ~/.ssh/config' \
-		  gpt='CHATGPTRC=$XDG_CONFIG_HOME/chatgpt.sh/chatgpt.conf OPENAI_API_KEY=$(pass openai) chatgpt.sh' \
+		  tgpt='tgpt --provider openai --key $(pass openai) --temperature 1 --top_p 1 --model o1-mini' \
 		  wtr='curl wttr.in/dortmund_oespel' \
 		  nsh='nix-shell'

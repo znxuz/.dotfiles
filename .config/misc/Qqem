@@ -5,8 +5,11 @@ dict-wn
 dockd
 droidcam-obs-plugin-bin
 dropbox
+fmt9
 neovim-nightly-bin
 pandoc-bin
+paru-bin
+paru-bin-debug
 python-pyqt5-sip4
 python-sip4
 quickemu
@@ -21,6 +24,7 @@ sip4
 stm32cubemx
 tango-icon-theme
 uget-integrator-chromium
+urdfdom
 wechat-universal-bwrap
 whisper-git
 zotify
