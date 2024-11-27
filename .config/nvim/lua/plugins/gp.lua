@@ -13,7 +13,11 @@ local config = function()
 				name = "gpt-code",
 				chat = true,
 				command = false,
-				model = { model = "o1-mini", },
+				model = {
+					model = "gpt-4o-mini",
+					temperature = 0.4,
+					top_p = 0.3,
+				},
 				system_prompt = require("gp.defaults").chat_system_prompt
 			},
 		}

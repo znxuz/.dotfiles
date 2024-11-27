@@ -8,3 +8,7 @@ urlcolor: blue
 wrap: reserve
 header-includes:
   - '\newpage'
+  - \usepackage{fontspec}
+  - \setmonofont{IBM Plex Mono}
+  - \setsansfont{IBM Plex Sans}
+  - \setmainfont{IBM Plex Sans}
