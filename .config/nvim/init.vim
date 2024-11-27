@@ -3,7 +3,7 @@ syntax enable
 set nu
 set sw=0 ts=4
 set ttm=1
-set cb=unnamedplus
+set cb+=unnamedplus
 set tgc
 set nosc
 set sbr=>\\
