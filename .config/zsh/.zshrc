@@ -1,8 +1,14 @@
 KEYTIMEOUT=1
+bindkey -e # emacs keybinds; also resets all bindkeys
 
-# aliases
+# misc
 
-source $XDG_CONFIG_HOME/shell/aliasrc
+setopt globdots rmstarsilent extendedglob
+unsetopt beep # prompt_cr prompt_sp
+
+autoload edit-command-line &&
+	zle -N edit-command-line &&
+	bindkey '^x^e' edit-command-line
 
 # prompt
 
@@ -26,11 +32,25 @@ PROMPT+="%(?.%F{blue}.%F{red})⤷%f%b " # actual prompt on a new line
 eval $(dircolors $XDG_CONFIG_HOME/shell/dircolors)
 autoload -U colors && colors
 
+# completion
+
+autoload -Uz compinit
+zmodload zsh/complist
+[ -d "$XDG_CACHE_HOME/zsh" ] || mkdir -p "$XDG_CACHE_HOME/zsh"
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
+compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+bindkey -M menuselect '^[[Z' reverse-menu-complete
+bindkey -M menuselect '^[' send-break
+
 # history
 
-HISTFILE=$ZDOTDIR/.zhistory
-HISTSIZE=100000
+[ -d "$XDG_STATE_HOME/zsh" ] || mkdir -p "$XDG_STATE_HOME/zsh"
+HISTFILE="$XDG_STATE_HOME/zsh/history"
 SAVEHIST=100000
+HISTSIZE=100000
 setopt append_history
 setopt hist_expire_dups_first
 setopt hist_ignore_all_dups
@@ -38,61 +58,13 @@ setopt hist_find_no_dups
 setopt hist_save_no_dups
 setopt hist_ignore_space
 
-# misc
-
-unsetopt beep
-setopt extendedglob
-setopt rmstarsilent
-setopt globdots
-setopt noclobber
-unsetopt prompt_cr prompt_sp
-setopt nolistambiguous
-
-# completion
-autoload -Uz compinit
-zmodload zsh/complist
-zstyle ':completion:*' menu select
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-compinit -d $XDG_CONFIG_HOME/zsh/.zcompdump
-bindkey -M menuselect '^[[Z' reverse-menu-complete
-bindkey -M menuselect '^[' send-break
-
-bindkey -e
-autoload edit-command-line &&
-	zle -N edit-command-line &&
-	bindkey '^x^e' edit-command-line
-
 # fzf bindings
 
-source $ZDOTDIR/zfzf
+source $ZDOTDIR/fzf.zsh
 
 # ROS2
 
-ross()
-{
-	source /opt/ros/jazzy-base/setup.zsh
-
-	source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
-	eval "$(register-python-argcomplete ros2)"
-}
-
-ross-ws()
-{
-	[[ -n "$ROS_DISTRO" ]] || ross || return 1
-
-	ws_install="$HOME/code/ros_ws/install/local_setup.zsh"
-	[[ ! -f $ws_install ]] && echo "$ws_install is not the ROS2 workspace" && return 1
-	source "$ws_install"
-}
-
-ross-cwd()
-{
-	[[ -n "$ROS_DISTRO" ]] || ross || return 1
-
-	cwd_install="./install/local_setup.zsh"
-	[[ ! -f $cwd_install ]] && echo "Not in a ROS2 workspace" && return 1
-	source "$cwd_install"
-}
+source $ZDOTDIR/ros.zsh
 
 # gotta be at the end
 

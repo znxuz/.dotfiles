@@ -1,5 +1,4 @@
-"sdf === my defaults ===
-syntax enable
+" === my defaults ===
 set nu
 set sw=0 ts=4
 set ttm=1
@@ -63,8 +62,9 @@ aug stl
 	au ModeChanged *:n hi clear STL | redraws!
 	au ModeChanged *:ni* hi link STL Visual | redraws!
 	au ModeChanged *:i* hi link STL TermCursor | redraws!
-	au ModeChanged *:[vV\x16]* hi link STL Substitute | redraws!
+	au ModeChanged *:[vV\x16]* hi link STL CurSearch | redraws!
 	au ModeChanged *:R* hi link STL CursorLineNr | redraws!
+	au ModeChanged *:no* hi link STL Search | redraws!
 aug END
 
 set nosmd

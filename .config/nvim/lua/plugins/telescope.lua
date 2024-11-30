@@ -63,9 +63,9 @@ local config = function()
 	end
 
 	local map = vim.keymap.set
-	map('n', '<leader>f', function() builtin.find_files() end)
-	map('n', '<leader>cf', function() builtin.find_files({ cwd = vim.fn.expand('%:h') }) end)
-	map('n', '<leader>if', function()
+	map('n', '<leader>s', function() builtin.find_files() end)
+	map('n', '<leader>cs', function() builtin.find_files({ cwd = vim.fn.expand('%:h') }) end)
+	map('n', '<leader>is', function()
 		prompt_cwd_callback({ prompt = 'Files in: ', callback = builtin.find_files })
 	end)
 	map('n', '<leader>b', function() builtin.buffers() end)
@@ -80,9 +80,9 @@ local config = function()
 	map('n', '<leader>k', function() builtin.keymaps() end)
 	map('n', '<leader>t', function() builtin.builtin() end)
 
-	vim.api.nvim_create_augroup('LspMapping', { clear = false })
+	vim.api.nvim_create_augroup('LspAttachAug', { clear = false })
 	vim.api.nvim_create_autocmd('LspAttach', {
-		group = 'LspMapping',
+		group = 'LspAttachAug',
 		callback = function(_)
 			map('n', 'grr', function() builtin.lsp_references() end, { buffer = true })
 			map('n', 'gri', function() builtin.lsp_implementations() end, { buffer = true })

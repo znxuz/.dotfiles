@@ -5,9 +5,9 @@ local config = function()
 	vim.opt.shortmess:append('c')
 	vim.opt.signcolumn = 'yes'
 
-	vim.api.nvim_create_augroup("LspMapping", { clear = false })
+	vim.api.nvim_create_augroup("LspAttachAug", { clear = false })
 	vim.api.nvim_create_autocmd("LspAttach", {
-		group = "LspMapping",
+		group = "LspAttachAug",
 		callback = function(_)
 			map('n', 'gd', function() vim.lsp.buf.type_definition() end, { buffer = true })
 			map('n', 'grh', function()
@@ -24,9 +24,12 @@ local config = function()
 			'--query-driver=/usr/bin/arm-none-eabi-gcc,/usr/bin/arm-none-eabi-g++'
 		},
 		capabilities = {
-			textDocument = { completion = { completionItem = { snippetSupport = false } } },
+			textDocument = {
+				completion = { completionItem = { snippetSupport = false } }
+			},
 		},
 	}
+
 	lspcfg.texlab.setup {}
 
 	lspcfg.lua_ls.setup {
@@ -66,8 +69,9 @@ local config = function()
 	lspcfg.dartls.setup {}
 
 	-- disable extra syntax highlighting
+	vim.api.nvim_create_augroup('LspAttachAug', { clear = false })
 	vim.api.nvim_create_autocmd("LspAttach", {
-		group = "LspMapping",
+		group = "LspAttachAug",
 		callback = function(args)
 			vim.lsp.get_client_by_id(args.data.client_id).server_capabilities.semanticTokensProvider = nil
 		end,
