@@ -23,7 +23,7 @@ set udf
 set wop=pum
 set wim=longest:full,full
 set cpt-=t
-set cot=menuone,preview,noinsert
+set cot=menuone,preview,noinsert,noselect
 set ph=10
 
 " === statusline ===
@@ -67,7 +67,6 @@ aug stl
 	au ModeChanged *:no* hi link STL Search | redraws!
 aug END
 
-set nosmd
 set stl=
 set stl=%!DefSTL()
 

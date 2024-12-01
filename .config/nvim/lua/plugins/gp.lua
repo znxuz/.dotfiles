@@ -1,10 +1,10 @@
-local MAIN_MODE = 'split'
+local MAIN_MODE = 'popup'
 
 local config = function()
 	require("gp").setup({
 		openai_api_key = { "pass", "openai" },
-		chat_confirm_delete = false,
 		chat_free_cursor = true,
+		chat_confirm_delete = false,
 
 		default_chat_agent = 'gpt-code',
 		agents = {
@@ -15,8 +15,8 @@ local config = function()
 				command = false,
 				model = {
 					model = "gpt-4o-mini",
-					temperature = 0.4,
-					top_p = 0.3,
+					temperature = 0.2,
+					top_p = 0.4,
 				},
 				system_prompt = require("gp.defaults").chat_system_prompt
 			},

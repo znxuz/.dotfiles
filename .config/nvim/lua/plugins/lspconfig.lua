@@ -2,6 +2,10 @@ local config = function()
 	local lspcfg = require('lspconfig')
 	local map = vim.keymap.set
 
+	local on_init = function(client, _)
+		client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
+	end
+
 	vim.opt.shortmess:append('c')
 	vim.opt.signcolumn = 'yes'
 
@@ -17,6 +21,7 @@ local config = function()
 	})
 
 	lspcfg.clangd.setup {
+		on_init = on_init,
 		cmd = {
 			'clangd',
 			'--background-index',
@@ -30,9 +35,12 @@ local config = function()
 		},
 	}
 
-	lspcfg.texlab.setup {}
+	lspcfg.texlab.setup {
+		on_init = on_init,
+	}
 
 	lspcfg.lua_ls.setup {
+		on_init = on_init,
 		settings = {
 			Lua = {
 				runtime = { version = 'LuaJIT', },
@@ -50,6 +58,7 @@ local config = function()
 	}
 
 	lspcfg.rust_analyzer.setup {
+		on_init = on_init,
 		settings = {
 			['rust-analyzer'] = {
 				completion = {
@@ -60,22 +69,20 @@ local config = function()
 	}
 
 	-- bash
-	lspcfg.bashls.setup {}
+	lspcfg.bashls.setup {
+		on_init = on_init,
+	}
 
 	-- python
-	lspcfg.pylsp.setup {}
+	lspcfg.pylsp.setup {
+		on_init = on_init,
+	}
 
 	--dart
-	lspcfg.dartls.setup {}
+	lspcfg.dartls.setup {
+		on_init = on_init,
+	}
 
-	-- disable extra syntax highlighting
-	vim.api.nvim_create_augroup('LspAttachAug', { clear = false })
-	vim.api.nvim_create_autocmd("LspAttach", {
-		group = "LspAttachAug",
-		callback = function(args)
-			vim.lsp.get_client_by_id(args.data.client_id).server_capabilities.semanticTokensProvider = nil
-		end,
-	})
 end
 
 return {

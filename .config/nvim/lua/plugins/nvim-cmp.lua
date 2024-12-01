@@ -1,8 +1,8 @@
 local config = function()
 	local cmp = require('cmp')
+	local luasnip = require('luasnip')
 	local MAX_LABEL_WIDTH = 40
 	local ELLIPSIS_CHAR = '…'
-	local compare = cmp.config.compare
 
 	cmp.setup {
 		enabled = function()
@@ -13,25 +13,53 @@ local config = function()
 			end
 			return true
 		end,
-		preselect = cmp.PreselectMode.Item,
+		preselect = cmp.PreselectMode.None,
 		completion = { completeopt = table.concat(vim.opt.completeopt:get(), ',') },
 		snippet = { expand = function(args) require 'luasnip'.lsp_expand(args.body) end },
 		sorting = {
 			comparators = {
-				compare.score, -- sources' priority probably
-				compare.length,
-				compare.exact,
-				compare.locality,
-				compare.recently_used,
-				compare.kind,
-				compare.order,
-				compare.offset,
+				cmp.config.compare.score, -- sources' priority probably
+				cmp.config.compare.length,
+				cmp.config.compare.exact,
+				cmp.config.compare.locality,
+				cmp.config.compare.recently_used,
+				cmp.config.compare.kind,
+				cmp.config.compare.order,
+				cmp.config.compare.offset,
 			},
 		},
 		mapping = {
 			['<c-e>'] = cmp.mapping(cmp.mapping.scroll_docs(1), { 'i', 'c' }),
 			['<c-y>'] = cmp.mapping(cmp.mapping.scroll_docs(-1), { 'i', 'c' }),
-			['<tab>'] = cmp.mapping.confirm({ select = true }),
+			['<enter>'] = cmp.mapping.confirm(),
+			["<tab>"] = cmp.mapping(function(fallback)
+				if luasnip.jumpable() then
+					luasnip.jump(1)
+				elseif cmp.visible() then
+					if #cmp.get_entries() == 1 then
+						cmp.confirm({ select = true })
+					else
+						cmp.select_next_item()
+					end
+				else
+					fallback()
+				end
+			end, { "i", "s" }
+			),
+			["<s-tab>"] = cmp.mapping(function(fallback)
+				if luasnip.jumpable() then
+					luasnip.jump(-1)
+				elseif cmp.visible() then
+					if #cmp.get_entries() == 1 then
+						cmp.confirm({ select = true })
+					else
+						cmp.select_prev_item()
+					end
+				else
+					fallback()
+				end
+			end, { "i", "s" }
+			),
 			['<c-p>'] = cmp.mapping.select_prev_item(),
 			['<c-n>'] = cmp.mapping.select_next_item(),
 			['<c-l>'] = cmp.mapping.complete(),
@@ -63,8 +91,8 @@ return {
 				'L3MON4D3/LuaSnip',
 				config = function()
 					require("luasnip.loaders.from_vscode").lazy_load({ paths = "./snippets" })
-					vim.keymap.set({ "i", "s" }, "<c-j>", function() require("luasnip").jump(1) end, { silent = true })
-					vim.keymap.set({ "i", "s" }, "<c-k>", function() require("luasnip").jump(-1) end, { silent = true })
+					-- vim.keymap.set({ "i", "s" }, "<c-j>", function() require("luasnip").jump(1) end, { silent = true })
+					-- vim.keymap.set({ "i", "s" }, "<c-k>", function() require("luasnip").jump(-1) end, { silent = true })
 					-- map('n', "<leader>as", "<cmd>so ~/.config/nvim/lua/config/ls.lua | echo 'lua snippet sourced'<cr>")
 				end
 			},

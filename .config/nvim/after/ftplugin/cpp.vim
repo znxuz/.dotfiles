@@ -7,7 +7,7 @@ setl et ts& sts=2 sw=2
 fu s:CppCheck()
 	try
 		let save_makeprg=&makeprg
-		set makeprg=cppcheck
+		setl makeprg=cppcheck
 		:make --suppress=missingIncludeSystem --enable=all src/
 	finally
 		let &makeprg=save_makeprg
