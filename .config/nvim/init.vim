@@ -4,7 +4,6 @@ set sw=0 ts=4
 set ttm=1
 set cb+=unnamedplus
 set tgc
-set nosc
 set sbr=>\\
 set list
 set lcs=tab:│\ ,nbsp:␣,trail:•
@@ -74,6 +73,12 @@ set stl=%!DefSTL()
 set mouse=
 set guicursor=a:block
 silent! delc EditQuery " dumb builtin command polluting the shorthand to :Ex
+
+" === netrw ===
+
+nn <leader>ne <cmd>Explore<cr>
+nn <leader>nl <cmd>Lexplore<cr>
+nn <leader>nr <cmd>Rexplore<cr>
 
 " === plugins ===
 lua require('config.lazy')

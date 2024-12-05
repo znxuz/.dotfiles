@@ -15,6 +15,5 @@ return {
 			on_attach = nil,
 		},
 		keys = { { 'grc', '<cmd>TSContextToggle<cr>' } },
-		event = 'LspAttach',
 	}
 }

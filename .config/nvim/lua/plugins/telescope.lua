@@ -85,7 +85,7 @@ local config = function()
 		callback = function(_)
 			map('n', 'grr', function() builtin.lsp_references() end, { buffer = true })
 			map('n', 'gri', function() builtin.lsp_implementations() end, { buffer = true })
-			map('n', 'gO', function() builtin.lsp_document_symbols() end, { buffer = true })
+			-- map('n', 'gO', function() builtin.lsp_document_symbols() end, { buffer = true })
 			map('n', 'grd', function() builtin.diagnostics({ bufnr = 0 }) end, { buffer = true })
 			map('n', 'grD', function() builtin.diagnostics() end, { buffer = true })
 		end,
