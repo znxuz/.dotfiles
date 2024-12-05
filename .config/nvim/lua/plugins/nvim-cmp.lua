@@ -29,18 +29,14 @@ local config = function()
 			},
 		},
 		mapping = {
-			['<c-e>'] = cmp.mapping(cmp.mapping.scroll_docs(1), { 'i', 'c' }),
-			['<c-y>'] = cmp.mapping(cmp.mapping.scroll_docs(-1), { 'i', 'c' }),
+			['<c-e>'] = cmp.mapping(cmp.mapping.scroll_docs(1), { 'i' }),
+			['<c-y>'] = cmp.mapping(cmp.mapping.scroll_docs(-1), { 'i' }),
 			['<enter>'] = cmp.mapping.confirm(),
 			["<tab>"] = cmp.mapping(function(fallback)
 				if luasnip.jumpable() then
 					luasnip.jump(1)
 				elseif cmp.visible() then
-					if #cmp.get_entries() == 1 then
-						cmp.confirm({ select = true })
-					else
-						cmp.select_next_item()
-					end
+					cmp.select_next_item()
 				else
 					fallback()
 				end
@@ -50,11 +46,7 @@ local config = function()
 				if luasnip.jumpable() then
 					luasnip.jump(-1)
 				elseif cmp.visible() then
-					if #cmp.get_entries() == 1 then
-						cmp.confirm({ select = true })
-					else
-						cmp.select_prev_item()
-					end
+					cmp.select_prev_item()
 				else
 					fallback()
 				end

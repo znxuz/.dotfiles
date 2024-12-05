@@ -9,9 +9,8 @@ local config = function()
 	vim.opt.shortmess:append('c')
 	vim.opt.signcolumn = 'yes'
 
-	vim.api.nvim_create_augroup("LspAttachAug", { clear = false })
 	vim.api.nvim_create_autocmd("LspAttach", {
-		group = "LspAttachAug",
+		group = vim.api.nvim_create_augroup("LspAttachAug", { clear = false }),
 		callback = function(_)
 			map('n', 'gd', function() vim.lsp.buf.type_definition() end, { buffer = true })
 			map('n', 'grh', function()
