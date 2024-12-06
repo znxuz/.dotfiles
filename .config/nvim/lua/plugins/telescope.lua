@@ -63,34 +63,38 @@ local config = function()
 	end
 
 	local map = vim.keymap.set
-	map('n', '<leader>s', function() builtin.find_files() end)
-	map('n', '<leader>cs', function() builtin.find_files({ cwd = vim.fn.expand('%:h') }) end)
+	map('n', '<leader>s', function() builtin.find_files() end, { desc = 'Telescope Find files' })
+	map('n', '<leader>cs', function() builtin.find_files({ cwd = vim.fn.expand('%:h') }) end,
+		{ desc = 'Telescope Find files in current directory' })
 	map('n', '<leader>is', function()
 		prompt_cwd_callback({ prompt = 'Files in: ', callback = builtin.find_files })
-	end)
-	map('n', '<leader>b', function() builtin.buffers() end)
-	map('n', '<leader>r', function() builtin.grep_string({ search = "" }) end)
-	map({ 'n', 'v' }, '<leader>cr', function() builtin.grep_string() end)
-	map('n', '<leader>R', function() builtin.live_grep() end)
+	end, { desc = 'Telescope Interactive file search' })
+	map('n', '<leader>b', function() builtin.buffers() end, { desc = 'Telescope List open buffers' })
+	map('n', '<leader>r', function() builtin.grep_string({ search = "" }) end,
+		{ desc = 'Telescope Grep for string under cursor' })
+	map({ 'n', 'v' }, '<leader>cr', function() builtin.grep_string() end, { desc = 'Telescope Grep for selected text' })
+	map('n', '<leader>R', function() builtin.live_grep() end, { desc = 'Telescope Live grep' })
 	map('n', '<leader>iR', function()
 		prompt_cwd_callback({ prompt = 'Live grep in: ', callback = builtin.live_grep })
-	end)
-	map('n', '<leader>h', function() builtin.help_tags() end)
-	map('n', '<leader>j', function() builtin.jumplist() end)
-	map('n', '<leader>k', function() builtin.keymaps() end)
-	map('n', '<leader>t', function() builtin.builtin() end)
+	end, { desc = 'Telescope Interactive live grep' })
+	map('n', '<leader>h', function() builtin.help_tags() end, { desc = 'Telescope Show help tags' })
+	map('n', '<leader>j', function() builtin.jumplist() end, { desc = 'Telescope Show jumplist' })
+	map('n', '<leader>k', function() builtin.keymaps() end, { desc = 'Telescope Show key mappings' })
+	map('n', '<leader>t', function() builtin.builtin() end, { desc = 'Telescope Show available built-in commands' })
 
 	vim.api.nvim_create_autocmd('LspAttach', {
 		group = vim.api.nvim_create_augroup('LspAttachAug', { clear = false }),
 		callback = function(_)
-			map('n', 'grr', function() builtin.lsp_references() end, { buffer = true })
-			map('n', 'gri', function() builtin.lsp_implementations() end, { buffer = true })
-			-- map('n', 'gO', function() builtin.lsp_document_symbols() end, { buffer = true })
-			map('n', 'grd', function() builtin.diagnostics({ bufnr = 0 }) end, { buffer = true })
-			map('n', 'grD', function() builtin.diagnostics() end, { buffer = true })
+			map('n', 'grr', function() builtin.lsp_references() end, { buffer = true, desc = 'Telescope Show LSP references' })
+			map('n', 'gri', function() builtin.lsp_implementations() end,
+				{ buffer = true, desc = 'Telescope Show LSP implementations' })
+			map('n', 'grd', function() builtin.diagnostics({ bufnr = 0 }) end,
+				{ buffer = true, desc = 'Telescope Show diagnostics for current buffer' })
+			map('n', 'grD', function() builtin.diagnostics() end, { buffer = true, desc = 'Telescope Show all diagnostics' })
 		end,
 	})
 end
+
 
 return {
 	{

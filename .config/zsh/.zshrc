@@ -37,8 +37,9 @@ autoload -U colors && colors
 [ -d "$XDG_CACHE_HOME/zsh" ] || mkdir -p "$XDG_CACHE_HOME/zsh"
 autoload -Uz compinit
 zmodload zsh/complist
-compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
+compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 bindkey -M menuselect '^[[Z' reverse-menu-complete

@@ -75,18 +75,18 @@ local config = function()
 	end
 
 	local map = vim.keymap.set
-	map('n', '<leader>f', '<cmd>FzfLua files<cr>')
-	map('n', '<leader>cf', find_files_in)
-	map('n', '<leader>if', grep_in)
-	map('n', '<leader>b', '<cmd>FzfLua buffers<cr>')
-	map('n', '<leader>r', '<cmd>FzfLua live_grep<cr>')
-	map('n', '<leader>o', '<cmd>FzfLua oldfiles<cr>')
-	map('n', '<leader>l', '<cmd>FzfLua lines<cr>')
-	map('n', '<leader>ir', function() require("config.fzflua").grep_in() end)
-	map('n', '<leader>A', '<cmd>FzfLua builtin<cr>')
-	map('n', '<leader>j', '<cmd>FzfLua jumps<cr>')
-	map('n', '<leader>h', '<cmd>FzfLua help_tags<cr>')
-	map('n', '<leader>k', '<cmd>FzfLua keymaps<cr>')
+	map('n', '<leader>f', '<cmd>FzfLua files<cr>', { desc = "FzfLua files" })
+	-- map('n', '<leader>if', '<cmd>FzfLua files --cwd=', { desc = "FzfLua find files in" })
+	map('n', '<leader>cf', function () find_files_in() end, { desc = "FzfLua find files in cwd" })
+	map('n', '<leader>b', '<cmd>FzfLua buffers<cr>', { desc = "FzfLua buffers" })
+	map('n', '<leader>r', '<cmd>FzfLua live_grep<cr>', { desc = "FzfLua live_grep" })
+	map('n', '<leader>o', '<cmd>FzfLua oldfiles<cr>', { desc = "FzfLua oldfiles" })
+	map('n', '<leader>l', '<cmd>FzfLua lines<cr>', { desc = "FzfLua lines" })
+	map('n', '<leader>ir', function () grep_in() end, { desc = "FzfLua grep in" })
+	map('n', '<leader>A', '<cmd>FzfLua builtin<cr>', { desc = "FzfLua builtin" })
+	map('n', '<leader>j', '<cmd>FzfLua jumps<cr>', { desc = "FzfLua jumps" })
+	map('n', '<leader>h', '<cmd>FzfLua help_tags<cr>', { desc = "FzfLua help_tags" })
+	map('n', '<leader>k', '<cmd>FzfLua keymaps<cr>', { desc = "FzfLua keymaps" })
 end
 
 return {

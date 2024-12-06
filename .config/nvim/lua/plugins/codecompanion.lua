@@ -45,10 +45,10 @@ return {
 		},
 	},
 	keys = {
-		{ "<leader>G",  "<cmd>CodeCompanionActions<cr>",     mode = { "n", "v" } },
-		{ "<leader>gg", "<cmd>CodeCompanionChat Toggle<cr>", mode = { "n", "v" } },
-		{ "<leader>gi", "<cmd>CodeCompanion<cr>",            mode = { "n", "v" } },
-		{ "<leader>ga", "<cmd>CodeCompanionChat Add<cr>",    mode = "v" },
+		{ "<leader>G",  "<cmd>CodeCompanionActions<cr>",     mode = { "n", "v" }, desc = "CodeCompanion Actions" },
+		{ "<leader>gg", "<cmd>CodeCompanionChat Toggle<cr>", mode = { "n", "v" }, desc = "CodeCompanionChat Toggle" },
+		{ "<leader>gi", "<cmd>CodeCompanion<cr>",            mode = { "n", "v" }, desc = "CodeCompanion" },
+		{ "<leader>ga", "<cmd>CodeCompanionChat Add<cr>",    mode = "v",          desc = "CodeCompanionChat Add" },
 	},
 	enabled = false
 }

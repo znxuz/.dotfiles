@@ -83,9 +83,6 @@ return {
 				'L3MON4D3/LuaSnip',
 				config = function()
 					require("luasnip.loaders.from_vscode").lazy_load({ paths = "./snippets" })
-					-- vim.keymap.set({ "i", "s" }, "<c-j>", function() require("luasnip").jump(1) end, { silent = true })
-					-- vim.keymap.set({ "i", "s" }, "<c-k>", function() require("luasnip").jump(-1) end, { silent = true })
-					-- map('n', "<leader>as", "<cmd>so ~/.config/nvim/lua/config/ls.lua | echo 'lua snippet sourced'<cr>")
 				end
 			},
 			'saadparwaiz1/cmp_luasnip',

@@ -30,12 +30,12 @@ return {
 		config = config,
 		keys = {
 			-- has to be :<c-u>'<,'> for selecting
-			{ '<leader>gn', '<cmd>GpChatNew ' .. MAIN_MODE .. '<cr>' },
-			{ '<leader>gg', '<cmd>GpChatToggle ' .. MAIN_MODE .. '<cr>' },
-			{ '<leader>gf', '<cmd>GpChatFinder<cr>' },
-			{ '<leader>gn', ":<c-u>'<,'>GpChatNew " .. MAIN_MODE .. '<cr>', mode = 'v' },
-			{ '<leader>gg', ":<c-u>'<,'>GpChatToggle " .. MAIN_MODE .. '<cr>', mode = 'v' },
-			{ '<leader>gp', ":<c-u>'<,'>GpChatPaste " .. MAIN_MODE .. '<cr>', mode = 'v' }
+			{ '<leader>gn', '<cmd>GpChatNew ' .. MAIN_MODE .. '<cr>',          desc = 'GpChatNew' },
+			{ '<leader>gg', '<cmd>GpChatToggle ' .. MAIN_MODE .. '<cr>',       desc = 'GpChatToggle' },
+			{ '<leader>gf', '<cmd>GpChatFinder<cr>',                           desc = 'GpChatFinder' },
+			{ '<leader>gn', ":<c-u>'<,'>GpChatNew " .. MAIN_MODE .. '<cr>',    mode = 'v',           desc = 'Visual GpChatNew' },
+			{ '<leader>gg', ":<c-u>'<,'>GpChatToggle " .. MAIN_MODE .. '<cr>', mode = 'v',           desc = 'Visual GpChatToggle' },
+			{ '<leader>gp', ":<c-u>'<,'>GpChatPaste " .. MAIN_MODE .. '<cr>',  mode = 'v',           desc = 'Visual GpChatPaste' }
 		},
 		enabled = true,
 	},

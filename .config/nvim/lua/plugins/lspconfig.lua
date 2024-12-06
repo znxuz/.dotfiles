@@ -12,10 +12,10 @@ local config = function()
 	vim.api.nvim_create_autocmd("LspAttach", {
 		group = vim.api.nvim_create_augroup("LspAttachAug", { clear = false }),
 		callback = function(_)
-			map('n', 'gd', function() vim.lsp.buf.type_definition() end, { buffer = true })
+			map('n', 'gd', function() vim.lsp.buf.type_definition() end, { buffer = true, desc = "Go To Type Definition" })
 			map('n', 'grh', function()
 				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
-			end, { buffer = true })
+			end, { buffer = true, desc = "Toggle Inlay Hint" })
 		end,
 	})
 
