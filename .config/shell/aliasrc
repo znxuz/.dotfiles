@@ -1,5 +1,6 @@
 alias \
 		  ls='ls --color=auto --group-directories-first' \
+		  tree='tree --dirsfirst' \
 		  diff='diff --color=auto' \
 		  grep='grep --color=auto' \
 		  za='zathura --fork' \

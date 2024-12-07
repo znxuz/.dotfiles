@@ -81,7 +81,6 @@ local config = function()
 	lspcfg.dartls.setup {
 		on_init = on_init,
 	}
-
 end
 
 return {

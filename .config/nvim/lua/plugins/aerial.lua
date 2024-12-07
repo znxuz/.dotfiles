@@ -3,7 +3,7 @@ return {
 	dependencies = { "nvim-treesitter/nvim-treesitter" },
 	opts = {
 		layout = {
-			max_width = 0.7,
+			max_width = 0.8,
 			default_direction = 'float'
 		},
 		highlight_closest = false,
@@ -12,5 +12,5 @@ return {
 			['?'] = false
 		}
 	},
-	keys = { { "go", "<cmd>AerialToggle<CR>", "n" , desc = "Aerial Toggle" } }
+	keys = { { "go", "<cmd>AerialToggle<CR>", "n", desc = "Aerial Toggle" } }
 }

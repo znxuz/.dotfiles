@@ -1,4 +1,4 @@
-" === my defaults ===
+" === defaults ===
 set nu
 set sw=0 ts=4
 set ttm=1
@@ -11,10 +11,9 @@ set cul
 set exrc
 filetype plugin indent on
 
-" === leader key ===
 let mapleader = " "
 
-" === file management ===
+" === undo ===
 set shada+=n$HOME/.local/state/nvim/viminfo
 set udf
 
@@ -75,7 +74,6 @@ set guicursor=a:block
 silent! delc EditQuery " dumb builtin command polluting the shorthand to :Ex
 
 " === netrw ===
-
 nn <leader>ne <cmd>Explore<cr>
 nn <leader>nl <cmd>Lexplore<cr>
 nn <leader>nr <cmd>Rexplore<cr>
