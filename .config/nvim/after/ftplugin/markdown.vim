@@ -1,4 +1,4 @@
-setl tw=80
+setl tw=80 cc=80
 setl spell spl=en_us,de spf=$XDG_STATE_HOME/nvim/en.utf-8.add
 
 fu! g:MD2PDF()

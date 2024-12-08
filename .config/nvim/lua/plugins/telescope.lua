@@ -13,8 +13,8 @@ local config = function()
 		defaults = {
 			layout_strategy = 'vertical',
 			layout_config = {
-				width = 0.6,
-				height = 0.8,
+				width = 0.8,
+				height = 0.9,
 				preview_cutoff = 30
 			},
 			borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
