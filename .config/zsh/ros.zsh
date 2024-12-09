@@ -1,6 +1,6 @@
 ross()
 {
-	source /opt/ros/jazzy-base/setup.zsh
+	source /opt/ros/jazzy/setup.zsh
 
 	source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 	eval "$(register-python-argcomplete ros2)"

@@ -15,7 +15,7 @@
     #
     # If this option is set to mouse or keyboard, the monitor option
     # will be ignored.
-    follow = mouse
+    follow = none
 
     # dynamic width from 0 to 300
     # width = (0, 300)
@@ -23,13 +23,13 @@
     width = (0, 300)
 
     # The maximum height of a single notification, excluding the frame.
-    height = 900
+    height = (0, 300)
 
     # Position the notification in the top right corner
     origin = top-right
 
     # Offset from the origin
-    offset = 15x15
+    offset = (15, 15)
 
 
     # Show how many messages are currently hidden (because of geometry).
