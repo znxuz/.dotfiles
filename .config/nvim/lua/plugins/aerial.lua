@@ -4,10 +4,11 @@ return {
 	opts = {
 		layout = {
 			max_width = 0.8,
-			default_direction = 'float'
+			default_direction = 'left'
 		},
 		highlight_closest = false,
 		highlight_on_jump = false,
+		close_on_select = true,
 		keymaps = {
 			['?'] = false
 		}
