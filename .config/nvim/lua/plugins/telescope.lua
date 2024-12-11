@@ -99,6 +99,7 @@ local config = function()
 	vim.api.nvim_create_autocmd('LspAttach', {
 		group = vim.api.nvim_create_augroup('LspAttachAug', { clear = false }),
 		callback = function(_)
+			map('n', 'gO', function() builtin.lsp_document_symbols() end, { buffer = true, desc = 'Telescope Document symbols' })
 			map('n', 'grr', function() builtin.lsp_references() end, { buffer = true, desc = 'Telescope Show LSP references' })
 			map('n', 'gri', function() builtin.lsp_implementations() end,
 				{ buffer = true, desc = 'Telescope Show LSP implementations' })
