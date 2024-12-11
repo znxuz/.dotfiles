@@ -9,19 +9,33 @@ local config = function()
 		symbol_width = 40,
 	}
 
+	-- local prev_defaults = {
+	-- 	layout_strategy = 'vertical',
+	-- 	-- sorting_strategy = 'ascending',
+	-- 	layout_config = {
+	-- 		width = 0.8,
+	-- 		height = 0.9,
+	-- 		preview_cutoff = 30
+	-- 	},
+	-- 	borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+	-- 	preview = { treesitter = false },
+	-- 	mappings = {
+	-- 		i = {
+	-- 			["<esc>"] = actions.close,
+	-- 			["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+	-- 			["<c-s>"] = actions.select_horizontal,
+	-- 			["<c-f>"] = actions_layout.toggle_preview,
+	-- 		},
+	-- 	},
+	-- 	file_ignore_patterns = { ".git", ".cache", "build" },
+	-- 	color_devicons = false,
+	-- }
+
 	telescope.setup {
-		defaults = {
-			layout_strategy = 'vertical',
-			layout_config = {
-				width = 0.8,
-				height = 0.9,
-				preview_cutoff = 30
-			},
-			borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
-			preview = {
-				hide_on_startup = false,
-				treesitter = false,
-			},
+		defaults = require('telescope.themes').get_ivy({
+			layout_config = { height = 0.3 },
+			preview = { treesitter = false },
+			border = false,
 			mappings = {
 				i = {
 					["<esc>"] = actions.close,
@@ -32,7 +46,7 @@ local config = function()
 			},
 			file_ignore_patterns = { ".git", ".cache", "build" },
 			color_devicons = false,
-		},
+		}),
 		pickers = {
 			find_files = {
 				hidden = true,
