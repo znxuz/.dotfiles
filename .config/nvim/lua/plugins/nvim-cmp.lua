@@ -88,5 +88,6 @@ return {
 		},
 		config = config,
 		event = "InsertEnter",
+		enabled = false,
 	},
 }

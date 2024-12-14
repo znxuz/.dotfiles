@@ -1,64 +1,33 @@
 return {
 	'saghen/blink.cmp',
-	lazy = false, -- lazy loading handled internally
-	-- optional: provides snippets for the snippet source
+	dependencies = 'rafamadriz/friendly-snippets',
+	lazy = false,
 
-	---@module 'blink.cmp'
-	---@type blink.cmp.Config
+	version = 'v0.*',
 	opts = {
 		keymap = {
-			show = '<c-l>',
-			hide = '<c-h>',
-			accept = { '<Tab>', '<c-y>' },
-			select_prev = { '<Up>', '<c-p>' },
-			select_next = { '<Down>', '<c-n>' },
+			-- case sensitive!!
+			['<Tab>'] = { 'snippet_forward', 'select_next', 'fallback' },
+			['<S-Tab>'] = { 'snippet_backward', 'select_prev', 'fallback' },
+			['<C-y>'] = { 'select_and_accept', 'fallback' },
+			['<C-l>'] = { 'show', 'hide', 'fallback' },
+			['<C-_>'] = { 'cancel', 'fallback' },
+			['<C-Space>'] = { 'show_documentation', 'hide_documentation', 'fallback' },
+			['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
+			['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
+		},
 
-			show_documentation = '<m-space>',
-			hide_documentation = '<m-space>',
-			scroll_documentation_up = '<c-y>',
-			scroll_documentation_down = '<c-e>',
-
-			snippet_forward = '<c-j>',
-			snippet_backward = '<c-k>',
-		},
-		fuzzy = {
-			use_frecency = true,
-			use_proximity = true,
-			max_items = 100,
-			sorts = { 'label', 'score', 'kind', },
-		},
-		sources = {
-			completion = {
-				enabled_providers = { 'lsp', 'path', 'buffer' },
+		completion = {
+			list = { selection = 'auto_insert' },
+			accept = { auto_brackets = { enabled = false } },
+			documentation = {
+				auto_show = true,
+				auto_show_delay_ms = 0,
 			},
-		},
-		windows = {
-			autocomplete = {
-				scrolloff = 2,
-				-- which directions to show the window,
-				-- falling back to the next direction when there's not enough space
-				direction_priority = { 's', 'n' },
-				selection = 'preselect',
-				draw = 'minimal',
-				cycle = {
-					from_bottom = true,
-					from_top = true,
-				},
+			menu = {
+				border = 'none',
+				draw = { columns = { { 'label', 'label_description', gap = 1 }, { 'kind' } } },
 			},
-		},
-		documentation = {
-			border = 'padded',
-			-- which directions to show the documentation window,
-			-- for each of the possible autocomplete window directions,
-			-- falling back to the next direction when there's not enough space
-			direction_priority = {
-				autocomplete_north = { 'e', 'w', 'n', 's' },
-				autocomplete_south = { 'e', 'w', 's', 'n' },
-			},
-			auto_show = true,
-			auto_show_delay_ms = 200,
-			update_delay_ms = 50,
 		},
 	},
-	enabled = false,
 }

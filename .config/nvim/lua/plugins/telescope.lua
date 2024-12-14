@@ -35,7 +35,7 @@ local config = function()
 		defaults = require('telescope.themes').get_ivy({
 			layout_config = { height = 0.3 },
 			preview = { treesitter = false },
-			border = false,
+			dynamic_preview_title = true,
 			mappings = {
 				i = {
 					["<esc>"] = actions.close,
