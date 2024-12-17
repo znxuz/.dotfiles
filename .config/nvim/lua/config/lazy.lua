@@ -15,23 +15,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require 'lazy'.setup({
-	{ import = 'plugins' },
-
-	{ "kylechui/nvim-surround",  event = 'VeryLazy', config = true },
-	{ 'lewis6991/gitsigns.nvim', config = true },
-	{ 'mfussenegger/nvim-jdtls', lazy = true },
-	{ 'romainl/vim-devdocs',     event = 'LspAttach' },
-	{
-		'mbbill/undotree',
-		keys = { { '<leader>u', '<cmd>UndotreeToggle<cr>', desc = 'Undotree Toggle' } },
-	},
-	{
-		'jbyuki/nabla.nvim',
-		dependencies = 'nvim-treesitter/nvim-treesitter',
-		ft = { 'vimwiki', 'md', 'tex' }
-	},
-	{ 'norcalli/nvim-colorizer.lua', cmd = 'ColorizerAttachToBuffer' },
-	{ 'wakatime/vim-wakatime',       lazy = false, },
+	{ import = 'plugins' }
 }, {
 	lockfile = vim.fn.stdpath('state') .. "/lazy/lazy-lock.json",
 	install = { colorscheme = { 'rose-pine' } },
