@@ -2,7 +2,7 @@ return {
 	'saghen/blink.cmp',
 	dependencies = 'rafamadriz/friendly-snippets',
 	lazy = false,
-	version = 'v0.*',
+	version = 'v0.*', -- 'v0.8.0'
 	opts = {
 		keymap = {
 			-- case sensitive!!
@@ -27,6 +27,9 @@ return {
 			menu = {
 				draw = { columns = { { 'label', 'label_description', gap = 1 }, { 'kind' } } },
 			},
+		},
+		sources = {
+			cmdline = {}, -- disable cmdline completions
 		},
 	},
 	enabled = true,

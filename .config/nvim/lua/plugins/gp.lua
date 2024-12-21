@@ -16,7 +16,7 @@ local config = function()
 				model = {
 					model = "gpt-4o",
 					temperature = 0.2,
-					top_p = 0.4,
+					top_p = 0.3,
 				},
 				system_prompt = require("gp.defaults").chat_system_prompt
 			},
@@ -37,6 +37,6 @@ return {
 			{ '<leader>gg', ":<c-u>'<,'>GpChatToggle " .. MAIN_MODE .. '<cr>', mode = 'v',           desc = 'Visual GpChatToggle' },
 			{ '<leader>gp', ":<c-u>'<,'>GpChatPaste " .. MAIN_MODE .. '<cr>',  mode = 'v',           desc = 'Visual GpChatPaste' }
 		},
-		enabled = true,
+		enabled = true
 	},
 }

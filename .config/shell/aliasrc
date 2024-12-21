@@ -11,7 +11,7 @@ alias \
 		  tmr='transmission-remote' \
 		  tmrw='watch -n1 transmission-remote -l' \
 		  tme='transmission-remote --exit' \
-		  sshconf-edit='chmod 700 ~/.ssh/config && $EDITOR ~/.ssh/config && chmod 400 ~/.ssh/config' \
+		  ssh-edit-conf='chmod 700 ~/.ssh/config && $EDITOR ~/.ssh/config; chmod 400 ~/.ssh/config' \
 		  tgpt='tgpt --provider openai --key $(pass openai) --model gpt-4o-mini' \
 		  wtr='curl wttr.in/dortmund_oespel' \
 		  nsh='nix-shell'
