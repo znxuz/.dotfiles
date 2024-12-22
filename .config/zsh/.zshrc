@@ -21,6 +21,7 @@ precmd () { vcs_info }
 PROMPT='%B%F{blue}%n%F{magenta}:%F{blue}%~' # pwd
 PROMPT+='${vcs_info_msg_0_}' # git branch integration
 [[ -n $IN_NIX_SHELL ]] && PROMPT+=" %F{magenta}[%F{yellow}$IN_NIX_SHELL%F{magenta}]%f" # nix
+[[ -e /run/.toolboxenv ]] && PROMPT+=" %F{magenta}[%F{yellow}dbx%F{magenta}]%f" # distrobox
 
 PROMPT+=$'\n'"%(1j.%F{magenta}[%F{yellow}%j%F{magenta}] .)" # job count
 PROMPT+="%(?.%F{blue}.%F{red})⤷%f%b " # actual prompt on a new line
@@ -34,15 +35,11 @@ autoload -U colors && colors
 
 # completion
 
-[ -d "$XDG_CACHE_HOME/zsh" ] || mkdir -p "$XDG_CACHE_HOME/zsh"
 autoload -Uz compinit
 zmodload zsh/complist
-zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
-compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
-
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-bindkey -M menuselect '^[[Z' reverse-menu-complete
+bindkey '^[[Z' reverse-menu-complete
 bindkey -M menuselect '^[' send-break
 
 # history

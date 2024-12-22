@@ -4,9 +4,6 @@ ross()
 
 	source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 	eval "$(register-python-argcomplete ros2)"
-
-	# for the spawned .zcompdump after source
-	rm -f $ZDOTDIR/.zcompdump
 }
 
 ross-ws()
