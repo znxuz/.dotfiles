@@ -1,8 +1,9 @@
 return {
 	"EggbertFluffle/beepboop.nvim",
 	opts = {
+		max_sounds = 10,
 		audio_player = "paplay",
-		volume = 50,
+		volume = 40,
 		sound_map = {
 			{ auto_command = "VimEnter",                       sound = "open3.ogg" },
 			{ auto_command = "VimLeave",                       sound = "close2.ogg" },

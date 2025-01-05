@@ -1,4 +1,8 @@
-source /usr/share/fzf/key-bindings.zsh
+if [[ -e /run/.toolboxenv ]]; then
+	source /usr/share/doc/fzf/examples/key-bindings.zsh
+else
+	source /usr/share/fzf/key-bindings.zsh
+fi
 
 # reset defaults
 
