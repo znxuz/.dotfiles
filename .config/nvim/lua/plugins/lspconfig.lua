@@ -16,6 +16,7 @@ local config = function()
 			map('n', 'grh', function()
 				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
 			end, { buffer = true, desc = "Toggle Inlay Hint" })
+			map('n', 'grd', function() vim.diagnostic.setqflist() end)
 		end,
 	})
 

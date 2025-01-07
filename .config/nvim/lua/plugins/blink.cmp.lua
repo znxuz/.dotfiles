@@ -1,15 +1,15 @@
 return {
 	'saghen/blink.cmp',
 	dependencies = 'rafamadriz/friendly-snippets',
-	lazy = false,
+	event = 'InsertEnter',
 	version = 'v0.*', -- 'v0.8.0'
 	opts = {
 		keymap = {
 			-- case sensitive!!
 			['<Tab>'] = { 'select_next', 'fallback' },
 			['<S-Tab>'] = { 'select_prev', 'fallback' },
-			['<C-n>'] = { 'select_next', 'fallback' }, -- add snippet forward after blink#289
-			['<C-p>'] = { 'select_prev', 'fallback' }, -- add snippet backward
+			['<C-n>'] = { 'select_next', 'fallback' },
+			['<C-p>'] = { 'select_prev', 'fallback' },
 			['<C-y>'] = { 'accept', 'fallback' },
 			['<C-l>'] = { 'show', 'hide', 'fallback' },
 			['<C-_>'] = { 'cancel', 'fallback' },
@@ -29,8 +29,7 @@ return {
 			},
 		},
 		sources = {
-			cmdline = {}, -- disable cmdline completions
+			cmdline = {},
 		},
-	},
-	enabled = true,
+	}
 }

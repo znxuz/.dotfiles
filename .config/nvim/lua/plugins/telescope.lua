@@ -4,31 +4,9 @@ local config = function()
 	local actions = require('telescope.actions')
 	local actions_layout = require('telescope.actions.layout')
 
-	local lsp_symbols_config = {
-		fname_width = 50,
-		symbol_width = 40,
-	}
-
-	-- local prev_defaults = {
-	-- 	layout_strategy = 'vertical',
-	-- 	-- sorting_strategy = 'ascending',
-	-- 	layout_config = {
-	-- 		width = 0.8,
-	-- 		height = 0.9,
-	-- 		preview_cutoff = 30
-	-- 	},
-	-- 	borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
-	-- 	preview = { treesitter = false },
-	-- 	mappings = {
-	-- 		i = {
-	-- 			["<esc>"] = actions.close,
-	-- 			["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-	-- 			["<c-s>"] = actions.select_horizontal,
-	-- 			["<c-f>"] = actions_layout.toggle_preview,
-	-- 		},
-	-- 	},
-	-- 	file_ignore_patterns = { ".git", ".cache", "build" },
-	-- 	color_devicons = false,
+	-- local lsp_symbols_config = {
+	-- 	fname_width = 50,
+	-- 	symbol_width = 40,
 	-- }
 
 	telescope.setup {
@@ -56,8 +34,8 @@ local config = function()
 				sort_mru = true,
 				ignore_current_buffer = true,
 			},
-			lsp_document_symbols = lsp_symbols_config,
-			lsp_workspace_symbols = lsp_symbols_config,
+			-- lsp_document_symbols = lsp_symbols_config,
+			-- lsp_workspace_symbols = lsp_symbols_config,
 		},
 	}
 	telescope.load_extension('fzf')
@@ -95,30 +73,17 @@ local config = function()
 	map('n', '<leader>j', function() builtin.jumplist() end, { desc = 'Telescope Show jumplist' })
 	map('n', '<leader>k', function() builtin.keymaps() end, { desc = 'Telescope Show key mappings' })
 	map('n', '<leader>t', function() builtin.builtin() end, { desc = 'Telescope Show available built-in commands' })
-
-	vim.api.nvim_create_autocmd('LspAttach', {
-		group = vim.api.nvim_create_augroup('LspAttachAug', { clear = false }),
-		callback = function(_)
-			map('n', 'gO', function() builtin.lsp_document_symbols() end, { buffer = true, desc = 'Telescope Document symbols' })
-			map('n', 'grr', function() builtin.lsp_references() end, { buffer = true, desc = 'Telescope Show LSP references' })
-			map('n', 'gri', function() builtin.lsp_implementations() end,
-				{ buffer = true, desc = 'Telescope Show LSP implementations' })
-			map('n', 'grd', function() builtin.diagnostics({ bufnr = 0 }) end,
-				{ buffer = true, desc = 'Telescope Show diagnostics for current buffer' })
-			map('n', 'grD', function() builtin.diagnostics() end, { buffer = true, desc = 'Telescope Show all diagnostics' })
-		end,
-	})
 end
 
 
 return {
-	{
-		'nvim-telescope/telescope.nvim',
-		dependencies = 'nvim-lua/plenary.nvim',
-		config = config,
+	'nvim-telescope/telescope.nvim',
+	dependencies = {
+		'nvim-lua/plenary.nvim',
+		{
+			'nvim-telescope/telescope-fzf-native.nvim',
+			build = 'make'
+		},
 	},
-	{
-		'nvim-telescope/telescope-fzf-native.nvim',
-		build = 'make'
-	},
+	config = config,
 }
