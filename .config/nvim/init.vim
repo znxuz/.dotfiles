@@ -76,6 +76,7 @@ set guicursor=a:block
 silent! delc EditQuery " dumb builtin command polluting the shorthand to :Ex
 
 " === netrw ===
+let g:netrw_banner = 0
 nn <leader>ne <cmd>Explore<cr>
 nn <leader>nl <cmd>Lexplore<cr>
 nn <leader>nr <cmd>Rexplore<cr>
