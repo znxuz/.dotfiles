@@ -2,7 +2,7 @@ return {
 	'saghen/blink.cmp',
 	dependencies = 'rafamadriz/friendly-snippets',
 	event = 'InsertEnter',
-	version = 'v0.*', -- 'v0.8.0'
+	version = 'v0.*',
 	opts = {
 		keymap = {
 			-- case sensitive!!
@@ -18,7 +18,12 @@ return {
 			['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
 		},
 		completion = {
-			list = { selection = 'auto_insert' },
+			list = {
+				selection = {
+					preselect = false,
+					auto_insert = true
+				}
+			},
 			accept = { auto_brackets = { enabled = false } },
 			documentation = {
 				auto_show = true,

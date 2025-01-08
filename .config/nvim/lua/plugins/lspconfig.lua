@@ -68,20 +68,14 @@ local config = function()
 		}
 	}
 
-	-- bash
 	lspcfg.bashls.setup {
 		on_init = on_init,
 	}
 
-	-- python
 	lspcfg.pylsp.setup {
 		on_init = on_init,
 	}
 
-	--dart
-	lspcfg.dartls.setup {
-		on_init = on_init,
-	}
 end
 
 return {
