@@ -86,4 +86,5 @@ return {
 		},
 	},
 	config = config,
+	enabled = false
 }

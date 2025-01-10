@@ -48,3 +48,5 @@ require 'lazy'.setup({
 	},
 	change_detection = { enabled = false },
 })
+
+vim.keymap.set('n', '<leader>L', '<Cmd>Lazy<Cr>')

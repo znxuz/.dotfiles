@@ -33,7 +33,7 @@ done
 
 # compact trackpoint keyboard
 xinput_get_id 'ThinkPad Compact USB Keyboard' | while read -r id; do
-	xinput set-prop $id 'libinput Accel Speed' 0.6
+	xinput set-prop $id 'libinput Accel Speed' 0.7
 	xinput set-button-map $id 1 0 3
 done
 

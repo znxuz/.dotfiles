@@ -43,13 +43,9 @@ super + ctrl + {Up,Down,Left,Right}
 ## volume
 
 XF86AudioRaiseVolume
-	pactl set-sink-volume @DEFAULT_SINK@ +10%
-ctrl + XF86AudioRaiseVolume
-	pactl set-sink-volume @DEFAULT_SINK@ +1%
+	pactl set-sink-volume @DEFAULT_SINK@ +5%
 XF86AudioLowerVolume
-	pactl set-sink-volume @DEFAULT_SINK@ -10%
-ctrl + XF86AudioLowerVolume
-	pactl set-sink-volume @DEFAULT_SINK@ -1%
+	pactl set-sink-volume @DEFAULT_SINK@ -5%
 XF86AudioMute
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
 XF86AudioMicMute
