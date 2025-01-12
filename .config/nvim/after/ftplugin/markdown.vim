@@ -1,7 +1,8 @@
 setl tw=80 cc=80
 setl spell spl=en_us,de spf=$XDG_STATE_HOME/nvim/en.utf-8.add
 
-fu! g:MD2PDF()
+" TODO rewrite in lua and try to use non block callback to call `pandoc`
+fu! g:Md2Pdf()
 	let l:src = shellescape(expand('%'))
 	let l:dest = input("Enter 'preview' or enter the pdf name with the file suffix: ", "preview")
 	redraw!
@@ -40,7 +41,7 @@ fu! g:MD2PDF()
 	silent! w
 endfu
 
-fu! g:Paste_image_from_clip()
+fu! g:PasteImgFromClip()
 	call system("xclip -sel clip -o -t TARGETS | grep -q 'image/png'")
 	if v:shell_error
 		echohl ErrorMsg | echo 'Error: Clipboard content is not of type image/png' | echohl None
@@ -65,8 +66,9 @@ nnoremap <buffer> - <Plug>VimwikiGoBackLink
 nnoremap <buffer> <c-n> <Plug>VimwikiNextLink
 nnoremap <buffer> <c-p> <Plug>VimwikiPrevLink
 
-nnoremap <buffer> <leader>mp <cmd>call MD2PDF()<cr>
-nnoremap <buffer> <leader>wp <cmd>call Paste_image_from_clip()<cr>
+nnoremap <buffer> <leader>mp <cmd>call Md2Pdf()<cr>
+nnoremap <buffer> <leader>wp <cmd>call PasteImgFromClip()<cr>
 
 " nabla.nvim
+" TODO nabla buffer toggle
 lua vim.keymap.set('n', 'gp', function () require('nabla').popup() end, { buffer = true })

@@ -32,7 +32,7 @@ return {
 				ctx.keymap('n', '<C-b>', deck.action_mapping('scroll_preview_up'))
 				ctx.keymap('n', '<C-f>', deck.action_mapping('scroll_preview_down'))
 
-				-- ctx.prompt()
+				ctx.prompt()
 			end
 		})
 

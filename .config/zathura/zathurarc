@@ -16,6 +16,7 @@ map D toggle_page_mode
 map <C-=> zoom in
 map <C--> zoom out
 map b toggle_statusbar
+map <C-c> recolor
 
 set page-cache-size 1000
 

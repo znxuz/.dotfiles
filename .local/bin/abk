@@ -3,4 +3,4 @@
 bookshelf="$HOME/Dropbox/books/bookshelf/"
 
 [[ -z "$1" ]] || [[ ! -f "$1" ]] && echo "file doesn't exist" >&2 && exit 1
-ln -sf "$(pwd)/$1" "$bookshelf"
+ln -sf "$(realpath "$1")" "$bookshelf"
