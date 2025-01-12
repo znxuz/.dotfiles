@@ -3,7 +3,7 @@ return {
 	opts = {
 		max_sounds = 10,
 		audio_player = "paplay",
-		volume = 40,
+		volume = 50,
 		sound_map = {
 			{ auto_command = "VimEnter",                       sound = "open3.ogg" },
 			{ auto_command = "VimLeave",                       sound = "close2.ogg" },

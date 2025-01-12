@@ -36,7 +36,12 @@ return {
 			end
 		})
 
-		vim.keymap.set('n', '<Leader>s', '<Cmd>Deck files<CR>', { desc = 'Show recent files, buffers, and more' })
+		vim.keymap.set('n', '<Leader>s', function()
+			deck.start(require('deck.builtin.source.files')({
+				root_dir     = vim.fn.getcwd(),
+				ignore_globs = { '**/.git/' },
+			}))
+		end, { desc = 'Show recent files, buffers, and more' })
 		vim.keymap.set('n', '<Leader>is', function()
 			deck.start(require('deck.builtin.source.files')({
 				root_dir     = vim.fn.input('directory: ', '', 'dir'),

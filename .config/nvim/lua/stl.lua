@@ -21,7 +21,7 @@ local modules = {
 
 local M = {}
 
-M.inject = function()
+M.inject_lsp = function()
 	local stl = ""
 	for _, func in ipairs(modules) do
 		local result = func()

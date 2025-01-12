@@ -33,7 +33,7 @@ endfu
 
 fu! LuaStlCallback()
 	try
-		return luaeval('require("stl").inject()')
+		return luaeval('require("stl").inject_lsp()')
 	catch /.*/
 		return ""
 	endtry
