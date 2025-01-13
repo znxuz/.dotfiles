@@ -1,5 +1,6 @@
 return {
 	'hrsh7th/nvim-deck',
+	enabled = false,
 	config = function()
 		local deck = require('deck')
 
