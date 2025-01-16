@@ -3,7 +3,9 @@ return {
 	opts = {
 		preview = { border = 'single' },
 		func_map = {
-			split = '<C-s>'
+			split = '<C-s>',
+			openc = '<Cr>',
+			open = 'o'
 		},
 	}
 }

@@ -1,6 +1,6 @@
 return {
 	'hrsh7th/nvim-deck',
-	enabled = false,
+	enabled = true,
 	config = function()
 		local deck = require('deck')
 
@@ -26,8 +26,9 @@ return {
 				ctx.keymap('n', 'i', deck.action_mapping('prompt'))
 				ctx.keymap('n', '@', deck.action_mapping('toggle_select'))
 				ctx.keymap('n', '*', deck.action_mapping('toggle_select_all'))
-				ctx.keymap('n', 'p', deck.action_mapping('toggle_preview_mode'))
+				ctx.keymap('n', 'P', deck.action_mapping('toggle_preview_mode'))
 				ctx.keymap('n', '<CR>', deck.action_mapping('open'))
+				ctx.keymap('n', 'o', deck.action_mapping('open_keep'))
 				ctx.keymap('n', 's', deck.action_mapping('open_split'))
 				ctx.keymap('n', 'v', deck.action_mapping('open_vsplit'))
 				ctx.keymap('n', '<C-b>', deck.action_mapping('scroll_preview_up'))

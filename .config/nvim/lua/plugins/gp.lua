@@ -27,6 +27,7 @@ end
 return {
 	{
 		"robitx/gp.nvim",
+		enabled = true,
 		config = config,
 		keys = {
 			-- has to be :<c-u>'<,'> for selecting
@@ -36,7 +37,6 @@ return {
 			{ '<leader>gn', ":<c-u>'<,'>GpChatNew " .. MAIN_MODE .. '<cr>',    mode = 'v',           desc = 'Visual GpChatNew' },
 			{ '<leader>gg', ":<c-u>'<,'>GpChatToggle " .. MAIN_MODE .. '<cr>', mode = 'v',           desc = 'Visual GpChatToggle' },
 			{ '<leader>gp', ":<c-u>'<,'>GpChatPaste " .. MAIN_MODE .. '<cr>',  mode = 'v',           desc = 'Visual GpChatPaste' }
-		},
-		enabled = true
+		}
 	},
 }

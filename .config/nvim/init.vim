@@ -70,6 +70,11 @@ aug END
 set stl=
 set stl=%!DefSTL()
 
+aug qf
+	au!
+	au FileType qf nn <buffer> <CR> <CR>:cclose<CR> | nn <buffer> o <CR>
+aug END
+
 " === nvim ===
 set mouse=
 set guicursor=a:block
