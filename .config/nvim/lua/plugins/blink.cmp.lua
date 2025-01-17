@@ -34,6 +34,7 @@ return {
 			},
 		},
 		sources = {
+			default = { "lsp", "buffer" },
 			cmdline = {},
 		},
 	}

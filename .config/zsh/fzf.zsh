@@ -12,7 +12,7 @@ bindkey -r '\ec'; bindkey '^t' fzf-cd-widget
 
 cd_fzf()
 {
-	local ret="$(fd -td -u -L \
+	local ret="$(fd -td -H -L \
 		--search-path $1 -0 | fzf --read0 --preview="tree -L 1 {}" \
 		--bind="ctrl-space:toggle-preview" --preview-window=:hidden)"
 

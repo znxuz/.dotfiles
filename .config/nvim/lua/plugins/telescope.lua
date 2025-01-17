@@ -1,6 +1,21 @@
+local function prompt_cwd_callback(args)
+	vim.ui.input({ prompt = args.prompt, completion = 'dir' }, function(input)
+		if input == nil or input == '' then
+			return
+		elseif vim.fn.isdirectory(vim.fn.fnamemodify(input, ':p')) == 0 then
+			vim.api.nvim_command('redraw')
+			vim.api.nvim_echo({ { 'Input is not a directory' } }, true, { err = true })
+			return
+		end
+
+		args.callback({ cwd = input })
+	end)
+end
+
 return {
 	'nvim-telescope/telescope.nvim',
-	enabled = false,
+	enabled = true,
+	lazy = true,
 	dependencies = {
 		'nvim-lua/plenary.nvim',
 		{
@@ -10,18 +25,15 @@ return {
 	},
 	config = function()
 		local telescope = require('telescope')
-		local builtin = require('telescope.builtin')
 		local actions = require('telescope.actions')
 		local actions_layout = require('telescope.actions.layout')
 
-		-- local lsp_symbols_config = {
-		-- 	fname_width = 50,
-		-- 	symbol_width = 40,
-		-- }
-
 		telescope.setup {
 			defaults = require('telescope.themes').get_ivy({
-				layout_config = { height = 0.3 },
+				layout_config = {
+					preview_cutoff = 60,
+					height = 0.2
+				},
 				preview = { treesitter = false },
 				dynamic_preview_title = true,
 				mappings = {
@@ -44,44 +56,29 @@ return {
 					sort_mru = true,
 					ignore_current_buffer = true,
 				},
-				-- lsp_document_symbols = lsp_symbols_config,
-				-- lsp_workspace_symbols = lsp_symbols_config,
 			},
 		}
 		telescope.load_extension('fzf')
+	end,
 
-		local function prompt_cwd_callback(args)
-			vim.ui.input({ prompt = args.prompt, completion = 'dir' }, function(input)
-				if input == nil or input == '' then
-					return
-				elseif vim.fn.isdirectory(vim.fn.fnamemodify(input, ':p')) == 0 then
-					vim.api.nvim_command('redraw')
-					vim.api.nvim_err_writeln('Input is not a directory')
-					return
-				end
-
-				args.callback({ cwd = input })
-			end)
-		end
-
-		local map = vim.keymap.set
-		map('n', '<leader>s', function() builtin.find_files() end, { desc = 'Telescope Find files' })
-		map('n', '<leader>cs', function() builtin.find_files({ cwd = vim.fn.expand('%:h') }) end,
-			{ desc = 'Telescope Find files in current directory' })
-		map('n', '<leader>is', function()
-			prompt_cwd_callback({ prompt = 'Files in: ', callback = builtin.find_files })
-		end, { desc = 'Telescope Interactive file search' })
-		map('n', '<leader>b', function() builtin.buffers() end, { desc = 'Telescope List open buffers' })
-		map('n', '<leader>r', function() builtin.grep_string({ search = "" }) end,
-			{ desc = 'Telescope Grep for string under cursor' })
-		map({ 'n', 'v' }, '<leader>cr', function() builtin.grep_string() end, { desc = 'Telescope Grep for selected text' })
-		map('n', '<leader>R', function() builtin.live_grep() end, { desc = 'Telescope Live grep' })
-		map('n', '<leader>iR', function()
-			prompt_cwd_callback({ prompt = 'Live grep in: ', callback = builtin.live_grep })
-		end, { desc = 'Telescope Interactive live grep' })
-		map('n', '<leader>h', function() builtin.help_tags() end, { desc = 'Telescope Show help tags' })
-		map('n', '<leader>j', function() builtin.jumplist() end, { desc = 'Telescope Show jumplist' })
-		map('n', '<leader>k', function() builtin.keymaps() end, { desc = 'Telescope Show key mappings' })
-		map('n', '<leader>t', function() builtin.builtin() end, { desc = 'Telescope Show available built-in commands' })
-	end
+	keys = {
+		{ '<leader>s', function() require('telescope.builtin').find_files() end, { desc = 'Telescope Find files' },        'n' },
+		{ '<leader>cs', function() require('telescope.builtin').find_files({ cwd = vim.fn.expand('%:h') }) end,
+			{ desc = 'Telescope Find files in current directory' }, 'n', },
+		{ '<leader>is', function()
+			prompt_cwd_callback({ prompt = 'Files in: ', callback = require('telescope.builtin').find_files })
+		end, { desc = 'Telescope Interactive file search' }, 'n', },
+		{ '<leader>b', function() require('telescope.builtin').buffers() end,    { desc = 'Telescope List open buffers' }, 'n', },
+		{ '<leader>r', function() require('telescope.builtin').grep_string({ search = "" }) end,
+			{ desc = 'Telescope Grep for string under cursor' }, 'n', },
+		{ '<leader>cr', function() require('telescope.builtin').grep_string() end, { desc = 'Telescope Grep for selected text' }, { 'n', 'v' }, },
+		{ '<leader>R',  function() require('telescope.builtin').live_grep() end,   { desc = 'Telescope Live grep' },              'n', },
+		{ '<leader>iR', function()
+			prompt_cwd_callback({ prompt = 'Live grep in: ', callback = require('telescope.builtin').live_grep })
+		end, { desc = 'Telescope Interactive live grep' }, 'n', },
+		{ '<leader>h', function() require('telescope.builtin').help_tags() end, { desc = 'Telescope Show help tags' },                   'n', },
+		{ '<leader>j', function() require('telescope.builtin').jumplist() end,  { desc = 'Telescope Show jumplist' },                    'n', },
+		{ '<leader>k', function() require('telescope.builtin').keymaps() end,   { desc = 'Telescope Show key mappings' },                'n', },
+		{ '<leader>t', function() require('telescope.builtin').builtin() end,   { desc = 'Telescope Show available built-in commands' }, 'n', },
+	}
 }

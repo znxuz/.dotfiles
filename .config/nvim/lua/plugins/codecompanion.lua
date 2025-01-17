@@ -1,5 +1,6 @@
 return {
 	"olimorris/codecompanion.nvim",
+	enabled = true,
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
@@ -8,10 +9,10 @@ return {
 		display = {
 			chat = {
 				window = {
-					layout = "horizontal", -- float|vertical|horizontal|buffer
+					layout = "float", -- float|vertical|horizontal|buffer
 					border = "single",
-					-- height = 0.5,
-					-- width = 0.5,
+					height = 0.8,
+					width = 0.8,
 					opts = {
 						cursorline = true,
 						spell = true,
@@ -22,7 +23,13 @@ return {
 			},
 		},
 		strategies = {
-			chat = { adapter = "openai" },
+			chat = {
+				adapter = "openai",
+				keymaps = {
+					options = { modes = { n = "g?" } },
+					send = { modes = { i = "<C-g><C-g>" }, },
+				},
+			},
 			inline = { adapter = "openai" },
 		},
 		adapters = {
@@ -31,14 +38,14 @@ return {
 					env = { api_key = "cmd: pass openai" },
 					schema = {
 						model = {
-							default = "o1-mini",
+							default = "gpt-4o",
 							choices = {
 								"gpt-4o",
 								"gpt-4o-mini",
 							},
 						},
-						temperature = { default = 1, },
-						top_p = { default = 1, },
+						temperature = { default = 0.3, },
+						top_p = { default = 0.2, },
 					},
 				})
 			end,
@@ -49,6 +56,5 @@ return {
 		{ "<leader>gg", "<cmd>CodeCompanionChat Toggle<cr>", mode = { "n", "v" }, desc = "CodeCompanionChat Toggle" },
 		{ "<leader>gi", "<cmd>CodeCompanion<cr>",            mode = { "n", "v" }, desc = "CodeCompanion" },
 		{ "<leader>ga", "<cmd>CodeCompanionChat Add<cr>",    mode = "v",          desc = "CodeCompanionChat Add" },
-	},
-	enabled = false
+	}
 }

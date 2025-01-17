@@ -1,9 +1,9 @@
 return {
-	{
-		'nvim-treesitter/nvim-treesitter',
-		lazy = true,
-		build = ":TSUpdate",
-		opts = {
+	'nvim-treesitter/nvim-treesitter',
+	lazy = true,
+	build = ":TSUpdate",
+	config = function()
+		require 'nvim-treesitter.configs'.setup {
 			ensure_installed = {
 				'markdown',
 				'vimdoc',
@@ -25,6 +25,7 @@ return {
 			},
 			autopairs = { enable = false },
 			indent = { enable = false },
-		},
-	},
+		}
+	end
+
 }

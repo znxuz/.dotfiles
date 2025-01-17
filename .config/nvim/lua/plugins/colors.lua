@@ -14,13 +14,11 @@ local init = function()
 end
 
 return {
-	{
-		'rose-pine/neovim',
-		priority = 1000,
-		init = init,
-		config = function()
-			require('bg')
-			vim.cmd.colorscheme('rose-pine')
-		end
-	},
+	'rose-pine/neovim',
+	priority = 1000,
+	init = init,
+	config = function()
+		require('bg')
+		vim.cmd.colorscheme('rose-pine')
+	end
 }
