@@ -39,6 +39,7 @@ fu! LuaStlCallback()
 	endtry
 endfu
 
+" TODO print the full file path but highlight cwd
 fu! DefSTL() abort
 	let stl = ""
 	let stl .= "%<\ %{PathReduce(getcwd())}"

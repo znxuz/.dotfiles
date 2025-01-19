@@ -1,3 +1,5 @@
+local default_adapeter = "openai"
+
 return {
 	"olimorris/codecompanion.nvim",
 	enabled = true,
@@ -24,13 +26,10 @@ return {
 		},
 		strategies = {
 			chat = {
-				adapter = "openai",
-				keymaps = {
-					options = { modes = { n = "g?" } },
-					send = { modes = { i = "<C-g><C-g>" }, },
-				},
+				adapter = default_adapeter,
+				keymaps = { options = { modes = { n = "g?" } } },
 			},
-			inline = { adapter = "openai" },
+			inline = { adapter = default_adapeter },
 		},
 		adapters = {
 			openai = function()
@@ -41,12 +40,24 @@ return {
 							default = "gpt-4o",
 							choices = {
 								"gpt-4o",
-								"gpt-4o-mini",
+								"gpt-4o-mini"
 							},
 						},
 						temperature = { default = 0.3, },
 						top_p = { default = 0.2, },
 					},
+				})
+			end,
+			deepseek = function()
+				return require("codecompanion.adapters").extend("openai", {
+					name = "deepseek",
+					env = { api_key = "cmd: pass openrouter" },
+					url = "https://openrouter.ai/api/v1/chat/completions",
+					schema = {
+						model = { default = "deepseek/deepseek-chat", },
+						temperature = { default = 0.3, },
+						top_p = { default = 0.2, },
+					}
 				})
 			end,
 		},

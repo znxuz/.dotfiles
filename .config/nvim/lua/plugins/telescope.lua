@@ -31,7 +31,7 @@ return {
 		telescope.setup {
 			defaults = require('telescope.themes').get_ivy({
 				layout_config = {
-					preview_cutoff = 60,
+					preview_cutoff = 120,
 					height = 0.2
 				},
 				preview = { treesitter = false },

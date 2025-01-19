@@ -35,6 +35,7 @@ return {
 		},
 		sources = {
 			default = { "lsp", "buffer" },
+			per_filetype = { codecompanion = { "codecompanion" } },
 			cmdline = {},
 		},
 	}

@@ -2,9 +2,16 @@ return {
 	'stevearc/oil.nvim',
 	enabled = true,
 	config = function()
-		require("oil").setup({
+		local oil = require("oil")
+		oil.setup({
 			keymaps = {
-				["<C-v>"] = { "actions.select", opts = { horizontal = true } },
+				["<C-v>"] = { "actions.select", opts = { vertical = true } },
+				["<C-s>"] = { "actions.select", opts = { horizontal = true } },
+				["<C-q>"] = function()
+					require("oil.actions").send_to_qflist.callback()
+					oil.close()
+					vim.cmd.copen()
+				end,
 			},
 			view_options = { show_hidden = true },
 			float = { border = 'single' },
