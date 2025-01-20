@@ -64,7 +64,8 @@ return {
 	},
 	keys = {
 		{ "<leader>G",  "<cmd>CodeCompanionActions<cr>",     mode = { "n", "v" }, desc = "CodeCompanion Actions" },
-		{ "<leader>gg", "<cmd>CodeCompanionChat Toggle<cr>", mode = { "n", "v" }, desc = "CodeCompanionChat Toggle" },
+		{ "<leader>gg", "<cmd>CodeCompanionChat Toggle<cr>", mode = "n",          desc = "CodeCompanionChat Toggle" },
+		{ "<leader>gn", "<cmd>CodeCompanionChat<cr>",        mode = "n",          desc = "CodeCompanionChat Toggle" },
 		{ "<leader>gi", "<cmd>CodeCompanion<cr>",            mode = { "n", "v" }, desc = "CodeCompanion" },
 		{ "<leader>ga", "<cmd>CodeCompanionChat Add<cr>",    mode = "v",          desc = "CodeCompanionChat Add" },
 	}
