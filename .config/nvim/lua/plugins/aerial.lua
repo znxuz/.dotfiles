@@ -1,6 +1,6 @@
 return {
 	'stevearc/aerial.nvim',
-	dependencies = { "nvim-treesitter/nvim-treesitter" },
+	dependencies = "nvim-treesitter/nvim-treesitter",
 	opts = {
 		layout = {
 			max_width = 0.8,
