@@ -7,11 +7,16 @@ return {
 			keymaps = {
 				["<C-v>"] = { "actions.select", opts = { vertical = true } },
 				["<C-s>"] = { "actions.select", opts = { horizontal = true } },
+				["<C-Space>"] = { "actions.preview", opts = { horizontal = true } },
 				["<C-q>"] = function()
 					require("oil.actions").send_to_qflist.callback()
 					oil.close()
 					vim.cmd.copen()
 				end,
+			},
+      preview_win = {
+				update_on_cursor_moved = false,
+				preview_method = "load"
 			},
 			view_options = { show_hidden = true },
 			float = { border = 'single' },

@@ -41,17 +41,14 @@ return {
 						["<esc>"] = actions.close,
 						["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
 						["<c-s>"] = actions.select_horizontal,
-						["<c-f>"] = actions_layout.toggle_preview,
+						["<c-space>"] = actions_layout.toggle_preview,
 					},
 				},
 				file_ignore_patterns = { ".git", ".cache", "build" },
 				color_devicons = false,
 			}),
 			pickers = {
-				find_files = {
-					hidden = true,
-					no_ignore = false,
-				},
+				find_files = { hidden = true },
 				buffers = {
 					sort_mru = true,
 					ignore_current_buffer = true,
@@ -60,11 +57,10 @@ return {
 		}
 		telescope.load_extension('fzf')
 	end,
-
 	keys = {
 		{ '<leader>s', function() require('telescope.builtin').find_files() end, { desc = 'Telescope Find files' },        'n' },
 		{ '<leader>cs', function() require('telescope.builtin').find_files({ cwd = vim.fn.expand('%:h') }) end,
-			{ desc = 'Telescope Find files in current directory' }, 'n' },
+			{ desc = 'Telescope Find files relative to the current buffer' }, 'n' },
 		{ '<leader>is', function()
 			prompt_cwd_callback({ prompt = 'Files in: ', callback = require('telescope.builtin').find_files })
 		end, { desc = 'Telescope Interactive file search' }, 'n' },

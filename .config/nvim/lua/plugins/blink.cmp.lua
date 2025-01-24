@@ -34,7 +34,12 @@ return {
 			},
 		},
 		sources = {
-			default = { "lsp", "buffer" },
+			default = { "snippets", "lsp", "buffer" },
+			providers = {
+				lsp = { score_offset = 2 },
+				snippets = { score_offset = 1 },
+				buffer = { score_offset = 0 },
+			},
 			per_filetype = { codecompanion = { "codecompanion" } },
 			cmdline = {},
 		},
