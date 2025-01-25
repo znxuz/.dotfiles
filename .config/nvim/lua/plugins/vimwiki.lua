@@ -10,7 +10,7 @@ return {
 				ext = '.md'
 			},
 			{
-				name = 'computer science',
+				name = 'compsci',
 				path = '~/Dropbox/notes/compsci',
 				syntax = 'markdown',
 				ext = '.md'

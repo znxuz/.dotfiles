@@ -72,7 +72,8 @@ set stl=%!DefSTL()
 
 aug qf
 	au!
-	au FileType qf nn <buffer> <CR> <CR>:cclose<CR> | nn <buffer> o <CR>
+	au FileType qf nn <buffer> <CR> <CR><cmd>ccl<CR>
+	au FileType qf nn <buffer> <silent> o <CR>
 aug END
 
 " === nvim ===

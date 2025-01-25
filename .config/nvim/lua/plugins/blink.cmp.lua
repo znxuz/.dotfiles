@@ -2,7 +2,7 @@ return {
 	'saghen/blink.cmp',
 	dependencies = 'rafamadriz/friendly-snippets',
 	event = 'InsertEnter',
-	version = 'v0.*',
+	version = '*',
 	opts = {
 		keymap = {
 			-- case sensitive!!
@@ -25,13 +25,15 @@ return {
 				}
 			},
 			accept = { auto_brackets = { enabled = false } },
+			menu = {
+				draw = {
+					columns = { { 'label', 'label_description', gap = 1 }, { 'kind' } }
+				}
+			},
 			documentation = {
 				auto_show = true,
 				auto_show_delay_ms = 0,
-			},
-			menu = {
-				draw = { columns = { { 'label', 'label_description', gap = 1 }, { 'kind' } } },
-			},
+			}
 		},
 		sources = {
 			default = { "snippets", "lsp", "buffer" },
@@ -41,7 +43,7 @@ return {
 				buffer = { score_offset = 0 },
 			},
 			per_filetype = { codecompanion = { "codecompanion" } },
-			cmdline = {},
+			cmdline = {}
 		},
 	}
 }
