@@ -21,7 +21,7 @@ return {
 					},
 				},
 				intro_message = "",
-				show_settings = true
+				show_settings = false -- bug if enabled
 			},
 		},
 		strategies = {

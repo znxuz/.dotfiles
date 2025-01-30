@@ -62,7 +62,6 @@ fu! g:PasteImgFromClip()
 	endif
 endfu
 
-nnoremap <buffer> - <Plug>VimwikiGoBackLink
 nnoremap <buffer> <c-n> <Plug>VimwikiNextLink
 nnoremap <buffer> <c-p> <Plug>VimwikiPrevLink
 

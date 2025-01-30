@@ -22,7 +22,7 @@ main()
 			res=""
 		fi
 	done <<< "$XRANDR_CONNECTED"
-	mapfile -t mons < <(printf "%s\n" "${mons[@]}" | sort -nr -k 2)
+	mapfile -t mons < <(printf "%s\n" "${mons[@]}" | sort -nr -k 2,2 -s)
 
 	read -r display res <<< "${mons[0]}"
 	if [[ "$display" == "$BUILDIN_DISPLAY" ]] && [[ ${#mons[@]} -gt 1 ]]; then
