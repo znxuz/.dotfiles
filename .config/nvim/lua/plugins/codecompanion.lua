@@ -1,62 +1,71 @@
-local default_adapeter = "openai"
-
 return {
 	"olimorris/codecompanion.nvim",
 	enabled = true,
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"nvim-treesitter/nvim-treesitter",
+		"nvim-treesitter/nvim-treesitter"
 	},
 	opts = {
 		display = {
 			chat = {
 				window = {
-					layout = "float", -- float|vertical|horizontal|buffer
+					title = "",
+					layout = "float",
 					border = "single",
-					height = 0.8,
-					width = 0.8,
+					height = 0.9,
+					width = 0.9,
 					opts = {
 						cursorline = true,
 						spell = true,
-					},
+					}
 				},
 				intro_message = "",
 				show_settings = true
 			},
 		},
 		strategies = {
+			inline = { adapter = "deepseek_v3" },
 			chat = {
-				adapter = default_adapeter,
+				adapter = "openai",
 				keymaps = { options = { modes = { n = "g?" } } },
-			},
-			inline = { adapter = default_adapeter },
+				roles = {
+					llm = function(adapter) return adapter.formatted_name end,
+					user = "Me",
+				}
+			}
 		},
 		adapters = {
 			openai = function()
 				return require("codecompanion.adapters").extend("openai", {
 					env = { api_key = "cmd: pass openai" },
 					schema = {
-						model = {
-							default = "gpt-4o",
-							choices = {
-								"gpt-4o",
-								"gpt-4o-mini"
-							},
-						},
-						temperature = { default = 0.3, },
-						top_p = { default = 0.2, },
+						model = { default = "gpt-4o" },
+						temperature = { default = 0.0 },
+						top_p = { default = 0.4 },
 					},
 				})
 			end,
-			deepseek = function()
-				return require("codecompanion.adapters").extend("openai", {
-					name = "deepseek",
+			deepseek_v3 = function()
+				return require("codecompanion.adapters").extend("deepseek", {
+					name = "DeepSeek-v3",
 					env = { api_key = "cmd: pass openrouter" },
 					url = "https://openrouter.ai/api/v1/chat/completions",
 					schema = {
-						model = { default = "deepseek/deepseek-chat", },
-						temperature = { default = 0.3, },
-						top_p = { default = 0.2, },
+						model = { default = "deepseek/deepseek-chat" },
+						temperature = { default = 0.0 },
+						top_p = { default = 0.4 },
+					}
+				})
+			end,
+			deepseek_r1 = function()
+				return require("codecompanion.adapters").extend("deepseek", {
+					name = "DeepSeek-r1",
+					env = { api_key = "cmd: pass openrouter" },
+					url = "https://openrouter.ai/api/v1/chat/completions",
+					schema = {
+						model = { default = "deepseek/deepseek-r1" },
+						temperature = { default = 0.0 },
+						top_p = { default = 0.4 },
 					}
 				})
 			end,
