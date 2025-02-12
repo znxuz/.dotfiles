@@ -16,7 +16,12 @@ vim.api.nvim_create_autocmd({ "User" }, {
 	group = autocmd_group,
 	callback = function(request)
 		if request.data.strategy == "chat" then
-			vim.api.nvim_feedkeys('H', 'n', false)
+			local timer = vim.uv.new_timer()
+			timer:start(1000, 0, vim.schedule_wrap(function()
+				vim.api.nvim_feedkeys('H', 'n', false)
+				timer:stop()
+				timer:close()
+			end))
 		end
 	end,
 })
@@ -49,7 +54,7 @@ return {
 		strategies = {
 			inline = { adapter = "deepseek_v3" },
 			chat = {
-				adapter = "openai",
+				adapter = "deepseek_v3",
 				keymaps = { options = { modes = { n = "g?" } } },
 				roles = {
 					llm = function(adapter) return adapter.formatted_name end,
@@ -63,7 +68,7 @@ return {
 					env = { api_key = "cmd: pass openai" },
 					schema = {
 						model = { default = "gpt-4o" },
-						temperature = { default = 0.0 },
+						temperature = { default = 0.1 },
 						top_p = { default = 0.4 },
 					},
 				})
@@ -75,7 +80,7 @@ return {
 					url = "https://openrouter.ai/api/v1/chat/completions",
 					schema = {
 						model = { default = "deepseek/deepseek-chat" },
-						temperature = { default = 0.0 },
+						temperature = { default = 0.1 },
 						top_p = { default = 0.4 },
 					}
 				})
@@ -87,7 +92,7 @@ return {
 					url = "https://openrouter.ai/api/v1/chat/completions",
 					schema = {
 						model = { default = "deepseek/deepseek-r1" },
-						temperature = { default = 0.0 },
+						temperature = { default = 0.1 },
 						top_p = { default = 0.4 },
 					}
 				})
