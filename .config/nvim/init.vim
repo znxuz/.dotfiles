@@ -23,8 +23,8 @@ set wim=longest:full,full
 set cpt-=t
 set cot=menuone,preview,noinsert,noselect
 set ph=10
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+ino <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+ino <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " === statusline ===
 fu! PathReduce(path)

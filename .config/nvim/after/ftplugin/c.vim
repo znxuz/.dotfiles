@@ -10,7 +10,7 @@ nn <buffer> <leader>mt <cmd>make! test<cr><cr>
 nn <buffer> <leader>mc <cmd>make! clean<cr><cr>
 nn <buffer> <leader>mR <cmd>make! fclean && make run<cr><cr>
 nn <buffer> <leader>mf <cmd>make! flash<cr><cr>
-nn <buffer> <leader>MF <cmd>make! reflash<cr><cr>
+nn <buffer> <leader>mF <cmd>make! reflash<cr><cr>
 
 nn <buffer> <leader>Mm <cmd>make<cr>
 nn <buffer> <leader>Mr <cmd>make run<cr>

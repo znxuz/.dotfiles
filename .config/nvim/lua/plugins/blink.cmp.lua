@@ -43,7 +43,7 @@ return {
 				buffer = { score_offset = 0 },
 			},
 			per_filetype = { codecompanion = { "codecompanion" } },
-			cmdline = {}
 		},
-	}
+		cmdline = { enabled = false },
+	},
 }

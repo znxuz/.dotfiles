@@ -62,11 +62,11 @@ fu! g:PasteImgFromClip()
 	endif
 endfu
 
-nnoremap <buffer> <c-n> <Plug>VimwikiNextLink
-nnoremap <buffer> <c-p> <Plug>VimwikiPrevLink
+nn <buffer> <c-n> <Plug>VimwikiNextLink
+nn <buffer> <c-p> <Plug>VimwikiPrevLink
 
-nnoremap <buffer> <leader>mp <cmd>call Md2Pdf()<cr>
-nnoremap <buffer> <leader>wp <cmd>call PasteImgFromClip()<cr>
+nn <buffer> <leader>mp <cmd>call Md2Pdf()<cr>
+nn <buffer> <leader>wp <cmd>call PasteImgFromClip()<cr>
 
 " nabla.nvim
 " TODO nabla buffer toggle

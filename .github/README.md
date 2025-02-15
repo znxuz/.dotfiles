@@ -1,6 +1,6 @@
 # `dotfiles`
 
-Curated configuration files and scripts for Arch.
+Version controlled config files and scripts for Arch.
 
 # `.config`
 
@@ -14,10 +14,8 @@ Curated configuration files and scripts for Arch.
 - email client: `aerc`
 - news aggregator: `newsboat`
 - torrenting client: `transmission`
-- and much more...
-
-Check the respective directories for more details.
+- ...
 
 # `.local/bin`
 
-Scripts for automating things.
+Misc scripts to get lazy with the PC.

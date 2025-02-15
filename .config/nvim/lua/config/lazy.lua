@@ -47,6 +47,19 @@ require 'lazy'.setup({
 		},
 	},
 	change_detection = { enabled = false },
+	rocks = { enabled = false },
+	performance = {
+		rtp = {
+			disabled_plugins = {
+				'gzip',
+				'rplugin',
+				'tarPlugin',
+				'tohtml',
+				'tutor',
+				'zipPlugin',
+			},
+		},
+	},
 })
 
 vim.keymap.set('n', '<leader>L', '<Cmd>Lazy<Cr>')
