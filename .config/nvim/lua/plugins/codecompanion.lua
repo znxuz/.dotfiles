@@ -42,6 +42,9 @@ return {
 				keymaps = {
 					options = { modes = { n = "g?" } },
 					clear = { modes = { n = "gw" } },
+					next_chat = { modes = { n = "<C-n>" } },
+					previous_chat = { modes = { n = "<C-p>", }, },
+					watch = { modes = { n = "g_" } },
 				},
 				roles = {
 					llm = function(adapter) return adapter.name end,
