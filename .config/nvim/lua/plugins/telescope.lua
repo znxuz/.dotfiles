@@ -15,7 +15,6 @@ end
 return {
 	'nvim-telescope/telescope.nvim',
 	enabled = true,
-	lazy = true,
 	dependencies = {
 		'nvim-lua/plenary.nvim',
 		{
@@ -31,10 +30,13 @@ return {
 		telescope.setup {
 			defaults = require('telescope.themes').get_ivy({
 				layout_config = {
-					preview_cutoff = 140,
+					preview_cutoff = 0,
 					height = 11
 				},
-				preview = { treesitter = false },
+				preview = {
+					hide_on_startup = true,
+					treesitter = false
+				},
 				dynamic_preview_title = true,
 				mappings = {
 					i = {
@@ -56,6 +58,8 @@ return {
 			},
 		}
 		telescope.load_extension('fzf')
+
+		vim.api.nvim_set_hl(0, "TelescopeTitle", { bg = "none" })
 	end,
 	keys = {
 		{ '<leader>s', function() require('telescope.builtin').find_files() end, { desc = 'Telescope Find files' } },
@@ -74,7 +78,6 @@ return {
 		end, { desc = 'Telescope Interactive live grep' } },
 		{ '<leader>cR', function() require('telescope.builtin').live_grep({ cwd = vim.fn.expand('%:h') }) end, { desc = 'Telescope Live Grep in current directory' } },
 		{ '<leader>h',  function() require('telescope.builtin').help_tags() end,                               { desc = 'Telescope Show help tags' }, },
-		{ '<leader>j',  function() require('telescope.builtin').jumplist() end,                                { desc = 'Telescope Show jumplist' }, },
 		{ '<leader>k',  function() require('telescope.builtin').keymaps() end,                                 { desc = 'Telescope Show key mappings' }, },
 		{ '<leader>t',  function() require('telescope.builtin').builtin() end,                                 { desc = 'Telescope Show available built-in commands' } },
 	}

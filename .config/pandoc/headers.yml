@@ -5,6 +5,7 @@ toc: false
 numbersections: false
 geometry: margin=2.54cm
 urlcolor: blue
+fontsize: 12pt
 wrap: reserve
 header-includes:
   - '\newpage'

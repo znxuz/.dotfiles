@@ -14,7 +14,7 @@ return {
 					vim.cmd.copen()
 				end,
 			},
-      preview_win = {
+			preview_win = {
 				update_on_cursor_moved = false,
 				preview_method = "load"
 			},
