@@ -1,17 +1,77 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2034 # disable warning
+# shellcheck disable=SC2086 # disable warning
+
+dark_theme_name='rose-pine'
+light_theme_name='rose-pine-dawn'
 
 mode="$XDG_CONFIG_HOME/X11/themes/.mode"
+prev_mode="$(cat "$mode")"
 
-altty="$XDG_CONFIG_HOME/alacritty/colors.toml"
-nvm="$XDG_CONFIG_HOME/nvim/lua/bg.lua"
-rf="$XDG_CONFIG_HOME/rofi/colors.rasi"
-ztr="$XDG_CONFIG_HOME/zathura/colorsrc"
-dnst_dir="$XDG_CONFIG_HOME/dunst/dunstrc.d"
-fcitx5="$XDG_CONFIG_HOME/fcitx5/conf/classicui.conf"
+declare -A xrdb=(
+	["name"]="xrdb"
+	["path"]="$XDG_CONFIG_HOME/X11/themes/"
+	["run_on_path"]="toggle_xrdb"
+	["callback"]=""
+)
+declare -A altty=(
+	["name"]="alacritty"
+	["path"]="$XDG_CONFIG_HOME/alacritty/colors.toml"
+	["run_on_path"]="toggle"
+	["callback"]=""
+)
+declare -A nvm=(
+	["name"]="nvim"
+	["path"]="$XDG_CONFIG_HOME/nvim/lua/bg.lua"
+	["run_on_path"]="toggle"
+	["callback"]="killall -s 10 nvim &> /dev/null"
+)
+declare -A rf=(
+	["name"]="rofi"
+	["path"]="$XDG_CONFIG_HOME/rofi/colors.rasi"
+	["run_on_path"]="toggle"
+	["callback"]=""
+)
+declare -A ztr=(
+	["name"]="zathura"
+	["path"]="$XDG_CONFIG_HOME/zathura/colorsrc"
+	["run_on_path"]="toggle"
+	["callback"]=""
+)
+declare -A dnst_dir=(
+	["name"]="dunst"
+	["path"]="$XDG_CONFIG_HOME/dunst/dunstrc.d/*"
+	["run_on_path"]="name_swap"
+	["callback"]="killall dunst; dunst &"
+)
+declare -A fcitx5=(
+	["name"]="fcitx5"
+	["path"]="$XDG_CONFIG_HOME/fcitx5/conf/classicui.conf"
+	["run_on_path"]="name_toggle"
+	["callback"]=""
+)
+declare -A gtk2=(
+	["name"]="gtk-2.0"
+	["path"]="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
+	["run_on_path"]="name_toggle"
+	["callback"]=""
+)
+declare -A gtk3=(
+	["name"]="gtk-3.0"
+	["path"]="$XDG_CONFIG_HOME/gtk-3.0/settings.ini"
+	["run_on_path"]="name_toggle"
+	["callback"]=""
+)
 
-files=("$mode" "$altty" "$nvm" "$rf" "$ztr" "$dnst_dir" "$fcitx5")
+configs=(xrdb altty nvm rf ztr dnst_dir fcitx5 gtk2 gtk3)
 
-current_mode="$(< "$mode")"
+name_swap() {
+	command -v renameat2 &> /dev/null && renameat2 -e "$1" "$2" && return
+
+	mv "$1" "$1_tmp"
+	mv "$2" "$1"
+	mv "$1_tmp" "$2"
+}
 
 show_help()
 {
@@ -19,86 +79,58 @@ show_help()
 	echo "Options:"
 	echo "  -h         Show help"
 	echo "  -q         Show current theme mode(light, dark)"
-	echo "  -l         Show all files to be changed for switching themes"
-	echo "  -o <arg>   Toggle specific application (alacritty, dunst, zathura, rofi, nvim)"
+	echo "  -l         Show all the files to be changed for switching themes; used for example to revert git add"
 	echo "Example: script_name -q"
 }
 
 toggle_xrdb()
 {
-	if [[ $current_mode == "dark" ]]; then
-		xrdb -merge "$XDG_CONFIG_HOME/X11/themes/rose-pine-light" &&
-			echo "light" > "$XDG_CONFIG_HOME/X11/themes/.mode"
+	if [[ $prev_mode == "dark" ]]; then
+		xrdb -merge "$1/light" && echo "light" > "$1/.mode"
 	else
-		xrdb -merge "$XDG_CONFIG_HOME/X11/themes/rose-pine-dark" &&
-			echo "dark" > "$XDG_CONFIG_HOME/X11/themes/.mode"
+		xrdb -merge "$1/dark" && echo "dark" > "$1/.mode"
+	fi
+}
+
+name_toggle()
+{
+	[[ -z "$1" ]] && return 1
+
+	if [[ $prev_mode == "dark" ]]; then
+		sed -i "s/$dark_theme_name/$light_theme_name/" "$1"
+	else
+		sed -i "s/$light_theme_name/$dark_theme_name/" "$1"
 	fi
 }
 
 toggle()
 {
 	[[ -z "$1" ]] && return 1
-	path="$1"
 
-	if [[ $current_mode == "dark" ]]; then
-		sed -i 's/dark/light/' "$path"
+	if [[ $prev_mode == "dark" ]]; then
+		sed -i 's/dark/light/' "$1"
 	else
-		sed -i 's/light/dark/' "$path"
+		sed -i 's/light/dark/' "$1"
 	fi
-}
-
-toggle_dunst()
-{
-	rename 01 02 "$dnst_dir/01.conf" &&
-		rename 00 01 "$dnst_dir/00.conf" &&
-		rename 02 00 "$dnst_dir/02.conf" &&
-		killall dunst; dunst &
-}
-
-toggle_fcitx5()
-{
-	if [[ $current_mode == 'dark' ]]; then
-		sed -i 's/rose-pine/rose-pine-dawn/' "$fcitx5"
-	else
-		sed -i 's/rose-pine-dawn/rose-pine/' "$fcitx5"
-	fi
-	pgrep fcitx5 && fcitx5 -rd &
 }
 
 main()
 {
-	while getopts ":hqlo:" opt; do
+	while getopts ":hql" opt; do
 		case $opt in
 			h)
 				show_help
 				exit
 				;;
 			q)
-				echo "$current_mode"
+				echo "$prev_mode"
 				exit
 				;;
 			l)
-				echo "${files[@]}"
-				exit
-				;;
-			o)
-				case "$OPTARG" in
-					alacritty|altty)
-						toggle "$altty"
-						;;
-					dunst)
-						toggle_dunst
-						;;
-					zathura)
-						toggle "$ztr"
-						;;
-					rofi)
-						toggle "$rf"
-						;;
-					nvim|neovim)
-						toggle "$nvm" && killall -s 10 nvim &> /dev/null
-						;;
-				esac
+				for config in "${configs[@]}"; do
+					declare -n cfg="$config"
+					echo ${cfg[path]}
+				done
 				exit
 				;;
 			\?)
@@ -110,12 +142,18 @@ main()
 
 	shift $((OPTIND -1))
 
-	toggle_xrdb && fehbg && toggle_dunst && bspc wm -r &&
-		toggle_fcitx5 &&
-		toggle "$altty" &&
-		toggle "$rf" &&
-		toggle "$ztr" &&
-		toggle "$nvm" && killall -s 10 nvim &> /dev/null
+	for config in "${configs[@]}"; do
+		declare -n cfg="$config"
+
+		path="${cfg[path]}"
+		run_on_path="${cfg[run_on_path]}"
+		callback="${cfg[callback]}"
+
+		$run_on_path $path # wildcard expansion thus unquoted
+		eval "$callback"
+	done
+
+	fehbg && bspc wm -r
 }
 
 main "$@"
