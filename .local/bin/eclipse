@@ -24,7 +24,7 @@ declare -A nvm=(
 	["name"]="nvim"
 	["path"]="$XDG_CONFIG_HOME/nvim/lua/bg.lua"
 	["run_on_path"]="toggle"
-	["callback"]="killall -s 10 nvim &> /dev/null"
+	["callback"]='kill -10 $(pgrep -u "$(whoami)" nvim) &> /dev/null'
 )
 declare -A rf=(
 	["name"]="rofi"
@@ -42,7 +42,7 @@ declare -A dnst_dir=(
 	["name"]="dunst"
 	["path"]="$XDG_CONFIG_HOME/dunst/dunstrc.d/*"
 	["run_on_path"]="name_swap"
-	["callback"]="killall dunst; dunst &"
+	["callback"]='kill $(pgrep -u "$(whoami)" dunst); dunst &'
 )
 declare -A fcitx5=(
 	["name"]="fcitx5"
@@ -150,7 +150,7 @@ main()
 		callback="${cfg[callback]}"
 
 		$run_on_path $path # wildcard expansion thus unquoted
-		eval "$callback"
+		eval $callback
 	done
 
 	fehbg && bspc wm -r
