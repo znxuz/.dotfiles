@@ -2,11 +2,6 @@ return {
 	'neovim/nvim-lspconfig',
 	config = function()
 		local lspcfg = require('lspconfig')
-		local map = vim.keymap.set
-
-		local on_init = function(client, _)
-			client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
-		end
 
 		vim.opt.shortmess:append('c')
 		vim.opt.signcolumn = 'yes'
@@ -14,13 +9,17 @@ return {
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("LspAttachAug", { clear = false }),
 			callback = function(_)
-				map('n', 'gd', function() vim.lsp.buf.type_definition() end, { buffer = true, desc = "Go To Type Definition" })
-				map('n', 'grh', function()
+				vim.keymap.set('n', 'gd', function() vim.lsp.buf.type_definition() end, { buffer = true, desc = "Go To Type Definition" })
+				vim.keymap.set('n', 'grh', function()
 					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
 				end, { buffer = true, desc = "Toggle Inlay Hint" })
-				map('n', 'grd', function() vim.diagnostic.setqflist() end)
+				vim.keymap.set('n', 'grd', function() vim.diagnostic.setqflist() end)
 			end,
 		})
+
+		local on_init = function(client, _)
+			client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
+		end
 
 		lspcfg.clangd.setup {
 			on_init = on_init,

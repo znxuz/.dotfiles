@@ -27,10 +27,6 @@ ino <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 ino <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " === statusline ===
-fu! PathReduce(path)
-	return fnamemodify(a:path,':~:.')
-endfu
-
 fu! LuaStlCallback()
 	try
 		return luaeval('require("stl").inject_lsp()')
@@ -41,8 +37,8 @@ endfu
 
 fu! DefSTL() abort
 	let stl = ""
-	let stl .= "%<\ %{PathReduce(getcwd())}"
-	let stl .= "%{expand('%')==''?'':'\ \ \|\ '.PathReduce(expand('%:p'))}"
+	let stl .= "%<\ %{fnamemodify(getcwd(),':~:.')}"
+	let stl .= "%{expand('%')==''?'':'\ \ \|\ '.fnamemodify(expand('%:p'),':~:.')}"
 	let stl .= "%4m"
 	let stl .= "%5r"
 	let stl .= "%{&paste?'\ \ [P]':''}"
