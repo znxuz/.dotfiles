@@ -36,9 +36,9 @@ return {
 			},
 		},
 		strategies = {
-			inline = { adapter = "or_openai" },
+			inline = { adapter = "or_deepseek" },
 			chat = {
-				adapter = "or_openai",
+				adapter = "or_deepseek",
 				keymaps = {
 					options = { modes = { n = "g?" } },
 					clear = { modes = { n = "gw" } },
@@ -65,6 +65,19 @@ return {
 								"openai/gpt-4o",
 								"openai/o3-mini-high",
 							},
+						},
+					}
+				})
+			end,
+			or_deepseek = function()
+				return require("codecompanion.adapters").extend("openai", {
+					name = "Deepseek",
+					env = { api_key = "cmd: pass openrouter" },
+					url = "https://openrouter.ai/api/v1/chat/completions",
+					schema = {
+						model = {
+							default = "deepseek/deepseek-chat:free",
+							choices = { "deepseek/deepseek-chat" },
 						},
 					}
 				})

@@ -17,6 +17,6 @@ return {
 		},
 	},
 	cond = function()
-		return os.execute("test -d /sys/class/power_supply/AC") == 0
+		return io.open("/sys/class/power_supply/AC/online"):read("*l") == "1"
 	end
 }
