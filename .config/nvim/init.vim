@@ -4,12 +4,14 @@ set sw=0 ts=4
 set ttm=1
 set cb+=unnamedplus
 set tgc
-set sbr=>\\
-set list
 set lcs=tab:│\ ,nbsp:␣,trail:•
 set cul
 set exrc
+set gcr=a:block
+set mouse=
 filetype plugin indent on
+set list
+set sbr=>\\
 
 let mapleader = " "
 
@@ -27,9 +29,20 @@ ino <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 ino <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " === statusline ===
+aug stl
+	au!
+	au VimEnter * hi default link STL TabLine | hi! default link StatusLine STL
+	au ModeChanged *:n hi clear STL | redraws!
+	au ModeChanged *:ni* hi link STL Visual | redraws!
+	au ModeChanged *:i* hi link STL TermCursor | redraws!
+	au ModeChanged *:[vV\x16]* hi link STL CurSearch | redraws!
+	au ModeChanged *:R* hi link STL CursorLineNr | redraws!
+	au ModeChanged *:no* hi link STL Search | redraws!
+aug END
+
 fu! LuaStlCallback()
 	try
-		return luaeval('require("stl").inject_lsp()')
+		return luaeval('require("stl").inject()')
 	catch /.*/
 		return ""
 	endtry
@@ -48,27 +61,11 @@ fu! DefSTL() abort
 	let stl .= "%{&fileformat}"
 	let stl .= "\ \|\ %{&fileencoding?&fileencoding:&encoding}"
 	let stl .= "%{&filetype==''?'\ ':'\ \ \|\ '.toupper(&filetype).'\ '}"
-
 	return stl
 endfu
 
-aug stl
-	au!
-	au VimEnter * hi default link STL TabLine | hi! default link StatusLine STL
-	au ModeChanged *:n hi clear STL | redraws!
-	au ModeChanged *:ni* hi link STL Visual | redraws!
-	au ModeChanged *:i* hi link STL TermCursor | redraws!
-	au ModeChanged *:[vV\x16]* hi link STL CurSearch | redraws!
-	au ModeChanged *:R* hi link STL CursorLineNr | redraws!
-	au ModeChanged *:no* hi link STL Search | redraws!
-aug END
-
 set stl=
 set stl=%!DefSTL()
-
-" === nvim ===
-set mouse=
-set guicursor=a:block
 
 " === plugins ===
 lua require('config.lazy')

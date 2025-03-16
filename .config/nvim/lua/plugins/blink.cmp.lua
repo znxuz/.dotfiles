@@ -18,6 +18,7 @@ return {
 			['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
 		},
 		completion = {
+			trigger = { show_in_snippet = false },
 			list = {
 				selection = {
 					preselect = false,
