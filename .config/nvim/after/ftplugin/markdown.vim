@@ -61,13 +61,3 @@ fu! g:PasteImgFromClip()
 		execute 'norm a<br>![' .. l:header_name .. '](' .. l:image_name .. ')<br>'
 	endif
 endfu
-
-nn <buffer> <c-n> <Plug>VimwikiNextLink
-nn <buffer> <c-p> <Plug>VimwikiPrevLink
-
-nn <buffer> <leader>mp <cmd>call Md2Pdf()<cr>
-nn <buffer> <leader>wp <cmd>call PasteImgFromClip()<cr>
-
-" nabla.nvim
-" TODO nabla buffer toggle
-lua vim.keymap.set('n', 'gp', function () require('nabla').popup() end, { buffer = true })

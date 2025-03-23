@@ -33,5 +33,10 @@ return {
 			headers = 0,
 			lists = 0
 		}
+
+		vim.cmd [[
+			nn <c-n> <Plug>VimwikiNextLink
+			nn <c-p> <Plug>VimwikiPrevLink
+		]]
 	end
 }
