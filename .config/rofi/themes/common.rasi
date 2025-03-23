@@ -15,7 +15,7 @@ window {
     background-color: @background;
     border: 2;
     width: calc(40% min 80ch);
-    padding: 10;
+    padding: 5;
 }
 
 mainbox {

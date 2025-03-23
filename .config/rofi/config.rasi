@@ -1,6 +1,6 @@
 configuration {
     modi: "run";
-    font: "IBMPlexMono Medium 11";
+    font: "RecMonoLinear 12";
     cycle: true;
     sort: true;
     matching: "fuzzy";

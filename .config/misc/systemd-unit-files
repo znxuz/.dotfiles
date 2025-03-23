@@ -12,12 +12,10 @@ sshd.service                       enabled disabled
 systemd-resolved.service           enabled enabled
 systemd-timesyncd.service          enabled enabled
 tlp.service                        enabled disabled
-wpa_supplicant.service             enabled disabled
 cups.socket                        enabled disabled
 docker.socket                      enabled disabled
 systemd-userdbd.socket             enabled enabled
 remote-fs.target                   enabled enabled
 fstrim.timer                       enabled disabled
-snapper-cleanup.timer              enabled disabled
 
-20 unit files listed.
+18 unit files listed.

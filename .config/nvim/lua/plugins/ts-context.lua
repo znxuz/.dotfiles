@@ -2,7 +2,8 @@ return {
 	'nvim-treesitter/nvim-treesitter-context',
 	dependencies = 'nvim-treesitter/nvim-treesitter',
 	opts = {
-		enable = false,
+		enable = true,
+		multiwindow = false,
 		max_lines = 0,
 		min_window_height = 0,
 		line_numbers = true,

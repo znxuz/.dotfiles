@@ -75,12 +75,12 @@ name_swap() {
 
 show_help()
 {
-	echo "Usage: script_name [OPTIONS]"
+	echo "Usage: eclipse [OPTIONS]"
 	echo "Options:"
 	echo "  -h         Show help"
 	echo "  -q         Show current theme mode(light, dark)"
 	echo "  -l         Show all the files to be changed for switching themes; used for example to revert git add"
-	echo "Example: script_name -q"
+	echo "Example: eclipse -q"
 }
 
 toggle_xrdb()
