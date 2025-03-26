@@ -18,7 +18,7 @@ fileext = ".vcf"
 [storage contacts_remote]
 type = "carddav"
 url = "https://nextcloud05.webo.cloud/remote.php/dav"
-username = "znx418@gmail.com"
+username = "znxuz@proton.me"
 password.fetch = ["command", "pass", "nextcloud05.webo.cloud"]
 
 # CALDAV
@@ -37,5 +37,5 @@ fileext = ".ics"
 [storage cal_remote]
 type = "caldav"
 url = "https://nextcloud05.webo.cloud/remote.php/dav"
-username = "znx418@gmail.com"
+username = "znxuz@proton.me"
 password.fetch = ["command", "pass", "nextcloud05.webo.cloud"]

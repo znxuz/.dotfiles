@@ -9,9 +9,11 @@ set cul
 set exrc
 set gcr=a:block
 set mouse=
-filetype plugin indent on
 set list
 set sbr=>\\
+filetype plugin indent on
+ino <C-b> <Left>
+ino <C-f> <Right>
 
 let mapleader = " "
 
