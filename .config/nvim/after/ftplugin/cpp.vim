@@ -9,4 +9,3 @@ fu s:CppCheck()
 endfu
 
 nn <buffer> <leader>mch <cmd>call <sid>CppCheck()<cr>
-nn <buffer> <leader><c-^> <cmd>ClangdSwitchSourceHeader<cr>

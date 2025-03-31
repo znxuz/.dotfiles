@@ -1,5 +1,4 @@
-if pcall(function() require('jdtls') end) == false
-then
+if pcall(function() require('jdtls') end) == false then
 	return
 end
 

@@ -69,5 +69,5 @@ endfu
 set stl=
 set stl=%!DefSTL()
 
-" === plugins ===
 lua require('config.lazy')
+lua require('lsp')
