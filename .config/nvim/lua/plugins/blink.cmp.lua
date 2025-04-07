@@ -5,6 +5,7 @@ return {
 	version = '*',
 	opts = {
 		keymap = {
+			preset = 'none',
 			-- case sensitive!!
 			['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
 			['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
@@ -14,8 +15,8 @@ return {
 			['<C-l>'] = { 'show', 'hide', 'fallback' },
 			['<C-_>'] = { 'cancel', 'fallback' },
 			['<C-Space>'] = { 'show_documentation', 'hide_documentation', 'fallback' },
-			['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
-			['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
+			['<M-j>'] = { 'scroll_documentation_down', 'fallback' },
+			['<M-k>'] = { 'scroll_documentation_up', 'fallback' },
 		},
 		completion = {
 			trigger = { show_in_snippet = false },

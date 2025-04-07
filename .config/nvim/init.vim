@@ -12,8 +12,6 @@ set mouse=
 set list
 set sbr=>\\
 filetype plugin indent on
-ino <C-b> <Left>
-ino <C-f> <Right>
 
 let mapleader = " "
 
@@ -61,12 +59,10 @@ fu! DefSTL() abort
 	let stl .= "%="
 	let stl .= "\ \ \ \ \ "
 	let stl .= "%{&fileformat}"
-	let stl .= "\ \|\ %{&fileencoding?&fileencoding:&encoding}"
 	let stl .= "%{&filetype==''?'\ ':'\ \ \|\ '.toupper(&filetype).'\ '}"
 	return stl
 endfu
 
-set stl=
 set stl=%!DefSTL()
 
 lua require('config.lazy')
