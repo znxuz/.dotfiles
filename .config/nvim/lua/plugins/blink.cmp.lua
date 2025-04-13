@@ -7,10 +7,11 @@ return {
 		keymap = {
 			preset = 'none',
 			-- case sensitive!!
-			['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
-			['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
+			['<Tab>'] = { 'snippet_forward', 'select_next', 'fallback' },
+			['<S-Tab>'] = { 'snippet_backward', 'select_prev', 'fallback' },
 			['<C-n>'] = { 'select_next', 'fallback' },
 			['<C-p>'] = { 'select_prev', 'fallback' },
+			['<Enter>'] = { 'accept', 'fallback' },
 			['<C-y>'] = { 'accept', 'fallback' },
 			['<C-l>'] = { 'show', 'hide', 'fallback' },
 			['<C-_>'] = { 'cancel', 'fallback' },
@@ -22,7 +23,7 @@ return {
 			trigger = { show_in_snippet = false },
 			list = {
 				selection = {
-					preselect = false,
+					preselect = true,
 					auto_insert = true
 				}
 			},
@@ -33,7 +34,7 @@ return {
 				}
 			},
 			documentation = {
-				auto_show = true,
+				auto_show = false,
 				auto_show_delay_ms = 0,
 			}
 		},
