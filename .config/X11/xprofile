@@ -26,8 +26,7 @@ xinput set-button-map $trackpoint_id 1 0 3
 
 # trackpoint keyboard
 xinput_get_id "TrackPoint Keyboard II" | while read -r id; do
-	# xinput list-props $id | grep -q 'libinput Accel Speed' &&
-	# xinput set-prop $id 'libinput Accel Speed' -0.1 &&
+	xinput set-prop $id 'libinput Accel Speed' 0.2
 	xinput set-button-map $id 1 0 3
 done
 

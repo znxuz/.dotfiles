@@ -40,7 +40,7 @@ return {
 			chat = {
 				adapter = "or_deepseek",
 				keymaps = {
-					options = { modes = { n = "g?" } },
+					options = { modes = { n = "gh" } },
 					clear = { modes = { n = "gw" } },
 					next_chat = { modes = { n = "<C-n>" } },
 					previous_chat = { modes = { n = "<C-p>", }, },
@@ -55,15 +55,15 @@ return {
 		adapters = {
 			or_openai = function()
 				return require("codecompanion.adapters").extend("openai", {
-					name = "OpenAI",
+					name = "openai",
 					env = { api_key = "cmd: pass openrouter" },
 					url = "https://openrouter.ai/api/v1/chat/completions",
 					schema = {
 						model = {
-							default = "openai/gpt-4o",
+							default = "openai/gpt-4.1",
 							choices = {
+								"openai/gpt-4.1",
 								"openai/gpt-4o",
-								"openai/o3-mini-high",
 							},
 						},
 					}
@@ -71,13 +71,12 @@ return {
 			end,
 			or_deepseek = function()
 				return require("codecompanion.adapters").extend("openai", {
-					name = "Deepseek",
+					name = "deepseek",
 					env = { api_key = "cmd: pass openrouter" },
 					url = "https://openrouter.ai/api/v1/chat/completions",
 					schema = {
 						model = {
-							default = "deepseek/deepseek-chat:free",
-							choices = { "deepseek/deepseek-chat" },
+							default = "deepseek/deepseek-chat-v3-0324"
 						},
 					}
 				})

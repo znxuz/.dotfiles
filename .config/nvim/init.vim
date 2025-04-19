@@ -27,8 +27,6 @@ set cot=menuone,preview,noinsert
 set ph=10
 ino <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 ino <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
-ino <expr> <Enter> pumvisible() ? "\<C-y>" : "\<Enter>"
-cno <expr> <Enter> pumvisible() ? "\<C-y>" : "\<Enter>"
 ino <expr> <C-_> pumvisible() ? "\<C-e>" : "\<C-_>"
 cno <expr> <C-_> pumvisible() ? "\<C-e>" : "\<C-_>"
 

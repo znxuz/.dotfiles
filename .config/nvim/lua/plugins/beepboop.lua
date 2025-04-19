@@ -13,7 +13,7 @@ return {
 			-- { auto_command = "CmdlineLeave",                   sound = "open1.ogg" },
 			{ auto_command = "InsertCharPre",                  sounds = { "stone1.ogg", "stone2.ogg", "coral1.ogg", "coral2.ogg", "coral3.ogg", "coral4.ogg" } },
 			{ key_map = { mode = "i", key_chord = "<BS>" },    sounds = { "stone3.ogg" } },
-			-- { key_map = { mode = "i", key_chord = "<Cr>" }, sounds = { "stone4.ogg" } },
+			{ key_map = { mode = "i", key_chord = "<Cr>" }, sounds = { "stone4.ogg" } },
 		},
 	},
 	cond = function()

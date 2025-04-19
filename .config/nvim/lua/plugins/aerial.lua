@@ -3,7 +3,10 @@ return {
 	dependencies = "nvim-treesitter/nvim-treesitter",
 	opts = {
 		backends = { "treesitter", "lsp", "markdown", "asciidoc", "man" },
-		layout = { default_direction = 'float' },
+		layout = {
+			max_width = { 40 },
+			default_direction = 'float'
+		},
 		float = { border = 'single' },
 		highlight_closest = false,
 		highlight_on_jump = false,

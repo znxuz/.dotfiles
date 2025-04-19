@@ -11,7 +11,9 @@ return {
 			split = '<C-s>',
 			openc = '<Cr>',
 			open = 'o',
-			ptoggleauto = '<C-Space>'
+			ptoggleauto = '<C-Space>',
+			pscrolldown = '<M-j>',
+			pscrollup = '<M-k>'
 		},
 	}
 }

@@ -17,6 +17,7 @@ export SUDO_EDITOR="$EDITOR"
 export TERMINAL="alacritty"
 export BROWSER="brave"
 export LESSHISTFILE="-"
+export MANPAGER="less --incsearch"
 
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
