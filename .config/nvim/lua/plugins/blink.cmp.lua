@@ -28,6 +28,7 @@ return {
 			},
 			accept = { auto_brackets = { enabled = false } },
 			menu = {
+				max_height = vim.o.pumheight,
 				draw = {
 					columns = { { 'label', 'label_description', gap = 1 }, { 'kind' } }
 				}

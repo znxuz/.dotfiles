@@ -50,7 +50,10 @@ return {
 				color_devicons = false,
 			}),
 			pickers = {
-				find_files = { hidden = true },
+				find_files = {
+					follow = true,
+					hidden = true
+			},
 				buffers = {
 					sort_mru = true,
 					ignore_current_buffer = true,
