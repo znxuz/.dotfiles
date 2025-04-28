@@ -19,6 +19,7 @@ return {
 	},
 	keys = {
 		{ "go", "<cmd>AerialToggle<CR>", "n" },
+		-- FIXME v:count doesnt work
 		{ "]t", "v:count == 0 ? ':AerialNext<cr>' : v:count . ':AerialNext<cr>'", "n", expr = true, silent = true },
 		{ "[t", "v:count == 0 ? ':AerialPrev<cr>' : v:count . ':AerialPrev<cr>'", "n", expr = true, silent = true },
 	}

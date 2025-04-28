@@ -6,8 +6,28 @@
 [init]
 	defaultBranch = main
 [alias]
-	nccommit = commit --allow-empty-message -m \"\"
+	a = add
+	b = branch
+	d = diff
+	ds = diff --staged
+	l = log
+	ls = ls-files
+	f = fetch
+	m = merge
+	s = status
+	sw = switch
+	cm = commit
+	ncm = commit --allow-empty-message -m \"\"
+	co = checkout
+	cl = clone
+	ps = push
+	pl = pull
+	r = restore
+	rb = rebase
+	R = reset
 [diff]
     tool = nvimdiff
 [difftool "nvimdiff"]
     cmd = nvim -n -d "$LOCAL" "$REMOTE"
+[status]
+	showStash = true
