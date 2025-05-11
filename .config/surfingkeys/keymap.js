@@ -22,6 +22,7 @@ const {
 
 unmap("<Ctrl-h>") // for history
 unmap("<Ctrl-j>") // for download
+iunmap("<Ctrl-a>")
 
 map("<Ctrl-[>", "<Esc>");
 imap("<Ctrl-[>", "<Esc>");

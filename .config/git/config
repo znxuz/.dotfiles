@@ -10,11 +10,14 @@
 	b = branch
 	d = diff
 	ds = diff --staged
+	dt = difftool
+	dts = difftool --staged
 	l = log
 	ls = ls-files
 	f = fetch
 	m = merge
 	s = status
+	sth = stash
 	sw = switch
 	cm = commit
 	ncm = commit --allow-empty-message -m \"\"
@@ -24,7 +27,7 @@
 	pl = pull
 	r = restore
 	rb = rebase
-	R = reset
+	rt = reset
 [diff]
     tool = nvimdiff
 [difftool "nvimdiff"]
