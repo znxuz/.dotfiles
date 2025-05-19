@@ -4,7 +4,7 @@ xsetroot -cursor_name left_ptr
 $XDG_CONFIG_HOME/polybar/launch.sh
 
 primary_mon=$(xrandr | grep '\bconnected primary\b' | head -n1 | cut -d' ' -f1)
-bspc monitor "$primary_mon" -d I II III IV V
+bspc monitor "$primary_mon" -d I II III IV
 bspc monitor "$primary_mon" -f
 bspc monitor last -r
 
