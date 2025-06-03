@@ -21,7 +21,7 @@ fi
 # laptop
 # xinput disable "SynPS/2 Synaptics TouchPad"
 trackpoint_id="$(xinput_get_id 'TPPS\/2.*TrackPoint')"
-xinput set-prop $trackpoint_id 'libinput Accel Speed' +0.1
+xinput set-prop $trackpoint_id 'libinput Accel Speed' +0.3
 xinput set-button-map $trackpoint_id 1 0 3
 
 # trackpoint keyboard
