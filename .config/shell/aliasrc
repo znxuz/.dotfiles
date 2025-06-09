@@ -5,6 +5,7 @@ alias \
 		  grep='grep --color=auto' \
 		  za='zathura --fork' \
 		  ckhal='khal calendar' \
+		  bspl='bsp-layout' \
 		  lf='lf-ueberzug' \
 		  dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
 		  tmd='transmission-daemon' \
