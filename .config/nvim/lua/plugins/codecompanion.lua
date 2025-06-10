@@ -23,10 +23,10 @@ return {
 			chat = {
 				window = {
 					title = "",
-					layout = "float",
-					border = "single",
-					height = 0.9,
-					width = 0.9,
+					layout = "buffer",
+					-- border = "single",
+					-- height = 0.9,
+					-- width = 0.9,
 					opts = {
 						cursorline = true,
 						spell = true,
