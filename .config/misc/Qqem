@@ -1,6 +1,9 @@
 brave-bin
+bsp-layout
 can-utils
 cht.sh-git
+code-marketplace
+compiledb
 console-bridge
 dict-wn
 dockd
@@ -8,6 +11,9 @@ droidcam
 droidcam-obs-plugin-bin
 dropbox
 fmt9
+linkserver
+mcuxpresso-config-tools
+mcuxpresso-ide
 neovim-nightly-bin
 neovim-nightly-bin-debug
 pandoc-bin
@@ -19,11 +25,13 @@ quickemu
 redshift-minimal
 ros2-jazzy-base
 rose-pine-gtk-theme
-rpi-imager-bin
 saleae-logic2
 shellcheck-bin
+slidev-cli
 stm32cubemx
 tango-icon-theme
 ttf-recursive
+v4l2loopback-dc-dkms
 wechat-universal-bwrap
+xsane
 zsh-nix-shell
