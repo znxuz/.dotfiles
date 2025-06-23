@@ -25,7 +25,7 @@ super + alt + {s, n, p}
 ## rofi
 
 super + space
-	rofi -show run
+	rofi -show drun
 super + Escape
 	r-proc-kill
 super + alt + {_,shift + } d

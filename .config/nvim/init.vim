@@ -68,11 +68,11 @@ endfu
 set stl=%!DefSTL()
 
 " === builtin term ===
-aug term
-	au!
-	au TermOpen,BufEnter * if &buftype == 'terminal' | :sil start | endif
-	au TermOpen,BufEnter * if &buftype == 'terminal' | tno <buffer> <C-^> <C-\><C-n><C-^> | endif
-aug END
+"aug term
+"	au!
+"	au TermOpen,BufEnter * if &buftype == 'terminal' | :sil start | endif
+"	au TermOpen,BufEnter * if &buftype == 'terminal' | tno <buffer> <C-^> <C-\><C-n><C-^> | endif
+"aug END
 
 lua require('config.lazy')
 lua require('lsp')
