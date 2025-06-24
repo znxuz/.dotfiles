@@ -14,5 +14,5 @@ return {
 		zindex = 20,
 		on_attach = nil,
 	},
-	keys = { { 'grc', '<cmd>TSContextToggle<cr>', desc = "TSContext Toggle" } }
+	keys = { { 'grc', '<cmd>TSContextToggle<cr>', desc = "TSContext toggle" } }
 }
