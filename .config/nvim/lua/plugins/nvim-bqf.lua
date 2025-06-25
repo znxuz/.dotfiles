@@ -15,5 +15,6 @@ return {
 			pscrolldown = '<M-j>',
 			pscrollup = '<M-k>'
 		},
-	}
+	},
+	event = "VeryLazy"
 }

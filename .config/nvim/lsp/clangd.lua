@@ -6,6 +6,7 @@ return {
 		'--query-driver=/usr/bin/arm-none-eabi-gcc,/usr/bin/arm-none-eabi-g++'
 	},
 	root_markers = {
+		'.cache',
 		'.clangd',
 		'.clang-format',
 		'.clang-tidy',

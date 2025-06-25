@@ -18,5 +18,6 @@ return {
 	},
 	cond = function()
 		return io.open("/sys/class/power_supply/AC/online"):read("*l") == "1"
-	end
+	end,
+	event = "VeryLazy"
 }

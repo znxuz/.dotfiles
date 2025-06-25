@@ -1,4 +1,5 @@
 return {
 	"andrewferrier/debugprint.nvim",
-	config = true
+	config = true,
+	event = "VeryLazy"
 }
