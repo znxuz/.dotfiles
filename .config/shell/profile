@@ -83,3 +83,6 @@ export QT_SCREEN_SCALE_FACTORS=1 # screen flickering fix
 # make & cmake
 export MAKEFLAGS="-j$(nproc)"
 export CMAKE_BUILD_PARALLEL_LEVEL="$(nproc)"
+
+# ripgrep
+export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/rgrc
