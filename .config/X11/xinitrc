@@ -17,6 +17,7 @@ dunst &
 unclutter &
 sxhkd &
 redshift &
+clipcatd &
 xrandr-setup && fehbg
 
 exec bspwm

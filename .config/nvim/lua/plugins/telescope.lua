@@ -14,7 +14,7 @@ end
 
 return {
 	'nvim-telescope/telescope.nvim',
-	enabled = true,
+	enabled = false,
 	dependencies = {
 		'nvim-lua/plenary.nvim',
 		{

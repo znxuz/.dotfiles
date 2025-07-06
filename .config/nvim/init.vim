@@ -2,7 +2,7 @@
 set nu
 set sw=0 ts=4
 set ttm=1
-set cb+=unnamedplus
+set cb=unnamedplus
 set tgc
 set lcs=tab:│\ ,nbsp:␣,trail:•
 set cul
@@ -66,13 +66,6 @@ fu! DefSTL() abort
 endfu
 
 set stl=%!DefSTL()
-
-" === builtin term ===
-"aug term
-"	au!
-"	au TermOpen,BufEnter * if &buftype == 'terminal' | :sil start | endif
-"	au TermOpen,BufEnter * if &buftype == 'terminal' | tno <buffer> <C-^> <C-\><C-n><C-^> | endif
-"aug END
 
 lua require('config.lazy')
 lua require('lsp')
