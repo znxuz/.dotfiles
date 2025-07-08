@@ -23,8 +23,7 @@ return {
 			chat = {
 				window = {
 					title = "",
-					layout = "horizontal",
-					height = 0.3,
+					layout = "buffer",
 					opts = {
 						cursorline = true,
 						spell = true,

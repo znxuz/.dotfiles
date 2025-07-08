@@ -14,12 +14,12 @@ vim.opt.findfunc = "v:lua.Fd"
 
 -- find multiple
 vim.api.nvim_create_user_command('Fd', function(opts)
-	vim.fn.setqflist({}, 'r', {
+	vim.fn.setloclist(0, {}, 'r', {
 		lines = vim.fn.systemlist(FD_CMD .. opts.args),
 		efm = '%f',
 		title = 'Search Results'
 	})
-	vim.cmd('cw')
+	vim.cmd('lw')
 end, { nargs = '+', complete = 'file' })
 vim.keymap.set("n", "<leader>s", ":Fd ")
 

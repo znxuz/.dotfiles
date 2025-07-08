@@ -7,7 +7,7 @@ alias \
 		  ckhal='khal calendar' \
 		  bspl='bsp-layout' \
 		  lf='lf-ueberzug' \
-		  dfs='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
+		  dfs='git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
 		  tmd='transmission-daemon' \
 		  tmr='transmission-remote' \
 		  tmrw='watch -n1 transmission-remote -l' \

@@ -22,12 +22,14 @@
 	cm = commit
 	ncm = commit --allow-empty-message -m \"\"
 	cho = checkout
-	cl = clone
+	c = clone
+	cl = clean
 	ps = push
 	pl = pull
 	r = restore
 	rb = rebase
 	rt = reset
+	wt = worktree
 [diff]
     tool = nvimdiff
 [difftool "nvimdiff"]
