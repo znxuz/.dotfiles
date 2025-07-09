@@ -11,6 +11,7 @@ function Fd(file_pattern, _)
 	return vim.fn.systemlist(FD_CMD .. '"' .. file_pattern .. '"')
 end
 vim.opt.findfunc = "v:lua.Fd"
+vim.keymap.set("n", "<leader>s", ":find ")
 
 -- find multiple
 vim.api.nvim_create_user_command('Fd', function(opts)
@@ -21,9 +22,10 @@ vim.api.nvim_create_user_command('Fd', function(opts)
 	})
 	vim.cmd('lw')
 end, { nargs = '+', complete = 'file' })
-vim.keymap.set("n", "<leader>s", ":Fd ")
+vim.keymap.set("n", "<leader>S", ":Fd ")
 
 -- grep
+vim.o.grepprg = "rg --vimgrep --hidden"
 vim.api.nvim_create_user_command('Gr', function(opts)
 	vim.cmd('sil gr! ' .. opts.args)
 	vim.cmd('cw')
