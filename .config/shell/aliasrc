@@ -15,4 +15,5 @@ alias \
 		  ssh-edit-conf='chmod 700 ~/.ssh/config && $EDITOR ~/.ssh/config; chmod 400 ~/.ssh/config' \
 		  wtr='curl wttr.in/dortmund_oespel' \
 		  nsh='nix-shell' \
-		  dbox='distrobox'
+		  dpb='dropbox-cli' \
+		  dtb='distrobox'

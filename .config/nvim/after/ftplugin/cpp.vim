@@ -8,4 +8,4 @@ fu s:CppCheck()
 	endtry
 endfu
 
-nn <buffer> <leader>mch <cmd>call <sid>CppCheck()<cr>
+"nn <buffer> <leader>mch <cmd>call <sid>CppCheck()<cr>

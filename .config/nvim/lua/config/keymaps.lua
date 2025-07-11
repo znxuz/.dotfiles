@@ -43,3 +43,13 @@ vim.keymap.set("n", "<leader><leader>", function()
 		end
 	end)
 end)
+
+-- true/false toggle
+vim.keymap.set('n', 'gs', function()
+	local word = vim.fn.expand('<cword>')
+	if word == 'true' then
+		vim.cmd('norm ciwfalse')
+	elseif word == 'false' then
+		vim.cmd('norm ciwtrue')
+	end
+end, { silent = false })
