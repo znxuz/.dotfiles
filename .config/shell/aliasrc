@@ -3,6 +3,7 @@ alias \
 		  tree='tree --dirsfirst' \
 		  diff='diff --color=auto' \
 		  grep='grep --color=auto' \
+		  pm='sudo pacman' \
 		  za='zathura --fork' \
 		  ckhal='khal calendar' \
 		  bspl='bsp-layout' \
@@ -15,5 +16,5 @@ alias \
 		  ssh-edit-conf='chmod 700 ~/.ssh/config && $EDITOR ~/.ssh/config; chmod 400 ~/.ssh/config' \
 		  wtr='curl wttr.in/dortmund_oespel' \
 		  nsh='nix-shell' \
-		  dpb='dropbox-cli' \
+		  dpbc='dropbox-cli' \
 		  dtb='distrobox'

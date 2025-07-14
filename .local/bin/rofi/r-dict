@@ -1,20 +1,23 @@
 #!/usr/bin/env bash
 
-get_word()
-{
+get_word() {
 	rofi -dmenu -p "word"
+}
+
+remove_whitespaces_on_empty_lines() {
+	echo "$1" | fmt -w80 -s | sed 's/^[[:space:]]*$//'
 }
 
 search_dict()
 {
-	server="${1:--d wn}"
+	database="${1:-wn}"
 	word="$(get_word)"
 	while [[ -n "$word" ]] && [[ -z "$result" ]]; do
-	result="$(dict $server "$word")"
-	suggestions="$(dict $server "$word" 2>&1 1>/dev/null | grep -o 'wn:.*' |
+	result="$(dict -d "$database" "$word")"
+	suggestions="$(dict -d "$database" "$word" 2>&1 1>/dev/null | grep -o "$database:.*" |
 		cut -d' ' -f2- | awk '{ for (i=1; i<=NF; i++) print $i }')"
 
-	[[ -n "$result" ]] && rofi -e "$result" && return 0
+	[[ -n "$result" ]] && rofi -e "$(remove_whitespaces_on_empty_lines "$result")" && return 0
 
 	if [[ -n "$suggestions" ]]; then
 		show_sugg="$(printf "yes\nno" | rofi -dmenu -p 'show suggestions')"
@@ -36,9 +39,10 @@ main()
 {
 	case "$1" in
 	-h)
-		server=$(dict -h dict.org -D | cut -d' ' -f2 | tail -n+2 |
-		rofi -dmenu -p "dict.org")
-		[[ -n $server ]] && search_dict "-h dict.org -d $server"
+		# online_server="-h dict.org"
+		database=$(dict -D | cut -d' ' -f2 | tail -n+2 |
+		rofi -dmenu -p "database")
+		[[ -n $database ]] && search_dict "$database"
 		;;
 	-l|*)
 		search_dict
