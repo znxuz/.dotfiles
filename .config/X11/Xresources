@@ -2,6 +2,6 @@
 Xft.dpi: DPI
 *.dpi: DPI
 #else
-Xft.dpi: 96
-*.dpi: 96
+Xft.dpi: 120
+*.dpi: 120
 #endif

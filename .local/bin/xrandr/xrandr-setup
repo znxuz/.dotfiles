@@ -5,7 +5,7 @@
 BUILDIN_DISPLAY="$(xrandr | grep -E 'eDP' | cut -d' ' -f1)"
 XRANDR_CONNECTED="$(xrandr | grep '\bconnected' -A1)"
 declare -A DPI_MAP
-DPI_MAP=([3840x2160]=168 [2560x1440]=120 [1920x1080]=96)
+DPI_MAP=([3840x2160]=168 [2560x1440]=120 [1920x1080]=120)
 
 main()
 {

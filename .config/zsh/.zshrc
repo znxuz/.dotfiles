@@ -75,5 +75,4 @@ if [[ -e /run/.toolboxenv ]]; then
 else
 	source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-	source /usr/share/zsh/plugins/zsh-nix-shell/nix-shell.plugin.zsh
 fi
