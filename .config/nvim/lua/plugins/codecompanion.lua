@@ -5,8 +5,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
 	group = autocmd_group,
 	callback = function(request)
 		if request.data.strategy == "chat" then
-			vim.api.nvim_feedkeys('G', 'n', false)
-			vim.api.nvim_feedkeys('zt', 'n', false)
+			vim.api.nvim_feedkeys('zz', 'n', false)
 		end
 	end,
 })
@@ -40,8 +39,9 @@ return {
 					options = { modes = { n = "gh" } },
 					clear = { modes = { n = "gw" } },
 					next_chat = { modes = { n = "<C-n>" } },
-					previous_chat = { modes = { n = "<C-p>", }, },
+					previous_chat = { modes = { n = "<C-p>" } },
 					watch = { modes = { n = "g_" } },
+					regenerate = { modes = { n = "gre" } },
 				},
 				roles = {
 					llm = function(adapter) return adapter.name end,

@@ -1,9 +1,9 @@
 # terminal
 
 super + Return
-	alacritty -e tmux
+	alacritty -T 'Terminal' -e tmux
 super + alt + Return
-	tmux ls && alacritty -e tmux attach
+	tmux ls && alacritty -T 'Terminal' -e tmux attach
 alt + z
 	altty-padding toggle
 

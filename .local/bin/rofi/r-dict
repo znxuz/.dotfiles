@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+DEFAULT="wn"
+
 get_word() {
 	rofi -dmenu -p "word"
 }
@@ -10,10 +12,10 @@ remove_whitespaces_on_empty_lines() {
 
 search_dict()
 {
-	database="${1:-wn}"
+	database="${1:-$DEFAULT}"
 	word="$(get_word)"
 	while [[ -n "$word" ]] && [[ -z "$result" ]]; do
-	result="$(dict -d "$database" "$word")"
+	result="$(dict -f -d "$database" "$word")"
 	suggestions="$(dict -d "$database" "$word" 2>&1 1>/dev/null | grep -o "$database:.*" |
 		cut -d' ' -f2- | awk '{ for (i=1; i<=NF; i++) print $i }')"
 
