@@ -27,4 +27,12 @@ bspc config initial_polarity first_child
 bspc config normal_border_color		"$(xrdb -query | grep background | cut -f2)"
 bspc config focused_border_color	"$(xrdb -query | grep 'color3\b' | cut -f2)"
 
-command -v altty-auto-pad > /dev/null 2>&1 && altty-auto-pad
+if command -v altty-auto-pad > /dev/null 2>&1; then
+	running_pids=$(pgrep -f altty-auto-pad)
+	if [ -n "$running_pids" ]; then
+		for pid in $running_pids; do
+			kill "$pid"
+		done
+	fi
+	altty-auto-pad &
+fi

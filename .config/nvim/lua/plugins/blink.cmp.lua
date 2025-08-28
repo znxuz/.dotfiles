@@ -19,7 +19,7 @@ return {
 			['<M-k>'] = { 'scroll_documentation_up', 'fallback' },
 		},
 		completion = {
-			trigger = { show_in_snippet = false },
+			-- trigger = { show_in_snippet = false },
 			list = {
 				selection = {
 					preselect = true,

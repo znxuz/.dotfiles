@@ -24,7 +24,7 @@ main()
 			wmctrl_id="$(get_wmctrl_id "$cur_desktop_id")"
 			local_windows=$(wmctrl -l | awk -v id="$wmctrl_id" '{ if ($2 == id) print }')
 
-			[[ -z "$local_windows" || ! "$local_windows" =~ .+Alacritty ]] && continue
+			[[ -z "$local_windows" || ! "$local_windows" =~ .+"$TERMINAL_WIN_NAME" ]] && continue
 			if [[ "$(echo "$local_windows" | wc -l)" -eq 1 ]]; then
 				altty-padding pad
 			else

@@ -73,7 +73,7 @@ return {
 					url = "https://openrouter.ai/api/v1/chat/completions",
 					schema = {
 						model = {
-							default = "deepseek/deepseek-chat-v3-0324"
+							default = "deepseek/deepseek-chat-v3.1"
 						},
 					}
 				})
