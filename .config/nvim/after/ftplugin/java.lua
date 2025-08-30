@@ -2,7 +2,7 @@ if pcall(function() require('jdtls') end) == false then
 	return
 end
 
-vim.keymap.set('n', '<leader>ao', function() require("jdtls").organize_imports() end,
+vim.keymap.set('n', '<leader>ao', require("jdtls").organize_imports,
 	{ buffer = true, desc = "Organize Imports" })
 
 local xdg_data_home = os.getenv('XDG_DATA_HOME')

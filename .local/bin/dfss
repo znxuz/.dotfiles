@@ -6,4 +6,8 @@ checkconfig
 dfs add "$XDG_CONFIG_HOME"
 dfs add "$HOME/.local/bin"
 dfs add "$HOME/.github"
-dfs restore --staged $(eclipse -l)
+
+for file in $(eclipse -l); do
+	dfs restore --staged "$file" &> /dev/null
+	true
+done

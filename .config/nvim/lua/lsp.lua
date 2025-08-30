@@ -1,12 +1,12 @@
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("LspAttachAug", { clear = false }),
 	callback = function ()
-		vim.keymap.set('n', 'gd', function() vim.lsp.buf.type_definition() end,
-		{ buffer = true, desc = "Go To Type Definition" })
+		vim.keymap.set('n', 'gd', vim.lsp.buf.type_definition,
+			{ buffer = true, desc = "Go To Type Definition" })
 		vim.keymap.set('n', 'grh', function()
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
 		end, { buffer = true, desc = "Toggle Inlay Hint" })
-		vim.keymap.set('n', 'grd', function() vim.diagnostic.setqflist() end)
+		vim.keymap.set('n', 'grd', vim.diagnostic.setqflist)
 
 		vim.diagnostic.config({ virtual_text = { current_line = true } })
 

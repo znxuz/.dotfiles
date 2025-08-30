@@ -63,8 +63,14 @@ declare -A gtk3=(
 	["run_on_path"]="name_toggle"
 	["callback"]=""
 )
+declare -A gemini=(
+	["name"]="gemini"
+	["path"]="$HOME/.gemini/settings.json"
+	["run_on_path"]="toggle_gemini"
+	["callback"]=""
+)
 
-configs=(xrdb altty nvm rf ztr dnst_dir fcitx5 gtk2 gtk3)
+configs=(xrdb altty nvm rf ztr dnst_dir fcitx5 gtk2 gtk3 gemini)
 
 name_swap() {
 	command -v renameat2 &> /dev/null && renameat2 -e "$1" "$2" && return
@@ -82,6 +88,17 @@ show_help()
 	echo "  -q         Show current theme mode(light, dark)"
 	echo "  -l         Show all the files to be changed for switching themes; used for example to revert git add"
 	echo "Example: eclipse -q"
+}
+
+toggle_gemini()
+{
+	[[ -z "$1" ]] && return 1
+
+	if [[ $prev_mode == "dark" ]]; then
+		sed -i '/"theme"/s/Default/Default Light/' "$1"
+	else
+		sed -i '/"theme"/s/ Light//' "$1"
+	fi
 }
 
 toggle_xrdb()

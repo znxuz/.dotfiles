@@ -50,34 +50,36 @@ return {
 			}
 		},
 		adapters = {
-			or_openai = function()
-				return require("codecompanion.adapters").extend("openai", {
-					name = "openai",
-					env = { api_key = "cmd: pass openrouter" },
-					url = "https://openrouter.ai/api/v1/chat/completions",
-					schema = {
-						model = {
-							default = "openai/gpt-4.1",
-							choices = {
-								"openai/gpt-4.1",
-								"openai/gpt-4o",
+			http = {
+				or_openai = function()
+					return require("codecompanion.adapters").extend("openai", {
+						name = "openai",
+						env = { api_key = "cmd: pass openrouter" },
+						url = "https://openrouter.ai/api/v1/chat/completions",
+						schema = {
+							model = {
+								default = "openai/gpt-4.1",
+								choices = {
+									"openai/gpt-4.1",
+									"openai/gpt-4o",
+								},
 							},
-						},
-					}
-				})
-			end,
-			or_deepseek = function()
-				return require("codecompanion.adapters").extend("openai", {
-					name = "deepseek",
-					env = { api_key = "cmd: pass openrouter" },
-					url = "https://openrouter.ai/api/v1/chat/completions",
-					schema = {
-						model = {
-							default = "deepseek/deepseek-chat-v3.1"
-						},
-					}
-				})
-			end
+						}
+					})
+				end,
+				or_deepseek = function()
+					return require("codecompanion.adapters").extend("openai", {
+						name = "deepseek",
+						env = { api_key = "cmd: pass openrouter" },
+						url = "https://openrouter.ai/api/v1/chat/completions",
+						schema = {
+							model = {
+								default = "deepseek/deepseek-chat-v3.1"
+							},
+						}
+					})
+				end
+			}
 		},
 	},
 	keys = {

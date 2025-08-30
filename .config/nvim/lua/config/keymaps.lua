@@ -27,7 +27,7 @@ vim.keymap.set("n", "<leader>S", ":Fd ")
 -- TODO: keep selected entries in the qf list
 
 -- grep
-vim.o.grepprg = "rg --vimgrep --hidden --ignore-file=$HOME/.config/fd/ignore"
+vim.o.grepprg = "rg -S --vimgrep --hidden --ignore-file=$HOME/.config/fd/ignore"
 vim.api.nvim_create_user_command('Gr', function(opts)
 	vim.cmd('sil gr! ' .. opts.args)
 	vim.cmd('cw')

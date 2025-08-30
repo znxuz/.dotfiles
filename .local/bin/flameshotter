@@ -1,4 +1,4 @@
 #!/usr/bin/env zsh
 
 pgrep -x flameshot &>/dev/null || flameshot &!
-flameshot "$@"
+QT_ENABLE_HIGHDPI_SCALING=0 flameshot "$@" # env var as tmp fix for moved screen & low res
