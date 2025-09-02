@@ -5,7 +5,8 @@
 BUILDIN_DISPLAY="$(xrandr | grep -E 'eDP' | cut -d' ' -f1)"
 XRANDR_CONNECTED="$(xrandr | grep '\bconnected' -A1)"
 declare -A DPI_MAP
-DPI_MAP=([3840x2160]=168 [2560x1440]=120 [1920x1080]=120)
+DPI_MAP=([3840x2160]=168 [2560x1440]=120 [1920x1200]=120 [1920x1080]=120)
+default_dpi=120
 
 main()
 {
@@ -28,7 +29,7 @@ main()
 	if [[ "$display" == "$BUILDIN_DISPLAY" ]] && [[ ${#mons[@]} -gt 1 ]]; then
 		read -r display res <<< "${mons[1]}"
 	fi
-	dpi="${DPI_MAP[$res]}"
+	dpi="${DPI_MAP[$res]:-$default_dpi}"
 	xrdb -DDPI="$dpi" -merge "$XDG_CONFIG_HOME/X11/Xresources"
 
 	for mon in $(xrandr | tail -n+2 | grep -v '^ .*' | cut -d' ' -f1); do

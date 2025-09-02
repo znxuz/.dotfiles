@@ -2,7 +2,6 @@
 acpi
 alacritty
 alsa-utils
-amd-ucode
 arduino-cli
 arduino-language-server
 arm-none-eabi-gcc
@@ -73,8 +72,6 @@ htop
 hyperfine
 imagemagick
 iperf
-jdk17-openjdk
-jdk21-openjdk
 khal
 lf
 libpulse
@@ -106,12 +103,6 @@ noto-fonts-emoji
 ntfs-3g
 nvme-cli
 obs-studio
-openjdk-doc
-openjdk-src
-openjdk17-doc
-openjdk17-src
-openjdk21-doc
-openjdk21-src
 openocd
 openssh
 os-prober
@@ -156,7 +147,6 @@ texlab
 texlive-langgerman
 texlive-meta
 time
-tinyxxd
 tlp
 tlp-rdw
 tmux
@@ -184,9 +174,7 @@ xclip
 xdg-user-dirs
 xdg-utils
 xdotool
-xf86-video-amdgpu
-xf86-video-ati
-xf86-video-vesa
+xf86-video-intel
 xorg-bdftopcf
 xorg-docs
 xorg-font-util
