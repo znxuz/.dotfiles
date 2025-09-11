@@ -7,8 +7,10 @@ return {
 		keymap = {
 			preset = 'none',
 			-- case sensitive!!
-			['<Tab>'] = { 'snippet_forward', 'select_next', 'fallback' },
-			['<S-Tab>'] = { 'snippet_backward', 'select_prev', 'fallback' },
+			['<Tab>'] = { 'select_next', 'fallback' },
+			['<S-Tab>'] = { 'select_prev', 'fallback' },
+			['<C-j>'] = { 'snippet_forward', 'fallback' },
+			['<C-k>'] = { 'snippet_backward', 'fallback' },
 			['<C-n>'] = { 'select_next', 'fallback' },
 			['<C-p>'] = { 'select_prev', 'fallback' },
 			['<C-y>'] = { 'accept', 'fallback' },
@@ -29,9 +31,7 @@ return {
 			accept = { auto_brackets = { enabled = false } },
 			menu = {
 				max_height = vim.o.pumheight,
-				draw = {
-					columns = { { 'label', 'label_description', gap = 1 }, { 'kind' } }
-				}
+				draw = { columns = { { 'label', 'label_description', gap = 1 }, { 'kind' } } }
 			},
 			documentation = {
 				auto_show = false,
@@ -41,8 +41,8 @@ return {
 		sources = {
 			default = { "snippets", "lsp", "buffer" },
 			providers = {
-				lsp = { score_offset = 2 },
-				snippets = { score_offset = 1 },
+				snippets = { score_offset = 2 },
+				lsp = { score_offset = 1 },
 				buffer = { score_offset = 0 },
 			},
 			per_filetype = { codecompanion = { "codecompanion" } },

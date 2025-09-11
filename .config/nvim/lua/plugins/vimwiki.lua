@@ -1,6 +1,9 @@
 return {
 	'vimwiki/vimwiki',
-	keys = { { '<leader>ws', '<cmd>VimwikiUISelect<cr>', desc = 'Vimwiki UI select' } },
+	keys = {
+		{ '<leader>ww', '<cmd>VimwikiIndex<cr>' },
+		{ '<leader>ws', '<cmd>VimwikiUISelect<cr>' }
+	},
 	init = function()
 		vim.g.vimwiki_list = {
 			{
@@ -12,18 +15,6 @@ return {
 			{
 				name = 'compsci',
 				path = '~/Dropbox/notes/compsci',
-				syntax = 'markdown',
-				ext = '.md'
-			},
-			{
-				name = 'work',
-				path = '~/Dropbox/notes/work',
-				syntax = 'markdown',
-				ext = '.md'
-			},
-			{
-				name = 'fhdo',
-				path = '~/Dropbox/notes/fh',
 				syntax = 'markdown',
 				ext = '.md'
 			}

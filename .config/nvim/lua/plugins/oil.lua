@@ -4,6 +4,7 @@ return {
 	config = function()
 		local oil = require("oil")
 		oil.setup({
+			default_file_explorer = true, -- set false and then run `set spell` to let netrw to download the spellfiles
 			keymaps = {
 				["<C-v>"] = { "actions.select", opts = { vertical = true } },
 				["<C-s>"] = { "actions.select", opts = { horizontal = true } },
