@@ -1,8 +1,6 @@
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("LspAttachAug", { clear = false }),
 	callback = function ()
-		vim.keymap.set('n', 'gd', vim.lsp.buf.type_definition,
-			{ buffer = true, desc = "Go To Type Definition" })
 		vim.keymap.set('n', 'grh', function()
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
 		end, { buffer = true, desc = "Toggle Inlay Hint" })
@@ -27,7 +25,7 @@ vim.opt.signcolumn = 'yes'
 
 vim.lsp.config('*', {
 	on_init = function(client, _)
-		client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
+		client.server_capabilities.semanticTokensProvider = nil -- turn off lsp highlight for semantic tokens
 	end,
 	capabilities = {
 		textDocument = {

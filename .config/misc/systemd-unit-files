@@ -1,5 +1,4 @@
 UNIT FILE                          STATE   PRESET
-acpid.service                      enabled disabled
 cronie.service                     enabled disabled
 dictd.service                      enabled disabled
 getty@.service                     enabled enabled
@@ -7,7 +6,6 @@ lm_sensors.service                 enabled disabled
 NetworkManager-dispatcher.service  enabled disabled
 NetworkManager-wait-online.service enabled disabled
 NetworkManager.service             enabled disabled
-nix-daemon.service                 enabled disabled
 sshd.service                       enabled disabled
 systemd-resolved.service           enabled enabled
 systemd-timesyncd.service          enabled enabled
@@ -18,4 +16,4 @@ systemd-userdbd.socket             enabled enabled
 remote-fs.target                   enabled enabled
 fstrim.timer                       enabled disabled
 
-18 unit files listed.
+16 unit files listed.

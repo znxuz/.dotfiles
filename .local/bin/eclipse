@@ -95,7 +95,7 @@ toggle_gemini()
 	[[ -z "$1" ]] && return 1
 
 	if [[ $prev_mode == "dark" ]]; then
-		sed -i '/"theme"/s/Default/Default Light/' "$1"
+		sed -i '/"theme"/s/",/ Light",/' "$1"
 	else
 		sed -i '/"theme"/s/ Light//' "$1"
 	fi

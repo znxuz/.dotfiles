@@ -1,6 +1,7 @@
 vim.keymap.set('n', '<leader>L', '<Cmd>Lazy<Cr>')
 
 local FD_CMD = 'fd --color=never --full-path --type file --hidden '
+local GREPPRG = "rg -S --vimgrep --hidden --ignore-file=$HOME/.config/fd/ignore"
 
 -- find
 function Fd(file_pattern, _)
@@ -11,23 +12,18 @@ function Fd(file_pattern, _)
 	return vim.fn.systemlist(FD_CMD .. '"' .. file_pattern .. '"')
 end
 vim.opt.findfunc = "v:lua.Fd"
-vim.keymap.set("n", "<leader>s", ":find ")
-
--- find multiple
 vim.api.nvim_create_user_command('Fd', function(opts)
-	vim.fn.setloclist(0, {}, 'r', {
-		lines = vim.fn.systemlist(FD_CMD .. opts.args),
+	vim.fn.setqflist({}, 'r', {
+		lines = Fd(opts.args),
 		efm = '%f',
 		title = 'Search Results'
 	})
-	vim.cmd('lw')
+	vim.cmd('cw')
 end, { nargs = '+', complete = 'file' })
-vim.keymap.set("n", "<leader>S", ":Fd ")
-
--- TODO: keep selected entries in the qf list
+vim.keymap.set("n", "<leader>s", ":Fd ")
 
 -- grep
-vim.o.grepprg = "rg -S --vimgrep --hidden --ignore-file=$HOME/.config/fd/ignore"
+vim.o.grepprg = GREPPRG
 vim.api.nvim_create_user_command('Gr', function(opts)
 	vim.cmd('sil gr! ' .. opts.args)
 	vim.cmd('cw')

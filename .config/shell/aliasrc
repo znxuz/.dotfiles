@@ -15,4 +15,5 @@ alias \
 		  tme='transmission-remote --exit' \
 		  ssh-edit-conf='chmod 700 ~/.ssh/config && $EDITOR ~/.ssh/config; chmod 400 ~/.ssh/config' \
 		  wtr='curl wttr.in/dortmund_oespel' \
-		  dbox='distrobox'
+		  dbox='distrobox' \
+		  gem='gemini'
