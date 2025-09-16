@@ -16,4 +16,4 @@ alias \
 		  ssh-edit-conf='chmod 700 ~/.ssh/config && $EDITOR ~/.ssh/config; chmod 400 ~/.ssh/config' \
 		  wtr='curl wttr.in/dortmund_oespel' \
 		  dbox='distrobox' \
-		  gem='gemini'
+		  gem='GEMINI_MODEL="gemini-2.5-flash" gemini'

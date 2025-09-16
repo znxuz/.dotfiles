@@ -1,28 +1,32 @@
 vim.keymap.set('n', '<leader>L', '<Cmd>Lazy<Cr>')
+vim.keymap.set('n', '<leader>b', ':ls<cr>:b ')
 
 local FD_CMD = 'fd --color=never --full-path --type file --hidden '
 local GREPPRG = "rg -S --vimgrep --hidden --ignore-file=$HOME/.config/fd/ignore"
 
 -- find
-function Fd(file_pattern, _)
-	-- if first char is * then fuzzy search
+
+function Find(file_pattern, _)
+	-- if first char is `*`, then fuzzy search
 	if file_pattern:sub(1, 1) == "*" then
 		file_pattern = file_pattern:gsub(".", ".*%0") .. ".*"
 	end
 	return vim.fn.systemlist(FD_CMD .. '"' .. file_pattern .. '"')
 end
-vim.opt.findfunc = "v:lua.Fd"
-vim.api.nvim_create_user_command('Fd', function(opts)
+
+vim.opt.findfunc = "v:lua.Find"
+vim.api.nvim_create_user_command('Find', function(opts)
 	vim.fn.setqflist({}, 'r', {
-		lines = Fd(opts.args),
+		lines = Find(opts.args),
 		efm = '%f',
 		title = 'Search Results'
 	})
 	vim.cmd('cw')
 end, { nargs = '+', complete = 'file' })
-vim.keymap.set("n", "<leader>s", ":Fd ")
+vim.keymap.set("n", "<leader>s", ":Find ")
 
 -- grep
+
 vim.o.grepprg = GREPPRG
 vim.api.nvim_create_user_command('Gr', function(opts)
 	vim.cmd('sil gr! ' .. opts.args)
@@ -43,6 +47,7 @@ vim.keymap.set("n", "<leader><leader>", function()
 end)
 
 -- true/false toggle
+
 vim.keymap.set('n', 'gs', function()
 	local word = vim.fn.expand('<cword>')
 	if word == 'true' then
