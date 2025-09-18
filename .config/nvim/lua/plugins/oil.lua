@@ -1,6 +1,6 @@
 return {
 	'stevearc/oil.nvim',
-	enabled = true,
+	enabled = false,
 	config = function()
 		local oil = require("oil")
 		oil.setup({

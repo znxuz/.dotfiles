@@ -2,8 +2,10 @@ return {
 	'vimwiki/vimwiki',
 	keys = {
 		{ '<leader>ww', '<cmd>VimwikiIndex<cr>' },
+		{ '<leader>wt', '<cmd>VimwikiTabIndex<cr>' },
 		{ '<leader>ws', '<cmd>VimwikiUISelect<cr>' }
 	},
+	ft = 'markdown',
 	init = function()
 		vim.g.vimwiki_list = {
 			{
@@ -19,15 +21,13 @@ return {
 				ext = '.md'
 			}
 		}
-
 		vim.g.vimwiki_key_mappings = {
 			headers = 0,
 			lists = 0
 		}
+		vim.g.vimwiki_hl_cb_checked = 2
 
-		vim.cmd [[
-			nn <c-n> <Plug>VimwikiNextLink
-			nn <c-p> <Plug>VimwikiPrevLink
-		]]
+		vim.keymap.set('n', '<c-n>', '<Plug>VimwikiNextLink')
+		vim.keymap.set('n', '<c-p>', '<Plug>VimwikiPrevLink')
 	end
 }

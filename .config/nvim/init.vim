@@ -1,4 +1,5 @@
 " === defaults ===
+
 set nu
 set sw=0 ts=4
 set ttm=1
@@ -16,10 +17,12 @@ filetype plugin indent on
 let mapleader = " "
 
 " === undo ===
+
 set shada+=n$HOME/.local/state/nvim/viminfo
 set udf
 
 " === completion ===
+
 set wop=pum
 set wim=longest:full:lastused,full
 set cpt-=t
@@ -31,6 +34,7 @@ ino <expr> <C-_> pumvisible() ? "\<C-e>" : "\<C-_>"
 cno <expr> <C-_> pumvisible() ? "\<C-e>" : "\<C-_>"
 
 " === statusline ===
+
 aug stl
 	au!
 	au VimEnter * hi default link STL TabLine | hi! default link StatusLine STL
@@ -66,6 +70,22 @@ fu! DefSTL() abort
 endfu
 
 set stl=%!DefSTL()
+
+" === netrw ===
+
+nn - <cmd>Ex<cr>
+let g:netrw_list_hide= '\.git/'
+let g:netrw_banner = 0
+let g:netrw_fastbrowse = 0
+let g:netrw_altfile = 1
+" `netrw_altfile` must be paired with the autocmd below and won't work
+" properly otherwise
+aug Netrw
+  au!
+  au FileType netrw setlocal bufhidden=wipe
+aug END
+
+" === plugins ===
 
 lua require('config.lazy')
 lua require('lsp')
