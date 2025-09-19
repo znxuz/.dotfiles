@@ -16,6 +16,10 @@ filetype plugin indent on
 
 let mapleader = " "
 
+ino <c-b> <left>
+ino <c-f> <right>
+nn gb :ls<cr>:b 
+
 " === undo ===
 
 set shada+=n$HOME/.local/state/nvim/viminfo

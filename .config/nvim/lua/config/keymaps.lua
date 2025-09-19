@@ -1,5 +1,4 @@
 vim.keymap.set('n', '<leader>L', '<Cmd>Lazy<Cr>')
-vim.keymap.set('n', 'gb', ':ls<cr>:b ')
 
 local FD_CMD = 'fd --color=never --full-path --type file --hidden '
 local GREPPRG = "rg -S --vimgrep --hidden --ignore-file=$HOME/.config/fd/ignore"
