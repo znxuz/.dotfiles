@@ -1,0 +1,7 @@
+evdev:input:b0003v17EFp60EEe0111*
+ KEYBOARD_KEY_70039=leftctrl      # map capslock(70039) to leftctrl
+ KEYBOARD_KEY_700e0=reserved      # disable the original l_ctrl key
+ KEYBOARD_KEY_70035=esc           # map grave key to esc
+ KEYBOARD_KEY_70029=41            # map esc key to grave
+ KEYBOARD_KEY_70031=14            # map backslash key to backspace
+ KEYBOARD_KEY_7002a=43            # map backspace key to backslash

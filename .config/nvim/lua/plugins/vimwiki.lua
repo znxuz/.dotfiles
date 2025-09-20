@@ -9,20 +9,14 @@ return {
 	init = function()
 		vim.g.vimwiki_list = {
 			{
-				name = 'miscellaneous',
-				path = '~/Dropbox/notes/misc',
-				syntax = 'markdown',
-				ext = '.md'
-			},
-			{
-				name = 'compsci',
-				path = '~/Dropbox/notes/compsci',
+				name = 'personal',
+				path = '~/Dropbox/notes/personal',
 				syntax = 'markdown',
 				ext = '.md'
 			}
 		}
 		vim.g.vimwiki_key_mappings = {
-			-- headers = 0,
+			headers = 0,
 			lists = 0,
 			table_mappings = 0
 		}
