@@ -18,7 +18,7 @@ let mapleader = " "
 
 ino <c-b> <left>
 ino <c-f> <right>
-nn gb :ls<cr>:b 
+nn gb :ls<cr>:b<space>
 
 " === undo ===
 

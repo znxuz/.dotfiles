@@ -1,2 +1,3 @@
 gtk-theme-name="rose-pine-gtk"
 gtk-font-name="Recursive Sans Linear Static"
+gtk-key-theme-name = "Emacs"
