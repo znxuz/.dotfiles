@@ -62,16 +62,11 @@ setopt hist_ignore_space
 
 source $ZDOTDIR/fzf.zsh
 
-# ROS2
-
-# source $ZDOTDIR/ros.zsh
-
 # gotta be at the end
 
 if [[ -e /run/.toolboxenv ]]; then
 	source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 	source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-	# ross-ws
 else
 	source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

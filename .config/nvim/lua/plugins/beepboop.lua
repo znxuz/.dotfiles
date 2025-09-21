@@ -1,5 +1,6 @@
 return {
 	"EggbertFluffle/beepboop.nvim",
+	enabled = false,
 	opts = {
 		max_sounds = 10,
 		audio_player = "paplay",

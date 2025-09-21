@@ -1,14 +1,13 @@
-local autocmd_group = vim.api.nvim_create_augroup("CodeCompanionHooks", {})
-
-vim.api.nvim_create_autocmd({ "User" }, {
-	pattern = "CodeCompanionRequestStarted",
-	group = autocmd_group,
-	callback = function(request)
-		if request.data.strategy == "chat" then
-			vim.api.nvim_feedkeys('zz', 'n', false)
-		end
-	end,
-})
+-- local autocmd_group = vim.api.nvim_create_augroup("CodeCompanionHooks", {})
+-- vim.api.nvim_create_autocmd({ "User" }, {
+-- 	pattern = "CodeCompanionRequestStarted",
+-- 	group = autocmd_group,
+-- 	callback = function(request)
+-- 		if request.data.strategy == "chat" then
+-- 			vim.api.nvim_feedkeys('zz', 'n', false)
+-- 		end
+-- 	end,
+-- })
 
 return {
 	"olimorris/codecompanion.nvim",

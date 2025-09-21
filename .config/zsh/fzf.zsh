@@ -42,15 +42,6 @@ fzf_home() { find_fzf $HOME }
 
 zle -N fzf_home && bindkey '^[^s' fzf_home
 
-rpac()
-{
-	local ret="$(pacman -Sql | fzf -m --preview='pacman -Si {}' | tr '\n' ' ')"
-
-	LBUFFER=${LBUFFER}${ret}
-	zle reset-prompt
-}
-zle -N rpac && bindkey '^[^r' rpac
-
 lpac()
 {
 	local ret="$(pacman -Qq | fzf -m --preview='pacman -Qi {}' | tr '\n' ' ')"
@@ -58,7 +49,16 @@ lpac()
 	LBUFFER=${LBUFFER}${ret}
 	zle reset-prompt
 }
-zle -N lpac && bindkey '^[^l' lpac
+zle -N lpac && bindkey '^[p' lpac
+
+rpac()
+{
+	local ret="$(pacman -Sql | fzf -m --preview='pacman -Si {}' | tr '\n' ' ')"
+
+	LBUFFER=${LBUFFER}${ret}
+	zle reset-prompt
+}
+zle -N rpac && bindkey '^[^p' rpac
 
 apac()
 {
@@ -83,4 +83,4 @@ apac()
 	LBUFFER=${LBUFFER}${ret}
 	zle reset-prompt
 }
-zle -N apac && bindkey '^[^a' apac
+zle -N apac && bindkey '^[a' apac
