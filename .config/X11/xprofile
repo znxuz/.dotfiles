@@ -30,13 +30,6 @@ xinput_get_id "TrackPoint Keyboard II" | while read -r id; do
 	xinput set-button-map $id 1 0 3
 done
 
-# compact trackpoint keyboard
-xinput_get_id 'ThinkPad Compact USB Keyboard' | while read -r id; do
-	xinput set-prop $id 'libinput Accel Speed' 0.8
-	xinput set-button-map $id 1 0 3
-done
-
-
 # auto switch audio upon bluetooth connect
 pactl list | grep -q module-switch-on-connect || pactl load-module module-switch-on-connect
 

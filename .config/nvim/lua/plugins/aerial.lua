@@ -20,7 +20,29 @@ return {
 	keys = {
 		{ "go", "<cmd>AerialToggle<CR>", "n" },
 		-- FIXME v:count doesnt work
-		{ "]t", "v:count == 0 ? ':AerialNext<cr>' : v:count . ':AerialNext<cr>'", "n", expr = true, silent = true },
-		{ "[t", "v:count == 0 ? ':AerialPrev<cr>' : v:count . ':AerialPrev<cr>'", "n", expr = true, silent = true },
+		{
+			"]t",
+			function()
+				local count = vim.v.count
+				if count == 0 then
+					vim.cmd("AerialNext")
+				else
+					vim.cmd(count .. "AerialNext")
+				end
+			end,
+			"n"
+		},
+		{
+			"[t",
+			function()
+				local count = vim.v.count
+				if count == 0 then
+					vim.cmd("AerialPrev")
+				else
+					vim.cmd(count .. "AerialPrev")
+				end
+			end,
+			"n"
+		},
 	}
 }

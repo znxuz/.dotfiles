@@ -1,2 +1,1 @@
 * */6 * * * $HOME/.local/bin/vdir-sync
-@monthly $HOME/.local/bin/mirrorlist-update

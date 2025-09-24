@@ -58,6 +58,11 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
 	brightnessctl s 10\%-
 
+super + F4
+	brightnessctl s 10\%-
+super + F5
+	brightnessctl s +10\%
+
 ## screenshot via flameshot script
 
 Print
