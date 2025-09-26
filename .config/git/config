@@ -13,6 +13,7 @@
 	dt = difftool
 	dts = difftool --staged
 	l = log
+	lg = log --graph
 	ls = ls-files
 	f = fetch
 	m = merge
@@ -30,9 +31,12 @@
 	rb = rebase
 	rt = reset
 	wt = worktree
-[diff]
-    tool = nvimdiff
 [difftool "nvimdiff"]
     cmd = nvim -n -d "$LOCAL" "$REMOTE"
+[diff]
+    tool = nvimdiff
+[merge]
+	tool = nvimdiff
+	keepBackup = false
 [status]
 	showStash = true
