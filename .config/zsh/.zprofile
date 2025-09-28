@@ -1,5 +1,4 @@
-source $HOME/.config/shell/profile
-source $XDG_CONFIG_HOME/shell/aliasrc
+source $HOME/.config/shell/env
 
 # unlocking bitwarden (and gpg-agent) before starting x11 server
 if [[ -z "$BW_SESSION" && -z "$DISPLAY" ]] && pass ls | grep -qo 'bw_session'; then

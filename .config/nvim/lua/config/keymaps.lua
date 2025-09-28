@@ -1,16 +1,15 @@
 vim.keymap.set('n', '<leader>L', '<Cmd>Lazy<Cr>')
 
-local FD_CMD = 'fd --color=never --full-path --type file --hidden '
+local FD_CMD = 'fd --color=never --full-path --type file --hidden'
 local GREPPRG = "rg -S --vimgrep --hidden --ignore-file=$HOME/.config/fd/ignore"
 
 -- find
 
-function Find(file_pattern, _)
-	-- if first char is `*`, then fuzzy search
-	if file_pattern:sub(1, 1) == "*" then
-		file_pattern = file_pattern:gsub(".", ".*%0") .. ".*"
-	end
-	return vim.fn.systemlist(FD_CMD .. '"' .. file_pattern .. '"')
+function Find(arg, _)
+	-- if arg:sub(1, 1) == "*" then -- if first char is `*`, then fuzzy search
+	-- 	arg = arg:gsub(".", ".*%0") .. ".*"
+	-- end
+	return vim.fn.systemlist(FD_CMD .. ' ' .. arg)
 end
 
 vim.opt.findfunc = "v:lua.Find"

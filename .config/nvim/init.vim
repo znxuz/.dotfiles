@@ -16,9 +16,14 @@ filetype plugin indent on
 
 let mapleader = " "
 
+" === a lil' bit of emacs doesn't hurt ===
+nn gb :ls<cr>:b<space>
 ino <c-b> <left>
 ino <c-f> <right>
-nn gb :ls<cr>:b<space>
+cno <c-b> <left>
+cno <c-f> <right>
+cno <m-b> <c-left>
+cno <m-f> <c-right>
 
 " === undo ===
 
