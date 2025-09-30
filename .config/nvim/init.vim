@@ -17,6 +17,7 @@ filetype plugin indent on
 let mapleader = " "
 
 " === a lil' bit of emacs doesn't hurt ===
+
 nn gb :ls<cr>:b<space>
 ino <c-b> <left>
 ino <c-f> <right>
@@ -89,10 +90,32 @@ let g:netrw_fastbrowse = 0
 let g:netrw_altfile = 1
 " `netrw_altfile` must be paired with the autocmd below and won't work
 " properly otherwise
-aug Netrw
+aug netrw
   au!
   au FileType netrw setlocal bufhidden=wipe
 aug END
+
+" === term ===
+
+aug term
+	au!
+	au TermOpen * start
+	au BufWinEnter,WinEnter term://* start
+aug END
+
+nn <A-enter> <cmd>sp<bar>if expand('%') != ''<bar>lcd %:h<bar>endif<bar>term<CR>
+tno <c-\><c-^> <c-\><c-n><c-^>
+tno <c-\>h <c-\><c-n><c-w>h
+tno <c-\><c-h> <c-\><c-n><c-w>h
+tno <c-\>j <c-\><c-n><c-w>j
+tno <c-\><c-j> <c-\><c-n><c-w>j
+tno <c-\>k <c-\><c-n><c-w>k
+tno <c-\><c-k> <c-\><c-n><c-w>k
+tno <c-\>l <c-\><c-n><c-w>l
+tno <c-\><c-l> <c-\><c-n><c-w>l
+tno <c-\>c <c-\><c-n><c-w>c
+tno <c-\><c-c> <c-\><c-n><c-w>c
+
 
 " === plugins ===
 

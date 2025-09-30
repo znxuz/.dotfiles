@@ -8,6 +8,7 @@ bspc monitor "$primary_mon" -d I II III IV
 bspc monitor "$primary_mon" -f
 bspc monitor last -r
 
+# bspc config borderless_singleton		true # bug with wechat emoji window
 bspc config single_monocle			true
 bspc config borderless_monocle		true
 

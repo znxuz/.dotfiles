@@ -15,8 +15,8 @@ return {
 			['<C-l>'] = { 'show', 'hide', 'fallback' },
 			['<C-_>'] = { 'cancel', 'fallback' },
 			['<C-Space>'] = { 'show_documentation', 'hide_documentation', 'fallback' },
-			['<M-j>'] = { 'scroll_documentation_down', 'fallback' },
-			['<M-k>'] = { 'scroll_documentation_up', 'fallback' },
+			['<A-j>'] = { 'scroll_documentation_down', 'fallback' },
+			['<A-k>'] = { 'scroll_documentation_up', 'fallback' },
 		},
 		completion = {
 			-- trigger = { show_in_snippet = false },

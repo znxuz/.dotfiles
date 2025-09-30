@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# TODO: "thread-based" rewrite
+
 readarray -t desktops < <(bspc query -D)
 
 get_wmctrl_id()

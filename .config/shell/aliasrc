@@ -7,7 +7,6 @@ alias \
 		  za='zathura --fork' \
 		  ckhal='khal calendar' \
 		  bspl='bsp-layout' \
-		  lf='lf-ueberzug' \
 		  dfs='git --git-dir=$HOME/.dotfiles --work-tree=$HOME' \
 		  tmd='transmission-daemon' \
 		  tmr='transmission-remote' \

@@ -1,5 +1,5 @@
 vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("LspAttachAug", { clear = false }),
+	group = vim.api.nvim_create_augroup("lsp_attach", { clear = false }),
 	callback = function ()
 		vim.keymap.set('n', 'grh', function()
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
