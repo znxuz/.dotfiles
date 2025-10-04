@@ -2,7 +2,6 @@
 acpi
 alacritty
 alsa-utils
-amd-ucode
 android-tools
 arm-none-eabi-gcc
 asciinema
@@ -72,14 +71,13 @@ libreoffice-still
 linux
 linux-firmware
 linux-headers
-linux-lts
-linux-lts-headers
 lshw
 lua-language-server
 lvm2
 magic-wormhole
 man-db
 man-pages
+mesa
 mesa-utils
 mpv
 mpv-mpris
@@ -124,7 +122,6 @@ reflector
 ripgrep
 rofi
 rsync
-rustup
 s-tui
 screenkey
 slock
@@ -140,7 +137,6 @@ texlab
 texlive-langgerman
 texlive-meta
 time
-tinyxxd
 tlp
 tlp-rdw
 tmux
@@ -156,7 +152,7 @@ unrar
 unzip
 valgrind
 vdirsyncer
-vulkan-radeon
+vulkan-intel
 wget
 wireguard-tools
 wireplumber
@@ -164,9 +160,6 @@ wmctrl
 xclip
 xdg-utils
 xdotool
-xf86-video-amdgpu
-xf86-video-ati
-xf86-video-vesa
 xorg-bdftopcf
 xorg-docs
 xorg-font-util

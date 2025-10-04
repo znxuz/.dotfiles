@@ -4,9 +4,6 @@ cht.sh-git
 compiledb
 dict-freedict-deu-eng-bin
 dict-freedict-eng-deu-bin
-droidcam
-droidcam-obs-plugin-bin
-dropbox
 dropbox-cli
 gemini-cli-bin
 neovim-nightly-bin

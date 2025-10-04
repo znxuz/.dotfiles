@@ -14,7 +14,6 @@ setxkbmap -option compose:ralt
 if [ $(cat /sys/class/power_supply/AC/online) -eq 1 ]; then
 	xset dpms 600 0 0
 else
-	sudo powertop --auto-tune &
 	xset dpms 60 300 600
 fi
 
