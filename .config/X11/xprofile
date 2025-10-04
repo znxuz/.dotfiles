@@ -5,11 +5,8 @@ xinput_get_id() {
 #disable beep
 xset -b
 
-# key repeat
-xset r rate 250 60
-
 # compose key
-setxkbmap -option compose:ralt
+setxkbmap eu
 
 if [ $(cat /sys/class/power_supply/AC/online) -eq 1 ]; then
 	xset dpms 600 0 0

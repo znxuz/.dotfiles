@@ -88,7 +88,7 @@ super + alt + Escape ; {k, s, super + s, u, r, super + x, c}
 
 super + alt + Escape ; {w, x, o, l}
 	{ bspc wm -r && notify-send -t 1000 "bspwm reloaded" \
-	, source $XDG_CONFIG_HOME/X11/xprofile && notify-send -t 1000 "xprofile sourced" \
+	, setxkbmap eu && notify-send -t 1000 "eu keymap set" \
 	, notify-send -t 1000 "  "; sleep 1 && xset dpms force off \
 	, slock \
 	}

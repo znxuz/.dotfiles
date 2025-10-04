@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-systemctl is-active --quiet bluetooth || systemctl start bluetooth
+[[ "$1" = "stop" ]] || [[ "$1" = "exit" ]] && systemctl stop bluetooth && exit
 
-bluetoothctl
+systemctl is-active --quiet bluetooth || systemctl start bluetooth && bluetoothctl
