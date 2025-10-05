@@ -13,6 +13,12 @@ return {
 				path = '~/Dropbox/notes/personal',
 				syntax = 'markdown',
 				ext = '.md'
+			},
+			{
+				name = 'work',
+				path = '~/Dropbox/notes/work',
+				syntax = 'markdown',
+				ext = '.md'
 			}
 		}
 		vim.g.vimwiki_key_mappings = {
