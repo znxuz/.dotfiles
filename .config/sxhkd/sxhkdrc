@@ -2,14 +2,14 @@
 
 super + Return
 	alacritty -T 'Terminal' -e tmux
-super + alt + Return
+super + ctrl + Return
 	tmux ls && alacritty -T 'Terminal' -e tmux attach
 alt + z
 	altty-padding toggle
 
 # program controls
 
-super + alt + {b, k}
+super + {b, k}
 	{ $BROWSER \
 	, fcitx5 \
 	}
@@ -28,7 +28,7 @@ super + space
 	rofi -show run
 super + Escape
 	r-proc-kill
-super + alt + {_,shift + } d
+super + {_,shift + } d
 	r-dict {_,-h}
 
 ## screen orientation

@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
 
-# single monitor setup; output to external if available
+XRANDR=$(xrandr)
+BUILTIN_DISPLAY="$(echo "$XRANDR" | grep -E 'eDP' | cut -d' ' -f1)"
+XRANDR_CONNECTED="$(echo "$XRANDR" | grep '\bconnected' -A1)"
 
-BUILDIN_DISPLAY="$(xrandr | grep -E 'eDP' | cut -d' ' -f1)"
-XRANDR_CONNECTED="$(xrandr | grep '\bconnected' -A1)"
-declare -A DPI_MAP
-DPI_MAP=([3840x2160]=168 [2560x1440]=120 [1920x1200]=120 [1920x1080]=120)
-default_dpi=120
+default_dpi=96
+declare -A DPI_MAP && DPI_MAP=(
+	[3840x2160]=168 \
+	[2560x1440]=120 \
+	[$BUILTIN_DISPLAY]=120 \
+	[1920x1200]=$default_dpi \
+	[1920x1080]=$default_dpi)
 
-main()
-{
+sort_monitors() {
 	while read -r line; do
 		if [[ -z "$mon" ]]; then
 			mon="$(echo "$line" | grep '\bconnected' | cut -d' ' -f1)"
@@ -24,18 +27,61 @@ main()
 		fi
 	done <<< "$XRANDR_CONNECTED"
 	mapfile -t mons < <(printf "%s\n" "${mons[@]}" | sort -nr -k 2,2 -s)
+}
 
+read_monitor() {
 	read -r display res <<< "${mons[0]}"
-	if [[ "$display" == "$BUILDIN_DISPLAY" ]] && [[ ${#mons[@]} -gt 1 ]]; then
-		read -r display res <<< "${mons[1]}"
-	fi
-	dpi="${DPI_MAP[$res]:-$default_dpi}"
-	xrdb -DDPI="$dpi" -merge "$XDG_CONFIG_HOME/X11/Xresources"
 
-	for mon in $(xrandr | tail -n+2 | grep -v '^ .*' | cut -d' ' -f1); do
-		xrandr --output "$mon" --off
+	# TODO why this? remove?
+	if [[ "$display" == "$BUILTIN_DISPLAY" ]] && [[ ${#mons[@]} -gt 1 ]]; then
+		read -r display res <<< "${mons[1]}"
+		echo "entered if statement in read_monitor()" >> "$HOME/xrandr-setup-log"
+	fi
+
+	if [[ "$1" = "dual" ]]; then
+		read -r display_1 res_1 <<< "${mons[1]}"
+		[[ "$res" != "$res_1" ]] &&
+			echo "dual monitor resolution mismatch!" >&2 &&
+			return 1
+	fi
+}
+
+set_dpi() {
+	dpi="${DPI_MAP[$res]:-$default_dpi}"
+	[[ "$display" = "$BUILTIN_DISPLAY" ]] && dpi=${DPI_MAP[$BUILTIN_DISPLAY]} || return 0
+}
+
+set_xrdb() {
+	xrdb -DDPI="$dpi" -merge "$XDG_CONFIG_HOME/X11/Xresources"
+}
+
+off_all_monitors() {
+	for mon in "${mons[@]}"; do
+		xrandr --output "$(echo "$mon" | cut -d' ' -f1)" --off
 	done
+}
+
+enable_monitor() {
 	xrandr --output "$display" --primary --mode "$res" --dpi "$dpi"
+
+	if [[ "$1" = "dual" ]]; then
+		xrandr --output "$display_1" --mode "$res_1" --dpi "$dpi"
+	fi
+}
+
+main()
+{
+	if [[ -n "$1" ]] && [[ "$1" != "dual" ]]; then
+		echo "argument can either be empty or 'dual'" >&2
+		exit 1
+	fi
+
+	sort_monitors &&
+		read_monitor "$1" &&
+		set_dpi &&
+		set_xrdb &&
+		off_all_monitors &&
+		enable_monitor "$1"
 }
 
 main "$@"
