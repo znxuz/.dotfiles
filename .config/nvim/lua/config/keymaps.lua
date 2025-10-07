@@ -6,10 +6,10 @@ local GREPPRG = "rg -S --vimgrep --hidden --ignore-file=$HOME/.config/fd/ignore"
 -- find
 
 function Find(arg, _)
-	-- if arg:sub(1, 1) == "*" then -- if first char is `*`, then fuzzy search
-	-- 	arg = arg:gsub(".", ".*%0") .. ".*"
-	-- end
-	return vim.fn.systemlist(FD_CMD .. ' ' .. arg)
+	if arg:sub(1, 1) == "*" then -- if first char is `*`, then fuzzy search
+		arg = arg:gsub(".", ".*%0") .. ".*"
+	end
+	return vim.fn.systemlist(FD_CMD .. ' "' .. arg .. '"')
 end
 
 vim.opt.findfunc = "v:lua.Find"
