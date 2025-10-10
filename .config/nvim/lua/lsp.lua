@@ -29,8 +29,8 @@ vim.lsp.config('*', {
 	end,
 	capabilities = {
 		textDocument = {
-			-- semanticTokens = { multilineTokenSupport = true },
-			-- completion = { completionItem = { snippetSupport = false } }
+			semanticTokens = { multilineTokenSupport = true },
+			completion = { completionItem = { snippetSupport = false } }
 		}
 	},
 	root_markers = { '.git' },

@@ -8,7 +8,7 @@ return {
 	},
 	settings = {
 		['rust-analyzer'] = {
-			-- completion = { callable = { snippets = "none" } }
+			completion = { callable = { snippets = "none" } }
 		}
 	},
 	capabilities = {
