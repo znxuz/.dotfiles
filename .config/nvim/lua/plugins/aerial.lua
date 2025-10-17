@@ -17,6 +17,7 @@ return {
 		},
 		post_jump_cmd = false,
 	},
+	event = "LspAttach",
 	keys = {
 		{ "go", "<cmd>AerialToggle<CR>", "n" },
 		-- FIXME v:count doesnt work
