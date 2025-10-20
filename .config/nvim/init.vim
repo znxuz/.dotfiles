@@ -16,7 +16,7 @@ filetype plugin indent on
 
 let mapleader = " "
 
-" === a lil' bit of emacs doesn't hurt ===
+" === a lil' bit of readline keybinds doesn't hurt ===
 
 nn gb :ls<cr>:b<space>
 ino <c-b> <left>

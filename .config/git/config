@@ -32,7 +32,8 @@
 	rt = reset
 	wt = worktree
 [difftool "nvimdiff"]
-    cmd = nvim -n -d "$LOCAL" "$REMOTE"
+	cmd = nvim -n -d "$LOCAL" "$REMOTE"
+	# cmd = nvim -n -c \"packadd nvim.difftool\" -c \"DiffTool $LOCAL $REMOTE\"
 [diff]
     tool = nvimdiff
 [merge]

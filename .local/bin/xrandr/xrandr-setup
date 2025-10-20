@@ -32,10 +32,9 @@ sort_monitors() {
 read_monitor() {
 	read -r display res <<< "${mons[0]}"
 
-	# TODO why this? remove?
 	if [[ "$display" == "$BUILTIN_DISPLAY" ]] && [[ ${#mons[@]} -gt 1 ]]; then
+		# single external monitor with the same res as the internal one
 		read -r display res <<< "${mons[1]}"
-		echo "entered if statement in read_monitor()" >> "$HOME/xrandr-setup-log"
 	fi
 
 	if [[ "$1" = "dual" ]]; then
