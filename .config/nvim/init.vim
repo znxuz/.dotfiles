@@ -116,6 +116,18 @@ tno <c-\><c-l> <c-\><c-n><c-w>l
 tno <c-\>c <c-\><c-n><c-w>c
 tno <c-\><c-c> <c-\><c-n><c-w>c
 
+" === misc autocmds
+
+aug highlight_yank
+  au!
+  au TextYankPost * lua vim.highlight.on_yank({timeout = 50, visual = true})
+aug END
+
+aug active_cursorline
+  au!
+  au WinEnter,BufEnter * setl cul
+  au WinLeave,BufLeave * setl nocul
+aug END
 
 " === plugins ===
 
