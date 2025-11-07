@@ -3,6 +3,17 @@ vim.keymap.set('n', '<leader>L', '<Cmd>Lazy<Cr>')
 local FD_CMD = 'fd --color=never --full-path --type file --hidden'
 local GREPPRG = "rg -S --vimgrep -u --ignore-file=$HOME/.config/fd/ignore"
 
+-- keymap for populating qf list without leaving the cmd
+
+vim.keymap.set('c', '<c-l>', function()
+	local first_word = vim.fn.getcmdline():match('^(%S+)')
+	if first_word == 'Find' or first_word == 'Gr' then
+		return '<cr>:<up>'
+	else
+		return '<c-l>'
+	end
+end, { expr = true })
+
 -- find
 
 function Find(arg, _)
@@ -31,14 +42,17 @@ vim.api.nvim_create_user_command('Gr', function(opts)
 	vim.cmd('cw')
 end, { nargs = '+', complete = 'file' })
 vim.keymap.set("n", "<leader>r", ":Gr ")
+vim.keymap.set("v", "<leader>r", [[y:Gr '"'<cr>]])
 
 -- shell cmd
+
 vim.keymap.set("n", "<leader><leader>", function()
 	vim.ui.input({ prompt = "> " }, function(c)
 		if c and c ~= "" then
 			vim.cmd("nos enew")
 			vim.bo.buftype = "nofile"
 			vim.bo.bufhidden = "wipe"
+			vim.bo.filetype = "compiler" -- depends on syntax/compiler.vim
 			vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.fn.systemlist(c))
 		end
 	end)

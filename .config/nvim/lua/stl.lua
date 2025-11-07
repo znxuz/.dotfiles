@@ -5,11 +5,10 @@ local function diagnostic_count()
 		return ""
 	end
 
-	local warn = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
 	local err = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
-	if warn ~= 0 or err ~= 0 then
-		-- return string.format("⚠️%d ❌%d", warn, err)
-		return string.format(" %d  %d", warn, err)
+	local warn = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+	if err ~= 0 or warn ~= 0 then
+		return string.format(" %d  %d", err, warn)
 	end
 	return ""
 end

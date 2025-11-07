@@ -88,8 +88,7 @@ let g:netrw_list_hide= '*.git,^\.\.\=/\=$'
 let g:netrw_banner = 0
 let g:netrw_fastbrowse = 0
 let g:netrw_altfile = 1
-" `netrw_altfile` must be paired with the autocmd below and won't work
-" properly otherwise
+" `netrw_altfile` must be paired with the autocmd below otherwise it won't work properly
 aug netrw
   au!
   au FileType netrw setlocal bufhidden=wipe
@@ -116,11 +115,23 @@ tno <c-\><c-l> <c-\><c-n><c-w>l
 tno <c-\>c <c-\><c-n><c-w>c
 tno <c-\><c-c> <c-\><c-n><c-w>c
 
-" === misc autocmds
+" === misc autocmds ===
+
+" :h restore-cursor
+aug restore_cursor
+	au!
+	au BufReadPre * au FileType <buffer> ++once
+				\ let s:line = line("'\"")
+				\ | if s:line >= 1 && s:line <= line("$") && &filetype !~# 'commit'
+				\      && index(['xxd', 'gitrebase'], &filetype) == -1
+				\      && !&diff
+				\ |   execute "normal! g`\""
+				\ | endif
+aug END
 
 aug highlight_yank
   au!
-  au TextYankPost * lua vim.highlight.on_yank({timeout = 50, visual = true})
+  au TextYankPost * lua vim.highlight.on_yank({timeout = 25, visual = true})
 aug END
 
 aug active_cursorline
