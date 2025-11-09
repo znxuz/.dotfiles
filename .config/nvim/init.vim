@@ -83,15 +83,15 @@ set stl=%!DefSTL()
 
 " === netrw ===
 
-nn - <cmd>Ex<cr>
+"nn - <cmd>Ex<cr>
 let g:netrw_list_hide= '*.git,^\.\.\=/\=$'
 let g:netrw_banner = 0
 let g:netrw_fastbrowse = 0
 let g:netrw_altfile = 1
 " `netrw_altfile` must be paired with the autocmd below otherwise it won't work properly
 aug netrw
-  au!
-  au FileType netrw setlocal bufhidden=wipe
+	au!
+	au FileType netrw setlocal bufhidden=wipe
 aug END
 
 " === term ===
@@ -130,14 +130,14 @@ aug restore_cursor
 aug END
 
 aug highlight_yank
-  au!
-  au TextYankPost * lua vim.highlight.on_yank({timeout = 25, visual = true})
+	au!
+	au TextYankPost * lua vim.highlight.on_yank({timeout = 25, visual = true})
 aug END
 
 aug active_cursorline
-  au!
-  au WinEnter,BufEnter * setl cul
-  au WinLeave,BufLeave * setl nocul
+	au!
+	au WinEnter,BufEnter * setl cul
+	au WinLeave,BufLeave * setl nocul
 aug END
 
 " === plugins ===
