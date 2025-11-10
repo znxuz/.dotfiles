@@ -83,7 +83,7 @@ set stl=%!DefSTL()
 
 " === netrw ===
 
-"nn - <cmd>Ex<cr>
+nn - <cmd>Ex<cr>
 let g:netrw_list_hide= '*.git,^\.\.\=/\=$'
 let g:netrw_banner = 0
 let g:netrw_fastbrowse = 0
