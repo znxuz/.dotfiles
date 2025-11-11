@@ -10,16 +10,14 @@ endfunction
 
 fu! s:ConfigureCppMakeprg()
 	let l:search_dir = expand('%:p:h')
-	let l:stop_dir = fnamemodify($HOME, ':h')
+	let l:stop_dir = $HOME
 	while 1
 		if filereadable(l:search_dir . '/Makefile')
-			return
-		endif
-		if filereadable(l:search_dir . '/CMakeLists.txt')
+			break
+		elseif filereadable(l:search_dir . '/CMakeLists.txt')
 			setlocal makeprg=cmake\ --build\ build
-			return
-		endif
-		if l:search_dir ==# l:stop_dir
+			break
+		elseif l:search_dir ==# l:stop_dir || l:search_dir == '/'
 			break
 		endif
 		let l:search_dir = fnamemodify(l:search_dir, ':h')
