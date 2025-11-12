@@ -3,7 +3,7 @@ vim.keymap.set('n', '<leader>L', '<Cmd>Lazy<Cr>')
 local FD_CMD = 'fd --color=never --full-path --type file --hidden'
 local GREPPRG = "rg -S --vimgrep -u --ignore-file=$HOME/.config/fd/ignore"
 
--- keymap for populating qf list without leaving the cmd
+-- keymap for populating qf list without leaving the cmdline
 
 vim.keymap.set('c', '<c-l>', function()
 	local first_word = vim.fn.getcmdline():match('^(%S+)')
@@ -25,12 +25,12 @@ end
 
 vim.opt.findfunc = "v:lua.Find"
 vim.api.nvim_create_user_command('Find', function(opts)
-	vim.fn.setqflist({}, 'r', {
+	vim.fn.setloclist(0, {}, 'r', {
 		lines = Find(opts.args),
 		efm = '%f',
 		title = 'Search Results'
 	})
-	vim.cmd('cw')
+	vim.cmd('lop')
 end, { nargs = '+', complete = 'file' })
 vim.keymap.set("n", "<leader>s", ":Find ")
 
