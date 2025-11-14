@@ -3,17 +3,14 @@ return {
 	enabled = true,
 	config = function()
 		local oil = require("oil")
+		local actions = require("oil.actions")
 		oil.setup({
 			default_file_explorer = true, -- set false and then run `set spell` to let netrw to download the spellfiles
 			keymaps = {
 				["<C-v>"] = { "actions.select", opts = { vertical = true } },
 				["<C-s>"] = { "actions.select", opts = { horizontal = true } },
 				["<C-Space>"] = { "actions.preview", opts = { horizontal = true } },
-				["<C-q>"] = function()
-					require("oil.actions").send_to_qflist.callback()
-					oil.close()
-					vim.cmd.copen()
-				end,
+				["<C-q>"] = function() actions.send_to_qflist.callback({ action = 'r', target = 'loclist' }) end
 			},
 			preview_win = {
 				update_on_cursor_moved = false,

@@ -1,14 +1,3 @@
--- local autocmd_group = vim.api.nvim_create_augroup("CodeCompanionHooks", {})
--- vim.api.nvim_create_autocmd({ "User" }, {
--- 	pattern = "CodeCompanionRequestStarted",
--- 	group = autocmd_group,
--- 	callback = function(request)
--- 		if request.data.strategy == "chat" then
--- 			vim.api.nvim_feedkeys('zz', 'n', false)
--- 		end
--- 	end,
--- })
-
 return {
 	"olimorris/codecompanion.nvim",
 	enabled = true,
@@ -50,18 +39,14 @@ return {
 		},
 		adapters = {
 			http = {
-				or_openai = function()
+				or_gemini = function()
 					return require("codecompanion.adapters").extend("openai", {
-						name = "openai",
+						name = "gemini",
 						env = { api_key = "cmd: pass openrouter" },
 						url = "https://openrouter.ai/api/v1/chat/completions",
 						schema = {
 							model = {
-								default = "openai/gpt-4.1",
-								choices = {
-									"openai/gpt-4.1",
-									"openai/gpt-4o",
-								},
+								default = "google/gemini-2.5-flash",
 							},
 						}
 					})
@@ -73,7 +58,7 @@ return {
 						url = "https://openrouter.ai/api/v1/chat/completions",
 						schema = {
 							model = {
-								default = "deepseek/deepseek-chat-v3.1"
+								default = "deepseek/deepseek-v3.2-exp"
 							},
 						}
 					})
