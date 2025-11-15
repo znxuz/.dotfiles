@@ -7,10 +7,11 @@ return {
 		oil.setup({
 			default_file_explorer = true, -- set false and then run `set spell` to let netrw to download the spellfiles
 			keymaps = {
+				["gs"] = false,
 				["<C-v>"] = { "actions.select", opts = { vertical = true } },
 				["<C-s>"] = { "actions.select", opts = { horizontal = true } },
-				["<C-Space>"] = { "actions.preview", opts = { horizontal = true } },
-				["<C-q>"] = function() actions.send_to_qflist.callback({ action = 'r', target = 'loclist' }) end
+				["<C-p>"] = { "actions.preview", opts = { horizontal = true } },
+				["<C-q>"] = function() actions.send_to_qflist.callback({ action = 'r', target = 'loclist' }) end,
 			},
 			preview_win = {
 				update_on_cursor_moved = false,
@@ -24,6 +25,6 @@ return {
 			keymaps_help = { border = "single" },
 		})
 
-		vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+		vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory" })
 	end
 }

@@ -15,16 +15,16 @@ else
 fi
 
 # laptop
-xinput disable "SynPS/2 Synaptics TouchPad"
-trackpoint_id="$(xinput_get_id 'TPPS\/2.*TrackPoint')"
-xinput set-prop $trackpoint_id 'libinput Accel Speed' -0.5
-xinput set-button-map $trackpoint_id 1 0 3
+# xinput disable "SynPS/2 Synaptics TouchPad"
+# trackpoint_id="$(xinput_get_id 'TPPS\/2.*TrackPoint')"
+# xinput set-prop $trackpoint_id 'libinput Accel Speed' -0.5
+# xinput set-button-map $trackpoint_id 1 0 3
 
 # trackpoint keyboard
-xinput_get_id "TrackPoint Keyboard II" | while read -r id; do
-	xinput set-prop $id 'libinput Accel Speed' 0.3
-	xinput set-button-map $id 1 0 3
-done
+# xinput_get_id "TrackPoint Keyboard II" | while read -r id; do
+# 	xinput set-prop $id 'libinput Accel Speed' 0.3
+# 	xinput set-button-map $id 1 0 3
+# done
 
 # auto switch audio upon bluetooth connect
 pactl list | grep -q module-switch-on-connect || pactl load-module module-switch-on-connect

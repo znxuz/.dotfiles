@@ -18,7 +18,6 @@ let mapleader = " "
 
 " === a lil' bit of readline keybinds doesn't hurt ===
 
-nn gb :ls<cr>:b<space>
 ino <c-b> <left>
 ino <c-f> <right>
 cno <c-b> <left>

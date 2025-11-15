@@ -24,6 +24,7 @@ return {
 			chat = {
 				adapter = "or_deepseek",
 				keymaps = {
+					system_prompt = false, -- conflict with gs
 					options = { modes = { n = "gh" } },
 					clear = { modes = { n = "gw" } },
 					next_chat = { modes = { n = "<C-n>" } },
