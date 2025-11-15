@@ -1,6 +1,6 @@
 return {
 	'stevearc/quicker.nvim',
-	enabled = true,
+	enabled = false,
 	opts = {
 		use_default_opts = true,
 		edit = { enabled = false },

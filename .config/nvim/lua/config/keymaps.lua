@@ -1,7 +1,7 @@
 vim.keymap.set('n', '<leader>L', '<Cmd>Lazy<Cr>')
 
-local FD_CMD = 'fd --color=never --full-path --type file --hidden'
-local GREPPRG = "rg -S --vimgrep -u --ignore-file=$HOME/.config/fd/ignore"
+local FD_CMD = 'fd --color=never --full-path --type file -u --ignore-file $HOME/.config/fd/ignore'
+local GREPPRG = "rg -S --vimgrep -uu --ignore-file=$HOME/.config/fd/ignore"
 
 -- keymap for populating qf list without leaving the cmdline
 
@@ -17,10 +17,11 @@ end, { expr = true })
 -- find
 
 function Find(arg, _)
-	if arg:sub(1, 1) == "*" then -- if first char is `*`, then fuzzy search
-		arg = arg:gsub(".", ".*%0") .. ".*"
+	local enable_fuzzy = function(s) return '"' .. s:gsub(".", ".*%0") .. ".*" .. '"' end
+	if arg:sub(1, 1) == "*" then
+		arg = enable_fuzzy(arg)
 	end
-	return vim.fn.systemlist(FD_CMD .. ' "' .. arg .. '"')
+	return vim.fn.systemlist(FD_CMD .. ' ' .. arg)
 end
 
 vim.opt.findfunc = "v:lua.Find"
@@ -30,9 +31,12 @@ vim.api.nvim_create_user_command('Find', function(opts)
 		efm = '%f',
 		title = 'Search Results'
 	})
-	vim.cmd('lop')
+	vim.cmd('lw')
 end, { nargs = '+', complete = 'file' })
-vim.keymap.set("n", "<leader>s", ":Find ")
+vim.keymap.set("n", "gs", ":Find ")
+vim.keymap.set("v", "gs", [["ty:Find t<cr>]])
+
+-- buffer
 
 -- grep
 
@@ -41,8 +45,8 @@ vim.api.nvim_create_user_command('Gr', function(opts)
 	vim.cmd('sil gr! ' .. opts.args)
 	vim.cmd('cw')
 end, { nargs = '+', complete = 'file' })
-vim.keymap.set("n", "<leader>r", ":Gr ")
-vim.keymap.set("v", "<leader>r", [[y:Gr '"'<cr>]])
+vim.keymap.set("n", "gp", ":Gr ")
+vim.keymap.set("v", "gp", [["ty:Gr 't'<cr>]])
 
 -- shell cmd
 
@@ -60,7 +64,7 @@ end)
 
 -- true/false toggle
 
-vim.keymap.set('n', 'gs', function()
+vim.keymap.set('n', 'g~', function()
 	local word = vim.fn.expand('<cword>')
 	if word == 'true' then
 		vim.cmd('norm ciwfalse')

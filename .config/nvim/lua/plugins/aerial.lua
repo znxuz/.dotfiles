@@ -20,7 +20,6 @@ return {
 	event = "LspAttach",
 	keys = {
 		{ "go", "<cmd>AerialToggle<CR>", "n" },
-		-- FIXME v:count doesnt work
 		{
 			"]t",
 			function()
