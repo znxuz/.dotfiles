@@ -16,6 +16,8 @@ fu! s:ConfigureCppMakeprg()
 			break
 		elseif filereadable(l:search_dir . '/CMakeLists.txt')
 			setlocal makeprg=cmake\ --build\ build
+			nn <buffer> <leader>mM <cmd>make --clean-first<cr>
+			nn <buffer> <leader>MM <cmd>make --clean-first<cr>
 			break
 		elseif l:search_dir ==# l:stop_dir || l:search_dir == '/'
 			break
@@ -25,7 +27,3 @@ fu! s:ConfigureCppMakeprg()
 endfunction
 
 call s:ConfigureCppMakeprg()
-delfunction s:ConfigureCppMakeprg
-
-nn <buffer> <leader>mM <cmd>make --clean-first<cr>
-nn <buffer> <leader>MM <cmd>make --clean-first<cr>

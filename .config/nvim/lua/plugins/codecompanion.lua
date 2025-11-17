@@ -10,7 +10,8 @@ return {
 			chat = {
 				window = {
 					title = "",
-					layout = "buffer",
+					layout = "horizontal",
+					height = 0.5,
 					opts = {
 						cursorline = true,
 						spell = true,

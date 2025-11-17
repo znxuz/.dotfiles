@@ -18,12 +18,12 @@ let mapleader = " "
 
 " === a lil' bit of readline keybinds doesn't hurt ===
 
-ino <c-b> <left>
-ino <c-f> <right>
-cno <c-b> <left>
-cno <c-f> <right>
-cno <m-b> <c-left>
-cno <m-f> <c-right>
+no! <c-b> <left>
+no! <c-f> <right>
+no! <c-e> <end>
+no! <c-a> <home>
+no! <m-b> <c-left>
+no! <m-f> <c-right>
 
 " === undo ===
 
@@ -127,7 +127,7 @@ aug END
 
 aug highlight_yank
 	au!
-	au TextYankPost * lua vim.highlight.on_yank({timeout = 25, visual = true})
+	au TextYankPost * sil! lua vim.hl.on_yank {timeout = 25}
 aug END
 
 aug active_cursorline

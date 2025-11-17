@@ -48,7 +48,7 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 	})
 	vim.cmd('lw')
 end, { nargs = '+', complete = 'file' })
-vim.keymap.set("n", "gb", ':Buf ')
+vim.keymap.set("n", "gb", '<cmd>ls<cr>:Buf ')
 
 -- grep
 vim.o.grepprg = GREPPRG
@@ -83,18 +83,29 @@ vim.keymap.set('n', 'g~', function()
 end, { silent = false })
 
 -- toggle term
-
+local term_name = "term://toggleterm"
 local function toggleterm()
-	local term_name = "term://toggleterm"
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
 		if string.find(vim.api.nvim_buf_get_name(buf), term_name) then
 			vim.cmd("sb " .. buf)
 			return
 		end
 	end
-
 	vim.cmd.split()
 	vim.cmd.term()
-	vim.api.nvim_buf_set_name(vim.api.nvim_get_current_buf(), term_name)
+	vim.api.nvim_buf_set_name(0, term_name)
 end
-vim.keymap.set('n', '<A-enter>', function() toggleterm() end)
+vim.keymap.set('n', '<A-enter>', function()
+	for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+		if vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win)):find(term_name) then
+			vim.api.nvim_win_close(win, false)
+			return
+		end
+	end
+	toggleterm()
+end)
+vim.keymap.set('t', '<A-enter>', function()
+	if vim.api.nvim_buf_get_name(0):find(term_name) then
+		vim.cmd.close()
+	end
+end)
