@@ -104,18 +104,12 @@ aug term
 	au BufWinEnter,WinEnter term://* start
 aug END
 
-nn <A-enter> <cmd>sp<bar>if expand('%') != ''<bar>lcd %:h<bar>endif<bar>term<CR>
-tno <c-\><c-^> <c-\><c-n><c-^>
-tno <c-\>h <c-\><c-n><c-w>h
-tno <c-\><c-h> <c-\><c-n><c-w>h
-tno <c-\>j <c-\><c-n><c-w>j
-tno <c-\><c-j> <c-\><c-n><c-w>j
-tno <c-\>k <c-\><c-n><c-w>k
-tno <c-\><c-k> <c-\><c-n><c-w>k
-tno <c-\>l <c-\><c-n><c-w>l
-tno <c-\><c-l> <c-\><c-n><c-w>l
-tno <c-\>c <c-\><c-n><c-w>c
-tno <c-\><c-c> <c-\><c-n><c-w>c
+tno <A-6> <c-\><c-n><c-^>
+tno <A-h> <c-\><c-n><c-w>h
+tno <A-j> <c-\><c-n><c-w>j
+tno <A-k> <c-\><c-n><c-w>k
+tno <A-l> <c-\><c-n><c-w>l
+tno <A-c> <c-\><c-n><c-w>c
 
 " === misc autocmds ===
 

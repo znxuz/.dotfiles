@@ -41,3 +41,9 @@
 	keepBackup = false
 [status]
 	showStash = true
+[tig "bind"]
+	generic = <Ctrl-g> view-grep
+	generic = g move-first-line
+	generic = G move-last-line
+	main = G move-last-line
+	diff = G move-last-line

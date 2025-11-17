@@ -81,3 +81,20 @@ vim.keymap.set('n', 'g~', function()
 		vim.cmd('norm ciwtrue')
 	end
 end, { silent = false })
+
+-- toggle term
+
+local function toggleterm()
+	local term_name = "term://toggleterm"
+	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+		if string.find(vim.api.nvim_buf_get_name(buf), term_name) then
+			vim.cmd("sb " .. buf)
+			return
+		end
+	end
+
+	vim.cmd.split()
+	vim.cmd.term()
+	vim.api.nvim_buf_set_name(vim.api.nvim_get_current_buf(), term_name)
+end
+vim.keymap.set('n', '<A-enter>', function() toggleterm() end)
