@@ -1,11 +1,20 @@
+local function run_in_pvw(cmd_fn)
+	vim.cmd.wincmd('P')
+	cmd_fn()
+	vim.cmd.wincmd('p')
+end
+
 vim.keymap.set('n', 'o', '<c-w>z<cr>', { buffer = true, silent = true })
 vim.keymap.set('n', '<cr>', 'o<c-w>p<c-w>c', { buffer = true, silent = true, remap = true })
 vim.keymap.set('n', 'p', function()
-	local cur_entry = vim.fn.getqflist()[vim.fn.line('.')]
+	local get_list = vim.fn.getwininfo(vim.fn.win_getid())[1]['loclist'] == 1
+			and vim.fn.getloclist(0)
+			or vim.fn.getqflist()
 	local filename = vim.fn.split(vim.fn.getline('.'), '|')[1]
-	vim.cmd('pedit +' .. cur_entry.lnum .. ' ' .. filename)
+	vim.cmd('pedit +' .. get_list[vim.fn.line('.')].lnum .. ' ' .. filename)
+	run_in_pvw(function() vim.cmd('norm! zz') end)
 end, {
 	buffer = true,
 	silent = true,
-	desc = 'Open quickfix entry in preview'
+	desc = 'Open quickfix entry in preview window'
 })

@@ -69,12 +69,13 @@ fu! DefSTL() abort
 	let stl .= "%{expand('%')==''?'':'\ \ \|\ '.fnamemodify(expand('%:p'),':~:.')}"
 	let stl .= "%4m"
 	let stl .= "%5r"
+	let stl .= "%{&pvw?'\ \ [PVW]':''}"
 	let stl .= "%{&paste?'\ \ [P]':''}"
 	let stl .= "%{LuaStlCallback()}"
 	let stl .= "%="
 	let stl .= "\ \ \ \ \ "
-	let stl .= "%{&fileformat}"
-	let stl .= "%{&filetype==''?'\ ':'\ \ \|\ '.toupper(&filetype).'\ '}"
+	let stl .= "%{&ff}"
+	let stl .= "%{&ft==''?'\ ':'\ \ \|\ '.toupper(&ft).'\ '}"
 	return stl
 endfu
 
