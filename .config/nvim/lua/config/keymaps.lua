@@ -51,7 +51,7 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 	})
 	vim.cmd('lw')
 end, { nargs = '+', complete = 'file' })
-vim.keymap.set("n", "gb", '<cmd>ls<cr>:Buf ')
+vim.keymap.set("n", "gb", '<cmd>ls ht<cr>:Buf ')
 
 -- grep
 vim.o.grepprg = GREPPRG
