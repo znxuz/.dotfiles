@@ -18,3 +18,5 @@ end, {
 	silent = true,
 	desc = 'Open quickfix entry in preview window'
 })
+
+-- TODO scroll the preview window keymaps

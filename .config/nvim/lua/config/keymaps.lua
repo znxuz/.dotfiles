@@ -1,7 +1,10 @@
 vim.keymap.set('n', '<leader>L', '<Cmd>Lazy<Cr>')
 
-local FD_CMD = 'fd --color=never --full-path --type file -u --ignore-file=$HOME/.config/fd/ignore'
-local GREPPRG = "rg -S --vimgrep -uu --ignore-file=$HOME/.config/fd/ignore"
+local FIND_CMD = 'ag --nocolor --just-filename -U -S -p $HOME/.config/fd/ignore -g'
+local GREPPRG = 'ag --vimgrep --hidden -U -S -p $HOME/.config/fd/ignore'
+local enable_fuzzy = function(s)
+	return '"' .. s:gsub("^%*", ""):gsub(".", ".*%0") .. ".*" .. '"'
+end
 
 -- keymap for populating qf list without leaving the cmdline
 vim.keymap.set('c', '<c-l>', function()
@@ -15,12 +18,8 @@ end, { expr = true })
 
 -- find
 function Find(arg, _)
-	-- TODO extract the fuzzy search to also work in Buf & Gr for `rg`
-	local enable_fuzzy = function(s) return '"' .. s:gsub(".", ".*%0") .. ".*" .. '"' end
-	if arg:sub(1, 1) == "*" then
-		arg = enable_fuzzy(arg)
-	end
-	return vim.fn.systemlist(FD_CMD .. ' ' .. arg)
+	if arg:sub(1, 1) == "*" then arg = enable_fuzzy(arg) end
+	return vim.fn.systemlist(FIND_CMD .. ' ' .. arg)
 end
 
 vim.api.nvim_create_user_command('Find', function(opts)
@@ -37,12 +36,16 @@ vim.keymap.set("v", "gs", [["ty:Find t<cr>]])
 
 -- buffer
 vim.api.nvim_create_user_command('Buf', function(opts)
+	if tonumber(opts.args) ~= nil then
+		vim.cmd.buffer(opts.args)
+		return
+	end
 	local buf_names = {}
-	for buf in vim.iter(vim.api.nvim_list_bufs()):filter(vim.api.nvim_buf_is_loaded) do --
+	for buf in vim.iter(vim.api.nvim_list_bufs()):filter(vim.api.nvim_buf_is_loaded) do
 		table.insert(buf_names, vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":~:."))
 	end
 	vim.fn.setloclist(0, {}, 'r', {
-		lines = vim.fn.systemlist({ "rg", "-S", opts.args }, table.concat(buf_names, "\n")),
+		lines = vim.fn.systemlist(FIND_CMD .. ' ' .. enable_fuzzy(opts.args), table.concat(buf_names, "\n")),
 		efm = '%f',
 		title = 'Search Results'
 	})
@@ -61,7 +64,7 @@ vim.keymap.set("v", "gp", [["ty:Gr 't'<cr>]])
 
 -- shell cmd
 vim.keymap.set("n", "<leader><leader>", function()
-	vim.ui.input({ prompt = "> " }, function(c)
+	vim.ui.input({ prompt = "> ", completion = "shellcmdline" }, function(c)
 		if c and c ~= "" then
 			vim.cmd("nos enew")
 			vim.bo.buftype = "nofile"
@@ -80,7 +83,7 @@ vim.keymap.set('n', 'g~', function()
 	elseif word == 'false' then
 		vim.cmd('norm ciwtrue')
 	end
-end, { silent = false })
+end, { silent = true })
 
 -- toggle term
 local term_name = "term://toggleterm"
