@@ -2,8 +2,9 @@ vim.keymap.set('n', '<leader>L', '<Cmd>Lazy<Cr>')
 
 local FIND_CMD = 'ag --nocolor --just-filename -U -S -p $HOME/.config/fd/ignore -g'
 local GREPPRG = 'ag --vimgrep --hidden -U -S -p $HOME/.config/fd/ignore'
-local enable_fuzzy = function(s)
-	return '"' .. s:gsub("^%*", ""):gsub(".", ".*%0") .. ".*" .. '"'
+local enable_fuzzy_if = function(s)
+	if s:sub(1, 1) == "*" then s = '"' .. s:gsub("^%*", ""):gsub(".", ".*%0") .. ".*" .. '"' end
+	return s
 end
 
 -- keymap for populating qf list without leaving the cmdline
@@ -18,8 +19,7 @@ end, { expr = true })
 
 -- find
 function Find(arg, _)
-	if arg:sub(1, 1) == "*" then arg = enable_fuzzy(arg) end
-	return vim.fn.systemlist(FIND_CMD .. ' ' .. arg)
+	return vim.fn.systemlist(FIND_CMD .. ' ' .. enable_fuzzy_if(arg))
 end
 
 vim.api.nvim_create_user_command('Find', function(opts)
@@ -28,7 +28,7 @@ vim.api.nvim_create_user_command('Find', function(opts)
 		efm = '%f',
 		title = 'Search Results'
 	})
-	vim.cmd('lw')
+	vim.cmd.lw()
 end, { nargs = '+', complete = 'file' })
 vim.opt.findfunc = "v:lua.Find"
 vim.keymap.set("n", "gs", ":Find ")
@@ -45,19 +45,19 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 		table.insert(buf_names, vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":~:."))
 	end
 	vim.fn.setloclist(0, {}, 'r', {
-		lines = vim.fn.systemlist(FIND_CMD .. ' ' .. enable_fuzzy(opts.args), table.concat(buf_names, "\n")),
+		lines = vim.fn.systemlist(FIND_CMD .. ' ' .. enable_fuzzy_if(opts.args), table.concat(buf_names, "\n")),
 		efm = '%f',
 		title = 'Search Results'
 	})
-	vim.cmd('lw')
+	vim.cmd.lw()
 end, { nargs = '+', complete = 'file' })
 vim.keymap.set("n", "gb", '<cmd>ls ht<cr>:Buf ')
 
 -- grep
 vim.o.grepprg = GREPPRG
 vim.api.nvim_create_user_command('Gr', function(opts)
-	vim.cmd('sil gr! ' .. opts.args)
-	vim.cmd('cw')
+	vim.cmd('sil gr! ' .. enable_fuzzy_if(opts.args))
+	vim.cmd.cw()
 end, { nargs = '+', complete = 'file' })
 vim.keymap.set("n", "gp", ":Gr ")
 vim.keymap.set("v", "gp", [["ty:Gr 't'<cr>]])

@@ -26,7 +26,7 @@ return {
 					auto_insert = true
 				}
 			},
-			-- accept = { auto_brackets = { enabled = false } },
+			accept = { auto_brackets = { enabled = false } },
 			menu = {
 				max_height = vim.o.pumheight,
 				draw = { columns = { { 'label', 'label_description' }, { 'kind' } }, }
