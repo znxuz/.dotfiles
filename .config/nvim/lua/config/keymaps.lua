@@ -1,7 +1,8 @@
 vim.keymap.set('n', '<leader>L', '<Cmd>Lazy<Cr>')
 
-local FIND_CMD = 'ag --nocolor --just-filename -U -S -p $HOME/.config/fd/ignore -g'
-local GREPPRG = 'ag --vimgrep --hidden -U -S -p $HOME/.config/fd/ignore'
+local AG = 'ag -US --nocolor -p $HOME/.config/fd/ignore'
+local FIND_CMD = AG .. ' --filename'
+local GREPPRG = AG .. '--vimgrep --hidden'
 local enable_fuzzy_if = function(s)
 	if s:sub(1, 1) == "*" then s = '"' .. s:gsub("^%*", ""):gsub(".", ".*%0") .. ".*" .. '"' end
 	return s
@@ -19,7 +20,7 @@ end, { expr = true })
 
 -- find
 function Find(arg, _)
-	return vim.fn.systemlist(FIND_CMD .. ' ' .. enable_fuzzy_if(arg))
+	return vim.fn.systemlist(FIND_CMD .. ' -g ' .. enable_fuzzy_if(arg))
 end
 
 vim.api.nvim_create_user_command('Find', function(opts)
@@ -45,7 +46,8 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 		table.insert(buf_names, vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":~:."))
 	end
 	vim.fn.setloclist(0, {}, 'r', {
-		lines = vim.fn.systemlist(FIND_CMD .. ' ' .. enable_fuzzy_if(opts.args), table.concat(buf_names, "\n")),
+		lines = vim.fn.systemlist('echo "' ..
+			table.concat(buf_names, "\n") .. '" | ' .. FIND_CMD .. ' ' .. enable_fuzzy_if(opts.args)),
 		efm = '%f',
 		title = 'Search Results'
 	})
@@ -86,6 +88,7 @@ vim.keymap.set('n', 'g~', function()
 end, { silent = true })
 
 -- toggle term
+-- TODO notification upon cmd finish `-h shell-prompt`
 local term_name = "term://toggleterm"
 local function toggleterm()
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do

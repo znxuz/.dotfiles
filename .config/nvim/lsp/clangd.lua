@@ -2,7 +2,6 @@ return {
 	cmd = { 'clangd',
 		'--background-index',
 		'--log=error',
-		-- '--header-insertion=never',
 		'--query-driver=/usr/bin/arm-none-eabi-gcc,/usr/bin/arm-none-eabi-g++'
 	},
 	root_markers = {
