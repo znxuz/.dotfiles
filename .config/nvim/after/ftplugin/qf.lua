@@ -18,3 +18,6 @@ end, {
 	silent = true,
 	desc = 'Open quickfix entry in preview window'
 })
+
+vim.keymap.set('n', '<c-s>', '<c-w><cr><c-w>p<c-w>c', { buffer = true, silent = true })
+vim.keymap.set('n', '<c-v>', '<c-s><c-w>H', { buffer = true, silent = true, remap = true })
