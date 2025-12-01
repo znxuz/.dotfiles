@@ -27,10 +27,5 @@ return {
 			table_mappings = 0
 		}
 		vim.g.vimwiki_hl_cb_checked = 2
-
-		vim.keymap.set('n', '<c-n>', '<Plug>VimwikiNextLink')
-		vim.keymap.set('n', '<c-p>', '<Plug>VimwikiPrevLink')
-		vim.keymap.set('i', '<c-n>', '<Plug>VimwikiTableNextCell')
-		vim.keymap.set('i', '<c-p>', '<Plug>VimwikiTablePrevCell')
 	end
 }

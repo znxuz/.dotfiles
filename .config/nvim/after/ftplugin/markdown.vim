@@ -61,3 +61,8 @@ fu! g:PasteImgFromClip()
 		execute 'norm a<br>![' .. l:header_name .. '](' .. l:image_name .. ')<br>'
 	endif
 endfu
+
+nn <buffer> <c-n> <Plug>VimwikiNextLink
+nn <buffer> <c-p> <Plug>VimwikiPrevLink
+ino <buffer> <c-n> <Plug>VimwikiTableNextCell
+ino <buffer> <c-p> <Plug>VimwikiTablePrevCell

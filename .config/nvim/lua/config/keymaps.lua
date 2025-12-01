@@ -36,18 +36,20 @@ vim.keymap.set("n", "gs", ":Find ")
 vim.keymap.set("v", "gs", [["ty:Find t<cr>]])
 
 -- buffer
+-- might consider caching the buffers via BufAdd/BufDelete autocmds
 vim.api.nvim_create_user_command('Buf', function(opts)
-	if tonumber(opts.args) ~= nil then
-		vim.cmd.buffer(opts.args)
-		return
-	end
 	local buf_names = {}
 	for buf in vim.iter(vim.api.nvim_list_bufs()):filter(vim.api.nvim_buf_is_loaded) do
 		table.insert(buf_names, vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":~:."))
 	end
+
+	local search_term = tonumber(opts.args)
+			and '^' .. vim.fn.fnamemodify(vim.api.nvim_buf_get_name(tonumber(opts.args) or 0), ":~:.") .. '$'
+			or enable_fuzzy_if(opts.args)
+
 	vim.fn.setloclist(0, {}, 'r', {
 		lines = vim.fn.systemlist('echo "' ..
-			table.concat(buf_names, "\n") .. '" | ' .. FIND_CMD .. ' ' .. enable_fuzzy_if(opts.args)),
+			table.concat(buf_names, "\n") .. '" | ' .. FIND_CMD .. ' ' .. search_term),
 		efm = '%f',
 		title = 'Search Results'
 	})
