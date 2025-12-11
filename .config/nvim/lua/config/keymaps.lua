@@ -4,8 +4,14 @@ local AG = 'ag -US --nocolor -p $HOME/.config/fd/ignore'
 local FIND_CMD = AG .. ' --filename'
 local GREPPRG = AG .. '--vimgrep --hidden'
 local enable_fuzzy_if = function(s)
-	if s:sub(1, 1) == "*" then s = '"' .. s:gsub("^%*", ""):gsub(".", ".*%0") .. ".*" .. '"' end
-	return s
+	local pattern = s:match("^(%S+)") or s
+	local rest = s:sub(#pattern + 1)
+	if pattern:sub(1, 1) == "*" then
+		pattern = '"' .. pattern:gsub("^%*", ""):gsub(".", ".*%0") .. ".*" .. '"'
+	elseif pattern:find("%.%*") then
+		pattern = '"' .. pattern .. '"'
+	end
+	return pattern .. rest
 end
 
 -- keymap for populating qf list without leaving the cmdline
@@ -36,10 +42,9 @@ vim.keymap.set("n", "gs", ":Find ")
 vim.keymap.set("v", "gs", [["ty:Find t<cr>]])
 
 -- buffer
--- might consider caching the buffers via BufAdd/BufDelete autocmds
 vim.api.nvim_create_user_command('Buf', function(opts)
 	local buf_names = {}
-	for buf in vim.iter(vim.api.nvim_list_bufs()):filter(vim.api.nvim_buf_is_loaded) do
+	for buf in vim.iter(vim.api.nvim_list_bufs()):filter(vim.api.nvim_buf_is_valid) do
 		table.insert(buf_names, vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":~:."))
 	end
 

@@ -31,6 +31,7 @@
 	rb = rebase
 	rt = reset
 	wt = worktree
+	chry = cherry-pick
 [difftool "nvimdiff"]
     cmd = nvim -n -d "$LOCAL" "$REMOTE" -c'wincmd l' -c'norm gg'
 	# cmd = nvim -n -c \"packadd nvim.difftool\" -c \"DiffTool $LOCAL $REMOTE\"
