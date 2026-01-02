@@ -95,7 +95,6 @@ vim.keymap.set('n', 'g~', function()
 end, { silent = true })
 
 -- toggle term
--- TODO notification upon cmd finish `-h shell-prompt`
 local term_name = "term://toggleterm"
 local function toggleterm()
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
@@ -122,3 +121,15 @@ vim.keymap.set('t', '<A-enter>', function()
 		vim.cmd.close()
 	end
 end)
+
+-- notification upon cmd finish `-h shell-prompt`
+vim.api.nvim_create_augroup("term_prompt_notification", { clear = true })
+vim.api.nvim_create_autocmd({ 'TermRequest' }, {
+	group = "term_prompt_notification",
+	desc = 'Handles OSC 7 dir change requests',
+	callback = function(ev)
+		local row = ev.data.cursor[1]
+		if row == 1 then return end
+		print("command finished")
+	end
+})

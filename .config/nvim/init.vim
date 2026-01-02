@@ -12,6 +12,7 @@ set gcr=a:block
 set mouse=
 set list
 set sbr=>\\
+set nosmd
 filetype plugin indent on
 
 let mapleader = " "

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+aur_helper=yay
 upd_icon="${1:-}"
 aur_icon="${1:-}"
 
@@ -18,7 +19,7 @@ set_output()
 {
 	output=""
 	check_pacman_lock
-	paru -Sy &>/dev/null
+	$aur_helper -Sy &>/dev/null
 	pac_upd="$(pacman -Qqu)"
 	count=$(echo "$pac_upd" | wc -l)
 	if echo "$pac_upd" | grep -q "linux\W.*arch" ; then
@@ -27,7 +28,7 @@ set_output()
 		output="$count"
 	fi
 
-	aur_upd="$(paru -Qua | wc -l)"
+	aur_upd="$($aur_helper -Qua | wc -l)"
 	if [[ "$aur_upd" -ne 0 ]]; then
 		if [[ -n "$output" ]]; then
 			output="$output "

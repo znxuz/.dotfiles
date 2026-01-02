@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
+aur_helper=yay
+
 pac_upd()
 {
 	[[ -f /var/lib/pacman/db.lck ]] && sudo rm /var/lib/pacman/db.lck
 
-	paru -Syu --noconfirm &&
-		pgrep -f 'poly-pkg-upgrade' &> /dev/null && poly-pkg-upgrade -u
+	$aur_helper -Syu --noconfirm && pgrep -f 'poly-pkg-upgrade' &> /dev/null &&
+		poly-pkg-upgrade -u
 
 	return 0
 }
