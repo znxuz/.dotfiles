@@ -62,7 +62,11 @@ fu! g:PasteImgFromClip()
 	endif
 endfu
 
-nn <buffer> <c-n> <Plug>VimwikiNextLink
-nn <buffer> <c-p> <Plug>VimwikiPrevLink
+nn <buffer> <cr> <Plug>VimwikiFollowLink
+nn <buffer> <backspace> <Plug>VimwikiGoBackLink
+nn <buffer> <tab> <Plug>VimwikiNextLink
+nn <buffer> <s-tab> <Plug>VimwikiPrevLink
+nn <buffer> <leader>wd <Plug>VimwikiDeleteFile
+nn <buffer> <leader>wr <Plug>VimwikiRenameFile
 ino <buffer> <c-n> <Plug>VimwikiTableNextCell
 ino <buffer> <c-p> <Plug>VimwikiTablePrevCell

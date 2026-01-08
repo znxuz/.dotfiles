@@ -24,7 +24,8 @@ return {
 		vim.g.vimwiki_key_mappings = {
 			headers = 0,
 			lists = 0,
-			table_mappings = 0
+			table_mappings = 0,
+			links = 0
 		}
 		vim.g.vimwiki_hl_cb_checked = 2
 	end
