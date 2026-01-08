@@ -63,6 +63,7 @@ fu! g:PasteImgFromClip()
 endfu
 
 nn <buffer> <cr> <Plug>VimwikiFollowLink
+vn <buffer> <cr> :<C-U>VimwikiNormalizeLink 1<CR>
 nn <buffer> <backspace> <Plug>VimwikiGoBackLink
 nn <buffer> <tab> <Plug>VimwikiNextLink
 nn <buffer> <s-tab> <Plug>VimwikiPrevLink
