@@ -50,7 +50,6 @@ return {
 				lsp = { score_offset = 1 },
 				buffer = { score_offset = 0 },
 			},
-			per_filetype = { codecompanion = { "codecompanion" } },
 		},
 		cmdline = { enabled = false },
 	},
