@@ -11,7 +11,7 @@ return {
 				["<C-v>"] = { "actions.select", opts = { vertical = true } },
 				["<C-s>"] = { "actions.select", opts = { horizontal = true } },
 				["<C-p>"] = { "actions.preview", opts = { horizontal = true } },
-				["<C-q>"] = function() actions.send_to_qflist.callback({ action = 'r', target = 'loclist' }) end,
+				["<C-q>"] = function() actions.send_to_qflist.callback({ action = ' ', target = 'loclist' }) end,
 			},
 			preview_win = {
 				update_on_cursor_moved = false,

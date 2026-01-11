@@ -3,7 +3,7 @@ vim.keymap.set('n', '<leader>L', '<Cmd>Lazy<Cr>')
 local AG = 'ag -US --nocolor -p $HOME/.config/fd/ignore'
 local FIND_CMD = AG .. ' --filename'
 local GREPPRG = AG .. '--vimgrep --hidden'
-local enable_fuzzy_if = function(s)
+local function enable_fuzzy_if(s)
 	local pattern = s:match("^(%S+)") or s
 	local rest = s:sub(#pattern + 1)
 	if pattern:sub(1, 1) == "*" then
@@ -30,10 +30,12 @@ function Find(arg, _)
 end
 
 vim.api.nvim_create_user_command('Find', function(opts)
-	vim.fn.setloclist(0, {}, 'r', {
-		lines = Find(opts.args),
+	local result = Find(opts.args)
+	vim.fn.setloclist(0, {}, ' ', {
+		lines = result,
 		efm = '%f',
-		title = 'Search Results'
+		title = opts.name,
+		quickfixtextfunc = function(_) return result end -- show just filenames w/o seperators
 	})
 	vim.cmd.lw()
 end, { nargs = '+', complete = 'file' })
@@ -44,19 +46,24 @@ vim.keymap.set("v", "gs", [["ty:Find t<cr>]])
 -- buffer
 vim.api.nvim_create_user_command('Buf', function(opts)
 	local buf_names = {}
-	for buf in vim.iter(vim.api.nvim_list_bufs()):filter(vim.api.nvim_buf_is_valid) do
-		table.insert(buf_names, vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":~:."))
+	for bufname in vim.iter(vim.api.nvim_list_bufs())
+	:filter(vim.fn.buflisted)
+	:map(vim.api.nvim_buf_get_name) do
+		if bufname ~= '' then
+			table.insert(buf_names, vim.fn.fnamemodify(bufname, ":~:."))
+		end
 	end
 
 	local search_term = tonumber(opts.args)
 			and '^' .. vim.fn.fnamemodify(vim.api.nvim_buf_get_name(tonumber(opts.args) or 0), ":~:.") .. '$'
 			or enable_fuzzy_if(opts.args)
+	local result = vim.fn.systemlist('echo "' .. table.concat(buf_names, "\n") .. '" | ' .. FIND_CMD .. ' ' .. search_term)
 
-	vim.fn.setloclist(0, {}, 'r', {
-		lines = vim.fn.systemlist('echo "' ..
-			table.concat(buf_names, "\n") .. '" | ' .. FIND_CMD .. ' ' .. search_term),
+	vim.fn.setloclist(0, {}, ' ', {
+		lines = result,
 		efm = '%f',
-		title = 'Search Results'
+		title = opts.name,
+		quickfixtextfunc = function(_) return result end
 	})
 	vim.cmd.lw()
 end, { nargs = '+', complete = 'file' })
@@ -98,7 +105,7 @@ end, { silent = true })
 local term_name = "term://toggleterm"
 local function toggleterm()
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-		if string.find(vim.api.nvim_buf_get_name(buf), term_name) then
+		if vim.api.nvim_buf_get_name(buf):find(term_name) then
 			vim.cmd("sb " .. buf)
 			return
 		end
