@@ -23,9 +23,8 @@ vim.keymap.set('n', '<c-s>', '<c-w><cr><c-w>p<c-w>c', { buffer = true, silent = 
 vim.keymap.set('n', '<c-v>', '<c-s><c-w>H', { buffer = true, silent = true, remap = true })
 vim.keymap.set('n', '<c-t>', '<c-s><c-w>T', { buffer = true, silent = true, remap = true })
 
-vim.api.nvim_create_augroup("auto_close_pvw", { clear = true })
 vim.api.nvim_create_autocmd({ "WinClosed" }, {
-	group = "auto_close_pvw",
+	group = vim.api.nvim_create_augroup("qf", {}),
 	callback = function(ev)
 		if vim.api.nvim_get_option_value('buftype', { buf = ev.buf }) == 'quickfix' then
 			vim.cmd.wincmd('z')

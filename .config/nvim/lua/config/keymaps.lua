@@ -123,9 +123,8 @@ vim.keymap.set('t', '<A-enter>', function()
 end)
 
 -- notification upon cmd finish `-h shell-prompt`
-vim.api.nvim_create_augroup("term_prompt_notification", { clear = true })
-vim.api.nvim_create_autocmd({ 'TermRequest' }, {
-	group = "term_prompt_notification",
+vim.api.nvim_create_autocmd('TermRequest', {
+	group = vim.api.nvim_create_augroup("term_prompt_notification", {}),
 	desc = 'Handles OSC 7 dir change requests',
 	callback = function(ev)
 		local row = ev.data.cursor[1]

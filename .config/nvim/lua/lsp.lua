@@ -1,27 +1,32 @@
-vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("lsp_attach", { clear = false }),
-	callback = function ()
-		vim.keymap.set('n', 'grh', function()
-			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
-		end, { buffer = true, desc = "Toggle Inlay Hint" })
-		vim.keymap.set('n', 'grd', vim.diagnostic.setqflist)
-
-		vim.diagnostic.config({ virtual_text = { current_line = true } })
-
-		vim.api.nvim_create_user_command('LspStop', function()
-			vim.lsp.stop_client(vim.lsp.get_clients())
-		end, {})
-
-		vim.api.nvim_create_user_command('LspLog', function()
-			vim.cmd('tabe ' .. vim.fn.stdpath("log") .. '/lsp.log')
-		end, {})
-
-		vim.api.nvim_create_user_command('LspFmt', function() vim.lsp.buf.format() end, {})
-	end,
-})
-
 vim.opt.shortmess:append('c')
 vim.opt.signcolumn = 'yes'
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("lsp_attach", {}),
+	callback = function()
+		vim.diagnostic.config({ virtual_text = { current_line = true } })
+
+		vim.keymap.set('n', 'grh', function()
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
+		end, { buffer = true })
+		vim.keymap.set('n', 'grd', vim.diagnostic.setqflist, { buffer = true })
+	end,
+
+	vim.keymap.set('n', 'gO', function()
+		vim.lsp.buf.document_symbol({
+			on_list = function(opts)
+				local cur_line = vim.api.nvim_win_get_cursor(0)[1]
+				local best_match_idx = 1
+				for i, item in ipairs(opts.items) do
+					if item.lnum > cur_line then break end
+					best_match_idx = i
+				end
+				vim.fn.setloclist(0, {}, ' ', { items = opts.items, idx = best_match_idx })
+				vim.cmd.lope()
+			end,
+		})
+	end, { buffer = true })
+})
 
 vim.lsp.config('*', {
 	on_init = function(client, _)

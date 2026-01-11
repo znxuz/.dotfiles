@@ -17,5 +17,6 @@ alias \
 		  db='dropbox &> /dev/null &!' \
 		  dbcli='dropbox-cli' \
 		  dtb='distrobox' \
+		  nb='newsboat' \
 		  gem='GEMINI_MODEL="gemini-2.5-flash" gemini' \
 		  gemp='GEMINI_MODEL="gemini-2.5-pro" gemini'
