@@ -47,11 +47,13 @@ vim.keymap.set("v", "gs", [["ty:Find t<cr>]])
 vim.api.nvim_create_user_command('Buf', function(opts)
 	local buf_names = {}
 	for bufname in vim.iter(vim.api.nvim_list_bufs())
-	:filter(vim.fn.buflisted)
+	:filter(vim.fn.buflisted)          -- dunno why this alone doesn't work
+	:filter(vim.api.nvim_buf_is_loaded) -- needed to filterout unlisted buffers
 	:map(vim.api.nvim_buf_get_name) do
 		if bufname ~= '' then
 			table.insert(buf_names, vim.fn.fnamemodify(bufname, ":~:."))
 		end
+		print(bufname)
 	end
 
 	local search_term = tonumber(opts.args)
