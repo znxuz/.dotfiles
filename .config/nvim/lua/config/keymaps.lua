@@ -58,7 +58,9 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 	local search_term = tonumber(opts.args)
 			and '^' .. vim.fn.fnamemodify(vim.api.nvim_buf_get_name(tonumber(opts.args) or 0), ":~:.") .. '$'
 			or enable_fuzzy_if(opts.args)
-	local result = vim.fn.systemlist('echo "' .. table.concat(buf_names, "\n") .. '" | ' .. FIND_CMD .. ' ' .. search_term)
+	local result = string.len(opts.args) ~= 0
+			and vim.fn.systemlist('echo "' .. table.concat(buf_names, "\n") .. '" | ' .. FIND_CMD .. ' ' .. search_term)
+			or buf_names
 
 	vim.fn.setloclist(0, {}, ' ', {
 		lines = result,
@@ -67,7 +69,7 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 		quickfixtextfunc = function(_) return result end
 	})
 	vim.cmd.lw()
-end, { nargs = '+', complete = 'file' })
+end, { nargs = '*', complete = 'file' })
 vim.keymap.set("n", "gb", '<cmd>ls ht<cr>:Buf ')
 
 -- grep
