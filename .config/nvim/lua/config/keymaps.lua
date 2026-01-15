@@ -53,7 +53,6 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 		if bufname ~= '' then
 			table.insert(buf_names, vim.fn.fnamemodify(bufname, ":~:."))
 		end
-		print(bufname)
 	end
 
 	local search_term = tonumber(opts.args)
