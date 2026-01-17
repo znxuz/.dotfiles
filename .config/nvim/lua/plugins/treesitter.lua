@@ -1,7 +1,7 @@
 return {
 	'nvim-treesitter/nvim-treesitter',
-	lazy = true,
 	build = ":TSUpdate",
+	event = "LspAttach",
 	opts = {
 		ensure_installed = {
 			'markdown',

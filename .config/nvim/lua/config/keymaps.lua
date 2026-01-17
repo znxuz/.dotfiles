@@ -79,7 +79,7 @@ vim.api.nvim_create_user_command('Gr', function(opts)
 	vim.cmd.cw()
 end, { nargs = '+', complete = 'file' })
 vim.keymap.set("n", "gp", ":Gr ")
-vim.keymap.set("v", "gp", [["ty:Gr 't'<cr>]])
+vim.keymap.set("v", "gp", [["ty:Gr -Q 't'<cr>]])
 
 -- shell cmd
 vim.keymap.set("n", "<leader><leader>", function()
