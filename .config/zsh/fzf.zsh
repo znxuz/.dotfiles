@@ -79,7 +79,7 @@ apac()
 		fi
 	fi
 
-	local ret="$(zcat "$aur_list" | fzf -m --preview="paru -Si {}" | tr '\n' ' ')"
+	local ret="$(zcat "$aur_list" | fzf -m --preview="yay -Si {}" | tr '\n' ' ')"
 
 	LBUFFER=${LBUFFER}${ret}
 	zle reset-prompt

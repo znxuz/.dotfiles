@@ -45,22 +45,21 @@ vim.keymap.set("v", "gs", [["ty:Find t<cr>]])
 
 -- buffer
 vim.api.nvim_create_user_command('Buf', function(opts)
-	local buf_names = {}
-	for bufname in vim.iter(vim.api.nvim_list_bufs())
-	:filter(vim.fn.buflisted)          -- dunno why this alone doesn't work
-	:filter(vim.api.nvim_buf_is_loaded) -- needed to filterout unlisted buffers
-	:map(vim.api.nvim_buf_get_name) do
-		if bufname ~= '' then
-			table.insert(buf_names, vim.fn.fnamemodify(bufname, ":~:."))
-		end
-	end
+	local bufnames =
+			vim.iter(vim.api.nvim_list_bufs())
+			:filter(function(bufn)
+				return vim.fn.buflisted(bufn) == 1 and vim.api.nvim_buf_is_loaded(bufn)
+			end)
+			:map(function(buf) return vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":~:.") end)
+			:filter(function(name) return name ~= '' end)
+			:totable()
 
 	local search_term = tonumber(opts.args)
 			and '^' .. vim.fn.fnamemodify(vim.api.nvim_buf_get_name(tonumber(opts.args) or 0), ":~:.") .. '$'
 			or enable_fuzzy_if(opts.args)
 	local result = string.len(opts.args) ~= 0
-			and vim.fn.systemlist('echo "' .. table.concat(buf_names, "\n") .. '" | ' .. FIND_CMD .. ' ' .. search_term)
-			or buf_names
+			and vim.fn.systemlist('echo "' .. table.concat(bufnames, "\n") .. '" | ' .. FIND_CMD .. ' ' .. search_term)
+			or bufnames
 
 	vim.fn.setloclist(0, {}, ' ', {
 		lines = result,

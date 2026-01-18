@@ -4,12 +4,12 @@ nvim_dir="$XDG_STATE_HOME/nvim"
 
 package_cache_clean()
 {
-	echo "==> paru package cache" && paru -Sccd --noconfirm
+	echo "==> clean package cache" && yay -Sccd --noconfirm
 }
 
 nvim_undo_clean()
 {
-	echo "==> cleaning undodir & removing log entries"
+	echo "==> clean undodir & removing log entries"
 
 	undodir="$nvim_dir/undo"
 	find "$undodir" -type f -ctime +30 -delete
