@@ -45,13 +45,20 @@ vim.keymap.set("v", "gs", [["ty:Find t<cr>]])
 
 -- buffer
 vim.api.nvim_create_user_command('Buf', function(opts)
-	local bufnames =
-			vim.iter(vim.api.nvim_list_bufs())
-			:filter(function(bufn)
-				return vim.fn.buflisted(bufn) == 1 and vim.api.nvim_buf_is_loaded(bufn)
+	local bufs = vim.iter(vim.api.nvim_list_bufs())
+			:filter(function(b)
+				return vim.fn.buflisted(b) == 1
+				-- and vim.api.nvim_buf_is_loaded(b)
+				and b ~= vim.api.nvim_get_current_buf()
 			end)
-			:map(function(buf) return vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":~:.") end)
+			:totable()
+	table.sort(bufs, function(a, b)
+		return vim.fn.getbufinfo(a)[1].lastused > vim.fn.getbufinfo(b)[1].lastused
+	end)
+	local bufnames = vim.iter(bufs)
+			:map(vim.api.nvim_buf_get_name)
 			:filter(function(name) return name ~= '' end)
+			:map(function(name) return vim.fn.fnamemodify(name, ":~:.") end)
 			:totable()
 
 	local search_term = tonumber(opts.args)
@@ -69,7 +76,7 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 	})
 	vim.cmd.lw()
 end, { nargs = '*', complete = 'file' })
-vim.keymap.set("n", "gb", '<cmd>ls ht<cr>:Buf ')
+vim.keymap.set("n", "gb", '<cmd>ls t<cr>:Buf ')
 
 -- grep
 vim.o.grepprg = GREPPRG
