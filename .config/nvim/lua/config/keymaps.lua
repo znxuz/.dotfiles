@@ -1,3 +1,5 @@
+-- TODO show list on command and refresh on key?
+
 vim.keymap.set('n', '<leader>L', '<Cmd>Lazy<Cr>')
 
 local AG = 'ag -US --nocolor -p $HOME/.config/fd/ignore'

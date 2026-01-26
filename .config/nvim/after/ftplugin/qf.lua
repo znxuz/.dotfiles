@@ -23,6 +23,28 @@ vim.keymap.set('n', '<c-s>', '<c-w><cr><c-w>p<c-w>c', { buffer = true, silent = 
 vim.keymap.set('n', '<c-v>', '<c-s><c-w>H', { buffer = true, silent = true, remap = true })
 vim.keymap.set('n', '<c-t>', '<c-s><c-w>T', { buffer = true, silent = true, remap = true })
 
+-- scrolling, this was so unnecessarily difficult to figure out
+vim.keymap.set('n', '<a-e>', function()
+	run_in_pvw(function ()
+		vim.api.nvim_win_call(vim.api.nvim_get_current_win(), function() vim.cmd([[normal! ]]) end)
+	end)
+end, { buffer = true, silent = true })
+vim.keymap.set('n', '<a-y>', function()
+	run_in_pvw(function ()
+		vim.api.nvim_win_call(vim.api.nvim_get_current_win(), function() vim.cmd([[normal! ]]) end)
+	end)
+end, { buffer = true, silent = true })
+vim.keymap.set('n', '<a-d>', function()
+	run_in_pvw(function ()
+		vim.api.nvim_win_call(vim.api.nvim_get_current_win(), function() vim.cmd([[normal! ]]) end)
+	end)
+end, { buffer = true, silent = true })
+vim.keymap.set('n', '<a-u>', function()
+	run_in_pvw(function ()
+		vim.api.nvim_win_call(vim.api.nvim_get_current_win(), function() vim.cmd([[normal! ]]) end)
+	end)
+end, { buffer = true, silent = true })
+
 vim.api.nvim_create_autocmd({ "WinClosed" }, {
 	group = vim.api.nvim_create_augroup("qf", {}),
 	callback = function(ev)
