@@ -15,6 +15,9 @@ local function enable_fuzzy_if(s)
 	end
 	return pattern .. rest
 end
+local function shorten_path(path)
+	return vim.fn.fnamemodify(path, ":~:.")
+end
 
 -- keymap for populating qf list without leaving the cmdline
 vim.keymap.set('c', '<c-l>', function()
@@ -33,6 +36,10 @@ end
 
 vim.api.nvim_create_user_command('Find', function(opts)
 	local result = Find(opts.args)
+	for i, entry in ipairs(result) do
+		result[i] = shorten_path(entry)
+	end
+
 	vim.fn.setloclist(0, {}, ' ', {
 		lines = result,
 		efm = '%f',
@@ -50,8 +57,8 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 	local bufs = vim.iter(vim.api.nvim_list_bufs())
 			:filter(function(b)
 				return vim.fn.buflisted(b) == 1
-				-- and vim.api.nvim_buf_is_loaded(b)
-				and b ~= vim.api.nvim_get_current_buf()
+						-- and vim.api.nvim_buf_is_loaded(b)
+						and b ~= vim.api.nvim_get_current_buf()
 			end)
 			:totable()
 	table.sort(bufs, function(a, b)
@@ -60,11 +67,11 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 	local bufnames = vim.iter(bufs)
 			:map(vim.api.nvim_buf_get_name)
 			:filter(function(name) return name ~= '' end)
-			:map(function(name) return vim.fn.fnamemodify(name, ":~:.") end)
+			:map(shorten_path)
 			:totable()
 
 	local search_term = tonumber(opts.args)
-			and '^' .. vim.fn.fnamemodify(vim.api.nvim_buf_get_name(tonumber(opts.args) or 0), ":~:.") .. '$'
+			and '^' .. shorten_path(vim.api.nvim_buf_get_name(tonumber(opts.args) or 0)) .. '$'
 			or enable_fuzzy_if(opts.args)
 	local result = string.len(opts.args) ~= 0
 			and vim.fn.systemlist('echo "' .. table.concat(bufnames, "\n") .. '" | ' .. FIND_CMD .. ' ' .. search_term)

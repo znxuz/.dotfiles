@@ -26,5 +26,6 @@ return {
 		})
 
 		vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory" })
+		vim.cmd.cabbr({ args = { "<expr>", "%", "&filetype == 'oil' ? bufname('%')[6:] : '%'" } })
 	end
 }
