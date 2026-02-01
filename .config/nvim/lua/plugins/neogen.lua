@@ -1,7 +1,7 @@
 return {
 	"danymat/neogen",
-	enabled = false,
+	lazy = true,
 	config = true,
 	dependencies = 'nvim-treesitter/nvim-treesitter',
-	keys = { {'<leader>d', "<cmd>Neogen<cr>", "n", desc = "Neogen" } }
+	keys = { {'<leader>g', "<cmd>Neogen<cr>", "n", desc = "Neogen" } }
 }
