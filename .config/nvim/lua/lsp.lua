@@ -56,7 +56,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				end,
 			})
 		end, { buffer = true })
-	end,
+	end
 })
 
 vim.lsp.config('*', {

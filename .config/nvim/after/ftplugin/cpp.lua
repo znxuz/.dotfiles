@@ -68,5 +68,27 @@ local function configure_makeprg()
 	configure()
 	map()
 end
-
 configure_makeprg()
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("lsp_attach", { clear = false }),
+	callback = function ()
+		local function switch_source_header_splitcmd(bufnr, splitcmd)
+			local params = { uri = vim.uri_from_bufnr(bufnr) }
+			vim.lsp.buf_request(bufnr, 'textDocument/switchSourceHeader', params,
+				function(err, result, _)
+					if err then error(tostring(err)) end
+					if not result then
+						vim.api.nvim_echo({ { "Corresponding file can’t be determined", "ErrorMsg" }, }, true, {})
+						return
+					end
+					vim.api.nvim_command(splitcmd .. ' ' .. vim.uri_to_fname(result))
+				end)
+		end
+
+		vim.keymap.set('n', '<leader><c-^>',
+			function()
+				switch_source_header_splitcmd(0, 'edit')
+			end, { buffer = true })
+	end
+})
