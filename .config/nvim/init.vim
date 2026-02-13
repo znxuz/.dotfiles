@@ -56,14 +56,6 @@ aug stl
 	au ModeChanged *:no* hi link STL Search | redraws!
 aug END
 
-fu! LuaStlCallback()
-	try
-		return luaeval('require("stl").inject()')
-	catch /.*/
-		return ""
-	endtry
-endfu
-
 fu! DefSTL() abort
 	let stl = ""
 	let stl .= "%<\ %{fnamemodify(getcwd(),':~:.')}"
@@ -72,13 +64,26 @@ fu! DefSTL() abort
 	let stl .= "%5r"
 	let stl .= "%{&pvw?'\ \ [PVW]':''}"
 	let stl .= "%{&paste?'\ \ [P]':''}"
-	let stl .= "%{LuaStlCallback()}"
+	let stl .= "%{luaeval(\"require('stl').inject()\")}"
 	let stl .= "%="
 	let stl .= "\ \ \ \ \ "
 	let stl .= "%{&ff}"
 	let stl .= "%{&ft==''?'\ ':'\ \ \|\ '.toupper(&ft).'\ '}"
 	return stl
 endfu
+fu! s:ClearPreviewStl()
+	for i in range(1, winnr('$'))
+		if getwinvar(i, '&pvw')
+			call setwinvar(i, '&stl', ' ')
+			return
+		end
+	endfor
+endfu
+
+aug set_pvw_stl
+	au!
+	au BufWinEnter * call s:ClearPreviewStl()
+aug END
 
 set stl=%!DefSTL()
 
