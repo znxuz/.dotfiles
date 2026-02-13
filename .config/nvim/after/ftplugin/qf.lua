@@ -45,6 +45,7 @@ vim.keymap.set('n', '<a-u>', function()
 	end)
 end, { buffer = true, silent = true })
 
+-- maybe change event to when qf is out of focus
 vim.api.nvim_create_autocmd({ "WinClosed" }, {
 	group = vim.api.nvim_create_augroup("qf", {}),
 	callback = function(ev)
@@ -53,3 +54,5 @@ vim.api.nvim_create_autocmd({ "WinClosed" }, {
 		end
 	end,
 })
+
+-- TODO dim the bg of PVW?
