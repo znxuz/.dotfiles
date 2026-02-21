@@ -13,6 +13,7 @@ set mouse=
 set list
 set sbr=>\\
 set nosmd
+set jop=view
 filetype plugin indent on
 
 let mapleader = " "

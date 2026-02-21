@@ -58,7 +58,7 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 			:filter(function(b)
 				return vim.fn.buflisted(b) == 1
 						-- and vim.api.nvim_buf_is_loaded(b)
-						and b ~= vim.api.nvim_get_current_buf()
+						-- and b ~= vim.api.nvim_get_current_buf()
 			end)
 			:totable()
 	table.sort(bufs, function(a, b)
@@ -85,7 +85,7 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 	})
 	vim.cmd.lw()
 end, { nargs = '*', complete = 'file' })
-vim.keymap.set("n", "gb", '<cmd>ls t<cr>:Buf ')
+vim.keymap.set("n", "gb", '<cmd>Buf<cr>:Buf ')
 
 -- grep
 vim.o.grepprg = GREPPRG
