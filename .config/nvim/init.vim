@@ -72,19 +72,18 @@ fu! DefSTL() abort
 	let stl .= "%{&ft==''?'\ ':'\ \ \|\ '.toupper(&ft).'\ '}"
 	return stl
 endfu
-fu! s:ClearPreviewStl()
-	for i in range(1, winnr('$'))
-		if getwinvar(i, '&pvw')
-			call setwinvar(i, '&stl', ' ')
-			return
-		end
-	endfor
-endfu
-
-aug set_pvw_stl
-	au!
-	au BufWinEnter * call s:ClearPreviewStl()
-aug END
+"fu! s:ClearPreviewStl()
+"	for i in range(1, winnr('$'))
+"		if getwinvar(i, '&pvw')
+"			call setwinvar(i, '&stl', ' ')
+"			return
+"		end
+"	endfor
+"endfu
+"aug set_pvw_stl
+"	au!
+"	au BufWinEnter * call s:ClearPreviewStl()
+"aug END
 
 set stl=%!DefSTL()
 

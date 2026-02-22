@@ -1,11 +1,37 @@
 return {
 	'stevearc/oil.nvim',
 	enabled = true,
+	keys = { { '-', '<cmd>Oil<cr>', mode = 'n' } },
+	init = function(p)
+		-- see https://github.com/stevearc/oil.nvim/issues/300#issuecomment-1950541064
+		if vim.fn.argc() == 1 then
+			local argv = tostring(vim.fn.argv(0))
+			local stat = vim.loop.fs_stat(argv)
+
+			local remote_dir_args = vim.startswith(argv, "ssh") or
+					vim.startswith(argv, "sftp") or
+					vim.startswith(argv, "scp")
+
+			if stat and stat.type == "directory" or remote_dir_args then
+				require("lazy").load { plugins = { p.name } }
+			end
+		end
+		if not require("lazy.core.config").plugins[p.name]._.loaded then
+			vim.api.nvim_create_autocmd("BufNew", {
+				callback = function(ev)
+					if vim.fn.isdirectory(ev.file) == 1 then
+						require("lazy").load { plugins = { "oil.nvim" } }
+						return true -- once oil is loaded, we can delete this autocmd
+					end
+				end,
+			})
+		end
+	end,
 	config = function()
 		local oil = require("oil")
 		local actions = require("oil.actions")
 		oil.setup({
-			default_file_explorer = true, -- set false and then run `set spell` to let netrw to download the spellfiles
+			default_file_explorer = true, -- set false and then run `set spell` to let netrw download the spellfiles
 			keymaps = {
 				["gs"] = false,
 				["<C-v>"] = { "actions.select", opts = { vertical = true } },
@@ -25,7 +51,8 @@ return {
 			keymaps_help = { border = "single" },
 		})
 
-		vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory" })
-		vim.cmd.cabbr({ args = { "<expr>", "%", "&filetype == 'oil' ? bufname('%')[6:] : '%'" } })
+		vim.cmd.cabbr({
+			args = { "<expr>", "%", "&filetype == 'oil' ? bufname('%')[6:] : '%'" }
+		})
 	end
 }
