@@ -74,6 +74,26 @@ vim.keymap.set('n', '<c-u>', function()
 		vim.api.nvim_win_call(vim.api.nvim_get_current_win(), half_page_up)
 	end)
 end, { buffer = true, silent = true })
+vim.keymap.set('n', '<c-f>', function()
+	local page_down = function() vim.cmd('norm! ') end
+	if not pvw_visible() then
+		page_down()
+		return
+	end
+	run_in_pvw(function()
+		vim.api.nvim_win_call(vim.api.nvim_get_current_win(), page_down)
+	end)
+end, { buffer = true, silent = true })
+vim.keymap.set('n', '<c-b>', function()
+	local page_up = function () vim.cmd('norm! ') end
+	if not pvw_visible() then
+		page_up()
+		return
+	end
+	run_in_pvw(function()
+		vim.api.nvim_win_call(vim.api.nvim_get_current_win(), page_up)
+	end)
+end, { buffer = true, silent = true })
 
 -- close pvw win automatically upon closing qf win
 vim.api.nvim_create_autocmd({ "WinClosed" }, {
