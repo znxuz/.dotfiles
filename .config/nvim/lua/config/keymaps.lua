@@ -1,4 +1,5 @@
 -- TODO show list on command and refresh on key?
+-- TODO BLines
 
 vim.keymap.set('n', '<leader>L', '<Cmd>Lazy<Cr>')
 
