@@ -33,11 +33,7 @@ function Find(arg, _)
 end
 
 vim.api.nvim_create_user_command('Find', function(opts)
-	local result = Find(opts.args)
-	for i, entry in ipairs(result) do
-		result[i] = shorten_path(entry)
-	end
-
+	local result = vim.iter(Find(opts.args)):map(shorten_path):totable()
 	vim.fn.setloclist(0, {}, ' ', {
 		lines = result,
 		efm = '%f',
@@ -118,32 +114,39 @@ vim.keymap.set('n', 'g~', function()
 end, { silent = true })
 
 -- toggle term
-local term_name = "term://toggleterm"
 local function toggleterm()
-	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-		if vim.api.nvim_buf_get_name(buf):find(term_name) then
-			vim.cmd("sb " .. buf)
-			return
+	local term_name = "term://toggleterm"
+	local function close_if_present()
+		local term_winid = vim.iter(vim.api.nvim_tabpage_list_wins(0))
+				:find(function(winid)
+					return vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(winid)) == term_name
+				end)
+		if term_winid ~= nil then
+			vim.api.nvim_win_close(term_winid, false)
+			return true
 		end
+		return false
+	end
+	local function open_if_buffered()
+		local termbuf = vim.iter(vim.api.nvim_list_bufs())
+				:map(vim.api.nvim_buf_get_name)
+				:find(term_name)
+		if termbuf ~= nil then
+			vim.cmd.sb(termbuf)
+			return true
+		end
+		return false
+	end
+
+	if close_if_present() or open_if_buffered() then
+		return
 	end
 	vim.cmd.split()
 	vim.cmd.term()
 	vim.api.nvim_buf_set_name(0, term_name)
 end
-vim.keymap.set('n', '<A-enter>', function()
-	for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
-		if vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win)):find(term_name) then
-			vim.api.nvim_win_close(win, false)
-			return
-		end
-	end
-	toggleterm()
-end)
-vim.keymap.set('t', '<A-enter>', function()
-	if vim.api.nvim_buf_get_name(0):find(term_name) then
-		vim.cmd.close()
-	end
-end)
+vim.keymap.set('n', '<A-enter>', toggleterm)
+vim.keymap.set('t', '<A-enter>', toggleterm)
 
 -- notification upon cmd finish `-h shell-prompt`
 vim.api.nvim_create_autocmd('TermRequest', {

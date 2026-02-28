@@ -111,12 +111,7 @@ aug term
 	au BufWinEnter,WinEnter term://* start
 aug END
 
-tno <A-6> <c-\><c-n><c-^>
-tno <A-h> <c-\><c-n><c-w>h
-tno <A-j> <c-\><c-n><c-w>j
-tno <A-k> <c-\><c-n><c-w>k
-tno <A-l> <c-\><c-n><c-w>l
-tno <A-c> <c-\><c-n><c-w>c
+tno <A-esc> <c-\><c-n>
 
 " === misc autocmds ===
 
