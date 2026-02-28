@@ -114,28 +114,25 @@ vim.keymap.set('n', 'g~', function()
 end, { silent = true })
 
 -- toggle term
+local term_name = "term://toggleterm"
+local function get_term_win()
+	return vim.iter(vim.api.nvim_tabpage_list_wins(0))
+			:find(function(winid)
+				return vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(winid)) == term_name
+			end)
+end
 local function toggleterm()
-	local term_name = "term://toggleterm"
 	local function close_if_present()
-		local term_winid = vim.iter(vim.api.nvim_tabpage_list_wins(0))
-				:find(function(winid)
-					return vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(winid)) == term_name
-				end)
-		if term_winid ~= nil then
-			vim.api.nvim_win_close(term_winid, false)
-			return true
-		end
-		return false
+		local term_winid = get_term_win()
+		if term_winid then vim.api.nvim_win_close(term_winid, false) end
+		return term_winid
 	end
 	local function open_if_buffered()
 		local termbuf = vim.iter(vim.api.nvim_list_bufs())
 				:map(vim.api.nvim_buf_get_name)
 				:find(term_name)
-		if termbuf ~= nil then
-			vim.cmd.sb(termbuf)
-			return true
-		end
-		return false
+		if termbuf then vim.cmd.sb(termbuf) end
+		return termbuf
 	end
 
 	if close_if_present() or open_if_buffered() then
@@ -153,6 +150,7 @@ vim.api.nvim_create_autocmd('TermRequest', {
 	group = vim.api.nvim_create_augroup("term_prompt_notification", {}),
 	desc = 'Handles OSC 7 dir change requests',
 	callback = function(ev)
+		if get_term_win() then return end
 		local row = ev.data.cursor[1]
 		if row == 1 then return end
 		print("command finished")
