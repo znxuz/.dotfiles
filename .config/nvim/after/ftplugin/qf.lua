@@ -19,15 +19,14 @@ vim.keymap.set('n', 'p', function()
 	local get_list = vim.fn.getwininfo(vim.fn.win_getid())[1]['loclist'] == 1
 			and vim.fn.getloclist(0)
 			or vim.fn.getqflist()
-	local filename = vim.fn.split(vim.fn.getline('.'), '|')[1]
-	vim.cmd('pedit +' .. get_list[vim.fn.line('.')].lnum .. ' ' .. filename)
+	local qfline = get_list[vim.fn.line('.')]
+	vim.cmd('pedit +' .. qfline.lnum .. ' ' .. vim.api.nvim_buf_get_name(qfline.bufnr))
 	run_in_pvw(function() vim.cmd('norm! zz') end)
 end, {
 	buffer = true,
 	silent = true,
 	desc = 'Open quickfix entry in preview window'
 })
--- TODO p for lsp reference
 
 vim.keymap.set('n', '<c-s>', '<c-w><cr><c-w>p<c-w>c', { buffer = true, silent = true })
 vim.keymap.set('n', '<c-v>', '<c-s><c-w>H', { buffer = true, silent = true, remap = true })

@@ -36,8 +36,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			})
 		end, { buffer = true })
 		vim.keymap.set('n', 'grr', function()
-			-- TODO: use loclist instead of qflist
 			vim.lsp.buf.references(nil, {
+				loclist = true,
 				on_list = function(opts)
 					local cur_line = vim.api.nvim_win_get_cursor(0)[1]
 					local match_idx = 1
