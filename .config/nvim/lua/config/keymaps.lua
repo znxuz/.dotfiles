@@ -83,6 +83,7 @@ vim.keymap.set("n", "gb", '<cmd>Buf<cr>:Buf ')
 
 -- grep
 vim.o.grepprg = GREPPRG
+vim.o.grepformat = "%f:%l:%c:%m"
 vim.api.nvim_create_user_command('Gr', function(opts)
 	vim.cmd('sil gr! ' .. enable_fuzzy_if(opts.args))
 	vim.cmd.cw()

@@ -6,6 +6,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function()
 		vim.diagnostic.config({ virtual_text = { current_line = true } })
 
+		vim.keymap.set('n', '<c-w>}', function ()
+			vim.cmd.sb()
+			vim.lsp.buf.type_definition()
+		end, { buffer = true })
 		vim.keymap.set('n', 'grh', function()
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
 		end, { buffer = true })
