@@ -72,18 +72,6 @@ fu! DefSTL() abort
 	let stl .= "%{&ft==''?'\ ':'\ \ \|\ '.toupper(&ft).'\ '}"
 	return stl
 endfu
-"fu! s:ClearPreviewStl()
-"	for i in range(1, winnr('$'))
-"		if getwinvar(i, '&pvw')
-"			call setwinvar(i, '&stl', ' ')
-"			return
-"		end
-"	endfor
-"endfu
-"aug set_pvw_stl
-"	au!
-"	au BufWinEnter * call s:ClearPreviewStl()
-"aug END
 
 set stl=%!DefSTL()
 
@@ -115,8 +103,7 @@ tno <A-esc> <c-\><c-n>
 
 " === misc autocmds ===
 
-" :h restore-cursor
-aug restore_cursor
+aug restore_cursor ":h restore-cursor
 	au!
 	au BufReadPre * au FileType <buffer> ++once
 				\ let s:line = line("'\"")
@@ -141,14 +128,6 @@ aug active_cursorline
 				\ endif
 	au WinLeave,BufLeave * setl nocul
 aug END
-
-"FIXME only for normal windows, not floating, pvw, etc.
-"aug return_prev_window
-"	au!
-"	au WinClosed * if win_gettype(str2nr(expand('<amatch>'))) !=# 'preview' |
-"				\   wincmd p |
-"				\ endif
-"aug END
 
 " === plugins ===
 
