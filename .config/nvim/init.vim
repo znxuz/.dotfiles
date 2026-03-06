@@ -142,6 +142,14 @@ aug active_cursorline
 	au WinLeave,BufLeave * setl nocul
 aug END
 
+"FIXME only for normal windows, not floating, pvw, etc.
+"aug return_prev_window
+"	au!
+"	au WinClosed * if win_gettype(str2nr(expand('<amatch>'))) !=# 'preview' |
+"				\   wincmd p |
+"				\ endif
+"aug END
+
 " === plugins ===
 
 lua require('config.lazy')
