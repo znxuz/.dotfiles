@@ -5,10 +5,10 @@ end
 
 local function run_in_pvw(cmd_fn)
 	local pvw_winid = pvw_id()
-	if pvw_winid then
-		vim.api.nvim_win_call(pvw_winid, cmd_fn)
-		vim.cmd('redraw!') -- cursor sometimes get stuck in pvw window, so force redraw
-	end
+	if not pvw_winid then return nil end
+	vim.api.nvim_win_call(pvw_winid, cmd_fn)
+	vim.cmd('redraw!') -- cursor sometimes get stuck in pvw window, so force redraw
+	return pvw_winid
 end
 
 vim.keymap.set('n', 'o', '<c-w>z<cr>', { buffer = true, silent = true })
@@ -40,51 +40,33 @@ vim.keymap.set('n', '<c-t>', '<c-s><c-w>T', { buffer = true, silent = true, rema
 -- scrolling, this was so unnecessarily difficult to figure out
 vim.keymap.set('n', '<c-e>', function()
 	local scroll_down = function() vim.cmd('norm! ') end
-	if pvw_id() then
-		run_in_pvw(scroll_down)
-	else
-		scroll_down()
-	end
+	if run_in_pvw(scroll_down) then return end
+	scroll_down()
 end, { buffer = true, silent = true })
 vim.keymap.set('n', '<c-y>', function()
 	local scroll_up = function() vim.cmd('norm! ') end
-	if pvw_id() then
-		run_in_pvw(scroll_up)
-	else
-		scroll_up()
-	end
+	if run_in_pvw(scroll_up) then return end
+	scroll_up()
 end, { buffer = true, silent = true })
 vim.keymap.set('n', '<c-d>', function()
 	local half_page_down = function() vim.cmd('norm! ') end
-	if pvw_id() then
-		run_in_pvw(half_page_down)
-	else
-		half_page_down()
-	end
+	if run_in_pvw(half_page_down) then return end
+	half_page_down()
 end, { buffer = true, silent = true })
 vim.keymap.set('n', '<c-u>', function()
 	local half_page_up = function() vim.cmd('norm! ') end
-	if pvw_id() then
-		run_in_pvw(half_page_up)
-	else
-		half_page_up()
-	end
+	if run_in_pvw(half_page_up) then return end
+	half_page_up()
 end, { buffer = true, silent = true })
 vim.keymap.set('n', '<c-f>', function()
 	local page_down = function() vim.cmd('norm! ') end
-	if pvw_id() then
-		run_in_pvw(page_down)
-	else
-		page_down()
-	end
+	if run_in_pvw(page_down) then return end
+	page_down()
 end, { buffer = true, silent = true })
 vim.keymap.set('n', '<c-b>', function()
 	local page_up = function() vim.cmd('norm! ') end
-	if pvw_id() then
-		run_in_pvw(page_up)
-	else
-		page_up()
-	end
+	if run_in_pvw(page_up) then return end
+	page_up()
 end, { buffer = true, silent = true })
 
 vim.api.nvim_create_autocmd({ "WinClosed" }, {
