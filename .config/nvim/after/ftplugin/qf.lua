@@ -74,12 +74,13 @@ vim.api.nvim_create_autocmd({ "WinClosed" }, {
 	callback = function(ev)
 		if vim.api.nvim_get_option_value('buftype', { buf = ev.buf }) == 'quickfix' then
 			vim.cmd.wincmd('z')
-		end
-		if vim.fn.win_gettype(vim.fn.win_getid(vim.fn.winnr())) == 'quickfix' then
-			-- refocus the previous window (also paired with `p` mapping)
-			-- can't use callback's ev because the cmd can't be run when qf is closed while
-			-- not in focus
-			vim.cmd.wincmd('p')
+			if vim.fn.win_gettype(vim.fn.win_getid(vim.fn.winnr())) == 'quickfix' -- FIXME not for loclist
+					and print(vim.fn.win_gettype(tonumber(ev.match))) ~= 'preview' then
+				-- refocus the previous window (also paired with `p` mapping)
+				-- can't use callback's ev because the cmd can't be run when qf is closed while
+				-- not in focus
+				vim.cmd.wincmd('p')
+			end
 		end
 	end,
 })
