@@ -18,7 +18,7 @@ return {
 			"]c",
 			function()
 				if not vim.wo.diff then
-					require('gitsigns').nav_hunk('next'); do return end
+					require('gitsigns').nav_hunk('next', { target = "all" }); do return end
 				end
 				vim.cmd('norm! ]c')
 			end,
@@ -28,7 +28,7 @@ return {
 			"[c",
 			function()
 				if not vim.wo.diff then
-					require('gitsigns').nav_hunk('prev'); do return end
+					require('gitsigns').nav_hunk('prev', { target = "all" }); do return end
 				end
 				vim.cmd('norm! [c')
 			end,
@@ -38,7 +38,7 @@ return {
 			"]C",
 			function()
 				if not vim.wo.diff then
-					require('gitsigns').nav_hunk('last'); do return end
+					require('gitsigns').nav_hunk('last', { target = "all" }); do return end
 				end
 				vim.cmd('norm! ]c')
 			end,
@@ -48,53 +48,12 @@ return {
 			"[C",
 			function()
 				if not vim.wo.diff then
-					require('gitsigns').nav_hunk('first'); do return end
+					require('gitsigns').nav_hunk('first', { target = "all" }); do return end
 				end
 				vim.cmd('norm! [c')
 			end,
 			mode = "n"
-		},
-		{
-			"}c",
-			function()
-				if not vim.wo.diff then
-					require('gitsigns').nav_hunk('next', { target = 'staged' }); do return end
-				end
-				vim.cmd('norm! }c')
-			end,
-			mode = "n"
-		},
-		-- -- TODO remove {, } keybindings
-		-- {
-		-- 	"{c",
-		-- 	function()
-		-- 		if not vim.wo.diff then
-		-- 			require('gitsigns').nav_hunk('prev', { target = 'staged' }); do return end
-		-- 		end
-		-- 		vim.cmd('norm! {c')
-		-- 	end,
-		-- 	mode = "n"
-		-- },
-		-- {
-		-- 	"}C",
-		-- 	function()
-		-- 		if not vim.wo.diff then
-		-- 			require('gitsigns').nav_hunk('last', { target = 'staged' }); do return end
-		-- 		end
-		-- 		vim.cmd('norm! }c')
-		-- 	end,
-		-- 	mode = "n"
-		-- },
-		-- {
-		-- 	"{C",
-		-- 	function()
-		-- 		if not vim.wo.diff then
-		-- 			require('gitsigns').nav_hunk('first', { target = 'staged' }); do return end
-		-- 		end
-		-- 		vim.cmd('norm! }c')
-		-- 	end,
-		-- 	mode = "n"
-		-- }
+		}
 	},
 	event = "VeryLazy"
 }
