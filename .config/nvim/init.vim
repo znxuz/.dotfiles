@@ -129,6 +129,8 @@ aug active_cursorline
 	au WinLeave,BufLeave * setl nocul
 aug END
 
+" center upon WinOpen event for normal & preview windows?
+
 " === plugins ===
 
 lua require('config.lazy')
