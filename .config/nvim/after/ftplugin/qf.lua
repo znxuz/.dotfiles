@@ -11,6 +11,21 @@ local function run_in_pvw(cmd_fn)
 	return pvw_winid
 end
 
+local function split_open(direction, tab)
+	local qf_winid = vim.fn.win_getid()
+	vim.cmd.wincmd('p')
+	if direction == 'v' then
+		vim.cmd.vnew()
+	else
+		vim.cmd.new()
+	end
+	vim.api.nvim_set_current_win(qf_winid)
+	vim.api.nvim_input("<cr>")
+	if tab then
+		vim.api.nvim_input("<c-w>T")
+	end
+end
+
 vim.keymap.set('n', 'o', '<c-w>z<cr>', { buffer = true, silent = true })
 vim.keymap.set('n', '<cr>', 'o<c-w>p<c-w>c', { buffer = true, silent = true, remap = true })
 vim.keymap.set('n', 'p', function()
@@ -33,9 +48,9 @@ end, {
 	silent = true,
 	desc = 'Open quickfix entry in preview window'
 })
-vim.keymap.set('n', '<c-s>', '<c-w><cr><c-w>p<c-w>c', { buffer = true, silent = true }) -- FIXME split above the prev window
-vim.keymap.set('n', '<c-v>', '<c-s><c-w>H', { buffer = true, silent = true, remap = true })
-vim.keymap.set('n', '<c-t>', '<c-s><c-w>T', { buffer = true, silent = true, remap = true })
+vim.keymap.set('n', '<c-s>', function() split_open('n', false) end, { buffer = true, silent = true })
+vim.keymap.set('n', '<c-v>', function() split_open('v', false) end, { buffer = true, silent = true, remap = true })
+vim.keymap.set('n', '<c-t>', function() split_open('n', true) end, { buffer = true, silent = true, remap = true })
 
 -- scrolling, this was so unnecessarily difficult to figure out
 vim.keymap.set('n', '<c-e>', function()
@@ -77,10 +92,10 @@ vim.api.nvim_create_autocmd({ "WinClosed" }, {
 			local wintype = vim.fn.win_gettype(vim.fn.win_getid(vim.fn.winnr()))
 			if (wintype == 'quickfix' or wintype == 'loclist')
 					and vim.fn.win_gettype(tonumber(ev.match)) ~= 'preview' then
-					-- last win_gettype() condition necessary: when the cursor is on
-					-- quickfix/loclist and ctrl-w_z closing the preview window, the
-					-- wincmd('p') below shall not be triggered.
-					vim.cmd.wincmd('p')
+				-- last win_gettype() condition necessary: when the cursor is on
+				-- quickfix/loclist and ctrl-w_z closing the preview window, the
+				-- wincmd('p') below shall not be triggered.
+				vim.cmd.wincmd('p')
 			end
 		end
 	end,
