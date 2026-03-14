@@ -20,9 +20,9 @@ local function split_open(direction, tab)
 		vim.cmd.new()
 	end
 	vim.api.nvim_set_current_win(qf_winid)
-	vim.api.nvim_input("<cr>")
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<cr>', true, false, true), 'm', false)
 	if tab then
-		vim.api.nvim_input("<c-w>T")
+		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<c-w>T', true, false, true), 'm', false)
 	end
 end
 
