@@ -1,3 +1,7 @@
+local function is_loclist()
+	return vim.fn.getwininfo(vim.fn.win_getid())[1]['loclist'] == 1
+end
+
 local function pvw_id()
 	return vim.iter(vim.api.nvim_tabpage_list_wins(0))
 			:find(function(v) return vim.api.nvim_get_option_value('pvw', { win = v }) end)
@@ -11,19 +15,20 @@ local function run_in_pvw(cmd_fn)
 	return pvw_winid
 end
 
-local function split_open(direction, tab)
-	local qf_winid = vim.fn.win_getid()
+local function set_prev_win(prev_winid, cur_winid)
+	vim.api.nvim_set_current_win(prev_winid)
+	vim.api.nvim_set_current_win(cur_winid)
+end
+
+local function split_open(new_win)
+	local qf_line = vim.api.nvim_win_get_cursor(0)[1]
+	local qf_open_close_cmds = is_loclist() and { 'll', 'lcl' } or { 'cc', 'ccl' }
+
 	vim.cmd.wincmd('p')
-	if direction == 'v' then
-		vim.cmd.vnew()
-	else
-		vim.cmd.new()
-	end
-	vim.api.nvim_set_current_win(qf_winid)
-	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<cr>', true, false, true), 'm', false)
-	if tab then
-		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<c-w>T', true, false, true), 'm', false)
-	end
+	local win_id = vim.api.nvim_get_current_win()
+	new_win()
+	vim.cmd(qf_line .. qf_open_close_cmds[1])
+	vim.api.nvim_win_call(win_id, function() vim.cmd(qf_open_close_cmds[2]) end)
 end
 
 vim.keymap.set('n', 'o', '<c-w>z<cr>', { buffer = true, silent = true })
@@ -32,25 +37,19 @@ vim.keymap.set('n', 'p', function()
 	local center_win = function() vim.cmd('norm! zz') end
 	local qf_winid = vim.api.nvim_get_current_win()
 	local prev_winid = vim.fn.win_getid(vim.fn.winnr('#'))
-	local get_list = vim.fn.getwininfo(vim.fn.win_getid())[1]['loclist'] == 1
-			and vim.fn.getloclist(0)
-			or vim.fn.getqflist()
-	local qfline = get_list[vim.fn.line('.')]
+	local qfline = (is_loclist() and vim.fn.getloclist(0) or vim.fn.getqflist())[vim.api.nvim_win_get_cursor(0)[1]]
 
 	vim.cmd('pedit +' .. qfline.lnum .. ' ' .. vim.api.nvim_buf_get_name(qfline.bufnr))
-	if prev_winid ~= 0 then
-		vim.api.nvim_set_current_win(prev_winid)
-		vim.api.nvim_set_current_win(qf_winid)
-	end
+	set_prev_win(prev_winid, qf_winid)
 	run_in_pvw(center_win)
 end, {
 	buffer = true,
 	silent = true,
 	desc = 'Open quickfix entry in preview window'
 })
-vim.keymap.set('n', '<c-s>', function() split_open('n', false) end, { buffer = true, silent = true })
-vim.keymap.set('n', '<c-v>', function() split_open('v', false) end, { buffer = true, silent = true, remap = true })
-vim.keymap.set('n', '<c-t>', function() split_open('n', true) end, { buffer = true, silent = true, remap = true })
+vim.keymap.set('n', '<c-s>', function() split_open(vim.cmd.new) end, { buffer = true, silent = true })
+vim.keymap.set('n', '<c-v>', function() split_open(vim.cmd.vnew) end, { buffer = true, silent = true, remap = true })
+vim.keymap.set('n', '<c-t>', function() split_open(vim.cmd.tabnew) end, { buffer = true, silent = true, remap = true })
 
 -- scrolling, this was so unnecessarily difficult to figure out
 vim.keymap.set('n', '<c-e>', function()
