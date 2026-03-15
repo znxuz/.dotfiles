@@ -2,7 +2,7 @@ vim.keymap.set('n', '<leader>L', '<Cmd>Lazy<Cr>')
 
 local AG = 'ag -US --nocolor -p $HOME/.config/fd/ignore'
 local FIND_CMD = AG .. ' --filename'
-local GREPPRG = AG .. ' --vimgrep --hidden'
+local GREPPRG = AG .. ' --vimgrep --hidden --numbers' --numbers needed; bug in ag?
 local function enable_fuzzy_if(s)
 	local pattern = s:match("^(%S+)") or s
 	local rest = s:sub(#pattern + 1)

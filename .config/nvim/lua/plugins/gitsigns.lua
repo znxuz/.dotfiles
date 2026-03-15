@@ -4,8 +4,8 @@ return {
 	'lewis6991/gitsigns.nvim',
 	config = true,
 	keys = {
-		{ map_prefix .. 'b', "<cmd>Gitsigns blame_line<cr>",                      mode = "n" },
-		{ map_prefix .. 'B', "<cmd>Gitsigns blame<cr>",                           mode = "n" },
+		{ map_prefix .. 'b', function() require('gitsigns').blame_line() end,     mode = "n" },
+		{ map_prefix .. 'B', function() require('gitsigns').blame() end,          mode = "n" },
 		{ map_prefix .. 'd', function() require('gitsigns').diffthis() end,       mode = "n" },
 		{ map_prefix .. 'D', function() require('gitsigns').diffthis('@') end,    mode = "n" },
 		{ map_prefix .. 'c', function() require('gitsigns').setqflist() end,      mode = "n" },
