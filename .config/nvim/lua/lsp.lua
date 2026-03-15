@@ -1,13 +1,27 @@
 vim.opt.shortmess:append('c')
 vim.opt.signcolumn = 'yes'
 
+local function find_match_idx(opts)
+	local bufname = vim.api.nvim_buf_get_name(opts.context.bufnr)
+	local idx = 1
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	col = col + 1
+	for i, item in ipairs(opts.items) do
+		if item.filename ~= bufname then goto continue end
+		if item.lnum > line or (item.lnum == line and item.col > col) then break end
+		idx = i
+		::continue::
+	end
+	return idx
+end
+
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("lsp_attach", {}),
 	callback = function()
 		vim.diagnostic.config({ virtual_text = { current_line = true } })
 
-		vim.keymap.set('n', '<c-w>}', function ()
-			vim.cmd.sb()
+		vim.keymap.set('n', 'grT', function ()
+			vim.cmd.sp()
 			vim.lsp.buf.type_definition()
 		end, { buffer = true })
 		vim.keymap.set('n', 'grh', function()
@@ -17,16 +31,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set('n', 'gO', function()
 			vim.lsp.buf.document_symbol({
 				on_list = function(opts)
-					local cur_line = vim.api.nvim_win_get_cursor(0)[1]
-					local best_match_idx = 1
-					for i, item in ipairs(opts.items) do
-						if item.lnum > cur_line then break end
-						best_match_idx = i
-					end
 					vim.fn.setloclist(0, {}, ' ', {
 						title = opts.title,
 						items = opts.items,
-						idx = best_match_idx,
+						idx = find_match_idx(opts),
 						quickfixtextfunc = function(dict)
 							local lines = {}
 							for i = dict.start_idx, dict.end_idx do
@@ -42,19 +50,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set('n', 'grr', function()
 			vim.lsp.buf.references(nil, {
 				on_list = function(opts)
-					local cur_line = vim.api.nvim_win_get_cursor(0)[1]
-					local match_idx = 1
-					for i, item in ipairs(opts.items) do
-						if item.lnum == cur_line and
-								item.filename == vim.api.nvim_buf_get_name(opts.context.bufnr) then
-							match_idx = i
-							break
-						end
-					end
 					vim.fn.setqflist({}, ' ', {
 						title = opts.title,
 						items = opts.items,
-						idx = match_idx,
+						idx = find_match_idx(opts),
 					})
 					vim.cmd.cw()
 				end,
