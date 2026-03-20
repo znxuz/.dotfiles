@@ -47,6 +47,7 @@ vim.keymap.set("n", "gs", ":Find ")
 vim.keymap.set("v", "gs", [["ty:Find t<cr>]])
 
 -- buffer
+-- FIXME: restore-cursor doesn't work when selecting entry from qf list?
 vim.api.nvim_create_user_command('Buf', function(opts)
 	local bufs = vim.iter(vim.api.nvim_list_bufs())
 			:filter(function(b)

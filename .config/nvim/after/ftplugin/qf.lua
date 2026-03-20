@@ -52,6 +52,7 @@ vim.keymap.set('n', '<c-v>', function() split_open(vim.cmd.vnew) end, { buffer =
 vim.keymap.set('n', '<c-t>', function() split_open(vim.cmd.tabnew) end, { buffer = true, silent = true, remap = true })
 
 -- scrolling, this was so unnecessarily difficult to figure out
+-- TODO: enable scrolling when pf window is visible, not only for qf win
 vim.keymap.set('n', '<c-e>', function()
 	local scroll_down = function() vim.cmd('norm! ') end
 	if run_in_pvw(scroll_down) then return end
