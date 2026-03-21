@@ -132,4 +132,6 @@ aug END
 " === plugins ===
 
 lua require('config.lazy')
+lua require('keymaps')
+lua require('pvw')
 lua require('lsp')
