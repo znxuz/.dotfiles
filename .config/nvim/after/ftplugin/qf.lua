@@ -31,7 +31,22 @@ local function split_open(new_win)
 	vim.api.nvim_win_call(win_id, function() vim.cmd(qf_open_close_cmds[2]) end)
 end
 
-vim.keymap.set('n', 'o', '<c-w>z<cr>', { buffer = true, silent = true })
+-- vim.keymap.set('n', 'o', '<c-w>z<cr>', { buffer = true, silent = true })
+vim.keymap.set('n', 'o', function()
+	local prev_winid = vim.fn.win_getid(vim.fn.winnr('#'))
+	local qfline = (is_loclist() and vim.fn.getloclist(0) or vim.fn.getqflist())[vim.api.nvim_win_get_cursor(0)[1]]
+
+	vim.cmd.wincmd('z')
+	if qfline.lnum == 0 and vim.api.nvim_win_is_valid(prev_winid) then
+		-- vim.api.nvim_win_set_buf(prev_winid, qfline.bufnr) -- triggers hard error when a swap file is present
+		vim.api.nvim_set_current_win(prev_winid)
+		vim.cmd.buffer(qfline.bufnr)
+		vim.bo.buflisted = true
+	else
+		vim.api.nvim_feedkeys(vim.keycode('<cr>'), 'ni', false) -- i flag somehow critical for this to work
+	end
+end
+, { buffer = true, silent = true })
 vim.keymap.set('n', '<cr>', 'o<c-w>p<c-w>c', { buffer = true, silent = true, remap = true })
 vim.keymap.set('n', 'p', function()
 	local center_win = function() vim.cmd('norm! zz') end

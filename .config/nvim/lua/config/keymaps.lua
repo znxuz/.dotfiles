@@ -40,14 +40,13 @@ vim.api.nvim_create_user_command('Find', function(opts)
 		title = opts.name,
 		quickfixtextfunc = function(_) return result end -- show just filenames w/o seperators
 	})
-	vim.cmd.lw()
+	vim.cmd.lw() -- FIXME dont focus loclist win if already opened
 end, { nargs = '+', complete = 'file' })
 vim.opt.findfunc = "v:lua.Find"
 vim.keymap.set("n", "gs", ":Find ")
 vim.keymap.set("v", "gs", [["ty:Find t<cr>]])
 
 -- buffer
--- FIXME: restore-cursor doesn't work when selecting entry from qf list?
 vim.api.nvim_create_user_command('Buf', function(opts)
 	local bufs = vim.iter(vim.api.nvim_list_bufs())
 			:filter(function(b)
@@ -64,6 +63,7 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 			:filter(function(name) return name ~= '' end)
 			:map(shorten_path)
 			:totable()
+	-- TODO: sort them by MRU
 
 	local search_term = tonumber(opts.args)
 			and '^' .. shorten_path(vim.api.nvim_buf_get_name(tonumber(opts.args) or 0)) .. '$'
