@@ -40,7 +40,8 @@ vim.api.nvim_create_user_command('Find', function(opts)
 		title = opts.name,
 		quickfixtextfunc = function(_) return result end -- show just filenames w/o seperators
 	})
-	vim.cmd.lw() -- FIXME dont focus loclist win if already opened
+	vim.cmd.lcl()
+	vim.cmd.lw()
 end, { nargs = '+', complete = 'file' })
 vim.opt.findfunc = "v:lua.Find"
 vim.keymap.set("n", "gs", ":Find ")
@@ -63,7 +64,6 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 			:filter(function(name) return name ~= '' end)
 			:map(shorten_path)
 			:totable()
-	-- TODO: sort them by MRU
 
 	local search_term = tonumber(opts.args)
 			and '^' .. shorten_path(vim.api.nvim_buf_get_name(tonumber(opts.args) or 0)) .. '$'
@@ -78,6 +78,7 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 		title = opts.name,
 		quickfixtextfunc = function(_) return result end
 	})
+	vim.cmd.lcl()
 	vim.cmd.lw()
 end, { nargs = '*', complete = 'file' })
 vim.keymap.set("n", "gb", '<cmd>Buf<cr>:Buf ')
@@ -87,6 +88,7 @@ vim.o.grepprg = GREPPRG
 vim.o.grepformat = "%f:%l:%c:%m"
 vim.api.nvim_create_user_command('Gr', function(opts)
 	vim.cmd('sil gr! ' .. enable_fuzzy_if(opts.args))
+	vim.cmd.ccl()
 	vim.cmd.cw()
 end, { nargs = '+', complete = 'file' })
 vim.keymap.set("n", "gp", ":Gr ")

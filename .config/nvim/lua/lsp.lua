@@ -47,7 +47,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				end,
 			})
 		end, { buffer = true })
-		-- TODO: show name of the reference as title
 		vim.keymap.set('n', 'grr', function()
 			vim.lsp.buf.references(nil, {
 				on_list = function(opts)
