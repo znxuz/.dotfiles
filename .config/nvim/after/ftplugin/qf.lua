@@ -7,6 +7,7 @@ local function set_prev_win(prev_winid, cur_winid)
 	vim.api.nvim_set_current_win(cur_winid)
 end
 
+-- TODO: also open buf with restored cursor i.e. use `o` remapped keybind
 local function split_open(new_win)
 	local qf_line = vim.api.nvim_win_get_cursor(0)[1]
 	local qf_open_close_cmds = is_loclist() and { 'll', 'lcl' } or { 'cc', 'ccl' }
