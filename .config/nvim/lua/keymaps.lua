@@ -92,7 +92,7 @@ vim.api.nvim_create_user_command('Gr', function(opts)
 	vim.cmd.cw()
 end, { nargs = '+', complete = 'file' })
 vim.keymap.set("n", "gp", ":Gr ")
-vim.keymap.set("v", "gp", [["ty:Gr -Q 't'<cr>]])
+vim.keymap.set("v", "gp", [["ty:Gr -Q 't'<cr>]]) -- FIXME this keymap doesnt show in the history
 
 -- shell cmd
 vim.keymap.set("n", "<leader><leader>", function()
