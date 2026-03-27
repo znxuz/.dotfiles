@@ -15,6 +15,30 @@ local function find_match_idx(opts)
 	return idx
 end
 
+local function mine_document_symbol(open, fn)
+	vim.lsp.buf.document_symbol({
+		on_list = function(opts)
+			vim.fn.setloclist(0, {}, ' ', {
+				title = opts.title,
+				items = opts.items,
+				idx = find_match_idx(opts),
+				quickfixtextfunc = function(dict)
+					local lines = {}
+					for i = dict.start_idx, dict.end_idx do
+						table.insert(lines, opts.items[i].text)
+					end
+					return lines
+				end
+			})
+			if open then
+				vim.cmd.lcl()
+				vim.cmd.lw()
+			end
+			if fn then fn() end
+		end,
+	})
+end
+
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("lsp_attach", {}),
 	callback = function()
@@ -28,26 +52,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
 		end, { buffer = true })
 		vim.keymap.set('n', 'grd', vim.diagnostic.setqflist, { buffer = true })
-		vim.keymap.set('n', 'gO', function()
-			vim.lsp.buf.document_symbol({
-				on_list = function(opts)
-					vim.fn.setloclist(0, {}, ' ', {
-						title = opts.title,
-						items = opts.items,
-						idx = find_match_idx(opts),
-						quickfixtextfunc = function(dict)
-							local lines = {}
-							for i = dict.start_idx, dict.end_idx do
-								table.insert(lines, opts.items[i].text)
-							end
-							return lines
-						end
-					})
-					vim.cmd.lw()
-				end,
-			})
-		end, { buffer = true })
-		-- TODO: ]t [t piggybacking gO
+		vim.keymap.set('n', 'gO', function() mine_document_symbol(true) end, { buffer = true })
+		vim.keymap.set('n', '[t', function () mine_document_symbol(false, vim.cmd.lp) end)
+		vim.keymap.set('n', ']t', function() mine_document_symbol(false, vim.cmd.lne) end)
+		vim.keymap.set('n', 'tt', function() mine_document_symbol(false, vim.cmd.ll) end)
 		vim.keymap.set('n', 'grr', function()
 			vim.lsp.buf.references(nil, {
 				on_list = function(opts)
