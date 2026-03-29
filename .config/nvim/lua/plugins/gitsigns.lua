@@ -6,9 +6,8 @@ return {
 	keys = {
 		{ map_prefix .. 'b', function() require('gitsigns').blame_line() end,     mode = "n" },
 		{ map_prefix .. 'B', function() require('gitsigns').blame() end,          mode = "n" },
-		{ map_prefix .. 'd', function() require('gitsigns').diffthis() end,       mode = "n" },
-		{ map_prefix .. 'D', function() require('gitsigns').diffthis('@') end,    mode = "n" },
-		-- keybind for diff prev head @~?
+		{ map_prefix .. 'd', function() require('gitsigns').diffthis('@') end,    mode = "n" },
+		{ map_prefix .. 'D', function() require('gitsigns').diffthis('@~') end,   mode = "n" },
 		{ map_prefix .. 'c', function() require('gitsigns').setqflist() end,      mode = "n" },
 		{ map_prefix .. 'C', function() require('gitsigns').setqflist("all") end, mode = "n" },
 		{ map_prefix .. 'r', function() require('gitsigns').reset_hunk() end,     mode = 'n' },
