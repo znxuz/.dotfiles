@@ -60,6 +60,8 @@ end, {
 	desc = 'Open quickfix entry in preview window'
 })
 
+-- TODO: enter number in normal mode to open
+
 vim.api.nvim_create_autocmd({ "WinClosed" }, {
 	group = vim.api.nvim_create_augroup("qf", {}),
 	callback = function(ev)
