@@ -16,6 +16,28 @@ end
 local function shorten_path(path)
 	return vim.fn.fnamemodify(path, ":~:.")
 end
+local function open_or_focus_loclist()
+	-- pcall in case the loclist win is the last/only win
+	pcall(vim.cmd.lcl)
+	pcall(vim.cmd.lw)
+end
+local function populate_loclist(filenames, title, show_modified)
+	vim.fn.setloclist(0, {}, ' ', {
+		lines = filenames,
+		efm = '%f',
+		title = title,
+		quickfixtextfunc = function(_)
+			if show_modified then
+				for i, filename in ipairs(filenames) do
+					if vim.fn.getbufvar(filename, '&mod') == 1 then
+						filenames[i] = filename .. ' [+]'
+					end
+				end
+			end
+			return filenames
+		end
+	})
+end
 
 -- keymap for populating qf list without leaving the cmdline
 vim.keymap.set('c', '<c-l>', function()
@@ -34,14 +56,8 @@ end
 
 vim.api.nvim_create_user_command('Find', function(opts)
 	local result = vim.iter(Find(opts.args)):map(shorten_path):totable()
-	vim.fn.setloclist(0, {}, ' ', {
-		lines = result,
-		efm = '%f',
-		title = opts.name,
-		quickfixtextfunc = function(_) return result end -- show just filenames w/o seperators
-	})
-	vim.cmd.lcl()
-	vim.cmd.lw()
+	populate_loclist(result, opts.name)
+	open_or_focus_loclist()
 end, { nargs = '+', complete = 'file' })
 vim.opt.findfunc = "v:lua.Find"
 vim.keymap.set("n", "gs", ":Find ")
@@ -72,17 +88,27 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 			and vim.fn.systemlist('echo "' .. table.concat(bufnames, "\n") .. '" | ' .. FIND_CMD .. ' ' .. search_term)
 			or bufnames
 
-	vim.fn.setloclist(0, {}, ' ', {
-		lines = result,
-		efm = '%f',
-		title = opts.name,
-		-- TODO: dd support to delete buf? and add [+] after filename
-		quickfixtextfunc = function(_) return result end
-	})
-	vim.cmd.lcl()
-	vim.cmd.lw()
+	populate_loclist(result, opts.name, true)
+
+	local bufnr = vim.fn.getloclist(0, { qfbufnr = 0 }).qfbufnr
+
+	open_or_focus_loclist()
+
+	vim.keymap.set('n', 'i', ':Buf ', { buf = bufnr })
+	vim.keymap.set('n', 'dd', function()
+		local list = vim.fn.getloclist(0)
+		local row = vim.api.nvim_win_get_cursor(0)[1]
+		vim.cmd('bw ' .. list[row].bufnr)
+		table.remove(list, row)
+
+		local filenames = vim.iter(list)
+				:map(function(e) return shorten_path(vim.fn.bufname(e.bufnr)) end)
+				:totable()
+		populate_loclist(filenames, opts.name, true)
+		vim.api.nvim_win_set_cursor(0, { math.min(row, #filenames), 0 })
+	end, { buf = bufnr })
 end, { nargs = '*', complete = 'file' })
-vim.keymap.set("n", "gb", '<cmd>Buf<cr>:Buf ')
+vim.keymap.set("n", "gb", '<cmd>Buf<cr>')
 
 -- grep
 vim.o.grepprg = GREPPRG

@@ -12,22 +12,26 @@ end
 -- using default keybind in qf
 local function open(close, prev_winid)
 	local qf_win = vim.api.nvim_get_current_win()
-	local cursor = vim.api.nvim_win_get_cursor(0)[1]
-	local qfline = (is_loclist() and vim.fn.getloclist(0) or vim.fn.getqflist())[cursor]
+	local row = vim.api.nvim_win_get_cursor(0)[1]
+	local qfline = (is_loclist() and vim.fn.getloclist(0) or vim.fn.getqflist())[row]
 	local qf_cmd = is_loclist() and 'll' or 'cc'
 	prev_winid = prev_winid or vim.fn.win_getid(vim.fn.winnr('#'))
 
 	vim.cmd.wincmd('z')
 
 	if qfline.lnum == 0 then
-		vim.api.nvim_win_call(prev_winid, function() vim.cmd.buffer(qfline.bufnr) end)
-		vim.bo.buflisted = true
+		vim.api.nvim_win_call(prev_winid, function()
+			vim.cmd.buffer(qfline.bufnr)
+			vim.bo.buflisted = true
+		end)
 	else
-		vim.api.nvim_win_call(prev_winid, function() vim.cmd(cursor .. qf_cmd) end) -- in case prev_win is a new tabpage
+		vim.api.nvim_win_call(prev_winid, function() vim.cmd(row .. qf_cmd) end) -- in case prev_win is a new tabpage
 		-- vim.api.nvim_feedkeys(vim.keycode('<cr>'), 'ni', false) -- i flag somehow critical for this to work
 	end
 
-	if close then vim.api.nvim_win_close(qf_win, false) end
+	if close then
+		pcall(vim.api.nvim_win_close, qf_win, false) -- would throw err if qf_win became the last/only win upon closing
+	end
 	vim.api.nvim_set_current_win(prev_winid) -- explicitly switch in case of a new tabpage
 end
 
