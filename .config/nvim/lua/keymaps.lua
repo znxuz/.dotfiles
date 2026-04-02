@@ -76,6 +76,7 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 		lines = result,
 		efm = '%f',
 		title = opts.name,
+		-- TODO: dd support to delete buf? and add [+] after filename
 		quickfixtextfunc = function(_) return result end
 	})
 	vim.cmd.lcl()

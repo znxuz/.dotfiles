@@ -8,9 +8,9 @@ return {
 			local argv = tostring(vim.fn.argv(0))
 			local stat = vim.loop.fs_stat(argv)
 
-			local remote_dir_args = vim.startswith(argv, "ssh") or
-					vim.startswith(argv, "sftp") or
-					vim.startswith(argv, "scp")
+			local remote_dir_args = vim.startswith(argv, "oil-ssh") or
+					vim.startswith(argv, "oil-sftp") or
+					vim.startswith(argv, "oil-scp")
 
 			if stat and stat.type == "directory" or remote_dir_args then
 				require("lazy").load { plugins = { p.name } }
@@ -49,6 +49,7 @@ return {
 			progress = { border = 'single' },
 			ssh = { border = "single" },
 			keymaps_help = { border = "single" },
+			silence_scp_warning = true
 		})
 
 		vim.cmd.cabbr({

@@ -64,6 +64,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 						items = opts.items,
 						idx = find_match_idx(opts),
 					})
+					vim.cmd.ccl()
 					vim.cmd.cw()
 				end,
 			})
