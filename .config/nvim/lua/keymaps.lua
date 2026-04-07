@@ -94,7 +94,7 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 
 	open_or_focus_loclist()
 
-	vim.keymap.set('n', 'i', ':Buf ', { buf = bufnr })
+	vim.keymap.set('n', 'i', ':Buf ', { buffer = bufnr })
 	vim.keymap.set('n', 'dd', function()
 		local list = vim.fn.getloclist(0)
 		local row = vim.api.nvim_win_get_cursor(0)[1]
@@ -105,8 +105,10 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 				:map(function(e) return shorten_path(vim.fn.bufname(e.bufnr)) end)
 				:totable()
 		populate_loclist(filenames, opts.name, true)
-		vim.api.nvim_win_set_cursor(0, { math.min(row, #filenames), 0 })
-	end, { buf = bufnr })
+		if #filenames > 0 then
+			vim.api.nvim_win_set_cursor(0, { math.min(row, #filenames), 0 })
+		end
+	end, { buffer = bufnr }) -- TODO: refactor to buf once ubuntu unstable supports
 end, { nargs = '*', complete = 'file' })
 vim.keymap.set("n", "gb", '<cmd>Buf<cr>')
 

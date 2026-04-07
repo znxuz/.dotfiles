@@ -1,6 +1,7 @@
 return {
 	'nvim-treesitter/nvim-treesitter',
 	build = ":TSUpdate",
+	branch = "main",
 	event = "LspAttach",
 	opts = {
 		ensure_installed = {
