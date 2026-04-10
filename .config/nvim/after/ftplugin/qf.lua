@@ -38,7 +38,7 @@ end
 local function split_open(new_win)
 	local qf_win = vim.api.nvim_get_current_win()
 	vim.api.nvim_set_current_win(vim.fn.win_getid(vim.fn.winnr('#')))
-	new_win()
+	new_win() -- TODO: this creates an empty buffer each time
 	local winid = vim.api.nvim_get_current_win()
 	vim.api.nvim_set_current_win(qf_win)
 	open(true, winid)
