@@ -1,5 +1,4 @@
-append_path()
-{
+append_path() {
 	case ":$PATH:" in
 		*:"$1":*)
 			;;
@@ -7,83 +6,105 @@ append_path()
 			PATH="${PATH:+$PATH:}$1"
 	esac
 }
+man() {
+	LESS_TERMCAP_mb=$(tput bold; tput setaf 1) \
+	LESS_TERMCAP_md=$(tput bold; tput setaf 1) \
+	LESS_TERMCAP_me=$(tput sgr0) \
+	LESS_TERMCAP_ue=$(tput sgr0) \
+	LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 2) \
+	LESS_TERMCAP_mr=$(tput rev) \
+	LESS_TERMCAP_mh=$(tput dim) \
+	LESS_TERMCAP_ZN=$(tput ssubm) \
+	LESS_TERMCAP_ZV=$(tput rsubm) \
+	LESS_TERMCAP_ZO=$(tput ssupm) \
+	LESS_TERMCAP_ZW=$(tput rsupm) \
+	LESS_TERMCAP_se=$(tput sgr0) \
+	LESS_TERMCAP_so=$(tput bold; tput setaf 0; tput setab 7) \
+	GROFF_NO_SGR=1 \
+	PAGER='less --incsearch' \
+	command man "$@"
+}
 
 append_path $(find $HOME/.local/bin -type d | tr '\n' ':' | sed 's/:$//')
 
-export SHELL="/usr/bin/zsh"
-export EDITOR="nvim"
-export VISUAL="$EDITOR"
-export SUDO_EDITOR="$EDITOR"
-export TERMINAL="alacritty"
-export TERMINAL_WIN_NAME="Terminal"
-export BROWSER="brave"
-export LESSHISTFILE="-"
-export MANPAGER="less --incsearch"
+set -o allexport
 
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_CACHE_HOME=$HOME/.cache
-export XDG_DATA_HOME=$HOME/.local/share
-export XDG_STATE_HOME=$HOME/.local/state
+SHELL="/usr/bin/zsh"
+EDITOR="nvim"
+VISUAL="$EDITOR"
+SUDO_EDITOR="$EDITOR"
+TERMINAL="alacritty"
+TERMINAL_WIN_NAME="Terminal"
+BROWSER="brave"
+LESSHISTFILE="-"
+PAGER='less --incsearch'
+
+XDG_CONFIG_HOME=$HOME/.config
+XDG_CACHE_HOME=$HOME/.cache
+XDG_DATA_HOME=$HOME/.local/share
+XDG_STATE_HOME=$HOME/.local/state
 
 # home clean up https://wiki.archlinux.org/title/XDG_Base_Directory
-export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc
-export ZDOTDIR=$XDG_CONFIG_HOME/zsh
-export HISTFILE=$XDG_CACHE_HOME/zsh/history
-export INPUTRC=$XDG_CONFIG_HOME/shell/inputrc
-export PASSWORD_STORE_DIR=$XDG_DATA_HOME/password-store
-export GTK2_RC_FILES=$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0
-export XAUTHORITY=$XDG_CONFIG_HOME/X11/Xauthority
-export RUSTUP_HOME=$XDG_DATA_HOME/rustup
-export CARGO_HOME=$XDG_DATA_HOME/cargo
+XINITRC=$XDG_CONFIG_HOME/X11/xinitrc
+ZDOTDIR=$XDG_CONFIG_HOME/zsh
+HISTFILE=$XDG_CACHE_HOME/zsh/history
+INPUTRC=$XDG_CONFIG_HOME/shell/inputrc
+PASSWORD_STORE_DIR=$XDG_DATA_HOME/password-store
+GTK2_RC_FILES=$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0
+XAUTHORITY=$XDG_CONFIG_HOME/X11/Xauthority
+RUSTUP_HOME=$XDG_DATA_HOME/rustup
+CARGO_HOME=$XDG_DATA_HOME/cargo
 append_path $CARGO_HOME/bin
-export JUPYTER_PLATFORM_DIRS=$XDG_CONFIG_HOME/jupyter
-export PYTHON_HISTORY=$XDG_STATE_HOME/python/history
-export DOCKER_CONFIG=$XDG_CONFIG_HOME/docker
-export WAKATIME_HOME=$XDG_CONFIG_HOME/wakatime
+JUPYTER_PLATFORM_DIRS=$XDG_CONFIG_HOME/jupyter
+PYTHON_HISTORY=$XDG_STATE_HOME/python/history
+DOCKER_CONFIG=$XDG_CONFIG_HOME/docker
+WAKATIME_HOME=$XDG_CONFIG_HOME/wakatime
 
 # fzf
-export ESCDELAY="1"
-export FZF_DEFAULT_OPTS='--bind change:top,alt-a:select-all,alt-d:deselect-all --border=none --color=base16 --color='current-bg:0,border:0' --layout=reverse --height=11 --cycle --scroll-off=1000'
-export FZF_DEFAULT_COMMAND='fd -L -H'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND -td"
+ESCDELAY="1"
+FZF_DEFAULT_OPTS='--bind change:top,alt-a:select-all,alt-d:deselect-all --border=none --color=base16 --color='current-bg:0,border:0' --layout=reverse --height=11 --cycle --scroll-off=1000'
+FZF_DEFAULT_COMMAND='fd -L -H'
+FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND -td"
 
 # make
-# export MAKEFLAGS='-j'
+# MAKEFLAGS='-j'
 
 # ros
-export ROS_HOME=$XDG_DATA_HOME/ros
-export COLCON_BUILD_ARGS='--symlink-install --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON'
+ROS_HOME=$XDG_DATA_HOME/ros
+COLCON_BUILD_ARGS='--symlink-install --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON'
 
 # calibre dark theme
-export CALIBRE_USE_DARK_PALETTE=1
+CALIBRE_USE_DARK_PALETTE=1
 
 # java
 ## https://wiki.archlinux.org/title/HiDPI#Java_applications
 ## https://wiki.archlinux.org/title/Java_Runtime_Environment_fonts
-export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java -Dawt.useSystemAAFontSettings=on"
-export JAVA_HIDPI_SCALE_OPTS="-Dsun.java2d.uiScale=2"
-export JAVA_HOME=/usr/lib/jvm/default
-export _JAVA_AWT_WM_NONREPARENTING=1
-export MAVEN_OPTS="-Dmaven.repo.local=$XDG_DATA_HOME/m2"
-export PATH_TO_FX="/usr/lib/jvm/java-20-openjdk/lib"
-export JAVAFX_OPTS="--module-path $PATH_TO_FX --add-modules=ALL-MODULE-PATH"
-export GRADLE_USER_HOME=$HOME/.gradle
+_JAVA_OPTIONS="-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java -Dawt.useSystemAAFontSettings=on"
+JAVA_HIDPI_SCALE_OPTS="-Dsun.java2d.uiScale=2"
+JAVA_HOME=/usr/lib/jvm/default
+_JAVA_AWT_WM_NONREPARENTING=1
+MAVEN_OPTS="-Dmaven.repo.local=$XDG_DATA_HOME/m2"
+PATH_TO_FX="/usr/lib/jvm/java-20-openjdk/lib"
+JAVAFX_OPTS="--module-path $PATH_TO_FX --add-modules=ALL-MODULE-PATH"
+GRADLE_USER_HOME=$HOME/.gradle
 
 # csharp
-# export DOTNET_CLI_TELEMETRY_OPTOUT=1
+# DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # npm
-export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/config
-export NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
+NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/config
+NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
 
 # QT
-# export QT_ENABLE_HIGHDPI_SCALING=1 # causes rviz2 screen flickering
-export QT_SCREEN_SCALE_FACTORS=1 # screen flickering fix
+# QT_ENABLE_HIGHDPI_SCALING=1 # causes rviz2 screen flickering
+QT_SCREEN_SCALE_FACTORS=1 # screen flickering fix
 
 # make & cmake
-export MAKEFLAGS="-j$(nproc)"
-export CMAKE_BUILD_PARALLEL_LEVEL="$(nproc)"
+MAKEFLAGS="-j$(nproc)"
+CMAKE_BUILD_PARALLEL_LEVEL="$(nproc)"
 
 # ripgrep
-export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/rgrc
+RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/rgrc
+
+set +o allexport

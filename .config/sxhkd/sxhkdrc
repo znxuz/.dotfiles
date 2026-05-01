@@ -70,9 +70,9 @@ super + F5
 ## screenshot via flameshot script
 
 Print
-	flameshotter screen
-super + Print
 	flameshotter gui
+super + Print
+	flameshotter screen
 
 ## system
 

@@ -21,20 +21,24 @@ local function open_or_focus_loclist()
 	pcall(vim.cmd.lcl)
 	pcall(vim.cmd.lw)
 end
-local function populate_loclist(filenames, title, show_modified)
+local function populate_loclist(filenames, title, opts)
 	vim.fn.setloclist(0, {}, ' ', {
 		lines = filenames,
 		efm = '%f',
 		title = title,
 		quickfixtextfunc = function(_)
-			if show_modified then
-				for i, filename in ipairs(filenames) do
-					if vim.fn.getbufvar(filename, '&mod') == 1 then
-						filenames[i] = filename .. ' [+]'
-					end
+			local files = vim.deepcopy(filenames) -- needed
+			if not opts then return files end
+			for i, f in ipairs(files) do
+				if opts.show_modified and vim.fn.getbufvar(f, '&mod') == 1 then
+					files[i] = files[i] .. ' [+]'
+				end
+				if opts.show_lastused then
+					files[i] = files[i] .. ' | '
+							.. os.date("%Mm %Ss", vim.uv.gettimeofday() - vim.fn.getbufinfo(f)[1].lastused) .. ' ago'
 				end
 			end
-			return filenames
+			return files
 		end
 	})
 end
@@ -88,7 +92,7 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 			and vim.fn.systemlist('echo "' .. table.concat(bufnames, "\n") .. '" | ' .. FIND_CMD .. ' ' .. search_term)
 			or bufnames
 
-	populate_loclist(result, opts.name, true)
+	populate_loclist(result, opts.name, { show_modified = true, show_lastused = true })
 
 	local bufnr = vim.fn.getloclist(0, { qfbufnr = 0 }).qfbufnr
 
@@ -104,7 +108,7 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 		local filenames = vim.iter(list)
 				:map(function(e) return shorten_path(vim.fn.bufname(e.bufnr)) end)
 				:totable()
-		populate_loclist(filenames, opts.name, true)
+		populate_loclist(filenames, opts.name, { show_modified = true , show_lastused = true })
 		if #filenames > 0 then
 			vim.api.nvim_win_set_cursor(0, { math.min(row, #filenames), 0 })
 		end

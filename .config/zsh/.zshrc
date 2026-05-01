@@ -16,16 +16,27 @@ setopt prompt_subst
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' formats ' %F{magenta}[%F{green}%b%F{magenta}]%F{blue}'
 zstyle ':vcs_info:*' enable git
-precmd () { vcs_info }
 
 PROMPT=$'\033]133;A\007''%B%F{blue}%n%F{magenta}:%F{blue}%~' # pwd
 PROMPT+='${vcs_info_msg_0_}' # git branch integration
 [[ -n $IN_NIX_SHELL ]] && PROMPT+=" %F{magenta}[%F{yellow}$IN_NIX_SHELL%F{magenta}]%f" # nix
 [[ -e /run/.toolboxenv ]] && PROMPT+=" %F{magenta}[%F{yellow}dbx%F{magenta}]%f" # distrobox
-
 PROMPT+=$'\n'"%(1j.%F{magenta}[%F{yellow}%j%F{magenta}] .)" # job count
 PROMPT+="%(?.%F{blue}.%F{red})⤷%f%b " # actual prompt on a new line
 
+preexec() {
+	timer=$(($(date +%s%0N)*0.000000001))
+}
+precmd () {
+	if [[ -n $timer ]]; then
+		now=$(($(date +%s%0N)*0.000000001))
+		elapsed=$(printf "%.3f" $(($now-$timer)))
+		RPROMPT="%B%F{black}${elapsed}s %{$reset_color%}%b"
+		unset timer
+	fi
+
+	vcs_info # git integration
+}
 # RPROMPT='%F{cyan}%D{%H:%M:%S}%f' # add a timestamp on the right side
 
 # dir colors
