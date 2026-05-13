@@ -19,7 +19,7 @@ man() {
 	LESS_TERMCAP_ZO=$(tput ssupm) \
 	LESS_TERMCAP_ZW=$(tput rsupm) \
 	LESS_TERMCAP_se=$(tput sgr0) \
-	LESS_TERMCAP_so=$(tput bold; tput setaf 0; tput setab 7) \
+	LESS_TERMCAP_so=$(tput bold; tput setaf 255; tput setab 7) \
 	GROFF_NO_SGR=1 \
 	PAGER='less --incsearch' \
 	command man "$@"
