@@ -6,16 +6,14 @@ return {
 		vim.api.nvim_create_autocmd({ "Signal" }, {
 			group = group,
 			pattern = { "SIGUSR1" },
-			callback = function() dofile(vim.fn.stdpath('config') .. '/lua/bg.lua') end,
-		})
-		vim.api.nvim_create_autocmd({ "Signal" }, {
-			group = group,
-			pattern = { "SIGUSR1" },
-			command = "hi! default link StatusLine STL"
+			callback = function()
+				dofile(vim.fn.stdpath('config') .. '/lua/bg.lua')
+				vim.cmd("hi! default link StatusLine STL")
+			end,
 		})
 	end,
 	config = function()
-		require('bg')
+		dofile(vim.fn.stdpath('config') .. '/lua/bg.lua')
 		vim.cmd.colorscheme('rose-pine')
 	end
 }
