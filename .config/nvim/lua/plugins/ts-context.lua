@@ -1,7 +1,7 @@
 return {
 	'nvim-treesitter/nvim-treesitter-context',
 	dependencies = 'nvim-treesitter/nvim-treesitter',
-	enabeld = false,
+	enabled = false,
 	opts = {
 		enable = true,
 		multiwindow = false,
