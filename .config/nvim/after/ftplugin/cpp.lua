@@ -62,7 +62,6 @@ local function configure_makeprg()
 		vim.keymap.set('n', '<leader>mM', function() build(true) end, { buffer = true })
 		vim.keymap.set('n', '<leader>mc', clean, { buffer = true })
 		vim.keymap.set('n', '<leader>mr', run, { buffer = true })
-		-- TODO ctest mappings
 	end
 
 	configure()

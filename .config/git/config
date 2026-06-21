@@ -33,7 +33,8 @@
 	wt = worktree
 	chry = cherry-pick
 [difftool "nvimdiff"]
-	cmd = nvim -n -c \"packadd nvim.difftool\" -c \"DiffTool $LOCAL $REMOTE\"
+    cmd = nvim -n -d "$LOCAL" "$REMOTE" -c'wincmd l' -c'norm gg'
+	# cmd = nvim -n -c \"packadd nvim.difftool\" -c \"DiffTool $LOCAL $REMOTE\" # not yet avail in ubuntu
 [diff]
     tool = nvimdiff
 [merge]
