@@ -152,15 +152,21 @@ vim.keymap.set("v", "gp", function()
 end, { silent = true })
 
 -- shell cmd
+function _G.run_shell_cmd(c)
+	if not c or c == "" then return end
+	local w = vim.api.nvim_get_current_win()
+	vim.cmd("nos new")
+	local ei = vim.o.eventignore
+	vim.o.eventignore = "TermOpen,BufWinEnter,WinEnter"
+	vim.fn.jobstart({ vim.o.sh, "-c", c }, { term = true })
+	vim.o.eventignore = ei
+	vim.bo.bufhidden = "wipe"
+	vim.api.nvim_set_current_win(w)
+end
+
 vim.keymap.set("n", "<leader><leader>", function()
 	vim.ui.input({ prompt = "> ", completion = "shellcmdline" }, function(c)
-		if c and c ~= "" then
-			vim.cmd("nos enew")
-			vim.bo.buftype = "nofile"
-			vim.bo.bufhidden = "wipe"
-			vim.bo.filetype = "compiler" -- depends on syntax/compiler.vim
-			vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.fn.systemlist(c))
-		end
+		run_shell_cmd(c)
 	end)
 end)
 

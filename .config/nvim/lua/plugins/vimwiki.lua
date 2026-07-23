@@ -28,5 +28,15 @@ return {
 			links = 0
 		}
 		vim.g.vimwiki_hl_cb_checked = 2
+		vim.cmd [[
+			function! VimwikiLinkHandler(link)
+				if a:link =~# '^file:'
+					let l:target = expand('%:p:h') . '/' . a:link[5:]
+					execute 'edit ' . fnameescape(l:target)
+					return 1
+				endif
+				return 0
+			endfunction
+		]]
 	end
 }
