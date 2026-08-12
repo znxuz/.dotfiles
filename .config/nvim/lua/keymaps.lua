@@ -85,11 +85,10 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 			:map(shorten_path)
 			:totable()
 
-	local search_term = tonumber(opts.args)
-			and '^' .. shorten_path(vim.api.nvim_buf_get_name(tonumber(opts.args) or 0)) .. '$'
-			or enable_fuzzy_if(opts.args)
 	local result = string.len(opts.args) ~= 0
-			and vim.fn.systemlist('echo "' .. table.concat(bufnames, "\n") .. '" | ' .. FIND_CMD .. ' ' .. search_term)
+			and
+			vim.fn.systemlist('echo "' ..
+				table.concat(bufnames, "\n") .. '" | ' .. FIND_CMD .. ' ' .. enable_fuzzy_if(opts.args))
 			or bufnames
 
 	populate_loclist(result, opts.name, { show_modified = true, show_lastused = true })

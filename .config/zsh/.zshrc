@@ -1,3 +1,5 @@
+# zmodload zsh/zprof
+
 KEYTIMEOUT=1
 bindkey -e # emacs keybinds; also resets all bindkeys
 
@@ -41,16 +43,31 @@ precmd () {
 
 # dir colors
 
-eval $(dircolors $XDG_CONFIG_HOME/shell/dircolors)
-autoload -U colors && colors
+DIRCOLORS_SRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/dircolors"
+DIRCOLORS_CACHE="${XDG_CONFIG_HOME:-$HOME/.config}/shell/dircolors.cache"
+if [[ ! -f "$DIRCOLORS_CACHE" || "$DIRCOLORS_SRC" -nt "$DIRCOLORS_CACHE" ]]; then
+	dircolors "$DIRCOLORS_SRC" > "$DIRCOLORS_CACHE" 2>/dev/null
+fi
+
+source "$DIRCOLORS_CACHE"
+autoload -Uz colors && colors
 
 # completion
 
-[ -d "$XDG_CACHE_HOME/zsh" ] || mkdir -p "$XDG_CACHE_HOME/zsh"
+ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+[ -d "$ZSH_CACHE_DIR" ] || mkdir -p "$ZSH_CACHE_DIR"
+ZCOMPDUMP="$ZSH_CACHE_DIR/zcompdump"
+ZCOMPCACHE="$ZSH_CACHE_DIR/zcompcache"
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$ZCOMPCACHE"
 autoload -Uz compinit
 zmodload zsh/complist
-zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
-compinit -d "$ZDOTDIR/.zcompdump"
+if [[ -n ${ZCOMPDUMP}(#qN.mh-24) ]]; then
+	compinit -C -d "$ZCOMPDUMP"
+else
+	compinit -d "$ZCOMPDUMP"
+	zcompile "$ZCOMPDUMP"
+fi
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 bindkey '^[[Z' reverse-menu-complete
@@ -73,12 +90,27 @@ setopt hist_ignore_space
 
 source $ZDOTDIR/fzf.zsh
 
-# gotta be at the end
+# deferred loading
 
-if [[ -e /run/.toolboxenv ]]; then
-	source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-	source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-else
-	source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+_deferred_execution() {
+	if [[ -e /run/.toolboxenv ]]; then
+		source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+		source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+	else
+		source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+		source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+	fi
+	add-zsh-hook -d precmd _load_syntax_highlighting
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _deferred_execution
+
+# compile rc into bytecode on edit
+
+ZSHRC="${ZDOTDIR:-$HOME}/.zshrc"
+if [[ -s "$ZSHRC" && (! -s "${ZSHRC}.zwc" || "$ZSHRC" -nt "${ZSHRC}.zwc") ]]; then
+	zcompile "$ZSHRC"
 fi
+
+# zprof

@@ -17,6 +17,7 @@
 	ls = ls-files
 	f = fetch
 	m = merge
+	mt = mergetool
 	s = status
 	sth = stash
 	sw = switch
