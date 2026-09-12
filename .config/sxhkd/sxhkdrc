@@ -55,7 +55,7 @@ XF86AudioMute
 XF86AudioMicMute
 	pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-## brightness
+## brightness/backlight
 
 XF86MonBrightnessUp
 	brightnessctl s +10\%

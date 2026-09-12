@@ -90,21 +90,29 @@ setopt hist_ignore_space
 
 source $ZDOTDIR/fzf.zsh
 
-# deferred loading
+if [[ -e /run/.toolboxenv ]]; then
+	source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+	source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+else
+	source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
-_deferred_execution() {
-	if [[ -e /run/.toolboxenv ]]; then
-		source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-		source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-	else
-		source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-		source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-	fi
-	add-zsh-hook -d precmd _load_syntax_highlighting
-}
-
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd _deferred_execution
+# # deferred loading FIXME not working everytime
+#
+# _deferred_execution() {
+# 	if [[ -e /run/.toolboxenv ]]; then
+# 		source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# 		source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# 	else
+# 		source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# 		source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# 	fi
+# 	add-zsh-hook -d precmd _deferred_execution
+# }
+#
+# autoload -Uz add-zsh-hook
+# add-zsh-hook precmd _deferred_execution
 
 # compile rc into bytecode on edit
 

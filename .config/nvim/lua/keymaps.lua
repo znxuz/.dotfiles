@@ -1,4 +1,5 @@
 vim.keymap.set('n', '<leader>L', '<Cmd>Lazy<Cr>')
+vim.keymap.set('n', '<c-K>', '<cmd>Man<cr>')
 
 local AG = 'ag -US --nocolor -p $HOME/.config/fd/ignore'
 local FIND_CMD = AG .. ' --filename'

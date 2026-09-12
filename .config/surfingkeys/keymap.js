@@ -24,6 +24,7 @@ unmap("<Ctrl-h>") // for history
 unmap("<Ctrl-j>") // for download
 iunmap("<Ctrl-a>")
 unmap("x")
+unmap("<Space>t")
 
 map("<Ctrl-[>", "<Esc>");
 imap("<Ctrl-[>", "<Esc>");

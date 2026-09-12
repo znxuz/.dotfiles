@@ -18,4 +18,5 @@ alias \
 		  dbcli='dropbox-cli' \
 		  dtb='distrobox' \
 		  nb='newsboat' \
+		  idf-activate='source /home/z/.espressif/tools/activate_idf_*.sh([1])' \
 		  oc='opencode'

@@ -92,5 +92,5 @@ vim.lsp.enable({
 	'rust_analyzer',
 	'bashls',
 	'pylsp',
-	'harper'
+	-- 'harper'
 })
