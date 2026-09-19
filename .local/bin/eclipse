@@ -49,7 +49,7 @@ declare -A fcitx5=(
 	["name"]="fcitx5"
 	["path"]="$XDG_CONFIG_HOME/fcitx5/conf/classicui.conf"
 	["run_on_path"]="name_toggle"
-	["callback"]=""
+	["callback"]="pgrep fcitx5 && fcitx5 -rd"
 )
 declare -A gtk2=(
 	["name"]="gtk-2.0"
