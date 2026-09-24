@@ -1,6 +1,11 @@
 vim.keymap.set('n', '<leader>L', '<Cmd>Lazy<Cr>')
 vim.keymap.set('n', '<c-K>', '<cmd>Man<cr>')
 
+-- tab handling
+vim.keymap.set('n', 'g<tab>', '<c-w>g<tab>', { remap = true, silent = true })
+vim.keymap.set('n', '<c-w>gt', function() vim.cmd('tabm +' .. vim.v.count1) end, { silent = true })
+vim.keymap.set('n', '<c-w>gT', function() vim.cmd('tabm -' .. vim.v.count1) end, { silent = true })
+
 local AG = 'ag -US --nocolor -p $HOME/.config/fd/ignore'
 local FIND_CMD = AG .. ' --filename'
 local GREPPRG = AG .. ' --vimgrep --hidden --numbers' --numbers needed; bug in ag?

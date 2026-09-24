@@ -116,7 +116,7 @@ aug END
 
 aug highlight_yank
 	au!
-	au TextYankPost * sil! lua vim.hl.on_yank {timeout = 25}
+	au TextYankPost * sil! lua vim.hl.on_yank {timeout = 50}
 aug END
 
 aug active_cursorline
