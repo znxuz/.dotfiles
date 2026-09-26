@@ -2,4 +2,4 @@
 
 [[ "$1" = "stop" ]] || [[ "$1" = "exit" ]] && systemctl stop bluetooth && exit
 
-systemctl is-active --quiet bluetooth || systemctl start bluetooth && bluetoothctl
+systemctl is-active --quiet bluetooth || systemctl start bluetooth && sleep 1 && bluetoothctl
