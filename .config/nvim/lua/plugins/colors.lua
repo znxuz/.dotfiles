@@ -13,6 +13,11 @@ return {
 		})
 	end,
 	config = function()
+		require("rose-pine").setup({
+			styles = { transparency = true },
+			-- dim_inactive_windows = true # doesnt work well with the tmux "dimming"
+		})
+
 		dofile(vim.fn.stdpath('config') .. '/lua/bg.lua')
 		vim.cmd.colorscheme('rose-pine')
 	end

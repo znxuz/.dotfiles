@@ -1,5 +1,5 @@
 vim.keymap.set('n', '<leader>L', '<Cmd>Lazy<Cr>')
-vim.keymap.set('n', '<c-K>', '<cmd>Man<cr>')
+vim.keymap.set('n', '<c-k>', '<cmd>Man<cr>')
 
 -- tab handling
 vim.keymap.set('n', 'g<tab>', '<c-w>g<tab>', { remap = true, silent = true })
