@@ -65,11 +65,11 @@ end, {
 })
 vim.keymap.set('n', '{', function()
 	local prev = is_loclist() and vim.cmd.lol or vim.cmd.col
-	prev()
+	pcall(prev)
 end, { buffer = true, silent = true })
 vim.keymap.set('n', '}', function()
 	local next = is_loclist() and vim.cmd.lnew or vim.cmd.cnew
-	next()
+	pcall(next)
 end, { buffer = true, silent = true })
 
 vim.api.nvim_create_autocmd({ "WinClosed" }, {
