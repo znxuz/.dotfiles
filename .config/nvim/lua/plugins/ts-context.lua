@@ -1,19 +1,18 @@
 return {
 	'nvim-treesitter/nvim-treesitter-context',
 	dependencies = 'nvim-treesitter/nvim-treesitter',
-	enabled = false,
-	opts = {
-		enable = true,
-		multiwindow = false,
-		max_lines = 0,
-		min_window_height = 0,
-		line_numbers = true,
-		multiline_threshold = 20,
-		trim_scope = 'outer',
-		mode = 'cursor',
-		separator = nil,
-		zindex = 20,
-		on_attach = nil,
-	},
-	keys = { { 'grc', '<cmd>TSContext toggle<cr>', desc = "TSContext toggle" } }
+	enabled = true,
+	config = function()
+		require 'treesitter-context'.setup {
+			multiwindow = true,
+			max_lines = 1,
+			line_numbers = true,
+			multiline_threshold = 10,
+			mode = 'cursor',
+			separator = nil,
+			zindex = 20,
+			on_attach = nil,
+		}
+		vim.keymap.set('n', 'grc', '<cmd>TSContext toggle<cr>')
+	end
 }
