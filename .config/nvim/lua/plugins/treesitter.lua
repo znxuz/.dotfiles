@@ -1,9 +1,10 @@
 return {
 	'nvim-treesitter/nvim-treesitter',
-	build = ":TSUpdate",
-	branch = "main",
-	opts = {
-		ensure_installed = {
+	branch = 'main',
+	build = ':TSUpdate',
+	lazy = false,
+	config = function()
+		require('nvim-treesitter').install {
 			'markdown',
 			'vimdoc',
 			'c',
@@ -17,12 +18,12 @@ return {
 			'toml',
 			'comment',
 			'yaml',
-		},
-		highlight = {
-			enable = false,
-			additional_vim_regex_highlighting = false
-		},
-		autopairs = { enable = false },
-		indent = { enable = false },
-	}
+		}
+		-- syntax highlighting
+		vim.api.nvim_create_autocmd('FileType', {
+			callback = function()
+				pcall(vim.treesitter.start)
+			end
+		})
+	end
 }

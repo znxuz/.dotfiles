@@ -7,9 +7,10 @@ return {
 			multiwindow = true,
 			max_lines = 1,
 			line_numbers = true,
-			multiline_threshold = 10,
+			multiline_threshold = 1,
+			trim_scope = 'outer',
 			mode = 'cursor',
-			separator = nil,
+			separator = '┄', -- ─
 			zindex = 20,
 			on_attach = nil,
 		}
