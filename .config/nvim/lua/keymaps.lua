@@ -160,14 +160,20 @@ end, { silent = true })
 -- shell cmd
 function _G.run_shell_cmd(c)
 	if not c or c == "" then return end
-	local w = vim.api.nvim_get_current_win()
+	-- local w = vim.api.nvim_get_current_win()
+
 	vim.cmd("nos new")
-	local ei = vim.o.eventignore
-	vim.o.eventignore = "TermOpen,BufWinEnter,WinEnter"
-	vim.fn.jobstart({ vim.o.sh, "-c", c }, { term = true })
-	vim.o.eventignore = ei
+	vim.bo.buftype = 'nofile'
 	vim.bo.bufhidden = "wipe"
-	vim.api.nvim_set_current_win(w)
+	vim.bo.buflisted = false
+	local buf = vim.api.nvim_get_current_buf()
+	vim.fn.jobstart({ vim.o.sh, "-c", c }, {
+		on_stdout = function(_, data, _)
+			vim.api.nvim_buf_set_lines(buf, -2, -1, false, data)
+		end
+	})
+
+	-- vim.api.nvim_set_current_win(w)
 end
 
 vim.keymap.set("n", "<leader><leader>", function()
