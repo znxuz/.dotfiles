@@ -3,7 +3,11 @@ return {
 	enabled = true,
 	keys = { { '-', '<cmd>Oil<cr>', mode = 'n' } },
 	init = function(p)
-		-- see https://github.com/stevearc/oil.nvim/issues/300#issuecomment-1950541064
+		-- disable netrw
+		vim.g.loaded_netrw = 1
+		vim.g.loaded_netrwPlugin = 1
+
+		-- lazy loading; see https://github.com/stevearc/oil.nvim/issues/300#issuecomment-1950541064
 		if vim.fn.argc() == 1 then
 			local argv = tostring(vim.fn.argv(0))
 			local stat = vim.loop.fs_stat(argv)
@@ -49,7 +53,6 @@ return {
 			progress = { border = 'single' },
 			ssh = { border = "single" },
 			keymaps_help = { border = "single" },
-			silence_scp_warning = true
 		})
 
 		vim.cmd.cabbr({

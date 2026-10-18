@@ -1,5 +1,5 @@
 setl cc=80
-"setl cino=h1,l1,g1,t0,i4,+4,(0,w1,W4,E-s,N-s
+setl cino=h1,l1,g1,t0,i4,+4,(0,w1,W4,E-s,N-s
 setl wig+=*.o
 setl et ts& sts=2 sw=2
 

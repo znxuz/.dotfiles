@@ -104,7 +104,11 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 
 	open_or_focus_loclist()
 
+	-- TODO: make it more general so that it rather just filters the current list;
+	-- via setqflist interactively replacing the current list with filtered results
+	-- on each keypress via temp CmdlineChanged autocmd?
 	vim.keymap.set('n', 'i', ':Buf ', { buffer = bufnr })
+	-- TODO: refactor to make it the delete work as operator
 	vim.keymap.set('n', 'dd', function()
 		local list = vim.fn.getloclist(0)
 		local row = vim.api.nvim_win_get_cursor(0)[1]
