@@ -1,4 +1,23 @@
--- TODO: define sql drivers and use, preselect if more than one
+local drivers = {
+	'sql-staging',
+	'sql-prod'
+}
+
+local function execute_query(q)
+	vim.ui.select(drivers, {
+		prompt = 'sql drivers:'
+	}, function (choice)
+		if choice ~= nil then
+			run_shell_cmd(choice .. ' "' .. q:gsub('"', '\\"') .. '"')
+		end
+	end)
+end
+
+vim.keymap.set("n", "<leader><leader>", function()
+	local line = vim.api.nvim_get_current_line()
+	local q = line:sub(1, 1) == '"' and line:sub(-1) == '"' and line:sub(2, -2) or line
+	execute_query(q)
+end, { buffer = true })
 
 vim.keymap.set("v", "<leader><leader>", function()
 	local s, e = vim.fn.getpos("'<"), vim.fn.getpos("'>")
@@ -11,5 +30,5 @@ vim.keymap.set("v", "<leader><leader>", function()
 	end
 	local text = table.concat(lines, "\n")
 	local q = text:sub(1, 1) == '"' and text:sub(-1) == '"' and text:sub(2, -2) or text
-	run_shell_cmd('sql-prod "' .. q:gsub('"', '\\"') .. '"')
-end)
+	execute_query(q)
+end, { buffer = true })

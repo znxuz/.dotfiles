@@ -8,7 +8,7 @@ return {
 			max_lines = 1,
 			line_numbers = true,
 			multiline_threshold = 1,
-			trim_scope = 'inner',
+			trim_scope = 'outer',
 			mode = 'cursor',
 			separator = '┄', -- ─
 			zindex = 20,

@@ -38,7 +38,7 @@ end
 local function split_open(new_win)
 	local qf_win = vim.api.nvim_get_current_win()
 	vim.api.nvim_set_current_win(vim.fn.win_getid(vim.fn.winnr('#')))
-	new_win() -- TODO: this creates an empty buffer each time
+	new_win()
 	local winid = vim.api.nvim_get_current_win()
 	vim.api.nvim_set_current_win(qf_win)
 	open(true, winid)
@@ -46,9 +46,9 @@ end
 
 vim.keymap.set('n', 'o', open, { buffer = true, silent = true })
 vim.keymap.set('n', '<cr>', function() open(true) end, { buffer = true, silent = true, remap = true })
-vim.keymap.set('n', '<c-s>', function() split_open(vim.cmd.new) end, { buffer = true, silent = true })
-vim.keymap.set('n', '<c-v>', function() split_open(vim.cmd.vnew) end, { buffer = true, silent = true, remap = true })
-vim.keymap.set('n', '<c-t>', function() split_open(vim.cmd.tabnew) end, { buffer = true, silent = true, remap = true })
+vim.keymap.set('n', '<c-s>', function() split_open(vim.cmd.sp) end, { buffer = true, silent = true })
+vim.keymap.set('n', '<c-v>', function() split_open(vim.cmd.vsp) end, { buffer = true, silent = true, remap = true })
+vim.keymap.set('n', '<c-t>', function() split_open(function () vim.cmd('tab split') end) end, { buffer = true, silent = true, remap = true })
 vim.keymap.set('n', 'p', function()
 	local center_win = function() vim.cmd('norm! zz') end
 	local qf_winid = vim.api.nvim_get_current_win()

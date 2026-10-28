@@ -161,22 +161,29 @@ vim.keymap.set("v", "gp", function()
 	vim.fn.histadd("cmd", command)
 end, { silent = true })
 
--- shell cmd
-function _G.run_shell_cmd(c)
-	if not c or c == "" then return end
-	-- local w = vim.api.nvim_get_current_win()
-
+function _G.scratch_buffer()
 	vim.cmd("nos new")
 	vim.bo.buftype = 'nofile'
 	vim.bo.bufhidden = "wipe"
 	vim.bo.buflisted = false
-	local buf = vim.api.nvim_get_current_buf()
+	vim.bo.laststatus = 0
+	return vim.api.nvim_get_current_buf()
+end
+
+-- shell cmd
+function _G.run_shell_cmd(c)
+	if not c or c == "" then return end
+
+	-- local w = vim.api.nvim_get_current_win()
+	local buf = scratch_buffer()
 	vim.fn.jobstart({ vim.o.sh, "-c", c }, {
 		on_stdout = function(_, data, _)
 			vim.api.nvim_buf_set_lines(buf, -2, -1, false, data)
-		end
+		end,
+		on_stderr = function(_, data, _)
+			vim.api.nvim_buf_set_lines(buf, -2, -1, false, data)
+		end,
 	})
-
 	-- vim.api.nvim_set_current_win(w)
 end
 

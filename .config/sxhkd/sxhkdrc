@@ -88,7 +88,7 @@ super + alt + Escape ; {k, s, super + s, u, r, super + x, c}
 
 super + alt + Escape ; {w, x, o, l}
 	{ bspc wm -r && notify-send -t 1000 "bspwm reloaded" \
-	, setxkbmap eu && notify-send -t 1000 "eu keymap set" \
+	, extend-tv.sh \
 	, notify-send -t 1000 "  "; sleep 1 && xset dpms force off \
 	, slock \
 	}

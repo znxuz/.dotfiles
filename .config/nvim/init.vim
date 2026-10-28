@@ -61,6 +61,7 @@ fu! DefSTL() abort
 	let stl = ""
 	let stl .= "%<\ %{fnamemodify(getcwd(),':~:.')}"
 	let stl .= "%{expand('%')==''?'':'\ \ \|\ '.fnamemodify(expand('%:p'),':~:.')}"
+	let stl .= "%#StatusLineNC#%{expand('#') == '' ? '' : '  < ' . fnamemodify(expand('#:p'), ':~:.')}%*"
 	let stl .= "%4m"
 	let stl .= "%5r"
 	let stl .= "%{&pvw?'\ \ [PVW]':''}"
