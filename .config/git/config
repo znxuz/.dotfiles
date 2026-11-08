@@ -43,6 +43,13 @@
 	keepBackup = false
 [status]
 	showStash = true
+[fetch]
+	prune = true
+[pull]
+	prune = true
+	rebase = true
+[rebase]
+	autoStash = true
 [tig "bind"]
 	generic = <Ctrl-g> view-grep
 	generic = g move-first-line

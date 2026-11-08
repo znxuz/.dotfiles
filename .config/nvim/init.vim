@@ -56,21 +56,27 @@ aug stl
 	au ModeChanged *:R* hi link STL CursorLineNr | redraws!
 	au ModeChanged *:no* hi link STL Search | redraws!
 aug END
+hi! default link CwdHighlight SignColumn
+
+fu! Shorten(path) abort
+    return fnamemodify(a:path, ':~:.')
+endfu
 
 fu! DefSTL() abort
 	let stl = ""
-	let stl .= "%<\ %{fnamemodify(getcwd(),':~:.')}"
-	let stl .= "%{expand('%')==''?'':'\ \ \|\ '.fnamemodify(expand('%:p'),':~:.')}"
-	let stl .= "%#StatusLineNC#%{expand('#') == '' ? '' : '  < ' . fnamemodify(expand('#:p'), ':~:.')}%*"
+	let stl .= "%<\%#CwdHighlight#%{%stridx(expand('%:p'), getcwd()) == 0 ? Shorten(getcwd()).'/%*'.Shorten(expand('%:p')):Shorten(getcwd()).'%* '.Shorten(expand('%:p'))%}"
+	"let stl .= "%<\ %{fnamemodify(getcwd(),':~:.')}"
+	"let stl .= "%{expand('%')==''?'':'\ \ \|\ '.fnamemodify(expand('%:p'),':~:.')}"
+	let stl .= "%#StatusLineNC#%{expand('#') == '' ? '' : ' < '.fnamemodify(expand('#:p'),':t')}%*"
 	let stl .= "%4m"
 	let stl .= "%5r"
-	let stl .= "%{&pvw?'\ \ [PVW]':''}"
-	let stl .= "%{&paste?'\ \ [P]':''}"
+	let stl .= "%{&pvw?' [PVW]':''}"
+	let stl .= "%{&paste?' [P]':''}"
 	let stl .= "%{luaeval(\"require('stl').inject()\")}"
 	let stl .= "%="
-	let stl .= "\ \ \ \ \ "
+	let stl .= "     "
 	let stl .= "%{&ff}"
-	let stl .= "%{&ft==''?'\ ':'\ \ \|\ '.toupper(&ft).'\ '}"
+	let stl .= "%{&ft==''?' ':'  | '.toupper(&ft).' '}"
 	return stl
 endfu
 
