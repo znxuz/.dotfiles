@@ -1,5 +1,7 @@
 return {
-	cmd = { 'clangd',
+	cmd = {
+		'clangd',
+		'--clang-tidy=0', -- deactivate clang-tidy
 		'--background-index',
 		'--log=error',
 		'--query-driver=/usr/bin/arm-none-eabi-gcc,/usr/bin/arm-none-eabi-g++'

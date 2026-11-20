@@ -46,28 +46,45 @@ cno <expr> <C-_> pumvisible() ? "\<C-e>" : "\<C-_>"
 
 " === statusline ===
 
+fu! s:SetModeSTL(target) abort
+	if a:target ==# ''
+		hi clear STL
+		hi clear FileHl
+		hi clear PrevFileHl
+	else
+		exe 'hi link STL ' . a:target
+		hi link FileHl STL
+		hi link PrevFileHl STL
+	endif
+	redraws
+endfu
+
 aug stl
 	au!
-	au VimEnter * hi default link STL TabLine | hi! default link StatusLine STL
-	au ModeChanged *:n hi clear STL | redraws!
-	au ModeChanged *:ni* hi link STL Visual | redraws!
-	au ModeChanged *:i* hi link STL TermCursor | redraws!
-	au ModeChanged *:[vV\x16]* hi link STL CurSearch | redraws!
-	au ModeChanged *:R* hi link STL CursorLineNr | redraws!
-	au ModeChanged *:no* hi link STL Search | redraws!
+	au VimEnter * hi default link STL TabLine |
+				\ hi! default link StatusLine STL |
+				\ hi! default link FileHl SignColumn |
+				\ hi! default link PrevFileHl StatusLineNC
+	au ModeChanged *:n call s:SetModeSTL('')
+	au ModeChanged *:ni* call s:SetModeSTL('Visual')
+	au ModeChanged *:i* call s:SetModeSTL('TermCursor')
+	au ModeChanged *:[vV\x16]* call s:SetModeSTL('CurSearch')
+	au ModeChanged *:R* call s:SetModeSTL('Search')
+	au ModeChanged *:no* call s:SetModeSTL('CursorLineNr')
 aug END
-hi! default link CwdHighlight SignColumn
 
 fu! Shorten(path) abort
-    return fnamemodify(a:path, ':~:.')
+	return a:path != '' ? fnamemodify(a:path, ':~:.') : ''
 endfu
 
 fu! DefSTL() abort
+	let is_active = (g:statusline_winid == win_getid())
+	let file_hl = is_active ? '%#FileHl#' : '%#StatusLineNC#'
+	let prev_hl = is_active ? '%#PrevFileHl#' : '%#StatusLineNC#'
 	let stl = ""
-	let stl .= "%<\%#CwdHighlight#%{%stridx(expand('%:p'), getcwd()) == 0 ? Shorten(getcwd()).'/%*'.Shorten(expand('%:p')):Shorten(getcwd()).'%* '.Shorten(expand('%:p'))%}"
-	"let stl .= "%<\ %{fnamemodify(getcwd(),':~:.')}"
-	"let stl .= "%{expand('%')==''?'':'\ \ \|\ '.fnamemodify(expand('%:p'),':~:.')}"
-	let stl .= "%#StatusLineNC#%{expand('#') == '' ? '' : ' < '.fnamemodify(expand('#:p'),':t')}%*"
+	let stl .= "%<%{Shorten(getcwd())}%{stridx(expand('%:p'), getcwd()) == 0 ? '/' : ' '}"
+	let stl .= file_hl . "%{Shorten(expand('%:p'))}%*"
+	let stl .= prev_hl . "%{expand('#') == '' ? '' : '  < '.fnamemodify(expand('#:p'),':t')}%*"
 	let stl .= "%4m"
 	let stl .= "%5r"
 	let stl .= "%{&pvw?' [PVW]':''}"

@@ -15,45 +15,46 @@ local function find_match_idx(opts)
 	return idx
 end
 
-local function mine_document_symbol(open, fn)
-	vim.lsp.buf.document_symbol({
-		on_list = function(opts)
-			vim.fn.setloclist(0, {}, ' ', {
-				title = opts.title,
-				items = opts.items,
-				idx = find_match_idx(opts),
-				quickfixtextfunc = function(dict)
-					local lines = {}
-					for i = dict.start_idx, dict.end_idx do
-						table.insert(lines, opts.items[i].text)
-					end
-					return lines
-				end
-			})
-			if open then
-				vim.cmd.lcl()
-				vim.cmd.lw()
-			end
-			if fn then fn() end
-		end,
-	})
-end
-
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("lsp_attach", {}),
 	callback = function()
+		local function mine_document_symbol(open, callback)
+			vim.lsp.buf.document_symbol({
+				on_list = function(opts)
+					vim.fn.setloclist(0, {}, ' ', {
+						title = opts.title,
+						items = opts.items,
+						idx = find_match_idx(opts),
+						quickfixtextfunc = function(dict)
+							local lines = {}
+							for i = dict.start_idx, dict.end_idx do
+								table.insert(lines, opts.items[i].text)
+							end
+							return lines
+						end
+					})
+					if open then
+						vim.cmd.lcl()
+						vim.cmd.lw()
+					end
+					if callback then pcall(callback) end
+				end,
+			})
+		end
+
 		vim.diagnostic.config({ virtual_text = { current_line = true } })
 
-		vim.keymap.set('n', 'grT', function ()
+		vim.keymap.set('n', 'grT', function()
 			vim.cmd.sp()
 			vim.lsp.buf.type_definition()
 		end, { buffer = true })
 		vim.keymap.set('n', 'grh', function()
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
 		end, { buffer = true })
-		vim.keymap.set('n', 'grd', vim.diagnostic.setqflist, { buffer = true })
+		vim.keymap.set('n', 'grd', vim.diagnostic.setloclist, { buffer = true })
+		vim.keymap.set('n', 'grD', vim.diagnostic.setqflist, { buffer = true })
 		vim.keymap.set('n', 'gO', function() mine_document_symbol(true) end, { buffer = true })
-		vim.keymap.set('n', '[t', function () mine_document_symbol(false, vim.cmd.lp) end)
+		vim.keymap.set('n', '[t', function() mine_document_symbol(false, vim.cmd.lp) end)
 		vim.keymap.set('n', ']t', function() mine_document_symbol(false, vim.cmd.lne) end)
 		vim.keymap.set('n', 'tt', function() mine_document_symbol(false, vim.cmd.ll) end)
 		vim.keymap.set('n', 'grr', function()
@@ -91,6 +92,35 @@ vim.lsp.enable({
 	'luals',
 	'rust_analyzer',
 	'bashls',
-	'pylsp',
-	-- 'harper'
+	'pylsp'
 })
+
+-- clang-tidy toggle
+
+local clangd_cmd = vim.deepcopy(vim.lsp.config['clangd'].cmd)
+local tidy_enabled = false
+
+local function toggle_clang_tidy()
+	tidy_enabled = not tidy_enabled
+
+	local new_cmd = vim.tbl_filter(function(arg)
+		return not vim.startswith(arg, '--clang-tidy')
+	end, clangd_cmd)
+	table.insert(new_cmd, tidy_enabled and '--clang-tidy=1' or '--clang-tidy=0')
+
+	vim.lsp.config('clangd', { cmd = new_cmd })
+
+	local clients = vim.lsp.get_clients({ name = 'clangd' })
+	if #clients > 0 then
+		for _, client in ipairs(clients) do
+			client:stop(true)
+		end
+		vim.defer_fn(function()
+			vim.cmd.edit()
+		end, 100)
+	end
+
+	vim.notify('clang-tidy: ' .. (tidy_enabled and 'ON' or 'OFF'), vim.log.levels.INFO)
+end
+
+vim.api.nvim_create_user_command('ClangdToggleTidy', toggle_clang_tidy)
