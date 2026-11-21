@@ -113,7 +113,16 @@ vim.keymap.set("n", "gb", '<cmd>Buf<cr>')
 vim.o.grepprg = util.search.constants.GREP_CMD
 vim.o.grepformat = util.search.constants.GREP_EFM
 vim.api.nvim_create_user_command('Gr', function(opts)
-	vim.cmd('sil gr! ' .. util.search.try_enable_fuzzy(opts.args))
+	local fargs = opts.fargs
+	if opts.fargs[#fargs] then
+		opts.fargs[#fargs] = util.search.try_enable_fuzzy(opts.fargs[#fargs])
+	end
+	vim.print(fargs)
+	vim.cmd.grep({
+		args = fargs,
+		bang = true,
+		mods = { silent = true }
+	})
 	local is_loc = false
 	util.open_or_focus_qflist(is_loc)
 end, {
@@ -122,29 +131,18 @@ end, {
 })
 vim.keymap.set("n", "gp", ":Gr ")
 vim.keymap.set("v", "gp", function()
-	local function region_to_text(region)
-		local lines = {}
-		for _, segment in ipairs(region) do
-			local bufnum = segment[1][1]
-			local from = { lnum = segment[1][2], col = segment[1][3] }
-			local to = { lnum = segment[2][2], col = segment[2][3] }
-			local line = vim.api.nvim_buf_get_text(
-				bufnum,
-				from.lnum - 1, from.col - 1,
-				to.lnum - 1, to.col,
-				{}
-			)
-			table.insert(lines, vim.iter(line):next())
-		end
-		-- TODO doesnt work with multiline selection:
-		-- - '\n' will get intercepted/interpreted by vim cmdline to send the cmd
-		-- - '\\n' also doesnt match the newline because -Q matches literal strings as it should
-		return table.concat(lines, '\n')
+	local function get_selection()
+		local lines = vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = vim.fn.mode() })
+		return table.concat(lines, "\n")
 	end
-	local region = vim.fn.getregionpos(vim.fn.getpos('v'), vim.fn.getpos('.')) -- :h getregionpos
-	local command = "Gr -Q --multiline " .. vim.fn.shellescape(region_to_text(region))
-	vim.cmd(command)
-	vim.fn.histadd("cmd", command)
+	vim.cmd.Gr({
+		args = {
+			'-F',
+			'--multiline',
+			'--',
+			vim.fn.shellescape(get_selection()), -- search term must be at the end
+		},
+	})
 end, { silent = true })
 
 vim.keymap.set("n", "<leader><leader>", function()
