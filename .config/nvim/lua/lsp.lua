@@ -1,3 +1,5 @@
+local util = require 'util'
+
 vim.opt.shortmess:append('c')
 vim.opt.signcolumn = 'yes'
 
@@ -34,8 +36,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 						end
 					})
 					if open then
-						vim.cmd.lcl()
-						vim.cmd.lw()
+						local is_loc = true
+						util.open_or_focus_qflist(is_loc)
 					end
 					if callback then pcall(callback) end
 				end,
@@ -65,8 +67,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 						items = opts.items,
 						idx = find_match_idx(opts),
 					})
-					vim.cmd.ccl()
-					vim.cmd.cw()
+					local is_loc = false
+					util.open_or_focus_qflist(is_loc)
 				end,
 			})
 		end, { buffer = true })

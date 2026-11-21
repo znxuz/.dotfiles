@@ -8,7 +8,7 @@ vim.fn.matchadd("NonText", "\\[+\\]", 10, -1, { window = win_id })
 -- (contained regions with `extend`, e.g. C's cComment, would otherwise leak
 -- across qf lines) and the resulting groups are copied as extmarks.
 
--- totally vibed by the llm
+-- now partially vibed by llm
 
 local NS = vim.api.nvim_create_namespace('qf_lang_syntax')
 
@@ -78,13 +78,13 @@ local function message_start(line)
 end
 
 local function build(buf)
-	if not (vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].buftype == 'quickfix') then return end
-	local win = vim.fn.bufwinid(buf)
-	if win == -1 then return end -- not displayed yet; BufWinEnter will build it
+	if not vim.api.nvim_buf_is_valid(buf) or vim.bo[buf].buftype ~= 'quickfix' then return end
 	if built[buf] == vim.b[buf].changedtick then return end
 	built[buf] = vim.b[buf].changedtick
 
-	local items = (vim.fn.getwininfo(win)[1].loclist == 1 and vim.fn.getloclist(win, { items = 1 })
+	local win = vim.fn.bufwinid(buf)
+	local items = (require('util').is_loc(win)
+		and vim.fn.getloclist(win, { items = 1 })
 		or vim.fn.getqflist({ items = 1 })).items
 	local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
 
@@ -105,13 +105,7 @@ local function build(buf)
 	end
 end
 
-vim.api.nvim_create_autocmd({ 'BufWinEnter', 'QuickFixCmdPost' }, {
+vim.api.nvim_create_autocmd({ 'BufWinEnter', 'TextChanged' }, {
 	group = vim.api.nvim_create_augroup('qf_lang_syntax', { clear = true }),
-	callback = function(ev)
-		if ev.event == 'QuickFixCmdPost' then
-			for _, buf in ipairs(vim.api.nvim_list_bufs()) do build(buf) end
-		else
-			build(ev.buf)
-		end
-	end,
+	callback = function(ev) build(ev.buf) end
 })

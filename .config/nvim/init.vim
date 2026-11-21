@@ -78,13 +78,20 @@ fu! Shorten(path) abort
 endfu
 
 fu! DefSTL() abort
-	let is_active = (g:statusline_winid == win_getid())
-	let file_hl = is_active ? '%#FileHl#' : '%#StatusLineNC#'
-	let prev_hl = is_active ? '%#PrevFileHl#' : '%#StatusLineNC#'
+	"ty llm
+	let is_term = (&buftype ==# 'terminal')
+	let is_main = (g:statusline_winid == win_getid()) && !is_term
+	let file_hl = is_main ? '%#FileHl#' : is_term ? '%#StatusLine#' : '%#StatusLineNC#'
+	let prev_hl = is_main ? '%#PrevFileHl#' : is_term ? '%#STatusLine#' : '%#StatusLineNC#'
+	let cur_file = expand('%:p')
+	let prev_file = expand('#:p')
+	let sep = stridx(cur_file, getcwd()) == 0 ? '/' : ' '
+	let show_prev = !empty(prev_file) && prev_file !=# cur_file
+
 	let stl = ""
-	let stl .= "%<%{Shorten(getcwd())}%{stridx(expand('%:p'), getcwd()) == 0 ? '/' : ' '}"
-	let stl .= file_hl . "%{Shorten(expand('%:p'))}%*"
-	let stl .= prev_hl . "%{expand('#') == '' ? '' : '  < '.fnamemodify(expand('#:p'),':t')}%*"
+	let stl .= "%<" . Shorten(getcwd()) . sep
+	let stl .= file_hl . Shorten(cur_file) . "%*"
+	let stl .= prev_hl . (show_prev ? ' \ ' . fnamemodify(prev_file, ':t') : '') . "%*"
 	let stl .= "%4m"
 	let stl .= "%5r"
 	let stl .= "%{&pvw?' [PVW]':''}"

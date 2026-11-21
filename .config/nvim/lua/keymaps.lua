@@ -1,56 +1,32 @@
+local util = require 'util'
+
 vim.keymap.set('n', 'gL', '<cmd>Lazy<cr>')
 vim.keymap.set('n', '<c-k>', '<cmd>Man<cr>')
-vim.keymap.set('n', 'go', '<cmd>cope<cr>')
+vim.keymap.set('n', 'gl', function()
+	util.open_or_focus_qflist(true)
+end)
+vim.keymap.set('n', 'go', function()
+	util.open_or_focus_qflist(false)
+end)
 
--- tab handling
-vim.keymap.set('n', 'g<tab>', '<c-w>g<tab>', { remap = true, silent = true })
-vim.keymap.set('n', '<c-w>gt', function() vim.cmd('tabm +' .. vim.v.count1) end, { silent = true })
-vim.keymap.set('n', '<c-w>gT', function() vim.cmd('tabm -' .. vim.v.count1) end, { silent = true })
+vim.keymap.set('n', 'g<tab>', '<c-w>g<tab>', {
+	remap = true,
+	silent = true,
+	desc = "switch to previous tab"
+})
+vim.keymap.set('n', '<c-w>gt', function()
+	pcall(vim.cmd, 'tabm +' .. vim.v.count1)
+end, {
+	silent = true,
+	desc = "move tab to the right"
+})
+vim.keymap.set('n', '<c-w>gT', function()
+	pcall(vim.cmd, 'tabm -' .. vim.v.count1)
+end, {
+	silent = true,
+	desc = "move tab to the left"
+})
 
-local AG = 'ag -US --nocolor -p $HOME/.config/fd/ignore'
-local FIND_CMD = AG .. ' --filename'
-local GREPPRG = AG .. ' --vimgrep --hidden --numbers' --numbers needed; bug in ag?
-local function enable_fuzzy_if(s)
-	local pattern = s:match("^(%S+)") or s
-	local rest = s:sub(#pattern + 1)
-	if pattern:sub(1, 1) == "*" then
-		pattern = '"' .. pattern:gsub("^%*", ""):gsub(".", ".*%0") .. ".*" .. '"'
-	elseif pattern:find("%.%*") then
-		pattern = '"' .. pattern .. '"'
-	end
-	return pattern .. rest
-end
-local function shorten_path(path)
-	return vim.fn.fnamemodify(path, ":~:.")
-end
-local function open_or_focus_loclist()
-	-- pcall in case the loclist win is the last/only win
-	pcall(vim.cmd.lcl)
-	pcall(vim.cmd.lw)
-end
-local function populate_loclist(filenames, title, opts)
-	vim.fn.setloclist(0, {}, ' ', {
-		lines = filenames,
-		efm = '%f',
-		title = title,
-		quickfixtextfunc = function(_)
-			local files = vim.deepcopy(filenames) -- needed
-			if not opts then return files end
-			for i, f in ipairs(files) do
-				if opts.show_modified and vim.fn.getbufvar(f, '&mod') == 1 then
-					files[i] = files[i] .. ' [+]'
-				end
-				if opts.show_lastused then
-					files[i] = files[i] .. ' | '
-							.. os.date("%Mm %Ss", vim.uv.gettimeofday() - vim.fn.getbufinfo(f)[1].lastused) .. ' ago'
-				end
-			end
-			return files
-		end
-	})
-end
-
--- keymap for populating qf list without leaving the cmdline
 vim.keymap.set('c', '<c-l>', function()
 	local first_word = vim.fn.getcmdline():match('^(%S+)')
 	if first_word == 'Find' or first_word == 'Buf' or first_word == 'Gr' then
@@ -58,19 +34,24 @@ vim.keymap.set('c', '<c-l>', function()
 	else
 		return '<c-l>'
 	end
-end, { expr = true })
+end, {
+	expr = true,
+	desc = "run the cmd without leaving the cmdline"
+})
 
 -- find
-function Find(arg, _)
-	return vim.fn.systemlist(FIND_CMD .. ' -g ' .. enable_fuzzy_if(arg))
-end
-
 vim.api.nvim_create_user_command('Find', function(opts)
-	local result = vim.iter(Find(opts.args)):map(shorten_path):totable()
-	populate_loclist(result, opts.name)
-	open_or_focus_loclist()
-end, { nargs = '+', complete = 'file' })
-vim.opt.findfunc = "v:lua.Find"
+	local result = vim.iter(util.search.find_or_filter(opts.args))
+			:map(util.shorten_path)
+			:totable()
+	local is_loc = true
+	util.populate_loclist(result, opts.name)
+	util.open_or_focus_qflist(is_loc)
+end, {
+	nargs = '+',
+	complete = 'file'
+})
+vim.opt.findfunc = "v:lua.require('util').search.find"
 vim.keymap.set("n", "gs", ":Find ")
 vim.keymap.set("v", "gs", [["ty:Find t<cr>]])
 
@@ -89,25 +70,21 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 	local bufnames = vim.iter(bufs)
 			:map(vim.api.nvim_buf_get_name)
 			:filter(function(name) return name ~= '' end)
-			:map(shorten_path)
+			:map(util.shorten_path)
 			:totable()
 
-	local result = string.len(opts.args) ~= 0
-			and
-			vim.fn.systemlist('echo "' ..
-				table.concat(bufnames, "\n") .. '" | ' .. FIND_CMD .. ' ' .. enable_fuzzy_if(opts.args))
-			or bufnames
-
-	populate_loclist(result, opts.name, { show_modified = true, show_lastused = true })
+	local result = string.len(opts.args) ~= 0 and
+			util.search.find_or_filter(opts.args, nil, bufnames) or
+			bufnames
+	util.populate_loclist(result, opts.name, {
+		show_modified = true,
+		show_lastused = true
+	})
 
 	local bufnr = vim.fn.getloclist(0, { qfbufnr = 0 }).qfbufnr
+	local is_loc = true
+	util.open_or_focus_qflist(is_loc)
 
-	open_or_focus_loclist()
-
-	-- TODO: make it more general so that it rather just filters the current list;
-	-- via setqflist interactively replacing the current list with filtered results
-	-- on each keypress via temp CmdlineChanged autocmd?
-	vim.keymap.set('n', 'i', ':Buf ', { buffer = bufnr })
 	-- TODO: refactor to make it the delete work as operator
 	vim.keymap.set('n', 'dd', function()
 		local list = vim.fn.getloclist(0)
@@ -116,24 +93,33 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 		table.remove(list, row)
 
 		local filenames = vim.iter(list)
-				:map(function(e) return shorten_path(vim.fn.bufname(e.bufnr)) end)
+				:map(function(e) return util.shorten_path(vim.fn.bufname(e.bufnr)) end)
 				:totable()
-		populate_loclist(filenames, opts.name, { show_modified = true, show_lastused = true })
+		util.populate_loclist(filenames, opts.name, {
+			show_modified = true,
+			show_lastused = true
+		})
 		if #filenames > 0 then
 			vim.api.nvim_win_set_cursor(0, { math.min(row, #filenames), 0 })
 		end
 	end, { buffer = bufnr }) -- TODO: refactor to buf once ubuntu unstable supports
-end, { nargs = '*', complete = 'file' })
+end, {
+	nargs = '*',
+	complete = 'file'
+})
 vim.keymap.set("n", "gb", '<cmd>Buf<cr>')
 
 -- grep
-vim.o.grepprg = GREPPRG
-vim.o.grepformat = "%f:%l:%c:%m"
+vim.o.grepprg = util.search.constants.GREP_CMD
+vim.o.grepformat = util.search.constants.GREP_EFM
 vim.api.nvim_create_user_command('Gr', function(opts)
-	vim.cmd('sil gr! ' .. enable_fuzzy_if(opts.args))
-	vim.cmd.ccl()
-	vim.cmd.cw()
-end, { nargs = '+', complete = 'file' })
+	vim.cmd('sil gr! ' .. util.search.enable_fuzzy_if(opts.args))
+	local is_loc = false
+	util.open_or_focus_qflist(is_loc)
+end, {
+	nargs = '+',
+	complete = 'file'
+})
 vim.keymap.set("n", "gp", ":Gr ")
 vim.keymap.set("v", "gp", function()
 	local function region_to_text(region)
@@ -161,31 +147,15 @@ vim.keymap.set("v", "gp", function()
 	vim.fn.histadd("cmd", command)
 end, { silent = true })
 
--- shell cmd
-function _G.run_shell_cmd(c)
-	if not c or c == "" then return end
-
-	-- local w = vim.api.nvim_get_current_win()
-	local scratch_buf = vim.api.nvim_create_buf(false, true)
-	vim.fn.jobstart({ vim.o.sh, "-c", c }, {
-		on_stdout = function(_, data, _)
-			vim.api.nvim_buf_set_lines(scratch_buf, -2, -1, false, data)
-		end,
-		on_stderr = function(_, data, _)
-			vim.api.nvim_buf_set_lines(scratch_buf, -2, -1, false, data)
-		end,
-	})
-	vim.cmd.sb(scratch_buf)
-	-- vim.api.nvim_set_current_win(w)
-end
-
 vim.keymap.set("n", "<leader><leader>", function()
-	vim.ui.input({ prompt = "> ", completion = "shellcmdline" }, function(c)
-		run_shell_cmd(c)
+	vim.ui.input({
+		prompt = "> ",
+		completion = "shellcmdline"
+	}, function(cmd)
+		util.run_shell_cmd(cmd)
 	end)
-end)
+end, { desc = "run shell cmd in scratch buffer" })
 
--- true/false toggle
 vim.keymap.set('n', 'g~', function()
 	local word = vim.fn.expand('<cword>')
 	if word == 'true' then
@@ -193,7 +163,10 @@ vim.keymap.set('n', 'g~', function()
 	elseif word == 'false' then
 		vim.cmd('norm ciwtrue')
 	end
-end, { silent = true })
+end, {
+	silent = true,
+	desc = "toggle true/false under cursor"
+})
 
 -- toggle term
 local term_name = "term://toggleterm"
@@ -239,14 +212,13 @@ vim.api.nvim_create_autocmd('TermRequest', {
 	end
 })
 
--- parse unix timestamp in milli
 vim.keymap.set("n", "<leader>k", function()
-  local ms = tonumber(vim.fn.expand("<cword>"))
-  if not ms then return end
+	local ms = tonumber(vim.fn.expand("<cword>"))
+	if not ms then return end
 
-  local sec, rem = math.floor(ms / 1000), ms % 1000
-  local utc = os.date("!%Y-%m-%d %H:%M:%S", sec) .. string.format(".%03d UTC", rem)
-  local cet = os.date("%Y-%m-%d %H:%M:%S", sec) .. string.format(".%03d %s", rem, os.date("%Z", sec))
+	local sec, rem = math.floor(ms / 1000), ms % 1000
+	local utc = os.date("!%Y-%m-%d %H:%M:%S", sec) .. string.format(".%03d UTC", rem)
+	local cet = os.date("%Y-%m-%d %H:%M:%S", sec) .. string.format(".%03d %s", rem, os.date("%Z", sec))
 
-  vim.lsp.util.open_floating_preview({ utc, cet }, "", { border = "single", focus_id = "unix_utc" })
-end, { desc = "Show ms Unix timestamp as UTC and MEWT/MEST in float" })
+	vim.lsp.util.open_floating_preview({ utc, cet }, "", { border = "single", focus_id = "unix_utc" })
+end, { desc = "show ms Unix timestamp as UTC and MEWT/MEST" })

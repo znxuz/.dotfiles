@@ -1,6 +1,4 @@
-local function is_loclist()
-	return vim.fn.getwininfo(vim.fn.win_getid())[1]['loclist'] == 1
-end
+local util = require 'util'
 
 local function set_prev_win(prev_winid, cur_winid)
 	vim.api.nvim_set_current_win(prev_winid)
@@ -13,8 +11,8 @@ end
 local function open(close, prev_winid)
 	local qf_win = vim.api.nvim_get_current_win()
 	local row = vim.api.nvim_win_get_cursor(0)[1]
-	local qfline = (is_loclist() and vim.fn.getloclist(0) or vim.fn.getqflist())[row]
-	local qf_cmd = is_loclist() and 'll' or 'cc'
+	local qfline = (util.is_loc() and vim.fn.getloclist(0) or vim.fn.getqflist())[row]
+	local qf_cmd = util.is_loc() and 'll' or 'cc'
 	prev_winid = prev_winid or vim.fn.win_getid(vim.fn.winnr('#'))
 
 	vim.cmd.wincmd('z')
@@ -53,7 +51,7 @@ vim.keymap.set('n', 'p', function()
 	local center_win = function() vim.cmd('norm! zz') end
 	local qf_winid = vim.api.nvim_get_current_win()
 	local prev_winid = vim.fn.win_getid(vim.fn.winnr('#'))
-	local qfline = (is_loclist() and vim.fn.getloclist(0) or vim.fn.getqflist())[vim.api.nvim_win_get_cursor(0)[1]]
+	local qfline = (util.is_loc() and vim.fn.getloclist(0) or vim.fn.getqflist())[vim.api.nvim_win_get_cursor(0)[1]]
 
 	vim.cmd('pedit +' .. qfline.lnum .. ' ' .. vim.api.nvim_buf_get_name(qfline.bufnr))
 	set_prev_win(prev_winid, qf_winid)
@@ -64,11 +62,11 @@ end, {
 	desc = 'Open quickfix entry in preview window'
 })
 vim.keymap.set('n', '{', function()
-	local prev = is_loclist() and vim.cmd.lol or vim.cmd.col
+	local prev = util.is_loc() and vim.cmd.lol or vim.cmd.col
 	pcall(prev)
 end, { buffer = true, silent = true })
 vim.keymap.set('n', '}', function()
-	local next = is_loclist() and vim.cmd.lnew or vim.cmd.cnew
+	local next = util.is_loc() and vim.cmd.lnew or vim.cmd.cnew
 	pcall(next)
 end, { buffer = true, silent = true })
 
@@ -88,3 +86,43 @@ vim.api.nvim_create_autocmd({ "WinClosed" }, {
 		end
 	end,
 })
+
+vim.keymap.set('n', 'i', function()
+	local pattern = vim.fn.input("Filter: ")
+	if pattern == '' then return end
+
+	local winid = vim.api.nvim_get_current_win()
+	local is_loc = util.is_loc(winid)
+	local items = is_loc
+			and vim.fn.getloclist(0)
+			or vim.fn.getqflist()
+
+	-- vibed by ai
+	-- TODO: detect efm and filter based upon it instead of checking if text is empty
+	local list = vim.iter(items)
+			:map(function(item)
+				local fname = item.bufnr > 0 and vim.fn.bufname(item.bufnr) or ''
+				if item.text == '' then
+					return fname
+				end
+				if fname ~= '' then
+					if item.lnum > 0 then
+						return string.format('%s:%d:%d:%s', fname, item.lnum, item.col, item.text)
+					end
+					return string.format('%s:%s', fname, item.text)
+				end
+				return item.text
+			end)
+			:totable()
+
+	local filtered = util.search.find_or_filter(pattern, nil, list)
+
+	if is_loc then
+		util.populate_loclist(filtered, "Filtered Results")
+	else
+		vim.fn.setqflist({}, ' ', {
+			lines = filtered,
+			title = 'Filtered Results',
+		})
+	end
+end, { buffer = true, silent = true })
