@@ -13,7 +13,7 @@ local function diagnostic_count()
 	return ""
 end
 
-local padding = "  | "
+local padding = " | "
 local modules = {
 	diagnostic_count
 }

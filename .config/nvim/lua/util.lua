@@ -1,15 +1,22 @@
 local M = {}
-local SEARCH_CMD = 'ag -US --nocolor -p $HOME/.config/fd/ignore'
 
--- TODO: replace search engine with rg
+local ARGS = {
+	"rg",
+	"--smart-case",
+	"--no-ignore-vcs",
+	"--hidden",
+	"--ignore-file=$HOME/.config/fd/ignore",
+}
+local SEARCH_CMD = table.concat(ARGS, " ")
+
 M.search = {
 	constants = {
-		FIND_CMD = SEARCH_CMD .. ' --filename',
+		FIND_CMD = SEARCH_CMD,
 		FIND_EFM = "%f",
-		GREP_CMD = SEARCH_CMD .. ' --vimgrep --hidden --numbers', --numbers needed; bug in ag?
+		GREP_CMD = SEARCH_CMD .. ' --vimgrep',
 		GREP_EFM = "%f:%l:%c:%m"
 	},
-	enable_fuzzy_if = function(s)
+	try_enable_fuzzy = function(s)
 		local pattern = s:match("^(%S+)") or s
 		local rest = s:sub(#pattern + 1)
 		if pattern:sub(1, 1) == "*" then
@@ -20,15 +27,10 @@ M.search = {
 		return pattern .. rest
 	end
 }
-M.search.find_or_filter = function(arg, _, from)
-	local cmd = M.search.constants.FIND_CMD .. ' ' .. M.search.enable_fuzzy_if(arg)
-	if not from then
-		 -- -g: prints filenames without extra stdin
-		return vim.fn.systemlist(cmd .. ' -g')
-	else
-		-- w/o -g: search given a stdin i.e. `from`
-		return vim.fn.systemlist(cmd, from)
-	end
+M.search.find_or_filter = function(args, _, from)
+	local pat, dir = args:match("(%S+)%s*(%S*)")
+	local entries = from or vim.fn.systemlist(vim.list_extend(vim.deepcopy(ARGS), { "--files", dir and dir ~= "" or nil }))
+	return vim.fn.systemlist(vim.list_extend(vim.deepcopy(ARGS), { M.search.try_enable_fuzzy(pat) }), entries)
 end
 
 M.shorten_path = function(path)

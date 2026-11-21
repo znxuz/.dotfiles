@@ -113,7 +113,7 @@ vim.keymap.set("n", "gb", '<cmd>Buf<cr>')
 vim.o.grepprg = util.search.constants.GREP_CMD
 vim.o.grepformat = util.search.constants.GREP_EFM
 vim.api.nvim_create_user_command('Gr', function(opts)
-	vim.cmd('sil gr! ' .. util.search.enable_fuzzy_if(opts.args))
+	vim.cmd('sil gr! ' .. util.search.try_enable_fuzzy(opts.args))
 	local is_loc = false
 	util.open_or_focus_qflist(is_loc)
 end, {

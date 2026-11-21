@@ -87,9 +87,10 @@ vim.api.nvim_create_autocmd({ "WinClosed" }, {
 	end,
 })
 
+-- TODO: filter on keypress
 vim.keymap.set('n', 'i', function()
-	local pattern = vim.fn.input("Filter: ")
-	if pattern == '' then return end
+	local pat = vim.fn.input("Filter: ")
+	if pat == '' then return end
 
 	local winid = vim.api.nvim_get_current_win()
 	local is_loc = util.is_loc(winid)
@@ -101,7 +102,7 @@ vim.keymap.set('n', 'i', function()
 	-- TODO: detect efm and filter based upon it instead of checking if text is empty
 	local list = vim.iter(items)
 			:map(function(item)
-				local fname = item.bufnr > 0 and vim.fn.bufname(item.bufnr) or ''
+				local fname = item.bufnr > 0 and util.shorten_path(vim.fn.bufname(item.bufnr)) or ''
 				if item.text == '' then
 					return fname
 				end
@@ -115,7 +116,7 @@ vim.keymap.set('n', 'i', function()
 			end)
 			:totable()
 
-	local filtered = util.search.find_or_filter(pattern, nil, list)
+	local filtered = util.search.find_or_filter(pat, nil, list)
 
 	if is_loc then
 		util.populate_loclist(filtered, "Filtered Results")
