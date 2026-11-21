@@ -118,7 +118,7 @@ vim.api.nvim_create_user_command('Buf', function(opts)
 		local filenames = vim.iter(list)
 				:map(function(e) return shorten_path(vim.fn.bufname(e.bufnr)) end)
 				:totable()
-		populate_loclist(filenames, opts.name, { show_modified = true , show_lastused = true })
+		populate_loclist(filenames, opts.name, { show_modified = true, show_lastused = true })
 		if #filenames > 0 then
 			vim.api.nvim_win_set_cursor(0, { math.min(row, #filenames), 0 })
 		end
@@ -161,29 +161,21 @@ vim.keymap.set("v", "gp", function()
 	vim.fn.histadd("cmd", command)
 end, { silent = true })
 
-function _G.scratch_buffer()
-	vim.cmd("nos new")
-	vim.bo.buftype = 'nofile'
-	vim.bo.bufhidden = "wipe"
-	vim.bo.buflisted = false
-	vim.bo.laststatus = 0
-	return vim.api.nvim_get_current_buf()
-end
-
 -- shell cmd
 function _G.run_shell_cmd(c)
 	if not c or c == "" then return end
 
 	-- local w = vim.api.nvim_get_current_win()
-	local buf = scratch_buffer()
+	local scratch_buf = vim.api.nvim_create_buf(false, true)
 	vim.fn.jobstart({ vim.o.sh, "-c", c }, {
 		on_stdout = function(_, data, _)
-			vim.api.nvim_buf_set_lines(buf, -2, -1, false, data)
+			vim.api.nvim_buf_set_lines(scratch_buf, -2, -1, false, data)
 		end,
 		on_stderr = function(_, data, _)
-			vim.api.nvim_buf_set_lines(buf, -2, -1, false, data)
+			vim.api.nvim_buf_set_lines(scratch_buf, -2, -1, false, data)
 		end,
 	})
+	vim.cmd.sb(scratch_buf)
 	-- vim.api.nvim_set_current_win(w)
 end
 
@@ -243,6 +235,18 @@ vim.api.nvim_create_autocmd('TermRequest', {
 		if get_term_win() then return end
 		local row = ev.data.cursor[1]
 		if row == 1 then return end
-		print("command finished")
+		vim.notify("command finished", vim.log.levels.INFO)
 	end
 })
+
+-- parse unix timestamp in milli
+vim.keymap.set("n", "<leader>k", function()
+  local ms = tonumber(vim.fn.expand("<cword>"))
+  if not ms then return end
+
+  local sec, rem = math.floor(ms / 1000), ms % 1000
+  local utc = os.date("!%Y-%m-%d %H:%M:%S", sec) .. string.format(".%03d UTC", rem)
+  local cet = os.date("%Y-%m-%d %H:%M:%S", sec) .. string.format(".%03d %s", rem, os.date("%Z", sec))
+
+  vim.lsp.util.open_floating_preview({ utc, cet }, "", { border = "single", focus_id = "unix_utc" })
+end, { desc = "Show ms Unix timestamp as UTC and MEWT/MEST in float" })

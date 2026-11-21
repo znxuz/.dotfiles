@@ -5,13 +5,14 @@ else
 fi
 
 # reset defaults
-
 stty -ixon
-bindkey -r '^T'; bindkey '^s' fzf-file-widget
-bindkey -r '\ec'; bindkey '^t' fzf-cd-widget
+bindkey -r '^g' # fzf prefix key
 
-cd_fzf()
-{
+# remap fzf defaults
+bindkey -r '^T'; bindkey '^gs' fzf-file-widget
+bindkey -r '\ec'; bindkey '^gt' fzf-cd-widget
+
+cd-fzf() {
 	local ret="$(fd -td -H -L \
 		--search-path $1 -0 | fzf --scheme=path --read0 \
 		--preview='tree -L 1 {}' --bind='ctrl-space:toggle-preview' \
@@ -21,13 +22,10 @@ cd_fzf()
 	vcs_info
 	zle reset-prompt
 }
+cd-fzf-home() { cd-fzf "$HOME" }
+zle -N cd-fzf-home && bindkey '^gT' cd-fzf-home
 
-cd_fzf_home() { cd_fzf "$HOME" }
-
-zle -N cd_fzf_home && bindkey '^[^t' cd_fzf_home
-
-find_fzf()
-{
+find-fzf() {
 	[[ -z $1 ]] && exit 1
 	local ret="$(fd -H --search-path $1 -0 | fzf --read0 -m)"
 	if [[ -n "$ret" ]]; then
@@ -38,33 +36,27 @@ find_fzf()
 	fi
 	zle reset-prompt
 }
+fzf-home() { find-fzf $HOME }
+zle -N fzf-home && bindkey '^gS' fzf-home
 
-fzf_home() { find_fzf $HOME }
-
-zle -N fzf_home && bindkey '^[^s' fzf_home
-
-lpac()
-{
+lpac() {
 	local ret="$(pacman -Qq | fzf -m --preview='pacman -Qi {}' | tr '\n' ' ')"
 
 	LBUFFER=${LBUFFER}${ret}
 	zle reset-prompt
 }
-zle -N lpac && bindkey '^[p' lpac
+zle -N lpac && bindkey '^gp' lpac
 
-rpac()
-{
+rpac() {
 	local ret="$(pacman -Sql | fzf -m --preview='pacman -Si {}' | tr '\n' ' ')"
 
 	LBUFFER=${LBUFFER}${ret}
 	zle reset-prompt
 }
-zle -N rpac && bindkey '^[^p' rpac
+zle -N rpac && bindkey '^g^p' rpac
 
-apac()
-{
+apac() {
 	aur_list="/tmp/packages.gz"
-
 	if [[ ! -f "$aur_list" ]]; then
 		curl -s "https://aur.archlinux.org/packages.gz" > "$aur_list" ||
 			return 1
@@ -80,8 +72,23 @@ apac()
 	fi
 
 	local ret="$(zcat "$aur_list" | fzf -m --preview="yay -Si {}" | tr '\n' ' ')"
-
 	LBUFFER=${LBUFFER}${ret}
 	zle reset-prompt
 }
-zle -N apac && bindkey '^[a' apac
+zle -N apac && bindkey '^gP' apac
+
+git-branch-local() {
+	local branch
+	branch=$(git branch --format="%(refname:short)" 2>/dev/null | fzf)
+	[[ -n "$branch" ]] && LBUFFER+="${(q)branch}"
+	zle reset-prompt
+}
+zle -N git-branch-local && bindkey '^gb' git-branch-local
+
+git-branch-remote() {
+	local branch
+	branch=$(git branch -r --format="%(refname:short)" 2>/dev/null | fzf)
+	[[ -n "$branch" ]] && LBUFFER+="${(q)branch}"
+	zle reset-prompt
+}
+zle -N git-branch-remote && bindkey '^gB' git-branch-remote
