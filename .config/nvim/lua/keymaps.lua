@@ -117,7 +117,6 @@ vim.api.nvim_create_user_command('Gr', function(opts)
 	if opts.fargs[#fargs] then
 		opts.fargs[#fargs] = util.search.try_enable_fuzzy(opts.fargs[#fargs])
 	end
-	vim.print(fargs)
 	vim.cmd.grep({
 		args = fargs,
 		bang = true,
