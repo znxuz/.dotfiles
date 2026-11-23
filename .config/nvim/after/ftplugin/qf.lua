@@ -87,43 +87,45 @@ vim.api.nvim_create_autocmd({ "WinClosed" }, {
 	end,
 })
 
--- TODO: filter on keypress
 vim.keymap.set('n', 'i', function()
-	local pat = vim.fn.input("Filter: ")
-	if pat == '' then return end
-
 	local winid = vim.api.nvim_get_current_win()
 	local is_loc = util.is_loc(winid)
-	local items = is_loc
-			and vim.fn.getloclist(0)
-			or vim.fn.getqflist()
-
-	-- vibed by ai
-	-- TODO: detect efm and filter based upon it instead of checking if text is empty
-	local list = vim.iter(items)
-			:map(function(item)
-				local fname = item.bufnr > 0 and util.shorten_path(vim.fn.bufname(item.bufnr)) or ''
-				if item.text == '' then
-					return fname
-				end
-				if fname ~= '' then
-					if item.lnum > 0 then
-						return string.format('%s:%d:%d:%s', fname, item.lnum, item.col, item.text)
-					end
-					return string.format('%s:%s', fname, item.text)
-				end
-				return item.text
-			end)
-			:totable()
-
-	local filtered = util.search.find_or_filter(pat, nil, list)
-
-	if is_loc then
-		util.populate_loclist(filtered, "Filtered Results")
-	else
-		vim.fn.setqflist({}, ' ', {
-			lines = filtered,
-			title = 'Filtered Results',
-		})
+	local items = is_loc and vim.fn.getloclist(winid) or vim.fn.getqflist()
+	local list = vim.iter(items):map(function(item)
+		local fname = item.bufnr > 0 and util.shorten_path(vim.fn.bufname(item.bufnr)) or ''
+		if item.text == '' then return fname end
+		if fname == '' then return item.text end
+		return item.lnum > 0
+				and string.format('%s:%d:%d:%s', fname, item.lnum, item.col, item.text)
+				or string.format('%s:%s', fname, item.text)
+	end):totable()
+	local function update(action, lines)
+		if is_loc then
+			util.populate_loclist(lines, 'Filtered Results', {
+				action = action,
+				winid = winid,
+			})
+		else
+			vim.fn.setqflist({}, action, { lines = lines, title = 'Filtered Results' })
+		end
 	end
-end, { buffer = true, silent = true })
+
+	update(' ', list)
+
+	local id = vim.api.nvim_create_autocmd('CmdlineChanged', {
+		nested = true,
+		callback = function()
+			local pat = vim.fn.getcmdline()
+			local filtered = pat == '' and list or util.search.find_or_filter(pat, nil, list)
+			update('r', filtered)
+			vim.cmd.redraw()
+		end,
+	})
+
+	vim.ui.input({ prompt = 'Filter: ' }, function(input)
+		vim.api.nvim_del_autocmd(id)
+		if not input or input == '' then
+			vim.cmd(is_loc and 'silent! lolder' or 'silent! colder')
+		end
+	end)
+end, { buffer = true, silent = true, desc = "dynamic fuzzy filter" })

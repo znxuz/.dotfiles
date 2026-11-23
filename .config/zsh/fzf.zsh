@@ -53,7 +53,7 @@ rpac() {
 	LBUFFER=${LBUFFER}${ret}
 	zle reset-prompt
 }
-zle -N rpac && bindkey '^g^p' rpac
+zle -N rpac && bindkey '^gP' rpac
 
 apac() {
 	aur_list="/tmp/packages.gz"
@@ -75,7 +75,7 @@ apac() {
 	LBUFFER=${LBUFFER}${ret}
 	zle reset-prompt
 }
-zle -N apac && bindkey '^gP' apac
+zle -N apac && bindkey '^g^p' apac
 
 git-branch-local() {
 	local branch
@@ -88,7 +88,7 @@ zle -N git-branch-local && bindkey '^gb' git-branch-local
 git-branch-remote() {
 	local branch
 	branch=$(git branch -r --format="%(refname:short)" 2>/dev/null | fzf)
-	[[ -n "$branch" ]] && LBUFFER+="${(q)branch}"
+	[[ -n "$branch" ]] && LBUFFER+="${(q)branch/origin\//}"
 	zle reset-prompt
 }
 zle -N git-branch-remote && bindkey '^gB' git-branch-remote
