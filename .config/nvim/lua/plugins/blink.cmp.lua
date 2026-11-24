@@ -17,6 +17,18 @@ return {
 			['<C-Space>'] = { 'show_documentation', 'hide_documentation', 'fallback' },
 			['<A-j>'] = { 'scroll_documentation_down', 'fallback' },
 			['<A-k>'] = { 'scroll_documentation_up', 'fallback' },
+			['<C-d>'] = {
+				function(cmp)
+					if vim.fn.mode() == 's' and cmp.snippet_active({ direction = 1 }) then
+						vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-g>"_c', true, false, true), 'n', false)
+						vim.schedule(function()
+							cmp.snippet_forward()
+						end)
+						return true
+					end
+				end,
+				'fallback',
+			},
 		},
 		completion = {
 			-- trigger = { show_in_snippet = false },

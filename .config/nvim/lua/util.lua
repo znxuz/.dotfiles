@@ -3,11 +3,10 @@ local M = {}
 local ARGS = {
 	"rg",
 	"--smart-case",
-	"--no-ignore-vcs",
 	"--hidden",
-	"--ignore-file=$HOME/.config/fd/ignore",
-	-- "--sort=path",
-	"--no-messages" -- suppress stderr
+	"--ignore-file=" .. vim.env.HOME .. "/.config/fd/ignore",
+	-- "--no-ignore-vcs",
+	-- "--sort=path"
 }
 local SEARCH_CMD = table.concat(ARGS, " ")
 
@@ -19,23 +18,26 @@ M.search = {
 		GREP_EFM = "%f:%l:%c:%m"
 	},
 	try_enable_fuzzy = function(s)
-		local pattern = s:match("^(%S+)") or s
-		local rest = s:sub(#pattern + 1)
-		if pattern:sub(1, 1) == "*" then
-			pattern = '"' .. pattern:gsub("^%*", ""):gsub(".", ".*%0") .. ".*" .. '"'
-		elseif pattern:find("%.%*") then
-			pattern = '"' .. pattern .. '"'
+		local pat = s:match("^(%S+)") or s
+		local rest = s:sub(#pat + 1)
+		if pat:sub(1, 1) == "*" then
+			-- dont need to double quote the pattern if its supplied as execvp arg instead of being passed into shell
+			pat = pat:gsub("^%*", ""):gsub(".", ".*%0") .. ".*"
 		end
-		return pattern .. rest
+		return pat .. rest
+	end,
+	get_result = function(cmd, stdin)
+		local out = vim.system(cmd, { text = true, stdin = stdin }):wait().stdout
+		return out and vim.split(out, "\n", { trimempty = true }) or {}
 	end
 }
 
 M.search.find_or_filter = function(args, _, from)
 	local pat, dir = args:match("(%S+)%s*(%S*)")
-	-- TODO: use vim.system for splitting stdout & stderr instead of using program-dependent flag to silence stderr
-	local entries = from or vim.fn.systemlist(vim.list_extend(vim.deepcopy(ARGS), { "--files", dir and dir ~= "" or nil }))
-	-- FIXME: fuzzy not working
-	return vim.fn.systemlist(vim.list_extend(vim.deepcopy(ARGS), { M.search.try_enable_fuzzy(pat) }), entries)
+	local entries = from or
+			M.search.get_result(vim.list_extend(vim.deepcopy(ARGS), { "--files", (dir and dir ~= "") and dir or nil }))
+	local cmd = vim.list_extend(vim.deepcopy(ARGS), { M.search.try_enable_fuzzy(pat) })
+	return M.search.get_result(cmd, entries)
 end
 
 M.shorten_path = function(path)
@@ -71,6 +73,7 @@ M.populate_loclist = function(filenames, title, opts)
 		quickfixtextfunc = function(info)
 			local files = {}
 			local items = vim.fn.getloclist(info.winid, { id = info.id, items = 1 }).items
+			if not items then return end
 			for i = info.start_idx, info.end_idx do
 				local item = items[i]
 				local f = item and item.bufnr > 0 and M.shorten_path(vim.fn.bufname(item.bufnr)) or ''
