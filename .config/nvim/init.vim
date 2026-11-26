@@ -90,10 +90,8 @@ fu! DefSTL() abort
 
 	let stl = ""
 	let stl .= "%<" . Shorten(getcwd()) . sep
-	let stl .= file_hl . Shorten(cur_file) . "%*"
+	let stl .= file_hl . Shorten(cur_file) . "%*%4m%5r"
 	let stl .= prev_hl . (show_prev ? ' \ ' . fnamemodify(prev_file, ':t') : '') . "%*"
-	let stl .= "%4m"
-	let stl .= "%5r"
 	let stl .= "%{&pvw?' [PVW]':''}"
 	let stl .= "%{&paste?' [P]':''}"
 	let stl .= "%{luaeval(\"require('stl').inject()\")}"

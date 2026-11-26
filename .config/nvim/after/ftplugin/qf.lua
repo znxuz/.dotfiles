@@ -90,42 +90,91 @@ vim.api.nvim_create_autocmd({ "WinClosed" }, {
 vim.keymap.set('n', 'i', function()
 	local winid = vim.api.nvim_get_current_win()
 	local is_loc = util.is_loc(winid)
-	local items = is_loc and vim.fn.getloclist(winid) or vim.fn.getqflist()
-	local list = vim.iter(items):map(function(item)
-		local fname = item.bufnr > 0 and util.shorten_path(vim.fn.bufname(item.bufnr)) or ''
-		if item.text == '' then return fname end
-		if fname == '' then return item.text end
-		return item.lnum > 0
-				and string.format('%s:%d:%d:%s', fname, item.lnum, item.col, item.text)
-				or string.format('%s:%s', fname, item.text)
-	end):totable()
-	local function update(action, lines)
+
+	local function get_list(what)
 		if is_loc then
-			util.populate_loclist(lines, 'Filtered Results', {
-				action = action,
-				winid = winid,
-			})
+			return what and vim.fn.getloclist(winid, what) or vim.fn.getloclist(winid)
+		end
+		return what and vim.fn.getqflist(what) or vim.fn.getqflist()
+	end
+	local function set_list(action, what)
+		if is_loc then
+			vim.fn.setloclist(winid, {}, action, what)
 		else
-			vim.fn.setqflist({}, action, { lines = lines, title = 'Filtered Results' })
+			vim.fn.setqflist({}, action, what)
 		end
 	end
+	local function index_items(list)
+		local entries = {}
+		local belongs = {}
+		for _, item in ipairs(list) do
+			local fname = item.bufnr > 0 and util.shorten_path(vim.fn.bufname(item.bufnr)) or ''
+			local parts = {}
+			if fname ~= '' then
+				parts[#parts + 1] = fname
+			end
+			if item.lnum > 0 then
+				parts[#parts + 1] = item.lnum
+				parts[#parts + 1] = item.col or 0
+			end
+			if item.text ~= '' then
+				parts[#parts + 1] = item.text
+			end
+			local entry = table.concat(parts, ':')
+			entries[#entries + 1] = entry
+			belongs[entry] = belongs[entry] or {}
+			table.insert(belongs[entry], item)
+		end
+		return entries, belongs
+	end
 
-	update(' ', list)
+	local original = get_list()
+	local title = get_list({ title = 1 }).title
+	local qftf = get_list({ quickfixtextfunc = 1 }).quickfixtextfunc
+	local entries, belongs = index_items(original)
+
+	local match_counts = {}
+	local function to_items(matched)
+		local out = {}
+		for _, entry in ipairs(matched) do
+			local queue = belongs[entry]
+			local n = (match_counts[entry] or 0) + 1
+			match_counts[entry] = n
+			if queue and queue[n] then
+				out[#out + 1] = queue[n]
+			end
+		end
+		return out
+	end
+	local function filtered_items(pat)
+		match_counts = {}
+		local matched = pat == '' and entries or util.search.find_or_filter(pat, nil, entries)
+		return to_items(matched)
+	end
+	local function restore()
+		set_list('r', { items = original, title = title, quickfixtextfunc = qftf })
+	end
+	local function preview(items)
+		set_list('r', { items = items, title = 'Filtered Results', quickfixtextfunc = qftf })
+	end
+
+	preview(original)
 
 	local id = vim.api.nvim_create_autocmd('CmdlineChanged', {
 		nested = true,
 		callback = function()
-			local pat = vim.fn.getcmdline()
-			local filtered = pat == '' and list or util.search.find_or_filter(pat, nil, list)
-			update('r', filtered)
+			preview(filtered_items(vim.fn.getcmdline()))
 			vim.cmd.redraw()
 		end,
 	})
-
 	vim.ui.input({ prompt = 'Filter: ' }, function(input)
 		vim.api.nvim_del_autocmd(id)
-		if not input or input == '' then
-			vim.cmd(is_loc and 'silent! lolder' or 'silent! colder')
-		end
+		restore()
+		if input == nil then return end
+		set_list(' ', {
+			items = filtered_items(input),
+			title = 'Filtered Results',
+			quickfixtextfunc = qftf,
+		})
 	end)
 end, { buffer = true, silent = true, desc = "dynamic fuzzy filter" })

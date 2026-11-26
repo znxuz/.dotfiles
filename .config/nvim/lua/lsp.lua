@@ -28,9 +28,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 						items = opts.items,
 						idx = find_match_idx(opts),
 						quickfixtextfunc = function(dict)
+							-- always read the current list so the text stays in sync when the list is filtered/replaced in place
+							local items = vim.fn.getloclist(dict.winid, { id = dict.id, items = 1 }).items or {}
 							local lines = {}
 							for i = dict.start_idx, dict.end_idx do
-								table.insert(lines, opts.items[i].text)
+								table.insert(lines, items[i] and items[i].text or '')
 							end
 							return lines
 						end

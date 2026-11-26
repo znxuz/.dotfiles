@@ -11,6 +11,7 @@ bindkey -r '^g' # fzf prefix key
 # remap fzf defaults
 bindkey -r '^T'; bindkey '^gs' fzf-file-widget
 bindkey -r '\ec'; bindkey '^gt' fzf-cd-widget
+bindkey -r '^R'; bindkey '^gr' fzf-history-widget
 
 cd-fzf() {
 	local ret="$(fd -td -H -L \
